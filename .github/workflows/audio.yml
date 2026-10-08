@@ -1,0 +1,53 @@
+name: Audio des chapitres
+
+# Génère les fichiers audio manquants dès qu'un chapitre est ajouté ou modifié.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packs/**'
+      - 'a-publier/**'
+      - 'audio/base-contenu.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audio
+  cancel-in-progress: false
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Modèle de voix (gardé en cache)
+        uses: actions/cache@v4
+        with:
+          path: ~/bubugao-tts
+          key: tts-matcha-zh-baker-v1
+
+      - name: Générer l'audio manquant
+        run: |
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q sherpa-onnx soundfile
+          export BUBUGAO_TTS_DIR="$HOME/bubugao-tts"
+          python3 scripts/generer_audio.py
+
+      - name: Enregistrer
+        run: |
+          if [ -n "$(git status --porcelain audio)" ]; then
+            git config user.name "Robot Bùbùgāo"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add audio
+            git commit -m "Audio : fichiers générés pour le nouveau contenu"
+            git push
+          else
+            echo "Aucun nouvel audio à générer."
+          fi

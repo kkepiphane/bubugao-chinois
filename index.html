@@ -473,7 +473,7 @@ async function checkUpdates(manual){
         installPack(data);PS[e.id]={v:data.v,data};if(have)updated++;else added.push(data.title);}catch(_){}
     }
     const listed=new Set((idx.packs||[]).map(e=>e&&e.id));Object.keys(PS).forEach(k=>{if(k[0]!=='_'&&!listed.has(k))delete PS[k];});
-    PS._checked=Date.now();savePS();
+    PS._checked=Date.now();savePS();loadAudioIndex();
     if(added.length)toast('Nouveau chapitre : '+added[added.length-1]);
     else if(updated)toast('Contenu mis à jour.');
     else if(manual)toast('Tout est à jour.');
@@ -587,30 +587,56 @@ function markActive(){
 let zhVoice=null,voicesChecked=false;
 function loadVoices(){try{const vs=speechSynthesis.getVoices();if(vs.length){voicesChecked=true;zhVoice=vs.find(v=>/zh[-_]CN/i.test(v.lang))||vs.find(v=>/^(zh|cmn)/i.test(v.lang))||null;}}catch(e){}}
 if('speechSynthesis' in window){loadVoices();try{speechSynthesis.addEventListener('voiceschanged',()=>{const had=!!zhVoice;loadVoices();if(had!==!!zhVoice&&!ui.sess)render();});}catch(e){}}
-function say(text,rate){
-  if(!('speechSynthesis' in window)){toast('La voix n’est pas disponible sur ce navigateur.');return;}
-  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text.replace(/\{name\}/g,S.name||''));u.lang='zh-CN';if(zhVoice)u.voice=zhVoice;u.rate=rate||(.72+.26*Math.max(0,Math.min(1,S.profile.ecoute)));speechSynthesis.speak(u);}catch(e){}
+/* Les fichiers audio (audio/*.mp3) sont générés à l'avance : ils marchent sur tous les téléphones et hors-ligne.
+   La voix du téléphone ne sert que de secours (texte avec le prénom, contenu sans audio). */
+let AUDIO={},curAudio=null,lastUtt=null,ttsWarned=false;
+async function loadAudioIndex(){
+  try{const r=await fetch('audio/index.json',{cache:'no-cache'});if(r.ok){AUDIO=await r.json();try{localStorage.setItem('bubugao.audio',JSON.stringify(AUDIO));}catch(_){}prefetchAudio();}}
+  catch(e){try{AUDIO=JSON.parse(localStorage.getItem('bubugao.audio'))||{};}catch(_){}}
 }
-const noZh=()=>!('speechSynthesis' in window)||(voicesChecked&&!zhVoice);
+try{AUDIO=JSON.parse(localStorage.getItem('bubugao.audio'))||{};}catch(_){}
+let prefetching=false;
+async function prefetchAudio(){
+  if(prefetching||!('caches' in window)||navigator.onLine===false)return;
+  if(navigator.connection&&navigator.connection.saveData)return;
+  prefetching=true;
+  try{const c=await caches.open('bubugao-audio');
+    for(const f of [...new Set(Object.values(AUDIO))]){const url=new URL('audio/'+f,location.href).href;
+      if(await c.match(url))continue;try{const r=await fetch(url);if(r.ok)await c.put(url,r);}catch(e){break;}}
+  }catch(e){}
+  prefetching=false;
+}
+function say(text,rate){
+  const raw=String(text).trim(),full=raw.replace(/\{name\}/g,S.name||'');
+  try{if(curAudio){curAudio.pause();curAudio=null;}}catch(_){}
+  const f=raw.includes('{name}')?null:AUDIO[raw];
+  if(f){
+    try{try{speechSynthesis.cancel();}catch(_){}
+      const a=new Audio('audio/'+f);a.preservesPitch=true;
+      a.playbackRate=rate&&rate<=.6?.7:rate&&rate<.9?.85:Math.min(1.1,.95+.15*Math.max(0,S.profile.ecoute-.5));
+      curAudio=a;const p=a.play();if(p&&p.catch)p.catch(()=>ttsSay(full,rate));return;}
+    catch(e){}
+  }
+  ttsSay(full,rate);
+}
+function ttsSay(text,rate){
+  if(!('speechSynthesis' in window)){toast('La voix n’est pas disponible sur ce navigateur.');return;}
+  try{
+    const synth=speechSynthesis;if(!zhVoice)loadVoices();
+    const go=()=>{const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';if(zhVoice)u.voice=zhVoice;
+      u.rate=rate||(.72+.26*Math.max(0,Math.min(1,S.profile.ecoute)));lastUtt=u;synth.speak(u);};
+    // Chrome Android avale parfois la phrase si on parle juste après cancel() : on attend un peu
+    if(synth.speaking||synth.pending){synth.cancel();setTimeout(go,150);}else go();
+    if(voicesChecked&&!zhVoice&&!ttsWarned){ttsWarned=true;toast('Voix chinoise du téléphone absente pour cette phrase.');}
+  }catch(e){}
+}
+const noZh=()=>!Object.keys(AUDIO).length&&(!('speechSynthesis' in window)||(voicesChecked&&!zhVoice));
 
 /* ============================================================
-   ANALYSE DES TONS (YIN + comparaison de formes)
+   ANALYSE DES TONS (YIN + modèle appris sur une voix native)
    ============================================================ */
 let actx=null;
 function getCtx(){if(!actx){const C=window.AudioContext||window.webkitAudioContext;actx=new C();}return actx;}
-function yinAt(x,p,W,sr){
-  const maxTau=Math.floor(sr/70),minTau=Math.floor(sr/480);
-  if(p+W+maxTau>=x.length)return 0;
-  const d=new Float32Array(maxTau+1);
-  for(let tau=minTau>2?2:1;tau<=maxTau;tau++){let s=0;for(let i=0;i<W;i++){const v=x[p+i]-x[p+i+tau];s+=v*v;}d[tau]=s;}
-  const c=new Float32Array(maxTau+1);c[0]=1;let run=0;
-  for(let tau=1;tau<=maxTau;tau++){run+=d[tau];c[tau]=run?d[tau]*tau/run:1;}
-  let tau=minTau;
-  for(;tau<=maxTau;tau++){if(c[tau]<.15){while(tau+1<=maxTau&&c[tau+1]<c[tau])tau++;break;}}
-  if(tau>maxTau)return 0;
-  const a=c[tau-1],b=c[tau],e=tau+1<=maxTau?c[tau+1]:b,den=a+e-2*b;
-  return sr/(tau+(den?(a-e)/(2*den):0));
-}
 function tpl(t,last){
   if(t===1)return[5,5,5,5,5];
   if(t===2)return[3,3.4,3.9,4.4,5];
@@ -618,57 +644,102 @@ function tpl(t,last){
   if(t===4)return[5,4,3,2,1];
   return[3,2.8,2.6,2.4,2.2];
 }
-function shapeDist(h,t,w){
-  const mh=avg(h),mt=avg(t);const hc=h.map(v=>v-mh),tc=t.map(v=>v-mt);
-  const tt=tc.reduce((s,v)=>s+v*v,0);let k=1;
-  if(tt>0){k=hc.reduce((s,v,i)=>s+v*tc[i],0)/tt;k=Math.max(.45,Math.min(1.3,k));}
-  let s=0;for(let i=0;i<5;i++){const dd=hc[i]-k*tc[i];s+=dd*dd;}
-  return Math.sqrt(s/5)+w*Math.abs(mh-(3+(mt-3)*.5));
-}
-function resample(a,n){const out=[];for(let i=0;i<n;i++){const s=Math.floor(i*a.length/n),e=Math.max(s+1,Math.floor((i+1)*a.length/n));out.push(avg(a.slice(s,e)));}return out;}
+/* Analyseur de tons v3 : suivi de hauteur (YIN), découpage par creux d'énergie,
+   puis classement par traits (montée, chute, creux, niveau) en demi-tons. */
 function median(a){const b=[...a].sort((x,y)=>x-y);return b.length?b[Math.floor(b.length/2)]:0;}
-
-function analyzeTones(buf,tones){
+function resample(a,n){const out=[];for(let i=0;i<n;i++){const s=Math.floor(i*a.length/n),e=Math.max(s+1,Math.floor((i+1)*a.length/n));out.push(avg(a.slice(s,e)));}return out;}
+function yinAt(x,p,W,sr){
+  const maxTau=Math.floor(sr/65),minTau=Math.floor(sr/500);
+  if(p+W+maxTau>=x.length)return 0;
+  const d=new Float32Array(maxTau+1);
+  for(let tau=1;tau<=maxTau;tau++){let s=0;for(let i=0;i<W;i++){const v=x[p+i]-x[p+i+tau];s+=v*v;}d[tau]=s;}
+  const c=new Float32Array(maxTau+1);c[0]=1;let run=0;
+  for(let tau=1;tau<=maxTau;tau++){run+=d[tau];c[tau]=run?d[tau]*tau/run:1;}
+  let tau=-1;
+  for(let t=minTau;t<=maxTau;t++){if(c[t]<.2){while(t+1<=maxTau&&c[t+1]<c[t])t++;tau=t;break;}}
+  if(tau<0){let bi=minTau;for(let t=minTau;t<=maxTau;t++)if(c[t]<c[bi])bi=t;if(c[bi]<.35)tau=bi;else return 0;}
+  if(tau<=1||tau>=maxTau)return 0;
+  const a=c[tau-1],b=c[tau],e=c[tau+1],den=a+e-2*b;
+  return sr/(tau+(den?(a-e)/(2*den):0));
+}
+function pitchTrack(buf){
   const ch=buf.numberOfChannels,len=buf.length,mono=new Float32Array(len);
   for(let c=0;c<ch;c++){const d=buf.getChannelData(c);for(let i=0;i<len;i++)mono[i]+=d[i]/ch;}
   const f=Math.max(1,Math.round(buf.sampleRate/16000)),sr=buf.sampleRate/f,n=Math.floor(len/f),x=new Float32Array(n);
   for(let i=0;i<n;i++){let s=0;for(let j=0;j<f;j++)s+=mono[i*f+j];x[i]=s/f;}
-  const W=Math.round(sr*.03),hop=Math.round(sr*.01);
+  const W=Math.round(sr*.032),hop=Math.round(sr*.01);
   const rms=[];let maxR=0;
   for(let p=0;p+W<n;p+=hop){let e=0;for(let i=0;i<W;i++)e+=x[p+i]*x[p+i];const r=Math.sqrt(e/W);rms.push(r);if(r>maxR)maxR=r;}
-  const thr=Math.max(.006,maxR*.12);
+  const thr=Math.max(.004,maxR*.08);
   let f0=rms.map((r,i)=>r>thr?yinAt(x,i*hop,W,sr):0);
-  const voiced=f0.filter(v=>v>0);
-  if(voiced.length<8)return{ok:false,msg:'Je n’ai pas bien entendu ta voix. Parle plus fort, près du téléphone, dans un endroit calme.'};
-  let med=median(voiced);
-  f0=f0.map(v=>!v?0:v>1.8*med?v/2:v<.55*med?v*2:v);
-  f0=f0.map((v,i)=>{if(!v)return 0;const w=[f0[i-1],v,f0[i+1]].filter(z=>z>0);return median(w);});
-  med=median(f0.filter(v=>v>0));
-  // découpage en syllabes
+  const v=f0.filter(z=>z>0);if(v.length<5)return{f0,rms,med:0,n:v.length};
+  let med=median(v);
+  f0=f0.map(z=>!z?0:z>1.7*med?z/2:z<.6*med?z*2:z);
+  // retirer les sauts isolés (craquements de voix) : écart > 4 demi-tons avec la médiane locale
+  f0=f0.map((z,i)=>{if(!z)return 0;const w=f0.slice(Math.max(0,i-4),i+5).filter(q=>q>0);const m=median(w);return Math.abs(12*Math.log2(z/m))>4?0:z;});
+  f0=f0.map((z,i)=>{if(!z)return 0;const w=[f0[i-2],f0[i-1],z,f0[i+1],f0[i+2]].filter(q=>q>0);return median(w);});
+  med=median(f0.filter(z=>z>0));
+  return{f0,rms,med,n:f0.filter(z=>z>0).length};
+}
+function segment(f0,rms,N){
   let runs=[],cur=null,gap=0;
-  f0.forEach((v,i)=>{if(v>0){if(cur&&gap<=2){cur.e=i;}else{cur={s:i,e:i};runs.push(cur);}gap=0;}else gap++;});
+  f0.forEach((v,i)=>{if(v>0){if(cur&&gap<=3){cur.e=i;}else{cur={s:i,e:i};runs.push(cur);}gap=0;}else gap++;});
   runs=runs.filter(r=>r.e-r.s>=3);
-  const N=tones.length;
-  if(!runs.length)return{ok:false,msg:'Je n’ai pas bien entendu ta voix. Réessaie un peu plus fort.'};
+  if(!runs.length)return null;
   while(runs.length>N){let bi=0,bg=1e9;for(let i=0;i<runs.length-1;i++){const g=runs[i+1].s-runs[i].e;if(g<bg){bg=g;bi=i;}}runs.splice(bi,2,{s:runs[bi].s,e:runs[bi+1].e});}
   let guard=0;
-  while(runs.length<N&&guard++<20){let bi=0;for(let i=1;i<runs.length;i++)if(runs[i].e-runs[i].s>runs[bi].e-runs[bi].s)bi=i;const r=runs[bi];if(r.e-r.s<6)break;const m=Math.floor((r.s+r.e)/2);runs.splice(bi,1,{s:r.s,e:m},{s:m+1,e:r.e});}
+  while(runs.length<N&&guard++<30){
+    // couper le segment le plus long, au creux d'énergie le plus net vers son milieu
+    let bi=0;for(let i=1;i<runs.length;i++)if(runs[i].e-runs[i].s>runs[bi].e-runs[bi].s)bi=i;
+    const r=runs[bi],L=r.e-r.s;if(L<8)break;
+    let cut=Math.floor((r.s+r.e)/2),best=1e9;
+    for(let k=r.s+Math.floor(L*.3);k<=r.s+Math.ceil(L*.7);k++){const sm=(rms[k-1]+rms[k]+rms[k+1])/3;if(sm<best){best=sm;cut=k;}}
+    runs.splice(bi,1,{s:r.s,e:cut-1},{s:cut+1,e:r.e});
+  }
   if(runs.length!==N){const s0=runs[0].s,e0=runs[runs.length-1].e,L=(e0-s0+1)/N;runs=[];for(let i=0;i<N;i++)runs.push({s:Math.round(s0+i*L),e:Math.round(s0+(i+1)*L)-1});}
+  return runs;
+}
+/* Traits d'une syllabe (en demi-tons par rapport au milieu de la voix) */
+function feats(st){
+  const n=st.length,core=n>=8?st.slice(Math.floor(n*.12),Math.ceil(n*.92)):st;
+  const m=core.length,q=Math.max(1,Math.round(m/4));
+  const start=avg(core.slice(0,q)),end=avg(core.slice(m-q));
+  let mi=0,ma=0;for(let i=1;i<m;i++){if(core[i]<core[mi])mi=i;if(core[i]>core[ma])ma=i;}
+  const minv=core[mi],maxv=core[ma],pmin=mi/(m-1||1),pmax=ma/(m-1||1);
+  const rise=pmin<.85?end-minv:0;          // remontée après le point bas
+  const fall=pmax<.85?maxv-end:0;          // chute après le point haut
+  const dip=(pmin>.15&&pmin<.85)?Math.min(start,end)-minv:0;
+  return{start,end,minv,maxv,pmin,pmax,rise,fall,dip,range:maxv-minv,mean:avg(core),pts:resample(core,5)};
+}
+/* Modèle appris sur 545 syllabes prononcées par une voix native (régression logistique, validation croisée : 77 % avec référence de voix, 70 % sans) */
+const TONE_MODEL={"ref":{"classes":[1,2,3,4],"W":[[-0.0072,0.0918,0.0269,-0.0759,-1.5475,1.3955,-0.3765,-0.1152,-0.6783,-0.1778,0.3536,0.1403,-0.2424],[-0.1108,0.0831,-0.026,0.0683,-1.7735,1.606,-0.2714,-0.0762,0.8337,0.164,-0.2888,-0.9527,0.7186],[0.2041,-0.2264,-0.1103,-0.1771,0.7105,-1.0712,0.5221,0.0524,0.6768,-0.0366,-0.0713,-0.1894,0.6661],[-0.0861,0.0516,0.1094,0.1846,2.6105,-1.9303,0.1258,0.139,-0.8321,0.0504,0.0065,1.0019,-1.1422]],"b":[1.4108,0.4794,-0.5295,-1.3607]},"noref":{"classes":[1,2,3,4],"W":[[-0.0383,0.0581,-0.1095,-0.3294,-2.0388,1.2132,-0.3621,-0.0874,-0.723,-0.2259,0.7111,0.19,0.1898],[-0.1001,0.1868,0.0254,0.246,-1.418,1.7041,-0.3923,-0.1245,1.0109,0.2521,-0.5276,-1.0163,0.3708],[0.2104,-0.2362,0.0483,0.0093,1.0925,-0.9877,0.6052,0.0993,0.841,-0.0605,-0.36,-0.4072,0.6044],[-0.072,-0.0087,0.0358,0.0741,2.3643,-1.9296,0.1492,0.1126,-1.1289,0.0343,0.1765,1.2335,-1.165]],"b":[2.2386,-0.1011,-1.0704,-1.0671]}};
+function toneProbs(F,N,i,withRef){
+  const M=withRef?TONE_MODEL.ref:TONE_MODEL.noref;
+  const x=[F.start,F.end,F.minv,F.maxv,F.pmin,F.pmax,F.rise,F.fall,F.dip,F.range,F.mean,i===N-1?1:0,N===1?1:0];
+  const z=M.W.map((w,k)=>w.reduce((s,wj,j)=>s+wj*x[j],M.b[k]));const mx=Math.max(...z);const e=z.map(v=>Math.exp(v-mx));const sum=e.reduce((p,q)=>p+q,0);
+  const P={};M.classes.forEach((c,k)=>P[c]=e[k]/sum);return P;
+}
+/* tones : tons attendus · ref : hauteur moyenne de la voix (Hz), si connue */
+function analyzeTones(buf,tones,ref){
+  const tr=pitchTrack(buf),f0=tr.f0;
+  if(tr.n<6)return{ok:false,msg:'Je n’ai pas bien entendu ta voix. Parle plus fort, près du téléphone, dans un endroit calme.'};
+  const N=tones.length,runs=segment(f0,tr.rms,N);
+  if(!runs)return{ok:false,msg:'Je n’ai pas bien entendu ta voix. Réessaie un peu plus fort.'};
+  const withRef=!!ref||N>=3,R=ref||tr.med;
   const segs=runs.map((r,i)=>{
-    let lv=[];for(let k=r.s;k<=r.e;k++)if(f0[k]>0)lv.push(Math.max(.5,Math.min(5.5,3+12*Math.log2(f0[k]/med)/2.5)));
-    if(lv.length<2)lv=[3,3];
-    const core=lv.length>=8?lv.slice(Math.floor(lv.length*.15),Math.ceil(lv.length*.85)):lv;
-    const pts=resample(core,5),t=tones[i],last=i===N-1;
-    if(!t)return{lv,pts,tone:0,got:0,score:null};
-    const w=N>1?.25:0;const ds=[1,2,3,4].map(k=>shapeDist(pts,tpl(k,last),w));
-    const dExp=ds[t-1],dOther=Math.min(...ds.filter((_,k)=>k!==t-1));
-    const got=ds.indexOf(Math.min(...ds))+1;const r2=dExp/(dExp+dOther+1e-6);
-    const score=Math.max(0,Math.min(100,Math.round((.62-r2)/.42*100)));
-    return{lv,pts,tone:t,got,score};
+    let st=[];for(let k=r.s;k<=r.e;k++)if(f0[k]>0)st.push(12*Math.log2(f0[k]/R));
+    if(st.length<2)st=[0,0];
+    const F=feats(st),t=tones[i];
+    const lv=st.map(v=>Math.max(.5,Math.min(5.5,3+v/3)));
+    if(!t)return{lv,pts:F.pts,tone:0,got:0,score:null};
+    const P=toneProbs(F,N,i,withRef);const got=[1,2,3,4].sort((a,b)=>P[b]-P[a])[0];
+    const score=got===t?Math.round(70+30*P[t]):Math.round(70*P[t]/P[got]);
+    return{lv,pts:F.pts,tone:t,got,score,sure:P[got]>.55&&P[t]<.2};
   });
   const sc=segs.filter(s=>s.score!=null);
-  return{ok:true,segs,score:Math.round(avg(sc.map(s=>s.score)))};
+  return{ok:true,segs,score:Math.round(avg(sc.map(s=>s.score))),med:tr.med};
 }
+
 const TONETIP={
  1:'1er ton : garde la voix haute et bien plate, comme une note chantée « aaaa ».',
  2:'2e ton : la voix monte, comme une question étonnée : « Hein ? »',
@@ -716,8 +787,10 @@ async function analyzeBlob(step,blob){
   try{
     const ab=await blob.arrayBuffer(),ctx=getCtx();
     const buf=await new Promise((res,rej)=>{const p=ctx.decodeAudioData(ab,res,rej);if(p&&p.then)p.then(res,rej);});
-    const r=analyzeTones(buf,step.it.s);
+    const r=analyzeTones(buf,step.it.s,S.pitchRef||0);
     if(!r.ok){step.rec={state:'err',msg:r.msg};render();return;}
+    // on apprend la hauteur moyenne de SA voix sur les phrases de 3 syllabes ou plus
+    if(step.it.s.length>=3&&r.med>60&&r.med<600){S.pitchRef=S.pitchRef?Math.round(S.pitchRef*.8+r.med*.2):Math.round(r.med);save();}
     step.rec={state:'done',res:r};step.tries=(step.tries||0)+1;
     storeVoice(step.it.id,r);
   }catch(e){step.rec={state:'err',msg:'Je n’ai pas pu lire cet enregistrement. Réessaie.'};}
@@ -847,7 +920,7 @@ function startDiag(){
   ['xiexie','mingbaile','huaile','youwenti'].forEach(id=>st.push({...mk('oreille',BY[id],'Écoute'),diag:'ecoute'}));
   [0,3,4,7].forEach(i=>st.push({kind:'pair',pr:PAIRS[i],target:Math.random()<.5?0:1,sec:'Tons',diag:'tons'}));
   ['jiaoshui','zhiliang','gongzi','xiedi'].forEach(id=>st.push({...mk('reco',BY[id],'Vocabulaire'),diag:'vocab'}));
-  st.push({kind:'shadow',it:BY.nihao,sec:'Parole',diag:'parole'});
+  st.push({kind:'shadow',it:BY.zaishuo,sec:'Parole',diag:'parole'}); // 5 syllables : sert aussi à mesurer la hauteur de sa voix
   ui.sess={kind:'diag',steps:st,i:0,xp:0,ok:0,n:0,diag:{ecoute:0,tons:0,vocab:0,parole:null},end:false};render();
 }
 
@@ -1203,7 +1276,7 @@ function vPair(st){const pr=st.pr;const t=pr[st.target];
   ${dunno(st)}${feedback(st,st.res?`<p>${st.res.ok?'':'C’était '}<span class="zh">${t.h}</span> <b class="t${t.t}">${mark(t.p,t.t)}</b> (${esc(t.fr)}). ${TONETIP[t.t]}</p>`:'')}`;}
 function vShadow(st){
   const it=st.it,r=st.rec||{state:'idle'},res=r.state==='done'?r.res:null;
-  const tips=res?res.segs.map((sg,i)=>({sg,i})).filter(x=>x.sg.score!=null&&x.sg.score<60).slice(0,2).map(({sg,i})=>`<div class="tip"><b class="t${sg.tone}">${mark(it.syl[i],it.t[i])}</b> : ta voix ${GOTNAME[sg.got]||'a hésité'}. ${TONETIP[sg.tone]}</div>`).join(''):'';
+  const tips=res?res.segs.map((sg,i)=>({sg,i})).filter(x=>x.sg.score!=null&&x.sg.score<50&&x.sg.got!==x.sg.tone).slice(0,2).map(({sg,i})=>`<div class="tip"><b class="t${sg.tone}">${mark(it.syl[i],it.t[i])}</b> : ta voix ${GOTNAME[sg.got]||'a hésité'}. ${TONETIP[sg.tone]}</div>`).join(''):'';
   const recUI=REC.mode==='file'
    ?`<label class="btn primary block">${ICON.mic} Ouvrir l’enregistreur du téléphone<input id="audfile" type="file" accept="audio/*" capture hidden></label><p class="tiny muted">Enregistre la phrase, puis valide : l’analyse se lance toute seule.</p>`
    :`<div class="listen"><button class="recbtn ${r.state==='rec'?'on':''}" data-act="${r.state==='rec'?'recstop':'rec'}" aria-label="${r.state==='rec'?'Arrêter':'Enregistrer'}" ${r.state==='busy'?'disabled':''}>${r.state==='rec'?ICON.stop:ICON.mic}</button></div>
@@ -1211,11 +1284,11 @@ function vShadow(st){
   return `<p class="q-title">Répète après la voix</p>
   <div class="card learn-card" style="padding:18px 14px"><div class="big-zh ${it.han.length>4?'sm':'mid'}">${hzHTML(it)}</div><div class="py">${pyHTML(it)}</div><p class="muted">${esc(it.fr)}</p><div class="listen">${playBtns(it.h,true)}</div></div>
   <canvas id="cv" class="curve" aria-label="Courbe de mélodie : pointillés = modèle${res?', ligne pleine = ta voix':''}"></canvas>
-  ${res?`<div class="row between"><div><span class="label">Score des tons</span><div class="score" style="color:${res.score>=70?'var(--good)':res.score>=40?'var(--t3)':'var(--bad)'}">${res.score}<small style="font-size:18px">/100</small></div></div><p class="small muted grow" style="text-align:right">${res.score>=80?'Très bonne mélodie !':res.score>=60?'C’est bien, encore un petit effort.':'Écoute en lent et suis les pointillés.'}</p></div>${tips?`<div class="tips">${tips}</div>`:''}`
+  ${res?`<div class="row between"><div><span class="label">Score des tons</span><div class="score" style="color:${res.score>=70?'var(--good)':res.score>=45?'var(--t3)':'var(--bad)'}">${res.score}<small style="font-size:18px">/100</small></div></div><p class="small muted grow" style="text-align:right">${res.score>=75?'Très bonne mélodie !':res.score>=55?'C’est bien, encore un petit effort.':'Écoute en lent et suis les pointillés.'}</p></div>${tips?`<div class="tips">${tips}</div>`:''}`
        :`<p class="tiny muted">Les pointillés montrent la mélodie à suivre (5 = aigu, 1 = grave).</p>`}
   ${r.state==='err'?`<div class="notice">${esc(r.msg)}</div>`:''}
   ${recUI}
-  <p class="tiny muted">Analyse approximative, faite sur ton téléphone. Aucun son n’est envoyé.</p>
+  <p class="tiny muted">Analyse automatique (environ 8 syllabes sur 10 bien reconnues), faite sur ton téléphone. Aucun son n’est envoyé.</p>
   <button class="btn ${res?'primary':''} block" data-act="next">${res?'Continuer':'Je ne peux pas parler maintenant'}</button>`;
 }
 function vConv(st){
@@ -1361,7 +1434,7 @@ window.addEventListener('online',()=>checkUpdates(false));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false&&Date.now()-(PS._checked||0)>6*3600e3)checkUpdates(false);});
 refreshJokers();
 render();
-if(navigator.onLine!==false)checkUpdates(false);
+if(navigator.onLine!==false)checkUpdates(false);else loadAudioIndex();
 askPersist().then(()=>{if(!ui.sess&&ui.tab==='progres')render();});
 window.addEventListener('appinstalled',()=>askPersist());
 </script>

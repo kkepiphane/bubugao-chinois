@@ -27,6 +27,14 @@ jobs:
         if: steps.attente.outputs.n == '0'
         run: python3 scripts/publier_chapitre.py
 
+      - name: Vérifier que l'audio du chapitre existe (sinon le générer)
+        if: steps.attente.outputs.n == '0' && steps.prep.outputs.rien == 'non'
+        run: |
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q sherpa-onnx soundfile
+          export BUBUGAO_TTS_DIR="$HOME/bubugao-tts"
+          python3 scripts/generer_audio.py
+
       - name: Ouvrir la demande de validation
         if: steps.attente.outputs.n == '0' && steps.prep.outputs.rien == 'non'
         env: { GH_TOKEN: '${{ github.token }}' }
@@ -35,7 +43,7 @@ jobs:
           git config user.name "Robot Bùbùgāo"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branche"
-          git add packs a-publier
+          git add packs a-publier audio
           git commit -m "Publier : ${{ steps.prep.outputs.titre }}"
           git push -f origin "$branche"
           gh label create chapitre --color 0B7A63 --description "Chapitre à valider" 2>/dev/null || true

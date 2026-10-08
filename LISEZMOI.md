@@ -1,26 +1,22 @@
 # Bùbùgāo 步步高 — mise en ligne et mises à jour
 
-## 1. Mettre en ligne gratuitement (une seule fois)
+## 1. En ligne
 
-**GitHub Pages** : gratuit, sans date d'expiration, HTTPS inclus.
+L'appli est en ligne sur **https://kkepiphane.github.io/bubugao-chinois/** (GitHub Pages, gratuit).
 
-1. Créer un dépôt **public** sur GitHub, par ex. `bubugao`.
-2. Y déposer **tout le contenu du zip**, y compris le dossier caché `.github/` (le robot du lundi), `scripts/` et `a-publier/`.
-   Le plus simple : *Add file › Upload files* et glisser le dossier décompressé.
-3. **Settings › Pages** › *Deploy from a branch* › `main` › `/ (root)`.
-4. **Settings › Actions › General** › *Workflow permissions* : cocher **Read and write permissions**
-   et **Allow GitHub Actions to create and approve pull requests**, puis *Save*.
-5. **Adresse définitive (très important)** : chez ton fournisseur de domaine, créer un CNAME `chinois` → `ton-pseudo.github.io`,
-   puis dans **Settings › Pages › Custom domain** entrer `chinois.doole.cloud` et cocher *Enforce HTTPS*.
+À vérifier une fois dans **Settings › Actions › General › Workflow permissions** : **Read and write permissions** et
+**Allow GitHub Actions to create and approve pull requests** cochés (sinon les robots ne peuvent rien faire).
 
-La progression est liée à l'adresse : **ne jamais changer l'adresse**. Pour changer d'hébergeur (Cloudflare Pages, Netlify…),
-déplacer les fichiers et modifier seulement le CNAME.
+**Adresse : ne plus la changer.** Sa progression est liée à cette adresse exacte. Si tu veux un jour une adresse à toi
+(ex. `chinois.doole.cloud`), fais-le **avant** qu'elle commence, ou fais-lui d'abord faire une sauvegarde
+(Progrès › Sauvegarde) pour la restaurer sur la nouvelle adresse.
 
 ## 2. Installer sur le téléphone de ton amie
 
 1. Ouvrir l'adresse dans **Chrome** (Android), avec du réseau.
 2. Toucher **Installer** sur l'accueil de l'appli, ou menu ⋮ › **Ajouter à l'écran d'accueil**.
-3. Une fois : Réglages Android › Synthèse vocale › moteur Google › installer la langue **Chinois (Mandarin)**, pour que la voix marche sans réseau.
+3. La voix chinoise est intégrée (fichiers audio) : rien à installer. Laisser l'appli ouverte une minute avec du réseau
+   la première fois, pour qu'elle télécharge tous les sons (≈ 5 Mo) et puisse parler hors-ligne.
 
 Ensuite l'appli s'ouvre depuis son icône, même en mode avion.
 
@@ -33,7 +29,15 @@ Sa progression vit dans son téléphone. Onglet **Progrès › Sauvegarde** :
 L'appli lui rappelle de sauvegarder une fois par mois. Elle demande aussi au navigateur de protéger ses données
 (accordé en général quand l'appli est installée sur l'écran d'accueil).
 
-## 4. Le programme
+## 4. La voix et l'analyse des tons
+
+- Chaque mot, phrase et réplique a son fichier audio dans `audio/` (voix mandarin open source, générée à l'avance).
+  Le robot **Audio des chapitres** crée automatiquement les sons des nouveaux chapitres dès qu'ils arrivent dans le dépôt.
+- La voix du téléphone ne sert plus que de secours (phrases avec son prénom).
+- L'analyse des tons reconnaît environ 8 syllabes sur 10 sur une voix native. Le test de départ lui fait lire une phrase
+  de 5 syllabes pour apprendre la hauteur de sa voix ; l'analyse devient plus juste ensuite.
+
+## 5. Le programme
 
 - **Parcours HSK 1** (liste officielle, ancien format, 150 mots) : 10 chapitres `hsk1-01` à `hsk1-10`.
   Les 3 premiers sont publiés. Les 7 suivants sont prêts dans le dossier `a-publier/`.
@@ -44,7 +48,7 @@ L'appli lui rappelle de sauvegarder une fois par mois. Elle demande aussi au nav
 - **Test HSK blanc** : proposé automatiquement tous les 28 jours, dès qu’elle a vu 20 mots HSK.
 - **Missions terrain** : niveau 1 (une phrase), 2 dès 5 missions réussies (une question), 3 dès 12 (2 minutes de conversation).
 
-## 5. Publier un nouveau chapitre : le robot du lundi
+## 6. Publier un nouveau chapitre : le robot du lundi
 
 Chaque **lundi à 7 h** (heure de Lomé), un robot GitHub prépare le chapitre suivant de `a-publier/`
 (dans l'ordre de `a-publier/ordre.json`) et ouvre une **Pull Request** intitulée « 📚 À valider : … ».
@@ -73,7 +77,7 @@ le garde pour le hors-ligne et affiche « Nouveau chapitre ». Sa progression n'
 **Corriger un chapitre déjà publié** : modifier le fichier, puis passer `"v": 1` à `"v": 2` dans `packs.json`.
 Garder les mêmes `id` de mots : la progression sur ces mots est conservée.
 
-## 6. Format d'un mot
+## 7. Format d'un mot
 
 ```json
 {"id": "m_tomate", "h": "西红柿", "p": "xi-hong-shi", "t": [1, 2, 4], "fr": "Tomate", "st": 0, "m": "Mission facultative"}
@@ -90,6 +94,15 @@ Un chapitre peut aussi contenir `grammar` (une règle avec exemples), `pairs` (d
 Ajoute aussi `"branch"` : `"hsk"`, `"travail"` ou `"quotidien"`. Voir `hsk1-01-presenter.json` pour un exemple complet.
 Le script `scripts/make_packs.py` contient tout le contenu en clair : il régénère les chapitres et vérifie que caractères, pinyin et tons concordent.
 
-## 7. Mettre à jour l'appli elle-même
+## 8. Mettre à jour l'appli elle-même
 
-Remplacer `index.html`, et changer `VERSION` dans `sw.js` (ex. `bubugao-app-v5`).
+Remplacer `index.html`, et changer `VERSION` dans `sw.js` (ex. `bubugao-app-v6`).
+
+## 9. Continuer avec Claude
+
+Ouvre le dépôt dans Claude Code (ou donne-lui l'accès au dépôt). `CLAUDE.md` et les skills de `.claude/skills/`
+lui expliquent tout. Exemples de demandes :
+- « Écris les 4 prochains chapitres de la branche Vie quotidienne et mets-les dans la file du lundi. »
+- « Prépare le parcours HSK 2. »
+- « La voix ne lit pas la phrase X : corrige. »
+- « Ajoute un bouton pour qu'elle m'envoie les phrases qu'elle entend à l'usine. »
