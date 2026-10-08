@@ -1,0 +1,16 @@
+{
+  "name": "Bùbùgāo 步步高 · Chinois",
+  "short_name": "Bùbùgāo",
+  "description": "Coach de chinois : usine, vie quotidienne, carrière.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EEF2EF",
+  "theme_color": "#0B7A63",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

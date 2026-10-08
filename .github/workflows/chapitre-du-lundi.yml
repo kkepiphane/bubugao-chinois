@@ -1,0 +1,43 @@
+name: Chapitre du lundi
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # chaque lundi à 7 h (heure de Lomé = UTC)
+  workflow_dispatch:       # bouton « Run workflow » pour lancer à la main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  proposer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Une proposition est-elle déjà en attente ?
+        id: attente
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          n=$(gh pr list --state open --label chapitre --json number --jq length)
+          echo "n=$n" >> "$GITHUB_OUTPUT"
+
+      - name: Préparer le prochain chapitre
+        id: prep
+        if: steps.attente.outputs.n == '0'
+        run: python3 scripts/publier_chapitre.py
+
+      - name: Ouvrir la demande de validation
+        if: steps.attente.outputs.n == '0' && steps.prep.outputs.rien == 'non'
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          branche="chapitre/${{ steps.prep.outputs.id }}"
+          git config user.name "Robot Bùbùgāo"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branche"
+          git add packs a-publier
+          git commit -m "Publier : ${{ steps.prep.outputs.titre }}"
+          git push -f origin "$branche"
+          gh label create chapitre --color 0B7A63 --description "Chapitre à valider" 2>/dev/null || true
+          gh pr create --title "📚 À valider : ${{ steps.prep.outputs.titre }}" \
+            --body-file .pr-body.md --label chapitre --base main --head "$branche"

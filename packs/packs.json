@@ -1,0 +1,34 @@
+{
+ "packs": [
+  {
+   "id": "hsk1-01",
+   "v": 1,
+   "file": "hsk1-01-presenter.json",
+   "title": "HSK 1 · 1 — Se présenter"
+  },
+  {
+   "id": "hsk1-02",
+   "v": 1,
+   "file": "hsk1-02-nombres.json",
+   "title": "HSK 1 · 2 — Les nombres"
+  },
+  {
+   "id": "hsk1-03",
+   "v": 1,
+   "file": "hsk1-03-famille.json",
+   "title": "HSK 1 · 3 — Famille et entourage"
+  },
+  {
+   "id": "travail-compter",
+   "v": 1,
+   "file": "travail-01-compter.json",
+   "title": "Usine · Compter à l’atelier"
+  },
+  {
+   "id": "quotidien-marche",
+   "v": 1,
+   "file": "quotidien-01-marche.json",
+   "title": "Vie quotidienne · Au marché"
+  }
+ ]
+}

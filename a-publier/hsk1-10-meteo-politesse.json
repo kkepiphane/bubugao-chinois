@@ -1,0 +1,421 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 10 — Météo, humeur et politesse",
+ "desc": "Le temps qu’il fait, décrire, remercier, s’excuser, poser des questions. 19 mots HSK 1 : le HSK 1 est complet !",
+ "grammar": {
+  "title": "很 + adjectif, et les questions avec 吗 / 呢",
+  "explain": "Devant un adjectif, on met presque toujours 很 (hěn) : 我很好. On n’utilise pas 是 avec un adjectif. Pour poser une question oui/non, on ajoute 吗 (ma) à la fin. Pour renvoyer la question (« et toi ? »), on ajoute 呢 (ne).",
+  "examples": [
+   {
+    "h": "天气很好。",
+    "p": "Tiānqì hěn hǎo.",
+    "fr": "Il fait beau."
+   },
+   {
+    "h": "你好吗？",
+    "p": "Nǐ hǎo ma?",
+    "fr": "Tu vas bien ?"
+   },
+   {
+    "h": "我很好，你呢？",
+    "p": "Wǒ hěn hǎo, nǐ ne?",
+    "fr": "Je vais bien, et toi ?"
+   },
+   {
+    "h": "我们都很高兴。",
+    "p": "Wǒmen dōu hěn gāoxìng.",
+    "fr": "Nous sommes tous contents."
+   }
+  ],
+  "tip": "Avec 很, ne mets pas 是 : 我很高兴, jamais 我是高兴."
+ },
+ "items": [
+  {
+   "id": "k10_tianqi",
+   "h": "天气",
+   "p": "tian-qi",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Temps (météo)",
+   "st": 0
+  },
+  {
+   "id": "k10_leng",
+   "h": "冷",
+   "p": "leng",
+   "t": [
+    3
+   ],
+   "fr": "Froid",
+   "st": 0
+  },
+  {
+   "id": "k10_re",
+   "h": "热",
+   "p": "re",
+   "t": [
+    4
+   ],
+   "fr": "Chaud",
+   "st": 0
+  },
+  {
+   "id": "k10_xiayu",
+   "h": "下雨",
+   "p": "xia-yu",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Pleuvoir",
+   "st": 0
+  },
+  {
+   "id": "k10_da",
+   "h": "大",
+   "p": "da",
+   "t": [
+    4
+   ],
+   "fr": "Grand",
+   "st": 0
+  },
+  {
+   "id": "k10_xiao",
+   "h": "小",
+   "p": "xiao",
+   "t": [
+    3
+   ],
+   "fr": "Petit",
+   "st": 0
+  },
+  {
+   "id": "k10_hen",
+   "h": "很",
+   "p": "hen",
+   "t": [
+    3
+   ],
+   "fr": "Très",
+   "st": 0
+  },
+  {
+   "id": "k10_hao",
+   "h": "好",
+   "p": "hao",
+   "t": [
+    3
+   ],
+   "fr": "Bien, bon",
+   "st": 0
+  },
+  {
+   "id": "k10_zenmeyang",
+   "h": "怎么样",
+   "p": "zen-me-yang",
+   "t": [
+    3,
+    0,
+    4
+   ],
+   "fr": "Comment ça ? Ça va ?",
+   "st": 0
+  },
+  {
+   "id": "k10_gou",
+   "h": "狗",
+   "p": "gou",
+   "t": [
+    3
+   ],
+   "fr": "Chien",
+   "st": 0
+  },
+  {
+   "id": "k10_mao",
+   "h": "猫",
+   "p": "mao",
+   "t": [
+    1
+   ],
+   "fr": "Chat",
+   "st": 0
+  },
+  {
+   "id": "k10_dou",
+   "h": "都",
+   "p": "dou",
+   "t": [
+    1
+   ],
+   "fr": "Tous",
+   "st": 0
+  },
+  {
+   "id": "k10_he",
+   "h": "和",
+   "p": "he",
+   "t": [
+    2
+   ],
+   "fr": "Et (entre deux noms)",
+   "st": 0
+  },
+  {
+   "id": "k10_ma",
+   "h": "吗",
+   "p": "ma",
+   "t": [
+    0
+   ],
+   "fr": "Particule de question",
+   "st": 0
+  },
+  {
+   "id": "k10_ne",
+   "h": "呢",
+   "p": "ne",
+   "t": [
+    0
+   ],
+   "fr": "Et… ? (renvoyer la question)",
+   "st": 0
+  },
+  {
+   "id": "k10_bukeqi",
+   "h": "不客气",
+   "p": "bu ke-qi",
+   "t": [
+    2,
+    4,
+    0
+   ],
+   "fr": "De rien",
+   "st": 0
+  },
+  {
+   "id": "k10_meiguanxi",
+   "h": "没关系",
+   "p": "mei guan-xi",
+   "t": [
+    2,
+    1,
+    0
+   ],
+   "fr": "Ce n’est pas grave",
+   "st": 0
+  },
+  {
+   "id": "k10_yizi",
+   "h": "椅子",
+   "p": "yi-zi",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Chaise",
+   "st": 0
+  },
+  {
+   "id": "k10_zhuozi",
+   "h": "桌子",
+   "p": "zhuo-zi",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Table",
+   "st": 0
+  },
+  {
+   "id": "k10_s_tianqi",
+   "h": "今天天气怎么样",
+   "p": "jin-tian tian-qi zen-me-yang",
+   "t": [
+    1,
+    1,
+    1,
+    4,
+    3,
+    0,
+    4
+   ],
+   "fr": "Quel temps fait-il aujourd’hui ?",
+   "st": 0,
+   "m": "Le matin, lance la conversation : 今天天气怎么样？"
+  },
+  {
+   "id": "k10_s_nine",
+   "h": "我很好，你呢",
+   "p": "wo hen hao ni ne",
+   "t": [
+    3,
+    3,
+    3,
+    3,
+    0
+   ],
+   "fr": "Je vais bien, et toi ?",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    3,
+    0
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "猫",
+    "p": "mao",
+    "t": 1,
+    "fr": "chat"
+   },
+   {
+    "h": "毛",
+    "p": "mao",
+    "t": 2,
+    "fr": "poil"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "冷",
+   "p": "lěng",
+   "m": "froid",
+   "r": "冫",
+   "rm": "glace"
+  },
+  {
+   "c": "热",
+   "p": "rè",
+   "m": "chaud",
+   "r": "灬",
+   "rm": "feu"
+  },
+  {
+   "c": "雨",
+   "p": "yǔ",
+   "m": "pluie",
+   "r": "雨",
+   "rm": "pluie"
+  },
+  {
+   "c": "大",
+   "p": "dà",
+   "m": "grand",
+   "r": "大",
+   "rm": "grand"
+  },
+  {
+   "c": "小",
+   "p": "xiǎo",
+   "m": "petit",
+   "r": "小",
+   "rm": "petit"
+  },
+  {
+   "c": "好",
+   "p": "hǎo",
+   "m": "bien",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "狗",
+   "p": "gǒu",
+   "m": "chien",
+   "r": "犭",
+   "rm": "animal"
+  },
+  {
+   "c": "猫",
+   "p": "māo",
+   "m": "chat",
+   "r": "犭",
+   "rm": "animal"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-meteo",
+   "st": 0,
+   "title": "Il fait chaud !",
+   "who": "同事",
+   "whoFr": "Collègue",
+   "intro": "Il fait très chaud dans l’atelier. Une collègue engage la conversation.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "今天天气怎么样？",
+     "p": "Jīntiān tiānqì zěnmeyàng?",
+     "fr": "Quel temps fait-il aujourd’hui ?",
+     "o": [
+      {
+       "h": "今天很热。",
+       "p": "Jīntiān hěn rè.",
+       "fr": "Il fait très chaud.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "今天星期五。",
+       "p": "Jīntiān xīngqīwǔ.",
+       "fr": "Aujourd’hui c’est vendredi.",
+       "fix": "天气 = le temps qu’il fait : « 很热 » (chaud), « 很冷 » (froid)."
+      }
+     ]
+    },
+    "b": {
+     "h": "北京很冷，下雨了。你喜欢下雨吗？",
+     "p": "Běijīng hěn lěng, xià yǔ le. Nǐ xǐhuan xià yǔ ma?",
+     "fr": "À Pékin il fait froid, il pleut. Tu aimes la pluie ?",
+     "o": [
+      {
+       "h": "不喜欢。你呢？",
+       "p": "Bù xǐhuan. Nǐ ne?",
+       "fr": "Non. Et toi ?",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "喜欢！",
+       "p": "Xǐhuan!",
+       "fr": "Oui, j’aime !",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我是下雨。",
+       "p": "Wǒ shì xià yǔ.",
+       "fr": "(phrase incorrecte)",
+       "fix": "Réponds avec 喜欢 (j’aime) ou 不喜欢 (je n’aime pas)."
+      }
+     ]
+    },
+    "end": {
+     "h": "哈哈，好的！",
+     "p": "Hāhā, hǎo de!",
+     "fr": "Haha, d’accord !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "恭喜",
+   "p": "gōngxǐ",
+   "fr": "Félicitations !",
+   "note": "Tu as terminé le vocabulaire du HSK 1. 恭喜！"
+  }
+ ]
+}

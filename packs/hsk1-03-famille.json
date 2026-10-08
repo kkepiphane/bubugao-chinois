@@ -1,0 +1,380 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 3 — Famille et entourage",
+ "desc": "Parler de ta famille, de tes amis, des gens autour de toi. 15 mots HSK 1.",
+ "grammar": {
+  "title": "有 / 没有, et 的 pour « de »",
+  "explain": "有 (yǒu) veut dire « avoir » ou « il y a ». Sa négation est toujours 没有 (méiyǒu), jamais 不有. 的 (de) relie celui qui possède et ce qui est possédé, dans cet ordre : 我的妈妈 = « ma mère » (mot à mot « moi-de mère »).",
+  "examples": [
+   {
+    "h": "我有一个朋友。",
+    "p": "Wǒ yǒu yí ge péngyou.",
+    "fr": "J’ai un ami."
+   },
+   {
+    "h": "我没有电脑。",
+    "p": "Wǒ méiyǒu diànnǎo.",
+    "fr": "Je n’ai pas d’ordinateur."
+   },
+   {
+    "h": "这是我的老师。",
+    "p": "Zhè shì wǒ de lǎoshī.",
+    "fr": "C’est mon professeur."
+   },
+   {
+    "h": "妈妈的家",
+    "p": "māma de jiā",
+    "fr": "la maison de maman"
+   }
+  ],
+  "tip": "Pour la famille proche, on peut enlever 的 : 我妈妈, 我家."
+ },
+ "items": [
+  {
+   "id": "k03_baba",
+   "h": "爸爸",
+   "p": "ba-ba",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Papa",
+   "st": 0
+  },
+  {
+   "id": "k03_mama",
+   "h": "妈妈",
+   "p": "ma-ma",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Maman",
+   "st": 0
+  },
+  {
+   "id": "k03_erzi",
+   "h": "儿子",
+   "p": "er-zi",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Fils",
+   "st": 0
+  },
+  {
+   "id": "k03_nver",
+   "h": "女儿",
+   "p": "nv-er",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Fille (enfant)",
+   "st": 0
+  },
+  {
+   "id": "k03_pengyou",
+   "h": "朋友",
+   "p": "peng-you",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Ami, amie",
+   "st": 0
+  },
+  {
+   "id": "k03_tongxue",
+   "h": "同学",
+   "p": "tong-xue",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Camarade de classe",
+   "st": 0
+  },
+  {
+   "id": "k03_laoshi",
+   "h": "老师",
+   "p": "lao-shi",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Professeur",
+   "st": 0
+  },
+  {
+   "id": "k03_xuesheng",
+   "h": "学生",
+   "p": "xue-sheng",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Élève, étudiant",
+   "st": 0
+  },
+  {
+   "id": "k03_yisheng",
+   "h": "医生",
+   "p": "yi-sheng",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Médecin",
+   "st": 0
+  },
+  {
+   "id": "k03_xiansheng",
+   "h": "先生",
+   "p": "xian-sheng",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Monsieur",
+   "st": 0
+  },
+  {
+   "id": "k03_xiaojie",
+   "h": "小姐",
+   "p": "xiao-jie",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Mademoiselle",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "k03_jia",
+   "h": "家",
+   "p": "jia",
+   "t": [
+    1
+   ],
+   "fr": "Maison, famille",
+   "st": 0
+  },
+  {
+   "id": "k03_you",
+   "h": "有",
+   "p": "you",
+   "t": [
+    3
+   ],
+   "fr": "Avoir, il y a",
+   "st": 0
+  },
+  {
+   "id": "k03_meiyou",
+   "h": "没有",
+   "p": "mei-you",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Ne pas avoir",
+   "st": 0
+  },
+  {
+   "id": "k03_de",
+   "h": "的",
+   "p": "de",
+   "t": [
+    0
+   ],
+   "fr": "De (possession)",
+   "st": 0
+  },
+  {
+   "id": "k03_s_pengyou",
+   "h": "这是我的朋友",
+   "p": "zhe shi wo de peng-you",
+   "t": [
+    4,
+    4,
+    3,
+    0,
+    2,
+    0
+   ],
+   "fr": "C’est mon amie",
+   "st": 0,
+   "m": "Présente une amie ou un proche à un collègue chinois : 这是我的…"
+  },
+  {
+   "id": "k03_s_erzi",
+   "h": "我有一个儿子",
+   "p": "wo you yi ge er-zi",
+   "t": [
+    3,
+    3,
+    2,
+    0,
+    2,
+    0
+   ],
+   "fr": "J’ai un fils",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    0,
+    2,
+    0
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "有",
+    "p": "you",
+    "t": 3,
+    "fr": "avoir"
+   },
+   {
+    "h": "又",
+    "p": "you",
+    "t": 4,
+    "fr": "encore, de nouveau"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "爸",
+   "p": "bà",
+   "m": "papa",
+   "r": "父",
+   "rm": "père"
+  },
+  {
+   "c": "妈",
+   "p": "mā",
+   "m": "maman",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "子",
+   "p": "zǐ",
+   "m": "enfant",
+   "r": "子",
+   "rm": "enfant"
+  },
+  {
+   "c": "女",
+   "p": "nǚ",
+   "m": "femme",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "朋",
+   "p": "péng",
+   "m": "ami",
+   "r": "月",
+   "rm": "lune"
+  },
+  {
+   "c": "友",
+   "p": "yǒu",
+   "m": "ami",
+   "r": "又",
+   "rm": "main"
+  },
+  {
+   "c": "家",
+   "p": "jiā",
+   "m": "maison",
+   "r": "宀",
+   "rm": "toit"
+  },
+  {
+   "c": "有",
+   "p": "yǒu",
+   "m": "avoir",
+   "r": "月",
+   "rm": "lune"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-famille",
+   "st": 0,
+   "title": "Les photos de famille",
+   "who": "同事",
+   "whoFr": "Collègue",
+   "intro": "À la pause, une collègue regarde les photos sur ton téléphone.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "这是谁？",
+     "p": "Zhè shì shéi?",
+     "fr": "C’est qui ?",
+     "o": [
+      {
+       "h": "这是我的妈妈。",
+       "p": "Zhè shì wǒ de māma.",
+       "fr": "C’est ma maman.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "这是我的。",
+       "p": "Zhè shì wǒ de.",
+       "fr": "C’est à moi.",
+       "fix": "Elle demande qui c’est : précise « 我的妈妈 » (ma maman), « 我的朋友 »…"
+      }
+     ]
+    },
+    "b": {
+     "h": "你妈妈很漂亮！你有儿子吗？",
+     "p": "Nǐ māma hěn piàoliang! Nǐ yǒu érzi ma?",
+     "fr": "Ta maman est très belle ! Tu as un fils ?",
+     "o": [
+      {
+       "h": "没有，我没有儿子。",
+       "p": "Méiyǒu, wǒ méiyǒu érzi.",
+       "fr": "Non, je n’ai pas de fils.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "有，我有一个儿子。",
+       "p": "Yǒu, wǒ yǒu yí ge érzi.",
+       "fr": "Oui, j’ai un fils.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我不有儿子。",
+       "p": "Wǒ bù yǒu érzi.",
+       "fr": "(erreur de grammaire)",
+       "fix": "有 ne se nie jamais avec 不 : on dit « 没有 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "你的家很好！",
+     "p": "Nǐ de jiā hěn hǎo!",
+     "fr": "Tu as une belle famille !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

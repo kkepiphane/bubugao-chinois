@@ -1,0 +1,338 @@
+{
+ "branch": "quotidien",
+ "title": "Vie quotidienne · Au marché",
+ "desc": "Acheter des produits, demander le prix, négocier, payer.",
+ "grammar": {
+  "title": "要 : « je veux, je prends »",
+  "explain": "要 (yào) est le mot normal pour commander ou acheter : 我要这个 = je prends celui-ci. C’est plus direct que 想 (avoir envie). 不要 = je n’en veux pas.",
+  "examples": [
+   {
+    "h": "我要这个。",
+    "p": "Wǒ yào zhège.",
+    "fr": "Je prends celui-ci."
+   },
+   {
+    "h": "我要一斤西红柿。",
+    "p": "Wǒ yào yì jīn xīhóngshì.",
+    "fr": "Je voudrais un demi-kilo de tomates."
+   },
+   {
+    "h": "不要，谢谢。",
+    "p": "Bú yào, xièxie.",
+    "fr": "Non merci."
+   }
+  ],
+  "tip": "斤 (jīn) = un demi-kilo : c’est l’unité de poids des marchés chinois."
+ },
+ "items": [
+  {
+   "id": "q_yijin",
+   "h": "一斤多少钱",
+   "p": "yi jin duo-shao qian",
+   "t": [
+    4,
+    1,
+    1,
+    0,
+    2
+   ],
+   "fr": "Combien le demi-kilo ?",
+   "st": 0,
+   "m": "Dans une boutique chinoise, demande : 一斤多少钱？"
+  },
+  {
+   "id": "q_taigui",
+   "h": "太贵了",
+   "p": "tai gui le",
+   "t": [
+    4,
+    4,
+    0
+   ],
+   "fr": "C’est trop cher",
+   "st": 0
+  },
+  {
+   "id": "q_pianyi",
+   "h": "便宜一点儿",
+   "p": "pian-yi yi-dian-r",
+   "t": [
+    2,
+    0,
+    4,
+    3,
+    0
+   ],
+   "fr": "Un peu moins cher",
+   "st": 0
+  },
+  {
+   "id": "q_woyao",
+   "h": "我要这个",
+   "p": "wo yao zhe-ge",
+   "t": [
+    3,
+    4,
+    4,
+    0
+   ],
+   "fr": "Je prends celui-ci",
+   "st": 0
+  },
+  {
+   "id": "q_buyao",
+   "h": "不要",
+   "p": "bu yao",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Je n’en veux pas",
+   "st": 0
+  },
+  {
+   "id": "q_xihongshi",
+   "h": "西红柿",
+   "p": "xi-hong-shi",
+   "t": [
+    1,
+    2,
+    4
+   ],
+   "fr": "Tomate",
+   "st": 0
+  },
+  {
+   "id": "q_jidan",
+   "h": "鸡蛋",
+   "p": "ji-dan",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Œuf",
+   "st": 0
+  },
+  {
+   "id": "q_dami",
+   "h": "大米",
+   "p": "da-mi",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Riz (cru)",
+   "st": 0
+  },
+  {
+   "id": "q_you",
+   "h": "油",
+   "p": "you",
+   "t": [
+    2
+   ],
+   "fr": "Huile",
+   "st": 0
+  },
+  {
+   "id": "q_yu",
+   "h": "鱼",
+   "p": "yu",
+   "t": [
+    2
+   ],
+   "fr": "Poisson",
+   "st": 0
+  },
+  {
+   "id": "q_zhaoqian",
+   "h": "找钱",
+   "p": "zhao qian",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Rendre la monnaie",
+   "st": 0
+  },
+  {
+   "id": "q_weixin",
+   "h": "可以用微信吗",
+   "p": "ke-yi yong Wei-xin ma",
+   "t": [
+    3,
+    3,
+    4,
+    1,
+    4,
+    0
+   ],
+   "fr": "Je peux payer avec WeChat ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4,
+    1,
+    4,
+    0
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "油",
+    "p": "you",
+    "t": 2,
+    "fr": "huile"
+   },
+   {
+    "h": "有",
+    "p": "you",
+    "t": 3,
+    "fr": "avoir"
+   }
+  ],
+  [
+   {
+    "h": "鱼",
+    "p": "yu",
+    "t": 2,
+    "fr": "poisson"
+   },
+   {
+    "h": "雨",
+    "p": "yu",
+    "t": 3,
+    "fr": "pluie"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "西",
+   "p": "xī",
+   "m": "ouest",
+   "r": "西",
+   "rm": "ouest"
+  },
+  {
+   "c": "红",
+   "p": "hóng",
+   "m": "rouge",
+   "r": "纟",
+   "rm": "soie"
+  },
+  {
+   "c": "鸡",
+   "p": "jī",
+   "m": "poulet",
+   "r": "鸟",
+   "rm": "oiseau"
+  },
+  {
+   "c": "蛋",
+   "p": "dàn",
+   "m": "œuf",
+   "r": "虫",
+   "rm": "insecte"
+  },
+  {
+   "c": "鱼",
+   "p": "yú",
+   "m": "poisson",
+   "r": "鱼",
+   "rm": "poisson"
+  },
+  {
+   "c": "油",
+   "p": "yóu",
+   "m": "huile",
+   "r": "氵",
+   "rm": "eau"
+  }
+ ],
+ "convs": [
+  {
+   "id": "marche",
+   "st": 0,
+   "title": "Au stand de légumes",
+   "who": "老板",
+   "whoFr": "Vendeur",
+   "intro": "Tu fais tes courses chez un commerçant chinois.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你要什么？",
+     "p": "Nǐ yào shénme?",
+     "fr": "Qu’est-ce que tu veux ?",
+     "o": [
+      {
+       "h": "我要一斤西红柿。",
+       "p": "Wǒ yào yì jīn xīhóngshì.",
+       "fr": "Un demi-kilo de tomates.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我不要。",
+       "p": "Wǒ bú yào.",
+       "fr": "Je ne veux rien.",
+       "fix": "Dis ce que tu veux : « 我要… »."
+      }
+     ]
+    },
+    "b": {
+     "h": "一斤八块。",
+     "p": "Yì jīn bā kuài.",
+     "fr": "Huit yuans le demi-kilo.",
+     "o": [
+      {
+       "h": "太贵了！便宜一点儿吧。",
+       "p": "Tài guì le! Piányi yìdiǎnr ba.",
+       "fr": "Trop cher ! Un peu moins, s’il te plaît.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "好的，给你钱。",
+       "p": "Hǎo de, gěi nǐ qián.",
+       "fr": "D’accord, voici l’argent.",
+       "ok": 1,
+       "n": "end"
+      }
+     ]
+    },
+    "c": {
+     "h": "好吧，七块。",
+     "p": "Hǎo ba, qī kuài.",
+     "fr": "Bon, sept yuans.",
+     "o": [
+      {
+       "h": "好，可以用微信吗？",
+       "p": "Hǎo, kěyǐ yòng Wēixìn ma?",
+       "fr": "D’accord, je peux payer avec WeChat ?",
+       "ok": 1,
+       "n": "end"
+      }
+     ]
+    },
+    "end": {
+     "h": "可以，谢谢！",
+     "p": "Kěyǐ, xièxie!",
+     "fr": "Oui, merci !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "讨价还价",
+   "p": "tǎojià-huánjià",
+   "fr": "Marchander",
+   "note": "Littéralement « demander un prix, rendre un prix »."
+  }
+ ]
+}

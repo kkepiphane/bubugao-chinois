@@ -1,0 +1,365 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 2 — Les nombres",
+ "desc": "Compter de 1 à 99, demander combien, dire son âge. 15 mots HSK 1.",
+ "grammar": {
+  "title": "几 ou 多少 : « combien ? »",
+  "explain": "Les nombres chinois se construisent comme des briques : 十一 = 10+1 = 11, 二十 = 2×10 = 20, 二十三 = 23. Pour demander « combien », 几 (jǐ) sert pour un petit nombre (moins de 10) et doit être suivi d’un classificateur comme 个. 多少 (duōshao) sert pour un nombre grand ou inconnu.",
+  "examples": [
+   {
+    "h": "你有几个朋友？",
+    "p": "Nǐ yǒu jǐ ge péngyou?",
+    "fr": "Tu as combien d’amis ?"
+   },
+   {
+    "h": "多少钱？",
+    "p": "Duōshao qián?",
+    "fr": "Combien ça coûte ?"
+   },
+   {
+    "h": "三十五",
+    "p": "sānshíwǔ",
+    "fr": "35 (3×10+5)"
+   },
+   {
+    "h": "你女儿几岁？",
+    "p": "Nǐ nǚ’ér jǐ suì?",
+    "fr": "Ta fille a quel âge ?"
+   }
+  ],
+  "tip": "Après 几, mets toujours un classificateur (个, 岁, 点…). Après 多少, ce n’est pas obligatoire."
+ },
+ "items": [
+  {
+   "id": "k02_yi",
+   "h": "一",
+   "p": "yi",
+   "t": [
+    1
+   ],
+   "fr": "Un (1)",
+   "st": 0
+  },
+  {
+   "id": "k02_er",
+   "h": "二",
+   "p": "er",
+   "t": [
+    4
+   ],
+   "fr": "Deux (2)",
+   "st": 0
+  },
+  {
+   "id": "k02_san",
+   "h": "三",
+   "p": "san",
+   "t": [
+    1
+   ],
+   "fr": "Trois (3)",
+   "st": 0
+  },
+  {
+   "id": "k02_si",
+   "h": "四",
+   "p": "si",
+   "t": [
+    4
+   ],
+   "fr": "Quatre (4)",
+   "st": 0
+  },
+  {
+   "id": "k02_wu",
+   "h": "五",
+   "p": "wu",
+   "t": [
+    3
+   ],
+   "fr": "Cinq (5)",
+   "st": 0
+  },
+  {
+   "id": "k02_liu",
+   "h": "六",
+   "p": "liu",
+   "t": [
+    4
+   ],
+   "fr": "Six (6)",
+   "st": 0
+  },
+  {
+   "id": "k02_qi",
+   "h": "七",
+   "p": "qi",
+   "t": [
+    1
+   ],
+   "fr": "Sept (7)",
+   "st": 0
+  },
+  {
+   "id": "k02_ba",
+   "h": "八",
+   "p": "ba",
+   "t": [
+    1
+   ],
+   "fr": "Huit (8)",
+   "st": 0
+  },
+  {
+   "id": "k02_jiu",
+   "h": "九",
+   "p": "jiu",
+   "t": [
+    3
+   ],
+   "fr": "Neuf (9)",
+   "st": 0
+  },
+  {
+   "id": "k02_shi",
+   "h": "十",
+   "p": "shi",
+   "t": [
+    2
+   ],
+   "fr": "Dix (10)",
+   "st": 0
+  },
+  {
+   "id": "k02_ji",
+   "h": "几",
+   "p": "ji",
+   "t": [
+    3
+   ],
+   "fr": "Combien (petit nombre)",
+   "st": 0
+  },
+  {
+   "id": "k02_duoshao",
+   "h": "多少",
+   "p": "duo-shao",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Combien",
+   "st": 0
+  },
+  {
+   "id": "k02_ge",
+   "h": "个",
+   "p": "ge",
+   "t": [
+    4
+   ],
+   "fr": "Classificateur courant (un, une)",
+   "st": 0
+  },
+  {
+   "id": "k02_sui",
+   "h": "岁",
+   "p": "sui",
+   "t": [
+    4
+   ],
+   "fr": "An (âge)",
+   "st": 0
+  },
+  {
+   "id": "k02_nian",
+   "h": "年",
+   "p": "nian",
+   "t": [
+    2
+   ],
+   "fr": "Année",
+   "st": 0
+  },
+  {
+   "id": "k02_s_jisui",
+   "h": "你几岁",
+   "p": "ni ji sui",
+   "t": [
+    3,
+    3,
+    4
+   ],
+   "fr": "Tu as quel âge ? (à un enfant)",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "k02_s_ershisan",
+   "h": "我二十三岁",
+   "p": "wo er-shi-san sui",
+   "t": [
+    3,
+    4,
+    2,
+    1,
+    4
+   ],
+   "fr": "J’ai vingt-trois ans",
+   "st": 0,
+   "m": "Dis ton âge à une collègue en chinois : 我…岁。"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "八",
+    "p": "ba",
+    "t": 1,
+    "fr": "huit"
+   },
+   {
+    "h": "爸",
+    "p": "ba",
+    "t": 4,
+    "fr": "papa"
+   }
+  ],
+  [
+   {
+    "h": "七",
+    "p": "qi",
+    "t": 1,
+    "fr": "sept"
+   },
+   {
+    "h": "起",
+    "p": "qi",
+    "t": 3,
+    "fr": "se lever"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "一",
+   "p": "yī",
+   "m": "un",
+   "r": "一",
+   "rm": "un"
+  },
+  {
+   "c": "二",
+   "p": "èr",
+   "m": "deux",
+   "r": "二",
+   "rm": "deux"
+  },
+  {
+   "c": "三",
+   "p": "sān",
+   "m": "trois",
+   "r": "一",
+   "rm": "un"
+  },
+  {
+   "c": "十",
+   "p": "shí",
+   "m": "dix",
+   "r": "十",
+   "rm": "dix"
+  },
+  {
+   "c": "个",
+   "p": "gè",
+   "m": "unité",
+   "r": "人",
+   "rm": "personne"
+  },
+  {
+   "c": "岁",
+   "p": "suì",
+   "m": "an (âge)",
+   "r": "山",
+   "rm": "montagne"
+  },
+  {
+   "c": "年",
+   "p": "nián",
+   "m": "année",
+   "r": "干",
+   "rm": "sec, tige"
+  },
+  {
+   "c": "多",
+   "p": "duō",
+   "m": "beaucoup",
+   "r": "夕",
+   "rm": "soir"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-nombres",
+   "st": 0,
+   "title": "Combien sur la ligne ?",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Ton chef d’équipe fait le point avant le début du poste.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "这里有几个人？",
+     "p": "Zhèlǐ yǒu jǐ ge rén?",
+     "fr": "Il y a combien de personnes ici ?",
+     "o": [
+      {
+       "h": "有八个人。",
+       "p": "Yǒu bā ge rén.",
+       "fr": "Il y a huit personnes.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "八岁。",
+       "p": "Bā suì.",
+       "fr": "Huit ans.",
+       "fix": "岁 sert pour l’âge. Pour compter des personnes : « 八个人 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "好。你今年多少岁？",
+     "p": "Hǎo. Nǐ jīnnián duōshao suì?",
+     "fr": "Bien. Tu as quel âge cette année ?",
+     "o": [
+      {
+       "h": "我二十三岁。",
+       "p": "Wǒ èrshísān suì.",
+       "fr": "J’ai vingt-trois ans.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "二十三个。",
+       "p": "Èrshísān ge.",
+       "fr": "Vingt-trois (objets).",
+       "fix": "Pour l’âge, on utilise 岁 : « 我二十三岁 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "我也二十三岁！",
+     "p": "Wǒ yě èrshísān suì!",
+     "fr": "Moi aussi, j’ai vingt-trois ans !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

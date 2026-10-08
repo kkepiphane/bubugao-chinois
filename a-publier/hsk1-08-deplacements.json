@@ -1,0 +1,351 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 8 — Se déplacer et téléphoner",
+ "desc": "Aller, venir, rentrer, prendre un taxi, passer un appel. 13 mots HSK 1.",
+ "grammar": {
+  "title": "去, 来, 回 et 坐 (prendre un transport)",
+  "explain": "去 (qù) = aller là-bas, 来 (lái) = venir ici, 回 (huí) = rentrer. Pour dire comment on se déplace, on met 坐 + transport avant le verbe : 坐出租车去 = y aller en taxi.",
+  "examples": [
+   {
+    "h": "我去医院。",
+    "p": "Wǒ qù yīyuàn.",
+    "fr": "Je vais à l’hôpital."
+   },
+   {
+    "h": "你来我家吗？",
+    "p": "Nǐ lái wǒ jiā ma?",
+    "fr": "Tu viens chez moi ?"
+   },
+   {
+    "h": "我坐出租车回家。",
+    "p": "Wǒ zuò chūzūchē huí jiā.",
+    "fr": "Je rentre en taxi."
+   },
+   {
+    "h": "他坐飞机去北京。",
+    "p": "Tā zuò fēijī qù Běijīng.",
+    "fr": "Il va à Pékin en avion."
+   }
+  ],
+  "tip": "会 (huì) = savoir faire (appris), 能 (néng) = pouvoir (avoir la possibilité)."
+ },
+ "items": [
+  {
+   "id": "k08_qu",
+   "h": "去",
+   "p": "qu",
+   "t": [
+    4
+   ],
+   "fr": "Aller",
+   "st": 0
+  },
+  {
+   "id": "k08_lai",
+   "h": "来",
+   "p": "lai",
+   "t": [
+    2
+   ],
+   "fr": "Venir",
+   "st": 0
+  },
+  {
+   "id": "k08_hui",
+   "h": "回",
+   "p": "hui",
+   "t": [
+    2
+   ],
+   "fr": "Revenir, rentrer",
+   "st": 0
+  },
+  {
+   "id": "k08_zuo",
+   "h": "坐",
+   "p": "zuo",
+   "t": [
+    4
+   ],
+   "fr": "S’asseoir, prendre (un transport)",
+   "st": 0
+  },
+  {
+   "id": "k08_chuzuche",
+   "h": "出租车",
+   "p": "chu-zu-che",
+   "t": [
+    1,
+    1,
+    1
+   ],
+   "fr": "Taxi",
+   "st": 0
+  },
+  {
+   "id": "k08_feiji",
+   "h": "飞机",
+   "p": "fei-ji",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Avion",
+   "st": 0
+  },
+  {
+   "id": "k08_kai",
+   "h": "开",
+   "p": "kai",
+   "t": [
+    1
+   ],
+   "fr": "Ouvrir, conduire",
+   "st": 0
+  },
+  {
+   "id": "k08_dadianhua",
+   "h": "打电话",
+   "p": "da dian-hua",
+   "t": [
+    3,
+    4,
+    4
+   ],
+   "fr": "Téléphoner",
+   "st": 0
+  },
+  {
+   "id": "k08_wei",
+   "h": "喂",
+   "p": "wei",
+   "t": [
+    4
+   ],
+   "fr": "Allô",
+   "st": 0
+  },
+  {
+   "id": "k08_zaijian",
+   "h": "再见",
+   "p": "zai-jian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Au revoir",
+   "st": 0
+  },
+  {
+   "id": "k08_neng",
+   "h": "能",
+   "p": "neng",
+   "t": [
+    2
+   ],
+   "fr": "Pouvoir",
+   "st": 0
+  },
+  {
+   "id": "k08_hui2",
+   "h": "会",
+   "p": "hui",
+   "t": [
+    4
+   ],
+   "fr": "Savoir (faire)",
+   "st": 0
+  },
+  {
+   "id": "k08_zenme",
+   "h": "怎么",
+   "p": "zen-me",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Comment",
+   "st": 0
+  },
+  {
+   "id": "k08_s_chuzuche",
+   "h": "我坐出租车去医院",
+   "p": "wo zuo chu-zu-che qu yi-yuan",
+   "t": [
+    3,
+    4,
+    1,
+    1,
+    1,
+    4,
+    1,
+    4
+   ],
+   "fr": "Je vais à l’hôpital en taxi",
+   "st": 0
+  },
+  {
+   "id": "k08_s_zenme",
+   "h": "你怎么回家",
+   "p": "ni zen-me hui jia",
+   "t": [
+    3,
+    3,
+    0,
+    2,
+    1
+   ],
+   "fr": "Tu rentres comment ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    2,
+    1
+   ],
+   "m": "Après le poste, demande à un collègue : 你怎么回家？"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "坐",
+    "p": "zuo",
+    "t": 4,
+    "fr": "s’asseoir"
+   },
+   {
+    "h": "左",
+    "p": "zuo",
+    "t": 3,
+    "fr": "gauche"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "去",
+   "p": "qù",
+   "m": "aller",
+   "r": "土",
+   "rm": "terre"
+  },
+  {
+   "c": "来",
+   "p": "lái",
+   "m": "venir",
+   "r": "木",
+   "rm": "arbre"
+  },
+  {
+   "c": "回",
+   "p": "huí",
+   "m": "revenir",
+   "r": "囗",
+   "rm": "enclos"
+  },
+  {
+   "c": "坐",
+   "p": "zuò",
+   "m": "s’asseoir",
+   "r": "土",
+   "rm": "terre"
+  },
+  {
+   "c": "车",
+   "p": "chē",
+   "m": "voiture",
+   "r": "车",
+   "rm": "voiture"
+  },
+  {
+   "c": "机",
+   "p": "jī",
+   "m": "machine",
+   "r": "木",
+   "rm": "arbre"
+  },
+  {
+   "c": "电",
+   "p": "diàn",
+   "m": "électricité",
+   "r": "田",
+   "rm": "champ"
+  },
+  {
+   "c": "话",
+   "p": "huà",
+   "m": "parole",
+   "r": "讠",
+   "rm": "parole"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-telephone",
+   "st": 0,
+   "title": "Un appel d’une amie",
+   "who": "朋友",
+   "whoFr": "Amie",
+   "intro": "Ton téléphone sonne : c’est une amie chinoise.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "喂，你好！你在哪儿？",
+     "p": "Wèi, nǐ hǎo! Nǐ zài nǎr?",
+     "fr": "Allô, bonjour ! Tu es où ?",
+     "o": [
+      {
+       "h": "我在家。你呢？",
+       "p": "Wǒ zài jiā. Nǐ ne?",
+       "fr": "Je suis à la maison. Et toi ?",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我很好。",
+       "p": "Wǒ hěn hǎo.",
+       "fr": "Je vais bien.",
+       "fix": "你在哪儿 = où es-tu ? Réponds « 我在家 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "我在学校。你明天来学校吗？",
+     "p": "Wǒ zài xuéxiào. Nǐ míngtiān lái xuéxiào ma?",
+     "fr": "Je suis à l’école. Tu viens à l’école demain ?",
+     "o": [
+      {
+       "h": "来，我坐出租车来。",
+       "p": "Lái, wǒ zuò chūzūchē lái.",
+       "fr": "Oui, je viens en taxi.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "不来，明天我工作。",
+       "p": "Bù lái, míngtiān wǒ gōngzuò.",
+       "fr": "Non, demain je travaille.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我坐飞机。",
+       "p": "Wǒ zuò fēijī.",
+       "fr": "Je prends l’avion.",
+       "fix": "Elle demande si tu viens : réponds 来 (oui) ou 不来 (non)."
+      }
+     ]
+    },
+    "end": {
+     "h": "好的，再见！",
+     "p": "Hǎo de, zàijiàn!",
+     "fr": "D’accord, au revoir !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

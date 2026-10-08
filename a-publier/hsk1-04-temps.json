@@ -1,0 +1,361 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 4 — L’heure et la date",
+ "desc": "Dire l’heure, la date, les moments de la journée. 13 mots HSK 1.",
+ "grammar": {
+  "title": "La date et l’heure : du plus grand au plus petit",
+  "explain": "En chinois, on part toujours du plus grand vers le plus petit : année, mois, jour, moment, heure. 十月二号 = « le 2 octobre » (mot à mot « 10e mois, 2e jour »). Et le moment se place avant le verbe : 我明天去, pas 我去明天.",
+  "examples": [
+   {
+    "h": "今天十月二号。",
+    "p": "Jīntiān shí yuè èr hào.",
+    "fr": "Aujourd’hui, c’est le 2 octobre."
+   },
+   {
+    "h": "星期一上午九点",
+    "p": "xīngqīyī shàngwǔ jiǔ diǎn",
+    "fr": "lundi à 9 h du matin"
+   },
+   {
+    "h": "我明天下午去。",
+    "p": "Wǒ míngtiān xiàwǔ qù.",
+    "fr": "J’y vais demain après-midi."
+   },
+   {
+    "h": "你什么时候去？",
+    "p": "Nǐ shénme shíhou qù?",
+    "fr": "Tu y vas quand ?"
+   }
+  ],
+  "tip": "Les jours de la semaine sont des nombres : 星期一 = lundi, 星期二 = mardi… 星期六 = samedi. Seul dimanche est spécial : 星期天."
+ },
+ "items": [
+  {
+   "id": "k04_jintian",
+   "h": "今天",
+   "p": "jin-tian",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Aujourd’hui",
+   "st": 0
+  },
+  {
+   "id": "k04_mingtian",
+   "h": "明天",
+   "p": "ming-tian",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Demain",
+   "st": 0
+  },
+  {
+   "id": "k04_zuotian",
+   "h": "昨天",
+   "p": "zuo-tian",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Hier",
+   "st": 0
+  },
+  {
+   "id": "k04_xianzai",
+   "h": "现在",
+   "p": "xian-zai",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Maintenant",
+   "st": 0
+  },
+  {
+   "id": "k04_dian",
+   "h": "点",
+   "p": "dian",
+   "t": [
+    3
+   ],
+   "fr": "Heure (8 点 = 8 h)",
+   "st": 0
+  },
+  {
+   "id": "k04_fenzhong",
+   "h": "分钟",
+   "p": "fen-zhong",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Minute",
+   "st": 0
+  },
+  {
+   "id": "k04_shangwu",
+   "h": "上午",
+   "p": "shang-wu",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Le matin",
+   "st": 0
+  },
+  {
+   "id": "k04_zhongwu",
+   "h": "中午",
+   "p": "zhong-wu",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Midi",
+   "st": 0
+  },
+  {
+   "id": "k04_xiawu",
+   "h": "下午",
+   "p": "xia-wu",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "L’après-midi",
+   "st": 0
+  },
+  {
+   "id": "k04_xingqi",
+   "h": "星期",
+   "p": "xing-qi",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Semaine",
+   "st": 0
+  },
+  {
+   "id": "k04_yue",
+   "h": "月",
+   "p": "yue",
+   "t": [
+    4
+   ],
+   "fr": "Mois",
+   "st": 0
+  },
+  {
+   "id": "k04_hao",
+   "h": "号",
+   "p": "hao",
+   "t": [
+    4
+   ],
+   "fr": "Jour du mois (date)",
+   "st": 0
+  },
+  {
+   "id": "k04_shihou",
+   "h": "时候",
+   "p": "shi-hou",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Moment",
+   "st": 0
+  },
+  {
+   "id": "k04_s_jidian",
+   "h": "现在几点",
+   "p": "xian-zai ji dian",
+   "t": [
+    4,
+    4,
+    3,
+    3
+   ],
+   "fr": "Quelle heure est-il ?",
+   "st": 0,
+   "s": [
+    4,
+    4,
+    2,
+    3
+   ],
+   "m": "Demande l’heure à un collègue chinois : 现在几点？"
+  },
+  {
+   "id": "k04_s_jihao",
+   "h": "今天几月几号",
+   "p": "jin-tian ji yue ji hao",
+   "t": [
+    1,
+    1,
+    3,
+    4,
+    3,
+    4
+   ],
+   "fr": "On est quel jour aujourd’hui ?",
+   "st": 0
+  },
+  {
+   "id": "k04_s_shenmeshihou",
+   "h": "你什么时候下班",
+   "p": "ni shen-me shi-hou xia-ban",
+   "t": [
+    3,
+    2,
+    0,
+    2,
+    0,
+    4,
+    1
+   ],
+   "fr": "Tu finis quand ?",
+   "st": 0,
+   "m": "Demande à un collègue : 你什么时候下班？"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "天",
+    "p": "tian",
+    "t": 1,
+    "fr": "jour, ciel"
+   },
+   {
+    "h": "甜",
+    "p": "tian",
+    "t": 2,
+    "fr": "sucré"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "今",
+   "p": "jīn",
+   "m": "maintenant",
+   "r": "人",
+   "rm": "personne"
+  },
+  {
+   "c": "明",
+   "p": "míng",
+   "m": "clair, demain",
+   "r": "日",
+   "rm": "soleil"
+  },
+  {
+   "c": "天",
+   "p": "tiān",
+   "m": "jour, ciel",
+   "r": "大",
+   "rm": "grand"
+  },
+  {
+   "c": "午",
+   "p": "wǔ",
+   "m": "midi",
+   "r": "十",
+   "rm": "dix"
+  },
+  {
+   "c": "上",
+   "p": "shàng",
+   "m": "dessus",
+   "r": "一",
+   "rm": "un"
+  },
+  {
+   "c": "下",
+   "p": "xià",
+   "m": "dessous",
+   "r": "一",
+   "rm": "un"
+  },
+  {
+   "c": "月",
+   "p": "yuè",
+   "m": "mois, lune",
+   "r": "月",
+   "rm": "lune"
+  },
+  {
+   "c": "星",
+   "p": "xīng",
+   "m": "étoile",
+   "r": "日",
+   "rm": "soleil"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-temps",
+   "st": 0,
+   "title": "Quelle heure, quel jour ?",
+   "who": "同事",
+   "whoFr": "Collègue",
+   "intro": "Ton téléphone n’a plus de batterie. Tu demandes à une collègue.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "现在几点？",
+     "p": "Xiànzài jǐ diǎn?",
+     "fr": "Il est quelle heure ?",
+     "o": [
+      {
+       "h": "现在十点。",
+       "p": "Xiànzài shí diǎn.",
+       "fr": "Il est dix heures.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "现在星期一。",
+       "p": "Xiànzài xīngqīyī.",
+       "fr": "C’est lundi.",
+       "fix": "几点 = quelle heure : réponds « 十点 »."
+      }
+     ],
+     "coach": "Ta collègue te retourne la question pour vérifier que tu sais lire l’heure."
+    },
+    "b": {
+     "h": "今天几号？",
+     "p": "Jīntiān jǐ hào?",
+     "fr": "On est le combien aujourd’hui ?",
+     "o": [
+      {
+       "h": "今天十月二号。",
+       "p": "Jīntiān shí yuè èr hào.",
+       "fr": "Nous sommes le 2 octobre.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "今天下午。",
+       "p": "Jīntiān xiàwǔ.",
+       "fr": "Cet après-midi.",
+       "fix": "几号 = quel jour du mois : « 十月二号 » (2 octobre)."
+      }
+     ]
+    },
+    "end": {
+     "h": "谢谢！明天见！",
+     "p": "Xièxie! Míngtiān jiàn!",
+     "fr": "Merci ! À demain !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

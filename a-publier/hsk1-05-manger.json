@@ -1,0 +1,368 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 5 — Manger et boire",
+ "desc": "Commander au restaurant, dire ce que tu aimes et ce que tu veux. 14 mots HSK 1.",
+ "grammar": {
+  "title": "想 et 喜欢 + verbe",
+  "explain": "想 (xiǎng) = « vouloir, avoir envie » maintenant. 喜欢 (xǐhuan) = « aimer » en général. Les deux se placent devant un autre verbe : 我想喝水 (j’ai envie de boire de l’eau), 我喜欢吃苹果 (j’aime manger des pommes).",
+  "examples": [
+   {
+    "h": "我想喝水。",
+    "p": "Wǒ xiǎng hē shuǐ.",
+    "fr": "Je veux boire de l’eau."
+   },
+   {
+    "h": "我喜欢吃米饭。",
+    "p": "Wǒ xǐhuan chī mǐfàn.",
+    "fr": "J’aime manger du riz."
+   },
+   {
+    "h": "你想去饭店吗？",
+    "p": "Nǐ xiǎng qù fàndiàn ma?",
+    "fr": "Tu veux aller au restaurant ?"
+   },
+   {
+    "h": "我不喜欢喝茶。",
+    "p": "Wǒ bù xǐhuan hē chá.",
+    "fr": "Je n’aime pas boire du thé."
+   }
+  ],
+  "tip": "吃 = manger (le solide), 喝 = boire (le liquide). On dit 喝茶, jamais 吃茶."
+ },
+ "items": [
+  {
+   "id": "k05_chi",
+   "h": "吃",
+   "p": "chi",
+   "t": [
+    1
+   ],
+   "fr": "Manger",
+   "st": 0
+  },
+  {
+   "id": "k05_he",
+   "h": "喝",
+   "p": "he",
+   "t": [
+    1
+   ],
+   "fr": "Boire",
+   "st": 0
+  },
+  {
+   "id": "k05_mifan",
+   "h": "米饭",
+   "p": "mi-fan",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Riz (cuit)",
+   "st": 0
+  },
+  {
+   "id": "k05_cai",
+   "h": "菜",
+   "p": "cai",
+   "t": [
+    4
+   ],
+   "fr": "Plat, légume",
+   "st": 0
+  },
+  {
+   "id": "k05_cha",
+   "h": "茶",
+   "p": "cha",
+   "t": [
+    2
+   ],
+   "fr": "Thé",
+   "st": 0
+  },
+  {
+   "id": "k05_shui",
+   "h": "水",
+   "p": "shui",
+   "t": [
+    3
+   ],
+   "fr": "Eau",
+   "st": 0
+  },
+  {
+   "id": "k05_shuiguo",
+   "h": "水果",
+   "p": "shui-guo",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Fruit",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "k05_pingguo",
+   "h": "苹果",
+   "p": "ping-guo",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Pomme",
+   "st": 0
+  },
+  {
+   "id": "k05_beizi",
+   "h": "杯子",
+   "p": "bei-zi",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Verre, tasse",
+   "st": 0
+  },
+  {
+   "id": "k05_fandian",
+   "h": "饭店",
+   "p": "fan-dian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Restaurant",
+   "st": 0
+  },
+  {
+   "id": "k05_xihuan",
+   "h": "喜欢",
+   "p": "xi-huan",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Aimer (bien)",
+   "st": 0
+  },
+  {
+   "id": "k05_xiang",
+   "h": "想",
+   "p": "xiang",
+   "t": [
+    3
+   ],
+   "fr": "Vouloir, penser",
+   "st": 0
+  },
+  {
+   "id": "k05_ai",
+   "h": "爱",
+   "p": "ai",
+   "t": [
+    4
+   ],
+   "fr": "Aimer (fort)",
+   "st": 0
+  },
+  {
+   "id": "k05_qing",
+   "h": "请",
+   "p": "qing",
+   "t": [
+    3
+   ],
+   "fr": "S’il vous plaît, inviter",
+   "st": 0
+  },
+  {
+   "id": "k05_s_xiangchi",
+   "h": "你想吃什么",
+   "p": "ni xiang chi shen-me",
+   "t": [
+    3,
+    3,
+    1,
+    2,
+    0
+   ],
+   "fr": "Tu veux manger quoi ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    1,
+    2,
+    0
+   ],
+   "m": "À la pause repas, demande à un collègue : 你想吃什么？"
+  },
+  {
+   "id": "k05_s_hecha",
+   "h": "我喜欢喝茶",
+   "p": "wo xi-huan he cha",
+   "t": [
+    3,
+    3,
+    0,
+    1,
+    2
+   ],
+   "fr": "J’aime boire du thé",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    1,
+    2
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "吃",
+    "p": "chi",
+    "t": 1,
+    "fr": "manger"
+   },
+   {
+    "h": "迟",
+    "p": "chi",
+    "t": 2,
+    "fr": "en retard"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "吃",
+   "p": "chī",
+   "m": "manger",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "喝",
+   "p": "hē",
+   "m": "boire",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "米",
+   "p": "mǐ",
+   "m": "riz",
+   "r": "米",
+   "rm": "riz"
+  },
+  {
+   "c": "饭",
+   "p": "fàn",
+   "m": "repas",
+   "r": "饣",
+   "rm": "nourriture"
+  },
+  {
+   "c": "茶",
+   "p": "chá",
+   "m": "thé",
+   "r": "艹",
+   "rm": "herbe"
+  },
+  {
+   "c": "水",
+   "p": "shuǐ",
+   "m": "eau",
+   "r": "水",
+   "rm": "eau"
+  },
+  {
+   "c": "果",
+   "p": "guǒ",
+   "m": "fruit",
+   "r": "木",
+   "rm": "arbre"
+  },
+  {
+   "c": "想",
+   "p": "xiǎng",
+   "m": "vouloir, penser",
+   "r": "心",
+   "rm": "cœur"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-restaurant",
+   "st": 0,
+   "title": "Au restaurant chinois",
+   "who": "服务员",
+   "whoFr": "Serveur",
+   "intro": "Tu déjeunes dans un petit restaurant chinois près de l’usine.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好！你想吃什么？",
+     "p": "Nǐ hǎo! Nǐ xiǎng chī shénme?",
+     "fr": "Bonjour ! Qu’est-ce que tu veux manger ?",
+     "o": [
+      {
+       "h": "我想吃米饭和菜。",
+       "p": "Wǒ xiǎng chī mǐfàn hé cài.",
+       "fr": "Je voudrais du riz et un plat.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我想睡觉。",
+       "p": "Wǒ xiǎng shuìjiào.",
+       "fr": "Je veux dormir.",
+       "fix": "吃 = manger. Réponds « 我想吃… »."
+      }
+     ]
+    },
+    "b": {
+     "h": "你想喝什么？",
+     "p": "Nǐ xiǎng hē shénme?",
+     "fr": "Et à boire ?",
+     "o": [
+      {
+       "h": "请给我一杯茶。",
+       "p": "Qǐng gěi wǒ yì bēi chá.",
+       "fr": "Un thé, s’il vous plaît.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我喜欢喝水。",
+       "p": "Wǒ xǐhuan hē shuǐ.",
+       "fr": "J’aime l’eau.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我想吃茶。",
+       "p": "Wǒ xiǎng chī chá.",
+       "fr": "(erreur)",
+       "fix": "Le thé se boit : 喝茶, pas 吃茶."
+      }
+     ]
+    },
+    "end": {
+     "h": "好的，请等一下。",
+     "p": "Hǎo de, qǐng děng yíxià.",
+     "fr": "Très bien, un instant.",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

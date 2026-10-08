@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Coach de chinois : usine, vie quotidienne, carrière">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Bùbùgāo 步步高</title>
+<meta name="theme-color" content="#0B7A63">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Noto+Sans+SC:wght@500;700&display=swap">
+<style>
+/* Layout: one-column phone app, sticky top bar in lessons, fixed bottom tab bar elsewhere.
+   World: jade thread on cool workshop grey; tones carry their own four colours everywhere. */
+:root{
+  --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#E3E9E5; --ink:#17212A; --muted:#56636C; --line:#D2DAD5;
+  --accent:#0B7A63; --accent-ink:#FFFFFF; --accent-soft:#D3ECE3;
+  --gold:#B97C08; --gold-soft:#F5E5C0;
+  --t1:#2563C9; --t2:#13824A; --t3:#9C6208; --t4:#BF2D2B; --t0:#86919A;
+  --good:#13824A; --good-soft:#DDF1E5; --bad:#BF2D2B; --bad-soft:#F8DEDC;
+  --shadow:0 1px 2px rgba(23,33,42,.06),0 6px 18px rgba(23,33,42,.06);
+  --f-display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --f-body:'Nunito Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-zh:'Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1518; --surface:#182126; --surface-2:#212C32; --ink:#E7EDEA; --muted:#97A5AD; --line:#2C3940;
+  --accent:#38C29D; --accent-ink:#04211A; --accent-soft:#163830;
+  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
+  --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1518; --surface:#182126; --surface-2:#212C32; --ink:#E7EDEA; --muted:#97A5AD; --line:#2C3940;
+  --accent:#38C29D; --accent-ink:#04211A; --accent-soft:#163830;
+  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
+  --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--f-body);-webkit-tap-highlight-color:transparent}
+#app{max-width:520px;margin:0 auto;min-height:100%;padding-inline:16px;display:flex;flex-direction:column}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:28px;font-weight:800} h2{font-size:21px;font-weight:800} h3{font-size:17px;font-weight:600}
+p{margin:0}
+button{font:inherit;color:inherit}
+.zh{font-family:var(--f-zh);font-weight:500}
+.t1{color:var(--t1)} .t2{color:var(--t2)} .t3{color:var(--t3)} .t4{color:var(--t4)} .t0{color:var(--t0)}
+.muted{color:var(--muted)} .small{font-size:14px} .tiny{font-size:12.5px}
+.label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:12px} .stack.lg{gap:20px} .stack.sm{gap:6px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap} .row.between{justify-content:space-between}
+.grow{flex:1;min-width:0}
+.screen{flex:1;padding-block:20px 110px;display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.card.flat{box-shadow:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#1d1400}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.block{width:100%} .btn.sm{min-height:38px;padding:0 12px;font-size:14px;border-radius:10px}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn:focus-visible,.opt:focus-visible,.tile:focus-visible,.tab:focus-visible,.chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.icon{width:20px;height:20px;flex:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--surface-2);font-weight:700;font-size:14px;border:1.5px solid transparent;cursor:pointer}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+input[type=text],input[type=number],select{width:100%;min-height:48px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 16px var(--f-body);padding:0 14px}
+input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+
+/* tab bar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar-in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0 9px;border:0;background:none;cursor:pointer;color:var(--muted);font-size:12px;font-weight:800}
+.tab .zh{font-size:16px;line-height:1}
+.tab.on{color:var(--accent)}
+
+/* home */
+.hello{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.hello .zh{font-size:15px;color:var(--muted)}
+.streak{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.flame{display:inline-flex;align-items:center;gap:4px;font:800 18px var(--f-display);color:var(--gold)}
+.jokers{display:flex;gap:3px} .jk{width:9px;height:9px;transform:rotate(45deg);border:1.5px solid var(--gold);border-radius:2px} .jk.on{background:var(--gold)}
+.stage-hero{display:flex;flex-direction:column;gap:14px}
+.stage-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.stage-pct{font:800 44px/1 var(--f-display);font-variant-numeric:tabular-nums;color:var(--accent)}
+.stage-pct small{font-size:20px}
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.road-step{display:flex;flex-direction:column;gap:6px}
+.road-bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.road-bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.road-step .nm{font-size:12px;font-weight:800;color:var(--muted)} .road-step.cur .nm{color:var(--ink)}
+.road-step .zh{font-size:13px;color:var(--muted)}
+.cta{display:flex;flex-direction:column;gap:12px;background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:18px;border:0;text-align:left;cursor:pointer;width:100%;box-shadow:var(--shadow)}
+.cta h2{color:inherit}
+.cta .bits{display:flex;gap:8px;flex-wrap:wrap}
+.cta .bit{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:800}
+.cta.done{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.cta.done .bit{background:var(--surface-2)}
+.mission{border:1.5px dashed var(--gold);background:var(--gold-soft);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.stat b{font:800 24px var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted);line-height:1.3}
+.phrase{display:flex;gap:12px;align-items:center}
+.notice{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:14px}
+
+/* lesson */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);padding-block:12px 8px;display:flex;align-items:center;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:10px;border:0;background:var(--surface-2);display:grid;place-items:center;cursor:pointer;flex:none}
+.prog{flex:1;height:10px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.lesson{flex:1;display:flex;flex-direction:column;gap:18px;padding-block:8px 24px}
+.q-title{font:800 20px/1.25 var(--f-display)}
+.big-zh{font-family:var(--f-zh);font-weight:700;font-size:52px;line-height:1.15;letter-spacing:.02em;word-break:break-all}
+.big-zh.mid{font-size:38px} .big-zh.sm{font-size:30px}
+.py{font-size:20px;font-weight:700;letter-spacing:.01em}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;text-align:left;min-height:56px;padding:12px 16px;border-radius:14px;border:2px solid var(--line);background:var(--surface);cursor:pointer;font-weight:700;font-size:16px}
+.opt .zh{font-size:24px}
+.opt.center{align-items:center;text-align:center}
+.opt.pick{border-color:var(--accent);background:var(--accent-soft)}
+.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt[disabled]{cursor:default}
+.opt.dim{opacity:.5}
+.listen{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.playbig{width:96px;height:96px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow)}
+.playbig .icon{width:40px;height:40px}
+.feedback{position:sticky;bottom:0;margin-inline:-16px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;border-top:2px solid var(--line);background:var(--surface)}
+.feedback.ok{background:var(--good-soft);border-color:var(--good)}
+.feedback.bad{background:var(--bad-soft);border-color:var(--bad)}
+.feedback .verdict{font:800 19px var(--f-display)}
+.feedback.ok .verdict{color:var(--good)} .feedback.bad .verdict{color:var(--bad)}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;min-height:62px;padding:10px;border-radius:14px}
+.tiles.answer{border:2px dashed var(--line);background:var(--surface)}
+.tile{display:flex;flex-direction:column;align-items:center;padding:6px 12px;border-radius:12px;border:2px solid var(--line);background:var(--surface);cursor:pointer;box-shadow:0 2px 0 var(--line)}
+.tile .zh{font-size:22px} .tile .p{font-size:12px;font-weight:700;color:var(--muted)}
+.tile.used{visibility:hidden}
+.learn-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:24px 16px}
+.sec-tag{display:inline-flex;align-self:flex-start;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--ink);font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.tonekey{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.tonekey span{font-size:12.5px;font-weight:800;padding:3px 8px;border-radius:8px;background:var(--surface-2)}
+canvas.curve{width:100%;height:180px;display:block;border-radius:12px;background:var(--surface-2)}
+.score{font:800 40px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.recbtn{width:84px;height:84px;border-radius:50%;border:0;background:var(--bad);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow)}
+.recbtn .icon{width:34px;height:34px}
+.recbtn.on{animation:pulse 1s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--bad) 50%,transparent)}100%{box-shadow:0 0 0 18px transparent}}
+@media (prefers-reduced-motion:reduce){.recbtn.on{animation:none}.prog i{transition:none}}
+.tips{display:flex;flex-direction:column;gap:8px}
+.tip{font-size:14.5px;padding:10px 12px;border-radius:12px;background:var(--surface-2)}
+
+/* conversation */
+.chat{display:flex;flex-direction:column;gap:10px}
+.bub{max-width:88%;padding:10px 14px;border-radius:16px;display:flex;flex-direction:column;gap:2px}
+.bub .zh{font-size:20px} .bub .p{font-size:14px;color:var(--muted);font-weight:600} .bub .fr{font-size:14px;color:var(--muted);font-style:italic}
+.bub.them{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bub.me{align-self:flex-end;background:var(--accent-soft);border-bottom-right-radius:4px}
+.bub.me.bad{background:var(--bad-soft)}
+.who{font-size:12px;font-weight:800;color:var(--muted)}
+.coach{align-self:stretch;background:var(--gold-soft);border-radius:12px;padding:10px 12px;font-size:14.5px}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:800;font-size:13px;cursor:pointer;align-self:flex-start}
+
+/* progress */
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:grid;grid-template-columns:96px 1fr 40px;gap:10px;align-items:center;font-size:14px;font-weight:700}
+.bar{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+.bar-row b{text-align:right;font-variant-numeric:tabular-nums}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center}
+.week .d{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted)}
+.week .dot{width:30px;height:30px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:11px;color:var(--accent-ink);font-weight:800}
+.week .dot.on{background:var(--accent)}
+.wordlist{display:flex;flex-direction:column}
+.word{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.word:last-child{border-bottom:0}
+.word .zh{font-size:20px;min-width:0}
+.mdots{display:flex;gap:3px;flex:none} .mdots i{width:8px;height:8px;border-radius:50%;background:var(--surface-2)} .mdots i.on{background:var(--accent)}
+.list-btn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.list-btn .zh{font-size:22px}
+.list-btn.locked{opacity:.55}
+.badge{font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted);flex:none}
+.badge.ok{background:var(--good-soft);color:var(--good)}
+.ladder{display:flex;flex-direction:column;gap:10px}
+.rung{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.rung .num{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font:800 16px var(--f-display);background:var(--surface-2);flex:none}
+.rung.on .num{background:var(--accent);color:var(--accent-ink)}
+.rung.lock{opacity:.6}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:50;max-width:calc(100% - 32px);text-align:center}
+.end-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding-top:24px}
+.end-hero .zh{font-size:46px;font-weight:700;color:var(--accent)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bonus{border:2px solid var(--gold);border-radius:16px;padding:16px;background:var(--gold-soft);display:flex;flex-direction:column;gap:6px}
+.intro-mark{font:800 64px/1 var(--f-zh);color:var(--accent)}
+details summary{cursor:pointer;font-weight:800}
+a{color:var(--accent)}
+</style>
+
+</head><body>
+<div id="app"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+/* ============================================================
+   DATA — contenu (BEGIN_DATA)
+   p : pinyin, mots séparés par espace, syllabes par « - »
+   t : tons écrits (0 = ton neutre) · s : tons réellement prononcés (sandhi)
+   st : étape (0 Usine, 1 Promotion, 2 Entretien, 3 Ailleurs) · m : mission terrain
+   ============================================================ */
+const STAGES=[
+ {zh:'工厂',py:'gōngchǎng',fr:'Usine',goal:'Comprendre et répondre à ton chef sans hésiter',hsk:'≈ HSK 2'},
+ {zh:'升职',py:'shēngzhí',fr:'Promotion',goal:'Expliquer un problème et servir d’interprète',hsk:'≈ HSK 3'},
+ {zh:'面试',py:'miànshì',fr:'Entretien',goal:'Te présenter et parler de ton expérience',hsk:'≈ HSK 4'},
+ {zh:'远方',py:'yuǎnfāng',fr:'Ailleurs',goal:'Voyager et travailler dans un autre environnement',hsk:'HSK 4–5'}
+];
+const ITEMS=[
+ {id:'nihao',h:'你好',p:'ni-hao',t:[3,3],s:[2,3],fr:'Bonjour',st:0},
+ {id:'xiexie',h:'谢谢',p:'xie-xie',t:[4,0],fr:'Merci',st:0},
+ {id:'mingbaile',h:'我明白了',p:'wo ming-bai le',t:[3,2,0,0],fr:'J’ai compris',st:0,m:'Quand ton chef t’explique quelque chose, réponds-lui : 我明白了 (Wǒ míngbai le).'},
+ {id:'haode',h:'好的',p:'hao-de',t:[3,0],fr:'D’accord',st:0},
+ {id:'xie',h:'鞋',p:'xie',t:[2],fr:'Chaussure',st:0},
+ {id:'xiedi',h:'鞋底',p:'xie-di',t:[2,3],fr:'Semelle',st:0,m:'Montre une semelle à un collègue chinois et dis : 鞋底 (xiédǐ).'},
+ {id:'jiaoshui',h:'胶水',p:'jiao-shui',t:[1,3],fr:'Colle',st:0},
+ {id:'duibuqi',h:'对不起',p:'dui-bu-qi',t:[4,0,3],fr:'Pardon, désolée',st:0},
+ {id:'bumingbai',h:'我不明白',p:'wo bu ming-bai',t:[3,4,2,0],fr:'Je ne comprends pas',st:0,m:'Si une consigne n’est pas claire, ose dire : 我不明白 (Wǒ bù míngbai).'},
+ {id:'zaishuo',h:'请再说一遍',p:'qing zai shuo yi bian',t:[3,4,1,2,4],fr:'Répétez, s’il vous plaît',st:0,m:'Demande à quelqu’un de répéter : 请再说一遍 (Qǐng zài shuō yí biàn).'},
+ {id:'manyidian',h:'慢一点',p:'man yi-dian',t:[4,4,3],fr:'Plus lentement',st:0},
+ {id:'meiwenti',h:'没问题',p:'mei wen-ti',t:[2,4,2],fr:'Pas de problème',st:0,m:'Quand on te demande un service, réponds : 没问题 (Méi wèntí).'},
+ {id:'xiedai',h:'鞋带',p:'xie-dai',t:[2,4],fr:'Lacet',st:0},
+ {id:'pige',h:'皮革',p:'pi-ge',t:[2,2],fr:'Cuir',st:0},
+ {id:'jiqi',h:'机器',p:'ji-qi',t:[1,4],fr:'Machine',st:0},
+ {id:'shengchanxian',h:'生产线',p:'sheng-chan-xian',t:[1,3,4],fr:'Chaîne de production',st:0},
+ {id:'zhiliang',h:'质量',p:'zhi-liang',t:[4,4],fr:'Qualité',st:0},
+ {id:'jiancha',h:'检查',p:'jian-cha',t:[3,2],fr:'Vérifier, contrôler',st:0},
+ {id:'chima',h:'尺码',p:'chi-ma',t:[3,3],s:[2,3],fr:'Pointure, taille',st:0},
+ {id:'yishuangxie',h:'一双鞋',p:'yi shuang xie',t:[4,1,2],fr:'Une paire de chaussures',st:0},
+ {id:'jiaban',h:'加班',p:'jia-ban',t:[1,1],fr:'Heures supplémentaires',st:0},
+ {id:'gongzi',h:'工资',p:'gong-zi',t:[1,1],fr:'Salaire',st:0},
+ {id:'xiuxi',h:'休息',p:'xiu-xi',t:[1,0],fr:'Pause, se reposer',st:0},
+ {id:'shangban',h:'上班',p:'shang-ban',t:[4,1],fr:'Commencer le travail',st:0},
+ {id:'xiaban',h:'下班',p:'xia-ban',t:[4,1],fr:'Finir le travail',st:0},
+ {id:'laoban',h:'老板',p:'lao-ban',t:[3,3],s:[2,3],fr:'Patron',st:0},
+ {id:'zuzhang',h:'组长',p:'zu-zhang',t:[3,3],s:[2,3],fr:'Chef d’équipe',st:0},
+ {id:'tongshi',h:'同事',p:'tong-shi',t:[2,4],fr:'Collègue',st:0},
+ {id:'xiaoxin',h:'小心',p:'xiao-xin',t:[3,1],fr:'Attention !',st:0},
+ {id:'kuaiyidian',h:'快一点',p:'kuai yi-dian',t:[4,4,3],fr:'Plus vite',st:0},
+ {id:'youwenti',h:'这双鞋有问题',p:'zhe shuang xie you wen-ti',t:[4,1,2,3,4,2],fr:'Cette paire a un problème',st:0,m:'Au contrôle, si une paire est défectueuse, dis : 这双鞋有问题.'},
+ {id:'huaile',h:'机器坏了',p:'ji-qi huai le',t:[1,4,4,0],fr:'La machine est en panne',st:0,m:'Entraîne-toi en silence devant ta machine : 机器坏了. Et dis-le à voix haute si ça arrive pour de vrai.'},
+ {id:'yongwan',h:'胶水用完了',p:'jiao-shui yong wan le',t:[1,3,4,2,0],fr:'Il n’y a plus de colle',st:0},
+ {id:'zuowan',h:'我做完了',p:'wo zuo wan le',t:[3,4,2,0],fr:'J’ai fini',st:0,m:'Quand tu termines une tâche, annonce-le à ton chef : 我做完了.'},
+ {id:'jiabanma',h:'今天要加班吗',p:'jin-tian yao jia-ban ma',t:[1,1,4,1,1,0],fr:'On fait des heures sup aujourd’hui ?',st:0,m:'Demande à un collègue : 今天要加班吗？'},
+ {id:'jidian',h:'几点下班',p:'ji dian xia-ban',t:[3,3,4,1],s:[2,3,4,1],fr:'On finit à quelle heure ?',st:0,m:'Demande à un collègue chinois : 几点下班？'},
+ {id:'qingjia',h:'我想请假',p:'wo xiang qing-jia',t:[3,3,3,4],s:[2,2,3,4],fr:'Je voudrais prendre un congé',st:0},
+ {id:'xinkule',h:'辛苦了',p:'xin-ku le',t:[1,3,0],fr:'Merci pour ton travail',st:0,m:'À la fin du poste, dis à ton chef ou à un collègue : 辛苦了 (Xīnkǔ le).'},
+
+ {id:'fanyi',h:'翻译',p:'fan-yi',t:[1,4],fr:'Traduire, interprète',st:1},
+ {id:'kehu',h:'客户',p:'ke-hu',t:[4,4],fr:'Client',st:1},
+ {id:'dingdan',h:'订单',p:'ding-dan',t:[4,1],fr:'Commande',st:1},
+ {id:'shuliang',h:'数量',p:'shu-liang',t:[4,4],fr:'Quantité',st:1},
+ {id:'yanse',h:'颜色不对',p:'yan-se bu dui',t:[2,4,2,4],fr:'La couleur n’est pas bonne',st:1},
+ {id:'bangni',h:'我可以帮你翻译',p:'wo ke-yi bang ni fan-yi',t:[3,3,3,1,3,1,4],s:[2,2,3,1,3,1,4],fr:'Je peux t’aider à traduire',st:1,m:'Propose ton aide à un collègue qui ne comprend pas : 我可以帮你翻译.'},
+ {id:'jiejue',h:'这个问题我来解决',p:'zhe-ge wen-ti wo lai jie-jue',t:[4,0,4,2,3,2,3,2],fr:'Je m’occupe de ce problème',st:1},
+ {id:'fuze',h:'我负责质量检查',p:'wo fu-ze zhi-liang jian-cha',t:[3,4,2,4,4,3,2],fr:'Je suis responsable du contrôle qualité',st:1},
+ {id:'meishuang',h:'每双鞋都要检查',p:'mei shuang xie dou yao jian-cha',t:[3,1,2,1,4,3,2],fr:'Chaque paire doit être vérifiée',st:1},
+ {id:'nuli',h:'我会努力的',p:'wo hui nu-li de',t:[3,4,3,4,0],fr:'Je ferai de mon mieux',st:1},
+
+ {id:'mianshi',h:'面试',p:'mian-shi',t:[4,4],fr:'Entretien d’embauche',st:2},
+ {id:'jingyan',h:'经验',p:'jing-yan',t:[1,4],fr:'Expérience',st:2},
+ {id:'gongsi',h:'公司',p:'gong-si',t:[1,1],fr:'Entreprise',st:2},
+ {id:'laizi',h:'我来自多哥',p:'wo lai-zi Duo-ge',t:[3,2,4,1,1],fr:'Je viens du Togo',st:2},
+ {id:'liangnian',h:'我在鞋厂工作了两年',p:'wo zai xie-chang gong-zuo le liang nian',t:[3,4,2,3,1,4,0,3,2],fr:'J’ai travaillé deux ans dans une usine de chaussures',st:2},
+ {id:'yuyan',h:'我会说法语和中文',p:'wo hui shuo Fa-yu he Zhong-wen',t:[3,4,1,3,3,2,1,2],s:[3,4,1,2,3,2,1,2],fr:'Je parle français et chinois',st:2},
+ {id:'xuedekuai',h:'我学得很快',p:'wo xue de hen kuai',t:[3,2,0,3,4],fr:'J’apprends vite',st:2},
+ {id:'xuegengduo',h:'我想学更多',p:'wo xiang xue geng duo',t:[3,3,2,4,1],s:[2,3,2,4,1],fr:'Je veux apprendre davantage',st:2},
+
+ {id:'qianzheng',h:'签证',p:'qian-zheng',t:[1,4],fr:'Visa',st:3},
+ {id:'jichang',h:'机场',p:'ji-chang',t:[1,3],fr:'Aéroport',st:3},
+ {id:'huzhao',h:'护照',p:'hu-zhao',t:[4,4],fr:'Passeport',st:3},
+ {id:'duoshao',h:'多少钱',p:'duo-shao qian',t:[1,0,2],fr:'Combien ça coûte ?',st:3},
+ {id:'yizhangpiao',h:'一张票',p:'yi zhang piao',t:[4,1,4],fr:'Un billet',st:3},
+ {id:'huochezhan',h:'火车站在哪里',p:'huo-che-zhan zai na-li',t:[3,1,4,4,3,0],fr:'Où est la gare ?',st:3},
+ {id:'zufang',h:'我想租房子',p:'wo xiang zu fang-zi',t:[3,3,1,2,0],s:[2,3,1,2,0],fr:'Je veux louer un logement',st:3}
+];
+const PAIRS=[
+ [{h:'买',p:'mai',t:3,fr:'acheter'},{h:'卖',p:'mai',t:4,fr:'vendre'}],
+ [{h:'十',p:'shi',t:2,fr:'dix'},{h:'是',p:'shi',t:4,fr:'être, c’est'}],
+ [{h:'四',p:'si',t:4,fr:'quatre'},{h:'十',p:'shi',t:2,fr:'dix'}],
+ [{h:'妈',p:'ma',t:1,fr:'maman'},{h:'马',p:'ma',t:3,fr:'cheval'}],
+ [{h:'汤',p:'tang',t:1,fr:'soupe'},{h:'糖',p:'tang',t:2,fr:'sucre'}],
+ [{h:'问',p:'wen',t:4,fr:'demander'},{h:'闻',p:'wen',t:2,fr:'sentir (une odeur)'}],
+ [{h:'包',p:'bao',t:1,fr:'sac'},{h:'饱',p:'bao',t:3,fr:'rassasié'}],
+ [{h:'鞋',p:'xie',t:2,fr:'chaussure'},{h:'写',p:'xie',t:3,fr:'écrire'}],
+ [{h:'水',p:'shui',t:3,fr:'eau'},{h:'睡',p:'shui',t:4,fr:'dormir'}],
+ [{h:'烟',p:'yan',t:1,fr:'fumée, cigarette'},{h:'盐',p:'yan',t:2,fr:'sel'}],
+ [{h:'试',p:'shi',t:4,fr:'essayer'},{h:'湿',p:'shi',t:1,fr:'mouillé'}],
+ [{h:'坏',p:'huai',t:4,fr:'cassé, en panne'},{h:'怀',p:'huai',t:2,fr:'poitrine, bras'}]
+];
+const BONUS=[
+ {h:'加油',p:'jiāyóu',fr:'Courage ! Vas-y !',note:'Ce que les collègues crient pour s’encourager.'},
+ {h:'辛苦了',p:'xīnkǔ le',fr:'Merci pour tes efforts',note:'À dire au chef ou aux collègues en fin de journée. Ça fait toujours plaisir.'},
+ {h:'慢慢来',p:'mànmàn lái',fr:'Prends ton temps',note:'Pour rassurer quelqu’un qui se presse.'},
+ {h:'太棒了',p:'tài bàng le',fr:'Génial !',note:'Pour féliciter quelqu’un.'},
+ {h:'一步一个脚印',p:'yí bù yí ge jiǎoyìn',fr:'Une empreinte à chaque pas',note:'On avance solidement, pas à pas. Parfait pour quelqu’un qui fabrique des chaussures.'},
+ {h:'熟能生巧',p:'shú néng shēng qiǎo',fr:'C’est en forgeant qu’on devient forgeron',note:'La pratique rend habile.'},
+ {h:'没事',p:'méi shì',fr:'Ce n’est rien, ça va',note:'Réponse rapide quand quelqu’un s’excuse.'},
+ {h:'步步高',p:'bù bù gāo',fr:'Monter marche après marche',note:'Le nom de ton app. On le souhaite à quelqu’un pour sa progression.'}
+];
+const CONVS=[
+{id:'defaut',st:0,title:'Un défaut sur la chaîne',who:'组长',whoFr:'Chef d’équipe',intro:'Ton chef d’équipe t’appelle près de la chaîne de production.',start:'a',nodes:{
+ a:{h:'你过来一下。',p:'Nǐ guòlai yíxià.',fr:'Viens ici un instant.',o:[
+  {h:'好的，马上来！',p:'Hǎo de, mǎshàng lái!',fr:'D’accord, j’arrive !',ok:1,n:'b'},
+  {h:'谢谢，不用。',p:'Xièxie, bú yòng.',fr:'Merci, pas besoin.',fix:'« 不用 » veut dire « pas besoin » : tu refuses ! Quand le chef appelle, réponds « 好的，马上来！ »'},
+  {h:'我下班了。',p:'Wǒ xiàbān le.',fr:'J’ai fini ma journée.',fix:'Tu es encore au travail. Réponds plutôt « 好的，马上来！ » (j’arrive).'}]},
+ b:{h:'这双鞋有问题，鞋底没粘好。',p:'Zhè shuāng xié yǒu wèntí, xiédǐ méi zhān hǎo.',fr:'Cette paire a un problème, la semelle est mal collée.',o:[
+  {h:'对不起，我马上重新粘。',p:'Duìbuqǐ, wǒ mǎshàng chóngxīn zhān.',fr:'Désolée, je la recolle tout de suite.',ok:1,n:'c'},
+  {h:'我不明白，请再说一遍。',p:'Wǒ bù míngbai, qǐng zài shuō yí biàn.',fr:'Je ne comprends pas, répétez s’il vous plaît.',ok:1,n:'b2'},
+  {h:'没问题。',p:'Méi wèntí.',fr:'Pas de problème.',fix:'« 没问题 » = « pas de problème »… mais il y en a un ! Excuse-toi d’abord : « 对不起 ».'}]},
+ b2:{h:'鞋底，没粘好。你看这里。',p:'Xiédǐ, méi zhān hǎo. Nǐ kàn zhèlǐ.',fr:'La semelle, elle est mal collée. Regarde ici.',o:[
+  {h:'我明白了。对不起，我马上重新粘。',p:'Wǒ míngbai le. Duìbuqǐ, wǒ mǎshàng chóngxīn zhān.',fr:'J’ai compris. Désolée, je la recolle tout de suite.',ok:1,n:'c'},
+  {h:'鞋带很好。',p:'Xiédài hěn hǎo.',fr:'Le lacet est très bien.',fix:'Il parle de 鞋底 (semelle), pas de 鞋带 (lacet). Écoute bien la 2ᵉ syllabe.'}]},
+ c:{h:'胶水够不够？',p:'Jiāoshuǐ gòu bu gòu?',fr:'Il y a assez de colle ?',o:[
+  {h:'不够了，胶水快用完了。',p:'Bú gòu le, jiāoshuǐ kuài yòng wán le.',fr:'Non, la colle est presque finie.',ok:1,n:'d'},
+  {h:'够了，谢谢。',p:'Gòu le, xièxie.',fr:'Oui, il y en a assez, merci.',ok:1,n:'d'},
+  {h:'我很好。',p:'Wǒ hěn hǎo.',fr:'Je vais bien.',fix:'Il parle de la colle (胶水), pas de toi. Réponds « 够了 » (assez) ou « 不够了 » (pas assez).'}]},
+ d:{h:'好。下次小心一点。',p:'Hǎo. Xià cì xiǎoxīn yìdiǎn.',fr:'Bien. Fais un peu plus attention la prochaine fois.',o:[
+  {h:'好的，我明白了。',p:'Hǎo de, wǒ míngbai le.',fr:'D’accord, j’ai compris.',ok:1,n:'end'},
+  {h:'我不想。',p:'Wǒ bù xiǎng.',fr:'Je ne veux pas.',fix:'Attention, ça peut vexer ton chef ! Dis « 好的，我明白了 ».'}]},
+ end:{h:'不错！继续加油。',p:'Búcuò! Jìxù jiāyóu.',fr:'Pas mal ! Continue comme ça.',end:1}}},
+{id:'jiaban',st:0,title:'Des heures sup ce soir',who:'组长',whoFr:'Chef d’équipe',intro:'C’est la fin de la pause. Ton chef d’équipe a une annonce.',start:'a',nodes:{
+ a:{h:'今天要加班两个小时。',p:'Jīntiān yào jiābān liǎng ge xiǎoshí.',fr:'Aujourd’hui, il faut faire deux heures sup.',o:[
+  {h:'好的。几点下班？',p:'Hǎo de. Jǐ diǎn xiàbān?',fr:'D’accord. On finit à quelle heure ?',ok:1,n:'b'},
+  {h:'对不起，今天我有事，可以不加班吗？',p:'Duìbuqǐ, jīntiān wǒ yǒu shì, kěyǐ bù jiābān ma?',fr:'Désolée, j’ai un empêchement. Je peux ne pas faire d’heures sup ?',ok:1,n:'c'},
+  {h:'我是组长。',p:'Wǒ shì zǔzhǎng.',fr:'Je suis la cheffe d’équipe.',fix:'Ce n’est pas toi la cheffe ! Demande plutôt l’heure de fin : « 几点下班？ »'}]},
+ b:{h:'八点下班。加班有加班费。',p:'Bā diǎn xiàbān. Jiābān yǒu jiābānfèi.',fr:'On finit à 20 h. Les heures sup sont payées.',o:[
+  {h:'好的，没问题。',p:'Hǎo de, méi wèntí.',fr:'D’accord, pas de problème.',ok:1,n:'end'},
+  {h:'“加班费”是什么意思？',p:'“Jiābānfèi” shì shénme yìsi?',fr:'Que veut dire « jiābānfèi » ?',ok:1,n:'b2'},
+  {h:'再见！',p:'Zàijiàn!',fr:'Au revoir !',fix:'Tu pars déjà ? Réponds d’abord : « 好的，没问题 ».'}]},
+ b2:{h:'加班费就是加班的钱。',p:'Jiābānfèi jiù shì jiābān de qián.',fr:'Le « jiābānfèi », c’est l’argent des heures sup.',o:[
+  {h:'明白了，谢谢！',p:'Míngbai le, xièxie!',fr:'Compris, merci !',ok:1,n:'end'}]},
+ c:{h:'好吧。那明天早点来。',p:'Hǎo ba. Nà míngtiān zǎo diǎn lái.',fr:'Bon, d’accord. Alors viens plus tôt demain.',o:[
+  {h:'谢谢组长！明天我早点来。',p:'Xièxie zǔzhǎng! Míngtiān wǒ zǎo diǎn lái.',fr:'Merci chef ! Demain je viens plus tôt.',ok:1,n:'end'},
+  {h:'明天我休息。',p:'Míngtiān wǒ xiūxi.',fr:'Demain je me repose.',fix:'Il vient d’accepter ta demande. Remercie-le : « 谢谢组长！ »'}]},
+ end:{h:'好，辛苦了！',p:'Hǎo, xīnkǔ le!',fr:'Bien, merci pour ton travail !',end:1}}},
+{id:'interprete',st:1,title:'Servir d’interprète',who:'老板',whoFr:'Patron',intro:'Un nouveau collègue togolais arrive. Le patron a besoin de toi pour traduire.',start:'a',nodes:{
+ a:{h:'你能帮我翻译吗？',p:'Nǐ néng bāng wǒ fānyì ma?',fr:'Tu peux m’aider à traduire ?',o:[
+  {h:'可以，我来帮你翻译。',p:'Kěyǐ, wǒ lái bāng nǐ fānyì.',fr:'Oui, je vais t’aider à traduire.',ok:1,n:'b'},
+  {h:'我不会。',p:'Wǒ bú huì.',fr:'Je ne sais pas faire.',fix:'C’est ta chance de montrer ton chinois ! Dis « 可以 » (oui, c’est possible).'}]},
+ b:{h:'告诉他：每双鞋都要检查。',p:'Gàosu tā: měi shuāng xié dōu yào jiǎnchá.',fr:'Dis-lui : chaque paire doit être vérifiée.',hideFr:1,coach:'Traduis en français pour ton collègue.',o:[
+  {h:'« Chaque paire doit être vérifiée. »',fr_only:1,ok:1,n:'c'},
+  {h:'« Les chaussures sont très belles. »',fr_only:1,fix:'每 = chaque, 检查 = vérifier. Il veut que chaque paire soit contrôlée.'},
+  {h:'« Tu peux rentrer chez toi. »',fr_only:1,fix:'检查 = vérifier. Il parle du contrôle des chaussures.'}]},
+ c:{h:'他有问题吗？',p:'Tā yǒu wèntí ma?',fr:'Il a une question ?',coach:'Ton collègue te dit en français : « Demande-lui à quelle heure on finit. »',o:[
+  {h:'他问几点下班。',p:'Tā wèn jǐ diǎn xiàbān.',fr:'Il demande à quelle heure on finit.',ok:1,n:'d'},
+  {h:'他问工资多少。',p:'Tā wèn gōngzī duōshao.',fr:'Il demande combien est le salaire.',fix:'工资 = salaire. Ton collègue voulait l’heure de fin : 几点下班.'},
+  {h:'他说他很累。',p:'Tā shuō tā hěn lèi.',fr:'Il dit qu’il est fatigué.',fix:'Il a demandé l’heure de fin : « 他问几点下班 ».'}]},
+ d:{h:'六点下班。你中文很好！以后你当组长助理吧。',p:'Liù diǎn xiàbān. Nǐ Zhōngwén hěn hǎo! Yǐhòu nǐ dāng zǔzhǎng zhùlǐ ba.',fr:'On finit à 18 h. Ton chinois est très bon ! Désormais tu seras l’assistante du chef d’équipe.',o:[
+  {h:'谢谢老板，我会努力的！',p:'Xièxie lǎobǎn, wǒ huì nǔlì de!',fr:'Merci patron, je ferai de mon mieux !',ok:1,n:'end'},
+  {h:'没关系。',p:'Méi guānxi.',fr:'Ce n’est pas grave.',fix:'« 没关系 » répond à une excuse. Pour une bonne nouvelle : « 谢谢老板，我会努力的！ »'}]},
+ end:{h:'好！明天开始。',p:'Hǎo! Míngtiān kāishǐ.',fr:'Parfait ! On commence demain.',end:1}}},
+{id:'entretien',st:2,title:'Entretien d’embauche',who:'面试官',whoFr:'Recruteur',intro:'Une entreprise chinoise de Lomé cherche une employée bilingue. C’est ton entretien.',start:'a',nodes:{
+ a:{h:'你好，请做一下自我介绍。',p:'Nǐ hǎo, qǐng zuò yíxià zìwǒ jièshào.',fr:'Bonjour, présente-toi s’il te plaît.',o:[
+  {h:'您好！我叫{name}，我来自多哥。',p:'Nín hǎo! Wǒ jiào {name}, wǒ láizì Duōgē.',fr:'Bonjour ! Je m’appelle {name}, je viens du Togo.',ok:1,n:'b'},
+  {h:'我很好，谢谢。',p:'Wǒ hěn hǎo, xièxie.',fr:'Je vais bien, merci.',fix:'自我介绍 = se présenter. Commence par « 我叫… » (je m’appelle…).'}]},
+ b:{h:'你有什么工作经验？',p:'Nǐ yǒu shénme gōngzuò jīngyàn?',fr:'Quelle expérience professionnelle as-tu ?',o:[
+  {h:'我在鞋厂工作了两年，负责质量检查。',p:'Wǒ zài xiéchǎng gōngzuò le liǎng nián, fùzé zhìliàng jiǎnchá.',fr:'J’ai travaillé deux ans dans une usine de chaussures, au contrôle qualité.',ok:1,n:'c'},
+  {h:'我喜欢吃米饭。',p:'Wǒ xǐhuan chī mǐfàn.',fr:'J’aime manger du riz.',fix:'经验 = expérience. Parle de l’usine : « 我在鞋厂工作了两年 ».'}]},
+ c:{h:'你会说什么语言？',p:'Nǐ huì shuō shénme yǔyán?',fr:'Quelles langues parles-tu ?',o:[
+  {h:'我会说法语和中文。',p:'Wǒ huì shuō Fǎyǔ hé Zhōngwén.',fr:'Je parle français et chinois.',ok:1,n:'d'},
+  {h:'我会做鞋。',p:'Wǒ huì zuò xié.',fr:'Je sais fabriquer des chaussures.',fix:'语言 = langue. Réponds « 我会说法语和中文 ».'}]},
+ d:{h:'你为什么想来我们公司？',p:'Nǐ wèishénme xiǎng lái wǒmen gōngsī?',fr:'Pourquoi veux-tu venir dans notre entreprise ?',o:[
+  {h:'因为我想学更多，也想用中文帮助公司。',p:'Yīnwèi wǒ xiǎng xué gèng duō, yě xiǎng yòng Zhōngwén bāngzhù gōngsī.',fr:'Parce que je veux apprendre davantage et aider l’entreprise grâce au chinois.',ok:1,n:'end'},
+  {h:'因为工资高。',p:'Yīnwèi gōngzī gāo.',fr:'Parce que le salaire est élevé.',fix:'C’est honnête, mais en entretien, parle d’abord de ce que tu apportes : « 我想用中文帮助公司 ».'},
+  {h:'我不知道。',p:'Wǒ bù zhīdào.',fr:'Je ne sais pas.',fix:'Prépare cette réponse à l’avance ! Par exemple : « 我想学更多 » (je veux apprendre davantage).'}]},
+ end:{h:'好的，我们会通知你。',p:'Hǎo de, wǒmen huì tōngzhī nǐ.',fr:'Très bien, nous te tiendrons informée.',end:1}}},
+{id:'gare',st:3,title:'Au guichet de la gare',who:'售票员',whoFr:'Guichetier',intro:'Tu es en Chine et tu dois acheter un billet de train pour Canton (Guangzhou).',start:'a',nodes:{
+ a:{h:'您好，去哪儿？',p:'Nín hǎo, qù nǎr?',fr:'Bonjour, vous allez où ?',o:[
+  {h:'我去广州，一张票。',p:'Wǒ qù Guǎngzhōu, yì zhāng piào.',fr:'Je vais à Canton, un billet.',ok:1,n:'b'},
+  {h:'我是多哥人。',p:'Wǒ shì Duōgē rén.',fr:'Je suis Togolaise.',fix:'去哪儿 = aller où. Donne la ville : « 我去广州 ».'}]},
+ b:{h:'几点的？',p:'Jǐ diǎn de?',fr:'Pour quelle heure ?',o:[
+  {h:'明天上午的，有吗？',p:'Míngtiān shàngwǔ de, yǒu ma?',fr:'Demain matin, il y en a ?',ok:1,n:'c'},
+  {h:'三个。',p:'Sān ge.',fr:'Trois.',fix:'几点 = quelle heure. Réponds avec un moment : « 明天上午 » (demain matin).'}]},
+ c:{h:'有，九点的，三百五十块。',p:'Yǒu, jiǔ diǎn de, sānbǎi wǔshí kuài.',fr:'Oui, à 9 h, 350 yuans.',o:[
+  {h:'好的，我要这张。',p:'Hǎo de, wǒ yào zhè zhāng.',fr:'D’accord, je prends celui-là.',ok:1,n:'d'},
+  {h:'有没有便宜一点的？',p:'Yǒu méiyǒu piányi yìdiǎn de?',fr:'Il y en a un moins cher ?',ok:1,n:'c2'}]},
+ c2:{h:'下午的，二百八十块。',p:'Xiàwǔ de, èrbǎi bāshí kuài.',fr:'Celui de l’après-midi est à 280 yuans.',o:[
+  {h:'好，我要下午的。',p:'Hǎo, wǒ yào xiàwǔ de.',fr:'Bien, je prends celui de l’après-midi.',ok:1,n:'d'}]},
+ d:{h:'请给我看一下护照。',p:'Qǐng gěi wǒ kàn yíxià hùzhào.',fr:'Montrez-moi votre passeport, s’il vous plaît.',o:[
+  {h:'好的，给您。',p:'Hǎo de, gěi nín.',fr:'D’accord, voici.',ok:1,n:'end'},
+  {h:'我没有钱。',p:'Wǒ méiyǒu qián.',fr:'Je n’ai pas d’argent.',fix:'护照 = passeport. Tends-le en disant « 给您 » (voici).'}]},
+ end:{h:'好了，祝您一路平安！',p:'Hǎo le, zhù nín yílù píng’ān!',fr:'Voilà, bon voyage !',end:1}}}
+];
+/* END_DATA */
+
+/* ============================================================
+   OUTILS
+   ============================================================ */
+const app=document.getElementById('app');
+const DAY=86400000;
+const pad=n=>String(n).padStart(2,'0');
+const dkey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const today=()=>dkey(new Date());
+const daysBetween=(a,b)=>Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/DAY);
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct=x=>Math.round(Math.max(0,Math.min(1,x))*100);
+const avg=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
+
+const MARKS={a:'āáǎà',e:'ēéěè',i:'īíǐì',o:'ōóǒò',u:'ūúǔù',v:'ǖǘǚǜ'};
+function mark(syl,t){
+  const cap=syl[0]!==syl[0].toLowerCase(); let s=syl.toLowerCase();
+  if(t>=1&&t<=4){
+    let idx=-1;
+    if(s.includes('a')) idx=s.indexOf('a'); else if(s.includes('e')) idx=s.indexOf('e'); else if(s.includes('ou')) idx=s.indexOf('o');
+    else for(let i=s.length-1;i>=0;i--){ if('aeiouv'.includes(s[i])){idx=i;break;} }
+    if(idx>=0) s=s.slice(0,idx)+MARKS[s[idx]][t-1]+s.slice(idx+1);
+  }
+  s=s.replace(/v/g,'ü');
+  return cap? s[0].toUpperCase()+s.slice(1) : s;
+}
+const BY={};
+function prep(it){
+  it.syl=it.p.split(/[ -]/); it.words=it.p.split(' '); it.s=it.s||it.t;
+  it.han=[...it.h].filter(c=>/\p{Script=Han}/u.test(c)); BY[it.id]=it;
+  let k=0; it.chunks=it.words.map(w=>{const n=w.split('-').length; const h=it.han.slice(k,k+n).join(''); const p=w.split('-').map((sy,j)=>mark(sy,it.t[k+j])).join(''); k+=n; return {h,p};});
+  return it;
+}
+function validItem(it){
+  try{if(!it||!it.id||!it.h||!it.p||!Array.isArray(it.t)||!it.fr)return false;
+    const han=[...it.h].filter(c=>/\p{Script=Han}/u.test(c)).length,syl=it.p.split(/[ -]/).length;
+    return han===syl&&syl===it.t.length&&(!it.s||it.s.length===syl)&&it.t.every(x=>x>=0&&x<=4);}catch(e){return false;}
+}
+/* ---------- chapitres (packs) ---------- */
+const PACKS=[{id:'base',title:'Usine · Les bases de l’atelier',desc:'Saluer, comprendre ton chef, le vocabulaire de la chaîne, puis la promotion, l’entretien et le voyage.',builtin:true,grammar:null,branch:'travail',chars:[]}];
+ITEMS.forEach((it,i)=>{it.pk='base';it.ord=i;it.branch='travail';prep(it);});
+/* Liste officielle HSK 1 (ancien format, 150 mots) */
+const HSK1=["爱", "八", "爸爸", "杯子", "北京", "本", "不", "不客气", "菜", "茶", "吃", "出租车", "打电话", "大", "的", "点", "电脑", "电视", "电影", "东西", "都", "读", "对不起", "多", "多少", "儿子", "二", "饭店", "飞机", "分钟", "高兴", "个", "工作", "狗", "汉语", "好", "号", "喝", "和", "很", "后面", "回", "会", "几", "家", "叫", "今天", "九", "开", "看", "看见", "块", "来", "老师", "了", "冷", "里", "六", "吗", "妈妈", "买", "猫", "没关系", "没有", "米饭", "名字", "明天", "哪", "哪儿", "那", "呢", "能", "你", "年", "女儿", "朋友", "漂亮", "苹果", "七", "前面", "钱", "请", "去", "热", "人", "认识", "三", "商店", "上", "上午", "少", "谁", "什么", "十", "时候", "是", "书", "水", "水果", "睡觉", "说", "四", "岁", "他", "她", "太", "天气", "听", "同学", "喂", "我", "我们", "五", "喜欢", "下", "下午", "下雨", "先生", "现在", "想", "小", "小姐", "些", "写", "谢谢", "星期", "学生", "学习", "学校", "一", "一点儿", "衣服", "医生", "医院", "椅子", "有", "月", "在", "再见", "怎么", "怎么样", "这", "中国", "中午", "住", "桌子", "字", "昨天", "坐", "做"];
+const HSKSET=new Set(HSK1);
+const BRANCHES={travail:{fr:'Usine et travail',zh:'工作'},quotidien:{fr:'Vie quotidienne',zh:'生活'}};
+const CHARS={};
+const pairKey=p=>p[0].h+p[0].t+p[1].h+p[1].t;
+function installPack(pk){
+  let meta=PACKS.find(p=>p.id===pk.id);
+  if(!meta){meta={id:pk.id};PACKS.push(meta);}
+  Object.assign(meta,{title:pk.title||pk.id,desc:pk.desc||'',grammar:pk.grammar||null,date:pk.date||'',v:pk.v||1,order:pk.order||PACKS.length,branch:pk.branch||'travail',level:pk.level||0,chars:[]});
+  (pk.chars||[]).forEach(ch=>{if(ch&&ch.c&&ch.p&&ch.m){meta.chars.push(ch.c);if(!CHARS[ch.c])CHARS[ch.c]={...ch,pk:pk.id};}});
+  const base=(pk.order||PACKS.length)*1000;
+  (pk.items||[]).forEach((it,i)=>{if(!validItem(it))return;it.pk=pk.id;it.branch=meta.branch;it.ord=base+i;if(typeof it.st!=='number')it.st=0;prep(it);const ex=ITEMS.findIndex(x=>x.id===it.id);if(ex>=0)ITEMS[ex]=it;else ITEMS.push(it);});
+  (pk.pairs||[]).forEach(p=>{if(Array.isArray(p)&&p.length===2&&p.every(x=>x&&x.h&&x.p&&x.t)&&!PAIRS.some(q=>pairKey(q)===pairKey(p)))PAIRS.push(p);});
+  (pk.convs||[]).forEach(c=>{if(c&&c.id&&c.nodes&&c.nodes[c.start]){c.st=c.st||0;c.pk=pk.id;const ex=CONVS.findIndex(x=>x.id===c.id);if(ex>=0)CONVS[ex]=c;else CONVS.push(c);}});
+  (pk.bonus||[]).forEach(b=>{if(b&&b.h&&!BONUS.some(x=>x.h===b.h))BONUS.push(b);});
+}
+const PKEY='bubugao.packs.v1',PACK_BASE='packs/';
+let PS={};try{PS=JSON.parse(localStorage.getItem(PKEY))||{};}catch(e){PS={};}
+function savePS(){try{localStorage.setItem(PKEY,JSON.stringify(PS));}catch(e){}}
+Object.keys(PS).filter(k=>k[0]!=='_').map(k=>PS[k]).filter(e=>e&&e.data).sort((a,b)=>(a.data.order||0)-(b.data.order||0)).forEach(e=>{try{installPack(e.data);}catch(_){}});
+let checking=false;
+async function checkUpdates(manual){
+  if(checking)return;checking=true;
+  try{
+    const r=await fetch(PACK_BASE+'packs.json',{cache:'no-store'});if(!r.ok)throw new Error('http');
+    const idx=await r.json();const added=[];let updated=0;
+    for(const [i,e] of (idx.packs||[]).entries()){
+      if(!e||!e.id||!e.file)continue;const have=PS[e.id];if(have&&have.v>=(e.v||1))continue;
+      try{const pr=await fetch(PACK_BASE+e.file,{cache:'no-store'});if(!pr.ok)continue;
+        const data=await pr.json();data.id=e.id;data.v=e.v||1;data.order=i+1;data.title=data.title||e.title;
+        installPack(data);PS[e.id]={v:data.v,data};if(have)updated++;else added.push(data.title);}catch(_){}
+    }
+    const listed=new Set((idx.packs||[]).map(e=>e&&e.id));Object.keys(PS).forEach(k=>{if(k[0]!=='_'&&!listed.has(k))delete PS[k];});
+    PS._checked=Date.now();savePS();
+    if(added.length)toast('Nouveau chapitre : '+added[added.length-1]);
+    else if(updated)toast('Contenu mis à jour.');
+    else if(manual)toast('Tout est à jour.');
+  }catch(e){if(manual)toast('Pas de connexion. Réessaie quand tu as du réseau.');}
+  checking=false;if(!ui.sess)render();
+}
+function pyStr(it,tones){tones=tones||it.t;let k=0;return it.words.map(w=>w.split('-').map(sy=>mark(sy,tones[k++])).join('')).join(' ');}
+function pyHTML(it){let k=0;return it.words.map(w=>w.split('-').map(sy=>{const t=it.t[k++];return `<span class="t${t}">${mark(sy,t)}</span>`;}).join('')).join(' ');}
+function hzHTML(it){return it.han.map((c,i)=>`<span class="t${it.t[i]}">${c}</span>`).join('');}
+
+const ICON={
+ play:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>',
+ slow:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 15h13a4 4 0 0 0 4-4V9"/><path d="M5 15a6 6 0 0 1 12 0"/><circle cx="20" cy="7" r="1.6"/><path d="M7 15v3M14 15v3"/></svg>',
+ mic:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+ stop:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>',
+ x:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ flame:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c1 3.5 5 5.6 5 10.5A5 5 0 0 1 7 13c0-2 1-3.4 2-4.3.2 1.6 1 2.6 2 3C11 8.5 10.5 5 12 2z"/></svg>',
+ lock:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+ check:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
+};
+
+/* ============================================================
+   ÉTAT (sauvegardé sur le téléphone)
+   ============================================================ */
+const KEY='bubugao.v1';
+function fresh(){return {v:1,name:'',goal:0,onboarded:false,created:Date.now(),
+  profile:{ecoute:.5,tons:.5,vocab:.5,parole:.5},items:{},hist:[],xp:0,
+  streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},
+  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null};}
+function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let S=load()||fresh();
+
+const ui={tab:'home',sess:null,ob:'welcome',showFr:false,wordFilter:''};
+
+/* ============================================================
+   MOTEUR DE RÉVISION (répétition espacée, 4 compétences par mot)
+   ============================================================ */
+const SK=['reco','oreille','ton','prod'];
+const SKNAME={reco:'Reconnaître',oreille:'Comprendre',ton:'Ton',prod:'Produire'};
+const PMAP={reco:'vocab',oreille:'ecoute',ton:'tons',prod:'vocab',shadow:'parole'};
+const isIntro=it=>!!(S.items[it.id]&&S.items[it.id].intro);
+function nextNew(n){
+  const pool=ITEMS.filter(x=>!isIntro(x));
+  if(S.focusPack&&!pool.some(x=>x.pk===S.focusPack))S.focusPack=null;
+  const byOrd=(a,b)=>(a.st-b.st)||(a.ord-b.ord);
+  const focus=pool.filter(x=>x.pk===S.focusPack).sort(byOrd);
+  const hsk=pool.filter(x=>x.branch==='hsk'&&x.pk!==S.focusPack).sort(byOrd);
+  const br=pool.filter(x=>x.branch===S.branch&&x.pk!==S.focusPack).sort(byOrd);
+  const rest=pool.filter(x=>x.branch!=='hsk'&&x.branch!==S.branch&&x.pk!==S.focusPack).sort(byOrd);
+  const out=focus.slice(0,n);const nH=Math.ceil((n-out.length)*.6);
+  out.push(...hsk.slice(0,nH));out.push(...br.slice(0,n-out.length));
+  for(const extra of [hsk,br,rest])for(const x of extra){if(out.length>=n)break;if(!out.includes(x))out.push(x);}
+  return out.slice(0,n);
+}
+function rec(id){return S.items[id]||(S.items[id]={intro:0,sk:{}});}
+function skState(id,sk){const r=rec(id);return r.sk[sk]||(r.sk[sk]={S:0,last:0,lap:0});}
+function peekS(id,sk){const r=S.items[id];return r&&r.sk[sk]?r.sk[sk].S:0;}
+function retention(st,now){if(!st.S)return 0;const dt=Math.max(0,(now-st.last)/DAY);return Math.pow(1+dt/(9*st.S),-1);}
+function tonable(it){const nn=it.s.filter(x=>x>0).length;return it.syl.length<=4&&nn>=1&&nn<=3;}
+function skillsFor(it){return SK.filter(k=>k!=='ton'||tonable(it));}
+function grade(id,sk,note){
+  const st=skState(id,sk),now=Date.now(),R=retention(st,now);
+  if(note===0){st.S=Math.max(.3,st.S*.4);st.lap++;}
+  else{const mult={1:1.3,2:2.2,3:3}[note],floor={1:.5,2:1,3:2}[note];st.S=Math.max(floor,(st.S||0)*(1+(mult-1)*Math.max(.25,1-R)));}
+  st.last=now;
+}
+function priority(it,sk,now,cur){
+  const oubli=1-retention(skState(it.id,sk),now);
+  const faib=1-S.profile[PMAP[sk]];
+  const util=it.branch==='hsk'?1:it.branch!=='travail'?.8:it.st===cur?1:it.st<cur?.6:.3;
+  return oubli*.5+faib*.3+util*.2;
+}
+function mastery(it){if(!isIntro(it))return 0;const ks=skillsFor(it);return ks.reduce((a,k)=>a+Math.min(1,peekS(it.id,k)/14),0)/ks.length;}
+function solid(it){return isIntro(it)&&skillsFor(it).every(k=>peekS(it.id,k)>=4);}
+function stageProg(i){const its=ITEMS.filter(x=>x.st===i&&x.branch==='travail');return its.reduce((a,x)=>a+mastery(x),0)/its.length;}
+function currentStage(){for(let i=0;i<4;i++)if(stageProg(i)<.6)return i;return 3;}
+function unlocked(i){return S.demo||i<=currentStage();}
+function recentRate(){const h=S.hist.slice(-30);return h.length<8?.8:avg(h);}
+function meanR(it,now){return avg(skillsFor(it).map(k=>retention(skState(it.id,k),now)));}
+function dueList(now,cur){
+  const c=[];ITEMS.filter(isIntro).forEach(it=>skillsFor(it).forEach(sk=>{const R=retention(skState(it.id,sk),now);if(R<.9)c.push({it,sk,p:priority(it,sk,now,cur)});}));
+  return c.sort((a,b)=>b.p-a.p);
+}
+function addXP(n){S.xp+=n;const k=today();S.days[k]=(S.days[k]||0)+n;if(ui.sess)ui.sess.xp+=n;}
+function recordAnswer(it,sk,ok,note){
+  if(it)grade(it.id,sk,note!=null?note:(ok?2:0));
+  const p=PMAP[sk];if(p)S.profile[p]=S.profile[p]*.9+(ok?1:0)*.1;
+  S.hist.push(ok?1:0);if(S.hist.length>60)S.hist.shift();
+  if(ok)addXP(10);
+  save();
+}
+
+/* ---------- série de jours + jokers ---------- */
+function refreshJokers(){const m=today().slice(0,7);if(S.jokerMonth!==m){S.jokerMonth=m;S.jokers=2;}}
+function streakAlive(){if(!S.lastDay)return 0;const gap=daysBetween(S.lastDay,today());return gap<=1+S.jokers?S.streak:0;}
+function markActive(){
+  refreshJokers();const t=today();let msg='';
+  if(S.lastDay===t)return '';
+  if(!S.lastDay)S.streak=1;
+  else{const gap=daysBetween(S.lastDay,t);
+    if(gap===1)S.streak++;
+    else if(gap-1<=S.jokers){S.jokers-=gap-1;S.streak++;msg=(gap-1)===1?'Un joker a protégé ta série.':(gap-1)+' jokers ont protégé ta série.';}
+    else S.streak=1;}
+  S.lastDay=t;S.best=Math.max(S.best,S.streak);save();return msg;
+}
+
+/* ============================================================
+   VOIX (synthèse chinoise du téléphone)
+   ============================================================ */
+let zhVoice=null,voicesChecked=false;
+function loadVoices(){try{const vs=speechSynthesis.getVoices();if(vs.length){voicesChecked=true;zhVoice=vs.find(v=>/zh[-_]CN/i.test(v.lang))||vs.find(v=>/^(zh|cmn)/i.test(v.lang))||null;}}catch(e){}}
+if('speechSynthesis' in window){loadVoices();try{speechSynthesis.addEventListener('voiceschanged',()=>{const had=!!zhVoice;loadVoices();if(had!==!!zhVoice&&!ui.sess)render();});}catch(e){}}
+function say(text,rate){
+  if(!('speechSynthesis' in window)){toast('La voix n’est pas disponible sur ce navigateur.');return;}
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text.replace(/\{name\}/g,S.name||''));u.lang='zh-CN';if(zhVoice)u.voice=zhVoice;u.rate=rate||(.72+.26*Math.max(0,Math.min(1,S.profile.ecoute)));speechSynthesis.speak(u);}catch(e){}
+}
+const noZh=()=>!('speechSynthesis' in window)||(voicesChecked&&!zhVoice);
+
+/* ============================================================
+   ANALYSE DES TONS (YIN + comparaison de formes)
+   ============================================================ */
+let actx=null;
+function getCtx(){if(!actx){const C=window.AudioContext||window.webkitAudioContext;actx=new C();}return actx;}
+function yinAt(x,p,W,sr){
+  const maxTau=Math.floor(sr/70),minTau=Math.floor(sr/480);
+  if(p+W+maxTau>=x.length)return 0;
+  const d=new Float32Array(maxTau+1);
+  for(let tau=minTau>2?2:1;tau<=maxTau;tau++){let s=0;for(let i=0;i<W;i++){const v=x[p+i]-x[p+i+tau];s+=v*v;}d[tau]=s;}
+  const c=new Float32Array(maxTau+1);c[0]=1;let run=0;
+  for(let tau=1;tau<=maxTau;tau++){run+=d[tau];c[tau]=run?d[tau]*tau/run:1;}
+  let tau=minTau;
+  for(;tau<=maxTau;tau++){if(c[tau]<.15){while(tau+1<=maxTau&&c[tau+1]<c[tau])tau++;break;}}
+  if(tau>maxTau)return 0;
+  const a=c[tau-1],b=c[tau],e=tau+1<=maxTau?c[tau+1]:b,den=a+e-2*b;
+  return sr/(tau+(den?(a-e)/(2*den):0));
+}
+function tpl(t,last){
+  if(t===1)return[5,5,5,5,5];
+  if(t===2)return[3,3.4,3.9,4.4,5];
+  if(t===3)return last?[2.2,1.4,1,1.8,3.2]:[2.4,1.8,1.3,1.1,1.1];
+  if(t===4)return[5,4,3,2,1];
+  return[3,2.8,2.6,2.4,2.2];
+}
+function shapeDist(h,t,w){
+  const mh=avg(h),mt=avg(t);const hc=h.map(v=>v-mh),tc=t.map(v=>v-mt);
+  const tt=tc.reduce((s,v)=>s+v*v,0);let k=1;
+  if(tt>0){k=hc.reduce((s,v,i)=>s+v*tc[i],0)/tt;k=Math.max(.45,Math.min(1.3,k));}
+  let s=0;for(let i=0;i<5;i++){const dd=hc[i]-k*tc[i];s+=dd*dd;}
+  return Math.sqrt(s/5)+w*Math.abs(mh-(3+(mt-3)*.5));
+}
+function resample(a,n){const out=[];for(let i=0;i<n;i++){const s=Math.floor(i*a.length/n),e=Math.max(s+1,Math.floor((i+1)*a.length/n));out.push(avg(a.slice(s,e)));}return out;}
+function median(a){const b=[...a].sort((x,y)=>x-y);return b.length?b[Math.floor(b.length/2)]:0;}
+
+function analyzeTones(buf,tones){
+  const ch=buf.numberOfChannels,len=buf.length,mono=new Float32Array(len);
+  for(let c=0;c<ch;c++){const d=buf.getChannelData(c);for(let i=0;i<len;i++)mono[i]+=d[i]/ch;}
+  const f=Math.max(1,Math.round(buf.sampleRate/16000)),sr=buf.sampleRate/f,n=Math.floor(len/f),x=new Float32Array(n);
+  for(let i=0;i<n;i++){let s=0;for(let j=0;j<f;j++)s+=mono[i*f+j];x[i]=s/f;}
+  const W=Math.round(sr*.03),hop=Math.round(sr*.01);
+  const rms=[];let maxR=0;
+  for(let p=0;p+W<n;p+=hop){let e=0;for(let i=0;i<W;i++)e+=x[p+i]*x[p+i];const r=Math.sqrt(e/W);rms.push(r);if(r>maxR)maxR=r;}
+  const thr=Math.max(.006,maxR*.12);
+  let f0=rms.map((r,i)=>r>thr?yinAt(x,i*hop,W,sr):0);
+  const voiced=f0.filter(v=>v>0);
+  if(voiced.length<8)return{ok:false,msg:'Je n’ai pas bien entendu ta voix. Parle plus fort, près du téléphone, dans un endroit calme.'};
+  let med=median(voiced);
+  f0=f0.map(v=>!v?0:v>1.8*med?v/2:v<.55*med?v*2:v);
+  f0=f0.map((v,i)=>{if(!v)return 0;const w=[f0[i-1],v,f0[i+1]].filter(z=>z>0);return median(w);});
+  med=median(f0.filter(v=>v>0));
+  // découpage en syllabes
+  let runs=[],cur=null,gap=0;
+  f0.forEach((v,i)=>{if(v>0){if(cur&&gap<=2){cur.e=i;}else{cur={s:i,e:i};runs.push(cur);}gap=0;}else gap++;});
+  runs=runs.filter(r=>r.e-r.s>=3);
+  const N=tones.length;
+  if(!runs.length)return{ok:false,msg:'Je n’ai pas bien entendu ta voix. Réessaie un peu plus fort.'};
+  while(runs.length>N){let bi=0,bg=1e9;for(let i=0;i<runs.length-1;i++){const g=runs[i+1].s-runs[i].e;if(g<bg){bg=g;bi=i;}}runs.splice(bi,2,{s:runs[bi].s,e:runs[bi+1].e});}
+  let guard=0;
+  while(runs.length<N&&guard++<20){let bi=0;for(let i=1;i<runs.length;i++)if(runs[i].e-runs[i].s>runs[bi].e-runs[bi].s)bi=i;const r=runs[bi];if(r.e-r.s<6)break;const m=Math.floor((r.s+r.e)/2);runs.splice(bi,1,{s:r.s,e:m},{s:m+1,e:r.e});}
+  if(runs.length!==N){const s0=runs[0].s,e0=runs[runs.length-1].e,L=(e0-s0+1)/N;runs=[];for(let i=0;i<N;i++)runs.push({s:Math.round(s0+i*L),e:Math.round(s0+(i+1)*L)-1});}
+  const segs=runs.map((r,i)=>{
+    let lv=[];for(let k=r.s;k<=r.e;k++)if(f0[k]>0)lv.push(Math.max(.5,Math.min(5.5,3+12*Math.log2(f0[k]/med)/2.5)));
+    if(lv.length<2)lv=[3,3];
+    const core=lv.length>=8?lv.slice(Math.floor(lv.length*.15),Math.ceil(lv.length*.85)):lv;
+    const pts=resample(core,5),t=tones[i],last=i===N-1;
+    if(!t)return{lv,pts,tone:0,got:0,score:null};
+    const w=N>1?.25:0;const ds=[1,2,3,4].map(k=>shapeDist(pts,tpl(k,last),w));
+    const dExp=ds[t-1],dOther=Math.min(...ds.filter((_,k)=>k!==t-1));
+    const got=ds.indexOf(Math.min(...ds))+1;const r2=dExp/(dExp+dOther+1e-6);
+    const score=Math.max(0,Math.min(100,Math.round((.62-r2)/.42*100)));
+    return{lv,pts,tone:t,got,score};
+  });
+  const sc=segs.filter(s=>s.score!=null);
+  return{ok:true,segs,score:Math.round(avg(sc.map(s=>s.score)))};
+}
+const TONETIP={
+ 1:'1er ton : garde la voix haute et bien plate, comme une note chantée « aaaa ».',
+ 2:'2e ton : la voix monte, comme une question étonnée : « Hein ? »',
+ 3:'3e ton : descends bas, dans la gorge, puis remonte un peu. Au milieu d’une phrase, reste juste bas.',
+ 4:'4e ton : commence haut et tombe d’un coup, comme un ordre : « Stop ! »'
+};
+const GOTNAME={1:'est restée plate',2:'est montée',3:'est descendue puis remontée',4:'est tombée'};
+function compact(res){return{segs:res.segs.map(s=>({lv:resample(s.lv,Math.min(20,s.lv.length)).map(v=>Math.round(v*10)/10),score:s.score})),score:res.score,d:today()};}
+function storeVoice(id,res){const v=S.voice[id]||(S.voice[id]={});const c=compact(res);if(!v.first)v.first=c;v.last=c;if(!v.best||res.score>v.best)v.best=res.score;save();}
+
+function drawCurve(cv,it,res){
+  if(!cv)return;const dpr=window.devicePixelRatio||1,W=cv.clientWidth||320,H=cv.clientHeight||180;
+  cv.width=W*dpr;cv.height=H*dpr;const g=cv.getContext('2d');g.scale(dpr,dpr);
+  const css=getComputedStyle(document.documentElement),col=n=>css.getPropertyValue(n).trim();
+  const L=24,R=8,T=12,B=30,N=it.s.length,sw=(W-L-R)/N,y=l=>T+(5.5-l)/5*(H-T-B);
+  g.font='600 11px '+col('--f-body');g.textBaseline='middle';
+  for(let l=1;l<=5;l++){g.strokeStyle=col('--line');g.lineWidth=1;g.beginPath();g.moveTo(L,y(l));g.lineTo(W-R,y(l));g.stroke();g.fillStyle=col('--muted');g.fillText(String(l),6,y(l));}
+  for(let i=0;i<N;i++){
+    const x0=L+i*sw,t=it.s[i],tp=tpl(t,i===N-1);
+    g.setLineDash([6,5]);g.lineWidth=3;g.strokeStyle=t?col('--t'+t):col('--t0');g.globalAlpha=.75;g.beginPath();
+    tp.forEach((v,k)=>{const xx=x0+sw*(.12+.76*k/4);k?g.lineTo(xx,y(t?v:2.6)):g.moveTo(xx,y(t?v:2.6));});g.stroke();g.globalAlpha=1;g.setLineDash([]);
+    if(res&&res.segs&&res.segs[i]){const lv=res.segs[i].lv;g.strokeStyle=col('--ink');g.lineWidth=3.2;g.lineJoin='round';g.lineCap='round';g.beginPath();
+      lv.forEach((v,k)=>{const xx=x0+sw*(.12+.76*(lv.length>1?k/(lv.length-1):.5));k?g.lineTo(xx,y(v)):g.moveTo(xx,y(v));});g.stroke();}
+    const sc=res&&res.segs&&res.segs[i]?res.segs[i].score:null;
+    g.fillStyle=sc==null?col('--muted'):sc>=70?col('--good'):sc>=40?col('--t3'):col('--bad');
+    g.font='800 13px '+col('--f-body');g.textAlign='center';g.fillText(mark(it.syl[i],it.t[i]),x0+sw/2,H-13);g.textAlign='left';g.font='600 11px '+col('--f-body');
+  }
+}
+
+/* ---------- enregistrement ---------- */
+const REC={mr:null,stream:null,timer:null,mode:'mic',step:null};
+async function startRec(step){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){REC.mode='file';render();return;}
+  try{REC.stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});}
+  catch(e){REC.mode='file';render();toast('Micro bloqué ici. Utilise l’enregistreur du téléphone.');return;}
+  const chunks=[];REC.step=step;
+  try{REC.mr=new MediaRecorder(REC.stream);}catch(e){REC.mode='file';render();return;}
+  REC.mr.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+  REC.mr.onstop=()=>{try{REC.stream.getTracks().forEach(t=>t.stop());}catch(e){}const blob=new Blob(chunks,{type:REC.mr.mimeType||'audio/webm'});analyzeBlob(step,blob);};
+  REC.mr.start();step.rec={state:'rec'};REC.timer=setTimeout(stopRec,6500);render();
+}
+function stopRec(){clearTimeout(REC.timer);if(REC.mr&&REC.mr.state==='recording')REC.mr.stop();}
+async function analyzeBlob(step,blob){
+  step.rec={state:'busy'};render();
+  try{
+    const ab=await blob.arrayBuffer(),ctx=getCtx();
+    const buf=await new Promise((res,rej)=>{const p=ctx.decodeAudioData(ab,res,rej);if(p&&p.then)p.then(res,rej);});
+    const r=analyzeTones(buf,step.it.s);
+    if(!r.ok){step.rec={state:'err',msg:r.msg};render();return;}
+    step.rec={state:'done',res:r};step.tries=(step.tries||0)+1;
+    storeVoice(step.it.id,r);
+  }catch(e){step.rec={state:'err',msg:'Je n’ai pas pu lire cet enregistrement. Réessaie.'};}
+  render();
+}
+
+/* ============================================================
+   CONSTRUCTION DES EXERCICES
+   ============================================================ */
+function frOptions(it){
+  const pool=shuffle(ITEMS.filter(x=>x.id!==it.id&&x.fr!==it.fr&&Math.abs(x.st-it.st)<=1));
+  const opts=[it,...pool.slice(0,3)];return shuffle(opts).map(x=>({fr:x.fr,ok:x.id===it.id}));
+}
+function toneOptions(it){
+  const res=[{t:it.t.slice(),ok:true}],seen=new Set([it.t.join()]);const idx=it.t.map((t,i)=>t?i:-1).filter(i=>i>=0);let g=0;
+  while(res.length<4&&g++<60){const t=it.t.slice();const i=rnd(idx);t[i]=rnd([1,2,3,4].filter(v=>v!==it.t[i]));if(Math.random()<.35&&idx.length>1){const j=rnd(idx);t[j]=rnd([1,2,3,4]);}const k=t.join();if(!seen.has(k)){seen.add(k);res.push({t,ok:false});}}
+  return shuffle(res);
+}
+function buildQ(kind,it){
+  if(kind==='reco'||kind==='oreille')return{opts:frOptions(it)};
+  if(kind==='ton')return{opts:toneOptions(it)};
+  if(kind==='prod'){
+    if(it.chunks.length>=3){const others=ITEMS.filter(x=>x.id!==it.id).flatMap(x=>x.chunks).filter(c=>!it.chunks.some(d=>d.h===c.h));
+      const tiles=shuffle([...it.chunks.map((c,i)=>({...c,k:'a'+i})),{...rnd(others),k:'x'}]);return{tiles,placed:[]};}
+    const pool=shuffle(ITEMS.filter(x=>x.id!==it.id&&x.han.length<=it.han.length+1));return{opts:shuffle([it,...pool.slice(0,3)]).map(x=>({it:x,ok:x.id===it.id}))};
+  }
+  return{};
+}
+const mk=(kind,it,sec)=>({kind,it,sec,q:buildQ(kind,it)});
+function pickPairs(n){return shuffle(PAIRS.slice()).slice(0,n).map(pr=>({pr,target:Math.random()<.5?0:1}));}
+function hskStats(){const seen=new Set(),solidW=new Set();ITEMS.forEach(it=>{if(HSKSET.has(it.h)&&isIntro(it)){seen.add(it.h);if(solid(it))solidW.add(it.h);}});
+  const avail=new Set(ITEMS.filter(it=>HSKSET.has(it.h)).map(it=>it.h));return{seen:seen.size,solid:solidW.size,avail:avail.size,total:HSK1.length};}
+function charSt(c){return S.chars[c]||(S.chars[c]={intro:0,S:0,last:0});}
+function charAvail(){return Object.values(CHARS).filter(x=>!(S.chars[x.c]&&S.chars[x.c].intro)&&ITEMS.some(it=>isIntro(it)&&it.h.includes(x.c)));}
+function charWords(c){return ITEMS.filter(it=>isIntro(it)&&it.h.includes(c)).sort((a,b)=>a.han.length-b.han.length).slice(0,3);}
+function charsKnown(){return Object.keys(S.chars).filter(c=>S.chars[c].intro&&CHARS[c]);}
+function gradeChar(c,ok){const st=charSt(c),R=retention(st,Date.now());if(!ok){st.S=Math.max(.3,st.S*.4);}else{st.S=Math.max(1,(st.S||0)*(1+1.2*Math.max(.25,1-R)));}st.last=Date.now();}
+function charQ(ch){const pool=shuffle(Object.values(CHARS).filter(x=>x.c!==ch.c&&x.m!==ch.m)).slice(0,3);return{opts:shuffle([ch,...pool]).map(x=>({fr:x.p+' · '+x.m,ok:x.c===ch.c}))};}
+function missionLevel(){return S.missionsDone>=12?3:S.missionsDone>=5?2:1;}
+const MLEVEL={1:'Une phrase',2:'Une question',3:'Une vraie conversation'};
+function makeMission(news){
+  const L=missionLevel();const intro=ITEMS.filter(isIntro);
+  if(L===1){const mc=[...news,...intro].filter(x=>x.m);const it=mc.find(x=>news.includes(x))||rnd(mc.length?mc:[BY.mingbaile]);return{it,text:it.m,level:1};}
+  if(L===2){const qs=[...news,...intro].filter(x=>x.syl.length>=3&&/[吗呢什么谁哪几多怎]/.test(x.h));const it=qs.find(x=>news.includes(x))||rnd(qs.length?qs:[BY.jidian]);
+    return{it,text:'Pose cette question à un collègue chinois : « '+it.h+' ». Écoute bien sa réponse et retiens au moins un mot qu’il a dit.',level:2};}
+  const words=intro.slice().sort((a,b)=>S.items[b.id].intro-S.items[a.id].intro).filter(x=>x.han.length<=3).slice(0,3);const it=words[0]||BY.nihao;
+  return{it,text:'Tiens une conversation d’au moins 2 minutes avec un collègue chinois. Place ces 3 mots récents : '+words.map(w=>w.h+' ('+pyStr(w)+')').join(', ')+'.',level:3};
+}
+function testDue(){const hs=hskStats();if(hs.seen<20)return false;const last=S.tests[S.tests.length-1];return !last||daysBetween(last.d,today())>=28;}
+function startTest(){
+  const pool=ITEMS.filter(it=>it.branch==='hsk'||HSKSET.has(it.h));
+  if(pool.length<20){toast('Il faut au moins 20 mots HSK dans l’appli pour faire le test.');return;}
+  const sh=shuffle(pool.slice()),steps=[],used=new Set();const take=(arr,n,f)=>{for(const it of arr){if(n<=0)break;if(used.has(it.id))continue;used.add(it.id);steps.push(f(it));n--;}};
+  take(sh,8,it=>mk('oreille',it,'Écoute'));
+  take(sh.filter(it=>it.han.length<=4),5,it=>{const st=mk('reco',it,'Lecture');st.nopy=true;return st;});
+  take(shuffle(pool.filter(tonable)),4,it=>mk('ton',it,'Tons'));
+  take(shuffle(pool.filter(it=>it.chunks.length>=3)),3,it=>mk('prod',it,'Phrases'));
+  ui.sess={kind:'test',steps,i:0,xp:0,ok:0,n:0,end:false};render();
+}
+/* ---------- sauvegarde / restauration ---------- */
+function backupData(){return JSON.stringify({app:'bubugao',format:1,date:new Date().toISOString(),packs:Object.keys(PS).filter(k=>k[0]!=='_'),state:S});}
+function backupName(){return 'bubugao-'+(S.name||'progression').replace(/[^\p{L}\p{N}_-]+/gu,'-')+'-'+today()+'.json';}
+async function doBackup(){
+  const prevB=S.lastBackup;S.lastBackup=today();const txt=backupData(),name=backupName();S.lastBackup=prevB;
+  try{const file=new File([txt],name,{type:'application/json'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Sauvegarde Bùbùgāo',text:'Ma progression Bùbùgāo du '+today()});S.lastBackup=today();save();toast('Sauvegarde envoyée. Garde ce fichier précieusement.');render();return;}
+  }catch(e){if(e&&e.name==='AbortError')return;}
+  try{const url=URL.createObjectURL(new Blob([txt],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);
+    S.lastBackup=today();save();toast('Fichier enregistré dans Téléchargements : '+name);render();}
+  catch(e){ui.backupText=txt;render();}
+}
+function readBackup(file){
+  const r=new FileReader();
+  r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||o.app!=='bubugao'||!o.state||o.state.v!==1)throw 0;ui.pendingRestore=o;render();}
+    catch(e){toast('Ce fichier n’est pas une sauvegarde Bùbùgāo.');}};
+  r.onerror=()=>toast('Impossible de lire ce fichier.');r.readAsText(file);
+}
+function applyRestore(){const o=ui.pendingRestore;if(!o)return;S=Object.assign(fresh(),o.state);save();ui.pendingRestore=null;ui.tab='home';toast('Progression restaurée. Bon retour, '+(S.name||'')+' !');checkUpdates(false);render();}
+let persisted=null;
+async function askPersist(){try{if(navigator.storage&&navigator.storage.persist){persisted=await navigator.storage.persisted();if(!persisted)persisted=await navigator.storage.persist();}}catch(e){}}
+function backupDue(){return S.sessions>=5&&(!S.lastBackup||daysBetween(S.lastBackup,today())>=30);}
+function phraseOfDay(){const pool=ITEMS.filter(x=>isIntro(x)&&x.syl.length>=3);const list=pool.length?pool:ITEMS.filter(x=>x.st===0&&x.syl.length>=3);const d=new Date();const k=d.getFullYear()*400+d.getMonth()*31+d.getDate();return list[k%list.length];}
+
+function startSession(kind){
+  const now=Date.now(),cur=currentStage(),intro=ITEMS.filter(isIntro),first=intro.length===0,rate=recentRate();
+  let nNew=first?5:rate>.9?7:rate<.7?2:4;
+  const cands=dueList(now,cur);if(cands.length>30)nNew=Math.min(nNew,2);
+  if(kind==='express')nNew=0;
+  if(kind==='chapter')nNew=5;
+  const steps=[],used=new Set();
+  if(!first&&kind==='daily'){
+    [...intro].sort((a,b)=>meanR(b,now)-meanR(a,now)).slice(0,3).forEach(it=>{used.add(it.id);steps.push(mk('reco',it,'Échauffement'));});
+  }
+  const news=nextNew(nNew);
+  news.forEach(it=>{used.add(it.id);steps.push({kind:'learn',it,sec:'Nouveaux mots'});});
+  const gp=PACKS.find(p=>p.grammar&&!S.grammarSeen[p.id]&&news.some(n=>n.pk===p.id));
+  if(gp)steps.push({kind:'grammar',pack:gp,sec:'Grammaire'});
+  shuffle(news.slice()).forEach(it=>steps.push(mk('oreille',it,'Nouveaux mots')));
+  if(kind==='daily')pickPairs(4).forEach(p=>steps.push({kind:'pair',...p,sec:'Duel des tons'}));
+  if(kind==='daily'){
+    const sh=[];const nPh=news.filter(x=>x.syl.length>=2).sort((a,b)=>b.syl.length-a.syl.length)[0]||news[0];if(nPh)sh.push(nPh);
+    const tc=cands.find(c=>c.sk==='ton'&&!sh.includes(c.it));if(tc)sh.push(tc.it);else{const pd=phraseOfDay();if(!sh.includes(pd))sh.push(pd);}
+    sh.slice(0,2).forEach(it=>steps.push({kind:'shadow',it,sec:'Prononciation'}));
+  }
+  if(kind==='daily'||kind==='chapter'){
+    const newCh=charAvail().slice(0,S.profile.vocab>.7?4:3);
+    newCh.forEach(ch=>steps.push({kind:'charlearn',ch,sec:'Caractères'}));
+    const dueCh=charsKnown().map(c=>CHARS[c]).filter(ch=>retention(S.chars[ch.c],now)<.9).sort((a,b)=>retention(S.chars[a.c],now)-retention(S.chars[b.c],now)).slice(0,4);
+    shuffle([...newCh,...dueCh]).forEach(ch=>steps.push({kind:'char',ch,q:charQ(ch),sec:'Caractères'}));
+  }
+  const revs=[];const max=kind==='express'?10:kind==='chapter'?4:8;
+  for(const c of cands){if(revs.length>=max)break;if(used.has(c.it.id))continue;used.add(c.it.id);revs.push(mk(c.sk,c.it,'Révisions'));}
+  news.forEach(it=>revs.push(mk(it.chunks.length>=3?'prod':'reco',it,'Révisions')));
+  shuffle(revs).forEach(s=>steps.push(s));
+  if(kind==='daily'){
+    const av=CONVS.filter(c=>unlocked(c.st));const conv=av.sort((a,b)=>(S.convDone[a.id]||0)-(S.convDone[b.id]||0)||b.st-a.st)[0];
+    if(conv)steps.push({kind:'conv',conv,sec:'Conversation',cs:newConv(conv)});
+    const mm=makeMission(news);steps.push({kind:'mission',it:mm.it,text:mm.text,level:mm.level,sec:'Mission terrain'});
+  }
+  if(!steps.length){toast('Rien à réviser pour l’instant. Reviens plus tard !');return;}
+  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,cur,startProg:stageProg(cur),end:false};
+  render();
+}
+function startMini(steps,back){ui.sess={kind:'mini',steps,i:0,xp:0,ok:0,n:0,back,end:false};render();}
+function startDiag(){
+  const st=[];
+  ['xiexie','mingbaile','huaile','youwenti'].forEach(id=>st.push({...mk('oreille',BY[id],'Écoute'),diag:'ecoute'}));
+  [0,3,4,7].forEach(i=>st.push({kind:'pair',pr:PAIRS[i],target:Math.random()<.5?0:1,sec:'Tons',diag:'tons'}));
+  ['jiaoshui','zhiliang','gongzi','xiedi'].forEach(id=>st.push({...mk('reco',BY[id],'Vocabulaire'),diag:'vocab'}));
+  st.push({kind:'shadow',it:BY.nihao,sec:'Parole',diag:'parole'});
+  ui.sess={kind:'diag',steps:st,i:0,xp:0,ok:0,n:0,diag:{ecoute:0,tons:0,vocab:0,parole:null},end:false};render();
+}
+
+/* ============================================================
+   RÉPONSES
+   ============================================================ */
+function answer(i){
+  const s=ui.sess,st=s.steps[s.i];if(st.res)return;
+  let ok=false;
+  if(i===-1){ok=false;st.res={ok:false,pick:-1,dunno:true};}
+  else if(st.kind==='pair'){ok=i===st.target;st.res={ok,pick:i};}
+  else{ok=!!st.q.opts[i].ok;st.res={ok,pick:i};}
+  s.n++;if(ok)s.ok++;
+  if(s.kind==='test'){save();}
+  else if(st.kind==='char'){gradeChar(st.ch.c,ok);S.hist.push(ok?1:0);if(ok)addXP(10);if(!ok&&!st.re){s.steps.push({kind:'char',ch:st.ch,q:charQ(st.ch),sec:'On le revoit',re:true});}save();}
+  else if(s.kind==='diag'){
+    if(ok)s.diag[st.diag]++;
+    if(ok&&st.it){const r=rec(st.it.id);r.intro=r.intro||Date.now();const k=skState(st.it.id,st.kind);k.S=3;k.last=Date.now();}
+    save();
+  }else{
+    if(st.kind==='pair'){S.profile.tons=S.profile.tons*.9+(ok?1:0)*.1;S.hist.push(ok?1:0);if(ok)addXP(10);save();}
+    else recordAnswer(st.it,st.kind,ok);
+    if(!ok&&!st.re&&s.kind!=='mini'){const c=st.kind==='pair'?{kind:'pair',pr:st.pr,target:st.target,sec:'On le revoit'}:mk(st.kind,st.it,'On le revoit');c.re=true;s.steps.push(c);}
+  }
+  render();
+}
+function checkTiles(){
+  const s=ui.sess,st=s.steps[s.i];const got=st.q.placed.map(k=>st.q.tiles.find(t=>t.k===k).h).join('');const ok=got===st.it.chunks.map(c=>c.h).join('');
+  st.res={ok};s.n++;if(ok)s.ok++;if(s.kind==='test'){render();return;}recordAnswer(st.it,'prod',ok);
+  if(!ok&&!st.re){const c=mk('prod',st.it,'On le revoit');c.re=true;s.steps.push(c);}
+  render();
+}
+function next(){
+  const s=ui.sess;const st=s.steps[s.i];
+  if(st&&st.kind==='learn'){const r=rec(st.it.id);if(!r.intro){r.intro=Date.now();SK.forEach(k=>skState(st.it.id,k));save();}}
+  if(st&&st.kind==='shadow'&&s.kind!=='diag'){
+    const r=st.rec&&st.rec.state==='done'?st.rec.res:null;
+    if(r){const note=r.score>=80?3:r.score>=60?2:r.score>=40?1:0;recordAnswer(st.it,'ton',note>0,note);S.profile.parole=S.profile.parole*.85+(r.score/100)*.15;addXP(10);save();}
+  }
+  if(st&&st.kind==='shadow'&&s.kind==='diag'){const r=st.rec&&st.rec.state==='done'?st.rec.res:null;s.diag.parole=r?r.score/100:null;}
+  if(st&&st.kind==='grammar'){S.grammarSeen[st.pack.id]=1;save();}
+  if(st&&st.kind==='charlearn'){const c=charSt(st.ch.c);if(!c.intro){c.intro=Date.now();c.S=.5;c.last=Date.now();}addXP(5);save();}
+  if(st&&st.kind==='mission'){S.mission={id:st.it.id,day:today(),status:'open',text:st.text,level:st.level};save();}
+  try{speechSynthesis.cancel();}catch(e){}
+  REC.mode=REC.mode==='file'?'file':'mic';
+  s.i++;
+  if(s.i>=s.steps.length)finish();else render();
+  window.scrollTo(0,0);
+}
+function finish(){
+  const s=ui.sess;
+  if(s.kind==='diag'){
+    const d=s.diag,m=v=>.15+.8*v/4;
+    S.profile={ecoute:m(d.ecoute),tons:m(d.tons),vocab:m(d.vocab),parole:d.parole==null?.4:Math.max(.15,d.parole)};
+    S.onboarded=true;save();s.end=true;render();return;
+  }
+  if(s.kind==='mini'){const back=s.back;ui.sess=null;ui.tab=back||'home';render();return;}
+  if(s.kind==='test'){const acc=s.n?s.ok/s.n:0,hs=hskStats();const est=Math.round(acc*hs.avail);S.tests.push({d:today(),acc:Math.round(acc*100),est,avail:hs.avail});markActive();addXP(40);save();s.end=true;render();return;}
+  const msg=markActive();
+  S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();
+  addXP(s.kind==='daily'?50:s.kind==='chapter'?30:20);
+  s.endProg=stageProg(s.cur);s.jokerMsg=msg;
+  if(s.kind==='daily'&&(S.sessions===1||Math.random()<.3))s.bonus=rnd(BONUS);
+  save();s.end=true;render();
+}
+
+/* ---------- conversation ---------- */
+function newConv(c){const n=c.nodes[c.start];return{c,node:c.start,log:[{who:'them',h:n.h,p:n.p,fr:n.fr}],fixes:0,mist:[],good:0,dis:[],done:false,showFr:{},showPy:{}};}
+function convPick(cs,i){
+  const node=cs.c.nodes[cs.node],o=node.o[i];if(cs.dis.includes(i))return;
+  cs.log.push({who:'me',h:o.h,p:o.p||'',fr:o.fr||'',bad:!o.ok,frOnly:o.fr_only});
+  if(o.ok){
+    cs.good++;cs.dis=[];cs.node=o.n;const nn=cs.c.nodes[o.n];
+    cs.log.push({who:'them',h:nn.h,p:nn.p,fr:nn.fr});say(nn.h);
+    if(nn.end){cs.done=true;S.convDone[cs.c.id]=(S.convDone[cs.c.id]||0)+1;addXP(30);save();}
+  }else{
+    cs.mist.push({bad:o,best:node.o.find(x=>x.ok)});cs.dis.push(i);
+    cs.log.push({who:'them',h:'嗯？',p:'Èng?',fr:'Hein ?'});
+    if(cs.fixes<2){cs.log.push({who:'coach',txt:o.fix});cs.fixes++;}
+    S.hist.push(0);save();
+  }
+  render();
+  const el=document.querySelector('.chat-end');if(el)el.scrollIntoView({block:'end',behavior:'smooth'});
+}
+
+/* ============================================================
+   RENDU
+   ============================================================ */
+function render(){
+  if(ui.sess)return renderSession();
+  if(!S.onboarded)return renderOnboard();
+  const T={home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
+  app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
+  if(ui.tab==='progres'){document.querySelectorAll('canvas[data-voice]').forEach(cv=>{const [id,w]=cv.dataset.voice.split('|');const v=S.voice[id];if(v&&v[w])drawCurve(cv,BY[id],v[w]);});}
+}
+function tabbar(){
+  const t=[['home','今天','Aujourd’hui'],['parler','说','Parler'],['progres','进步','Progrès'],['carriere','未来','Carrière']];
+  return `<nav class="tabbar" aria-label="Navigation"><div class="tabbar-in">${t.map(([k,z,f])=>`<button class="tab ${ui.tab===k?'on':''}" data-act="tab" data-k="${k}" ${ui.tab===k?'aria-current="page"':''}><span class="zh">${z}</span>${f}</button>`).join('')}</div></nav>`;
+}
+const playBtns=(text,sm)=>`<button class="btn ${sm?'sm':''}" data-act="say" data-t="${esc(text)}">${ICON.play} Écouter</button><button class="btn ${sm?'sm':''}" data-act="say" data-t="${esc(text)}" data-r=".55">${ICON.slow} Lent</button>`;
+
+/* ---------- accueil ---------- */
+function renderOnboard(){
+  return app.innerHTML=`<main class="screen">
+   <div class="stack lg" style="padding-top:12px">
+    <div class="intro-mark" aria-hidden="true">步步高</div>
+    <div class="stack sm"><h1>Bùbùgāo</h1><p class="muted">« Monter marche après marche. » Ton coach de chinois, fait pour l’usine et pour la suite.</p></div>
+    <div class="card stack">
+      <label class="label" for="nm">Ton prénom</label>
+      <input id="nm" type="text" autocomplete="given-name" placeholder="Ex. : Afi" value="${esc(S.name)}">
+      <span class="label" id="goal-l">Ce que tu veux en premier</span>
+      <div class="row" role="group" aria-labelledby="goal-l">${STAGES.map((s,i)=>`<button class="chip ${S.goal===i?'on':''}" data-act="goal" data-i="${i}">${s.fr}</button>`).join('')}</div>
+      <p class="small muted">${STAGES[S.goal].goal}.</p>
+    </div>
+    <div class="card flat stack">
+      <h3>Petit test de départ · 5 min</h3>
+      <p class="small muted">Écoute, tons, vocabulaire et prononciation. L’app saura où tu es forte et quoi travailler en premier. Mets le son.</p>
+      <button class="btn primary block" data-act="diag">Faire le test</button>
+      <button class="btn ghost block" data-act="skipdiag">Passer et commencer directement</button>
+    </div>
+   </div></main>`;
+}
+function renderHome(){
+  refreshJokers();
+  const cur=currentStage(),prog=stageProg(cur),stg=STAGES[cur],streak=streakAlive();
+  const done=S.lastSessionDay===today();const due=dueList(Date.now(),cur).length;
+  const left=ITEMS.filter(x=>!isIntro(x)).length,rate=recentRate();const nNew=Math.min(left,ITEMS.some(isIntro)?(rate>.9?7:rate<.7?2:4):5);
+  const intro=ITEMS.filter(isIntro).length,sol=ITEMS.filter(solid).length;
+  const usine=ITEMS.filter(x=>x.st===0),und=usine.filter(x=>peekS(x.id,'oreille')>=2).length;
+  const pd=phraseOfDay();
+  const misIt0=S.mission&&S.mission.status==='open'?BY[S.mission.id]:null;const mis=misIt0?S.mission:null;const misIt=misIt0;const hs=hskStats();
+  const yesterday=mis&&mis.day!==today();
+  return `
+  <div class="hello"><div class="stack sm"><span class="zh">你好${S.name?'，'+esc(S.name):''}！</span><h1>${S.name?esc(S.name)+', on':'On'} monte une marche ?</h1></div>
+   <div class="streak" title="Série de jours"><span class="flame">${ICON.flame}${streak}</span><span class="jokers" aria-label="${S.jokers} jokers ce mois-ci">${[0,1].map(i=>`<i class="jk ${i<S.jokers?'on':''}"></i>`).join('')}</span><span class="tiny muted">${S.jokers} joker${S.jokers>1?'s':''}</span></div></div>
+  ${noZh()?`<div class="notice"><b>Pas de voix chinoise sur ce téléphone.</b> Dans les réglages Android, ouvre « Synthèse vocale », choisis le moteur Google et installe la langue Chinois (Mandarin).</div>`:''}
+  ${(()=>{const np=PACKS.filter(p=>!p.builtin&&!S.seenPacks[p.id]&&!ITEMS.some(x=>x.pk===p.id&&isIntro(x))).pop();if(!np)return'';const n=ITEMS.filter(x=>x.pk===np.id).length,c=CONVS.filter(x=>x.pk===np.id).length;
+     return `<section class="card stack" style="border:2px solid var(--accent)" aria-label="Nouveau chapitre"><span class="label" style="color:var(--accent)">Nouveau chapitre</span><h2>${esc(np.title)}</h2><p class="small muted">${esc(np.desc)}</p>
+     <div class="row"><span class="badge">${n} mots et phrases</span>${c?`<span class="badge">${c} conversation${c>1?'s':''}</span>`:''}${np.grammar?'<span class="badge">1 règle de grammaire</span>':''}</div>
+     <div class="row"><button class="btn primary sm" data-act="chapter" data-id="${np.id}">Commencer ce chapitre</button><button class="btn sm ghost" data-act="seen" data-id="${np.id}">Plus tard</button></div></section>`;})()}
+  ${deferredInstall?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Bùbùgāo</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`:''}
+  ${done?`<button class="cta done" data-act="express"><span class="label">Séance du jour faite ${ICON.check}</span><h2>Révision express</h2><div class="bits"><span class="bit">${due} à revoir</span><span class="bit">≈ 4 min</span></div></button>`
+        :`<button class="cta" data-act="daily"><span class="label" style="color:inherit;opacity:.85">Séance du jour · ≈ 12 min</span><h2>${ITEMS.some(isIntro)?'Continuer à monter':'Première séance'}</h2>
+           <div class="bits">${nNew?`<span class="bit">${nNew} nouveaux</span>`:''}<span class="bit">${Math.min(due,8)} révisions</span><span class="bit">tons</span><span class="bit">1 conversation</span></div></button>`}
+  ${mis?`<section class="mission" aria-label="Mission terrain">
+     <span class="label" style="color:var(--gold)">Mission terrain${yesterday?' d’hier':' du jour'} · niveau ${mis.level||1}/3</span>
+     <p><b>${esc(mis.text||misIt.m||'')}</b></p>
+     <div class="row"><span class="zh" style="font-size:26px">${hzHTML(misIt)}</span><button class="btn sm" data-act="say" data-t="${esc(misIt.h)}">${ICON.play}</button></div>
+     <div class="row"><button class="btn gold sm" data-act="mission" data-v="yes">Je l’ai fait ! +30</button><button class="btn sm" data-act="mission" data-v="later">Pas encore eu l’occasion</button></div>
+   </section>`:''}
+  ${backupDue()?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Sauvegarde ta progression</b><br><span class="small muted">${S.lastBackup?'Dernière sauvegarde le '+S.lastBackup+'.':'Jamais sauvegardée.'} Si tu changes de téléphone, tu ne perdras rien.</span></div><button class="btn sm" data-act="backup">Sauvegarder</button></section>`:''}
+  ${testDue()?`<section class="card row" style="flex-wrap:nowrap;border:2px solid var(--gold)"><div class="grow"><b>Ton test HSK blanc du mois est prêt</b><br><span class="small muted">20 questions, 6 minutes. Pour voir ton niveau monter.</span></div><button class="btn gold sm" data-act="test">Commencer</button></section>`:''}
+  ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
+     return old?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>3 mois déjà !</b><br><span class="small muted">Réenregistre « ${esc(BY[old].h)} » et compare avec ta voix du début.</span></div><button class="btn sm" data-act="lab" data-id="${old}">${ICON.mic}</button></section>`:'';})()}
+  <section class="card stack" aria-label="Parcours HSK">
+    <div class="row between"><div class="stack sm"><span class="label">Parcours HSK 1</span><h2><span style="font-variant-numeric:tabular-nums">${hs.seen}</span> <span class="muted" style="font-weight:600;font-size:17px">/ ${hs.total} mots</span></h2></div><span class="badge ok">${hs.solid} ancrés</span></div>
+    <div class="bar"><i style="width:${pct(hs.seen/hs.total)}%"></i></div>
+    <div class="row"><span class="small muted">Ma branche :</span>${Object.entries(BRANCHES).map(([k,b])=>`<button class="chip ${S.branch===k?'on':''}" data-act="branch" data-k="${k}">${b.fr}</button>`).join('')}</div>
+    <p class="tiny muted">Chaque séance mélange le parcours HSK (6 mots sur 10) et ta branche (4 sur 10).</p>
+  </section>
+  <section class="card stage-hero" aria-label="Ton étape">
+    <div class="stage-top"><div class="stack sm"><span class="label">Carrière · étape ${cur+1} · ${stg.hsk}</span><h2>${stg.fr} <span class="zh muted" style="font-weight:500">${stg.zh}</span></h2><p class="small muted">${stg.goal}</p></div>
+    <div class="stage-pct">${pct(prog)}<small>%</small></div></div>
+    <div class="road">${STAGES.map((s,i)=>`<div class="road-step ${i===cur?'cur':''}"><div class="road-bar"><i style="width:${pct(stageProg(i)/.6)}%"></i></div><span class="nm">${s.fr}</span></div>`).join('')}</div>
+    <p class="tiny muted">L’étape suivante se débloque à 60 %.</p>
+  </section>
+  <div class="stats3">
+   <div class="stat"><b>${intro}</b><span>mots et phrases vus</span></div>
+   <div class="stat"><b>${sol}</b><span>bien ancrés</span></div>
+   <div class="stat"><b>${pct(und/usine.length)}%</b><span>des phrases d’atelier comprises à l’oral</span></div>
+  </div>
+  <section class="card stack" aria-label="Phrase du jour">
+   <span class="label">Phrase du jour</span>
+   <div class="stack sm"><span class="zh" style="font-size:28px">${hzHTML(pd)}</span><span class="py" style="font-size:16px">${pyHTML(pd)}</span><span class="muted">${esc(pd.fr)}</span></div>
+   <div class="row">${playBtns(pd.h,true)}<button class="btn sm" data-act="lab" data-id="${pd.id}">${ICON.mic} M’entraîner</button></div>
+  </section>`;
+}
+
+/* ---------- parler ---------- */
+function renderParler(){
+  const cur=currentStage();const pool=ITEMS.filter(x=>isIntro(x)||S.demo);
+  return `<div class="stack sm"><span class="label">Parler</span><h1>Conversations</h1><p class="muted small">Des situations réelles, du plus simple au plus ambitieux. Le chef ne te corrige jamais brutalement : il te propose la bonne phrase.</p></div>
+  <div class="stack">${CONVS.map(c=>{const ok=unlocked(c.st);const n=S.convDone[c.id]||0;return `<button class="list-btn ${ok?'':'locked'}" data-act="${ok?'conv':'locked'}" data-id="${c.id}">
+     <span class="zh">${c.who}</span><span class="grow"><b>${esc(c.title)}</b><br><span class="small muted">${STAGES[c.st].fr} · ${esc(c.whoFr)}</span></span>
+     ${ok?(n?`<span class="badge ok">${n}×</span>`:'<span class="badge">Nouveau</span>'):`<span class="badge">${ICON.lock}</span>`}</button>`;}).join('')}</div>
+  <div class="stack sm" style="margin-top:8px"><h2>Labo des tons</h2><p class="muted small">Choisis une phrase, écoute, enregistre-toi, et compare ta courbe à celle du modèle.</p></div>
+  ${pool.length?`<div class="card flat wordlist">${pool.slice(0,60).map(it=>`<button class="word" style="background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;text-align:left;width:100%" data-act="lab" data-id="${it.id}"><span class="zh">${hzHTML(it)}</span><span class="grow small"><b>${pyHTML(it)}</b><br><span class="muted">${esc(it.fr)}</span></span>${S.voice[it.id]?`<span class="badge ok">${S.voice[it.id].best}</span>`:ICON.mic}</button>`).join('')}</div>`
+   :`<div class="notice">Fais ta première séance : les mots appris apparaîtront ici.</div>`}`;
+}
+
+/* ---------- progrès ---------- */
+function renderProgres(){
+  const P=S.profile,rows=[['ecoute','Écoute'],['tons','Tons'],['vocab','Vocabulaire'],['parole','Parole']];
+  const days=[];for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*DAY);days.push(d);}
+  const dn=['D','L','M','M','J','V','S'];
+  const withVoice=Object.keys(S.voice).filter(id=>S.voice[id].first&&S.voice[id].last&&BY[id]);
+  const vid=withVoice.sort((a,b)=>(S.voice[b].first.d<S.voice[b].last.d)-(S.voice[a].first.d<S.voice[a].last.d))[0];
+  const f=ui.wordFilter.trim().toLowerCase();
+  const words=ITEMS.filter(isIntro).filter(it=>!f||it.fr.toLowerCase().includes(f)||pyStr(it).toLowerCase().includes(f)||it.h.includes(f)||it.p.includes(f));
+  const weak=rows.slice().sort((a,b)=>P[a[0]]-P[b[0]])[0];
+  return `<div class="stack sm"><span class="label">Progrès</span><h1>Ta montée</h1></div>
+  <section class="card stack"><div class="row between"><h3>Ton profil</h3><span class="small muted">${S.xp} XP · record ${S.best} j</span></div>
+   <div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div>
+   <p class="small muted">Les séances donnent plus de temps à ta compétence la plus faible : <b>${weak[1].toLowerCase()}</b>.</p></section>
+  <section class="card stack"><h3>Cette semaine</h3><div class="week">${days.map(d=>{const x=S.days[dkey(d)]||0;return `<div class="d"><span class="dot ${x?'on':''}">${x?x:''}</span>${dn[d.getDay()]}</div>`;}).join('')}</div></section>
+  <section class="card stack"><h3>Les quatre étapes</h3><div class="bars">${STAGES.map((s,i)=>`<div class="bar-row"><span>${s.fr}</span><div class="bar"><i style="width:${pct(stageProg(i))}%"></i></div><b>${pct(stageProg(i))}</b></div>`).join('')}</div></section>
+  <section class="card stack"><h3>Avant / après</h3>
+   ${vid?`<p class="small muted">${esc(BY[vid].fr)} · la ligne pleine est ta voix, les pointillés le modèle.</p>
+     <div class="stack sm"><span class="label">Premier essai · ${S.voice[vid].first.d} · ${S.voice[vid].first.score}/100</span><canvas class="curve" data-voice="${vid}|first"></canvas></div>
+     <div class="stack sm"><span class="label">Dernier essai · ${S.voice[vid].last.d} · ${S.voice[vid].last.score}/100</span><canvas class="curve" data-voice="${vid}|last"></canvas></div>
+     <button class="btn sm" data-act="lab" data-id="${vid}">${ICON.mic} Refaire cette phrase</button>`
+    :`<p class="small muted">Enregistre-toi pendant une séance : ta première courbe sera gardée ici pour voir tes progrès dans quelques semaines.</p>`}</section>
+  ${(()=>{const hs=hskStats(),ck=charsKnown().length,T=S.tests;return `<section class="card stack"><h3>Niveau réel</h3>
+   <div class="bars"><div class="bar-row"><span>HSK 1</span><div class="bar"><i style="width:${pct(hs.seen/hs.total)}%"></i></div><b>${hs.seen}</b></div>
+   <div class="bar-row"><span>Ancrés</span><div class="bar"><i style="width:${pct(hs.solid/hs.total)}%"></i></div><b>${hs.solid}</b></div>
+   <div class="bar-row"><span>Caractères</span><div class="bar"><i style="width:${pct(ck/Math.max(1,Object.keys(CHARS).length))}%"></i></div><b>${ck}</b></div></div>
+   <p class="small muted">${hs.seen} mots vus sur les ${hs.total} du HSK 1 · ${ck} caractères lus sans pinyin.</p>
+   ${T.length?`<div class="stack sm"><span class="label">Tests HSK blancs</span>${T.slice(-6).map(t=>`<div class="row between small"><span>${t.d}</span><b>${t.acc}% · ≈ ${t.est} mots</b></div>`).join('')}</div>`:''}
+   <button class="btn sm" style="align-self:flex-start" data-act="test">Passer un test HSK blanc</button></section>`;})()}
+  <section class="card stack"><div class="row between"><h3>Chapitres</h3><button class="btn sm" data-act="sync">Vérifier les mises à jour</button></div>
+   <div class="stack">${PACKS.slice().sort((a,b)=>((a.branch==='hsk'?0:a.branch==='travail'?1:2)-(b.branch==='hsk'?0:b.branch==='travail'?1:2))||(a.builtin?-1:0)-(b.builtin?-1:0)||(a.order||0)-(b.order||0)).map(p=>{const its=ITEMS.filter(x=>x.pk===p.id);const m=its.length?avg(its.map(mastery)):0;const seen=its.filter(isIntro).length;
+     return `<div class="stack sm"><div class="row between" style="flex-wrap:nowrap"><b class="grow">${esc(p.title)}</b><span class="small muted" style="font-variant-numeric:tabular-nums">${seen}/${its.length}</span></div><div class="bar"><i style="width:${pct(m)}%"></i></div>
+       <div class="row">${seen<its.length?`<button class="linkbtn" data-act="chapter" data-id="${p.id}">Avancer dans ce chapitre</button>`:''}${p.grammar?`<button class="linkbtn" data-act="gram" data-id="${p.id}">Revoir la règle : ${esc(p.grammar.title)}</button>`:''}</div></div>`;}).join('')}</div>
+   <p class="tiny muted">${PS._checked?'Dernière vérification : '+new Date(PS._checked).toLocaleDateString('fr-FR',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+'.':'Les nouveaux chapitres arrivent automatiquement dès que tu as du réseau.'}</p></section>
+  <section class="card stack"><div class="row between"><h3>Mes mots</h3><span class="small muted">${ITEMS.filter(isIntro).length}/${ITEMS.length}</span></div>
+   <input id="wf" type="text" placeholder="Chercher (français ou pinyin)" value="${esc(ui.wordFilter)}" aria-label="Chercher un mot">
+   <div class="wordlist">${words.length?words.map(it=>`<div class="word"><button class="btn sm" data-act="say" data-t="${esc(it.h)}" aria-label="Écouter">${ICON.play}</button><span class="zh">${hzHTML(it)}</span><span class="grow small"><b>${pyHTML(it)}</b><br><span class="muted">${esc(it.fr)}</span></span><span class="mdots" title="Reconnaître · Comprendre · Ton · Produire">${SK.map(k=>`<i class="${peekS(it.id,k)>=4?'on':''}"></i>`).join('')}</span></div>`).join(''):'<p class="small muted">Rien pour l’instant.</p>'}</div>
+   <p class="tiny muted">Les 4 points : reconnaître, comprendre à l’oral, ton, produire. Un mot est ancré quand les 4 sont verts.</p></section>
+  <section class="card stack"><h3>Sauvegarde</h3>
+   <p class="small muted">Ta progression vit dans ce téléphone. Fais une sauvegarde chaque mois et garde le fichier dans WhatsApp, Google Drive ou tes e-mails. Sur un nouveau téléphone, installe l’app puis touche « Restaurer ».</p>
+   <div class="row"><button class="btn primary sm" data-act="backup">Sauvegarder ma progression</button>
+    <label class="btn sm">Restaurer<input id="restorefile" type="file" accept="application/json,.json" hidden></label></div>
+   ${ui.pendingRestore?`<div class="notice">Restaurer la sauvegarde du <b>${esc((ui.pendingRestore.date||'').slice(0,10))}</b>${ui.pendingRestore.state.name?' ('+esc(ui.pendingRestore.state.name)+')':''} ? Elle remplace la progression actuelle de ce téléphone.
+     <div class="row" style="margin-top:8px"><button class="btn primary sm" data-act="restore2">Oui, restaurer</button><button class="btn sm" data-act="restore0">Annuler</button></div></div>`:''}
+   ${ui.backupText?`<div class="stack sm"><p class="small">Le téléchargement n’est pas possible ici. Copie ce texte et garde-le (WhatsApp, e-mail) :</p><textarea id="bk" readonly style="width:100%;height:110px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:12px ui-monospace,monospace;padding:8px">${esc(ui.backupText)}</textarea><button class="btn sm" data-act="copybk">Copier</button></div>`:''}
+   <p class="tiny muted">${S.lastBackup?'Dernière sauvegarde : '+S.lastBackup+'.':'Aucune sauvegarde pour l’instant.'} ${persisted===true?'Stockage protégé : le téléphone n’effacera pas tes données.':persisted===false?'Stockage non protégé : installe l’app sur l’écran d’accueil pour le protéger.':''}</p>
+  </section>
+  <details id="settings" class="card flat" ${ui.settingsOpen||ui.confirmReset?'open':''}><summary>Réglages</summary><div class="stack" style="margin-top:12px">
+   <label class="label" for="nm2">Prénom</label><input id="nm2" type="text" value="${esc(S.name)}">
+   <button class="btn sm" data-act="demo">${S.demo?'Mode démo activé : tout est débloqué':'Mode démo : tout débloquer'}</button>
+   <button class="btn sm" data-act="redo">Refaire le test de départ</button>
+   ${ui.confirmReset?`<div class="notice">Tout effacer sur ce téléphone ? <div class="row" style="margin-top:8px"><button class="btn sm" data-act="reset2" style="color:var(--bad)">Oui, tout effacer</button><button class="btn sm" data-act="reset0">Annuler</button></div></div>`:`<button class="btn sm ghost" data-act="reset1">Effacer ma progression</button>`}
+   <p class="tiny muted">Ta progression est gardée sur ce téléphone. Pour installer l’app : menu du navigateur › « Ajouter à l’écran d’accueil ».</p></div></details>`;
+}
+
+/* ---------- carrière ---------- */
+function renderCarriere(){
+  const cur=currentStage();
+  const tools=[
+   {st:0,t:'Phrases de survie à l’atelier',d:'Comprendre les consignes, signaler un problème, demander de répéter.',a:'daily',lbl:'Séance du jour'},
+   {st:1,t:'Servir d’interprète',d:'Conversation : traduire entre le patron et un nouveau collègue.',a:'conv',id:'interprete',lbl:'Lancer'},
+   {st:2,t:'Ma présentation en chinois',d:'Ton 自我介绍 prêt à apprendre par cœur, avec l’audio.',a:'pres',lbl:'Préparer'},
+   {st:2,t:'Simulation d’entretien',d:'Les 4 questions qu’on pose presque toujours.',a:'conv',id:'entretien',lbl:'Lancer'},
+   {st:3,t:'Voyager et s’installer',d:'Gare, billet, passeport, logement.',a:'conv',id:'gare',lbl:'Lancer'}
+  ];
+  return `<div class="stack sm"><span class="label">Carrière</span><h1>Où le chinois peut te mener</h1><p class="muted small">Chaque étape débloque des outils concrets. Le certificat qui compte pour les employeurs est le HSK.</p></div>
+  <div class="ladder">${STAGES.map((s,i)=>`<div class="rung ${i<=cur?'on':''} ${unlocked(i)?'':'lock'}"><span class="num">${i+1}</span><div class="grow stack sm"><b>${s.fr} <span class="zh muted">${s.zh}</span></b><span class="small muted">${s.goal} · ${s.hsk}</span></div>${unlocked(i)?'':ICON.lock}</div>`).join('')}</div>
+  <h2>Outils</h2>
+  <div class="stack">${tools.map(t=>{const ok=unlocked(t.st);return `<div class="card flat stack sm ${ok?'':'locked'}" style="${ok?'':'opacity:.6'}"><div class="row between"><b>${t.t}</b><span class="badge">${STAGES[t.st].fr}</span></div><p class="small muted">${t.d}</p>
+    ${ok?`<button class="btn sm" style="align-self:flex-start" data-act="${t.a}" ${t.id?`data-id="${t.id}"`:''}>${t.lbl}</button>`:`<span class="tiny muted">Débloqué à l’étape ${STAGES[t.st].fr}</span>`}</div>`;}).join('')}</div>
+  ${ui.pres?presentation():''}
+  <h2>Métiers où le chinois fait la différence</h2>
+  <div class="card flat stack sm small">
+   <p><b>Interprète d’atelier</b> · faire le lien entre l’encadrement chinois et les équipes locales.</p>
+   <p><b>Contrôle qualité</b> · comprendre les normes, rédiger les défauts, parler aux chefs.</p>
+   <p><b>Assistante chef d’équipe</b> · transmettre les consignes, organiser la chaîne.</p>
+   <p><b>Logistique et magasin</b> · commandes, quantités, livraisons avec des fournisseurs chinois.</p>
+   <p><b>Commerce et accueil</b> · boutiques, import-export, clients chinois à Lomé.</p>
+  </div>
+  <h2>Se certifier, se former</h2>
+  <div class="card flat stack sm small">
+   <p><b>Examen HSK</b> · niveaux 1 à 6 (et 7 à 9 pour l’avancé). Viser le HSK 3 rend un CV beaucoup plus solide. <a href="https://www.chinesetest.cn" target="_blank" rel="noopener">chinesetest.cn</a></p>
+   <p><b>Institut Confucius de l’Université de Lomé</b> · cours, sessions d’examen HSK, informations sur les bourses. Se renseigner sur place.</p>
+   <p><b>Bourses du gouvernement chinois</b> · pour étudier en Chine. <a href="https://www.campuschina.org" target="_blank" rel="noopener">campuschina.org</a></p>
+  </div>`;
+}
+function presentation(){
+  const n=S.name||'…',y=ui.presYears||2,yrs={1:['一','yì'],2:['两','liǎng'],3:['三','sān'],4:['四','sì'],5:['五','wǔ']}[y];
+  const L=[
+   ['您好！我叫'+n+'。','Nín hǎo! Wǒ jiào '+n+'.','Bonjour ! Je m’appelle '+n+'.'],
+   ['我来自多哥。','Wǒ láizì Duōgē.','Je viens du Togo.'],
+   ['我在鞋厂工作了'+yrs[0]+'年。','Wǒ zài xiéchǎng gōngzuò le '+yrs[1]+' nián.','J’ai travaillé '+y+' an'+(y>1?'s':'')+' dans une usine de chaussures.'],
+   ['我会说法语和中文。','Wǒ huì shuō Fǎyǔ hé Zhōngwén.','Je parle français et chinois.'],
+   ['我学得很快，工作很认真。','Wǒ xué de hěn kuài, gōngzuò hěn rènzhēn.','J’apprends vite et je travaille sérieusement.'],
+   ['我希望在贵公司发展。','Wǒ xīwàng zài guì gōngsī fāzhǎn.','J’aimerais évoluer dans votre entreprise.'],
+   ['谢谢！','Xièxie!','Merci !']];
+  return `<section class="card stack"><div class="row between"><h3>Ma présentation · 自我介绍</h3><button class="btn sm ghost" data-act="pres0" aria-label="Fermer">${ICON.x}</button></div>
+   <div class="row"><span class="small">Années à l’usine :</span>${[1,2,3,4,5].map(k=>`<button class="chip ${k===y?'on':''}" data-act="presy" data-i="${k}">${k}</button>`).join('')}</div>
+   ${L.map(l=>`<div class="row" style="align-items:flex-start;flex-wrap:nowrap"><button class="btn sm" data-act="say" data-t="${esc(l[0])}" aria-label="Écouter">${ICON.play}</button><div class="grow"><span class="zh" style="font-size:20px">${esc(l[0])}</span><br><span class="small"><b>${esc(l[1])}</b></span><br><span class="small muted">${esc(l[2])}</span></div></div>`).join('')}
+   <button class="btn primary sm" data-act="sayall">${ICON.play} Tout écouter</button></section>`;
+}
+
+/* ---------- séance ---------- */
+function renderSession(){
+  const s=ui.sess;
+  if(s.end)return app.innerHTML=s.kind==='diag'?diagEnd():s.kind==='test'?testEnd():sessionEnd();
+  const st=s.steps[s.i];const total=s.steps.length;
+  const body={learn:vLearn,reco:vChoice,oreille:vChoice,ton:vTone,prod:vProd,pair:vPair,shadow:vShadow,conv:vConv,mission:vMission,grammar:vGrammar,charlearn:vCharLearn,char:vChar}[st.kind](st);
+  app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter la séance">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div><span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span></div>
+   <main class="lesson"><span class="sec-tag">${esc(st.sec)}</span>${body}</main>`;
+  if(st.kind==='shadow'){const cv=document.getElementById('cv');if(cv)drawCurve(cv,st.it,st.rec&&st.rec.state==='done'?st.rec.res:null);}
+  if(!st.played){st.played=true;
+    if(st.kind==='oreille'||st.kind==='ton'||st.kind==='learn')say(st.it.h);
+    if(st.kind==='pair')say(st.pr[st.target].h,.75);
+    if(st.kind==='conv'&&st.cs.log.length===1)say(st.cs.log[0].h);}
+}
+function feedback(st,okText){
+  if(!st.res)return'';const ok=st.res.ok,it=st.it;
+  const praise=rnd(['Bien joué !','Exact !','Bravo !','对了！ Duì le !','Parfait !']);
+  return `<div class="feedback ${ok?'ok':'bad'}" role="status"><span class="verdict">${ok?praise:(st.res.dunno?'Pas grave, voici la réponse':'Pas tout à fait')}</span>
+   ${it?`<div class="row" style="flex-wrap:nowrap"><div class="grow"><span class="zh" style="font-size:24px">${hzHTML(it)}</span> <b>${pyHTML(it)}</b><br><span>${esc(it.fr)}</span></div><button class="btn sm" data-act="say" data-t="${esc(it.h)}" aria-label="Réécouter">${ICON.play}</button></div>`:(okText||'')}
+   ${!ok&&!['diag','mini','test'].includes(ui.sess.kind)&&!st.re?'<span class="small">On le revoit dans un instant.</span>':''}
+   <button class="btn ${ok?'primary':''} block" data-act="next">Continuer</button></div>`;
+}
+const dunno=st=>(ui.sess.kind==='diag'||ui.sess.kind==='test')&&!st.res?`<button class="btn ghost block" data-act="ans" data-i="-1">Je ne sais pas</button>`:'';
+function optCls(st,i,ok){if(!st.res)return'';if(ok)return'ok';if(st.res.pick===i)return'bad';return'dim';}
+function packTitle(it){const p=PACKS.find(x=>x.id===it.pk);return it.branch==='travail'&&it.pk==='base'?STAGES[it.st].fr:(p?p.title:'');}
+function vLearn(st){const it=st.it;return `<div class="card learn-card"><span class="label">Nouveau · ${esc(packTitle(it))}${HSKSET.has(it.h)?' · HSK 1':''}</span>
+  <div class="big-zh ${it.han.length>4?'sm':it.han.length>2?'mid':''}">${hzHTML(it)}</div><div class="py">${pyHTML(it)}</div><p style="font-size:18px;font-weight:700">${esc(it.fr)}</p>
+  <div class="listen">${playBtns(it.h)}</div>
+  <div class="tonekey" aria-label="Couleurs des tons"><span class="t1">1 haut plat</span><span class="t2">2 monte</span><span class="t3">3 bas</span><span class="t4">4 tombe</span></div></div>
+  ${it.m?`<p class="small muted">Dans la vraie vie : ${esc(it.m)}</p>`:''}
+  <button class="btn primary block" data-act="next">J’ai écouté, continuer</button>`;}
+function vChoice(st){
+  const it=st.it,aud=st.kind==='oreille';
+  if(st.nopy&&!aud)return `<p class="q-title">Lis sans pinyin : que veut dire ceci ?</p>
+  <div class="card learn-card"><div class="big-zh ${it.han.length>2?'mid':''}">${esc(it.h)}</div>${st.res?`<div class="py">${pyHTML(it)}</div>`:''}</div>
+  <div class="opts">${st.q.opts.map((o,i)=>`<button class="opt ${optCls(st,i,o.ok)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}>${esc(o.fr)}</button>`).join('')}</div>
+  ${dunno(st)}${feedback(st)}`;
+  return `<p class="q-title">${aud?'Qu’est-ce que tu entends ?':'Que veut dire cette phrase ?'}</p>
+  ${aud?`<div class="listen"><button class="playbig" data-act="say" data-t="${esc(it.h)}" aria-label="Écouter">${ICON.play}</button><button class="btn" data-act="say" data-t="${esc(it.h)}" data-r=".55">${ICON.slow} Lent</button></div>`
+       :`<div class="card learn-card"><div class="big-zh ${it.han.length>4?'sm':it.han.length>2?'mid':''}">${hzHTML(it)}</div><div class="py">${pyHTML(it)}</div><button class="btn sm" data-act="say" data-t="${esc(it.h)}">${ICON.play} Écouter</button></div>`}
+  <div class="opts">${st.q.opts.map((o,i)=>`<button class="opt ${optCls(st,i,o.ok)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}>${esc(o.fr)}</button>`).join('')}</div>
+  ${dunno(st)}${feedback(st)}`;
+}
+function vTone(st){const it=st.it;return `<p class="q-title">Quels tons entends-tu ?</p>
+  <div class="listen"><button class="playbig" data-act="say" data-t="${esc(it.h)}" aria-label="Écouter">${ICON.play}</button><button class="btn" data-act="say" data-t="${esc(it.h)}" data-r=".5">${ICON.slow} Lent</button></div>
+  <div class="opts two">${st.q.opts.map((o,i)=>`<button class="opt center ${optCls(st,i,o.ok)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="py">${pyStr(it,o.t)}</span></button>`).join('')}</div>${feedback(st)}`;}
+function vProd(st){
+  const it=st.it;
+  if(st.q.opts)return `<p class="q-title">Comment dit-on : « ${esc(it.fr)} » ?</p>
+   <div class="opts">${st.q.opts.map((o,i)=>`<button class="opt ${optCls(st,i,o.ok)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh">${hzHTML(o.it)}</span><span class="small">${pyHTML(o.it)}</span></button>`).join('')}</div>${feedback(st)}`;
+  const q=st.q,placed=q.placed.map(k=>q.tiles.find(t=>t.k===k));
+  return `<p class="q-title">Construis la phrase : « ${esc(it.fr)} »</p>
+   <div class="tiles answer" aria-label="Ta phrase">${placed.map(t=>`<button class="tile" data-act="untile" data-k="${t.k}" ${st.res?'disabled':''}><span class="zh">${t.h}</span><span class="p">${t.p}</span></button>`).join('')||'<span class="small muted" style="align-self:center">Touche les mots dans l’ordre</span>'}</div>
+   <div class="tiles">${q.tiles.map(t=>`<button class="tile ${q.placed.includes(t.k)?'used':''}" data-act="tile" data-k="${t.k}" ${st.res?'disabled':''}><span class="zh">${t.h}</span><span class="p">${t.p}</span></button>`).join('')}</div>
+   ${st.res?feedback(st):`<button class="btn primary block" data-act="checktiles" ${placed.length<it.chunks.length?'disabled':''}>Vérifier</button>`}`;
+}
+function vPair(st){const pr=st.pr;const t=pr[st.target];
+  return `<p class="q-title">Duel : lequel entends-tu ?</p>
+  <div class="listen"><button class="playbig" data-act="say" data-t="${esc(t.h)}" data-r=".75" aria-label="Écouter">${ICON.play}</button></div>
+  <div class="opts two">${pr.map((o,i)=>`<button class="opt center ${optCls(st,i,i===st.target)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh" style="font-size:40px">${o.h}</span><span class="py t${o.t}">${mark(o.p,o.t)}</span><span class="small muted">${esc(o.fr)}</span></button>`).join('')}</div>
+  ${dunno(st)}${feedback(st,st.res?`<p>${st.res.ok?'':'C’était '}<span class="zh">${t.h}</span> <b class="t${t.t}">${mark(t.p,t.t)}</b> (${esc(t.fr)}). ${TONETIP[t.t]}</p>`:'')}`;}
+function vShadow(st){
+  const it=st.it,r=st.rec||{state:'idle'},res=r.state==='done'?r.res:null;
+  const tips=res?res.segs.map((sg,i)=>({sg,i})).filter(x=>x.sg.score!=null&&x.sg.score<60).slice(0,2).map(({sg,i})=>`<div class="tip"><b class="t${sg.tone}">${mark(it.syl[i],it.t[i])}</b> : ta voix ${GOTNAME[sg.got]||'a hésité'}. ${TONETIP[sg.tone]}</div>`).join(''):'';
+  const recUI=REC.mode==='file'
+   ?`<label class="btn primary block">${ICON.mic} Ouvrir l’enregistreur du téléphone<input id="audfile" type="file" accept="audio/*" capture hidden></label><p class="tiny muted">Enregistre la phrase, puis valide : l’analyse se lance toute seule.</p>`
+   :`<div class="listen"><button class="recbtn ${r.state==='rec'?'on':''}" data-act="${r.state==='rec'?'recstop':'rec'}" aria-label="${r.state==='rec'?'Arrêter':'Enregistrer'}" ${r.state==='busy'?'disabled':''}>${r.state==='rec'?ICON.stop:ICON.mic}</button></div>
+     <p class="small muted" style="text-align:center">${r.state==='rec'?'Parle maintenant… touche pour arrêter':r.state==='busy'?'Analyse…':res?'Touche pour réessayer':'Écoute, puis touche le micro et répète'}</p>`;
+  return `<p class="q-title">Répète après la voix</p>
+  <div class="card learn-card" style="padding:18px 14px"><div class="big-zh ${it.han.length>4?'sm':'mid'}">${hzHTML(it)}</div><div class="py">${pyHTML(it)}</div><p class="muted">${esc(it.fr)}</p><div class="listen">${playBtns(it.h,true)}</div></div>
+  <canvas id="cv" class="curve" aria-label="Courbe de mélodie : pointillés = modèle${res?', ligne pleine = ta voix':''}"></canvas>
+  ${res?`<div class="row between"><div><span class="label">Score des tons</span><div class="score" style="color:${res.score>=70?'var(--good)':res.score>=40?'var(--t3)':'var(--bad)'}">${res.score}<small style="font-size:18px">/100</small></div></div><p class="small muted grow" style="text-align:right">${res.score>=80?'Très bonne mélodie !':res.score>=60?'C’est bien, encore un petit effort.':'Écoute en lent et suis les pointillés.'}</p></div>${tips?`<div class="tips">${tips}</div>`:''}`
+       :`<p class="tiny muted">Les pointillés montrent la mélodie à suivre (5 = aigu, 1 = grave).</p>`}
+  ${r.state==='err'?`<div class="notice">${esc(r.msg)}</div>`:''}
+  ${recUI}
+  <p class="tiny muted">Analyse approximative, faite sur ton téléphone. Aucun son n’est envoyé.</p>
+  <button class="btn ${res?'primary':''} block" data-act="next">${res?'Continuer':'Je ne peux pas parler maintenant'}</button>`;
+}
+function vConv(st){
+  const cs=st.cs,c=cs.c,node=c.nodes[cs.node];
+  const log=cs.log.map((m,k)=>{
+    if(m.who==='coach')return `<div class="coach"><b>Astuce :</b> ${esc(m.txt)}</div>`;
+    const them=m.who==='them';const showFr=cs.showFr[k]||(!them&&!m.frOnly);
+    const nodeHide=them&&k===cs.log.length-1&&node.hideFr&&!cs.done;
+    return `<div class="bub ${them?'them':'me'} ${m.bad?'bad':''}">${them?`<span class="who">${c.who} · ${esc(c.whoFr)}</span>`:''}
+      <span class="${m.frOnly?'':'zh'}">${esc(m.h.replace(/\{name\}/g,S.name||'…'))}</span>${m.p?((them&&S.profile.ecoute>.7&&!cs.showPy[k])?`<button class="linkbtn" data-act="cpy" data-k="${k}">Voir le pinyin</button>`:`<span class="p">${esc(m.p.replace(/\{name\}/g,S.name||'…'))}</span>`):''}
+      ${them?(showFr?`<span class="fr">${esc(m.fr)}</span>`:nodeHide?'':`<button class="linkbtn" data-act="cfr" data-k="${k}">Traduire</button>`):''}
+      ${them?`<button class="linkbtn" data-act="say" data-t="${esc(m.h)}">${'Réécouter'}</button>`:''}</div>`;}).join('');
+  let bottom='';
+  if(!cs.done){
+    bottom=`${node.coach?`<div class="coach">${esc(node.coach)}</div>`:''}<span class="label">Ta réponse</span><div class="opts">${node.o.map((o,i)=>`<button class="opt ${cs.dis.includes(i)?'dim':''}" data-act="cpick" data-i="${i}" ${cs.dis.includes(i)?'disabled':''}>
+       ${o.fr_only?`<span>${esc(o.h)}</span>`:`<span class="zh" style="font-size:20px">${esc(o.h.replace(/\{name\}/g,S.name||'…'))}</span><span class="small">${esc(o.p.replace(/\{name\}/g,S.name||'…'))}</span>${ui.showFr?`<span class="small muted">${esc(o.fr.replace(/\{name\}/g,S.name||'…'))}</span>`:''}`}</button>`).join('')}</div>
+      <button class="linkbtn" data-act="togglefr">${ui.showFr?'Masquer l’aide en français':'Aide : voir le français'}</button>`;
+  }else{
+    const m=cs.mist[0];
+    bottom=`<div class="card stack sm"><b>Conversation réussie</b>
+      <p class="small"><b>Bien fait :</b> ${cs.good} réponse${cs.good>1?'s':''} juste${cs.good>1?'s':''}${cs.mist.length?'':', sans aucune erreur'}.</p>
+      ${m&&!m.bad.fr_only?`<p class="small"><b>À retenir :</b> <span class="zh">${esc(m.best.h.replace(/\{name\}/g,S.name||''))}</span> · ${esc(m.best.p.replace(/\{name\}/g,S.name||''))}</p>`:m?`<p class="small"><b>À retenir :</b> ${esc(m.bad.fix)}</p>`:'<p class="small"><b>Prochain défi :</b> rejoue-la sans regarder le français.</p>'}</div>
+      <button class="btn primary block" data-act="next">Continuer</button>`;
+  }
+  return `<div class="stack sm"><h2>${esc(c.title)}</h2><p class="small muted">${esc(c.intro)}</p></div><div class="chat">${log}</div>${bottom}<span class="chat-end"></span>`;
+}
+function vGrammar(st){const g=st.pack.grammar;return `<div class="card stack"><span class="label">${esc(st.pack.title)}</span><h2>${esc(g.title)}</h2><p>${esc(g.explain)}</p></div>
+  <div class="stack">${(g.examples||[]).map(e=>`<div class="card flat row" style="flex-wrap:nowrap;align-items:flex-start"><button class="btn sm" data-act="say" data-t="${esc(e.h)}" aria-label="Écouter">${ICON.play}</button><div class="grow"><span class="zh" style="font-size:22px">${esc(e.h)}</span><br><span class="small"><b>${esc(e.p)}</b></span><br><span class="small muted">${esc(e.fr)}</span></div></div>`).join('')}</div>
+  ${g.tip?`<div class="coach">${esc(g.tip)}</div>`:''}
+  <button class="btn primary block" data-act="next">J’ai compris</button>`;}
+function vCharLearn(st){const ch=st.ch,w=charWords(ch.c);return `<div class="card learn-card"><span class="label">Nouveau caractère</span>
+  <div class="big-zh" style="font-size:96px">${esc(ch.c)}</div><div class="py">${esc(ch.p)}</div><p style="font-size:18px;font-weight:700">${esc(ch.m)}</p>
+  <div class="row" style="justify-content:center"><span class="badge" style="font-size:14px">Clé <span class="zh" style="font-size:20px;color:var(--accent)">${esc(ch.r)}</span> = ${esc(ch.rm)}</span></div></div>
+  ${w.length?`<div class="card flat stack sm"><span class="label">Tu le connais déjà dans</span>${w.map(it=>`<div class="row" style="flex-wrap:nowrap"><button class="btn sm" data-act="say" data-t="${esc(it.h)}" aria-label="Écouter">${ICON.play}</button><span class="zh" style="font-size:22px">${it.han.map(c=>c===ch.c?`<b style="color:var(--accent)">${c}</b>`:c).join('')}</span><span class="small grow">${pyHTML(it)} · <span class="muted">${esc(it.fr)}</span></span></div>`).join('')}</div>`:''}
+  <p class="small muted">La clé donne un indice sur le sens. Retiens-la : elle revient dans beaucoup d’autres caractères.</p>
+  <button class="btn primary block" data-act="next">Je l’ai vu, continuer</button>`;}
+function vChar(st){const ch=st.ch;return `<p class="q-title">Quel est ce caractère ?</p>
+  <div class="card learn-card"><div class="big-zh" style="font-size:88px">${esc(ch.c)}</div>${st.res?`<span class="badge">Clé ${esc(ch.r)} = ${esc(ch.rm)}</span>`:''}</div>
+  <div class="opts">${st.q.opts.map((o,i)=>`<button class="opt ${optCls(st,i,o.ok)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}>${esc(o.fr)}</button>`).join('')}</div>
+  ${st.res?`<div class="feedback ${st.res.ok?'ok':'bad'}" role="status"><span class="verdict">${st.res.ok?'Bien lu !':'Pas tout à fait'}</span><p><span class="zh" style="font-size:26px">${esc(ch.c)}</span> <b>${esc(ch.p)}</b> · ${esc(ch.m)}</p><button class="btn ${st.res.ok?'primary':''} block" data-act="next">Continuer</button></div>`:''}`;}
+function vMission(st){const it=st.it;return `<div class="mission"><span class="label" style="color:var(--gold)">Ta mission pour demain · niveau ${st.level}/3 : ${MLEVEL[st.level]}</span><p style="font-size:18px"><b>${esc(st.text)}</b></p>
+  <div class="row"><span class="zh" style="font-size:30px">${hzHTML(it)}</span><span class="py" style="font-size:16px">${pyHTML(it)}</span></div><div class="row">${playBtns(it.h,true)}</div>
+  <p class="small">Demain, l’app te demandera si tu l’as fait. Chaque mission réussie rapporte 30 XP et compte double dans ta tête : c’est du vrai chinois, avec de vraies personnes.</p></div>
+  <button class="btn gold block" data-act="next">J’accepte la mission</button>`;}
+
+function sessionEnd(){
+  const s=ui.sess,acc=s.n?Math.round(s.ok/s.n*100):100,cur=s.cur;
+  return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh">太棒了！</span><h1>${s.kind==='daily'?'Séance terminée':s.kind==='chapter'?'Chapitre avancé':'Révision terminée'}</h1><p class="muted">Tài bàng le ! Encore une marche de montée.</p></div>
+   <div class="kpis"><div class="stat"><b>+${s.xp}</b><span>XP</span></div><div class="stat"><b>${acc}%</b><span>de réussite</span></div><div class="stat"><b>${streakAlive()}</b><span>jour${streakAlive()>1?'s':''} de suite</span></div></div>
+   ${s.jokerMsg?`<div class="notice">${esc(s.jokerMsg)}</div>`:''}
+   <div class="card stack sm"><span class="label">Étape ${STAGES[cur].fr}</span><div class="row between"><span class="score" style="font-size:30px">${pct(s.startProg)}% → <span style="color:var(--accent)">${pct(s.endProg)}%</span></span></div><div class="bar"><i style="width:${pct(s.endProg)}%"></i></div></div>
+   ${s.bonus?`<div class="bonus"><span class="label" style="color:var(--gold)">Surprise : expression bonus</span><div class="row"><span class="zh" style="font-size:30px">${s.bonus.h}</span><button class="btn sm" data-act="say" data-t="${esc(s.bonus.h)}">${ICON.play}</button></div><b>${esc(s.bonus.p)} · ${esc(s.bonus.fr)}</b><p class="small">${esc(s.bonus.note)}</p></div>`:''}
+   <p class="small muted" style="text-align:center">${acc>=90?'Trop facile ? Demain, la séance accélère.':acc<70?'C’était dur : demain, on consolide avec moins de nouveautés.':'Rythme idéal : tu apprends dans la bonne zone.'}</p>
+   <button class="btn primary block" data-act="home">Retour à l’accueil</button></main>`;
+}
+function testEnd(){
+  const t=S.tests[S.tests.length-1],prev=S.tests[S.tests.length-2],hs=hskStats();
+  return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh">考试</span><h1>Test HSK blanc terminé</h1><p class="muted">Kǎoshì · examen</p></div>
+   <div class="kpis"><div class="stat"><b>${t.acc}%</b><span>de bonnes réponses</span></div><div class="stat"><b>≈ ${t.est}</b><span>mots HSK 1 maîtrisés (sur ${hs.total})</span></div><div class="stat"><b>${prev?(t.acc-prev.acc>=0?'+':'')+(t.acc-prev.acc):'—'}</b><span>points depuis le dernier test</span></div></div>
+   <div class="card flat stack sm"><p>${t.acc>=80?'Excellent. Si ça continue, tu peux t’inscrire au vrai HSK 1.':t.acc>=60?'Bon niveau. Encore quelques chapitres et le HSK 1 sera à ta portée.':'C’est le début : ce test sert de point de comparaison pour le mois prochain.'}</p>
+   <p class="small muted">Le test porte sur les ${t.avail} mots HSK 1 déjà dans l’appli. Le prochain sera proposé dans un mois.</p></div>
+   <button class="btn primary block" data-act="home">Retour à l’accueil</button></main>`;
+}
+function diagEnd(){
+  const P=S.profile,rows=[['ecoute','Écoute'],['tons','Tons'],['vocab','Vocabulaire'],['parole','Parole']];
+  const srt=rows.slice().sort((a,b)=>P[b[0]]-P[a[0]]);
+  return `<main class="screen" style="padding-bottom:32px"><div class="stack sm"><span class="label">Résultat du test</span><h1>Voilà ton point de départ${S.name?', '+esc(S.name):''}</h1></div>
+   <div class="card stack"><div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div></div>
+   <div class="card flat stack sm"><p><b>Ton point fort :</b> ${srt[0][1].toLowerCase()}.</p><p><b>On va surtout travailler :</b> ${srt[3][1].toLowerCase()}. Les séances lui donneront plus de place.</p>
+   <p class="small muted">Les mots que tu connais déjà ne te seront pas réappris : ils passent directement en révision.</p></div>
+   <button class="btn primary block" data-act="daily">Commencer ma première séance</button>
+   <button class="btn ghost block" data-act="home">Voir l’accueil</button></main>`;
+}
+
+/* ============================================================
+   ÉVÉNEMENTS
+   ============================================================ */
+let toastT=null;
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2800);}
+const ACT={
+ tab:d=>{ui.tab=d.k;render();window.scrollTo(0,0);},
+ say:d=>say(d.t,d.r?parseFloat(d.r):undefined),
+ goal:d=>{S.goal=+d.i;save();render();},
+ diag:()=>{S.name=(document.getElementById('nm')||{}).value?.trim()||S.name;save();startDiag();},
+ skipdiag:()=>{S.name=(document.getElementById('nm')||{}).value?.trim()||S.name;S.onboarded=true;save();render();},
+ daily:()=>{if(ui.sess&&ui.sess.end)ui.sess=null;startSession('daily');},
+ express:()=>startSession('express'),
+ home:()=>{ui.sess=null;ui.tab='home';render();window.scrollTo(0,0);},
+ quit:()=>{stopRec();try{speechSynthesis.cancel();}catch(e){}const back=ui.sess.back;const wasDiag=ui.sess.kind==='diag';ui.sess=null;if(wasDiag&&!S.onboarded){S.onboarded=true;save();}ui.tab=back||'home';render();},
+ ans:d=>answer(+d.i),
+ next:()=>next(),
+ tile:d=>{const st=ui.sess.steps[ui.sess.i];if(!st.q.placed.includes(d.k)){st.q.placed.push(d.k);const t=st.q.tiles.find(x=>x.k===d.k);say(t.h);}render();},
+ untile:d=>{const st=ui.sess.steps[ui.sess.i];st.q.placed=st.q.placed.filter(k=>k!==d.k);render();},
+ checktiles:()=>checkTiles(),
+ rec:()=>startRec(ui.sess.steps[ui.sess.i]),
+ recstop:()=>stopRec(),
+ cpick:d=>convPick(ui.sess.steps[ui.sess.i].cs,+d.i),
+ cpy:d=>{ui.sess.steps[ui.sess.i].cs.showPy[+d.k]=true;render();},
+ cfr:d=>{ui.sess.steps[ui.sess.i].cs.showFr[+d.k]=true;render();},
+ togglefr:()=>{ui.showFr=!ui.showFr;render();},
+ conv:d=>{const c=CONVS.find(x=>x.id===d.id);startMini([{kind:'conv',conv:c,sec:'Conversation',cs:newConv(c)}],ui.tab);},
+ locked:d=>{const c=CONVS.find(x=>x.id===d.id);toast('Se débloque à l’étape '+STAGES[c.st].fr+'.');},
+ lab:d=>startMini([{kind:'shadow',it:BY[d.id],sec:'Labo des tons'}],ui.tab),
+ mission:d=>{if(d.v==='yes'){S.missionsDone++;addXP(30);markActive();toast('Bravo ! Tu as parlé chinois pour de vrai. +30 XP');}else toast('Pas de souci. Une nouvelle mission t’attend à la prochaine séance.');S.mission.status=d.v==='yes'?'done':'skip';save();render();},
+ demo:()=>{S.demo=!S.demo;save();render();},
+ backup:()=>doBackup(),
+ restore2:()=>applyRestore(),
+ restore0:()=>{ui.pendingRestore=null;render();},
+ copybk:()=>{const t=document.getElementById('bk');const done=()=>{S.lastBackup=today();save();toast('Copié. Colle-le dans WhatsApp ou un e-mail.');};try{navigator.clipboard.writeText(ui.backupText).then(done,()=>{t.select();});}catch(e){t.select();}},
+ chapter:d=>{S.seenPacks[d.id]=1;S.focusPack=d.id;save();startSession(S.lastSessionDay===today()?'chapter':'daily');},
+ seen:d=>{S.seenPacks[d.id]=1;save();render();},
+ sync:()=>checkUpdates(true),
+ test:()=>startTest(),
+ branch:d=>{S.branch=d.k;save();render();},
+ gram:d=>{const p=PACKS.find(x=>x.id===d.id);if(p&&p.grammar)startMini([{kind:'grammar',pack:p,sec:'Grammaire'}],ui.tab);},
+ install:async()=>{if(!deferredInstall)return;try{deferredInstall.prompt();await deferredInstall.userChoice;}catch(e){}deferredInstall=null;render();},
+ redo:()=>startDiag(),
+ reset1:()=>{ui.confirmReset=true;render();},
+ reset0:()=>{ui.confirmReset=false;render();},
+ reset2:()=>{S=fresh();ui.confirmReset=false;ui.tab='home';save();render();},
+ pres:()=>{ui.pres=true;render();},
+ pres0:()=>{ui.pres=false;render();},
+ presy:d=>{ui.presYears=+d.i;render();},
+ sayall:()=>{const n=S.name||'';const y={1:'一',2:'两',3:'三',4:'四',5:'五'}[ui.presYears||2];say('您好！我叫'+n+'。我来自多哥。我在鞋厂工作了'+y+'年。我会说法语和中文。我学得很快，工作很认真。我希望在贵公司发展。谢谢！',.8);}
+};
+app.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset,b);});
+app.addEventListener('toggle',e=>{if(e.target.id==='settings')ui.settingsOpen=e.target.open;},true);
+app.addEventListener('change',e=>{
+  if(e.target.id==='restorefile'&&e.target.files&&e.target.files[0]){readBackup(e.target.files[0]);e.target.value='';}
+  if(e.target.id==='audfile'&&e.target.files&&e.target.files[0])analyzeBlob(ui.sess.steps[ui.sess.i],e.target.files[0]);
+  if(e.target.id==='nm2'){S.name=e.target.value.trim();save();}
+});
+app.addEventListener('input',e=>{
+  if(e.target.id==='wf'){ui.wordFilter=e.target.value;const pos=e.target.selectionStart;render();const n=document.getElementById('wf');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(_){}}}
+  if(e.target.id==='nm'){S.name=e.target.value.trim();}
+});
+window.addEventListener('resize',()=>{if(ui.sess&&!ui.sess.end){const st=ui.sess.steps[ui.sess.i];if(st&&st.kind==='shadow')drawCurve(document.getElementById('cv'),st.it,st.rec&&st.rec.state==='done'?st.rec.res:null);}});
+let deferredInstall=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(!ui.sess&&ui.tab==='home')render();});
+window.addEventListener('appinstalled',()=>{deferredInstall=null;toast('Bùbùgāo est installée !');});
+if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&window.top===window){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+window.addEventListener('online',()=>checkUpdates(false));
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false&&Date.now()-(PS._checked||0)>6*3600e3)checkUpdates(false);});
+refreshJokers();
+render();
+if(navigator.onLine!==false)checkUpdates(false);
+askPersist().then(()=>{if(!ui.sess&&ui.tab==='progres')render();});
+window.addEventListener('appinstalled',()=>askPersist());
+</script>
+
+</body></html>

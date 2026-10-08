@@ -1,0 +1,386 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 1 — Se présenter",
+ "desc": "Dire qui tu es, demander le nom de quelqu’un, d’où il vient. 15 mots de la liste officielle HSK 1.",
+ "grammar": {
+  "title": "Être : 是, et la négation 不",
+  "explain": "Pour dire « je suis… », on met 是 (shì) entre la personne et ce qu’elle est. Pour dire « ne… pas », on met 不 (bù) juste avant le verbe. Le verbe ne change jamais : 我是, 你是, 他是.",
+  "examples": [
+   {
+    "h": "我是老师。",
+    "p": "Wǒ shì lǎoshī.",
+    "fr": "Je suis enseignante."
+   },
+   {
+    "h": "我不是老师。",
+    "p": "Wǒ bú shì lǎoshī.",
+    "fr": "Je ne suis pas enseignante."
+   },
+   {
+    "h": "他是中国人。",
+    "p": "Tā shì Zhōngguó rén.",
+    "fr": "Il est chinois."
+   },
+   {
+    "h": "她不是中国人。",
+    "p": "Tā bú shì Zhōngguó rén.",
+    "fr": "Elle n’est pas chinoise."
+   }
+  ],
+  "tip": "不 se prononce bú devant un 4e ton : 不是 bú shì."
+ },
+ "items": [
+  {
+   "id": "k01_wo",
+   "h": "我",
+   "p": "wo",
+   "t": [
+    3
+   ],
+   "fr": "Je, moi",
+   "st": 0
+  },
+  {
+   "id": "k01_ni",
+   "h": "你",
+   "p": "ni",
+   "t": [
+    3
+   ],
+   "fr": "Tu, toi",
+   "st": 0
+  },
+  {
+   "id": "k01_ta",
+   "h": "他",
+   "p": "ta",
+   "t": [
+    1
+   ],
+   "fr": "Il, lui",
+   "st": 0
+  },
+  {
+   "id": "k01_ta2",
+   "h": "她",
+   "p": "ta",
+   "t": [
+    1
+   ],
+   "fr": "Elle",
+   "st": 0
+  },
+  {
+   "id": "k01_women",
+   "h": "我们",
+   "p": "wo-men",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Nous",
+   "st": 0
+  },
+  {
+   "id": "k01_shi",
+   "h": "是",
+   "p": "shi",
+   "t": [
+    4
+   ],
+   "fr": "Être, c’est",
+   "st": 0
+  },
+  {
+   "id": "k01_bu",
+   "h": "不",
+   "p": "bu",
+   "t": [
+    4
+   ],
+   "fr": "Ne… pas, non",
+   "st": 0
+  },
+  {
+   "id": "k01_jiao",
+   "h": "叫",
+   "p": "jiao",
+   "t": [
+    4
+   ],
+   "fr": "S’appeler",
+   "st": 0
+  },
+  {
+   "id": "k01_mingzi",
+   "h": "名字",
+   "p": "ming-zi",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Nom, prénom",
+   "st": 0
+  },
+  {
+   "id": "k01_ren",
+   "h": "人",
+   "p": "ren",
+   "t": [
+    2
+   ],
+   "fr": "Personne",
+   "st": 0
+  },
+  {
+   "id": "k01_zhongguo",
+   "h": "中国",
+   "p": "Zhong-guo",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Chine",
+   "st": 0
+  },
+  {
+   "id": "k01_renshi",
+   "h": "认识",
+   "p": "ren-shi",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Connaître (quelqu’un)",
+   "st": 0
+  },
+  {
+   "id": "k01_gaoxing",
+   "h": "高兴",
+   "p": "gao-xing",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Content, heureux",
+   "st": 0
+  },
+  {
+   "id": "k01_shenme",
+   "h": "什么",
+   "p": "shen-me",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Quoi, quel",
+   "st": 0
+  },
+  {
+   "id": "k01_shei",
+   "h": "谁",
+   "p": "shei",
+   "t": [
+    2
+   ],
+   "fr": "Qui",
+   "st": 0
+  },
+  {
+   "id": "k01_s_mingzi",
+   "h": "你叫什么名字",
+   "p": "ni jiao shen-me ming-zi",
+   "t": [
+    3,
+    4,
+    2,
+    0,
+    2,
+    0
+   ],
+   "fr": "Comment tu t’appelles ?",
+   "st": 0,
+   "m": "Demande son prénom à un collègue que tu ne connais pas bien : 你叫什么名字？"
+  },
+  {
+   "id": "k01_s_duoge",
+   "h": "我是多哥人",
+   "p": "wo shi Duo-ge ren",
+   "t": [
+    3,
+    4,
+    1,
+    1,
+    2
+   ],
+   "fr": "Je suis Togolaise",
+   "st": 0,
+   "m": "Quand un collègue chinois te parle, présente-toi : 我是多哥人。"
+  },
+  {
+   "id": "k01_s_gaoxing",
+   "h": "认识你很高兴",
+   "p": "ren-shi ni hen gao-xing",
+   "t": [
+    4,
+    0,
+    3,
+    3,
+    1,
+    4
+   ],
+   "fr": "Enchantée",
+   "st": 0,
+   "s": [
+    4,
+    0,
+    2,
+    3,
+    1,
+    4
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "人",
+    "p": "ren",
+    "t": 2,
+    "fr": "personne"
+   },
+   {
+    "h": "认",
+    "p": "ren",
+    "t": 4,
+    "fr": "reconnaître"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "我",
+   "p": "wǒ",
+   "m": "je",
+   "r": "戈",
+   "rm": "hallebarde"
+  },
+  {
+   "c": "你",
+   "p": "nǐ",
+   "m": "tu",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "他",
+   "p": "tā",
+   "m": "il",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "她",
+   "p": "tā",
+   "m": "elle",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "是",
+   "p": "shì",
+   "m": "être",
+   "r": "日",
+   "rm": "soleil"
+  },
+  {
+   "c": "不",
+   "p": "bù",
+   "m": "ne… pas",
+   "r": "一",
+   "rm": "un"
+  },
+  {
+   "c": "人",
+   "p": "rén",
+   "m": "personne",
+   "r": "人",
+   "rm": "personne"
+  },
+  {
+   "c": "国",
+   "p": "guó",
+   "m": "pays",
+   "r": "囗",
+   "rm": "enclos"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-presenter",
+   "st": 0,
+   "title": "Une nouvelle collègue",
+   "who": "新同事",
+   "whoFr": "Nouvelle collègue",
+   "intro": "Une nouvelle employée chinoise arrive dans ton atelier.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好！你叫什么名字？",
+     "p": "Nǐ hǎo! Nǐ jiào shénme míngzi?",
+     "fr": "Bonjour ! Comment tu t’appelles ?",
+     "o": [
+      {
+       "h": "我叫{name}。你呢？",
+       "p": "Wǒ jiào {name}. Nǐ ne?",
+       "fr": "Je m’appelle {name}. Et toi ?",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我是中国人。",
+       "p": "Wǒ shì Zhōngguó rén.",
+       "fr": "Je suis chinoise.",
+       "fix": "Elle demande ton nom : réponds « 我叫… ». Et tu n’es pas chinoise !"
+      }
+     ]
+    },
+    "b": {
+     "h": "我叫王丽。你是哪国人？",
+     "p": "Wǒ jiào Wáng Lì. Nǐ shì nǎ guó rén?",
+     "fr": "Je m’appelle Wang Li. Tu viens de quel pays ?",
+     "o": [
+      {
+       "h": "我是多哥人。",
+       "p": "Wǒ shì Duōgē rén.",
+       "fr": "Je suis Togolaise.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我不是。",
+       "p": "Wǒ bú shì.",
+       "fr": "Je ne suis pas.",
+       "fix": "哪国人 = de quel pays. Réponds « 我是多哥人 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "认识你很高兴！",
+     "p": "Rènshi nǐ hěn gāoxìng!",
+     "fr": "Enchantée !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "幸会",
+   "p": "xìnghuì",
+   "fr": "Ravie de vous rencontrer (poli)",
+   "note": "Version très polie de 认识你很高兴, pour un patron ou un client."
+  }
+ ]
+}

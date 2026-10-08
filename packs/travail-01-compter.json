@@ -1,0 +1,277 @@
+{
+ "branch": "travail",
+ "title": "Usine · Compter à l’atelier",
+ "desc": "Compter les paires et les cartons, dire ce qui manque, faire le total de fin de poste.",
+ "grammar": {
+  "title": "Les classificateurs (量词)",
+  "explain": "Entre le nombre et l’objet, on met un petit mot qui dépend de l’objet : 双 (une paire), 箱 (un carton), 个 (le mot passe-partout). Et « deux » devant un classificateur se dit 两 (liǎng), jamais 二 (èr).",
+  "examples": [
+   {
+    "h": "一双鞋",
+    "p": "yì shuāng xié",
+    "fr": "une paire de chaussures"
+   },
+   {
+    "h": "两箱胶水",
+    "p": "liǎng xiāng jiāoshuǐ",
+    "fr": "deux cartons de colle"
+   },
+   {
+    "h": "三个人",
+    "p": "sān ge rén",
+    "fr": "trois personnes"
+   },
+   {
+    "h": "二十双",
+    "p": "èrshí shuāng",
+    "fr": "vingt paires (ici 二, car c’est « vingt »)"
+   }
+  ],
+  "tip": "Si tu ne connais pas le bon classificateur, utilise 个 (ge) : on te comprendra."
+ },
+ "items": [
+  {
+   "id": "n_liang",
+   "h": "两",
+   "p": "liang",
+   "t": [
+    3
+   ],
+   "fr": "Deux (devant une quantité)",
+   "st": 0
+  },
+  {
+   "id": "n_yibai",
+   "h": "一百",
+   "p": "yi-bai",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Cent (100)",
+   "st": 0
+  },
+  {
+   "id": "n_duoshaoshuang",
+   "h": "多少双",
+   "p": "duo-shao shuang",
+   "t": [
+    1,
+    0,
+    1
+   ],
+   "fr": "Combien de paires ?",
+   "st": 0,
+   "m": "Demande à un collègue combien de paires il a faites : 多少双？"
+  },
+  {
+   "id": "n_sanshishuang",
+   "h": "三十双鞋",
+   "p": "san-shi shuang xie",
+   "t": [
+    1,
+    2,
+    1,
+    2
+   ],
+   "fr": "Trente paires de chaussures",
+   "st": 0
+  },
+  {
+   "id": "n_yixiang",
+   "h": "一箱",
+   "p": "yi xiang",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Un carton",
+   "st": 0
+  },
+  {
+   "id": "n_bugou",
+   "h": "不够",
+   "p": "bu gou",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Pas assez",
+   "st": 0
+  },
+  {
+   "id": "n_haicha",
+   "h": "还差五双",
+   "p": "hai cha wu shuang",
+   "t": [
+    2,
+    4,
+    3,
+    1
+   ],
+   "fr": "Il manque encore cinq paires",
+   "st": 0
+  },
+  {
+   "id": "n_yigong",
+   "h": "一共多少",
+   "p": "yi-gong duo-shao",
+   "t": [
+    2,
+    4,
+    1,
+    0
+   ],
+   "fr": "Combien au total ?",
+   "st": 0,
+   "m": "À la fin du comptage, demande : 一共多少？"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "箱",
+    "p": "xiang",
+    "t": 1,
+    "fr": "carton, caisse"
+   },
+   {
+    "h": "想",
+    "p": "xiang",
+    "t": 3,
+    "fr": "vouloir"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "双",
+   "p": "shuāng",
+   "m": "paire",
+   "r": "又",
+   "rm": "main"
+  },
+  {
+   "c": "箱",
+   "p": "xiāng",
+   "m": "caisse",
+   "r": "竹",
+   "rm": "bambou"
+  },
+  {
+   "c": "鞋",
+   "p": "xié",
+   "m": "chaussure",
+   "r": "革",
+   "rm": "cuir"
+  },
+  {
+   "c": "够",
+   "p": "gòu",
+   "m": "assez",
+   "r": "夕",
+   "rm": "soir"
+  },
+  {
+   "c": "差",
+   "p": "chà",
+   "m": "manquer",
+   "r": "工",
+   "rm": "travail"
+  },
+  {
+   "c": "共",
+   "p": "gòng",
+   "m": "ensemble",
+   "r": "八",
+   "rm": "huit"
+  }
+ ],
+ "convs": [
+  {
+   "id": "compter",
+   "st": 0,
+   "title": "Le comptage de fin de poste",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Fin de journée. Ton chef d’équipe vérifie la production.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "今天做了多少双？",
+     "p": "Jīntiān zuò le duōshao shuāng?",
+     "fr": "Combien de paires as-tu faites aujourd’hui ?",
+     "o": [
+      {
+       "h": "做了八十双。",
+       "p": "Zuò le bāshí shuāng.",
+       "fr": "J’en ai fait quatre-vingts.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "八点。",
+       "p": "Bā diǎn.",
+       "fr": "Huit heures.",
+       "fix": "八点 = huit heures. Il demande combien : « 八十双 » (80 paires)."
+      }
+     ]
+    },
+    "b": {
+     "h": "不够，今天要一百双。",
+     "p": "Bú gòu, jīntiān yào yìbǎi shuāng.",
+     "fr": "Pas assez, aujourd’hui il en faut cent.",
+     "o": [
+      {
+       "h": "还差二十双，我马上做。",
+       "p": "Hái chà èrshí shuāng, wǒ mǎshàng zuò.",
+       "fr": "Il en manque vingt, je m’y mets tout de suite.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "还差十双。",
+       "p": "Hái chà shí shuāng.",
+       "fr": "Il en manque dix.",
+       "fix": "100 − 80 = 20 : « 还差二十双 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "胶水还有几箱？",
+     "p": "Jiāoshuǐ hái yǒu jǐ xiāng?",
+     "fr": "Il reste combien de cartons de colle ?",
+     "o": [
+      {
+       "h": "还有两箱。",
+       "p": "Hái yǒu liǎng xiāng.",
+       "fr": "Il en reste deux.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "还有二箱。",
+       "p": "Hái yǒu èr xiāng.",
+       "fr": "(erreur)",
+       "fix": "Devant un classificateur, on dit 两, pas 二 : « 两箱 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，加油！",
+     "p": "Hǎo, jiāyóu!",
+     "fr": "Bien, courage !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "一五一十",
+   "p": "yī wǔ yī shí",
+   "fr": "En détail, point par point",
+   "note": "Mot à mot « un, cinq, un, dix » : tout raconter, comme si on comptait."
+  }
+ ]
+}

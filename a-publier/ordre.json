@@ -1,0 +1,40 @@
+{
+ "note": "Ordre de publication. Le robot du lundi prend le premier chapitre encore présent dans ce dossier.",
+ "chapitres": [
+  {
+   "id": "hsk1-04",
+   "file": "hsk1-04-temps.json",
+   "title": "HSK 1 · 4 — L’heure et la date"
+  },
+  {
+   "id": "hsk1-05",
+   "file": "hsk1-05-manger.json",
+   "title": "HSK 1 · 5 — Manger et boire"
+  },
+  {
+   "id": "hsk1-06",
+   "file": "hsk1-06-acheter.json",
+   "title": "HSK 1 · 6 — Acheter"
+  },
+  {
+   "id": "hsk1-07",
+   "file": "hsk1-07-lieux.json",
+   "title": "HSK 1 · 7 — Où ? Les lieux"
+  },
+  {
+   "id": "hsk1-08",
+   "file": "hsk1-08-deplacements.json",
+   "title": "HSK 1 · 8 — Se déplacer et téléphoner"
+  },
+  {
+   "id": "hsk1-09",
+   "file": "hsk1-09-activites.json",
+   "title": "HSK 1 · 9 — Ce qu’on fait"
+  },
+  {
+   "id": "hsk1-10",
+   "file": "hsk1-10-meteo-politesse.json",
+   "title": "HSK 1 · 10 — Météo, humeur et politesse"
+  }
+ ]
+}

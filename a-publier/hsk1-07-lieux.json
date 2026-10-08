@@ -1,0 +1,345 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 7 — Où ? Les lieux",
+ "desc": "Dire où tu habites, où se trouve quelque chose, devant, derrière. 14 mots HSK 1.",
+ "grammar": {
+  "title": "在 : être à (un endroit)",
+  "explain": "在 (zài) + lieu = « être à ». 我在家 = je suis à la maison. Pour demander où, remplace le lieu par 哪儿 (nǎr) : 你在哪儿 ? Le chinois ne change pas l’ordre des mots pour poser une question.",
+  "examples": [
+   {
+    "h": "我在家。",
+    "p": "Wǒ zài jiā.",
+    "fr": "Je suis à la maison."
+   },
+   {
+    "h": "学校在哪儿？",
+    "p": "Xuéxiào zài nǎr?",
+    "fr": "Où est l’école ?"
+   },
+   {
+    "h": "医院在学校后面。",
+    "p": "Yīyuàn zài xuéxiào hòumiàn.",
+    "fr": "L’hôpital est derrière l’école."
+   },
+   {
+    "h": "我住在北京。",
+    "p": "Wǒ zhù zài Běijīng.",
+    "fr": "J’habite à Pékin."
+   }
+  ],
+  "tip": "这 (zhè) = ce…ci, près de toi. 那 (nà) = ce…là, plus loin."
+ },
+ "items": [
+  {
+   "id": "k07_zai",
+   "h": "在",
+   "p": "zai",
+   "t": [
+    4
+   ],
+   "fr": "Être à, se trouver",
+   "st": 0
+  },
+  {
+   "id": "k07_na",
+   "h": "哪",
+   "p": "na",
+   "t": [
+    3
+   ],
+   "fr": "Quel, lequel",
+   "st": 0
+  },
+  {
+   "id": "k07_nar",
+   "h": "哪儿",
+   "p": "na-r",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Où",
+   "st": 0
+  },
+  {
+   "id": "k07_zhe",
+   "h": "这",
+   "p": "zhe",
+   "t": [
+    4
+   ],
+   "fr": "Ce, ceci",
+   "st": 0
+  },
+  {
+   "id": "k07_na2",
+   "h": "那",
+   "p": "na",
+   "t": [
+    4
+   ],
+   "fr": "Ce…là, cela",
+   "st": 0
+  },
+  {
+   "id": "k07_li",
+   "h": "里",
+   "p": "li",
+   "t": [
+    3
+   ],
+   "fr": "Dedans",
+   "st": 0
+  },
+  {
+   "id": "k07_shang",
+   "h": "上",
+   "p": "shang",
+   "t": [
+    4
+   ],
+   "fr": "Sur, dessus",
+   "st": 0
+  },
+  {
+   "id": "k07_xia",
+   "h": "下",
+   "p": "xia",
+   "t": [
+    4
+   ],
+   "fr": "Sous, dessous",
+   "st": 0
+  },
+  {
+   "id": "k07_qianmian",
+   "h": "前面",
+   "p": "qian-mian",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Devant",
+   "st": 0
+  },
+  {
+   "id": "k07_houmian",
+   "h": "后面",
+   "p": "hou-mian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Derrière",
+   "st": 0
+  },
+  {
+   "id": "k07_zhu",
+   "h": "住",
+   "p": "zhu",
+   "t": [
+    4
+   ],
+   "fr": "Habiter",
+   "st": 0
+  },
+  {
+   "id": "k07_xuexiao",
+   "h": "学校",
+   "p": "xue-xiao",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "École",
+   "st": 0
+  },
+  {
+   "id": "k07_yiyuan",
+   "h": "医院",
+   "p": "yi-yuan",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Hôpital",
+   "st": 0
+  },
+  {
+   "id": "k07_beijing",
+   "h": "北京",
+   "p": "Bei-jing",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Pékin",
+   "st": 0
+  },
+  {
+   "id": "k07_s_zhuzai",
+   "h": "你住在哪儿",
+   "p": "ni zhu zai na-r",
+   "t": [
+    3,
+    4,
+    4,
+    3,
+    0
+   ],
+   "fr": "Tu habites où ?",
+   "st": 0,
+   "m": "Demande à un collègue chinois où il habite : 你住在哪儿？"
+  },
+  {
+   "id": "k07_s_yiyuan",
+   "h": "医院在学校后面",
+   "p": "yi-yuan zai xue-xiao hou-mian",
+   "t": [
+    1,
+    4,
+    4,
+    2,
+    4,
+    4,
+    4
+   ],
+   "fr": "L’hôpital est derrière l’école",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "住",
+    "p": "zhu",
+    "t": 4,
+    "fr": "habiter"
+   },
+   {
+    "h": "猪",
+    "p": "zhu",
+    "t": 1,
+    "fr": "cochon"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "在",
+   "p": "zài",
+   "m": "être à",
+   "r": "土",
+   "rm": "terre"
+  },
+  {
+   "c": "哪",
+   "p": "nǎ",
+   "m": "quel",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "这",
+   "p": "zhè",
+   "m": "ce, ceci",
+   "r": "辶",
+   "rm": "marche"
+  },
+  {
+   "c": "那",
+   "p": "nà",
+   "m": "cela",
+   "r": "阝",
+   "rm": "ville"
+  },
+  {
+   "c": "住",
+   "p": "zhù",
+   "m": "habiter",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "校",
+   "p": "xiào",
+   "m": "école",
+   "r": "木",
+   "rm": "arbre"
+  },
+  {
+   "c": "医",
+   "p": "yī",
+   "m": "médecine",
+   "r": "匚",
+   "rm": "coffre"
+  },
+  {
+   "c": "院",
+   "p": "yuàn",
+   "m": "cour, institution",
+   "r": "阝",
+   "rm": "ville"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-lieux",
+   "st": 0,
+   "title": "Où habites-tu ?",
+   "who": "同事",
+   "whoFr": "Collègue",
+   "intro": "Un collègue veut organiser un covoiturage.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你住在哪儿？",
+     "p": "Nǐ zhù zài nǎr?",
+     "fr": "Tu habites où ?",
+     "o": [
+      {
+       "h": "我住在学校后面。",
+       "p": "Wǒ zhù zài xuéxiào hòumiàn.",
+       "fr": "J’habite derrière l’école.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我在工作。",
+       "p": "Wǒ zài gōngzuò.",
+       "fr": "Je suis en train de travailler.",
+       "fix": "住在哪儿 = tu habites où. Réponds « 我住在… »."
+      }
+     ]
+    },
+    "b": {
+     "h": "医院在哪儿？",
+     "p": "Yīyuàn zài nǎr?",
+     "fr": "Et l’hôpital, il est où ?",
+     "o": [
+      {
+       "h": "医院在商店前面。",
+       "p": "Yīyuàn zài shāngdiàn qiánmiàn.",
+       "fr": "L’hôpital est devant le magasin.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我去医院。",
+       "p": "Wǒ qù yīyuàn.",
+       "fr": "Je vais à l’hôpital.",
+       "fix": "Il demande où se trouve l’hôpital : « 医院在… »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，谢谢你！",
+     "p": "Hǎo, xièxie nǐ!",
+     "fr": "Bien, merci !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

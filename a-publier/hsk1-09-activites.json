@@ -1,0 +1,388 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 9 — Ce qu’on fait",
+ "desc": "Regarder, écouter, lire, écrire, travailler, étudier le chinois. 18 mots HSK 1.",
+ "grammar": {
+  "title": "了 : l’action est faite",
+  "explain": "了 (le) après un verbe indique que l’action est terminée : 我吃了 = j’ai mangé. Pour dire qu’on ne l’a pas fait, on utilise 没 devant le verbe, sans 了 : 我没吃.",
+  "examples": [
+   {
+    "h": "我吃了。",
+    "p": "Wǒ chī le.",
+    "fr": "J’ai mangé."
+   },
+   {
+    "h": "我买了一本书。",
+    "p": "Wǒ mǎi le yì běn shū.",
+    "fr": "J’ai acheté un livre."
+   },
+   {
+    "h": "你看了吗？",
+    "p": "Nǐ kàn le ma?",
+    "fr": "Tu l’as vu ?"
+   },
+   {
+    "h": "我没看。",
+    "p": "Wǒ méi kàn.",
+    "fr": "Je ne l’ai pas vu."
+   }
+  ],
+  "tip": "在 + verbe = « en train de » : 我在学习汉语 = je suis en train d’apprendre le chinois."
+ },
+ "items": [
+  {
+   "id": "k09_kan",
+   "h": "看",
+   "p": "kan",
+   "t": [
+    4
+   ],
+   "fr": "Regarder, lire",
+   "st": 0
+  },
+  {
+   "id": "k09_kanjian",
+   "h": "看见",
+   "p": "kan-jian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Voir",
+   "st": 0
+  },
+  {
+   "id": "k09_ting",
+   "h": "听",
+   "p": "ting",
+   "t": [
+    1
+   ],
+   "fr": "Écouter",
+   "st": 0
+  },
+  {
+   "id": "k09_shuo",
+   "h": "说",
+   "p": "shuo",
+   "t": [
+    1
+   ],
+   "fr": "Parler, dire",
+   "st": 0
+  },
+  {
+   "id": "k09_du",
+   "h": "读",
+   "p": "du",
+   "t": [
+    2
+   ],
+   "fr": "Lire (à voix haute)",
+   "st": 0
+  },
+  {
+   "id": "k09_xie",
+   "h": "写",
+   "p": "xie",
+   "t": [
+    3
+   ],
+   "fr": "Écrire",
+   "st": 0
+  },
+  {
+   "id": "k09_zi",
+   "h": "字",
+   "p": "zi",
+   "t": [
+    4
+   ],
+   "fr": "Caractère",
+   "st": 0
+  },
+  {
+   "id": "k09_shu",
+   "h": "书",
+   "p": "shu",
+   "t": [
+    1
+   ],
+   "fr": "Livre",
+   "st": 0
+  },
+  {
+   "id": "k09_ben",
+   "h": "本",
+   "p": "ben",
+   "t": [
+    3
+   ],
+   "fr": "Classificateur des livres",
+   "st": 0
+  },
+  {
+   "id": "k09_xuexi",
+   "h": "学习",
+   "p": "xue-xi",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Étudier",
+   "st": 0
+  },
+  {
+   "id": "k09_hanyu",
+   "h": "汉语",
+   "p": "Han-yu",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Langue chinoise",
+   "st": 0
+  },
+  {
+   "id": "k09_gongzuo",
+   "h": "工作",
+   "p": "gong-zuo",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Travailler, travail",
+   "st": 0
+  },
+  {
+   "id": "k09_zuo",
+   "h": "做",
+   "p": "zuo",
+   "t": [
+    4
+   ],
+   "fr": "Faire",
+   "st": 0
+  },
+  {
+   "id": "k09_shuijiao",
+   "h": "睡觉",
+   "p": "shui-jiao",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Dormir",
+   "st": 0
+  },
+  {
+   "id": "k09_diannao",
+   "h": "电脑",
+   "p": "dian-nao",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Ordinateur",
+   "st": 0
+  },
+  {
+   "id": "k09_dianshi",
+   "h": "电视",
+   "p": "dian-shi",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Télévision",
+   "st": 0
+  },
+  {
+   "id": "k09_dianying",
+   "h": "电影",
+   "p": "dian-ying",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Film",
+   "st": 0
+  },
+  {
+   "id": "k09_le",
+   "h": "了",
+   "p": "le",
+   "t": [
+    0
+   ],
+   "fr": "Action terminée",
+   "st": 0
+  },
+  {
+   "id": "k09_s_xuexi",
+   "h": "我在学习汉语",
+   "p": "wo zai xue-xi Han-yu",
+   "t": [
+    3,
+    4,
+    2,
+    2,
+    4,
+    3
+   ],
+   "fr": "J’apprends le chinois",
+   "st": 0,
+   "m": "Dis à un collègue chinois que tu apprends sa langue : 我在学习汉语。"
+  },
+  {
+   "id": "k09_s_dianying",
+   "h": "我看了一个电影",
+   "p": "wo kan le yi ge dian-ying",
+   "t": [
+    3,
+    4,
+    0,
+    2,
+    0,
+    4,
+    3
+   ],
+   "fr": "J’ai regardé un film",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "书",
+    "p": "shu",
+    "t": 1,
+    "fr": "livre"
+   },
+   {
+    "h": "树",
+    "p": "shu",
+    "t": 4,
+    "fr": "arbre"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "看",
+   "p": "kàn",
+   "m": "regarder",
+   "r": "目",
+   "rm": "œil"
+  },
+  {
+   "c": "听",
+   "p": "tīng",
+   "m": "écouter",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "说",
+   "p": "shuō",
+   "m": "parler",
+   "r": "讠",
+   "rm": "parole"
+  },
+  {
+   "c": "读",
+   "p": "dú",
+   "m": "lire",
+   "r": "讠",
+   "rm": "parole"
+  },
+  {
+   "c": "写",
+   "p": "xiě",
+   "m": "écrire",
+   "r": "冖",
+   "rm": "couvercle"
+  },
+  {
+   "c": "字",
+   "p": "zì",
+   "m": "caractère",
+   "r": "子",
+   "rm": "enfant"
+  },
+  {
+   "c": "学",
+   "p": "xué",
+   "m": "étudier",
+   "r": "子",
+   "rm": "enfant"
+  },
+  {
+   "c": "做",
+   "p": "zuò",
+   "m": "faire",
+   "r": "亻",
+   "rm": "personne"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-activites",
+   "st": 0,
+   "title": "Ton week-end",
+   "who": "同事",
+   "whoFr": "Collègue",
+   "intro": "Lundi matin, un collègue te demande ce que tu as fait.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "昨天你做什么了？",
+     "p": "Zuótiān nǐ zuò shénme le?",
+     "fr": "Qu’est-ce que tu as fait hier ?",
+     "o": [
+      {
+       "h": "我看了一个电影。",
+       "p": "Wǒ kàn le yí ge diànyǐng.",
+       "fr": "J’ai regardé un film.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我明天看电影。",
+       "p": "Wǒ míngtiān kàn diànyǐng.",
+       "fr": "Demain je regarde un film.",
+       "fix": "Il parle d’hier (昨天) : utilise 了 : « 我看了一个电影 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "你会说汉语吗？",
+     "p": "Nǐ huì shuō Hànyǔ ma?",
+     "fr": "Tu parles chinois ?",
+     "o": [
+      {
+       "h": "会一点儿，我在学习。",
+       "p": "Huì yìdiǎnr, wǒ zài xuéxí.",
+       "fr": "Un peu, je suis en train d’apprendre.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我在睡觉。",
+       "p": "Wǒ zài shuìjiào.",
+       "fr": "Je suis en train de dormir.",
+       "fix": "Il demande si tu parles chinois : « 会一点儿 » (un peu)."
+      }
+     ]
+    },
+    "end": {
+     "h": "你说得很好！",
+     "p": "Nǐ shuō de hěn hǎo!",
+     "fr": "Tu le parles très bien !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}

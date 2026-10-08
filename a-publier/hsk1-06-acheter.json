@@ -1,0 +1,361 @@
+{
+ "branch": "hsk",
+ "level": 1,
+ "title": "HSK 1 · 6 — Acheter",
+ "desc": "Faire des achats, demander le prix, dire que c’est trop. 12 mots HSK 1.",
+ "grammar": {
+  "title": "太 … 了 : « trop » et les exclamations",
+  "explain": "太 (tài) + adjectif + 了 (le) veut dire « trop… » : 太多了 = c’est trop. La même forme sert aussi à s’enthousiasmer : 太好了 ! = génial !",
+  "examples": [
+   {
+    "h": "太多了！",
+    "p": "Tài duō le!",
+    "fr": "C’est trop !"
+   },
+   {
+    "h": "这个太小了。",
+    "p": "Zhège tài xiǎo le.",
+    "fr": "Celui-ci est trop petit."
+   },
+   {
+    "h": "太漂亮了！",
+    "p": "Tài piàoliang le!",
+    "fr": "Trop beau !"
+   },
+   {
+    "h": "这个多少钱？",
+    "p": "Zhège duōshao qián?",
+    "fr": "Combien coûte celui-ci ?"
+   }
+  ],
+  "tip": "À l’oral, on dit 块 (kuài) pour le yuan : 十块 = 10 yuans."
+ },
+ "items": [
+  {
+   "id": "k06_mai",
+   "h": "买",
+   "p": "mai",
+   "t": [
+    3
+   ],
+   "fr": "Acheter",
+   "st": 0
+  },
+  {
+   "id": "k06_qian",
+   "h": "钱",
+   "p": "qian",
+   "t": [
+    2
+   ],
+   "fr": "Argent",
+   "st": 0
+  },
+  {
+   "id": "k06_kuai",
+   "h": "块",
+   "p": "kuai",
+   "t": [
+    4
+   ],
+   "fr": "Yuan (à l’oral), morceau",
+   "st": 0
+  },
+  {
+   "id": "k06_dongxi",
+   "h": "东西",
+   "p": "dong-xi",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Chose, affaires",
+   "st": 0
+  },
+  {
+   "id": "k06_shangdian",
+   "h": "商店",
+   "p": "shang-dian",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Magasin",
+   "st": 0
+  },
+  {
+   "id": "k06_yifu",
+   "h": "衣服",
+   "p": "yi-fu",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Vêtement",
+   "st": 0
+  },
+  {
+   "id": "k06_duo",
+   "h": "多",
+   "p": "duo",
+   "t": [
+    1
+   ],
+   "fr": "Beaucoup",
+   "st": 0
+  },
+  {
+   "id": "k06_shao",
+   "h": "少",
+   "p": "shao",
+   "t": [
+    3
+   ],
+   "fr": "Peu",
+   "st": 0
+  },
+  {
+   "id": "k06_tai",
+   "h": "太",
+   "p": "tai",
+   "t": [
+    4
+   ],
+   "fr": "Trop",
+   "st": 0
+  },
+  {
+   "id": "k06_yidianr",
+   "h": "一点儿",
+   "p": "yi-dian-r",
+   "t": [
+    4,
+    3,
+    0
+   ],
+   "fr": "Un peu",
+   "st": 0
+  },
+  {
+   "id": "k06_xie",
+   "h": "些",
+   "p": "xie",
+   "t": [
+    1
+   ],
+   "fr": "Quelques",
+   "st": 0
+  },
+  {
+   "id": "k06_piaoliang",
+   "h": "漂亮",
+   "p": "piao-liang",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Joli, beau",
+   "st": 0
+  },
+  {
+   "id": "k06_s_duoshaoqian",
+   "h": "这个多少钱",
+   "p": "zhe-ge duo-shao qian",
+   "t": [
+    4,
+    0,
+    1,
+    0,
+    2
+   ],
+   "fr": "Combien coûte celui-ci ?",
+   "st": 0,
+   "m": "Dans un magasin chinois, demande un prix : 这个多少钱？"
+  },
+  {
+   "id": "k06_s_taiduole",
+   "h": "太多了",
+   "p": "tai duo le",
+   "t": [
+    4,
+    1,
+    0
+   ],
+   "fr": "C’est trop",
+   "st": 0
+  },
+  {
+   "id": "k06_s_maidongxi",
+   "h": "我想买一些东西",
+   "p": "wo xiang mai yi-xie dong-xi",
+   "t": [
+    3,
+    3,
+    3,
+    4,
+    1,
+    1,
+    0
+   ],
+   "fr": "Je voudrais acheter quelques affaires",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    4,
+    1,
+    1,
+    0
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "少",
+    "p": "shao",
+    "t": 3,
+    "fr": "peu"
+   },
+   {
+    "h": "烧",
+    "p": "shao",
+    "t": 1,
+    "fr": "brûler"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "钱",
+   "p": "qián",
+   "m": "argent",
+   "r": "钅",
+   "rm": "métal"
+  },
+  {
+   "c": "块",
+   "p": "kuài",
+   "m": "morceau, yuan",
+   "r": "土",
+   "rm": "terre"
+  },
+  {
+   "c": "店",
+   "p": "diàn",
+   "m": "boutique",
+   "r": "广",
+   "rm": "abri"
+  },
+  {
+   "c": "衣",
+   "p": "yī",
+   "m": "vêtement",
+   "r": "衣",
+   "rm": "vêtement"
+  },
+  {
+   "c": "服",
+   "p": "fú",
+   "m": "vêtement",
+   "r": "月",
+   "rm": "lune"
+  },
+  {
+   "c": "少",
+   "p": "shǎo",
+   "m": "peu",
+   "r": "小",
+   "rm": "petit"
+  },
+  {
+   "c": "太",
+   "p": "tài",
+   "m": "trop",
+   "r": "大",
+   "rm": "grand"
+  },
+  {
+   "c": "东",
+   "p": "dōng",
+   "m": "est",
+   "r": "一",
+   "rm": "un"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk1-acheter",
+   "st": 0,
+   "title": "Une robe au magasin",
+   "who": "店员",
+   "whoFr": "Vendeuse",
+   "intro": "Tu cherches une tenue dans un magasin tenu par une commerçante chinoise.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你想买什么？",
+     "p": "Nǐ xiǎng mǎi shénme?",
+     "fr": "Tu veux acheter quoi ?",
+     "o": [
+      {
+       "h": "我想买衣服。",
+       "p": "Wǒ xiǎng mǎi yīfu.",
+       "fr": "Je voudrais acheter des vêtements.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我想卖衣服。",
+       "p": "Wǒ xiǎng mài yīfu.",
+       "fr": "Je veux vendre des vêtements.",
+       "fix": "卖 mài = vendre, 买 mǎi = acheter. Seul le ton change !"
+      }
+     ]
+    },
+    "b": {
+     "h": "这个很漂亮，一百块。",
+     "p": "Zhège hěn piàoliang, yìbǎi kuài.",
+     "fr": "Celle-ci est très jolie, cent yuans.",
+     "o": [
+      {
+       "h": "太多了！少一点儿，可以吗？",
+       "p": "Tài duō le! Shǎo yìdiǎnr, kěyǐ ma?",
+       "fr": "C’est trop ! Un peu moins, c’est possible ?",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "好，我买。",
+       "p": "Hǎo, wǒ mǎi.",
+       "fr": "D’accord, je la prends.",
+       "ok": 1,
+       "n": "end"
+      }
+     ]
+    },
+    "c": {
+     "h": "好吧，八十块。",
+     "p": "Hǎo ba, bāshí kuài.",
+     "fr": "Bon, quatre-vingts yuans.",
+     "o": [
+      {
+       "h": "好，谢谢！",
+       "p": "Hǎo, xièxie!",
+       "fr": "D’accord, merci !",
+       "ok": 1,
+       "n": "end"
+      }
+     ]
+    },
+    "end": {
+     "h": "谢谢，再见！",
+     "p": "Xièxie, zàijiàn!",
+     "fr": "Merci, au revoir !",
+     "end": 1
+    }
+   }
+  }
+ ]
+}
