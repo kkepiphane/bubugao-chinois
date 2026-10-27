@@ -1,0 +1,449 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 1 — Frères, sœurs et présentations",
+ "desc": "Parler de tes frères et sœurs, de ton mari ou de ta femme, et te présenter poliment. 16 mots HSK 2.",
+ "grammar": {
+  "title": "也 : « aussi »",
+  "explain": "也 (yě) veut dire « aussi ». Il se place toujours juste avant le verbe (ou avant 很 + adjectif), jamais au début ni à la fin de la phrase. Pour dire « moi aussi », on dit 我也是 (mot à mot « moi aussi suis »).",
+  "examples": [
+   {
+    "h": "我也是多哥人。",
+    "p": "Wǒ yě shì Duōgē rén.",
+    "fr": "Je suis Togolaise aussi."
+   },
+   {
+    "h": "她也有一个哥哥。",
+    "p": "Tā yě yǒu yí ge gēge.",
+    "fr": "Elle aussi a un grand frère."
+   },
+   {
+    "h": "我们也很高兴。",
+    "p": "Wǒmen yě hěn gāoxìng.",
+    "fr": "Nous aussi, nous sommes contents."
+   },
+   {
+    "h": "——我很忙。——我也是。",
+    "p": "— Wǒ hěn máng. — Wǒ yě shì.",
+    "fr": "— Je suis très occupée. — Moi aussi."
+   }
+  ],
+  "tip": "Ne dis jamais 也我 : la personne vient d’abord, puis 也, puis le verbe. 我也去 = moi aussi j’y vais."
+ },
+ "items": [
+  {
+   "id": "h201_gege",
+   "h": "哥哥",
+   "p": "ge-ge",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Grand frère",
+   "st": 0
+  },
+  {
+   "id": "h201_jiejie",
+   "h": "姐姐",
+   "p": "jie-jie",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Grande sœur",
+   "st": 0
+  },
+  {
+   "id": "h201_didi",
+   "h": "弟弟",
+   "p": "di-di",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Petit frère",
+   "st": 0
+  },
+  {
+   "id": "h201_meimei",
+   "h": "妹妹",
+   "p": "mei-mei",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Petite sœur",
+   "st": 0
+  },
+  {
+   "id": "h201_zhangfu",
+   "h": "丈夫",
+   "p": "zhang-fu",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Mari",
+   "st": 0
+  },
+  {
+   "id": "h201_qizi",
+   "h": "妻子",
+   "p": "qi-zi",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Épouse",
+   "st": 0
+  },
+  {
+   "id": "h201_haizi",
+   "h": "孩子",
+   "p": "hai-zi",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Enfant",
+   "st": 0
+  },
+  {
+   "id": "h201_nanren",
+   "h": "男人",
+   "p": "nan-ren",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Homme",
+   "st": 0
+  },
+  {
+   "id": "h201_nvren",
+   "h": "女人",
+   "p": "nv-ren",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Femme",
+   "st": 0
+  },
+  {
+   "id": "h201_nin",
+   "h": "您",
+   "p": "nin",
+   "t": [
+    2
+   ],
+   "fr": "Vous (poli, à une seule personne)",
+   "st": 0
+  },
+  {
+   "id": "h201_xing",
+   "h": "姓",
+   "p": "xing",
+   "t": [
+    4
+   ],
+   "fr": "Avoir pour nom de famille",
+   "st": 0
+  },
+  {
+   "id": "h201_jieshao",
+   "h": "介绍",
+   "p": "jie-shao",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Présenter",
+   "st": 0
+  },
+  {
+   "id": "h201_dajia",
+   "h": "大家",
+   "p": "da-jia",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Tout le monde",
+   "st": 0
+  },
+  {
+   "id": "h201_ye",
+   "h": "也",
+   "p": "ye",
+   "t": [
+    3
+   ],
+   "fr": "Aussi",
+   "st": 0
+  },
+  {
+   "id": "h201_shengri",
+   "h": "生日",
+   "p": "sheng-ri",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Anniversaire",
+   "st": 0
+  },
+  {
+   "id": "h201_kuaile",
+   "h": "快乐",
+   "p": "kuai-le",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Joyeux, heureux",
+   "st": 0
+  },
+  {
+   "id": "h201_s_guixing",
+   "h": "您贵姓",
+   "p": "nin gui xing",
+   "t": [
+    2,
+    4,
+    4
+   ],
+   "fr": "Quel est votre nom de famille ? (poli)",
+   "st": 0,
+   "m": "Demande poliment son nom de famille à un chef chinois que tu ne connais pas : 您贵姓？"
+  },
+  {
+   "id": "h201_s_jieshao",
+   "h": "我来介绍一下",
+   "p": "wo lai jie-shao yi-xia",
+   "t": [
+    3,
+    2,
+    4,
+    4,
+    2,
+    4
+   ],
+   "fr": "Je vous présente…",
+   "st": 0
+  },
+  {
+   "id": "h201_s_shengri",
+   "h": "生日快乐",
+   "p": "sheng-ri kuai-le",
+   "t": [
+    1,
+    4,
+    4,
+    4
+   ],
+   "fr": "Joyeux anniversaire !",
+   "st": 0,
+   "m": "Le jour de l’anniversaire d’une collègue, dis-lui : 生日快乐！"
+  },
+  {
+   "id": "h201_s_yeshi",
+   "h": "我也是",
+   "p": "wo ye shi",
+   "t": [
+    3,
+    3,
+    4
+   ],
+   "fr": "Moi aussi",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "妹",
+    "p": "mei",
+    "t": 4,
+    "fr": "petite sœur"
+   },
+   {
+    "h": "没",
+    "p": "mei",
+    "t": 2,
+    "fr": "ne… pas (avoir)"
+   }
+  ],
+  [
+   {
+    "h": "姐",
+    "p": "jie",
+    "t": 3,
+    "fr": "grande sœur"
+   },
+   {
+    "h": "介",
+    "p": "jie",
+    "t": 4,
+    "fr": "présenter"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "哥",
+   "p": "gē",
+   "m": "grand frère",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "姐",
+   "p": "jiě",
+   "m": "grande sœur",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "弟",
+   "p": "dì",
+   "m": "petit frère",
+   "r": "弓",
+   "rm": "arc"
+  },
+  {
+   "c": "妹",
+   "p": "mèi",
+   "m": "petite sœur",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "孩",
+   "p": "hái",
+   "m": "enfant",
+   "r": "子",
+   "rm": "enfant"
+  },
+  {
+   "c": "男",
+   "p": "nán",
+   "m": "homme",
+   "r": "田",
+   "rm": "champ"
+  },
+  {
+   "c": "您",
+   "p": "nín",
+   "m": "vous (poli)",
+   "r": "心",
+   "rm": "cœur"
+  },
+  {
+   "c": "姓",
+   "p": "xìng",
+   "m": "nom de famille",
+   "r": "女",
+   "rm": "femme"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-famille",
+   "st": 0,
+   "title": "Le nouveau chef d’équipe",
+   "who": "新组长",
+   "whoFr": "Nouveau chef d’équipe",
+   "intro": "Un nouveau chef d’équipe chinois arrive. Il veut connaître tout le monde.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "大家好！我姓李。你叫什么名字？",
+     "p": "Dàjiā hǎo! Wǒ xìng Lǐ. Nǐ jiào shénme míngzi?",
+     "fr": "Bonjour à tous ! Je m’appelle Li (nom de famille). Comment tu t’appelles ?",
+     "o": [
+      {
+       "h": "您好，李组长！我叫{name}。",
+       "p": "Nín hǎo, Lǐ zǔzhǎng! Wǒ jiào {name}.",
+       "fr": "Bonjour, chef Li ! Je m’appelle {name}.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我姓多哥。",
+       "p": "Wǒ xìng Duōgē.",
+       "fr": "Mon nom de famille est Togo.",
+       "fix": "姓 = le nom de famille, et 多哥 c’est ton pays ! Réponds « 我叫{name} »."
+      }
+     ]
+    },
+    "b": {
+     "h": "你有孩子吗？",
+     "p": "Nǐ yǒu háizi ma?",
+     "fr": "Tu as des enfants ?",
+     "o": [
+      {
+       "h": "有，我有一个儿子。",
+       "p": "Yǒu, wǒ yǒu yí ge érzi.",
+       "fr": "Oui, j’ai un fils.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "没有，我没有孩子。",
+       "p": "Méiyǒu, wǒ méiyǒu háizi.",
+       "fr": "Non, je n’ai pas d’enfant.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我是孩子。",
+       "p": "Wǒ shì háizi.",
+       "fr": "Je suis une enfant.",
+       "fix": "Il demande si tu AS des enfants : réponds avec 有 ou 没有."
+      }
+     ]
+    },
+    "c": {
+     "h": "我也有一个孩子。你有哥哥姐姐吗？",
+     "p": "Wǒ yě yǒu yí ge háizi. Nǐ yǒu gēge jiějie ma?",
+     "fr": "Moi aussi, j’ai un enfant. Tu as des grands frères ou des grandes sœurs ?",
+     "o": [
+      {
+       "h": "我有一个哥哥，也有一个妹妹。",
+       "p": "Wǒ yǒu yí ge gēge, yě yǒu yí ge mèimei.",
+       "fr": "J’ai un grand frère, et aussi une petite sœur.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我有一个哥哥，我有也一个妹妹。",
+       "p": "Wǒ yǒu yí ge gēge, wǒ yǒu yě yí ge mèimei.",
+       "fr": "(erreur de place)",
+       "fix": "也 se met juste AVANT le verbe : « 我也有一个妹妹 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "认识大家很高兴！",
+     "p": "Rènshi dàjiā hěn gāoxìng!",
+     "fr": "Ravi de vous connaître tous !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "兄弟姐妹",
+   "p": "xiōngdì jiěmèi",
+   "fr": "Frères et sœurs",
+   "note": "Pour demander : 你有兄弟姐妹吗？ (Tu as des frères et sœurs ?)"
+  }
+ ]
+}

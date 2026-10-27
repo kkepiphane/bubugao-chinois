@@ -35,6 +35,31 @@
    "id": "hsk1-10",
    "file": "hsk1-10-meteo-politesse.json",
    "title": "HSK 1 · 10 — Météo, humeur et politesse"
+  },
+  {
+   "id": "hsk2-01",
+   "file": "hsk2-01-famille.json",
+   "title": "HSK 2 · 1 — Frères, sœurs et présentations"
+  },
+  {
+   "id": "hsk2-02",
+   "file": "hsk2-02-sante.json",
+   "title": "HSK 2 · 2 — Ma journée et ma santé"
+  },
+  {
+   "id": "hsk2-03",
+   "file": "hsk2-03-comparer.json",
+   "title": "HSK 2 · 3 — Prix, couleurs et comparaisons"
+  },
+  {
+   "id": "hsk2-04",
+   "file": "hsk2-04-chemin.json",
+   "title": "HSK 2 · 4 — Trouver son chemin"
+  },
+  {
+   "id": "hsk2-05",
+   "file": "hsk2-05-comprendre.json",
+   "title": "HSK 2 · 5 — Comprendre et s’entraider"
   }
  ]
 }

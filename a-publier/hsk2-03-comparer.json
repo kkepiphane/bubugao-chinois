@@ -1,0 +1,421 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 3 — Prix, couleurs et comparaisons",
+ "desc": "Vendre et acheter, dire les couleurs, les grands prix, et comparer deux choses. 16 mots HSK 2.",
+ "grammar": {
+  "title": "比 : comparer deux choses",
+  "explain": "Pour dire « A est plus … que B », on dit : A 比 (bǐ) B + adjectif. 这双比那双贵 = celle-ci est plus chère que celle-là. L’adjectif ne change pas et se met tout à la fin.",
+  "examples": [
+   {
+    "h": "这双鞋比那双贵。",
+    "p": "Zhè shuāng xié bǐ nà shuāng guì.",
+    "fr": "Cette paire est plus chère que celle-là."
+   },
+   {
+    "h": "今天比昨天热。",
+    "p": "Jīntiān bǐ zuótiān rè.",
+    "fr": "Aujourd’hui il fait plus chaud qu’hier."
+   },
+   {
+    "h": "他比我忙。",
+    "p": "Tā bǐ wǒ máng.",
+    "fr": "Il est plus occupé que moi."
+   },
+   {
+    "h": "黑的比白的便宜多了。",
+    "p": "Hēi de bǐ bái de piányi duō le.",
+    "fr": "Le noir est beaucoup moins cher que le blanc."
+   }
+  ],
+  "tip": "Avec 比, ne mets jamais 很 : 他比我忙, pas 他比我很忙. Pour « beaucoup plus », ajoute 多了 à la fin."
+ },
+ "items": [
+  {
+   "id": "h203_mai",
+   "h": "卖",
+   "p": "mai",
+   "t": [
+    4
+   ],
+   "fr": "Vendre",
+   "st": 0
+  },
+  {
+   "id": "h203_gui",
+   "h": "贵",
+   "p": "gui",
+   "t": [
+    4
+   ],
+   "fr": "Cher",
+   "st": 0
+  },
+  {
+   "id": "h203_pianyi",
+   "h": "便宜",
+   "p": "pian-yi",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Pas cher, bon marché",
+   "st": 0
+  },
+  {
+   "id": "h203_yuan",
+   "h": "元",
+   "p": "yuan",
+   "t": [
+    2
+   ],
+   "fr": "Yuan (monnaie, à l’écrit)",
+   "st": 0
+  },
+  {
+   "id": "h203_bai",
+   "h": "百",
+   "p": "bai",
+   "t": [
+    3
+   ],
+   "fr": "Cent",
+   "st": 0
+  },
+  {
+   "id": "h203_qian",
+   "h": "千",
+   "p": "qian",
+   "t": [
+    1
+   ],
+   "fr": "Mille",
+   "st": 0
+  },
+  {
+   "id": "h203_jian",
+   "h": "件",
+   "p": "jian",
+   "t": [
+    4
+   ],
+   "fr": "Classificateur des vêtements et des affaires",
+   "st": 0
+  },
+  {
+   "id": "h203_zhang",
+   "h": "张",
+   "p": "zhang",
+   "t": [
+    1
+   ],
+   "fr": "Classificateur des choses plates (papier, billet)",
+   "st": 0
+  },
+  {
+   "id": "h203_gongjin",
+   "h": "公斤",
+   "p": "gong-jin",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Kilo",
+   "st": 0
+  },
+  {
+   "id": "h203_yanse",
+   "h": "颜色",
+   "p": "yan-se",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Couleur",
+   "st": 0
+  },
+  {
+   "id": "h203_bai2",
+   "h": "白",
+   "p": "bai",
+   "t": [
+    2
+   ],
+   "fr": "Blanc",
+   "st": 0
+  },
+  {
+   "id": "h203_hei",
+   "h": "黑",
+   "p": "hei",
+   "t": [
+    1
+   ],
+   "fr": "Noir",
+   "st": 0
+  },
+  {
+   "id": "h203_hong",
+   "h": "红",
+   "p": "hong",
+   "t": [
+    2
+   ],
+   "fr": "Rouge",
+   "st": 0
+  },
+  {
+   "id": "h203_xin",
+   "h": "新",
+   "p": "xin",
+   "t": [
+    1
+   ],
+   "fr": "Neuf, nouveau",
+   "st": 0
+  },
+  {
+   "id": "h203_chuan",
+   "h": "穿",
+   "p": "chuan",
+   "t": [
+    1
+   ],
+   "fr": "Porter (vêtements, chaussures)",
+   "st": 0
+  },
+  {
+   "id": "h203_bi",
+   "h": "比",
+   "p": "bi",
+   "t": [
+    3
+   ],
+   "fr": "Plus… que (comparer)",
+   "st": 0
+  },
+  {
+   "id": "h203_s_bi",
+   "h": "这件比那件便宜",
+   "p": "zhe jian bi na jian pian-yi",
+   "t": [
+    4,
+    4,
+    3,
+    4,
+    4,
+    2,
+    0
+   ],
+   "fr": "Celui-ci est moins cher que celui-là",
+   "st": 0
+  },
+  {
+   "id": "h203_s_heise",
+   "h": "有没有黑色的",
+   "p": "you mei you hei-se de",
+   "t": [
+    3,
+    2,
+    3,
+    1,
+    4,
+    0
+   ],
+   "fr": "Vous l’avez en noir ?",
+   "st": 0,
+   "m": "Dans une boutique, demande une autre couleur : 有没有黑色的？ (ou 红色的, 白色的)"
+  },
+  {
+   "id": "h203_s_hao",
+   "h": "我穿三十八号",
+   "p": "wo chuan san-shi-ba hao",
+   "t": [
+    3,
+    1,
+    1,
+    2,
+    1,
+    4
+   ],
+   "fr": "Je chausse du 38",
+   "st": 0,
+   "m": "Au magasin de chaussures, donne ta pointure en chinois : 我穿…号。"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "买",
+    "p": "mai",
+    "t": 3,
+    "fr": "acheter"
+   },
+   {
+    "h": "卖",
+    "p": "mai",
+    "t": 4,
+    "fr": "vendre"
+   }
+  ],
+  [
+   {
+    "h": "白",
+    "p": "bai",
+    "t": 2,
+    "fr": "blanc"
+   },
+   {
+    "h": "百",
+    "p": "bai",
+    "t": 3,
+    "fr": "cent"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "卖",
+   "p": "mài",
+   "m": "vendre",
+   "r": "十",
+   "rm": "dix"
+  },
+  {
+   "c": "贵",
+   "p": "guì",
+   "m": "cher",
+   "r": "贝",
+   "rm": "coquillage"
+  },
+  {
+   "c": "元",
+   "p": "yuán",
+   "m": "yuan",
+   "r": "儿",
+   "rm": "jambes"
+  },
+  {
+   "c": "件",
+   "p": "jiàn",
+   "m": "pièce, article",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "张",
+   "p": "zhāng",
+   "m": "feuille",
+   "r": "弓",
+   "rm": "arc"
+  },
+  {
+   "c": "颜",
+   "p": "yán",
+   "m": "couleur, visage",
+   "r": "页",
+   "rm": "tête"
+  },
+  {
+   "c": "黑",
+   "p": "hēi",
+   "m": "noir",
+   "r": "黑",
+   "rm": "noir"
+  },
+  {
+   "c": "新",
+   "p": "xīn",
+   "m": "nouveau",
+   "r": "斤",
+   "rm": "hache"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-comparer",
+   "st": 0,
+   "title": "Des chaussures pour toi",
+   "who": "店员",
+   "whoFr": "Vendeuse",
+   "intro": "Pour une fois, c’est toi qui achètes des chaussures, dans un magasin tenu par une Chinoise.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好，你想买什么？",
+     "p": "Nǐ hǎo, nǐ xiǎng mǎi shénme?",
+     "fr": "Bonjour, qu’est-ce que tu veux acheter ?",
+     "o": [
+      {
+       "h": "我想买一双鞋。",
+       "p": "Wǒ xiǎng mǎi yì shuāng xié.",
+       "fr": "Je voudrais acheter une paire de chaussures.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我想卖一双鞋。",
+       "p": "Wǒ xiǎng mài yì shuāng xié.",
+       "fr": "Je voudrais vendre une paire de chaussures.",
+       "fix": "卖 (mài, 4e ton) = vendre. Acheter, c’est 买 (mǎi, 3e ton) : « 我想买一双鞋 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "你穿多少号？",
+     "p": "Nǐ chuān duōshao hào?",
+     "fr": "Tu fais quelle pointure ?",
+     "o": [
+      {
+       "h": "我穿三十八号。",
+       "p": "Wǒ chuān sānshíbā hào.",
+       "fr": "Je chausse du 38.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我三十八岁。",
+       "p": "Wǒ sānshíbā suì.",
+       "fr": "J’ai 38 ans.",
+       "fix": "号 = la pointure (ou la taille). 岁, c’est l’âge ! « 我穿三十八号 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "这双白的三百元，那双黑的两百元。",
+     "p": "Zhè shuāng bái de sānbǎi yuán, nà shuāng hēi de liǎngbǎi yuán.",
+     "fr": "Celle-ci, la blanche, fait 300 yuans ; celle-là, la noire, 200 yuans.",
+     "o": [
+      {
+       "h": "黑的比白的便宜，我要黑的。",
+       "p": "Hēi de bǐ bái de piányi, wǒ yào hēi de.",
+       "fr": "La noire est moins chère que la blanche, je prends la noire.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "白的比黑的便宜。",
+       "p": "Bái de bǐ hēi de piányi.",
+       "fr": "La blanche est moins chère que la noire.",
+       "fix": "300 c’est plus que 200 : c’est la noire qui est moins chère. « 黑的比白的便宜 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好的，这双是新的。给你！",
+     "p": "Hǎo de, zhè shuāng shì xīn de. Gěi nǐ!",
+     "fr": "D’accord, celle-ci est neuve. Voilà !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "物美价廉",
+   "p": "wùměi jiàlián",
+   "fr": "Bonne qualité, petit prix",
+   "note": "Ce que tout le monde cherche au marché ! Les vendeurs l’écrivent souvent sur leurs pancartes."
+  }
+ ]
+}
