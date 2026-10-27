@@ -1,6 +1,6 @@
 /* Bùbùgāo — fonctionne hors-ligne, se met à jour dès qu'il y a du réseau.
    Changer VERSION à chaque nouvelle version de index.html. */
-const VERSION = 'bubugao-app-v7';
+const VERSION = 'bubugao-app-v8';
 const FONTS = 'bubugao-fonts';
 const AUDIO = 'bubugao-audio';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'packs/packs.json', 'audio/index.json'];
