@@ -1,11 +1,11 @@
 ---
 name: nouveau-chapitre
-description: Écrire un nouveau chapitre de Bùbùgāo (parcours HSK ou branche thématique usine/vie quotidienne), le vérifier, générer son audio et le mettre dans la file du robot du lundi. À utiliser dès qu'on demande d'ajouter du contenu, des mots, un chapitre, une conversation ou une leçon.
+description: Écrire un nouveau chapitre de Bùbùgāo (parcours HSK ou branche thématique usine/vie quotidienne), le vérifier, générer son audio et le mettre dans la file du robot. À utiliser dès qu'on demande d'ajouter du contenu, des mots, un chapitre, une conversation ou une leçon.
 ---
 
 # Nouveau chapitre
 
-Un chapitre = un fichier JSON. Il entre dans la file `a-publier/` ; le robot du lundi le propose ensuite à Epiphane
+Un chapitre = un fichier JSON. Il entre dans la file `a-publier/` ; le robot (lundi, mercredi, vendredi) le propose ensuite à Epiphane
 en Pull Request, et il n'arrive sur le téléphone qu'après validation.
 
 ## 1. Choisir le contenu
@@ -50,7 +50,7 @@ en français qui donne la bonne phrase). Le prénom de l'utilisatrice s'écrit `
 
 Commit sur une branche, Pull Request vers `main` avec, dans la description, la liste des mots (caractères + sens),
 la règle de grammaire et le titre de la conversation, pour qu'Epiphane puisse relire depuis son téléphone.
-Le chapitre restera dans `a-publier/` jusqu'au lundi où le robot le proposera.
+Le chapitre restera dans `a-publier/` jusqu'au prochain passage du robot (lundi, mercredi ou vendredi).
 
 Pour publier **tout de suite** (correction urgente d'un chapitre déjà publié) : modifier le fichier dans `packs/`,
 incrémenter son `"v"` dans `packs/packs.json`, garder les mêmes `id`.

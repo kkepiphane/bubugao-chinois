@@ -25,7 +25,7 @@ Mainteneur : Epiphane (développeur, Lomé). En ligne : https://kkepiphane.githu
 | `sw.js` | Service worker : hors-ligne, mises à jour (réseau d'abord), sons en cache permanent. |
 | `manifest.webmanifest`, `icon-*.png` | Installation sur l'écran d'accueil. |
 | `packs/` | Chapitres **publiés** + `packs.json` (liste lue par l'appli à chaque connexion). |
-| `a-publier/` | Chapitres **en attente** + `ordre.json` (file du robot du lundi). |
+| `a-publier/` | Chapitres **en attente** + `ordre.json` (file du robot). |
 | `audio/` | Un MP3 par texte chinois + `index.json` (`{"texte": "fichier.mp3"}`) + `base-contenu.json`. |
 | `scripts/make_packs.py` | Source lisible de tous les chapitres HSK 1 et thématiques ; régénère les JSON. |
 | `scripts/publier_chapitre.py` | Utilisé par le robot : passe le chapitre suivant de `a-publier/` à `packs/`. |
@@ -33,7 +33,7 @@ Mainteneur : Epiphane (développeur, Lomé). En ligne : https://kkepiphane.githu
 | `scripts/exporter_base.js` | Exporte le contenu de base de `index.html` vers `audio/base-contenu.json`. |
 | `scripts/banc_tons.js` | Mesure la justesse de l'analyseur de tons sur les MP3 natifs. |
 | `scripts/test_appli.py` | Test de bout en bout dans Chromium (séances, audio, analyse, test HSK, hors-ligne). |
-| `.github/workflows/chapitre-du-lundi.yml` | Chaque lundi 7 h : ouvre une PR « 📚 À valider » avec le chapitre suivant. |
+| `.github/workflows/chapitre-du-lundi.yml` | Lundi, mercredi, vendredi 7 h : ouvre une PR « 📚 À valider » avec le chapitre suivant (une seule à la fois). |
 | `.github/workflows/audio.yml` | À chaque push touchant `packs/`, `a-publier/` ou `audio/base-contenu.json` : génère l'audio manquant. |
 | `LISEZMOI.md` | Guide pas à pas pour Epiphane (non technique). |
 
@@ -62,12 +62,12 @@ cd scripts && python3 make_packs.py    # régénère les chapitres depuis la sou
 
 ## Skills du projet
 
-- `.claude/skills/nouveau-chapitre/` : écrire un chapitre (HSK ou thématique), le vérifier, l'audio, la file du lundi.
+- `.claude/skills/nouveau-chapitre/` : écrire un chapitre (HSK ou thématique), le vérifier, l'audio, la file du robot.
 - `.claude/skills/modifier-appli/` : changer `index.html` sans casser la progression ni le hors-ligne.
 - `.claude/skills/voix-et-tons/` : audio, voix de secours, analyseur de tons et son banc d'essai.
 
 ## Feuille de route (idées validées en discussion)
 
 - Branche « Vie quotidienne » : restaurant, transport, santé, téléphone/WeChat, famille.
-- Après le HSK 1 : parcours HSK 2 (300 mots, ancien format) au même rythme d'un chapitre par semaine.
+- Après le HSK 1 : parcours HSK 2 (300 mots, ancien format) au même rythme (jusqu'à 3 chapitres par semaine).
 - Bouton « J'ai entendu une phrase » pour qu'elle envoie les phrases réelles de l'usine à intégrer dans les chapitres.
