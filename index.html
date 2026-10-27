@@ -150,7 +150,13 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .opt .zh{font-size:24px}
 .opt.center{align-items:center;text-align:center}
 .opt.pick{border-color:var(--accent);background:var(--accent-soft)}
-.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.ok{border-color:var(--good);background:var(--good-soft);animation:yay .4s ease-out}
+.opt.bad{animation:shake .35s ease-in-out}
+.feedback .verdict{animation:yay .4s ease-out;transform-origin:left center}
+@keyframes yay{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){.opt.ok,.opt.bad,.feedback .verdict{animation:none}}
+.proverbe{border-top:1px dashed var(--gold);padding-top:10px;margin-top:4px}
 .opt.bad{border-color:var(--bad);background:var(--bad-soft)}
 .opt[disabled]{cursor:default}
 .opt.dim{opacity:.5}
@@ -420,6 +426,21 @@ const CONVS=[
   {h:'我没有钱。',p:'Wǒ méiyǒu qián.',fr:'Je n’ai pas d’argent.',fix:'护照 = passeport. Tends-le en disant « 给您 » (voici).'}]},
  end:{h:'好了，祝您一路平安！',p:'Hǎo le, zhù nín yílù píng’ān!',fr:'Voilà, bon voyage !',end:1}}}
 ];
+/* Un proverbe par palier (chapitre terminé), dans cet ordre. */
+const PROVERBES=[
+ {h:'千里之行，始于足下',p:'qiān lǐ zhī xíng, shǐ yú zú xià',lit:'Un voyage de mille li commence sous tes pieds.',fr:'Les grands voyages commencent par un petit pas.',note:'Chaque mot appris est une marche. Tu viens d’en monter tout un étage.'},
+ {h:'不怕慢，就怕站',p:'bú pà màn, jiù pà zhàn',lit:'N’aie pas peur d’aller lentement, aie seulement peur de t’arrêter.',fr:'Lentement, mais sans s’arrêter.',note:'Même une petite séance compte. Ce qui compte, c’est de revenir chaque jour.'},
+ {h:'熟能生巧',p:'shú néng shēng qiǎo',lit:'La pratique fait naître l’habileté.',fr:'C’est en forgeant qu’on devient forgeron.',note:'Plus tu répètes les tons, plus ils deviennent naturels.'},
+ {h:'三人行，必有我师',p:'sān rén xíng, bì yǒu wǒ shī',lit:'Quand trois personnes marchent ensemble, l’une d’elles peut être mon maître.',fr:'Chacun autour de toi peut t’apprendre quelque chose.',note:'Tes collègues chinois sont tes meilleurs professeurs. Pose-leur des questions.'},
+ {h:'万事开头难',p:'wàn shì kāi tóu nán',lit:'Pour toute chose, le début est difficile.',fr:'Le plus dur, c’est de commencer.',note:'Tu as passé le plus difficile. La suite va devenir plus facile.'},
+ {h:'水滴石穿',p:'shuǐ dī shí chuān',lit:'La goutte d’eau perce la pierre.',fr:'Avec de la patience, on vient à bout de tout.',note:'Un peu chaque jour, et le chinois finit par entrer.'},
+ {h:'失败是成功之母',p:'shībài shì chénggōng zhī mǔ',lit:'L’échec est la mère du succès.',fr:'On apprend de ses erreurs.',note:'Quand tu te trompes, l’appli te repose la question : c’est comme ça qu’on retient.'},
+ {h:'百闻不如一见',p:'bǎi wén bù rú yí jiàn',lit:'Entendre cent fois ne vaut pas voir une fois.',fr:'Rien ne vaut l’expérience.',note:'Essaie tes nouveaux mots à l’usine : une vraie conversation vaut cent exercices.'},
+ {h:'笨鸟先飞',p:'bèn niǎo xiān fēi',lit:'L’oiseau maladroit s’envole le premier.',fr:'Qui part tôt arrive loin.',note:'Pas besoin d’être la plus rapide : il suffit de commencer avant les autres.'},
+ {h:'活到老，学到老',p:'huó dào lǎo, xué dào lǎo',lit:'Vivre jusqu’à être vieux, apprendre jusqu’à être vieux.',fr:'On apprend toute sa vie.',note:'Apprendre n’a pas d’âge. Tu es en train de le prouver.'},
+ {h:'有志者事竟成',p:'yǒu zhì zhě shì jìng chéng',lit:'Pour celui qui a la volonté, la chose finit par se faire.',fr:'Quand on veut, on peut.',note:'Promotion, entretien, voyage : ton objectif se rapproche à chaque palier.'},
+ {h:'只要功夫深，铁杵磨成针',p:'zhǐyào gōngfu shēn, tiě chǔ mó chéng zhēn',lit:'Avec assez d’efforts, on fait d’une barre de fer une aiguille.',fr:'Avec du travail, tout devient possible.',note:'Ce que tu fais demande des efforts. Ils paient : regarde ton escalier.'}
+];
 /* END_DATA */
 
 /* ============================================================
@@ -528,7 +549,7 @@ const KEY='bubugao.v1';
 function fresh(){return {v:1,name:'',goal:0,onboarded:false,created:Date.now(),
   profile:{ecoute:.5,tons:.5,vocab:.5,parole:.5},items:{},hist:[],xp:0,
   streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},
-  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30};}
+  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true};}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 let S=load()||fresh();
@@ -584,6 +605,7 @@ function dueList(now,cur){
   const c=[];ITEMS.filter(isIntro).forEach(it=>skillsFor(it).forEach(sk=>{const R=retention(skState(it.id,sk),now);if(R<.9)c.push({it,sk,p:priority(it,sk,now,cur)});}));
   return c.sort((a,b)=>b.p-a.p);
 }
+function buzz(p){if(S.vibre===false)return;try{navigator.vibrate&&navigator.vibrate(p);}catch(e){}}
 function addXP(n){S.xp+=n;const k=today();S.days[k]=(S.days[k]||0)+n;if(ui.sess)ui.sess.xp+=n;}
 function recordAnswer(it,sk,ok,note){
   if(it)grade(it.id,sk,note!=null?note:(ok?2:0));
@@ -987,7 +1009,7 @@ function answer(i){
   if(i===-1){ok=false;st.res={ok:false,pick:-1,dunno:true};}
   else if(st.kind==='pair'){ok=i===st.target;st.res={ok,pick:i};}
   else{ok=!!st.q.opts[i].ok;st.res={ok,pick:i};}
-  s.n++;if(ok)s.ok++;
+  s.n++;if(ok)s.ok++;buzz(ok?18:[40,60,40]);
   if(st.kind==='photo')say(st.it.h);
   if(s.kind==='test'){save();}
   else if(st.kind==='char'){gradeChar(st.ch.c,ok);S.hist.push(ok?1:0);if(ok)addXP(10);if(!ok&&!st.re){s.steps.push({kind:'char',ch:st.ch,q:charQ(st.ch),sec:'On le revoit',re:true});}save();}
@@ -1004,7 +1026,7 @@ function answer(i){
 }
 function checkTiles(){
   const s=ui.sess,st=s.steps[s.i];const got=st.q.placed.map(k=>st.q.tiles.find(t=>t.k===k).h).join('');const ok=got===st.it.chunks.map(c=>c.h).join('');
-  st.res={ok};s.n++;if(ok)s.ok++;if(s.kind==='test'){render();return;}recordAnswer(st.it,'prod',ok);
+  st.res={ok};s.n++;if(ok)s.ok++;buzz(ok?18:[40,60,40]);if(s.kind==='test'){render();return;}recordAnswer(st.it,'prod',ok);
   if(!ok&&!st.re){const c=mk('prod',st.it,'On le revoit');c.re=true;s.steps.push(c);}
   render();
 }
@@ -1038,7 +1060,7 @@ function finish(){
   S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();
   addXP(s.kind==='daily'?Math.round(50*DUREES[duree()].f):s.kind==='chapter'||s.kind==='plus'?30:20);
   s.endProg=stageProg(s.cur);s.jokerMsg=msg;ui.popSince=s.t0||0;
-  s.paliers=s.done0?PACKS.filter(p=>packDone(p)&&!s.done0.includes(p.id)):[];if(s.paliers.length){try{navigator.vibrate&&navigator.vibrate([60,40,120]);}catch(e){}}
+  s.paliers=s.done0?PACKS.filter(p=>packDone(p)&&!s.done0.includes(p.id)):[];if(s.paliers.length)buzz([60,40,120,40,200]);
   if(s.kind==='daily'&&(S.sessions===1||Math.random()<.3))s.bonus=rnd(BONUS);
   save();s.end=true;render();
 }
@@ -1048,6 +1070,7 @@ function newConv(c){const n=c.nodes[c.start];return{c,node:c.start,log:[{who:'th
 function convPick(cs,i){
   const node=cs.c.nodes[cs.node],o=node.o[i];if(cs.dis.includes(i))return;
   cs.log.push({who:'me',h:o.h,p:o.p||'',fr:o.fr||'',bad:!o.ok,frOnly:o.fr_only});
+  buzz(o.ok?18:[40,60,40]);
   if(o.ok){
     cs.good++;cs.dis=[];cs.node=o.n;const nn=cs.c.nodes[o.n];
     cs.log.push({who:'them',h:nn.h,p:nn.p,fr:nn.fr});say(nn.h);
@@ -1124,6 +1147,9 @@ const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':
   'hsk2-05':'Dire que tu ne comprends pas et demander de l’aide','travail-compter':'Compter les paires à l’atelier','quotidien-marche':'Faire tes courses au marché'};
 const shortTitle=p=>(p.title||p.id).split(/ — | · (?=[^·]*$)/).pop();
 const canDo=p=>CANDO[p.id]||shortTitle(p);
+const proverbesGagnes=()=>Math.min(PROVERBES.length,donePacks().length);
+function proverbeHTML(pv,big){return `<div class="stack sm"><div class="row" style="flex-wrap:nowrap"><span class="zh grow" style="font-size:${big?24:20}px">${esc(pv.h)}</span><button class="btn sm" data-act="say" data-t="${esc(pv.h)}" aria-label="Écouter le proverbe">${ICON.play}</button></div>
+  <span class="small"><b>${esc(pv.p)}</b></span><span class="small muted">Mot à mot : ${esc(pv.lit)}</span><span><b>${esc(pv.fr)}</b></span>${big?`<span class="small">${esc(pv.note)}</span>`:''}</div>`;}
 const fading=(it,now)=>now-S.items[it.id].intro>DAY&&meanR(it,now)<.7;
 function packItems(p){return ITEMS.filter(x=>x.pk===p.id);}
 function packDone(p){const its=packItems(p);return its.length>0&&its.every(isIntro);}
@@ -1273,6 +1299,9 @@ function renderProgres(){
    <div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div>
    <p class="small muted">Les séances donnent plus de temps à ta compétence la plus faible : <b>${weak[1].toLowerCase()}</b>.</p></section>
   <section class="card stack"><h3>Ce que je sais dire</h3><div>${canDoHTML(PACKS.filter(p=>packItems(p).length).sort((a,b)=>(packDone(b)-packDone(a))||(a.order||0)-(b.order||0)))}</div></section>
+  <section class="card stack"><div class="row between"><h3>Tes proverbes</h3><span class="small muted">${proverbesGagnes()} / ${PROVERBES.length}</span></div>
+   ${proverbesGagnes()?PROVERBES.slice(0,proverbesGagnes()).map(pv=>proverbeHTML(pv,false)).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">'):'<p class="small muted">Termine ton premier chapitre pour gagner ton premier proverbe chinois.</p>'}
+   ${proverbesGagnes()<PROVERBES.length?`<p class="tiny muted">Un nouveau proverbe à chaque palier de ton escalier.</p>`:''}</section>
   <section class="card stack"><h3>Cette semaine</h3><div class="week">${days.map(d=>{const x=S.days[dkey(d)]||0;return `<div class="d"><span class="dot ${x?'on':''}">${x?x:''}</span>${dn[d.getDay()]}</div>`;}).join('')}</div></section>
   <section class="card stack"><h3>Les quatre étapes</h3><div class="bars">${STAGES.map((s,i)=>`<div class="bar-row"><span>${s.fr}</span><div class="bar"><i style="width:${pct(stageProg(i))}%"></i></div><b>${pct(stageProg(i))}</b></div>`).join('')}</div></section>
   <section class="card stack"><h3>Avant / après</h3>
@@ -1308,6 +1337,7 @@ function renderProgres(){
   </section>
   <details id="settings" class="card flat" ${ui.settingsOpen||ui.confirmReset?'open':''}><summary>Réglages</summary><div class="stack" style="margin-top:12px">
    <label class="label" for="nm2">Prénom</label><input id="nm2" type="text" value="${esc(S.name)}">
+   <button class="btn sm" data-act="vibre" aria-pressed="${S.vibre!==false}">${S.vibre!==false?'Vibrations : activées':'Vibrations : désactivées'}</button>
    <button class="btn sm" data-act="demo">${S.demo?'Mode démo activé : tout est débloqué':'Mode démo : tout débloquer'}</button>
    <button class="btn sm" data-act="redo">Refaire le test de départ</button>
    ${ui.confirmReset?`<div class="notice">Tout effacer sur ce téléphone ? <div class="row" style="margin-top:8px"><button class="btn sm" data-act="reset2" style="color:var(--bad)">Oui, tout effacer</button><button class="btn sm" data-act="reset0">Annuler</button></div></div>`:`<button class="btn sm ghost" data-act="reset1">Effacer ma progression</button>`}
@@ -1491,7 +1521,7 @@ function sessionEnd(){
   return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh">太棒了！</span><h1>${s.kind==='daily'?'Séance terminée':s.kind==='chapter'?'Chapitre avancé':s.kind==='plus'?'Séance bonus terminée':'Révision terminée'}</h1><p class="muted">Tài bàng le ! Encore une marche de montée.</p></div>
    <div class="kpis"><div class="stat"><b>+${s.xp}</b><span>XP</span></div><div class="stat"><b>${acc}%</b><span>de réussite</span></div><div class="stat"><b>${streakAlive()}</b><span>jour${streakAlive()>1?'s':''} de suite</span></div></div>
    ${s.jokerMsg?`<div class="notice">${esc(s.jokerMsg)}</div>`:''}
-   ${(s.paliers||[]).map(p=>`<div class="palier stack sm"><span class="label" style="color:var(--gold)">Palier atteint !</span><h2>${esc(shortTitle(p))}</h2><p><span class="zh">你真棒！</span> <span class="small muted">nǐ zhēn bàng · tu es super</span></p><p class="small">Maintenant, tu sais : <b>${esc(canDo(p).charAt(0).toLowerCase()+canDo(p).slice(1))}</b>.</p></div>`).join('')}
+   ${(s.paliers||[]).map((p,j)=>`<div class="palier stack sm"><span class="label" style="color:var(--gold)">Palier atteint !</span><h2>${esc(shortTitle(p))}</h2><p><span class="zh">你真棒！</span> <span class="small muted">nǐ zhēn bàng · tu es super</span></p><p class="small">Maintenant, tu sais : <b>${esc(canDo(p).charAt(0).toLowerCase()+canDo(p).slice(1))}</b>.</p>${(()=>{const k=s.done0.length+j;return k<PROVERBES.length?`<div class="proverbe stack sm"><span class="label" style="color:var(--gold)">Ton proverbe de palier</span>${proverbeHTML(PROVERBES[k],true)}</div>`:'';})()}</div>`).join('')}
    <div class="card stack sm"><span class="label">Étape ${STAGES[cur].fr}</span><div class="row between"><span class="score" style="font-size:30px">${pct(s.startProg)}% → <span style="color:var(--accent)">${pct(s.endProg)}%</span></span></div><div class="bar"><i style="width:${pct(s.endProg)}%"></i></div></div>
    ${s.bonus?`<div class="bonus"><span class="label" style="color:var(--gold)">Surprise : expression bonus</span><div class="row"><span class="zh" style="font-size:30px">${s.bonus.h}</span><button class="btn sm" data-act="say" data-t="${esc(s.bonus.h)}">${ICON.play}</button></div><b>${esc(s.bonus.p)} · ${esc(s.bonus.fr)}</b><p class="small">${esc(s.bonus.note)}</p></div>`:''}
    <p class="small muted" style="text-align:center">${acc>=90?'Trop facile ? Demain, la séance accélère.':acc<70?'C’était dur : demain, on consolide avec moins de nouveautés.':'Rythme idéal : tu apprends dans la bonne zone.'}</p>
@@ -1524,6 +1554,7 @@ let toastT=null;
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2800);}
 const ACT={
  tab:d=>{ui.tab=d.k;render();window.scrollTo(0,0);},
+ vibre:()=>{S.vibre=S.vibre===false;save();buzz(40);render();},
  phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
    toast(ok?'Photo ajoutée : '+it.h+' · '+it.fr:'Photo gardée pour cette fois, mais le téléphone n’a pas pu l’enregistrer.');try{say(it.h);}catch(e){}},
  phcancel:()=>{ui.phNew=null;ui.phFilter='';ui.tab='home';render();},
