@@ -177,6 +177,186 @@
     4,
     0
    ]
+  },
+  {
+   "id": "q_yigong",
+   "h": "一共多少钱",
+   "p": "yi-gong duo-shao qian",
+   "t": [
+    2,
+    4,
+    1,
+    0,
+    2
+   ],
+   "fr": "Ça fait combien en tout ?",
+   "st": 0,
+   "m": "À la caisse d’une boutique chinoise, demande : 一共多少钱？"
+  },
+  {
+   "id": "q_youmeiyou",
+   "h": "有没有鸡蛋",
+   "p": "you mei you ji-dan",
+   "t": [
+    3,
+    2,
+    3,
+    1,
+    4
+   ],
+   "fr": "Tu as des œufs ?",
+   "st": 0
+  },
+  {
+   "id": "q_geiwo",
+   "h": "给我两个",
+   "p": "gei wo liang ge",
+   "t": [
+    3,
+    3,
+    3,
+    0
+   ],
+   "fr": "Donne-m’en deux",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "q_xinxian",
+   "h": "新鲜吗",
+   "p": "xin-xian ma",
+   "t": [
+    1,
+    1,
+    0
+   ],
+   "fr": "C’est frais ?",
+   "st": 0
+  },
+  {
+   "id": "q_tudou",
+   "h": "土豆",
+   "p": "tu-dou",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Pomme de terre",
+   "st": 0
+  },
+  {
+   "id": "q_yangcong",
+   "h": "洋葱",
+   "p": "yang-cong",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Oignon",
+   "st": 0
+  },
+  {
+   "id": "q_lajiao",
+   "h": "辣椒",
+   "p": "la-jiao",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Piment",
+   "st": 0
+  },
+  {
+   "id": "q_xiangjiao",
+   "h": "香蕉",
+   "p": "xiang-jiao",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Banane",
+   "st": 0
+  },
+  {
+   "id": "q_jirou",
+   "h": "鸡肉",
+   "p": "ji-rou",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Viande de poulet",
+   "st": 0
+  },
+  {
+   "id": "q_niurou",
+   "h": "牛肉",
+   "p": "niu-rou",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Viande de bœuf",
+   "st": 0
+  },
+  {
+   "id": "q_mianbao",
+   "h": "面包",
+   "p": "mian-bao",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Pain",
+   "st": 0
+  },
+  {
+   "id": "q_yan",
+   "h": "盐",
+   "p": "yan",
+   "t": [
+    2
+   ],
+   "fr": "Sel",
+   "st": 0
+  },
+  {
+   "id": "q_tang",
+   "h": "糖",
+   "p": "tang",
+   "t": [
+    2
+   ],
+   "fr": "Sucre",
+   "st": 0
+  },
+  {
+   "id": "q_suliaodai",
+   "h": "塑料袋",
+   "p": "su-liao-dai",
+   "t": [
+    4,
+    4,
+    4
+   ],
+   "fr": "Sachet en plastique",
+   "st": 0
+  },
+  {
+   "id": "q_xianjin",
+   "h": "现金",
+   "p": "xian-jin",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Espèces (billets, pièces)",
+   "st": 0
   }
  ],
  "pairs": [

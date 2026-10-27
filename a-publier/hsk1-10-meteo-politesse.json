@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 10 — Météo, humeur et politesse",
- "desc": "Le temps qu’il fait, décrire, remercier, s’excuser, poser des questions. 19 mots HSK 1 : le HSK 1 est complet !",
+ "desc": "Le temps qu’il fait, décrire, remercier, s’excuser, poser des questions. 19 mots HSK 1 et 8 phrases pour t’en servir : le HSK 1 est complet !",
  "grammar": {
   "title": "很 + adjectif, et les questions avec 吗 / 呢",
   "explain": "Devant un adjectif, on met presque toujours 很 (hěn) : 我很好. On n’utilise pas 是 avec un adjectif. Pour poser une question oui/non, on ajoute 吗 (ma) à la fin. Pour renvoyer la question (« et toi ? »), on ajoute 呢 (ne).",
@@ -268,6 +268,101 @@
     3,
     0
    ]
+  },
+  {
+   "id": "k10_s_nihaoma",
+   "h": "你好吗",
+   "p": "ni hao ma",
+   "t": [
+    3,
+    3,
+    0
+   ],
+   "fr": "Tu vas bien ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "k10_s_zenmeyang",
+   "h": "你怎么样",
+   "p": "ni zen-me-yang",
+   "t": [
+    3,
+    3,
+    0,
+    4
+   ],
+   "fr": "Et toi, comment ça va ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    4
+   ]
+  },
+  {
+   "id": "k10_s_douhao",
+   "h": "我们都很好",
+   "p": "wo-men dou hen hao",
+   "t": [
+    3,
+    0,
+    1,
+    3,
+    3
+   ],
+   "fr": "Nous allons tous bien",
+   "st": 0,
+   "s": [
+    3,
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "k10_s_henre",
+   "h": "今天很热",
+   "p": "jin-tian hen re",
+   "t": [
+    1,
+    1,
+    3,
+    4
+   ],
+   "fr": "Il fait très chaud aujourd’hui",
+   "st": 0
+  },
+  {
+   "id": "k10_s_tailengle",
+   "h": "太冷了",
+   "p": "tai leng le",
+   "t": [
+    4,
+    3,
+    0
+   ],
+   "fr": "Il fait trop froid",
+   "st": 0
+  },
+  {
+   "id": "k10_s_xiayule",
+   "h": "下雨了",
+   "p": "xia-yu le",
+   "t": [
+    4,
+    3,
+    0
+   ],
+   "fr": "Il pleut",
+   "st": 0,
+   "m": "Quand il commence à pleuvoir, dis à un collègue : 下雨了！"
   }
  ],
  "pairs": [

@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 8 — Se déplacer et téléphoner",
- "desc": "Aller, venir, rentrer, prendre un taxi, passer un appel. 13 mots HSK 1.",
+ "desc": "Aller, venir, rentrer, prendre un taxi, passer un appel. 13 mots HSK 1 et 14 phrases pour t’en servir.",
  "grammar": {
   "title": "去, 来, 回 et 坐 (prendre un transport)",
   "explain": "去 (qù) = aller là-bas, 来 (lái) = venir ici, 回 (huí) = rentrer. Pour dire comment on se déplace, on met 坐 + transport avant le verbe : 坐出租车去 = y aller en taxi.",
@@ -206,6 +206,167 @@
     1
    ],
    "m": "Après le poste, demande à un collègue : 你怎么回家？"
+  },
+  {
+   "id": "k08_s_huijia",
+   "h": "我回家",
+   "p": "wo hui jia",
+   "t": [
+    3,
+    2,
+    1
+   ],
+   "fr": "Je rentre à la maison",
+   "st": 0
+  },
+  {
+   "id": "k08_s_qushangban",
+   "h": "去上班",
+   "p": "qu shang-ban",
+   "t": [
+    4,
+    4,
+    1
+   ],
+   "fr": "Aller au travail",
+   "st": 0
+  },
+  {
+   "id": "k08_s_zenmequ",
+   "h": "怎么去",
+   "p": "zen-me qu",
+   "t": [
+    3,
+    0,
+    4
+   ],
+   "fr": "Comment on y va ?",
+   "st": 0
+  },
+  {
+   "id": "k08_s_feiji",
+   "h": "坐飞机去中国",
+   "p": "zuo fei-ji qu Zhong-guo",
+   "t": [
+    4,
+    1,
+    1,
+    4,
+    1,
+    2
+   ],
+   "fr": "Aller en Chine en avion",
+   "st": 0
+  },
+  {
+   "id": "k08_s_shihoulai",
+   "h": "你什么时候来",
+   "p": "ni shen-me shi-hou lai",
+   "t": [
+    3,
+    2,
+    0,
+    2,
+    0,
+    2
+   ],
+   "fr": "Tu viens quand ?",
+   "st": 0
+  },
+  {
+   "id": "k08_s_nenglai",
+   "h": "你能来吗",
+   "p": "ni neng lai ma",
+   "t": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "fr": "Tu peux venir ?",
+   "st": 0
+  },
+  {
+   "id": "k08_s_bunengqu",
+   "h": "我不能去",
+   "p": "wo bu neng qu",
+   "t": [
+    3,
+    4,
+    2,
+    4
+   ],
+   "fr": "Je ne peux pas y aller",
+   "st": 0
+  },
+  {
+   "id": "k08_s_kaiche",
+   "h": "他会开车",
+   "p": "ta hui kai che",
+   "t": [
+    1,
+    4,
+    1,
+    1
+   ],
+   "fr": "Il sait conduire",
+   "st": 0
+  },
+  {
+   "id": "k08_s_dadianhua",
+   "h": "我能打电话吗",
+   "p": "wo neng da dian-hua ma",
+   "t": [
+    3,
+    2,
+    3,
+    4,
+    4,
+    0
+   ],
+   "fr": "Je peux passer un coup de fil ?",
+   "st": 0
+  },
+  {
+   "id": "k08_s_weinihao",
+   "h": "喂，你好",
+   "p": "wei ni hao",
+   "t": [
+    4,
+    3,
+    3
+   ],
+   "fr": "Allô, bonjour",
+   "st": 0,
+   "s": [
+    4,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "k08_s_qingzuo",
+   "h": "请坐",
+   "p": "qing zuo",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Assieds-toi, je t’en prie",
+   "st": 0
+  },
+  {
+   "id": "k08_s_mingtianjian",
+   "h": "明天见",
+   "p": "ming-tian jian",
+   "t": [
+    2,
+    1,
+    4
+   ],
+   "fr": "À demain",
+   "st": 0,
+   "m": "En partant du travail, dis à tes collègues : 明天见！"
   }
  ],
  "pairs": [

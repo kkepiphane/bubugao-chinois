@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 1 — Se présenter",
- "desc": "Dire qui tu es, demander le nom de quelqu’un, d’où il vient. 15 mots de la liste officielle HSK 1.",
+ "desc": "Dire qui tu es, demander le nom de quelqu’un, d’où il vient. 15 mots de la liste officielle HSK 1 et 14 phrases pour t’en servir.",
  "grammar": {
   "title": "Être : 是, et la négation 不",
   "explain": "Pour dire « je suis… », on met 是 (shì) entre la personne et ce qu’elle est. Pour dire « ne… pas », on met 不 (bù) juste avant le verbe. Le verbe ne change jamais : 我是, 你是, 他是.",
@@ -235,6 +235,162 @@
    "s": [
     4,
     0,
+    2,
+    3,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "k01_s_nishishei",
+   "h": "你是谁",
+   "p": "ni shi shei",
+   "t": [
+    3,
+    4,
+    2
+   ],
+   "fr": "Tu es qui ?",
+   "st": 0
+  },
+  {
+   "id": "k01_s_tashishei",
+   "h": "他是谁",
+   "p": "ta shi shei",
+   "t": [
+    1,
+    4,
+    2
+   ],
+   "fr": "Qui est-ce ? (lui)",
+   "st": 0
+  },
+  {
+   "id": "k01_s_shiwo",
+   "h": "是我",
+   "p": "shi wo",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "C’est moi",
+   "st": 0
+  },
+  {
+   "id": "k01_s_tazhongguo",
+   "h": "她是中国人",
+   "p": "ta shi Zhong-guo ren",
+   "t": [
+    1,
+    4,
+    1,
+    2,
+    2
+   ],
+   "fr": "Elle est chinoise",
+   "st": 0
+  },
+  {
+   "id": "k01_s_bushizhongguo",
+   "h": "我不是中国人",
+   "p": "wo bu shi Zhong-guo ren",
+   "t": [
+    3,
+    2,
+    4,
+    1,
+    2,
+    2
+   ],
+   "fr": "Je ne suis pas chinoise",
+   "st": 0
+  },
+  {
+   "id": "k01_s_shibushi",
+   "h": "你是不是中国人",
+   "p": "ni shi bu shi Zhong-guo ren",
+   "t": [
+    3,
+    4,
+    0,
+    4,
+    1,
+    2,
+    2
+   ],
+   "fr": "Tu es chinois ou pas ?",
+   "st": 0
+  },
+  {
+   "id": "k01_s_tajiao",
+   "h": "他叫什么名字",
+   "p": "ta jiao shen-me ming-zi",
+   "t": [
+    1,
+    4,
+    2,
+    0,
+    2,
+    0
+   ],
+   "fr": "Comment il s’appelle ?",
+   "st": 0
+  },
+  {
+   "id": "k01_s_renshita",
+   "h": "我认识她",
+   "p": "wo ren-shi ta",
+   "t": [
+    3,
+    4,
+    0,
+    1
+   ],
+   "fr": "Je la connais",
+   "st": 0
+  },
+  {
+   "id": "k01_s_burenshi",
+   "h": "我不认识他",
+   "p": "wo bu ren-shi ta",
+   "t": [
+    3,
+    2,
+    4,
+    0,
+    1
+   ],
+   "fr": "Je ne le connais pas",
+   "st": 0
+  },
+  {
+   "id": "k01_s_tongshi",
+   "h": "我们是同事",
+   "p": "wo-men shi tong-shi",
+   "t": [
+    3,
+    0,
+    4,
+    2,
+    4
+   ],
+   "fr": "Nous sommes collègues",
+   "st": 0,
+   "m": "Dis à une collègue chinoise de ton atelier : 我们是同事。"
+  },
+  {
+   "id": "k01_s_hengaoxing",
+   "h": "我很高兴",
+   "p": "wo hen gao-xing",
+   "t": [
+    3,
+    3,
+    1,
+    4
+   ],
+   "fr": "Je suis contente",
+   "st": 0,
+   "s": [
     2,
     3,
     1,
