@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 2,
  "title": "HSK 2 · 4 — Trouver son chemin",
- "desc": "Dire si c’est loin ou près, à gauche ou à droite, et expliquer un trajet. 16 mots HSK 2.",
+ "desc": "Dire si c’est loin ou près, à gauche ou à droite, et expliquer un trajet. 16 mots HSK 2 et 11 phrases pour t’en servir.",
  "grammar": {
   "title": "离 et 从… 到… : la distance et le trajet",
   "explain": "Pour la distance entre deux endroits, on dit : A 离 (lí) B 很远 / 很近. 我家离工厂很近 = ma maison est près de l’usine. Pour un trajet ou une durée, du début jusqu’à la fin, on dit : 从 (cóng) A 到 (dào) B.",
@@ -255,6 +255,117 @@
    "fr": "Dix minutes à pied",
    "st": 0,
    "m": "Explique à un collègue ton trajet du matin : 从家到工厂走路…分钟。"
+  },
+  {
+   "id": "h204_s_buyuan",
+   "h": "不远，很近",
+   "p": "bu yuan hen jin",
+   "t": [
+    4,
+    3,
+    3,
+    4
+   ],
+   "fr": "Pas loin, tout près",
+   "st": 0,
+   "s": [
+    4,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "h204_s_zuobian",
+   "h": "在左边",
+   "p": "zai zuo-bian",
+   "t": [
+    4,
+    3,
+    1
+   ],
+   "fr": "C’est à gauche",
+   "st": 0
+  },
+  {
+   "id": "h204_s_youbian",
+   "h": "在右边",
+   "p": "zai you-bian",
+   "t": [
+    4,
+    4,
+    1
+   ],
+   "fr": "C’est à droite",
+   "st": 0
+  },
+  {
+   "id": "h204_s_pangbian",
+   "h": "在商店旁边",
+   "p": "zai shang-dian pang-bian",
+   "t": [
+    4,
+    1,
+    4,
+    2,
+    1
+   ],
+   "fr": "À côté de la boutique",
+   "st": 0
+  },
+  {
+   "id": "h204_s_zenmezou",
+   "h": "去医院怎么走",
+   "p": "qu yi-yuan zen-me zou",
+   "t": [
+    4,
+    1,
+    4,
+    3,
+    0,
+    3
+   ],
+   "fr": "Pour aller à l’hôpital, c’est par où ?",
+   "st": 0
+  },
+  {
+   "id": "h204_s_gongjiao",
+   "h": "我坐公共汽车上班",
+   "p": "wo zuo gong-gong qi-che shang-ban",
+   "t": [
+    3,
+    4,
+    1,
+    4,
+    4,
+    1,
+    4,
+    1
+   ],
+   "fr": "Je vais au travail en bus",
+   "st": 0
+  },
+  {
+   "id": "h204_s_maipiao",
+   "h": "买票",
+   "p": "mai piao",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Acheter un billet",
+   "st": 0
+  },
+  {
+   "id": "h204_s_daole",
+   "h": "到了",
+   "p": "dao le",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "On est arrivés",
+   "st": 0
   }
  ],
  "pairs": [

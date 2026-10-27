@@ -125,6 +125,275 @@
    "fr": "Combien au total ?",
    "st": 0,
    "m": "À la fin du comptage, demande : 一共多少？"
+  },
+  {
+   "id": "n_shuang",
+   "h": "双",
+   "p": "shuang",
+   "t": [
+    1
+   ],
+   "fr": "Paire (pour compter les chaussures)",
+   "st": 0
+  },
+  {
+   "id": "n_xiangzi",
+   "h": "箱子",
+   "p": "xiang-zi",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Carton, caisse",
+   "st": 0
+  },
+  {
+   "id": "n_shu",
+   "h": "数",
+   "p": "shu",
+   "t": [
+    3
+   ],
+   "fr": "Compter",
+   "st": 0
+  },
+  {
+   "id": "n_shuyixia",
+   "h": "我数一下",
+   "p": "wo shu yi-xia",
+   "t": [
+    3,
+    3,
+    2,
+    4
+   ],
+   "fr": "Je vais compter",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    4
+   ],
+   "m": "Avant de fermer un carton, dis à ton chef d’équipe : 我数一下。"
+  },
+  {
+   "id": "n_shucuo",
+   "h": "数错了",
+   "p": "shu cuo le",
+   "t": [
+    3,
+    4,
+    0
+   ],
+   "fr": "Je me suis trompée en comptant",
+   "st": 0
+  },
+  {
+   "id": "n_zaishu",
+   "h": "再数一遍",
+   "p": "zai shu yi bian",
+   "t": [
+    4,
+    3,
+    2,
+    4
+   ],
+   "fr": "Recompte encore une fois",
+   "st": 0
+  },
+  {
+   "id": "n_yixiangduoshao",
+   "h": "一箱多少双",
+   "p": "yi xiang duo-shao shuang",
+   "t": [
+    4,
+    1,
+    1,
+    0,
+    1
+   ],
+   "fr": "Combien de paires par carton ?",
+   "st": 0,
+   "m": "Demande à ton chef d’équipe : 一箱多少双？"
+  },
+  {
+   "id": "n_shiershuang",
+   "h": "一箱十二双",
+   "p": "yi xiang shi-er shuang",
+   "t": [
+    4,
+    1,
+    2,
+    4,
+    1
+   ],
+   "fr": "Douze paires par carton",
+   "st": 0
+  },
+  {
+   "id": "n_jintian",
+   "h": "今天做了多少双",
+   "p": "jin-tian zuo le duo-shao shuang",
+   "t": [
+    1,
+    1,
+    4,
+    0,
+    1,
+    0,
+    1
+   ],
+   "fr": "Combien de paires aujourd’hui ?",
+   "st": 0
+  },
+  {
+   "id": "n_jiushi",
+   "h": "我做了九十双",
+   "p": "wo zuo le jiu-shi shuang",
+   "t": [
+    3,
+    4,
+    0,
+    3,
+    2,
+    1
+   ],
+   "fr": "J’ai fait quatre-vingt-dix paires",
+   "st": 0
+  },
+  {
+   "id": "n_wubai",
+   "h": "五百双",
+   "p": "wu-bai shuang",
+   "t": [
+    3,
+    3,
+    1
+   ],
+   "fr": "Cinq cents paires",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "n_yiqian",
+   "h": "一千",
+   "p": "yi-qian",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Mille (1 000)",
+   "st": 0
+  },
+  {
+   "id": "n_haichaduoshao",
+   "h": "还差多少",
+   "p": "hai cha duo-shao",
+   "t": [
+    2,
+    4,
+    1,
+    0
+   ],
+   "fr": "Il en manque combien ?",
+   "st": 0
+  },
+  {
+   "id": "n_haiyoujixiang",
+   "h": "还有几箱",
+   "p": "hai you ji xiang",
+   "t": [
+    2,
+    3,
+    3,
+    1
+   ],
+   "fr": "Il reste combien de cartons ?",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "n_duole",
+   "h": "多了两双",
+   "p": "duo le liang shuang",
+   "t": [
+    1,
+    0,
+    3,
+    1
+   ],
+   "fr": "Il y a deux paires en trop",
+   "st": 0
+  },
+  {
+   "id": "n_shaole",
+   "h": "少了一双",
+   "p": "shao le yi shuang",
+   "t": [
+    3,
+    0,
+    4,
+    1
+   ],
+   "fr": "Il manque une paire",
+   "st": 0
+  },
+  {
+   "id": "n_goule",
+   "h": "够了",
+   "p": "gou le",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Ça suffit, c’est assez",
+   "st": 0
+  },
+  {
+   "id": "n_duoshaoma",
+   "h": "多少码",
+   "p": "duo-shao ma",
+   "t": [
+    1,
+    0,
+    3
+   ],
+   "fr": "Quelle pointure ?",
+   "st": 0
+  },
+  {
+   "id": "n_sanshibama",
+   "h": "三十八码",
+   "p": "san-shi-ba ma",
+   "t": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "fr": "Pointure 38",
+   "st": 0
+  },
+  {
+   "id": "n_zhuangxiang",
+   "h": "装箱",
+   "p": "zhuang xiang",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Mettre en carton",
+   "st": 0
   }
  ],
  "pairs": [

@@ -48,7 +48,7 @@ PACKS = []
 # ---------------- HSK 1 · 1 ----------------
 PACKS.append(dict(id='hsk1-01', file='hsk1-01-presenter.json', branch='hsk', level=1, publish=True,
  title='HSK 1 · 1 — Se présenter',
- desc='Dire qui tu es, demander le nom de quelqu’un, d’où il vient. 15 mots de la liste officielle HSK 1.',
+ desc='Dire qui tu es, demander le nom de quelqu’un, d’où il vient. 15 mots de la liste officielle HSK 1 et 14 phrases pour t’en servir.',
  grammar={'title': 'Être : 是, et la négation 不',
   'explain': 'Pour dire « je suis… », on met 是 (shì) entre la personne et ce qu’elle est. Pour dire « ne… pas », on met 不 (bù) juste avant le verbe. Le verbe ne change jamais : 我是, 你是, 他是.',
   'examples': [ex('我是老师。', 'Wǒ shì lǎoshī.', 'Je suis enseignante.'), ex('我不是老师。', 'Wǒ bú shì lǎoshī.', 'Je ne suis pas enseignante.'), ex('他是中国人。', 'Tā shì Zhōngguó rén.', 'Il est chinois.'), ex('她不是中国人。', 'Tā bú shì Zhōngguó rén.', 'Elle n’est pas chinoise.')],
@@ -72,6 +72,17 @@ k01_shei | 谁 | shei | 2 | | Qui
 k01_s_mingzi | 你叫什么名字 | ni jiao shen-me ming-zi | 3 4 2 0 2 0 | | Comment tu t’appelles ? | Demande son prénom à un collègue que tu ne connais pas bien : 你叫什么名字？
 k01_s_duoge | 我是多哥人 | wo shi Duo-ge ren | 3 4 1 1 2 | | Je suis Togolaise | Quand un collègue chinois te parle, présente-toi : 我是多哥人。
 k01_s_gaoxing | 认识你很高兴 | ren-shi ni hen gao-xing | 4 0 3 3 1 4 | 4 0 2 3 1 4 | Enchantée
+k01_s_nishishei | 你是谁 | ni shi shei | 3 4 2 | | Tu es qui ?
+k01_s_tashishei | 他是谁 | ta shi shei | 1 4 2 | | Qui est-ce ? (lui)
+k01_s_shiwo | 是我 | shi wo | 4 3 | | C’est moi
+k01_s_tazhongguo | 她是中国人 | ta shi Zhong-guo ren | 1 4 1 2 2 | | Elle est chinoise
+k01_s_bushizhongguo | 我不是中国人 | wo bu shi Zhong-guo ren | 3 2 4 1 2 2 | | Je ne suis pas chinoise
+k01_s_shibushi | 你是不是中国人 | ni shi bu shi Zhong-guo ren | 3 4 0 4 1 2 2 | | Tu es chinois ou pas ?
+k01_s_tajiao | 他叫什么名字 | ta jiao shen-me ming-zi | 1 4 2 0 2 0 | | Comment il s’appelle ?
+k01_s_renshita | 我认识她 | wo ren-shi ta | 3 4 0 1 | | Je la connais
+k01_s_burenshi | 我不认识他 | wo bu ren-shi ta | 3 2 4 0 1 | | Je ne le connais pas
+k01_s_tongshi | 我们是同事 | wo-men shi tong-shi | 3 0 4 2 4 | | Nous sommes collègues | Dis à une collègue chinoise de ton atelier : 我们是同事。
+k01_s_hengaoxing | 我很高兴 | wo hen gao-xing | 3 3 1 4 | 2 3 1 4 | Je suis contente
 '''),
  pairs=[pair(('人', 'ren', 2, 'personne'), ('认', 'ren', 4, 'reconnaître'))],
  chars=chars('''
@@ -97,7 +108,7 @@ k01_s_gaoxing | 认识你很高兴 | ren-shi ni hen gao-xing | 4 0 3 3 1 4 | 4 0
 # ---------------- HSK 1 · 2 ----------------
 PACKS.append(dict(id='hsk1-02', file='hsk1-02-nombres.json', branch='hsk', level=1, publish=True,
  title='HSK 1 · 2 — Les nombres',
- desc='Compter de 1 à 99, demander combien, dire son âge. 15 mots HSK 1.',
+ desc='Compter de 1 à 99, demander combien, dire son âge. 15 mots HSK 1 et 13 phrases pour t’en servir.',
  grammar={'title': '几 ou 多少 : « combien ? »',
   'explain': 'Les nombres chinois se construisent comme des briques : 十一 = 10+1 = 11, 二十 = 2×10 = 20, 二十三 = 23. Pour demander « combien », 几 (jǐ) sert pour un petit nombre (moins de 10) et doit être suivi d’un classificateur comme 个. 多少 (duōshao) sert pour un nombre grand ou inconnu.',
   'examples': [ex('你有几个朋友？', 'Nǐ yǒu jǐ ge péngyou?', 'Tu as combien d’amis ?'), ex('多少钱？', 'Duōshao qián?', 'Combien ça coûte ?'), ex('三十五', 'sānshíwǔ', '35 (3×10+5)'), ex('你女儿几岁？', 'Nǐ nǚ’ér jǐ suì?', 'Ta fille a quel âge ?')],
@@ -120,6 +131,17 @@ k02_sui | 岁 | sui | 4 | | An (âge)
 k02_nian | 年 | nian | 2 | | Année
 k02_s_jisui | 你几岁 | ni ji sui | 3 3 4 | 2 3 4 | Tu as quel âge ? (à un enfant)
 k02_s_ershisan | 我二十三岁 | wo er-shi-san sui | 3 4 2 1 4 | | J’ai vingt-trois ans | Dis ton âge à une collègue en chinois : 我…岁。
+k02_s_shiyi | 十一 | shi-yi | 2 1 | | Onze (11)
+k02_s_ershi | 二十 | er-shi | 4 2 | | Vingt (20)
+k02_s_liushi | 六十 | liu-shi | 4 2 | | Soixante (60)
+k02_s_bashiba | 八十八 | ba-shi-ba | 1 2 1 | | Quatre-vingt-huit (88, porte-bonheur)
+k02_s_jiushijiu | 九十九 | jiu-shi-jiu | 3 2 3 | | Quatre-vingt-dix-neuf (99)
+k02_s_yigeren | 一个人 | yi ge ren | 2 0 2 | | Une personne, toute seule
+k02_s_sangeren | 三个人 | san ge ren | 1 0 2 | | Trois personnes
+k02_s_jigeren | 几个人 | ji ge ren | 3 0 2 | | Combien de personnes ? | Le matin, demande à ton chef d’équipe : 今天几个人？
+k02_s_duoshaoren | 多少人 | duo-shao ren | 1 0 2 | | Combien de gens ?
+k02_s_yinian | 一年 | yi nian | 4 2 | | Un an, une année
+k02_s_shiwusui | 他十五岁 | ta shi-wu sui | 1 2 3 4 | | Il a quinze ans
 '''),
  pairs=[pair(('八', 'ba', 1, 'huit'), ('爸', 'ba', 4, 'papa')), pair(('七', 'qi', 1, 'sept'), ('起', 'qi', 3, 'se lever'))],
  chars=chars('''
@@ -144,7 +166,7 @@ k02_s_ershisan | 我二十三岁 | wo er-shi-san sui | 3 4 2 1 4 | | J’ai ving
 # ---------------- HSK 1 · 3 ----------------
 PACKS.append(dict(id='hsk1-03', file='hsk1-03-famille.json', branch='hsk', level=1, publish=True,
  title='HSK 1 · 3 — Famille et entourage',
- desc='Parler de ta famille, de tes amis, des gens autour de toi. 15 mots HSK 1.',
+ desc='Parler de ta famille, de tes amis, des gens autour de toi. 15 mots HSK 1 et 13 phrases pour t’en servir.',
  grammar={'title': '有 / 没有, et 的 pour « de »',
   'explain': '有 (yǒu) veut dire « avoir » ou « il y a ». Sa négation est toujours 没有 (méiyǒu), jamais 不有. 的 (de) relie celui qui possède et ce qui est possédé, dans cet ordre : 我的妈妈 = « ma mère » (mot à mot « moi-de mère »).',
   'examples': [ex('我有一个朋友。', 'Wǒ yǒu yí ge péngyou.', 'J’ai un ami.'), ex('我没有电脑。', 'Wǒ méiyǒu diànnǎo.', 'Je n’ai pas d’ordinateur.'), ex('这是我的老师。', 'Zhè shì wǒ de lǎoshī.', 'C’est mon professeur.'), ex('妈妈的家', 'māma de jiā', 'la maison de maman')],
@@ -167,6 +189,17 @@ k03_meiyou | 没有 | mei-you | 2 3 | | Ne pas avoir
 k03_de | 的 | de | 0 | | De (possession)
 k03_s_pengyou | 这是我的朋友 | zhe shi wo de peng-you | 4 4 3 0 2 0 | | C’est mon amie | Présente une amie ou un proche à un collègue chinois : 这是我的…
 k03_s_erzi | 我有一个儿子 | wo you yi ge er-zi | 3 3 2 0 2 0 | 2 3 2 0 2 0 | J’ai un fils
+k03_s_baba | 我爸爸是医生 | wo ba-ba shi yi-sheng | 3 4 0 4 1 1 | | Mon père est médecin
+k03_s_mama | 我妈妈是老师 | wo ma-ma shi lao-shi | 3 1 0 4 3 1 | | Ma mère est enseignante
+k03_s_nver | 她是我女儿 | ta shi wo nv-er | 1 4 3 3 2 | 1 4 2 3 2 | C’est ma fille
+k03_s_meiyounver | 我没有女儿 | wo mei-you nv-er | 3 2 3 3 2 | 3 2 2 3 2 | Je n’ai pas de fille
+k03_s_tongxue | 他是我的同学 | ta shi wo de tong-xue | 1 4 3 0 2 2 | | C’est mon camarade de classe
+k03_s_shuide | 她是谁的朋友 | ta shi shei de peng-you | 1 4 2 0 2 0 | | C’est l’amie de qui ?
+k03_s_zhongguopengyou | 我有中国朋友 | wo you Zhong-guo peng-you | 3 3 1 2 2 0 | 2 3 1 2 2 0 | J’ai des amis chinois
+k03_s_xuesheng | 我不是学生 | wo bu shi xue-sheng | 3 2 4 2 0 | | Je ne suis pas étudiante
+k03_s_womenjia | 我们家 | wo-men jia | 3 0 1 | | Chez nous, notre famille
+k03_s_xiansheng | 王先生 | Wang xian-sheng | 2 1 0 | | Monsieur Wang | Pour appeler poliment un chef chinois, dis son nom de famille + 先生 : 王先生！
+k03_s_xiaojie | 张小姐 | Zhang xiao-jie | 1 3 3 | 1 2 3 | Mademoiselle Zhang
 '''),
  pairs=[pair(('有', 'you', 3, 'avoir'), ('又', 'you', 4, 'encore, de nouveau'))],
  chars=chars('''
@@ -192,7 +225,7 @@ k03_s_erzi | 我有一个儿子 | wo you yi ge er-zi | 3 3 2 0 2 0 | 2 3 2 0 2 0
 # ---------------- HSK 1 · 4 ----------------
 PACKS.append(dict(id='hsk1-04', file='hsk1-04-temps.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 4 — L’heure et la date',
- desc='Dire l’heure, la date, les moments de la journée. 13 mots HSK 1.',
+ desc='Dire l’heure, la date, les moments de la journée. 13 mots HSK 1 et 14 phrases pour t’en servir.',
  grammar={'title': 'La date et l’heure : du plus grand au plus petit',
   'explain': 'En chinois, on part toujours du plus grand vers le plus petit : année, mois, jour, moment, heure. 十月二号 = « le 2 octobre » (mot à mot « 10e mois, 2e jour »). Et le moment se place avant le verbe : 我明天去, pas 我去明天.',
   'examples': [ex('今天十月二号。', 'Jīntiān shí yuè èr hào.', 'Aujourd’hui, c’est le 2 octobre.'), ex('星期一上午九点', 'xīngqīyī shàngwǔ jiǔ diǎn', 'lundi à 9 h du matin'), ex('我明天下午去。', 'Wǒ míngtiān xiàwǔ qù.', 'J’y vais demain après-midi.'), ex('你什么时候去？', 'Nǐ shénme shíhou qù?', 'Tu y vas quand ?')],
@@ -214,6 +247,17 @@ k04_shihou | 时候 | shi-hou | 2 0 | | Moment
 k04_s_jidian | 现在几点 | xian-zai ji dian | 4 4 3 3 | 4 4 2 3 | Quelle heure est-il ? | Demande l’heure à un collègue chinois : 现在几点？
 k04_s_jihao | 今天几月几号 | jin-tian ji yue ji hao | 1 1 3 4 3 4 | | On est quel jour aujourd’hui ?
 k04_s_shenmeshihou | 你什么时候下班 | ni shen-me shi-hou xia-ban | 3 2 0 2 0 4 1 | | Tu finis quand ? | Demande à un collègue : 你什么时候下班？
+k04_s_badian | 八点 | ba dian | 1 3 | | Huit heures
+k04_s_sandian | 现在三点 | xian-zai san dian | 4 4 1 3 | | Il est trois heures
+k04_s_jiudianshifen | 九点十分 | jiu dian shi fen | 3 3 2 1 | 2 3 2 1 | Neuf heures dix
+k04_s_shifenzhong | 十分钟 | shi fen-zhong | 2 1 1 | | Dix minutes
+k04_s_mingtianshangwu | 明天上午 | ming-tian shang-wu | 2 1 4 3 | | Demain matin
+k04_s_liudianxiaban | 下午六点下班 | xia-wu liu dian xia-ban | 4 3 4 3 4 1 | | Je finis à six heures du soir
+k04_s_xingqiyi | 星期一 | xing-qi-yi | 1 1 1 | | Lundi
+k04_s_xingqiliu | 星期六 | xing-qi-liu | 1 1 4 | | Samedi
+k04_s_xingqitian | 星期天 | xing-qi-tian | 1 1 1 | | Dimanche
+k04_s_xingqiji | 今天星期几 | jin-tian xing-qi ji | 1 1 1 1 3 | | On est quel jour de la semaine ? | Le matin, demande à une collègue : 今天星期几？
+k04_s_yihao | 十月一号 | shi yue yi hao | 2 4 1 4 | | Le 1er octobre
 '''),
  pairs=[pair(('天', 'tian', 1, 'jour, ciel'), ('甜', 'tian', 2, 'sucré'))],
  chars=chars('''
@@ -238,7 +282,7 @@ k04_s_shenmeshihou | 你什么时候下班 | ni shen-me shi-hou xia-ban | 3 2 0 
 # ---------------- HSK 1 · 5 ----------------
 PACKS.append(dict(id='hsk1-05', file='hsk1-05-manger.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 5 — Manger et boire',
- desc='Commander au restaurant, dire ce que tu aimes et ce que tu veux. 14 mots HSK 1.',
+ desc='Commander au restaurant, dire ce que tu aimes et ce que tu veux. 14 mots HSK 1 et 13 phrases pour t’en servir.',
  grammar={'title': '想 et 喜欢 + verbe',
   'explain': '想 (xiǎng) = « vouloir, avoir envie » maintenant. 喜欢 (xǐhuan) = « aimer » en général. Les deux se placent devant un autre verbe : 我想喝水 (j’ai envie de boire de l’eau), 我喜欢吃苹果 (j’aime manger des pommes).',
   'examples': [ex('我想喝水。', 'Wǒ xiǎng hē shuǐ.', 'Je veux boire de l’eau.'), ex('我喜欢吃米饭。', 'Wǒ xǐhuan chī mǐfàn.', 'J’aime manger du riz.'), ex('你想去饭店吗？', 'Nǐ xiǎng qù fàndiàn ma?', 'Tu veux aller au restaurant ?'), ex('我不喜欢喝茶。', 'Wǒ bù xǐhuan hē chá.', 'Je n’aime pas boire du thé.')],
@@ -260,6 +304,17 @@ k05_ai | 爱 | ai | 4 | | Aimer (fort)
 k05_qing | 请 | qing | 3 | | S’il vous plaît, inviter
 k05_s_xiangchi | 你想吃什么 | ni xiang chi shen-me | 3 3 1 2 0 | 2 3 1 2 0 | Tu veux manger quoi ? | À la pause repas, demande à un collègue : 你想吃什么？
 k05_s_hecha | 我喜欢喝茶 | wo xi-huan he cha | 3 3 0 1 2 | 2 3 0 1 2 | J’aime boire du thé
+k05_s_chifan | 吃饭 | chi fan | 1 4 | | Manger (un repas)
+k05_s_chilema | 你吃饭了吗 | ni chi fan le ma | 3 1 4 0 0 | | Tu as mangé ? (salut amical) | À la pause de midi, demande à un collègue chinois : 你吃饭了吗？
+k05_s_heshui | 我想喝水 | wo xiang he shui | 3 3 1 3 | 2 3 1 3 | J’ai envie de boire de l’eau
+k05_s_qinghecha | 请喝茶 | qing he cha | 3 1 2 | | Prends du thé, je t’en prie
+k05_s_yibeicha | 一杯茶 | yi bei cha | 4 1 2 | | Une tasse de thé
+k05_s_yigepingguo | 一个苹果 | yi ge ping-guo | 2 0 2 3 | | Une pomme
+k05_s_zhongguocai | 中国菜 | Zhong-guo cai | 1 2 4 | | La cuisine chinoise
+k05_s_xihuanmifan | 我喜欢吃米饭 | wo xi-huan chi mi-fan | 3 3 0 1 3 4 | 2 3 0 1 3 4 | J’aime manger du riz
+k05_s_aishuiguo | 我爱吃水果 | wo ai chi shui-guo | 3 4 1 3 3 | 3 4 1 2 3 | J’adore les fruits
+k05_s_buxiangchi | 我不想吃 | wo bu xiang chi | 3 4 3 1 | | Je n’ai pas envie de manger
+k05_s_shenmecai | 你喜欢什么菜 | ni xi-huan shen-me cai | 3 3 0 2 0 4 | 2 3 0 2 0 4 | Quels plats tu aimes ?
 '''),
  pairs=[pair(('吃', 'chi', 1, 'manger'), ('迟', 'chi', 2, 'en retard'))],
  chars=chars('''
@@ -285,7 +340,7 @@ k05_s_hecha | 我喜欢喝茶 | wo xi-huan he cha | 3 3 0 1 2 | 2 3 0 1 2 | J’
 # ---------------- HSK 1 · 6 ----------------
 PACKS.append(dict(id='hsk1-06', file='hsk1-06-acheter.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 6 — Acheter',
- desc='Faire des achats, demander le prix, dire que c’est trop. 12 mots HSK 1.',
+ desc='Faire des achats, demander le prix, dire que c’est trop. 12 mots HSK 1 et 14 phrases pour t’en servir.',
  grammar={'title': '太 … 了 : « trop » et les exclamations',
   'explain': '太 (tài) + adjectif + 了 (le) veut dire « trop… » : 太多了 = c’est trop. La même forme sert aussi à s’enthousiasmer : 太好了 ! = génial !',
   'examples': [ex('太多了！', 'Tài duō le!', 'C’est trop !'), ex('这个太小了。', 'Zhège tài xiǎo le.', 'Celui-ci est trop petit.'), ex('太漂亮了！', 'Tài piàoliang le!', 'Trop beau !'), ex('这个多少钱？', 'Zhège duōshao qián?', 'Combien coûte celui-ci ?')],
@@ -306,6 +361,17 @@ k06_piaoliang | 漂亮 | piao-liang | 4 0 | | Joli, beau
 k06_s_duoshaoqian | 这个多少钱 | zhe-ge duo-shao qian | 4 0 1 0 2 | | Combien coûte celui-ci ? | Dans un magasin chinois, demande un prix : 这个多少钱？
 k06_s_taiduole | 太多了 | tai duo le | 4 1 0 | | C’est trop
 k06_s_maidongxi | 我想买一些东西 | wo xiang mai yi-xie dong-xi | 3 3 3 4 1 1 0 | 2 2 3 4 1 1 0 | Je voudrais acheter quelques affaires
+k06_s_sankuai | 三块钱 | san kuai qian | 1 4 2 | | Trois yuans
+k06_s_ershiwukuai | 二十五块 | er-shi-wu kuai | 4 2 3 4 | | Vingt-cinq yuans
+k06_s_maishenme | 你买什么 | ni mai shen-me | 3 3 2 0 | 2 3 2 0 | Tu achètes quoi ?
+k06_s_maiyifu | 我想买衣服 | wo xiang mai yi-fu | 3 3 3 1 0 | 2 2 3 1 0 | J’ai envie d’acheter des vêtements
+k06_s_piaoliang | 你的衣服很漂亮 | ni de yi-fu hen piao-liang | 3 0 1 0 3 4 0 | | Tes vêtements sont très beaux
+k06_s_taishao | 太少了 | tai shao le | 4 3 0 | | C’est trop peu
+k06_s_duoyidianr | 多一点儿 | duo yi-dian-r | 1 4 3 0 | | Un peu plus
+k06_s_shaoyidianr | 少一点儿 | shao yi-dian-r | 3 4 3 0 | | Un peu moins
+k06_s_meiqian | 我没有钱 | wo mei-you qian | 3 2 3 2 | | Je n’ai pas d’argent
+k06_s_shuiguo | 买一些水果 | mai yi-xie shui-guo | 3 4 1 3 3 | 3 4 1 2 3 | Acheter quelques fruits
+k06_s_shangdian | 中国商店 | Zhong-guo shang-dian | 1 2 1 4 | | Une boutique chinoise
 '''),
  pairs=[pair(('少', 'shao', 3, 'peu'), ('烧', 'shao', 1, 'brûler'))],
  chars=chars('''
@@ -332,7 +398,7 @@ k06_s_maidongxi | 我想买一些东西 | wo xiang mai yi-xie dong-xi | 3 3 3 4 
 # ---------------- HSK 1 · 7 ----------------
 PACKS.append(dict(id='hsk1-07', file='hsk1-07-lieux.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 7 — Où ? Les lieux',
- desc='Dire où tu habites, où se trouve quelque chose, devant, derrière. 14 mots HSK 1.',
+ desc='Dire où tu habites, où se trouve quelque chose, devant, derrière. 14 mots HSK 1 et 13 phrases pour t’en servir.',
  grammar={'title': '在 : être à (un endroit)',
   'explain': '在 (zài) + lieu = « être à ». 我在家 = je suis à la maison. Pour demander où, remplace le lieu par 哪儿 (nǎr) : 你在哪儿 ? Le chinois ne change pas l’ordre des mots pour poser une question.',
   'examples': [ex('我在家。', 'Wǒ zài jiā.', 'Je suis à la maison.'), ex('学校在哪儿？', 'Xuéxiào zài nǎr?', 'Où est l’école ?'), ex('医院在学校后面。', 'Yīyuàn zài xuéxiào hòumiàn.', 'L’hôpital est derrière l’école.'), ex('我住在北京。', 'Wǒ zhù zài Běijīng.', 'J’habite à Pékin.')],
@@ -354,6 +420,17 @@ k07_yiyuan | 医院 | yi-yuan | 1 4 | | Hôpital
 k07_beijing | 北京 | Bei-jing | 3 1 | | Pékin
 k07_s_zhuzai | 你住在哪儿 | ni zhu zai na-r | 3 4 4 3 0 | | Tu habites où ? | Demande à un collègue chinois où il habite : 你住在哪儿？
 k07_s_yiyuan | 医院在学校后面 | yi-yuan zai xue-xiao hou-mian | 1 4 4 2 4 4 4 | | L’hôpital est derrière l’école
+k07_s_lome | 我住在洛美 | wo zhu zai Luo-mei | 3 4 4 4 3 | | J’habite à Lomé | Quand un collègue chinois te demande où tu habites, réponds : 我住在洛美。
+k07_s_nizainar | 你在哪儿 | ni zai na-r | 3 4 3 0 | | Tu es où ?
+k07_s_zher | 我在这儿 | wo zai zhe-r | 3 4 4 0 | | Je suis ici
+k07_s_zainar | 在那儿 | zai na-r | 4 4 0 | | Là-bas
+k07_s_zheshinar | 这是哪儿 | zhe shi na-r | 4 4 3 0 | | On est où, ici ?
+k07_s_yiyuanzainar | 医院在哪儿 | yi-yuan zai na-r | 1 4 4 3 0 | | Où est l’hôpital ?
+k07_s_jiali | 在家里 | zai jia li | 4 1 3 | | À la maison
+k07_s_qianmian | 在前面 | zai qian-mian | 4 2 4 | | C’est devant
+k07_s_houmian | 他在我后面 | ta zai wo hou-mian | 1 4 3 4 4 | | Il est derrière moi
+k07_s_nageren | 那个人是谁 | na-ge ren shi shei | 4 0 2 4 2 | | Qui est cette personne ?
+k07_s_beijingren | 他是北京人 | ta shi Bei-jing ren | 1 4 3 1 2 | | Il vient de Pékin
 '''),
  pairs=[pair(('住', 'zhu', 4, 'habiter'), ('猪', 'zhu', 1, 'cochon'))],
  chars=chars('''
@@ -378,7 +455,7 @@ k07_s_yiyuan | 医院在学校后面 | yi-yuan zai xue-xiao hou-mian | 1 4 4 2 4
 # ---------------- HSK 1 · 8 ----------------
 PACKS.append(dict(id='hsk1-08', file='hsk1-08-deplacements.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 8 — Se déplacer et téléphoner',
- desc='Aller, venir, rentrer, prendre un taxi, passer un appel. 13 mots HSK 1.',
+ desc='Aller, venir, rentrer, prendre un taxi, passer un appel. 13 mots HSK 1 et 14 phrases pour t’en servir.',
  grammar={'title': '去, 来, 回 et 坐 (prendre un transport)',
   'explain': '去 (qù) = aller là-bas, 来 (lái) = venir ici, 回 (huí) = rentrer. Pour dire comment on se déplace, on met 坐 + transport avant le verbe : 坐出租车去 = y aller en taxi.',
   'examples': [ex('我去医院。', 'Wǒ qù yīyuàn.', 'Je vais à l’hôpital.'), ex('你来我家吗？', 'Nǐ lái wǒ jiā ma?', 'Tu viens chez moi ?'), ex('我坐出租车回家。', 'Wǒ zuò chūzūchē huí jiā.', 'Je rentre en taxi.'), ex('他坐飞机去北京。', 'Tā zuò fēijī qù Běijīng.', 'Il va à Pékin en avion.')],
@@ -399,6 +476,18 @@ k08_hui2 | 会 | hui | 4 | | Savoir (faire)
 k08_zenme | 怎么 | zen-me | 3 0 | | Comment
 k08_s_chuzuche | 我坐出租车去医院 | wo zuo chu-zu-che qu yi-yuan | 3 4 1 1 1 4 1 4 | | Je vais à l’hôpital en taxi
 k08_s_zenme | 你怎么回家 | ni zen-me hui jia | 3 3 0 2 1 | 2 3 0 2 1 | Tu rentres comment ? | Après le poste, demande à un collègue : 你怎么回家？
+k08_s_huijia | 我回家 | wo hui jia | 3 2 1 | | Je rentre à la maison
+k08_s_qushangban | 去上班 | qu shang-ban | 4 4 1 | | Aller au travail
+k08_s_zenmequ | 怎么去 | zen-me qu | 3 0 4 | | Comment on y va ?
+k08_s_feiji | 坐飞机去中国 | zuo fei-ji qu Zhong-guo | 4 1 1 4 1 2 | | Aller en Chine en avion
+k08_s_shihoulai | 你什么时候来 | ni shen-me shi-hou lai | 3 2 0 2 0 2 | | Tu viens quand ?
+k08_s_nenglai | 你能来吗 | ni neng lai ma | 3 2 2 0 | | Tu peux venir ?
+k08_s_bunengqu | 我不能去 | wo bu neng qu | 3 4 2 4 | | Je ne peux pas y aller
+k08_s_kaiche | 他会开车 | ta hui kai che | 1 4 1 1 | | Il sait conduire
+k08_s_dadianhua | 我能打电话吗 | wo neng da dian-hua ma | 3 2 3 4 4 0 | | Je peux passer un coup de fil ?
+k08_s_weinihao | 喂，你好 | wei ni hao | 4 3 3 | 4 2 3 | Allô, bonjour
+k08_s_qingzuo | 请坐 | qing zuo | 3 4 | | Assieds-toi, je t’en prie
+k08_s_mingtianjian | 明天见 | ming-tian jian | 2 1 4 | | À demain | En partant du travail, dis à tes collègues : 明天见！
 '''),
  pairs=[pair(('坐', 'zuo', 4, 's’asseoir'), ('左', 'zuo', 3, 'gauche'))],
  chars=chars('''
@@ -424,7 +513,7 @@ k08_s_zenme | 你怎么回家 | ni zen-me hui jia | 3 3 0 2 1 | 2 3 0 2 1 | Tu r
 # ---------------- HSK 1 · 9 ----------------
 PACKS.append(dict(id='hsk1-09', file='hsk1-09-activites.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 9 — Ce qu’on fait',
- desc='Regarder, écouter, lire, écrire, travailler, étudier le chinois. 18 mots HSK 1.',
+ desc='Regarder, écouter, lire, écrire, travailler, étudier le chinois. 18 mots HSK 1 et 10 phrases pour t’en servir.',
  grammar={'title': '了 : l’action est faite',
   'explain': '了 (le) après un verbe indique que l’action est terminée : 我吃了 = j’ai mangé. Pour dire qu’on ne l’a pas fait, on utilise 没 devant le verbe, sans 了 : 我没吃.',
   'examples': [ex('我吃了。', 'Wǒ chī le.', 'J’ai mangé.'), ex('我买了一本书。', 'Wǒ mǎi le yì běn shū.', 'J’ai acheté un livre.'), ex('你看了吗？', 'Nǐ kàn le ma?', 'Tu l’as vu ?'), ex('我没看。', 'Wǒ méi kàn.', 'Je ne l’ai pas vu.')],
@@ -450,6 +539,14 @@ k09_dianying | 电影 | dian-ying | 4 3 | | Film
 k09_le | 了 | le | 0 | | Action terminée
 k09_s_xuexi | 我在学习汉语 | wo zai xue-xi Han-yu | 3 4 2 2 4 3 | | J’apprends le chinois | Dis à un collègue chinois que tu apprends sa langue : 我在学习汉语。
 k09_s_dianying | 我看了一个电影 | wo kan le yi ge dian-ying | 3 4 0 2 0 4 3 | | J’ai regardé un film
+k09_s_shuohanyu | 你会说汉语吗 | ni hui shuo Han-yu ma | 3 4 1 4 3 0 | | Tu parles chinois ?
+k09_s_yidianr | 我会说一点儿汉语 | wo hui shuo yi-dian-r Han-yu | 3 4 1 4 3 0 4 3 | | Je parle un peu chinois | Quand un collègue chinois s’étonne que tu le comprennes, dis-lui : 我会说一点儿汉语。
+k09_s_zenmexie | 这个字怎么写 | zhe-ge zi zen-me xie | 4 0 4 3 0 3 | | Comment s’écrit ce caractère ?
+k09_s_zenmedu | 这个字怎么读 | zhe-ge zi zen-me du | 4 0 4 3 0 2 | | Comment se lit ce caractère ?
+k09_s_gongzuo | 你做什么工作 | ni zuo shen-me gong-zuo | 3 4 2 0 1 4 | | Tu fais quel travail ?
+k09_s_kandianshi | 看电视 | kan dian-shi | 4 4 4 | | Regarder la télé
+k09_s_yibenshu | 一本书 | yi ben shu | 4 3 1 | | Un livre
+k09_s_shuijiao | 我想睡觉 | wo xiang shui-jiao | 3 3 4 4 | 2 3 4 4 | J’ai envie de dormir
 '''),
  pairs=[pair(('书', 'shu', 1, 'livre'), ('树', 'shu', 4, 'arbre'))],
  chars=chars('''
@@ -474,7 +571,7 @@ k09_s_dianying | 我看了一个电影 | wo kan le yi ge dian-ying | 3 4 0 2 0 4
 # ---------------- HSK 1 · 10 ----------------
 PACKS.append(dict(id='hsk1-10', file='hsk1-10-meteo-politesse.json', branch='hsk', level=1, publish=False,
  title='HSK 1 · 10 — Météo, humeur et politesse',
- desc='Le temps qu’il fait, décrire, remercier, s’excuser, poser des questions. 19 mots HSK 1 : le HSK 1 est complet !',
+ desc='Le temps qu’il fait, décrire, remercier, s’excuser, poser des questions. 19 mots HSK 1 et 8 phrases pour t’en servir : le HSK 1 est complet !',
  grammar={'title': '很 + adjectif, et les questions avec 吗 / 呢',
   'explain': 'Devant un adjectif, on met presque toujours 很 (hěn) : 我很好. On n’utilise pas 是 avec un adjectif. Pour poser une question oui/non, on ajoute 吗 (ma) à la fin. Pour renvoyer la question (« et toi ? »), on ajoute 呢 (ne).',
   'examples': [ex('天气很好。', 'Tiānqì hěn hǎo.', 'Il fait beau.'), ex('你好吗？', 'Nǐ hǎo ma?', 'Tu vas bien ?'), ex('我很好，你呢？', 'Wǒ hěn hǎo, nǐ ne?', 'Je vais bien, et toi ?'), ex('我们都很高兴。', 'Wǒmen dōu hěn gāoxìng.', 'Nous sommes tous contents.')],
@@ -501,6 +598,12 @@ k10_yizi | 椅子 | yi-zi | 3 0 | | Chaise
 k10_zhuozi | 桌子 | zhuo-zi | 1 0 | | Table
 k10_s_tianqi | 今天天气怎么样 | jin-tian tian-qi zen-me-yang | 1 1 1 4 3 0 4 | | Quel temps fait-il aujourd’hui ? | Le matin, lance la conversation : 今天天气怎么样？
 k10_s_nine | 我很好，你呢 | wo hen hao ni ne | 3 3 3 3 0 | 2 2 3 3 0 | Je vais bien, et toi ?
+k10_s_nihaoma | 你好吗 | ni hao ma | 3 3 0 | 2 3 0 | Tu vas bien ?
+k10_s_zenmeyang | 你怎么样 | ni zen-me-yang | 3 3 0 4 | 2 3 0 4 | Et toi, comment ça va ?
+k10_s_douhao | 我们都很好 | wo-men dou hen hao | 3 0 1 3 3 | 3 0 1 2 3 | Nous allons tous bien
+k10_s_henre | 今天很热 | jin-tian hen re | 1 1 3 4 | | Il fait très chaud aujourd’hui
+k10_s_tailengle | 太冷了 | tai leng le | 4 3 0 | | Il fait trop froid
+k10_s_xiayule | 下雨了 | xia-yu le | 4 3 0 | | Il pleut | Quand il commence à pleuvoir, dis à un collègue : 下雨了！
 '''),
  pairs=[pair(('猫', 'mao', 1, 'chat'), ('毛', 'mao', 2, 'poil'))],
  chars=chars('''
@@ -527,7 +630,7 @@ k10_s_nine | 我很好，你呢 | wo hen hao ni ne | 3 3 3 3 0 | 2 2 3 3 0 | Je 
 # ---------------- HSK 2 · 1 ----------------
 PACKS.append(dict(id='hsk2-01', file='hsk2-01-famille.json', branch='hsk', level=2, publish=False,
  title='HSK 2 · 1 — Frères, sœurs et présentations',
- desc='Parler de tes frères et sœurs, de ton mari ou de ta femme, et te présenter poliment. 16 mots HSK 2.',
+ desc='Parler de tes frères et sœurs, de ton mari ou de ta femme, et te présenter poliment. 16 mots HSK 2 et 12 phrases pour t’en servir.',
  grammar={'title': '也 : « aussi »',
   'explain': '也 (yě) veut dire « aussi ». Il se place toujours juste avant le verbe (ou avant 很 + adjectif), jamais au début ni à la fin de la phrase. Pour dire « moi aussi », on dit 我也是 (mot à mot « moi aussi suis »).',
   'examples': [ex('我也是多哥人。', 'Wǒ yě shì Duōgē rén.', 'Je suis Togolaise aussi.'), ex('她也有一个哥哥。', 'Tā yě yǒu yí ge gēge.', 'Elle aussi a un grand frère.'), ex('我们也很高兴。', 'Wǒmen yě hěn gāoxìng.', 'Nous aussi, nous sommes contents.'), ex('——我很忙。——我也是。', '— Wǒ hěn máng. — Wǒ yě shì.', '— Je suis très occupée. — Moi aussi.')],
@@ -553,6 +656,14 @@ h201_s_guixing | 您贵姓 | nin gui xing | 2 4 4 | | Quel est votre nom de fami
 h201_s_jieshao | 我来介绍一下 | wo lai jie-shao yi-xia | 3 2 4 4 2 4 | | Je vous présente…
 h201_s_shengri | 生日快乐 | sheng-ri kuai-le | 1 4 4 4 | | Joyeux anniversaire ! | Le jour de l’anniversaire d’une collègue, dis-lui : 生日快乐！
 h201_s_yeshi | 我也是 | wo ye shi | 3 3 4 | 2 3 4 | Moi aussi
+h201_s_ninhao | 您好 | nin hao | 2 3 | | Bonjour (poli) | Salue poliment le patron ou un client : 您好！
+h201_s_dajiahao | 大家好 | da-jia hao | 4 1 3 | | Bonjour tout le monde | En arrivant à l’atelier le matin, dis : 大家好！
+h201_s_xingwang | 他姓王 | ta xing Wang | 1 4 2 | | Son nom de famille est Wang
+h201_s_gege | 我有一个哥哥 | wo you yi ge ge-ge | 3 3 2 0 1 0 | 2 3 2 0 1 0 | J’ai un grand frère
+h201_s_jiejie | 这是我姐姐 | zhe shi wo jie-jie | 4 4 3 3 0 | 4 4 2 3 0 | C’est ma grande sœur
+h201_s_meimei | 我妹妹是学生 | wo mei-mei shi xue-sheng | 3 4 0 4 2 0 | | Ma petite sœur est étudiante
+h201_s_haizi | 她有两个孩子 | ta you liang ge hai-zi | 1 3 3 0 2 0 | 1 2 3 0 2 0 | Elle a deux enfants
+h201_s_zhangfu | 你丈夫做什么工作 | ni zhang-fu zuo shen-me gong-zuo | 3 4 0 4 2 0 1 4 | | Que fait ton mari ?
 '''),
  pairs=[pair(('妹', 'mei', 4, 'petite sœur'), ('没', 'mei', 2, 'ne… pas (avoir)')), pair(('姐', 'jie', 3, 'grande sœur'), ('介', 'jie', 4, 'présenter'))],
  chars=chars('''
@@ -582,7 +693,7 @@ h201_s_yeshi | 我也是 | wo ye shi | 3 3 4 | 2 3 4 | Moi aussi
 # ---------------- HSK 2 · 2 ----------------
 PACKS.append(dict(id='hsk2-02', file='hsk2-02-sante.json', branch='hsk', level=2, publish=False,
  title='HSK 2 · 2 — Ma journée et ma santé',
- desc='Dire quand tu te lèves, si tu es fatiguée ou malade, et expliquer pourquoi. 15 mots HSK 2.',
+ desc='Dire quand tu te lèves, si tu es fatiguée ou malade, et expliquer pourquoi. 15 mots HSK 2 et 13 phrases pour t’en servir.',
  grammar={'title': '因为… 所以… : « parce que… donc… »',
   'explain': 'En chinois, on aime dire la cause d’abord : 因为 (yīnwèi) = parce que, puis la conséquence avec 所以 (suǒyǐ) = donc. On peut garder les deux mots dans la même phrase, ce qui est impossible en français.',
   'examples': [ex('因为我生病了，所以没去上班。', 'Yīnwèi wǒ shēngbìng le, suǒyǐ méi qù shàngbān.', 'Comme j’étais malade, je ne suis pas allée travailler.'), ex('因为很忙，所以我很累。', 'Yīnwèi hěn máng, suǒyǐ wǒ hěn lèi.', 'J’ai beaucoup de travail, donc je suis très fatiguée.'), ex('我今天很累，因为我早上五点起床。', 'Wǒ jīntiān hěn lèi, yīnwèi wǒ zǎoshang wǔ diǎn qǐchuáng.', 'Je suis fatiguée aujourd’hui, parce que je me suis levée à 5 h.')],
@@ -606,6 +717,16 @@ h202_suoyi | 所以 | suo-yi | 3 3 | 2 3 | Donc, c’est pourquoi
 h202_s_lei | 我觉得很累 | wo jue-de hen lei | 3 2 0 3 4 | | Je me sens très fatiguée
 h202_s_bingle | 我生病了 | wo sheng-bing le | 3 1 4 0 | | Je suis malade | Si un jour tu es malade, préviens ton chef par message : 我生病了，今天不能上班。
 h202_s_shijian | 你有时间吗 | ni you shi-jian ma | 3 3 2 1 0 | 2 3 2 1 0 | Tu as un moment ? | Avant de poser une question à un collègue chinois, demande-lui d’abord : 你有时间吗？
+h202_s_zaoshanghao | 早上好 | zao-shang hao | 3 0 3 | | Bonjour (le matin)
+h202_s_wanshanghao | 晚上好 | wan-shang hao | 3 0 3 | | Bonsoir
+h202_s_qichuang | 我早上六点起床 | wo zao-shang liu dian qi-chuang | 3 3 0 4 3 3 2 | 2 3 0 4 2 3 2 | Je me lève à six heures du matin
+h202_s_henmang | 我今天很忙 | wo jin-tian hen mang | 3 1 1 3 2 | | Je suis très occupée aujourd’hui
+h202_s_meishijian | 我没有时间 | wo mei-you shi-jian | 3 2 3 2 1 | | Je n’ai pas le temps
+h202_s_bagexiaoshi | 八个小时 | ba ge xiao-shi | 1 0 3 2 | | Huit heures (de travail)
+h202_s_yijing | 已经十点了 | yi-jing shi dian le | 3 1 2 3 0 | | Il est déjà dix heures
+h202_s_shentihao | 你身体好吗 | ni shen-ti hao ma | 3 1 3 3 0 | 3 1 2 3 0 | Tu es en bonne santé ?
+h202_s_yanjing | 我的眼睛很累 | wo de yan-jing hen lei | 3 0 3 0 3 4 | | J’ai les yeux fatigués
+h202_s_chiyao | 吃药 | chi yao | 1 4 | | Prendre un médicament
 '''),
  pairs=[pair(('时', 'shi', 2, 'moment'), ('是', 'shi', 4, 'être')), pair(('眼', 'yan', 3, 'œil'), ('颜', 'yan', 2, 'couleur'))],
  chars=chars('''
@@ -635,7 +756,7 @@ h202_s_shijian | 你有时间吗 | ni you shi-jian ma | 3 3 2 1 0 | 2 3 2 1 0 | 
 # ---------------- HSK 2 · 3 ----------------
 PACKS.append(dict(id='hsk2-03', file='hsk2-03-comparer.json', branch='hsk', level=2, publish=False,
  title='HSK 2 · 3 — Prix, couleurs et comparaisons',
- desc='Vendre et acheter, dire les couleurs, les grands prix, et comparer deux choses. 16 mots HSK 2.',
+ desc='Vendre et acheter, dire les couleurs, les grands prix, et comparer deux choses. 16 mots HSK 2 et 12 phrases pour t’en servir.',
  grammar={'title': '比 : comparer deux choses',
   'explain': 'Pour dire « A est plus … que B », on dit : A 比 (bǐ) B + adjectif. 这双比那双贵 = celle-ci est plus chère que celle-là. L’adjectif ne change pas et se met tout à la fin.',
   'examples': [ex('这双鞋比那双贵。', 'Zhè shuāng xié bǐ nà shuāng guì.', 'Cette paire est plus chère que celle-là.'), ex('今天比昨天热。', 'Jīntiān bǐ zuótiān rè.', 'Aujourd’hui il fait plus chaud qu’hier.'), ex('他比我忙。', 'Tā bǐ wǒ máng.', 'Il est plus occupé que moi.'), ex('黑的比白的便宜多了。', 'Hēi de bǐ bái de piányi duō le.', 'Le noir est beaucoup moins cher que le blanc.')],
@@ -660,6 +781,15 @@ h203_bi | 比 | bi | 3 | | Plus… que (comparer)
 h203_s_bi | 这件比那件便宜 | zhe jian bi na jian pian-yi | 4 4 3 4 4 2 0 | | Celui-ci est moins cher que celui-là
 h203_s_heise | 有没有黑色的 | you mei you hei-se de | 3 2 3 1 4 0 | | Vous l’avez en noir ? | Dans une boutique, demande une autre couleur : 有没有黑色的？ (ou 红色的, 白色的)
 h203_s_hao | 我穿三十八号 | wo chuan san-shi-ba hao | 3 1 1 2 1 4 | | Je chausse du 38 | Au magasin de chaussures, donne ta pointure en chinois : 我穿…号。
+h203_s_yibaiyuan | 一百元 | yi-bai yuan | 4 3 2 | | Cent yuans
+h203_s_yiqiankuai | 一千块 | yi-qian kuai | 4 1 4 | | Mille yuans
+h203_s_zenmemai | 这个怎么卖 | zhe-ge zen-me mai | 4 0 3 0 4 | | Ça se vend comment ? (le prix) | Au marché, montre un produit et demande : 这个怎么卖？
+h203_s_lianggongjin | 两公斤 | liang gong-jin | 3 1 1 | | Deux kilos
+h203_s_shenmeyanse | 什么颜色 | shen-me yan-se | 2 0 2 4 | | Quelle couleur ?
+h203_s_baise | 白色的鞋 | bai-se de xie | 2 4 0 2 | | Des chaussures blanches
+h203_s_xinde | 这双鞋是新的 | zhe shuang xie shi xin de | 4 1 2 4 1 0 | | Cette paire est neuve
+h203_s_zhuozi | 一张桌子 | yi zhang zhuo-zi | 4 1 1 0 | | Une table
+h203_s_bizuotian | 今天比昨天热 | jin-tian bi zuo-tian re | 1 1 3 2 1 4 | | Aujourd’hui, il fait plus chaud qu’hier
 '''),
  pairs=[pair(('买', 'mai', 3, 'acheter'), ('卖', 'mai', 4, 'vendre')), pair(('白', 'bai', 2, 'blanc'), ('百', 'bai', 3, 'cent'))],
  chars=chars('''
@@ -688,7 +818,7 @@ h203_s_hao | 我穿三十八号 | wo chuan san-shi-ba hao | 3 1 1 2 1 4 | | Je c
 # ---------------- HSK 2 · 4 ----------------
 PACKS.append(dict(id='hsk2-04', file='hsk2-04-chemin.json', branch='hsk', level=2, publish=False,
  title='HSK 2 · 4 — Trouver son chemin',
- desc='Dire si c’est loin ou près, à gauche ou à droite, et expliquer un trajet. 16 mots HSK 2.',
+ desc='Dire si c’est loin ou près, à gauche ou à droite, et expliquer un trajet. 16 mots HSK 2 et 11 phrases pour t’en servir.',
  grammar={'title': '离 et 从… 到… : la distance et le trajet',
   'explain': 'Pour la distance entre deux endroits, on dit : A 离 (lí) B 很远 / 很近. 我家离工厂很近 = ma maison est près de l’usine. Pour un trajet ou une durée, du début jusqu’à la fin, on dit : 从 (cóng) A 到 (dào) B.',
   'examples': [ex('我家离工厂很近。', 'Wǒ jiā lí gōngchǎng hěn jìn.', 'Ma maison est près de l’usine.'), ex('机场离这儿很远。', 'Jīchǎng lí zhèr hěn yuǎn.', 'L’aéroport est loin d’ici.'), ex('从我家到工厂走路十分钟。', 'Cóng wǒ jiā dào gōngchǎng zǒulù shí fēnzhōng.', 'De chez moi à l’usine, il faut dix minutes à pied.'), ex('我们从八点工作到五点。', 'Wǒmen cóng bā diǎn gōngzuò dào wǔ diǎn.', 'Nous travaillons de 8 h à 17 h.')],
@@ -713,6 +843,14 @@ h204_fangjian | 房间 | fang-jian | 2 1 | | Chambre, pièce
 h204_s_li | 你家离工厂远吗 | ni jia li gong-chang yuan ma | 3 1 2 1 3 3 0 | 3 1 2 1 2 3 0 | Ta maison est loin de l’usine ? | À la pause, demande à un collègue : 你家离工厂远吗？
 h204_s_cong | 从家到工厂 | cong jia dao gong-chang | 2 1 4 1 3 | | De la maison jusqu’à l’usine
 h204_s_zoulu | 走路十分钟 | zou-lu shi fen-zhong | 3 4 2 1 1 | | Dix minutes à pied | Explique à un collègue ton trajet du matin : 从家到工厂走路…分钟。
+h204_s_buyuan | 不远，很近 | bu yuan hen jin | 4 3 3 4 | 4 2 3 4 | Pas loin, tout près
+h204_s_zuobian | 在左边 | zai zuo-bian | 4 3 1 | | C’est à gauche
+h204_s_youbian | 在右边 | zai you-bian | 4 4 1 | | C’est à droite
+h204_s_pangbian | 在商店旁边 | zai shang-dian pang-bian | 4 1 4 2 1 | | À côté de la boutique
+h204_s_zenmezou | 去医院怎么走 | qu yi-yuan zen-me zou | 4 1 4 3 0 3 | | Pour aller à l’hôpital, c’est par où ?
+h204_s_gongjiao | 我坐公共汽车上班 | wo zuo gong-gong qi-che shang-ban | 3 4 1 4 4 1 4 1 | | Je vais au travail en bus
+h204_s_maipiao | 买票 | mai piao | 3 4 | | Acheter un billet
+h204_s_daole | 到了 | dao le | 4 0 | | On est arrivés
 '''),
  pairs=[pair(('近', 'jin', 4, 'près'), ('今', 'jin', 1, 'aujourd’hui')), pair(('远', 'yuan', 3, 'loin'), ('元', 'yuan', 2, 'yuan'))],
  chars=chars('''
@@ -742,7 +880,7 @@ h204_s_zoulu | 走路十分钟 | zou-lu shi fen-zhong | 3 4 2 1 1 | | Dix minute
 # ---------------- HSK 2 · 5 ----------------
 PACKS.append(dict(id='hsk2-05', file='hsk2-05-comprendre.json', branch='hsk', level=2, publish=False,
  title='HSK 2 · 5 — Comprendre et s’entraider',
- desc='Demander, répondre, dire que tu as compris (ou pas), aider un collègue. 16 mots HSK 2.',
+ desc='Demander, répondre, dire que tu as compris (ou pas), aider un collègue. 16 mots HSK 2 et 12 phrases pour t’en servir.',
  grammar={'title': '正在 : « être en train de »',
   'explain': 'Pour dire qu’une action se passe en ce moment, mets 正在 (zhèngzài) juste avant le verbe. On peut ajouter 呢 (ne) à la fin : c’est plus naturel à l’oral. 我正在工作 = je suis en train de travailler.',
   'examples': [ex('我正在工作。', 'Wǒ zhèngzài gōngzuò.', 'Je suis en train de travailler.'), ex('他正在吃饭呢。', 'Tā zhèngzài chī fàn ne.', 'Il est en train de manger.'), ex('你正在做什么？', 'Nǐ zhèngzài zuò shénme?', 'Qu’est-ce que tu es en train de faire ?'), ex('组长正在找你。', 'Zǔzhǎng zhèngzài zhǎo nǐ.', 'Le chef d’équipe te cherche.')],
@@ -767,6 +905,15 @@ h205_cuo | 错 | cuo | 4 | | Faux, erreur
 h205_s_yisi | 这是什么意思 | zhe shi shen-me yi-si | 4 4 2 0 4 0 | | Qu’est-ce que ça veut dire ? | Quand un collègue dit un mot que tu ne connais pas, demande-lui : 这是什么意思？
 h205_s_deng | 请等一下 | qing deng yi-xia | 3 3 2 4 | 2 3 2 4 | Attends un instant, s’il te plaît
 h205_s_bang | 我来帮你 | wo lai bang ni | 3 2 1 3 | | Je vais t’aider | Quand une collègue a trop de travail, propose-lui : 我来帮你！
+h205_s_tingbudong | 我听不懂 | wo ting bu dong | 3 1 0 3 | | Je ne comprends pas (ce que j’entends) | Si un collègue parle trop vite, dis-lui : 我听不懂，请再说一遍。
+h205_s_dongle | 我懂了 | wo dong le | 3 3 0 | 2 3 0 | J’ai compris
+h205_s_buzhidao | 我不知道 | wo bu zhi-dao | 3 4 1 4 | | Je ne sais pas
+h205_s_gaosuwo | 请告诉我 | qing gao-su wo | 3 4 0 3 | | Dis-moi, s’il te plaît
+h205_s_zhaoshei | 你找谁 | ni zhao shei | 3 3 2 | 2 3 2 | Tu cherches qui ?
+h205_s_geini | 给你 | gei ni | 3 3 | 2 3 | Tiens, voilà
+h205_s_kaishi | 开始工作 | kai-shi gong-zuo | 1 3 1 4 | | Commencer le travail
+h205_s_zhunbeihao | 准备好了 | zhun-bei hao le | 3 4 3 0 | | C’est prêt
+h205_s_cuole | 错了 | cuo le | 4 0 | | C’est faux
 '''),
  pairs=[pair(('问', 'wen', 4, 'demander'), ('文', 'wen', 2, 'écriture')), pair(('懂', 'dong', 3, 'comprendre'), ('东', 'dong', 1, 'est'))],
  chars=chars('''
@@ -811,6 +958,26 @@ n_yixiang | 一箱 | yi xiang | 4 1 | | Un carton
 n_bugou | 不够 | bu gou | 2 4 | | Pas assez
 n_haicha | 还差五双 | hai cha wu shuang | 2 4 3 1 | | Il manque encore cinq paires
 n_yigong | 一共多少 | yi-gong duo-shao | 2 4 1 0 | | Combien au total ? | À la fin du comptage, demande : 一共多少？
+n_shuang | 双 | shuang | 1 | | Paire (pour compter les chaussures)
+n_xiangzi | 箱子 | xiang-zi | 1 0 | | Carton, caisse
+n_shu | 数 | shu | 3 | | Compter
+n_shuyixia | 我数一下 | wo shu yi-xia | 3 3 2 4 | 2 3 2 4 | Je vais compter | Avant de fermer un carton, dis à ton chef d’équipe : 我数一下。
+n_shucuo | 数错了 | shu cuo le | 3 4 0 | | Je me suis trompée en comptant
+n_zaishu | 再数一遍 | zai shu yi bian | 4 3 2 4 | | Recompte encore une fois
+n_yixiangduoshao | 一箱多少双 | yi xiang duo-shao shuang | 4 1 1 0 1 | | Combien de paires par carton ? | Demande à ton chef d’équipe : 一箱多少双？
+n_shiershuang | 一箱十二双 | yi xiang shi-er shuang | 4 1 2 4 1 | | Douze paires par carton
+n_jintian | 今天做了多少双 | jin-tian zuo le duo-shao shuang | 1 1 4 0 1 0 1 | | Combien de paires aujourd’hui ?
+n_jiushi | 我做了九十双 | wo zuo le jiu-shi shuang | 3 4 0 3 2 1 | | J’ai fait quatre-vingt-dix paires
+n_wubai | 五百双 | wu-bai shuang | 3 3 1 | 2 3 1 | Cinq cents paires
+n_yiqian | 一千 | yi-qian | 4 1 | | Mille (1 000)
+n_haichaduoshao | 还差多少 | hai cha duo-shao | 2 4 1 0 | | Il en manque combien ?
+n_haiyoujixiang | 还有几箱 | hai you ji xiang | 2 3 3 1 | 2 2 3 1 | Il reste combien de cartons ?
+n_duole | 多了两双 | duo le liang shuang | 1 0 3 1 | | Il y a deux paires en trop
+n_shaole | 少了一双 | shao le yi shuang | 3 0 4 1 | | Il manque une paire
+n_goule | 够了 | gou le | 4 0 | | Ça suffit, c’est assez
+n_duoshaoma | 多少码 | duo-shao ma | 1 0 3 | | Quelle pointure ?
+n_sanshibama | 三十八码 | san-shi-ba ma | 1 2 1 3 | | Pointure 38
+n_zhuangxiang | 装箱 | zhuang xiang | 1 1 | | Mettre en carton
 '''),
  pairs=[pair(('箱', 'xiang', 1, 'carton, caisse'), ('想', 'xiang', 3, 'vouloir'))],
  chars=chars('''
@@ -855,6 +1022,21 @@ q_you | 油 | you | 2 | | Huile
 q_yu | 鱼 | yu | 2 | | Poisson
 q_zhaoqian | 找钱 | zhao qian | 3 2 | | Rendre la monnaie
 q_weixin | 可以用微信吗 | ke-yi yong Wei-xin ma | 3 3 4 1 4 0 | 2 3 4 1 4 0 | Je peux payer avec WeChat ?
+q_yigong | 一共多少钱 | yi-gong duo-shao qian | 2 4 1 0 2 | | Ça fait combien en tout ? | À la caisse d’une boutique chinoise, demande : 一共多少钱？
+q_youmeiyou | 有没有鸡蛋 | you mei you ji-dan | 3 2 3 1 4 | | Tu as des œufs ?
+q_geiwo | 给我两个 | gei wo liang ge | 3 3 3 0 | 2 2 3 0 | Donne-m’en deux
+q_xinxian | 新鲜吗 | xin-xian ma | 1 1 0 | | C’est frais ?
+q_tudou | 土豆 | tu-dou | 3 4 | | Pomme de terre
+q_yangcong | 洋葱 | yang-cong | 2 1 | | Oignon
+q_lajiao | 辣椒 | la-jiao | 4 1 | | Piment
+q_xiangjiao | 香蕉 | xiang-jiao | 1 1 | | Banane
+q_jirou | 鸡肉 | ji-rou | 1 4 | | Viande de poulet
+q_niurou | 牛肉 | niu-rou | 2 4 | | Viande de bœuf
+q_mianbao | 面包 | mian-bao | 4 1 | | Pain
+q_yan | 盐 | yan | 2 | | Sel
+q_tang | 糖 | tang | 2 | | Sucre
+q_suliaodai | 塑料袋 | su-liao-dai | 4 4 4 | | Sachet en plastique
+q_xianjin | 现金 | xian-jin | 4 1 | | Espèces (billets, pièces)
 '''),
  pairs=[pair(('油', 'you', 2, 'huile'), ('有', 'you', 3, 'avoir')), pair(('鱼', 'yu', 2, 'poisson'), ('雨', 'yu', 3, 'pluie'))],
  chars=chars('''

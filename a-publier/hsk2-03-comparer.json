@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 2,
  "title": "HSK 2 · 3 — Prix, couleurs et comparaisons",
- "desc": "Vendre et acheter, dire les couleurs, les grands prix, et comparer deux choses. 16 mots HSK 2.",
+ "desc": "Vendre et acheter, dire les couleurs, les grands prix, et comparer deux choses. 16 mots HSK 2 et 12 phrases pour t’en servir.",
  "grammar": {
   "title": "比 : comparer deux choses",
   "explain": "Pour dire « A est plus … que B », on dit : A 比 (bǐ) B + adjectif. 这双比那双贵 = celle-ci est plus chère que celle-là. L’adjectif ne change pas et se met tout à la fin.",
@@ -241,6 +241,126 @@
    "fr": "Je chausse du 38",
    "st": 0,
    "m": "Au magasin de chaussures, donne ta pointure en chinois : 我穿…号。"
+  },
+  {
+   "id": "h203_s_yibaiyuan",
+   "h": "一百元",
+   "p": "yi-bai yuan",
+   "t": [
+    4,
+    3,
+    2
+   ],
+   "fr": "Cent yuans",
+   "st": 0
+  },
+  {
+   "id": "h203_s_yiqiankuai",
+   "h": "一千块",
+   "p": "yi-qian kuai",
+   "t": [
+    4,
+    1,
+    4
+   ],
+   "fr": "Mille yuans",
+   "st": 0
+  },
+  {
+   "id": "h203_s_zenmemai",
+   "h": "这个怎么卖",
+   "p": "zhe-ge zen-me mai",
+   "t": [
+    4,
+    0,
+    3,
+    0,
+    4
+   ],
+   "fr": "Ça se vend comment ? (le prix)",
+   "st": 0,
+   "m": "Au marché, montre un produit et demande : 这个怎么卖？"
+  },
+  {
+   "id": "h203_s_lianggongjin",
+   "h": "两公斤",
+   "p": "liang gong-jin",
+   "t": [
+    3,
+    1,
+    1
+   ],
+   "fr": "Deux kilos",
+   "st": 0
+  },
+  {
+   "id": "h203_s_shenmeyanse",
+   "h": "什么颜色",
+   "p": "shen-me yan-se",
+   "t": [
+    2,
+    0,
+    2,
+    4
+   ],
+   "fr": "Quelle couleur ?",
+   "st": 0
+  },
+  {
+   "id": "h203_s_baise",
+   "h": "白色的鞋",
+   "p": "bai-se de xie",
+   "t": [
+    2,
+    4,
+    0,
+    2
+   ],
+   "fr": "Des chaussures blanches",
+   "st": 0
+  },
+  {
+   "id": "h203_s_xinde",
+   "h": "这双鞋是新的",
+   "p": "zhe shuang xie shi xin de",
+   "t": [
+    4,
+    1,
+    2,
+    4,
+    1,
+    0
+   ],
+   "fr": "Cette paire est neuve",
+   "st": 0
+  },
+  {
+   "id": "h203_s_zhuozi",
+   "h": "一张桌子",
+   "p": "yi zhang zhuo-zi",
+   "t": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "fr": "Une table",
+   "st": 0
+  },
+  {
+   "id": "h203_s_bizuotian",
+   "h": "今天比昨天热",
+   "p": "jin-tian bi zuo-tian re",
+   "t": [
+    1,
+    1,
+    3,
+    2,
+    1,
+    4
+   ],
+   "fr": "Aujourd’hui, il fait plus chaud qu’hier",
+   "st": 0
   }
  ],
  "pairs": [

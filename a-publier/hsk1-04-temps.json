@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 4 — L’heure et la date",
- "desc": "Dire l’heure, la date, les moments de la journée. 13 mots HSK 1.",
+ "desc": "Dire l’heure, la date, les moments de la journée. 13 mots HSK 1 et 14 phrases pour t’en servir.",
  "grammar": {
   "title": "La date et l’heure : du plus grand au plus petit",
   "explain": "En chinois, on part toujours du plus grand vers le plus petit : année, mois, jour, moment, heure. 十月二号 = « le 2 octobre » (mot à mot « 10e mois, 2e jour »). Et le moment se place avant le verbe : 我明天去, pas 我去明天.",
@@ -222,6 +222,153 @@
    "fr": "Tu finis quand ?",
    "st": 0,
    "m": "Demande à un collègue : 你什么时候下班？"
+  },
+  {
+   "id": "k04_s_badian",
+   "h": "八点",
+   "p": "ba dian",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Huit heures",
+   "st": 0
+  },
+  {
+   "id": "k04_s_sandian",
+   "h": "现在三点",
+   "p": "xian-zai san dian",
+   "t": [
+    4,
+    4,
+    1,
+    3
+   ],
+   "fr": "Il est trois heures",
+   "st": 0
+  },
+  {
+   "id": "k04_s_jiudianshifen",
+   "h": "九点十分",
+   "p": "jiu dian shi fen",
+   "t": [
+    3,
+    3,
+    2,
+    1
+   ],
+   "fr": "Neuf heures dix",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "k04_s_shifenzhong",
+   "h": "十分钟",
+   "p": "shi fen-zhong",
+   "t": [
+    2,
+    1,
+    1
+   ],
+   "fr": "Dix minutes",
+   "st": 0
+  },
+  {
+   "id": "k04_s_mingtianshangwu",
+   "h": "明天上午",
+   "p": "ming-tian shang-wu",
+   "t": [
+    2,
+    1,
+    4,
+    3
+   ],
+   "fr": "Demain matin",
+   "st": 0
+  },
+  {
+   "id": "k04_s_liudianxiaban",
+   "h": "下午六点下班",
+   "p": "xia-wu liu dian xia-ban",
+   "t": [
+    4,
+    3,
+    4,
+    3,
+    4,
+    1
+   ],
+   "fr": "Je finis à six heures du soir",
+   "st": 0
+  },
+  {
+   "id": "k04_s_xingqiyi",
+   "h": "星期一",
+   "p": "xing-qi-yi",
+   "t": [
+    1,
+    1,
+    1
+   ],
+   "fr": "Lundi",
+   "st": 0
+  },
+  {
+   "id": "k04_s_xingqiliu",
+   "h": "星期六",
+   "p": "xing-qi-liu",
+   "t": [
+    1,
+    1,
+    4
+   ],
+   "fr": "Samedi",
+   "st": 0
+  },
+  {
+   "id": "k04_s_xingqitian",
+   "h": "星期天",
+   "p": "xing-qi-tian",
+   "t": [
+    1,
+    1,
+    1
+   ],
+   "fr": "Dimanche",
+   "st": 0
+  },
+  {
+   "id": "k04_s_xingqiji",
+   "h": "今天星期几",
+   "p": "jin-tian xing-qi ji",
+   "t": [
+    1,
+    1,
+    1,
+    1,
+    3
+   ],
+   "fr": "On est quel jour de la semaine ?",
+   "st": 0,
+   "m": "Le matin, demande à une collègue : 今天星期几？"
+  },
+  {
+   "id": "k04_s_yihao",
+   "h": "十月一号",
+   "p": "shi yue yi hao",
+   "t": [
+    2,
+    4,
+    1,
+    4
+   ],
+   "fr": "Le 1er octobre",
+   "st": 0
   }
  ],
  "pairs": [

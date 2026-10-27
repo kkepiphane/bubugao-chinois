@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 2,
  "title": "HSK 2 · 2 — Ma journée et ma santé",
- "desc": "Dire quand tu te lèves, si tu es fatiguée ou malade, et expliquer pourquoi. 15 mots HSK 2.",
+ "desc": "Dire quand tu te lèves, si tu es fatiguée ou malade, et expliquer pourquoi. 15 mots HSK 2 et 13 phrases pour t’en servir.",
  "grammar": {
   "title": "因为… 所以… : « parce que… donc… »",
   "explain": "En chinois, on aime dire la cause d’abord : 因为 (yīnwèi) = parce que, puis la conséquence avec 所以 (suǒyǐ) = donc. On peut garder les deux mots dans la même phrase, ce qui est impossible en français.",
@@ -241,6 +241,157 @@
     0
    ],
    "m": "Avant de poser une question à un collègue chinois, demande-lui d’abord : 你有时间吗？"
+  },
+  {
+   "id": "h202_s_zaoshanghao",
+   "h": "早上好",
+   "p": "zao-shang hao",
+   "t": [
+    3,
+    0,
+    3
+   ],
+   "fr": "Bonjour (le matin)",
+   "st": 0
+  },
+  {
+   "id": "h202_s_wanshanghao",
+   "h": "晚上好",
+   "p": "wan-shang hao",
+   "t": [
+    3,
+    0,
+    3
+   ],
+   "fr": "Bonsoir",
+   "st": 0
+  },
+  {
+   "id": "h202_s_qichuang",
+   "h": "我早上六点起床",
+   "p": "wo zao-shang liu dian qi-chuang",
+   "t": [
+    3,
+    3,
+    0,
+    4,
+    3,
+    3,
+    2
+   ],
+   "fr": "Je me lève à six heures du matin",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    4,
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "h202_s_henmang",
+   "h": "我今天很忙",
+   "p": "wo jin-tian hen mang",
+   "t": [
+    3,
+    1,
+    1,
+    3,
+    2
+   ],
+   "fr": "Je suis très occupée aujourd’hui",
+   "st": 0
+  },
+  {
+   "id": "h202_s_meishijian",
+   "h": "我没有时间",
+   "p": "wo mei-you shi-jian",
+   "t": [
+    3,
+    2,
+    3,
+    2,
+    1
+   ],
+   "fr": "Je n’ai pas le temps",
+   "st": 0
+  },
+  {
+   "id": "h202_s_bagexiaoshi",
+   "h": "八个小时",
+   "p": "ba ge xiao-shi",
+   "t": [
+    1,
+    0,
+    3,
+    2
+   ],
+   "fr": "Huit heures (de travail)",
+   "st": 0
+  },
+  {
+   "id": "h202_s_yijing",
+   "h": "已经十点了",
+   "p": "yi-jing shi dian le",
+   "t": [
+    3,
+    1,
+    2,
+    3,
+    0
+   ],
+   "fr": "Il est déjà dix heures",
+   "st": 0
+  },
+  {
+   "id": "h202_s_shentihao",
+   "h": "你身体好吗",
+   "p": "ni shen-ti hao ma",
+   "t": [
+    3,
+    1,
+    3,
+    3,
+    0
+   ],
+   "fr": "Tu es en bonne santé ?",
+   "st": 0,
+   "s": [
+    3,
+    1,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "h202_s_yanjing",
+   "h": "我的眼睛很累",
+   "p": "wo de yan-jing hen lei",
+   "t": [
+    3,
+    0,
+    3,
+    0,
+    3,
+    4
+   ],
+   "fr": "J’ai les yeux fatigués",
+   "st": 0
+  },
+  {
+   "id": "h202_s_chiyao",
+   "h": "吃药",
+   "p": "chi yao",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Prendre un médicament",
+   "st": 0
   }
  ],
  "pairs": [

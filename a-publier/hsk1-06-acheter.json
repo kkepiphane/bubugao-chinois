@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 6 — Acheter",
- "desc": "Faire des achats, demander le prix, dire que c’est trop. 12 mots HSK 1.",
+ "desc": "Faire des achats, demander le prix, dire que c’est trop. 12 mots HSK 1 et 14 phrases pour t’en servir.",
  "grammar": {
   "title": "太 … 了 : « trop » et les exclamations",
   "explain": "太 (tài) + adjectif + 了 (le) veut dire « trop… » : 太多了 = c’est trop. La même forme sert aussi à s’enthousiasmer : 太好了 ! = génial !",
@@ -208,6 +208,172 @@
     1,
     0
    ]
+  },
+  {
+   "id": "k06_s_sankuai",
+   "h": "三块钱",
+   "p": "san kuai qian",
+   "t": [
+    1,
+    4,
+    2
+   ],
+   "fr": "Trois yuans",
+   "st": 0
+  },
+  {
+   "id": "k06_s_ershiwukuai",
+   "h": "二十五块",
+   "p": "er-shi-wu kuai",
+   "t": [
+    4,
+    2,
+    3,
+    4
+   ],
+   "fr": "Vingt-cinq yuans",
+   "st": 0
+  },
+  {
+   "id": "k06_s_maishenme",
+   "h": "你买什么",
+   "p": "ni mai shen-me",
+   "t": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "fr": "Tu achètes quoi ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "k06_s_maiyifu",
+   "h": "我想买衣服",
+   "p": "wo xiang mai yi-fu",
+   "t": [
+    3,
+    3,
+    3,
+    1,
+    0
+   ],
+   "fr": "J’ai envie d’acheter des vêtements",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "k06_s_piaoliang",
+   "h": "你的衣服很漂亮",
+   "p": "ni de yi-fu hen piao-liang",
+   "t": [
+    3,
+    0,
+    1,
+    0,
+    3,
+    4,
+    0
+   ],
+   "fr": "Tes vêtements sont très beaux",
+   "st": 0
+  },
+  {
+   "id": "k06_s_taishao",
+   "h": "太少了",
+   "p": "tai shao le",
+   "t": [
+    4,
+    3,
+    0
+   ],
+   "fr": "C’est trop peu",
+   "st": 0
+  },
+  {
+   "id": "k06_s_duoyidianr",
+   "h": "多一点儿",
+   "p": "duo yi-dian-r",
+   "t": [
+    1,
+    4,
+    3,
+    0
+   ],
+   "fr": "Un peu plus",
+   "st": 0
+  },
+  {
+   "id": "k06_s_shaoyidianr",
+   "h": "少一点儿",
+   "p": "shao yi-dian-r",
+   "t": [
+    3,
+    4,
+    3,
+    0
+   ],
+   "fr": "Un peu moins",
+   "st": 0
+  },
+  {
+   "id": "k06_s_meiqian",
+   "h": "我没有钱",
+   "p": "wo mei-you qian",
+   "t": [
+    3,
+    2,
+    3,
+    2
+   ],
+   "fr": "Je n’ai pas d’argent",
+   "st": 0
+  },
+  {
+   "id": "k06_s_shuiguo",
+   "h": "买一些水果",
+   "p": "mai yi-xie shui-guo",
+   "t": [
+    3,
+    4,
+    1,
+    3,
+    3
+   ],
+   "fr": "Acheter quelques fruits",
+   "st": 0,
+   "s": [
+    3,
+    4,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "k06_s_shangdian",
+   "h": "中国商店",
+   "p": "Zhong-guo shang-dian",
+   "t": [
+    1,
+    2,
+    1,
+    4
+   ],
+   "fr": "Une boutique chinoise",
+   "st": 0
   }
  ],
  "pairs": [

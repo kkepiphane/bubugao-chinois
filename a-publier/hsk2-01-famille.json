@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 2,
  "title": "HSK 2 · 1 — Frères, sœurs et présentations",
- "desc": "Parler de tes frères et sœurs, de ton mari ou de ta femme, et te présenter poliment. 16 mots HSK 2.",
+ "desc": "Parler de tes frères et sœurs, de ton mari ou de ta femme, et te présenter poliment. 16 mots HSK 2 et 12 phrases pour t’en servir.",
  "grammar": {
   "title": "也 : « aussi »",
   "explain": "也 (yě) veut dire « aussi ». Il se place toujours juste avant le verbe (ou avant 很 + adjectif), jamais au début ni à la fin de la phrase. Pour dire « moi aussi », on dit 我也是 (mot à mot « moi aussi suis »).",
@@ -262,6 +262,142 @@
     3,
     4
    ]
+  },
+  {
+   "id": "h201_s_ninhao",
+   "h": "您好",
+   "p": "nin hao",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Bonjour (poli)",
+   "st": 0,
+   "m": "Salue poliment le patron ou un client : 您好！"
+  },
+  {
+   "id": "h201_s_dajiahao",
+   "h": "大家好",
+   "p": "da-jia hao",
+   "t": [
+    4,
+    1,
+    3
+   ],
+   "fr": "Bonjour tout le monde",
+   "st": 0,
+   "m": "En arrivant à l’atelier le matin, dis : 大家好！"
+  },
+  {
+   "id": "h201_s_xingwang",
+   "h": "他姓王",
+   "p": "ta xing Wang",
+   "t": [
+    1,
+    4,
+    2
+   ],
+   "fr": "Son nom de famille est Wang",
+   "st": 0
+  },
+  {
+   "id": "h201_s_gege",
+   "h": "我有一个哥哥",
+   "p": "wo you yi ge ge-ge",
+   "t": [
+    3,
+    3,
+    2,
+    0,
+    1,
+    0
+   ],
+   "fr": "J’ai un grand frère",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    0,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "h201_s_jiejie",
+   "h": "这是我姐姐",
+   "p": "zhe shi wo jie-jie",
+   "t": [
+    4,
+    4,
+    3,
+    3,
+    0
+   ],
+   "fr": "C’est ma grande sœur",
+   "st": 0,
+   "s": [
+    4,
+    4,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "h201_s_meimei",
+   "h": "我妹妹是学生",
+   "p": "wo mei-mei shi xue-sheng",
+   "t": [
+    3,
+    4,
+    0,
+    4,
+    2,
+    0
+   ],
+   "fr": "Ma petite sœur est étudiante",
+   "st": 0
+  },
+  {
+   "id": "h201_s_haizi",
+   "h": "她有两个孩子",
+   "p": "ta you liang ge hai-zi",
+   "t": [
+    1,
+    3,
+    3,
+    0,
+    2,
+    0
+   ],
+   "fr": "Elle a deux enfants",
+   "st": 0,
+   "s": [
+    1,
+    2,
+    3,
+    0,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "h201_s_zhangfu",
+   "h": "你丈夫做什么工作",
+   "p": "ni zhang-fu zuo shen-me gong-zuo",
+   "t": [
+    3,
+    4,
+    0,
+    4,
+    2,
+    0,
+    1,
+    4
+   ],
+   "fr": "Que fait ton mari ?",
+   "st": 0
   }
  ],
  "pairs": [

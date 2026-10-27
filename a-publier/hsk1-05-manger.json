@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 5 — Manger et boire",
- "desc": "Commander au restaurant, dire ce que tu aimes et ce que tu veux. 14 mots HSK 1.",
+ "desc": "Commander au restaurant, dire ce que tu aimes et ce que tu veux. 14 mots HSK 1 et 13 phrases pour t’en servir.",
  "grammar": {
   "title": "想 et 喜欢 + verbe",
   "explain": "想 (xiǎng) = « vouloir, avoir envie » maintenant. 喜欢 (xǐhuan) = « aimer » en général. Les deux se placent devant un autre verbe : 我想喝水 (j’ai envie de boire de l’eau), 我喜欢吃苹果 (j’aime manger des pommes).",
@@ -222,6 +222,180 @@
     0,
     1,
     2
+   ]
+  },
+  {
+   "id": "k05_s_chifan",
+   "h": "吃饭",
+   "p": "chi fan",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Manger (un repas)",
+   "st": 0
+  },
+  {
+   "id": "k05_s_chilema",
+   "h": "你吃饭了吗",
+   "p": "ni chi fan le ma",
+   "t": [
+    3,
+    1,
+    4,
+    0,
+    0
+   ],
+   "fr": "Tu as mangé ? (salut amical)",
+   "st": 0,
+   "m": "À la pause de midi, demande à un collègue chinois : 你吃饭了吗？"
+  },
+  {
+   "id": "k05_s_heshui",
+   "h": "我想喝水",
+   "p": "wo xiang he shui",
+   "t": [
+    3,
+    3,
+    1,
+    3
+   ],
+   "fr": "J’ai envie de boire de l’eau",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "k05_s_qinghecha",
+   "h": "请喝茶",
+   "p": "qing he cha",
+   "t": [
+    3,
+    1,
+    2
+   ],
+   "fr": "Prends du thé, je t’en prie",
+   "st": 0
+  },
+  {
+   "id": "k05_s_yibeicha",
+   "h": "一杯茶",
+   "p": "yi bei cha",
+   "t": [
+    4,
+    1,
+    2
+   ],
+   "fr": "Une tasse de thé",
+   "st": 0
+  },
+  {
+   "id": "k05_s_yigepingguo",
+   "h": "一个苹果",
+   "p": "yi ge ping-guo",
+   "t": [
+    2,
+    0,
+    2,
+    3
+   ],
+   "fr": "Une pomme",
+   "st": 0
+  },
+  {
+   "id": "k05_s_zhongguocai",
+   "h": "中国菜",
+   "p": "Zhong-guo cai",
+   "t": [
+    1,
+    2,
+    4
+   ],
+   "fr": "La cuisine chinoise",
+   "st": 0
+  },
+  {
+   "id": "k05_s_xihuanmifan",
+   "h": "我喜欢吃米饭",
+   "p": "wo xi-huan chi mi-fan",
+   "t": [
+    3,
+    3,
+    0,
+    1,
+    3,
+    4
+   ],
+   "fr": "J’aime manger du riz",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "k05_s_aishuiguo",
+   "h": "我爱吃水果",
+   "p": "wo ai chi shui-guo",
+   "t": [
+    3,
+    4,
+    1,
+    3,
+    3
+   ],
+   "fr": "J’adore les fruits",
+   "st": 0,
+   "s": [
+    3,
+    4,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "k05_s_buxiangchi",
+   "h": "我不想吃",
+   "p": "wo bu xiang chi",
+   "t": [
+    3,
+    4,
+    3,
+    1
+   ],
+   "fr": "Je n’ai pas envie de manger",
+   "st": 0
+  },
+  {
+   "id": "k05_s_shenmecai",
+   "h": "你喜欢什么菜",
+   "p": "ni xi-huan shen-me cai",
+   "t": [
+    3,
+    3,
+    0,
+    2,
+    0,
+    4
+   ],
+   "fr": "Quels plats tu aimes ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    2,
+    0,
+    4
    ]
   }
  ],

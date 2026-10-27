@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 9 — Ce qu’on fait",
- "desc": "Regarder, écouter, lire, écrire, travailler, étudier le chinois. 18 mots HSK 1.",
+ "desc": "Regarder, écouter, lire, écrire, travailler, étudier le chinois. 18 mots HSK 1 et 10 phrases pour t’en servir.",
  "grammar": {
   "title": "了 : l’action est faite",
   "explain": "了 (le) après un verbe indique que l’action est terminée : 我吃了 = j’ai mangé. Pour dire qu’on ne l’a pas fait, on utilise 没 devant le verbe, sans 了 : 我没吃.",
@@ -250,6 +250,127 @@
    ],
    "fr": "J’ai regardé un film",
    "st": 0
+  },
+  {
+   "id": "k09_s_shuohanyu",
+   "h": "你会说汉语吗",
+   "p": "ni hui shuo Han-yu ma",
+   "t": [
+    3,
+    4,
+    1,
+    4,
+    3,
+    0
+   ],
+   "fr": "Tu parles chinois ?",
+   "st": 0
+  },
+  {
+   "id": "k09_s_yidianr",
+   "h": "我会说一点儿汉语",
+   "p": "wo hui shuo yi-dian-r Han-yu",
+   "t": [
+    3,
+    4,
+    1,
+    4,
+    3,
+    0,
+    4,
+    3
+   ],
+   "fr": "Je parle un peu chinois",
+   "st": 0,
+   "m": "Quand un collègue chinois s’étonne que tu le comprennes, dis-lui : 我会说一点儿汉语。"
+  },
+  {
+   "id": "k09_s_zenmexie",
+   "h": "这个字怎么写",
+   "p": "zhe-ge zi zen-me xie",
+   "t": [
+    4,
+    0,
+    4,
+    3,
+    0,
+    3
+   ],
+   "fr": "Comment s’écrit ce caractère ?",
+   "st": 0
+  },
+  {
+   "id": "k09_s_zenmedu",
+   "h": "这个字怎么读",
+   "p": "zhe-ge zi zen-me du",
+   "t": [
+    4,
+    0,
+    4,
+    3,
+    0,
+    2
+   ],
+   "fr": "Comment se lit ce caractère ?",
+   "st": 0
+  },
+  {
+   "id": "k09_s_gongzuo",
+   "h": "你做什么工作",
+   "p": "ni zuo shen-me gong-zuo",
+   "t": [
+    3,
+    4,
+    2,
+    0,
+    1,
+    4
+   ],
+   "fr": "Tu fais quel travail ?",
+   "st": 0
+  },
+  {
+   "id": "k09_s_kandianshi",
+   "h": "看电视",
+   "p": "kan dian-shi",
+   "t": [
+    4,
+    4,
+    4
+   ],
+   "fr": "Regarder la télé",
+   "st": 0
+  },
+  {
+   "id": "k09_s_yibenshu",
+   "h": "一本书",
+   "p": "yi ben shu",
+   "t": [
+    4,
+    3,
+    1
+   ],
+   "fr": "Un livre",
+   "st": 0
+  },
+  {
+   "id": "k09_s_shuijiao",
+   "h": "我想睡觉",
+   "p": "wo xiang shui-jiao",
+   "t": [
+    3,
+    3,
+    4,
+    4
+   ],
+   "fr": "J’ai envie de dormir",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4,
+    4
+   ]
   }
  ],
  "pairs": [

@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 2,
  "title": "HSK 2 · 5 — Comprendre et s’entraider",
- "desc": "Demander, répondre, dire que tu as compris (ou pas), aider un collègue. 16 mots HSK 2.",
+ "desc": "Demander, répondre, dire que tu as compris (ou pas), aider un collègue. 16 mots HSK 2 et 12 phrases pour t’en servir.",
  "grammar": {
   "title": "正在 : « être en train de »",
   "explain": "Pour dire qu’une action se passe en ce moment, mets 正在 (zhèngzài) juste avant le verbe. On peut ajouter 呢 (ne) à la fin : c’est plus naturel à l’oral. 我正在工作 = je suis en train de travailler.",
@@ -248,6 +248,132 @@
    "fr": "Je vais t’aider",
    "st": 0,
    "m": "Quand une collègue a trop de travail, propose-lui : 我来帮你！"
+  },
+  {
+   "id": "h205_s_tingbudong",
+   "h": "我听不懂",
+   "p": "wo ting bu dong",
+   "t": [
+    3,
+    1,
+    0,
+    3
+   ],
+   "fr": "Je ne comprends pas (ce que j’entends)",
+   "st": 0,
+   "m": "Si un collègue parle trop vite, dis-lui : 我听不懂，请再说一遍。"
+  },
+  {
+   "id": "h205_s_dongle",
+   "h": "我懂了",
+   "p": "wo dong le",
+   "t": [
+    3,
+    3,
+    0
+   ],
+   "fr": "J’ai compris",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "h205_s_buzhidao",
+   "h": "我不知道",
+   "p": "wo bu zhi-dao",
+   "t": [
+    3,
+    4,
+    1,
+    4
+   ],
+   "fr": "Je ne sais pas",
+   "st": 0
+  },
+  {
+   "id": "h205_s_gaosuwo",
+   "h": "请告诉我",
+   "p": "qing gao-su wo",
+   "t": [
+    3,
+    4,
+    0,
+    3
+   ],
+   "fr": "Dis-moi, s’il te plaît",
+   "st": 0
+  },
+  {
+   "id": "h205_s_zhaoshei",
+   "h": "你找谁",
+   "p": "ni zhao shei",
+   "t": [
+    3,
+    3,
+    2
+   ],
+   "fr": "Tu cherches qui ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "h205_s_geini",
+   "h": "给你",
+   "p": "gei ni",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Tiens, voilà",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h205_s_kaishi",
+   "h": "开始工作",
+   "p": "kai-shi gong-zuo",
+   "t": [
+    1,
+    3,
+    1,
+    4
+   ],
+   "fr": "Commencer le travail",
+   "st": 0
+  },
+  {
+   "id": "h205_s_zhunbeihao",
+   "h": "准备好了",
+   "p": "zhun-bei hao le",
+   "t": [
+    3,
+    4,
+    3,
+    0
+   ],
+   "fr": "C’est prêt",
+   "st": 0
+  },
+  {
+   "id": "h205_s_cuole",
+   "h": "错了",
+   "p": "cuo le",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "C’est faux",
+   "st": 0
   }
  ],
  "pairs": [

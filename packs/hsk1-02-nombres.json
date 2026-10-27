@@ -2,7 +2,7 @@
  "branch": "hsk",
  "level": 1,
  "title": "HSK 1 · 2 — Les nombres",
- "desc": "Compter de 1 à 99, demander combien, dire son âge. 15 mots HSK 1.",
+ "desc": "Compter de 1 à 99, demander combien, dire son âge. 15 mots HSK 1 et 13 phrases pour t’en servir.",
  "grammar": {
   "title": "几 ou 多少 : « combien ? »",
   "explain": "Les nombres chinois se construisent comme des briques : 十一 = 10+1 = 11, 二十 = 2×10 = 20, 二十三 = 23. Pour demander « combien », 几 (jǐ) sert pour un petit nombre (moins de 10) et doit être suivi d’un classificateur comme 个. 多少 (duōshao) sert pour un nombre grand ou inconnu.",
@@ -213,6 +213,136 @@
    "fr": "J’ai vingt-trois ans",
    "st": 0,
    "m": "Dis ton âge à une collègue en chinois : 我…岁。"
+  },
+  {
+   "id": "k02_s_shiyi",
+   "h": "十一",
+   "p": "shi-yi",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Onze (11)",
+   "st": 0
+  },
+  {
+   "id": "k02_s_ershi",
+   "h": "二十",
+   "p": "er-shi",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Vingt (20)",
+   "st": 0
+  },
+  {
+   "id": "k02_s_liushi",
+   "h": "六十",
+   "p": "liu-shi",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Soixante (60)",
+   "st": 0
+  },
+  {
+   "id": "k02_s_bashiba",
+   "h": "八十八",
+   "p": "ba-shi-ba",
+   "t": [
+    1,
+    2,
+    1
+   ],
+   "fr": "Quatre-vingt-huit (88, porte-bonheur)",
+   "st": 0
+  },
+  {
+   "id": "k02_s_jiushijiu",
+   "h": "九十九",
+   "p": "jiu-shi-jiu",
+   "t": [
+    3,
+    2,
+    3
+   ],
+   "fr": "Quatre-vingt-dix-neuf (99)",
+   "st": 0
+  },
+  {
+   "id": "k02_s_yigeren",
+   "h": "一个人",
+   "p": "yi ge ren",
+   "t": [
+    2,
+    0,
+    2
+   ],
+   "fr": "Une personne, toute seule",
+   "st": 0
+  },
+  {
+   "id": "k02_s_sangeren",
+   "h": "三个人",
+   "p": "san ge ren",
+   "t": [
+    1,
+    0,
+    2
+   ],
+   "fr": "Trois personnes",
+   "st": 0
+  },
+  {
+   "id": "k02_s_jigeren",
+   "h": "几个人",
+   "p": "ji ge ren",
+   "t": [
+    3,
+    0,
+    2
+   ],
+   "fr": "Combien de personnes ?",
+   "st": 0,
+   "m": "Le matin, demande à ton chef d’équipe : 今天几个人？"
+  },
+  {
+   "id": "k02_s_duoshaoren",
+   "h": "多少人",
+   "p": "duo-shao ren",
+   "t": [
+    1,
+    0,
+    2
+   ],
+   "fr": "Combien de gens ?",
+   "st": 0
+  },
+  {
+   "id": "k02_s_yinian",
+   "h": "一年",
+   "p": "yi nian",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Un an, une année",
+   "st": 0
+  },
+  {
+   "id": "k02_s_shiwusui",
+   "h": "他十五岁",
+   "p": "ta shi-wu sui",
+   "t": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "fr": "Il a quinze ans",
+   "st": 0
   }
  ],
  "pairs": [
