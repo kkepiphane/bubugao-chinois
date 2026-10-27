@@ -41,23 +41,26 @@ L'appli lui rappelle de sauvegarder une fois par mois. Elle demande aussi au nav
 
 - **Parcours HSK 1** (liste officielle, ancien format, 150 mots) : 10 chapitres `hsk1-01` à `hsk1-10`.
   Les 3 premiers sont publiés. Les 7 suivants sont prêts dans le dossier `a-publier/`.
-  **Rythme conseillé : 1 chapitre HSK par semaine.** Elle aura vu tout le HSK 1 en environ 2 mois et demi.
+  **Rythme : jusqu’à 3 chapitres par semaine** (le robot en propose un le lundi, le mercredi et le vendredi). Les séances de 30 min font apprendre environ 10 mots par jour : il faut donc préparer des chapitres d’avance.
 - **Branches thématiques** (elle choisit la sienne sur l’accueil) : « Usine et travail » et « Vie quotidienne ».
   Chaque séance mélange environ 6 mots du parcours HSK et 4 mots de sa branche.
 - Chaque chapitre apporte : des mots, une règle de grammaire, une conversation, un duel de tons et 6 à 8 caractères avec leur clé.
 - **Test HSK blanc** : proposé automatiquement tous les 28 jours, dès qu’elle a vu 20 mots HSK.
 - **Missions terrain** : niveau 1 (une phrase), 2 dès 5 missions réussies (une question), 3 dès 12 (2 minutes de conversation).
 
-## 6. Publier un nouveau chapitre : le robot du lundi
+## 6. Publier un nouveau chapitre : le robot (lundi, mercredi, vendredi)
 
-Chaque **lundi à 7 h** (heure de Lomé), un robot GitHub prépare le chapitre suivant de `a-publier/`
+Chaque **lundi, mercredi et vendredi à 7 h** (heure de Lomé), un robot GitHub prépare le chapitre suivant de `a-publier/`
 (dans l'ordre de `a-publier/ordre.json`) et ouvre une **Pull Request** intitulée « 📚 À valider : … ».
 Tu reçois un e-mail / une notification GitHub avec la liste des mots, la règle de grammaire et la conversation.
 
 - **Merge pull request** → le chapitre est publié. Il arrive sur son téléphone dès qu'elle a du réseau.
-- **Close pull request** → rien n'est publié ; le robot reproposera le même chapitre le lundi suivant.
+- **Close pull request** → rien n'est publié ; le robot reproposera le même chapitre à son prochain passage.
 - Le robot ne propose rien tant qu'une demande est encore ouverte, et s'arrête quand `a-publier/` est vide.
-- Pour avancer sans attendre lundi : onglet **Actions › Chapitre du lundi › Run workflow**.
+- Pour avancer sans attendre : onglet **Actions › Nouveau chapitre (lundi, mercredi, vendredi) › Run workflow**.
+- **Réglage obligatoire (une seule fois)** : dans le dépôt, **Settings › Actions › General › Workflow permissions**,
+  coche **« Allow GitHub Actions to create and approve pull requests »** puis **Save**. Sans ça, le robot s'arrête
+  avec l'erreur « GitHub Actions is not permitted to create or approve pull requests ».
 
 Avant de publier, le robot vérifie que chaque mot a autant de caractères que de syllabes et de tons. Sinon, il s'arrête et rien n'est publié.
 
@@ -102,7 +105,7 @@ Remplacer `index.html`, et changer `VERSION` dans `sw.js` (ex. `bubugao-app-v6`)
 
 Ouvre le dépôt dans Claude Code (ou donne-lui l'accès au dépôt). `CLAUDE.md` et les skills de `.claude/skills/`
 lui expliquent tout. Exemples de demandes :
-- « Écris les 4 prochains chapitres de la branche Vie quotidienne et mets-les dans la file du lundi. »
+- « Écris les 4 prochains chapitres de la branche Vie quotidienne et mets-les dans la file du robot. »
 - « Prépare le parcours HSK 2. »
 - « La voix ne lit pas la phrase X : corrige. »
 - « Ajoute un bouton pour qu'elle m'envoie les phrases qu'elle entend à l'usine. »

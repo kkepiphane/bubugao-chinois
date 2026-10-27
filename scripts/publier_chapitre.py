@@ -1,4 +1,4 @@
-"""Prépare la publication du prochain chapitre (utilisé par le robot du lundi).
+"""Prépare la publication du prochain chapitre (utilisé par le robot lundi, mercredi, vendredi).
 Déplace le premier chapitre de a-publier/ vers packs/, l'ajoute à packs/packs.json,
 vérifie son contenu et écrit un résumé pour la demande de validation."""
 import json, os, re, shutil, sys
@@ -52,7 +52,7 @@ body = f"""## {nxt['title']}
 
 ---
 ✅ **Merge** = le chapitre arrive sur son téléphone dès qu'elle a du réseau.
-✋ **Close** = on ne publie pas cette semaine (le robot le reproposera lundi prochain).
+✋ **Close** = on ne publie pas maintenant (le robot le reproposera à son prochain passage).
 
 Chapitres encore en attente après celui-ci : {reste}.
 """

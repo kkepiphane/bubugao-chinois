@@ -1,8 +1,8 @@
-name: Chapitre du lundi
+name: Nouveau chapitre (lundi, mercredi, vendredi)
 
 on:
   schedule:
-    - cron: '0 7 * * 1'   # chaque lundi à 7 h (heure de Lomé = UTC)
+    - cron: '0 7 * * 1,3,5'   # lundi, mercredi et vendredi à 7 h (heure de Lomé = UTC)
   workflow_dispatch:       # bouton « Run workflow » pour lancer à la main
 
 permissions:
@@ -47,5 +47,8 @@ jobs:
           git commit -m "Publier : ${{ steps.prep.outputs.titre }}"
           git push -f origin "$branche"
           gh label create chapitre --color 0B7A63 --description "Chapitre à valider" 2>/dev/null || true
-          gh pr create --title "📚 À valider : ${{ steps.prep.outputs.titre }}" \
-            --body-file .pr-body.md --label chapitre --base main --head "$branche"
+          if ! gh pr create --title "📚 À valider : ${{ steps.prep.outputs.titre }}" \
+            --body-file .pr-body.md --label chapitre --base main --head "$branche"; then
+            echo "::error::GitHub refuse que le robot ouvre la demande. Va dans Settings › Actions › General › Workflow permissions, coche « Allow GitHub Actions to create and approve pull requests », puis Save et relance. En attendant, ouvre-la à la main : https://github.com/${{ github.repository }}/compare/main...$branche?expand=1"
+            exit 1
+          fi
