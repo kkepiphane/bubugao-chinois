@@ -17,7 +17,7 @@
 :root{
   --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#E3E9E5; --ink:#17212A; --muted:#56636C; --line:#D2DAD5;
   --accent:#0B7A63; --accent-ink:#FFFFFF; --accent-soft:#D3ECE3;
-  --gold:#B97C08; --gold-soft:#F5E5C0;
+  --gold:#B97C08; --gold-soft:#F5E5C0; --me:#D85A30;
   --t1:#2563C9; --t2:#13824A; --t3:#9C6208; --t4:#BF2D2B; --t0:#86919A;
   --good:#13824A; --good-soft:#DDF1E5; --bad:#BF2D2B; --bad-soft:#F8DEDC;
   --shadow:0 1px 2px rgba(23,33,42,.06),0 6px 18px rgba(23,33,42,.06);
@@ -28,14 +28,14 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0F1518; --surface:#182126; --surface-2:#212C32; --ink:#E7EDEA; --muted:#97A5AD; --line:#2C3940;
   --accent:#38C29D; --accent-ink:#04211A; --accent-soft:#163830;
-  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --gold:#EDB43C; --gold-soft:#3A2E12; --me:#F0997B;
   --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
   --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0F1518; --surface:#182126; --surface-2:#212C32; --ink:#E7EDEA; --muted:#97A5AD; --line:#2C3940;
   --accent:#38C29D; --accent-ink:#04211A; --accent-soft:#163830;
-  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --gold:#EDB43C; --gold-soft:#3A2E12; --me:#F0997B;
   --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
   --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
@@ -95,6 +95,26 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .road-bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
 .road-step .nm{font-size:12px;font-weight:800;color:var(--muted)} .road-step.cur .nm{color:var(--ink)}
 .road-step .zh{font-size:13px;color:var(--muted)}
+.stair{width:100%;display:block}
+.stair .st{fill:none;stroke:var(--line);stroke-width:1}
+.stair .st.on{fill:var(--accent);stroke:none}
+.stair .st.pale{fill:var(--accent-soft);stroke:var(--accent);stroke-width:.6}
+.stair .ld{fill:none;stroke:var(--line);stroke-width:1}
+.stair .ld.on{fill:var(--gold-soft);stroke:var(--gold)}
+.stair text{font-family:var(--f-body);font-size:11px;fill:var(--muted)}
+.stair text.on{fill:var(--gold);font-weight:800}
+.stair .me{fill:var(--me)}
+.stair text.me{font-weight:800;font-size:11px}
+@keyframes pop{0%{transform:scale(.4);opacity:.3}60%{transform:scale(1.25)}100%{transform:scale(1);opacity:1}}
+.stair .pop{transform-box:fill-box;transform-origin:center;animation:pop .4s ease-out both}
+@media (prefers-reduced-motion:reduce){.stair .pop{animation:none}}
+.can{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);font-size:15px}
+.can:first-child{border-top:0}
+.can .ic{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:1px}
+.can.ok .ic{background:var(--good-soft);color:var(--good)}
+.can.cur .ic{background:var(--accent-soft);color:var(--accent)}
+.can.lock{color:var(--muted)}.can.lock .ic{background:var(--surface-2);color:var(--muted)}
+.palier{background:var(--gold-soft);border:2px solid var(--gold);border-radius:16px;padding:14px 16px}
 .cta{display:flex;flex-direction:column;gap:12px;background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:18px;border:0;text-align:left;cursor:pointer;width:100%;box-shadow:var(--shadow)}
 .cta h2{color:inherit}
 .cta .bits{display:flex;gap:8px;flex-wrap:wrap}
@@ -933,7 +953,7 @@ function startSession(kind){
     const mm=makeMission(news);steps.push({kind:'mission',it:mm.it,text:mm.text,level:mm.level,sec:'Mission terrain'});
   }
   if(!steps.length){toast('Rien à réviser pour l’instant. Reviens plus tard !');return;}
-  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,cur,startProg:stageProg(cur),end:false};
+  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,cur,startProg:stageProg(cur),end:false,t0:Date.now(),done0:donePacks()};
   render();
 }
 function startMini(steps,back){ui.sess={kind:'mini',steps,i:0,xp:0,ok:0,n:0,back,end:false};render();}
@@ -1004,7 +1024,8 @@ function finish(){
   const msg=markActive();
   S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();
   addXP(s.kind==='daily'?Math.round(50*DUREES[duree()].f):s.kind==='chapter'||s.kind==='plus'?30:20);
-  s.endProg=stageProg(s.cur);s.jokerMsg=msg;
+  s.endProg=stageProg(s.cur);s.jokerMsg=msg;ui.popSince=s.t0||0;
+  s.paliers=s.done0?PACKS.filter(p=>packDone(p)&&!s.done0.includes(p.id)):[];if(s.paliers.length){try{navigator.vibrate&&navigator.vibrate([60,40,120]);}catch(e){}}
   if(s.kind==='daily'&&(S.sessions===1||Math.random()<.3))s.bonus=rnd(BONUS);
   save();s.end=true;render();
 }
@@ -1065,8 +1086,53 @@ function renderOnboard(){
     </div>
    </div></main>`;
 }
+/* ---------- l'escalier : un mot appris = une marche, un chapitre = un palier ---------- */
+const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':'Dire ton nom, d’où tu viens, et saluer','hsk1-02':'Compter et dire les nombres',
+  'hsk1-03':'Parler de ta famille et de tes proches','hsk1-04':'Dire l’heure et la date à ton chef','hsk1-05':'Commander à manger et à boire',
+  'hsk1-06':'Acheter et demander le prix','hsk1-07':'Dire où se trouve quelque chose','hsk1-08':'Te déplacer et téléphoner',
+  'hsk1-09':'Raconter ce que tu fais','hsk1-10':'Parler de la météo et rester polie','hsk2-01':'Présenter tes frères, tes sœurs et tes amis',
+  'hsk2-02':'Raconter ta journée et dire si tu es malade','hsk2-03':'Comparer les prix et les couleurs','hsk2-04':'Demander et expliquer le chemin',
+  'hsk2-05':'Dire que tu ne comprends pas et demander de l’aide','travail-compter':'Compter les paires à l’atelier','quotidien-marche':'Faire tes courses au marché'};
+const shortTitle=p=>(p.title||p.id).split(/ — | · (?=[^·]*$)/).pop();
+const canDo=p=>CANDO[p.id]||shortTitle(p);
+const fading=(it,now)=>now-S.items[it.id].intro>DAY&&meanR(it,now)<.7;
+function packItems(p){return ITEMS.filter(x=>x.pk===p.id);}
+function packDone(p){const its=packItems(p);return its.length>0&&its.every(isIntro);}
+function hskPacks(){return PACKS.filter(p=>p.branch==='hsk'&&packItems(p).length).sort((a,b)=>(a.order||0)-(b.order||0));}
+function donePacks(){return PACKS.filter(packDone).map(p=>p.id);}
+function stairHTML(popSince){
+  const hp=hskPacks();if(!hp.length)return '';
+  const now=Date.now();let ci=hp.findIndex(p=>!packDone(p));if(ci<0)ci=hp.length-1;
+  const show=hp.slice(Math.max(0,ci-1),ci+2);
+  const DY=3.4,GAP=24,W=300;let h=34;show.forEach(p=>h+=packItems(p).length*DY+GAP);
+  let y=h-8,out='',me=null,k=0;
+  show.forEach((p,f)=>{
+    const its=packItems(p),n=its.length,dir=f%2?-1:1,dx=230/Math.max(1,n-1);
+    its.forEach((it,s)=>{
+      const x=dir>0?22+s*dx:252-s*dx,on=isIntro(it),pale=on&&fading(it,now);
+      const pop=on&&popSince&&S.items[it.id].intro>=popSince;
+      out+=`<rect class="st ${pale?'pale':on?'on':''}${pop?' pop':''}"${pop?` style="animation-delay:${(k++)*45}ms"`:''} x="${(x-4).toFixed(1)}" y="${(y-3).toFixed(1)}" width="9" height="6" rx="1.5"/>`;
+      if(on)me={x,y};if(s===n-1){
+        const d=packDone(p),lx=dir>0?x-12:x+12;
+        out+=`<rect class="ld ${d?'on':''}" x="${(dir>0?x-40:x-18).toFixed(1)}" y="${(y-13).toFixed(1)}" width="58" height="9" rx="3"/>`;
+        out+=`<text class="${d?'on':''}" x="${lx.toFixed(1)}" y="${(y-16).toFixed(1)}" text-anchor="${dir>0?'end':'start'}">${d?'✓ ':''}${esc(shortTitle(p))}</text>`;
+      }
+      y-=DY;
+    });
+    y-=GAP;
+  });
+  if(!me)me={x:22,y:h-8};
+  out+=`<g class="me"><circle class="me" cx="${me.x.toFixed(1)}" cy="${(me.y-19).toFixed(1)}" r="4"/><rect class="me" x="${(me.x-5).toFixed(1)}" y="${(me.y-13.5).toFixed(1)}" width="10" height="10" rx="4"/><text class="me" x="${me.x.toFixed(1)}" y="${(me.y-26).toFixed(1)}" text-anchor="middle">${esc(S.name||'Toi')}</text></g>`;
+  const top=ci+2<hp.length?'Plus haut : '+esc(shortTitle(hp[ci+2]))+'…':'Plus haut : le prochain chapitre arrive bientôt';
+  out=`<text x="${W/2}" y="12" text-anchor="middle">${top}</text>`+out;
+  const lit=ITEMS.filter(x=>x.branch==='hsk'&&isIntro(x)).length,cur=hp[ci],left=packItems(cur).filter(x=>!isIntro(x)).length;
+  return `<svg class="stair" viewBox="0 0 ${W} ${Math.round(h)}" role="img" aria-label="Escalier : tu as monté ${lit} marches. Encore ${left} jusqu’au palier ${esc(shortTitle(cur))}.">${out}</svg>
+    <p class="small muted">${left?`Encore <b style="color:var(--ink)">${left} marche${left>1?'s':''}</b> jusqu’au palier « ${esc(shortTitle(cur))} ».`:'Tous les paliers sont atteints. Le prochain chapitre arrive bientôt !'}${ITEMS.some(x=>x.branch==='hsk'&&isIntro(x)&&fading(x,now))?' Les marches pâles sont des mots à revoir : la séance les rallume.':''}</p>`;
+}
+function canDoHTML(list){return list.map(p=>{const d=packDone(p),its=packItems(p),n=its.filter(isIntro).length,st=d?'ok':n?'cur':'lock';
+  return `<div class="can ${st}"><span class="ic">${d?'✓':n?'…':'·'}</span><span>${esc(canDo(p))}${st==='cur'?` <span class="tiny muted">${n}/${its.length}</span>`:''}</span></div>`;}).join('');}
 function renderHome(){
-  refreshJokers();
+  refreshJokers();const popSince=ui.popSince||0;ui.popSince=0;
   const cur=currentStage(),prog=stageProg(cur),stg=STAGES[cur],streak=streakAlive();
   const done=S.lastSessionDay===today();const due=dueList(Date.now(),cur).length;
   const left=ITEMS.filter(x=>!isIntro(x)).length;const nNew=nNewFor('daily'),nPlus=nNewFor('plus'),dur=duree(),D=DUREES[dur];
@@ -1101,8 +1167,11 @@ function renderHome(){
   ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
      return old?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>3 mois déjà !</b><br><span class="small muted">Réenregistre « ${esc(BY[old].h)} » et compare avec ta voix du début.</span></div><button class="btn sm" data-act="lab" data-id="${old}">${ICON.mic}</button></section>`:'';})()}
   <section class="card stack" aria-label="Parcours HSK">
-    <div class="row between"><div class="stack sm"><span class="label">Parcours HSK 1</span><h2><span style="font-variant-numeric:tabular-nums">${hs.seen}</span> <span class="muted" style="font-weight:600;font-size:17px">/ ${hs.total} mots</span></h2></div><span class="badge ok">${hs.solid} ancrés</span></div>
-    <div class="bar"><i style="width:${pct(hs.seen/hs.total)}%"></i></div>
+    <div class="row between"><div class="stack sm"><span class="label">Ton escalier · 步步高</span><h2>Tu as monté <span style="font-variant-numeric:tabular-nums">${ITEMS.filter(x=>x.branch==='hsk'&&isIntro(x)).length}</span> marches</h2></div><span class="badge ok">${hs.solid} ancrés</span></div>
+    ${stairHTML(popSince)}
+    <p class="tiny muted">Parcours HSK 1 : ${hs.seen} mots sur ${hs.total}.</p>
+    ${(()=>{const hp=hskPacks();const sel=hp.filter(packDone).slice(-2).concat(hp.filter(p=>!packDone(p)).slice(0,2));
+      return sel.length?`<div class="stack sm"><span class="label">Ce que je sais dire</span><div>${canDoHTML(sel)}</div></div>`:'';})()}
     <div class="row"><span class="small muted">Ma branche :</span>${Object.entries(BRANCHES).map(([k,b])=>`<button class="chip ${S.branch===k?'on':''}" data-act="branch" data-k="${k}">${b.fr}</button>`).join('')}</div>
     <p class="tiny muted">Chaque séance mélange le parcours HSK (6 mots sur 10) et ta branche (4 sur 10).</p>
   </section>
@@ -1150,6 +1219,7 @@ function renderProgres(){
   <section class="card stack"><div class="row between"><h3>Ton profil</h3><span class="small muted">${S.xp} XP · record ${S.best} j</span></div>
    <div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div>
    <p class="small muted">Les séances donnent plus de temps à ta compétence la plus faible : <b>${weak[1].toLowerCase()}</b>.</p></section>
+  <section class="card stack"><h3>Ce que je sais dire</h3><div>${canDoHTML(PACKS.filter(p=>packItems(p).length).sort((a,b)=>(packDone(b)-packDone(a))||(a.order||0)-(b.order||0)))}</div></section>
   <section class="card stack"><h3>Cette semaine</h3><div class="week">${days.map(d=>{const x=S.days[dkey(d)]||0;return `<div class="d"><span class="dot ${x?'on':''}">${x?x:''}</span>${dn[d.getDay()]}</div>`;}).join('')}</div></section>
   <section class="card stack"><h3>Les quatre étapes</h3><div class="bars">${STAGES.map((s,i)=>`<div class="bar-row"><span>${s.fr}</span><div class="bar"><i style="width:${pct(stageProg(i))}%"></i></div><b>${pct(stageProg(i))}</b></div>`).join('')}</div></section>
   <section class="card stack"><h3>Avant / après</h3>
@@ -1364,6 +1434,7 @@ function sessionEnd(){
   return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh">太棒了！</span><h1>${s.kind==='daily'?'Séance terminée':s.kind==='chapter'?'Chapitre avancé':s.kind==='plus'?'Séance bonus terminée':'Révision terminée'}</h1><p class="muted">Tài bàng le ! Encore une marche de montée.</p></div>
    <div class="kpis"><div class="stat"><b>+${s.xp}</b><span>XP</span></div><div class="stat"><b>${acc}%</b><span>de réussite</span></div><div class="stat"><b>${streakAlive()}</b><span>jour${streakAlive()>1?'s':''} de suite</span></div></div>
    ${s.jokerMsg?`<div class="notice">${esc(s.jokerMsg)}</div>`:''}
+   ${(s.paliers||[]).map(p=>`<div class="palier stack sm"><span class="label" style="color:var(--gold)">Palier atteint !</span><h2>${esc(shortTitle(p))}</h2><p><span class="zh">你真棒！</span> <span class="small muted">nǐ zhēn bàng · tu es super</span></p><p class="small">Maintenant, tu sais : <b>${esc(canDo(p).charAt(0).toLowerCase()+canDo(p).slice(1))}</b>.</p></div>`).join('')}
    <div class="card stack sm"><span class="label">Étape ${STAGES[cur].fr}</span><div class="row between"><span class="score" style="font-size:30px">${pct(s.startProg)}% → <span style="color:var(--accent)">${pct(s.endProg)}%</span></span></div><div class="bar"><i style="width:${pct(s.endProg)}%"></i></div></div>
    ${s.bonus?`<div class="bonus"><span class="label" style="color:var(--gold)">Surprise : expression bonus</span><div class="row"><span class="zh" style="font-size:30px">${s.bonus.h}</span><button class="btn sm" data-act="say" data-t="${esc(s.bonus.h)}">${ICON.play}</button></div><b>${esc(s.bonus.p)} · ${esc(s.bonus.fr)}</b><p class="small">${esc(s.bonus.note)}</p></div>`:''}
    <p class="small muted" style="text-align:center">${acc>=90?'Trop facile ? Demain, la séance accélère.':acc<70?'C’était dur : demain, on consolide avec moins de nouveautés.':'Rythme idéal : tu apprends dans la bonne zone.'}</p>
