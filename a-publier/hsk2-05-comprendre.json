@@ -1,0 +1,444 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 5 — Comprendre et s’entraider",
+ "desc": "Demander, répondre, dire que tu as compris (ou pas), aider un collègue. 16 mots HSK 2.",
+ "grammar": {
+  "title": "正在 : « être en train de »",
+  "explain": "Pour dire qu’une action se passe en ce moment, mets 正在 (zhèngzài) juste avant le verbe. On peut ajouter 呢 (ne) à la fin : c’est plus naturel à l’oral. 我正在工作 = je suis en train de travailler.",
+  "examples": [
+   {
+    "h": "我正在工作。",
+    "p": "Wǒ zhèngzài gōngzuò.",
+    "fr": "Je suis en train de travailler."
+   },
+   {
+    "h": "他正在吃饭呢。",
+    "p": "Tā zhèngzài chī fàn ne.",
+    "fr": "Il est en train de manger."
+   },
+   {
+    "h": "你正在做什么？",
+    "p": "Nǐ zhèngzài zuò shénme?",
+    "fr": "Qu’est-ce que tu es en train de faire ?"
+   },
+   {
+    "h": "组长正在找你。",
+    "p": "Zǔzhǎng zhèngzài zhǎo nǐ.",
+    "fr": "Le chef d’équipe te cherche."
+   }
+  ],
+  "tip": "À l’oral, on dit souvent juste 在 : 我在工作 veut dire la même chose."
+ },
+ "items": [
+  {
+   "id": "h205_bangzhu",
+   "h": "帮助",
+   "p": "bang-zhu",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Aider, aide",
+   "st": 0
+  },
+  {
+   "id": "h205_gaosu",
+   "h": "告诉",
+   "p": "gao-su",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Dire à, informer",
+   "st": 0
+  },
+  {
+   "id": "h205_wen",
+   "h": "问",
+   "p": "wen",
+   "t": [
+    4
+   ],
+   "fr": "Demander (poser une question)",
+   "st": 0
+  },
+  {
+   "id": "h205_huida",
+   "h": "回答",
+   "p": "hui-da",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Répondre",
+   "st": 0
+  },
+  {
+   "id": "h205_dong",
+   "h": "懂",
+   "p": "dong",
+   "t": [
+    3
+   ],
+   "fr": "Comprendre",
+   "st": 0
+  },
+  {
+   "id": "h205_zhidao",
+   "h": "知道",
+   "p": "zhi-dao",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Savoir",
+   "st": 0
+  },
+  {
+   "id": "h205_yisi",
+   "h": "意思",
+   "p": "yi-si",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Sens, signification",
+   "st": 0
+  },
+  {
+   "id": "h205_zhunbei",
+   "h": "准备",
+   "p": "zhun-bei",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Préparer",
+   "st": 0
+  },
+  {
+   "id": "h205_kaishi",
+   "h": "开始",
+   "p": "kai-shi",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Commencer",
+   "st": 0
+  },
+  {
+   "id": "h205_wan",
+   "h": "完",
+   "p": "wan",
+   "t": [
+    2
+   ],
+   "fr": "Finir (après un verbe : 做完)",
+   "st": 0
+  },
+  {
+   "id": "h205_deng",
+   "h": "等",
+   "p": "deng",
+   "t": [
+    3
+   ],
+   "fr": "Attendre",
+   "st": 0
+  },
+  {
+   "id": "h205_zhao",
+   "h": "找",
+   "p": "zhao",
+   "t": [
+    3
+   ],
+   "fr": "Chercher",
+   "st": 0
+  },
+  {
+   "id": "h205_gei",
+   "h": "给",
+   "p": "gei",
+   "t": [
+    3
+   ],
+   "fr": "Donner ; à, pour (quelqu’un)",
+   "st": 0
+  },
+  {
+   "id": "h205_zhengzai",
+   "h": "正在",
+   "p": "zheng-zai",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Être en train de",
+   "st": 0
+  },
+  {
+   "id": "h205_shiqing",
+   "h": "事情",
+   "p": "shi-qing",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Affaire, chose à faire",
+   "st": 0
+  },
+  {
+   "id": "h205_cuo",
+   "h": "错",
+   "p": "cuo",
+   "t": [
+    4
+   ],
+   "fr": "Faux, erreur",
+   "st": 0
+  },
+  {
+   "id": "h205_s_yisi",
+   "h": "这是什么意思",
+   "p": "zhe shi shen-me yi-si",
+   "t": [
+    4,
+    4,
+    2,
+    0,
+    4,
+    0
+   ],
+   "fr": "Qu’est-ce que ça veut dire ?",
+   "st": 0,
+   "m": "Quand un collègue dit un mot que tu ne connais pas, demande-lui : 这是什么意思？"
+  },
+  {
+   "id": "h205_s_deng",
+   "h": "请等一下",
+   "p": "qing deng yi-xia",
+   "t": [
+    3,
+    3,
+    2,
+    4
+   ],
+   "fr": "Attends un instant, s’il te plaît",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "h205_s_bang",
+   "h": "我来帮你",
+   "p": "wo lai bang ni",
+   "t": [
+    3,
+    2,
+    1,
+    3
+   ],
+   "fr": "Je vais t’aider",
+   "st": 0,
+   "m": "Quand une collègue a trop de travail, propose-lui : 我来帮你！"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "问",
+    "p": "wen",
+    "t": 4,
+    "fr": "demander"
+   },
+   {
+    "h": "文",
+    "p": "wen",
+    "t": 2,
+    "fr": "écriture"
+   }
+  ],
+  [
+   {
+    "h": "懂",
+    "p": "dong",
+    "t": 3,
+    "fr": "comprendre"
+   },
+   {
+    "h": "东",
+    "p": "dong",
+    "t": 1,
+    "fr": "est"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "帮",
+   "p": "bāng",
+   "m": "aider",
+   "r": "巾",
+   "rm": "tissu"
+  },
+  {
+   "c": "告",
+   "p": "gào",
+   "m": "annoncer",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "问",
+   "p": "wèn",
+   "m": "demander",
+   "r": "门",
+   "rm": "porte"
+  },
+  {
+   "c": "答",
+   "p": "dá",
+   "m": "répondre",
+   "r": "竹",
+   "rm": "bambou"
+  },
+  {
+   "c": "懂",
+   "p": "dǒng",
+   "m": "comprendre",
+   "r": "忄",
+   "rm": "cœur"
+  },
+  {
+   "c": "知",
+   "p": "zhī",
+   "m": "savoir",
+   "r": "矢",
+   "rm": "flèche"
+  },
+  {
+   "c": "完",
+   "p": "wán",
+   "m": "finir",
+   "r": "宀",
+   "rm": "toit"
+  },
+  {
+   "c": "错",
+   "p": "cuò",
+   "m": "erreur",
+   "r": "钅",
+   "rm": "métal"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-comprendre",
+   "st": 0,
+   "title": "Une consigne pas claire",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Ton chef d’équipe passe à ton poste et te donne une consigne.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}，你正在做什么？",
+     "p": "{name}, nǐ zhèngzài zuò shénme?",
+     "fr": "{name}, qu’est-ce que tu es en train de faire ?",
+     "o": [
+      {
+       "h": "我正在检查鞋。",
+       "p": "Wǒ zhèngzài jiǎnchá xié.",
+       "fr": "Je suis en train de contrôler les chaussures.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我是检查。",
+       "p": "Wǒ shì jiǎnchá.",
+       "fr": "(phrase incorrecte)",
+       "fix": "Pour dire ce que tu fais en ce moment : « 我正在 + verbe », par exemple « 我正在检查鞋 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "好。做完了告诉我。",
+     "p": "Hǎo. Zuò wán le gàosu wǒ.",
+     "fr": "Bien. Quand tu as fini, dis-le-moi.",
+     "o": [
+      {
+       "h": "好的，我知道了。",
+       "p": "Hǎo de, wǒ zhīdào le.",
+       "fr": "D’accord, c’est noté.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "对不起，我不懂。“告诉”是什么意思？",
+       "p": "Duìbuqǐ, wǒ bù dǒng. “Gàosu” shì shénme yìsi?",
+       "fr": "Pardon, je ne comprends pas. Que veut dire « gàosu » ?",
+       "ok": 1,
+       "n": "b2"
+      }
+     ]
+    },
+    "b2": {
+     "h": "“告诉”就是“说”。做完了跟我说。",
+     "p": "“Gàosu” jiùshì “shuō”. Zuò wán le gēn wǒ shuō.",
+     "fr": "« Gàosu », c’est comme « dire ». Quand tu as fini, tu me le dis.",
+     "o": [
+      {
+       "h": "懂了，谢谢！",
+       "p": "Dǒng le, xièxie!",
+       "fr": "Compris, merci !",
+       "ok": 1,
+       "n": "c"
+      }
+     ],
+     "coach": "Bravo : demander 什么意思 quand on ne comprend pas, c’est la meilleure façon d’apprendre."
+    },
+    "c": {
+     "h": "还有一件事情：你帮我找一下胶水。",
+     "p": "Hái yǒu yí jiàn shìqing: nǐ bāng wǒ zhǎo yíxià jiāoshuǐ.",
+     "fr": "Autre chose : aide-moi à trouver la colle.",
+     "o": [
+      {
+       "h": "好，请等一下。",
+       "p": "Hǎo, qǐng děng yíxià.",
+       "fr": "D’accord, un instant.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "好，请找一下。",
+       "p": "Hǎo, qǐng zhǎo yíxià.",
+       "fr": "D’accord, cherche un peu.",
+       "fix": "C’est toi qui vas chercher la colle : « 好，请等一下 » (un instant)."
+      }
+     ]
+    },
+    "end": {
+     "h": "谢谢你的帮助！",
+     "p": "Xièxie nǐ de bāngzhù!",
+     "fr": "Merci pour ton aide !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "不懂就问",
+   "p": "bù dǒng jiù wèn",
+   "fr": "Si tu ne comprends pas, demande",
+   "note": "Une phrase que les chefs chinois aiment bien : poser des questions, c’est bien travailler."
+  }
+ ]
+}

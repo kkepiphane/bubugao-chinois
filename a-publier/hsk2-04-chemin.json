@@ -1,0 +1,442 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 4 — Trouver son chemin",
+ "desc": "Dire si c’est loin ou près, à gauche ou à droite, et expliquer un trajet. 16 mots HSK 2.",
+ "grammar": {
+  "title": "离 et 从… 到… : la distance et le trajet",
+  "explain": "Pour la distance entre deux endroits, on dit : A 离 (lí) B 很远 / 很近. 我家离工厂很近 = ma maison est près de l’usine. Pour un trajet ou une durée, du début jusqu’à la fin, on dit : 从 (cóng) A 到 (dào) B.",
+  "examples": [
+   {
+    "h": "我家离工厂很近。",
+    "p": "Wǒ jiā lí gōngchǎng hěn jìn.",
+    "fr": "Ma maison est près de l’usine."
+   },
+   {
+    "h": "机场离这儿很远。",
+    "p": "Jīchǎng lí zhèr hěn yuǎn.",
+    "fr": "L’aéroport est loin d’ici."
+   },
+   {
+    "h": "从我家到工厂走路十分钟。",
+    "p": "Cóng wǒ jiā dào gōngchǎng zǒulù shí fēnzhōng.",
+    "fr": "De chez moi à l’usine, il faut dix minutes à pied."
+   },
+   {
+    "h": "我们从八点工作到五点。",
+    "p": "Wǒmen cóng bā diǎn gōngzuò dào wǔ diǎn.",
+    "fr": "Nous travaillons de 8 h à 17 h."
+   }
+  ],
+  "tip": "离 = la distance, sans mouvement. 从…到… = un mouvement ou une durée, du départ à l’arrivée."
+ },
+ "items": [
+  {
+   "id": "h204_li",
+   "h": "离",
+   "p": "li",
+   "t": [
+    2
+   ],
+   "fr": "À… de (distance)",
+   "st": 0
+  },
+  {
+   "id": "h204_yuan",
+   "h": "远",
+   "p": "yuan",
+   "t": [
+    3
+   ],
+   "fr": "Loin",
+   "st": 0
+  },
+  {
+   "id": "h204_jin",
+   "h": "近",
+   "p": "jin",
+   "t": [
+    4
+   ],
+   "fr": "Près",
+   "st": 0
+  },
+  {
+   "id": "h204_lu",
+   "h": "路",
+   "p": "lu",
+   "t": [
+    4
+   ],
+   "fr": "Route, chemin",
+   "st": 0
+  },
+  {
+   "id": "h204_zou",
+   "h": "走",
+   "p": "zou",
+   "t": [
+    3
+   ],
+   "fr": "Marcher, partir",
+   "st": 0
+  },
+  {
+   "id": "h204_dao",
+   "h": "到",
+   "p": "dao",
+   "t": [
+    4
+   ],
+   "fr": "Arriver ; jusqu’à",
+   "st": 0
+  },
+  {
+   "id": "h204_cong",
+   "h": "从",
+   "p": "cong",
+   "t": [
+    2
+   ],
+   "fr": "Depuis, à partir de",
+   "st": 0
+  },
+  {
+   "id": "h204_zuobian",
+   "h": "左边",
+   "p": "zuo-bian",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "À gauche",
+   "st": 0
+  },
+  {
+   "id": "h204_youbian",
+   "h": "右边",
+   "p": "you-bian",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "À droite",
+   "st": 0
+  },
+  {
+   "id": "h204_pangbian",
+   "h": "旁边",
+   "p": "pang-bian",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "À côté",
+   "st": 0
+  },
+  {
+   "id": "h204_men",
+   "h": "门",
+   "p": "men",
+   "t": [
+    2
+   ],
+   "fr": "Porte",
+   "st": 0
+  },
+  {
+   "id": "h204_gongjiao",
+   "h": "公共汽车",
+   "p": "gong-gong qi-che",
+   "t": [
+    1,
+    4,
+    4,
+    1
+   ],
+   "fr": "Bus",
+   "st": 0
+  },
+  {
+   "id": "h204_zixingche",
+   "h": "自行车",
+   "p": "zi-xing-che",
+   "t": [
+    4,
+    2,
+    1
+   ],
+   "fr": "Vélo",
+   "st": 0
+  },
+  {
+   "id": "h204_piao",
+   "h": "票",
+   "p": "piao",
+   "t": [
+    4
+   ],
+   "fr": "Billet, ticket",
+   "st": 0
+  },
+  {
+   "id": "h204_binguan",
+   "h": "宾馆",
+   "p": "bin-guan",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Hôtel",
+   "st": 0
+  },
+  {
+   "id": "h204_fangjian",
+   "h": "房间",
+   "p": "fang-jian",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Chambre, pièce",
+   "st": 0
+  },
+  {
+   "id": "h204_s_li",
+   "h": "你家离工厂远吗",
+   "p": "ni jia li gong-chang yuan ma",
+   "t": [
+    3,
+    1,
+    2,
+    1,
+    3,
+    3,
+    0
+   ],
+   "fr": "Ta maison est loin de l’usine ?",
+   "st": 0,
+   "s": [
+    3,
+    1,
+    2,
+    1,
+    2,
+    3,
+    0
+   ],
+   "m": "À la pause, demande à un collègue : 你家离工厂远吗？"
+  },
+  {
+   "id": "h204_s_cong",
+   "h": "从家到工厂",
+   "p": "cong jia dao gong-chang",
+   "t": [
+    2,
+    1,
+    4,
+    1,
+    3
+   ],
+   "fr": "De la maison jusqu’à l’usine",
+   "st": 0
+  },
+  {
+   "id": "h204_s_zoulu",
+   "h": "走路十分钟",
+   "p": "zou-lu shi fen-zhong",
+   "t": [
+    3,
+    4,
+    2,
+    1,
+    1
+   ],
+   "fr": "Dix minutes à pied",
+   "st": 0,
+   "m": "Explique à un collègue ton trajet du matin : 从家到工厂走路…分钟。"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "近",
+    "p": "jin",
+    "t": 4,
+    "fr": "près"
+   },
+   {
+    "h": "今",
+    "p": "jin",
+    "t": 1,
+    "fr": "aujourd’hui"
+   }
+  ],
+  [
+   {
+    "h": "远",
+    "p": "yuan",
+    "t": 3,
+    "fr": "loin"
+   },
+   {
+    "h": "元",
+    "p": "yuan",
+    "t": 2,
+    "fr": "yuan"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "远",
+   "p": "yuǎn",
+   "m": "loin",
+   "r": "辶",
+   "rm": "marche"
+  },
+  {
+   "c": "近",
+   "p": "jìn",
+   "m": "près",
+   "r": "辶",
+   "rm": "marche"
+  },
+  {
+   "c": "路",
+   "p": "lù",
+   "m": "route",
+   "r": "足",
+   "rm": "pied"
+  },
+  {
+   "c": "走",
+   "p": "zǒu",
+   "m": "marcher",
+   "r": "走",
+   "rm": "marcher"
+  },
+  {
+   "c": "左",
+   "p": "zuǒ",
+   "m": "gauche",
+   "r": "工",
+   "rm": "travail"
+  },
+  {
+   "c": "右",
+   "p": "yòu",
+   "m": "droite",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "门",
+   "p": "mén",
+   "m": "porte",
+   "r": "门",
+   "rm": "porte"
+  },
+  {
+   "c": "车",
+   "p": "chē",
+   "m": "véhicule",
+   "r": "车",
+   "rm": "char"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-chemin",
+   "st": 0,
+   "title": "Le chemin de l’hôtel",
+   "who": "客人",
+   "whoFr": "Visiteur",
+   "intro": "Un visiteur chinois sort de l’usine. Il cherche son hôtel.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "请问，宾馆离这儿远吗？",
+     "p": "Qǐngwèn, bīnguǎn lí zhèr yuǎn ma?",
+     "fr": "Excuse-moi, l’hôtel est loin d’ici ?",
+     "o": [
+      {
+       "h": "不远，很近。",
+       "p": "Bù yuǎn, hěn jìn.",
+       "fr": "Non, c’est tout près.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我不在宾馆。",
+       "p": "Wǒ bú zài bīnguǎn.",
+       "fr": "Je ne suis pas à l’hôtel.",
+       "fix": "Il demande si c’est loin : réponds « 很近 » (près) ou « 很远 » (loin)."
+      }
+     ]
+    },
+    "b": {
+     "h": "怎么走？",
+     "p": "Zěnme zǒu?",
+     "fr": "Comment j’y vais ?",
+     "o": [
+      {
+       "h": "宾馆在商店旁边。",
+       "p": "Bīnguǎn zài shāngdiàn pángbiān.",
+       "fr": "L’hôtel est à côté du magasin.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "宾馆在左边。",
+       "p": "Bīnguǎn zài zuǒbian.",
+       "fr": "L’hôtel est à gauche.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我坐公共汽车。",
+       "p": "Wǒ zuò gōnggòng qìchē.",
+       "fr": "Je prends le bus.",
+       "fix": "Il demande le chemin vers l’hôtel : « 宾馆在商店旁边 » (à côté du magasin)."
+      }
+     ]
+    },
+    "c": {
+     "h": "走路要多长时间？",
+     "p": "Zǒulù yào duō cháng shíjiān?",
+     "fr": "Ça prend combien de temps à pied ?",
+     "o": [
+      {
+       "h": "走路五分钟。",
+       "p": "Zǒulù wǔ fēnzhōng.",
+       "fr": "Cinq minutes à pied.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "五点。",
+       "p": "Wǔ diǎn.",
+       "fr": "Cinq heures.",
+       "fix": "Il demande une durée : « 五分钟 » (cinq minutes). 五点, c’est l’heure qu’il est."
+      }
+     ]
+    },
+    "end": {
+     "h": "太好了，谢谢你！",
+     "p": "Tài hǎo le, xièxie nǐ!",
+     "fr": "Super, merci !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "一路平安",
+   "p": "yílù píng’ān",
+   "fr": "Bon voyage",
+   "note": "Mot à mot « tout le chemin en paix ». À dire à quelqu’un qui part loin."
+  }
+ ]
+}

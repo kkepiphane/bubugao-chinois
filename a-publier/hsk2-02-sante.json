@@ -1,0 +1,428 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 2 — Ma journée et ma santé",
+ "desc": "Dire quand tu te lèves, si tu es fatiguée ou malade, et expliquer pourquoi. 15 mots HSK 2.",
+ "grammar": {
+  "title": "因为… 所以… : « parce que… donc… »",
+  "explain": "En chinois, on aime dire la cause d’abord : 因为 (yīnwèi) = parce que, puis la conséquence avec 所以 (suǒyǐ) = donc. On peut garder les deux mots dans la même phrase, ce qui est impossible en français.",
+  "examples": [
+   {
+    "h": "因为我生病了，所以没去上班。",
+    "p": "Yīnwèi wǒ shēngbìng le, suǒyǐ méi qù shàngbān.",
+    "fr": "Comme j’étais malade, je ne suis pas allée travailler."
+   },
+   {
+    "h": "因为很忙，所以我很累。",
+    "p": "Yīnwèi hěn máng, suǒyǐ wǒ hěn lèi.",
+    "fr": "J’ai beaucoup de travail, donc je suis très fatiguée."
+   },
+   {
+    "h": "我今天很累，因为我早上五点起床。",
+    "p": "Wǒ jīntiān hěn lèi, yīnwèi wǒ zǎoshang wǔ diǎn qǐchuáng.",
+    "fr": "Je suis fatiguée aujourd’hui, parce que je me suis levée à 5 h."
+   }
+  ],
+  "tip": "Tu peux aussi n’utiliser qu’un seul des deux : « 因为… » tout seul, ou « …，所以… » tout seul."
+ },
+ "items": [
+  {
+   "id": "h202_qichuang",
+   "h": "起床",
+   "p": "qi-chuang",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Se lever (du lit)",
+   "st": 0
+  },
+  {
+   "id": "h202_zaoshang",
+   "h": "早上",
+   "p": "zao-shang",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Le matin (tôt)",
+   "st": 0
+  },
+  {
+   "id": "h202_wanshang",
+   "h": "晚上",
+   "p": "wan-shang",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Le soir",
+   "st": 0
+  },
+  {
+   "id": "h202_xiaoshi",
+   "h": "小时",
+   "p": "xiao-shi",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Heure (durée)",
+   "st": 0
+  },
+  {
+   "id": "h202_shijian",
+   "h": "时间",
+   "p": "shi-jian",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Temps, moment libre",
+   "st": 0
+  },
+  {
+   "id": "h202_mang",
+   "h": "忙",
+   "p": "mang",
+   "t": [
+    2
+   ],
+   "fr": "Occupé",
+   "st": 0
+  },
+  {
+   "id": "h202_lei",
+   "h": "累",
+   "p": "lei",
+   "t": [
+    4
+   ],
+   "fr": "Fatigué",
+   "st": 0
+  },
+  {
+   "id": "h202_shenti",
+   "h": "身体",
+   "p": "shen-ti",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Corps, santé",
+   "st": 0
+  },
+  {
+   "id": "h202_yanjing",
+   "h": "眼睛",
+   "p": "yan-jing",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Yeux",
+   "st": 0
+  },
+  {
+   "id": "h202_shengbing",
+   "h": "生病",
+   "p": "sheng-bing",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Tomber malade",
+   "st": 0
+  },
+  {
+   "id": "h202_yao",
+   "h": "药",
+   "p": "yao",
+   "t": [
+    4
+   ],
+   "fr": "Médicament",
+   "st": 0
+  },
+  {
+   "id": "h202_juede",
+   "h": "觉得",
+   "p": "jue-de",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Trouver, se sentir",
+   "st": 0
+  },
+  {
+   "id": "h202_yijing",
+   "h": "已经",
+   "p": "yi-jing",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Déjà",
+   "st": 0
+  },
+  {
+   "id": "h202_yinwei",
+   "h": "因为",
+   "p": "yin-wei",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Parce que",
+   "st": 0
+  },
+  {
+   "id": "h202_suoyi",
+   "h": "所以",
+   "p": "suo-yi",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Donc, c’est pourquoi",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h202_s_lei",
+   "h": "我觉得很累",
+   "p": "wo jue-de hen lei",
+   "t": [
+    3,
+    2,
+    0,
+    3,
+    4
+   ],
+   "fr": "Je me sens très fatiguée",
+   "st": 0
+  },
+  {
+   "id": "h202_s_bingle",
+   "h": "我生病了",
+   "p": "wo sheng-bing le",
+   "t": [
+    3,
+    1,
+    4,
+    0
+   ],
+   "fr": "Je suis malade",
+   "st": 0,
+   "m": "Si un jour tu es malade, préviens ton chef par message : 我生病了，今天不能上班。"
+  },
+  {
+   "id": "h202_s_shijian",
+   "h": "你有时间吗",
+   "p": "ni you shi-jian ma",
+   "t": [
+    3,
+    3,
+    2,
+    1,
+    0
+   ],
+   "fr": "Tu as un moment ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    1,
+    0
+   ],
+   "m": "Avant de poser une question à un collègue chinois, demande-lui d’abord : 你有时间吗？"
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "时",
+    "p": "shi",
+    "t": 2,
+    "fr": "moment"
+   },
+   {
+    "h": "是",
+    "p": "shi",
+    "t": 4,
+    "fr": "être"
+   }
+  ],
+  [
+   {
+    "h": "眼",
+    "p": "yan",
+    "t": 3,
+    "fr": "œil"
+   },
+   {
+    "h": "颜",
+    "p": "yan",
+    "t": 2,
+    "fr": "couleur"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "床",
+   "p": "chuáng",
+   "m": "lit",
+   "r": "广",
+   "rm": "abri"
+  },
+  {
+   "c": "早",
+   "p": "zǎo",
+   "m": "tôt",
+   "r": "日",
+   "rm": "soleil"
+  },
+  {
+   "c": "晚",
+   "p": "wǎn",
+   "m": "soir, tard",
+   "r": "日",
+   "rm": "soleil"
+  },
+  {
+   "c": "忙",
+   "p": "máng",
+   "m": "occupé",
+   "r": "忄",
+   "rm": "cœur"
+  },
+  {
+   "c": "累",
+   "p": "lèi",
+   "m": "fatigué",
+   "r": "糸",
+   "rm": "soie"
+  },
+  {
+   "c": "体",
+   "p": "tǐ",
+   "m": "corps",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "眼",
+   "p": "yǎn",
+   "m": "œil",
+   "r": "目",
+   "rm": "œil"
+  },
+  {
+   "c": "药",
+   "p": "yào",
+   "m": "médicament",
+   "r": "艹",
+   "rm": "herbe"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-sante",
+   "st": 0,
+   "title": "Pas en forme aujourd’hui",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Ce matin, ton chef d’équipe voit que tu n’as pas l’air bien.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你怎么了？身体不好吗？",
+     "p": "Nǐ zěnme le? Shēntǐ bù hǎo ma?",
+     "fr": "Qu’est-ce qui ne va pas ? Tu ne te sens pas bien ?",
+     "o": [
+      {
+       "h": "我生病了，觉得很累。",
+       "p": "Wǒ shēngbìng le, juéde hěn lèi.",
+       "fr": "Je suis malade, je me sens très fatiguée.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我很忙。",
+       "p": "Wǒ hěn máng.",
+       "fr": "Je suis très occupée.",
+       "fix": "Il demande si tu te sens mal. Si tu es malade, dis « 我生病了 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "你吃药了吗？",
+     "p": "Nǐ chī yào le ma?",
+     "fr": "Tu as pris un médicament ?",
+     "o": [
+      {
+       "h": "已经吃了。",
+       "p": "Yǐjīng chī le.",
+       "fr": "Oui, déjà.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "还没有。",
+       "p": "Hái méiyǒu.",
+       "fr": "Pas encore.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我吃饭了。",
+       "p": "Wǒ chī fàn le.",
+       "fr": "J’ai mangé.",
+       "fix": "药 (yào) = médicament, 饭 (fàn) = repas. Réponds « 已经吃了 » (déjà pris)."
+      }
+     ]
+    },
+    "c": {
+     "h": "因为你生病了，所以今天下午休息吧。",
+     "p": "Yīnwèi nǐ shēngbìng le, suǒyǐ jīntiān xiàwǔ xiūxi ba.",
+     "fr": "Comme tu es malade, repose-toi cet après-midi.",
+     "o": [
+      {
+       "h": "谢谢组长！",
+       "p": "Xièxie zǔzhǎng!",
+       "fr": "Merci, chef !",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "不客气！",
+       "p": "Bú kèqi!",
+       "fr": "De rien !",
+       "fix": "C’est toi qui remercies : « 谢谢组长！ ». 不客气 = de rien."
+      }
+     ]
+    },
+    "end": {
+     "h": "不客气，明天见！",
+     "p": "Bú kèqi, míngtiān jiàn!",
+     "fr": "De rien, à demain !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "多喝水",
+   "p": "duō hē shuǐ",
+   "fr": "Bois beaucoup d’eau",
+   "note": "Le conseil que les Chinois donnent pour presque tous les petits problèmes de santé !"
+  }
+ ]
+}

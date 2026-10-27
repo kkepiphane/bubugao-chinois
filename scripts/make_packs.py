@@ -524,6 +524,276 @@ k10_s_nine | 我很好，你呢 | wo hen hao ni ne | 3 3 3 3 0 | 2 2 3 3 0 | Je 
   'end': node('哈哈，好的！', 'Hāhā, hǎo de!', 'Haha, d’accord !', end=True)})],
  bonus=[{'h': '恭喜', 'p': 'gōngxǐ', 'fr': 'Félicitations !', 'note': 'Tu as terminé le vocabulaire du HSK 1. 恭喜！'}]))
 
+# ---------------- HSK 2 · 1 ----------------
+PACKS.append(dict(id='hsk2-01', file='hsk2-01-famille.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 1 — Frères, sœurs et présentations',
+ desc='Parler de tes frères et sœurs, de ton mari ou de ta femme, et te présenter poliment. 16 mots HSK 2.',
+ grammar={'title': '也 : « aussi »',
+  'explain': '也 (yě) veut dire « aussi ». Il se place toujours juste avant le verbe (ou avant 很 + adjectif), jamais au début ni à la fin de la phrase. Pour dire « moi aussi », on dit 我也是 (mot à mot « moi aussi suis »).',
+  'examples': [ex('我也是多哥人。', 'Wǒ yě shì Duōgē rén.', 'Je suis Togolaise aussi.'), ex('她也有一个哥哥。', 'Tā yě yǒu yí ge gēge.', 'Elle aussi a un grand frère.'), ex('我们也很高兴。', 'Wǒmen yě hěn gāoxìng.', 'Nous aussi, nous sommes contents.'), ex('——我很忙。——我也是。', '— Wǒ hěn máng. — Wǒ yě shì.', '— Je suis très occupée. — Moi aussi.')],
+  'tip': 'Ne dis jamais 也我 : la personne vient d’abord, puis 也, puis le verbe. 我也去 = moi aussi j’y vais.'},
+ items=items('''
+h201_gege | 哥哥 | ge-ge | 1 0 | | Grand frère
+h201_jiejie | 姐姐 | jie-jie | 3 0 | | Grande sœur
+h201_didi | 弟弟 | di-di | 4 0 | | Petit frère
+h201_meimei | 妹妹 | mei-mei | 4 0 | | Petite sœur
+h201_zhangfu | 丈夫 | zhang-fu | 4 0 | | Mari
+h201_qizi | 妻子 | qi-zi | 1 0 | | Épouse
+h201_haizi | 孩子 | hai-zi | 2 0 | | Enfant
+h201_nanren | 男人 | nan-ren | 2 2 | | Homme
+h201_nvren | 女人 | nv-ren | 3 2 | | Femme
+h201_nin | 您 | nin | 2 | | Vous (poli, à une seule personne)
+h201_xing | 姓 | xing | 4 | | Avoir pour nom de famille
+h201_jieshao | 介绍 | jie-shao | 4 4 | | Présenter
+h201_dajia | 大家 | da-jia | 4 1 | | Tout le monde
+h201_ye | 也 | ye | 3 | | Aussi
+h201_shengri | 生日 | sheng-ri | 1 4 | | Anniversaire
+h201_kuaile | 快乐 | kuai-le | 4 4 | | Joyeux, heureux
+h201_s_guixing | 您贵姓 | nin gui xing | 2 4 4 | | Quel est votre nom de famille ? (poli) | Demande poliment son nom de famille à un chef chinois que tu ne connais pas : 您贵姓？
+h201_s_jieshao | 我来介绍一下 | wo lai jie-shao yi-xia | 3 2 4 4 2 4 | | Je vous présente…
+h201_s_shengri | 生日快乐 | sheng-ri kuai-le | 1 4 4 4 | | Joyeux anniversaire ! | Le jour de l’anniversaire d’une collègue, dis-lui : 生日快乐！
+h201_s_yeshi | 我也是 | wo ye shi | 3 3 4 | 2 3 4 | Moi aussi
+'''),
+ pairs=[pair(('妹', 'mei', 4, 'petite sœur'), ('没', 'mei', 2, 'ne… pas (avoir)')), pair(('姐', 'jie', 3, 'grande sœur'), ('介', 'jie', 4, 'présenter'))],
+ chars=chars('''
+哥 | gē | grand frère | 口 | bouche
+姐 | jiě | grande sœur | 女 | femme
+弟 | dì | petit frère | 弓 | arc
+妹 | mèi | petite sœur | 女 | femme
+孩 | hái | enfant | 子 | enfant
+男 | nán | homme | 田 | champ
+您 | nín | vous (poli) | 心 | cœur
+姓 | xìng | nom de famille | 女 | femme
+'''),
+ convs=[conv('hsk2-famille', 'Le nouveau chef d’équipe', '新组长', 'Nouveau chef d’équipe', 'Un nouveau chef d’équipe chinois arrive. Il veut connaître tout le monde.', {
+  'a': node('大家好！我姓李。你叫什么名字？', 'Dàjiā hǎo! Wǒ xìng Lǐ. Nǐ jiào shénme míngzi?', 'Bonjour à tous ! Je m’appelle Li (nom de famille). Comment tu t’appelles ?', [
+     o('您好，李组长！我叫{name}。', 'Nín hǎo, Lǐ zǔzhǎng! Wǒ jiào {name}.', 'Bonjour, chef Li ! Je m’appelle {name}.', True, 'b'),
+     o('我姓多哥。', 'Wǒ xìng Duōgē.', 'Mon nom de famille est Togo.', fix='姓 = le nom de famille, et 多哥 c’est ton pays ! Réponds « 我叫{name} ».')]),
+  'b': node('你有孩子吗？', 'Nǐ yǒu háizi ma?', 'Tu as des enfants ?', [
+     o('有，我有一个儿子。', 'Yǒu, wǒ yǒu yí ge érzi.', 'Oui, j’ai un fils.', True, 'c'),
+     o('没有，我没有孩子。', 'Méiyǒu, wǒ méiyǒu háizi.', 'Non, je n’ai pas d’enfant.', True, 'c'),
+     o('我是孩子。', 'Wǒ shì háizi.', 'Je suis une enfant.', fix='Il demande si tu AS des enfants : réponds avec 有 ou 没有.')]),
+  'c': node('我也有一个孩子。你有哥哥姐姐吗？', 'Wǒ yě yǒu yí ge háizi. Nǐ yǒu gēge jiějie ma?', 'Moi aussi, j’ai un enfant. Tu as des grands frères ou des grandes sœurs ?', [
+     o('我有一个哥哥，也有一个妹妹。', 'Wǒ yǒu yí ge gēge, yě yǒu yí ge mèimei.', 'J’ai un grand frère, et aussi une petite sœur.', True, 'end'),
+     o('我有一个哥哥，我有也一个妹妹。', 'Wǒ yǒu yí ge gēge, wǒ yǒu yě yí ge mèimei.', '(erreur de place)', fix='也 se met juste AVANT le verbe : « 我也有一个妹妹 ».')]),
+  'end': node('认识大家很高兴！', 'Rènshi dàjiā hěn gāoxìng!', 'Ravi de vous connaître tous !', end=True)})],
+ bonus=[{'h': '兄弟姐妹', 'p': 'xiōngdì jiěmèi', 'fr': 'Frères et sœurs', 'note': 'Pour demander : 你有兄弟姐妹吗？ (Tu as des frères et sœurs ?)'}]))
+
+# ---------------- HSK 2 · 2 ----------------
+PACKS.append(dict(id='hsk2-02', file='hsk2-02-sante.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 2 — Ma journée et ma santé',
+ desc='Dire quand tu te lèves, si tu es fatiguée ou malade, et expliquer pourquoi. 15 mots HSK 2.',
+ grammar={'title': '因为… 所以… : « parce que… donc… »',
+  'explain': 'En chinois, on aime dire la cause d’abord : 因为 (yīnwèi) = parce que, puis la conséquence avec 所以 (suǒyǐ) = donc. On peut garder les deux mots dans la même phrase, ce qui est impossible en français.',
+  'examples': [ex('因为我生病了，所以没去上班。', 'Yīnwèi wǒ shēngbìng le, suǒyǐ méi qù shàngbān.', 'Comme j’étais malade, je ne suis pas allée travailler.'), ex('因为很忙，所以我很累。', 'Yīnwèi hěn máng, suǒyǐ wǒ hěn lèi.', 'J’ai beaucoup de travail, donc je suis très fatiguée.'), ex('我今天很累，因为我早上五点起床。', 'Wǒ jīntiān hěn lèi, yīnwèi wǒ zǎoshang wǔ diǎn qǐchuáng.', 'Je suis fatiguée aujourd’hui, parce que je me suis levée à 5 h.')],
+  'tip': 'Tu peux aussi n’utiliser qu’un seul des deux : « 因为… » tout seul, ou « …，所以… » tout seul.'},
+ items=items('''
+h202_qichuang | 起床 | qi-chuang | 3 2 | | Se lever (du lit)
+h202_zaoshang | 早上 | zao-shang | 3 0 | | Le matin (tôt)
+h202_wanshang | 晚上 | wan-shang | 3 0 | | Le soir
+h202_xiaoshi | 小时 | xiao-shi | 3 2 | | Heure (durée)
+h202_shijian | 时间 | shi-jian | 2 1 | | Temps, moment libre
+h202_mang | 忙 | mang | 2 | | Occupé
+h202_lei | 累 | lei | 4 | | Fatigué
+h202_shenti | 身体 | shen-ti | 1 3 | | Corps, santé
+h202_yanjing | 眼睛 | yan-jing | 3 0 | | Yeux
+h202_shengbing | 生病 | sheng-bing | 1 4 | | Tomber malade
+h202_yao | 药 | yao | 4 | | Médicament
+h202_juede | 觉得 | jue-de | 2 0 | | Trouver, se sentir
+h202_yijing | 已经 | yi-jing | 3 1 | | Déjà
+h202_yinwei | 因为 | yin-wei | 1 4 | | Parce que
+h202_suoyi | 所以 | suo-yi | 3 3 | 2 3 | Donc, c’est pourquoi
+h202_s_lei | 我觉得很累 | wo jue-de hen lei | 3 2 0 3 4 | | Je me sens très fatiguée
+h202_s_bingle | 我生病了 | wo sheng-bing le | 3 1 4 0 | | Je suis malade | Si un jour tu es malade, préviens ton chef par message : 我生病了，今天不能上班。
+h202_s_shijian | 你有时间吗 | ni you shi-jian ma | 3 3 2 1 0 | 2 3 2 1 0 | Tu as un moment ? | Avant de poser une question à un collègue chinois, demande-lui d’abord : 你有时间吗？
+'''),
+ pairs=[pair(('时', 'shi', 2, 'moment'), ('是', 'shi', 4, 'être')), pair(('眼', 'yan', 3, 'œil'), ('颜', 'yan', 2, 'couleur'))],
+ chars=chars('''
+床 | chuáng | lit | 广 | abri
+早 | zǎo | tôt | 日 | soleil
+晚 | wǎn | soir, tard | 日 | soleil
+忙 | máng | occupé | 忄 | cœur
+累 | lèi | fatigué | 糸 | soie
+体 | tǐ | corps | 亻 | personne
+眼 | yǎn | œil | 目 | œil
+药 | yào | médicament | 艹 | herbe
+'''),
+ convs=[conv('hsk2-sante', 'Pas en forme aujourd’hui', '组长', 'Chef d’équipe', 'Ce matin, ton chef d’équipe voit que tu n’as pas l’air bien.', {
+  'a': node('你怎么了？身体不好吗？', 'Nǐ zěnme le? Shēntǐ bù hǎo ma?', 'Qu’est-ce qui ne va pas ? Tu ne te sens pas bien ?', [
+     o('我生病了，觉得很累。', 'Wǒ shēngbìng le, juéde hěn lèi.', 'Je suis malade, je me sens très fatiguée.', True, 'b'),
+     o('我很忙。', 'Wǒ hěn máng.', 'Je suis très occupée.', fix='Il demande si tu te sens mal. Si tu es malade, dis « 我生病了 ».')]),
+  'b': node('你吃药了吗？', 'Nǐ chī yào le ma?', 'Tu as pris un médicament ?', [
+     o('已经吃了。', 'Yǐjīng chī le.', 'Oui, déjà.', True, 'c'),
+     o('还没有。', 'Hái méiyǒu.', 'Pas encore.', True, 'c'),
+     o('我吃饭了。', 'Wǒ chī fàn le.', 'J’ai mangé.', fix='药 (yào) = médicament, 饭 (fàn) = repas. Réponds « 已经吃了 » (déjà pris).')]),
+  'c': node('因为你生病了，所以今天下午休息吧。', 'Yīnwèi nǐ shēngbìng le, suǒyǐ jīntiān xiàwǔ xiūxi ba.', 'Comme tu es malade, repose-toi cet après-midi.', [
+     o('谢谢组长！', 'Xièxie zǔzhǎng!', 'Merci, chef !', True, 'end'),
+     o('不客气！', 'Bú kèqi!', 'De rien !', fix='C’est toi qui remercies : « 谢谢组长！ ». 不客气 = de rien.')]),
+  'end': node('不客气，明天见！', 'Bú kèqi, míngtiān jiàn!', 'De rien, à demain !', end=True)})],
+ bonus=[{'h': '多喝水', 'p': 'duō hē shuǐ', 'fr': 'Bois beaucoup d’eau', 'note': 'Le conseil que les Chinois donnent pour presque tous les petits problèmes de santé !'}]))
+
+# ---------------- HSK 2 · 3 ----------------
+PACKS.append(dict(id='hsk2-03', file='hsk2-03-comparer.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 3 — Prix, couleurs et comparaisons',
+ desc='Vendre et acheter, dire les couleurs, les grands prix, et comparer deux choses. 16 mots HSK 2.',
+ grammar={'title': '比 : comparer deux choses',
+  'explain': 'Pour dire « A est plus … que B », on dit : A 比 (bǐ) B + adjectif. 这双比那双贵 = celle-ci est plus chère que celle-là. L’adjectif ne change pas et se met tout à la fin.',
+  'examples': [ex('这双鞋比那双贵。', 'Zhè shuāng xié bǐ nà shuāng guì.', 'Cette paire est plus chère que celle-là.'), ex('今天比昨天热。', 'Jīntiān bǐ zuótiān rè.', 'Aujourd’hui il fait plus chaud qu’hier.'), ex('他比我忙。', 'Tā bǐ wǒ máng.', 'Il est plus occupé que moi.'), ex('黑的比白的便宜多了。', 'Hēi de bǐ bái de piányi duō le.', 'Le noir est beaucoup moins cher que le blanc.')],
+  'tip': 'Avec 比, ne mets jamais 很 : 他比我忙, pas 他比我很忙. Pour « beaucoup plus », ajoute 多了 à la fin.'},
+ items=items('''
+h203_mai | 卖 | mai | 4 | | Vendre
+h203_gui | 贵 | gui | 4 | | Cher
+h203_pianyi | 便宜 | pian-yi | 2 0 | | Pas cher, bon marché
+h203_yuan | 元 | yuan | 2 | | Yuan (monnaie, à l’écrit)
+h203_bai | 百 | bai | 3 | | Cent
+h203_qian | 千 | qian | 1 | | Mille
+h203_jian | 件 | jian | 4 | | Classificateur des vêtements et des affaires
+h203_zhang | 张 | zhang | 1 | | Classificateur des choses plates (papier, billet)
+h203_gongjin | 公斤 | gong-jin | 1 1 | | Kilo
+h203_yanse | 颜色 | yan-se | 2 4 | | Couleur
+h203_bai2 | 白 | bai | 2 | | Blanc
+h203_hei | 黑 | hei | 1 | | Noir
+h203_hong | 红 | hong | 2 | | Rouge
+h203_xin | 新 | xin | 1 | | Neuf, nouveau
+h203_chuan | 穿 | chuan | 1 | | Porter (vêtements, chaussures)
+h203_bi | 比 | bi | 3 | | Plus… que (comparer)
+h203_s_bi | 这件比那件便宜 | zhe jian bi na jian pian-yi | 4 4 3 4 4 2 0 | | Celui-ci est moins cher que celui-là
+h203_s_heise | 有没有黑色的 | you mei you hei-se de | 3 2 3 1 4 0 | | Vous l’avez en noir ? | Dans une boutique, demande une autre couleur : 有没有黑色的？ (ou 红色的, 白色的)
+h203_s_hao | 我穿三十八号 | wo chuan san-shi-ba hao | 3 1 1 2 1 4 | | Je chausse du 38 | Au magasin de chaussures, donne ta pointure en chinois : 我穿…号。
+'''),
+ pairs=[pair(('买', 'mai', 3, 'acheter'), ('卖', 'mai', 4, 'vendre')), pair(('白', 'bai', 2, 'blanc'), ('百', 'bai', 3, 'cent'))],
+ chars=chars('''
+卖 | mài | vendre | 十 | dix
+贵 | guì | cher | 贝 | coquillage
+元 | yuán | yuan | 儿 | jambes
+件 | jiàn | pièce, article | 亻 | personne
+张 | zhāng | feuille | 弓 | arc
+颜 | yán | couleur, visage | 页 | tête
+黑 | hēi | noir | 黑 | noir
+新 | xīn | nouveau | 斤 | hache
+'''),
+ convs=[conv('hsk2-comparer', 'Des chaussures pour toi', '店员', 'Vendeuse', 'Pour une fois, c’est toi qui achètes des chaussures, dans un magasin tenu par une Chinoise.', {
+  'a': node('你好，你想买什么？', 'Nǐ hǎo, nǐ xiǎng mǎi shénme?', 'Bonjour, qu’est-ce que tu veux acheter ?', [
+     o('我想买一双鞋。', 'Wǒ xiǎng mǎi yì shuāng xié.', 'Je voudrais acheter une paire de chaussures.', True, 'b'),
+     o('我想卖一双鞋。', 'Wǒ xiǎng mài yì shuāng xié.', 'Je voudrais vendre une paire de chaussures.', fix='卖 (mài, 4e ton) = vendre. Acheter, c’est 买 (mǎi, 3e ton) : « 我想买一双鞋 ».')]),
+  'b': node('你穿多少号？', 'Nǐ chuān duōshao hào?', 'Tu fais quelle pointure ?', [
+     o('我穿三十八号。', 'Wǒ chuān sānshíbā hào.', 'Je chausse du 38.', True, 'c'),
+     o('我三十八岁。', 'Wǒ sānshíbā suì.', 'J’ai 38 ans.', fix='号 = la pointure (ou la taille). 岁, c’est l’âge ! « 我穿三十八号 ».')]),
+  'c': node('这双白的三百元，那双黑的两百元。', 'Zhè shuāng bái de sānbǎi yuán, nà shuāng hēi de liǎngbǎi yuán.', 'Celle-ci, la blanche, fait 300 yuans ; celle-là, la noire, 200 yuans.', [
+     o('黑的比白的便宜，我要黑的。', 'Hēi de bǐ bái de piányi, wǒ yào hēi de.', 'La noire est moins chère que la blanche, je prends la noire.', True, 'end'),
+     o('白的比黑的便宜。', 'Bái de bǐ hēi de piányi.', 'La blanche est moins chère que la noire.', fix='300 c’est plus que 200 : c’est la noire qui est moins chère. « 黑的比白的便宜 ».')]),
+  'end': node('好的，这双是新的。给你！', 'Hǎo de, zhè shuāng shì xīn de. Gěi nǐ!', 'D’accord, celle-ci est neuve. Voilà !', end=True)})],
+ bonus=[{'h': '物美价廉', 'p': 'wùměi jiàlián', 'fr': 'Bonne qualité, petit prix', 'note': 'Ce que tout le monde cherche au marché ! Les vendeurs l’écrivent souvent sur leurs pancartes.'}]))
+
+# ---------------- HSK 2 · 4 ----------------
+PACKS.append(dict(id='hsk2-04', file='hsk2-04-chemin.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 4 — Trouver son chemin',
+ desc='Dire si c’est loin ou près, à gauche ou à droite, et expliquer un trajet. 16 mots HSK 2.',
+ grammar={'title': '离 et 从… 到… : la distance et le trajet',
+  'explain': 'Pour la distance entre deux endroits, on dit : A 离 (lí) B 很远 / 很近. 我家离工厂很近 = ma maison est près de l’usine. Pour un trajet ou une durée, du début jusqu’à la fin, on dit : 从 (cóng) A 到 (dào) B.',
+  'examples': [ex('我家离工厂很近。', 'Wǒ jiā lí gōngchǎng hěn jìn.', 'Ma maison est près de l’usine.'), ex('机场离这儿很远。', 'Jīchǎng lí zhèr hěn yuǎn.', 'L’aéroport est loin d’ici.'), ex('从我家到工厂走路十分钟。', 'Cóng wǒ jiā dào gōngchǎng zǒulù shí fēnzhōng.', 'De chez moi à l’usine, il faut dix minutes à pied.'), ex('我们从八点工作到五点。', 'Wǒmen cóng bā diǎn gōngzuò dào wǔ diǎn.', 'Nous travaillons de 8 h à 17 h.')],
+  'tip': '离 = la distance, sans mouvement. 从…到… = un mouvement ou une durée, du départ à l’arrivée.'},
+ items=items('''
+h204_li | 离 | li | 2 | | À… de (distance)
+h204_yuan | 远 | yuan | 3 | | Loin
+h204_jin | 近 | jin | 4 | | Près
+h204_lu | 路 | lu | 4 | | Route, chemin
+h204_zou | 走 | zou | 3 | | Marcher, partir
+h204_dao | 到 | dao | 4 | | Arriver ; jusqu’à
+h204_cong | 从 | cong | 2 | | Depuis, à partir de
+h204_zuobian | 左边 | zuo-bian | 3 1 | | À gauche
+h204_youbian | 右边 | you-bian | 4 1 | | À droite
+h204_pangbian | 旁边 | pang-bian | 2 1 | | À côté
+h204_men | 门 | men | 2 | | Porte
+h204_gongjiao | 公共汽车 | gong-gong qi-che | 1 4 4 1 | | Bus
+h204_zixingche | 自行车 | zi-xing-che | 4 2 1 | | Vélo
+h204_piao | 票 | piao | 4 | | Billet, ticket
+h204_binguan | 宾馆 | bin-guan | 1 3 | | Hôtel
+h204_fangjian | 房间 | fang-jian | 2 1 | | Chambre, pièce
+h204_s_li | 你家离工厂远吗 | ni jia li gong-chang yuan ma | 3 1 2 1 3 3 0 | 3 1 2 1 2 3 0 | Ta maison est loin de l’usine ? | À la pause, demande à un collègue : 你家离工厂远吗？
+h204_s_cong | 从家到工厂 | cong jia dao gong-chang | 2 1 4 1 3 | | De la maison jusqu’à l’usine
+h204_s_zoulu | 走路十分钟 | zou-lu shi fen-zhong | 3 4 2 1 1 | | Dix minutes à pied | Explique à un collègue ton trajet du matin : 从家到工厂走路…分钟。
+'''),
+ pairs=[pair(('近', 'jin', 4, 'près'), ('今', 'jin', 1, 'aujourd’hui')), pair(('远', 'yuan', 3, 'loin'), ('元', 'yuan', 2, 'yuan'))],
+ chars=chars('''
+远 | yuǎn | loin | 辶 | marche
+近 | jìn | près | 辶 | marche
+路 | lù | route | 足 | pied
+走 | zǒu | marcher | 走 | marcher
+左 | zuǒ | gauche | 工 | travail
+右 | yòu | droite | 口 | bouche
+门 | mén | porte | 门 | porte
+车 | chē | véhicule | 车 | char
+'''),
+ convs=[conv('hsk2-chemin', 'Le chemin de l’hôtel', '客人', 'Visiteur', 'Un visiteur chinois sort de l’usine. Il cherche son hôtel.', {
+  'a': node('请问，宾馆离这儿远吗？', 'Qǐngwèn, bīnguǎn lí zhèr yuǎn ma?', 'Excuse-moi, l’hôtel est loin d’ici ?', [
+     o('不远，很近。', 'Bù yuǎn, hěn jìn.', 'Non, c’est tout près.', True, 'b'),
+     o('我不在宾馆。', 'Wǒ bú zài bīnguǎn.', 'Je ne suis pas à l’hôtel.', fix='Il demande si c’est loin : réponds « 很近 » (près) ou « 很远 » (loin).')]),
+  'b': node('怎么走？', 'Zěnme zǒu?', 'Comment j’y vais ?', [
+     o('宾馆在商店旁边。', 'Bīnguǎn zài shāngdiàn pángbiān.', 'L’hôtel est à côté du magasin.', True, 'c'),
+     o('宾馆在左边。', 'Bīnguǎn zài zuǒbian.', 'L’hôtel est à gauche.', True, 'c'),
+     o('我坐公共汽车。', 'Wǒ zuò gōnggòng qìchē.', 'Je prends le bus.', fix='Il demande le chemin vers l’hôtel : « 宾馆在商店旁边 » (à côté du magasin).')]),
+  'c': node('走路要多长时间？', 'Zǒulù yào duō cháng shíjiān?', 'Ça prend combien de temps à pied ?', [
+     o('走路五分钟。', 'Zǒulù wǔ fēnzhōng.', 'Cinq minutes à pied.', True, 'end'),
+     o('五点。', 'Wǔ diǎn.', 'Cinq heures.', fix='Il demande une durée : « 五分钟 » (cinq minutes). 五点, c’est l’heure qu’il est.')]),
+  'end': node('太好了，谢谢你！', 'Tài hǎo le, xièxie nǐ!', 'Super, merci !', end=True)})],
+ bonus=[{'h': '一路平安', 'p': 'yílù píng’ān', 'fr': 'Bon voyage', 'note': 'Mot à mot « tout le chemin en paix ». À dire à quelqu’un qui part loin.'}]))
+
+# ---------------- HSK 2 · 5 ----------------
+PACKS.append(dict(id='hsk2-05', file='hsk2-05-comprendre.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 5 — Comprendre et s’entraider',
+ desc='Demander, répondre, dire que tu as compris (ou pas), aider un collègue. 16 mots HSK 2.',
+ grammar={'title': '正在 : « être en train de »',
+  'explain': 'Pour dire qu’une action se passe en ce moment, mets 正在 (zhèngzài) juste avant le verbe. On peut ajouter 呢 (ne) à la fin : c’est plus naturel à l’oral. 我正在工作 = je suis en train de travailler.',
+  'examples': [ex('我正在工作。', 'Wǒ zhèngzài gōngzuò.', 'Je suis en train de travailler.'), ex('他正在吃饭呢。', 'Tā zhèngzài chī fàn ne.', 'Il est en train de manger.'), ex('你正在做什么？', 'Nǐ zhèngzài zuò shénme?', 'Qu’est-ce que tu es en train de faire ?'), ex('组长正在找你。', 'Zǔzhǎng zhèngzài zhǎo nǐ.', 'Le chef d’équipe te cherche.')],
+  'tip': 'À l’oral, on dit souvent juste 在 : 我在工作 veut dire la même chose.'},
+ items=items('''
+h205_bangzhu | 帮助 | bang-zhu | 1 4 | | Aider, aide
+h205_gaosu | 告诉 | gao-su | 4 0 | | Dire à, informer
+h205_wen | 问 | wen | 4 | | Demander (poser une question)
+h205_huida | 回答 | hui-da | 2 2 | | Répondre
+h205_dong | 懂 | dong | 3 | | Comprendre
+h205_zhidao | 知道 | zhi-dao | 1 4 | | Savoir
+h205_yisi | 意思 | yi-si | 4 0 | | Sens, signification
+h205_zhunbei | 准备 | zhun-bei | 3 4 | | Préparer
+h205_kaishi | 开始 | kai-shi | 1 3 | | Commencer
+h205_wan | 完 | wan | 2 | | Finir (après un verbe : 做完)
+h205_deng | 等 | deng | 3 | | Attendre
+h205_zhao | 找 | zhao | 3 | | Chercher
+h205_gei | 给 | gei | 3 | | Donner ; à, pour (quelqu’un)
+h205_zhengzai | 正在 | zheng-zai | 4 4 | | Être en train de
+h205_shiqing | 事情 | shi-qing | 4 0 | | Affaire, chose à faire
+h205_cuo | 错 | cuo | 4 | | Faux, erreur
+h205_s_yisi | 这是什么意思 | zhe shi shen-me yi-si | 4 4 2 0 4 0 | | Qu’est-ce que ça veut dire ? | Quand un collègue dit un mot que tu ne connais pas, demande-lui : 这是什么意思？
+h205_s_deng | 请等一下 | qing deng yi-xia | 3 3 2 4 | 2 3 2 4 | Attends un instant, s’il te plaît
+h205_s_bang | 我来帮你 | wo lai bang ni | 3 2 1 3 | | Je vais t’aider | Quand une collègue a trop de travail, propose-lui : 我来帮你！
+'''),
+ pairs=[pair(('问', 'wen', 4, 'demander'), ('文', 'wen', 2, 'écriture')), pair(('懂', 'dong', 3, 'comprendre'), ('东', 'dong', 1, 'est'))],
+ chars=chars('''
+帮 | bāng | aider | 巾 | tissu
+告 | gào | annoncer | 口 | bouche
+问 | wèn | demander | 门 | porte
+答 | dá | répondre | 竹 | bambou
+懂 | dǒng | comprendre | 忄 | cœur
+知 | zhī | savoir | 矢 | flèche
+完 | wán | finir | 宀 | toit
+错 | cuò | erreur | 钅 | métal
+'''),
+ convs=[conv('hsk2-comprendre', 'Une consigne pas claire', '组长', 'Chef d’équipe', 'Ton chef d’équipe passe à ton poste et te donne une consigne.', {
+  'a': node('{name}，你正在做什么？', '{name}, nǐ zhèngzài zuò shénme?', '{name}, qu’est-ce que tu es en train de faire ?', [
+     o('我正在检查鞋。', 'Wǒ zhèngzài jiǎnchá xié.', 'Je suis en train de contrôler les chaussures.', True, 'b'),
+     o('我是检查。', 'Wǒ shì jiǎnchá.', '(phrase incorrecte)', fix='Pour dire ce que tu fais en ce moment : « 我正在 + verbe », par exemple « 我正在检查鞋 ».')]),
+  'b': node('好。做完了告诉我。', 'Hǎo. Zuò wán le gàosu wǒ.', 'Bien. Quand tu as fini, dis-le-moi.', [
+     o('好的，我知道了。', 'Hǎo de, wǒ zhīdào le.', 'D’accord, c’est noté.', True, 'c'),
+     o('对不起，我不懂。“告诉”是什么意思？', 'Duìbuqǐ, wǒ bù dǒng. “Gàosu” shì shénme yìsi?', 'Pardon, je ne comprends pas. Que veut dire « gàosu » ?', True, 'b2')]),
+  'b2': node('“告诉”就是“说”。做完了跟我说。', '“Gàosu” jiùshì “shuō”. Zuò wán le gēn wǒ shuō.', '« Gàosu », c’est comme « dire ». Quand tu as fini, tu me le dis.', [
+     o('懂了，谢谢！', 'Dǒng le, xièxie!', 'Compris, merci !', True, 'c')], coach='Bravo : demander 什么意思 quand on ne comprend pas, c’est la meilleure façon d’apprendre.'),
+  'c': node('还有一件事情：你帮我找一下胶水。', 'Hái yǒu yí jiàn shìqing: nǐ bāng wǒ zhǎo yíxià jiāoshuǐ.', 'Autre chose : aide-moi à trouver la colle.', [
+     o('好，请等一下。', 'Hǎo, qǐng děng yíxià.', 'D’accord, un instant.', True, 'end'),
+     o('好，请找一下。', 'Hǎo, qǐng zhǎo yíxià.', 'D’accord, cherche un peu.', fix='C’est toi qui vas chercher la colle : « 好，请等一下 » (un instant).')]),
+  'end': node('谢谢你的帮助！', 'Xièxie nǐ de bāngzhù!', 'Merci pour ton aide !', end=True)})],
+ bonus=[{'h': '不懂就问', 'p': 'bù dǒng jiù wèn', 'fr': 'Si tu ne comprends pas, demande', 'note': 'Une phrase que les chefs chinois aiment bien : poser des questions, c’est bien travailler.'}]))
+
 # ---------------- Branche Usine et travail ----------------
 PACKS.append(dict(id='travail-compter', file='travail-01-compter.json', branch='travail', publish=True,
  title='Usine · Compter à l’atelier',
