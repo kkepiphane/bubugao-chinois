@@ -70,4 +70,4 @@ cd scripts && python3 make_packs.py    # régénère les chapitres depuis la sou
 
 - Branche « Vie quotidienne » : restaurant, transport, santé, téléphone/WeChat, famille.
 - Après le HSK 1 : parcours HSK 2 (300 mots, ancien format) au même rythme (jusqu'à 3 chapitres par semaine).
-- Bouton « J'ai entendu une phrase » pour qu'elle envoie les phrases réelles de l'usine à intégrer dans les chapitres.
+- ✅ Bouton « J'ai entendu une phrase » (onglet Parler) : elle enregistre et note des phrases réelles, puis les partage (WhatsApp…). Epiphane les transmet à Claude pour les intégrer aux chapitres (skill `nouveau-chapitre`).
