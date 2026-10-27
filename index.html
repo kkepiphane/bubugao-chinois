@@ -95,6 +95,11 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .road-bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
 .road-step .nm{font-size:12px;font-weight:800;color:var(--muted)} .road-step.cur .nm{color:var(--ink)}
 .road-step .zh{font-size:13px;color:var(--muted)}
+.ph{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;background:var(--surface-2)}
+.ph-sm{width:64px;height:64px;object-fit:cover;border-radius:10px;flex:none;background:var(--surface-2)}
+.ph-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ph-card{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.ph-card .zh{font-size:20px}
 .stair{width:100%;display:block}
 .stair .st{fill:none;stroke:var(--line);stroke-width:1}
 .stair .st.on{fill:var(--accent);stroke:none}
@@ -505,6 +510,7 @@ function pyHTML(it){let k=0;return it.words.map(w=>w.split('-').map(sy=>{const t
 function hzHTML(it){return it.han.map((c,i)=>`<span class="t${it.t[i]}">${c}</span>`).join('');}
 
 const ICON={
+ cam:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg>',
  play:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>',
  slow:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 15h13a4 4 0 0 0 4-4V9"/><path d="M5 15a6 6 0 0 1 12 0"/><circle cx="20" cy="7" r="1.6"/><path d="M7 15v3M14 15v3"/></svg>',
  mic:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
@@ -832,6 +838,7 @@ function toneOptions(it){
 function buildQ(kind,it){
   if(kind==='reco'||kind==='oreille')return{opts:frOptions(it)};
   if(kind==='ton')return{opts:toneOptions(it)};
+  if(kind==='photo')return photoQ(it);
   if(kind==='prod'){
     if(it.chunks.length>=3){const others=ITEMS.filter(x=>x.id!==it.id).flatMap(x=>x.chunks).filter(c=>!it.chunks.some(d=>d.h===c.h));
       const tiles=shuffle([...it.chunks.map((c,i)=>({...c,k:'a'+i})),{...rnd(others),k:'x'}]);return{tiles,placed:[]};}
@@ -871,7 +878,7 @@ function startTest(){
   ui.sess={kind:'test',steps,i:0,xp:0,ok:0,n:0,end:false};render();
 }
 /* ---------- sauvegarde / restauration ---------- */
-function backupData(){return JSON.stringify({app:'bubugao',format:1,date:new Date().toISOString(),packs:Object.keys(PS).filter(k=>k[0]!=='_'),state:S});}
+function backupData(){return JSON.stringify({app:'bubugao',format:1,date:new Date().toISOString(),packs:Object.keys(PS).filter(k=>k[0]!=='_'),state:S,photos:PH});}
 function backupName(){return 'bubugao-'+(S.name||'progression').replace(/[^\p{L}\p{N}_-]+/gu,'-')+'-'+today()+'.json';}
 async function doBackup(){
   const prevB=S.lastBackup;S.lastBackup=today();const txt=backupData(),name=backupName();S.lastBackup=prevB;
@@ -888,7 +895,8 @@ function readBackup(file){
     catch(e){toast('Ce fichier n’est pas une sauvegarde Bùbùgāo.');}};
   r.onerror=()=>toast('Impossible de lire ce fichier.');r.readAsText(file);
 }
-function applyRestore(){const o=ui.pendingRestore;if(!o)return;S=Object.assign(fresh(),o.state);save();ui.pendingRestore=null;ui.tab='home';toast('Progression restaurée. Bon retour, '+(S.name||'')+' !');checkUpdates(false);render();}
+function applyRestore(){const o=ui.pendingRestore;if(!o)return;S=Object.assign(fresh(),o.state);save();
+  if(o.photos&&typeof o.photos==='object')Object.entries(o.photos).forEach(([id,u])=>{if(typeof u==='string'&&u.startsWith('data:image/'))putPhoto(id,u);});ui.pendingRestore=null;ui.tab='home';toast('Progression restaurée. Bon retour, '+(S.name||'')+' !');checkUpdates(false);render();}
 let persisted=null;
 async function askPersist(){try{if(navigator.storage&&navigator.storage.persist){persisted=await navigator.storage.persisted();if(!persisted)persisted=await navigator.storage.persist();}}catch(e){}}
 function backupDue(){return S.sessions>=5&&(!S.lastBackup||daysBetween(S.lastBackup,today())>=30);}
@@ -941,6 +949,10 @@ function startSession(kind){
     const dueCh=charsKnown().map(c=>CHARS[c]).filter(ch=>retention(S.chars[ch.c],now)<.9).sort((a,b)=>retention(S.chars[a.c],now)-retention(S.chars[b.c],now)).slice(0,Math.round(4*f));
     shuffle([...newCh,...dueCh]).forEach(ch=>steps.push({kind:'char',ch,q:charQ(ch),sec:'Caractères'}));
   }
+  if(big||kind==='express'){
+    const pw=shuffle(photoWords().filter(it=>!news.includes(it))).sort((a,b)=>retention(skState(a.id,'reco'),now)-retention(skState(b.id,'reco'),now)).slice(0,Math.round(2*f));
+    pw.forEach(it=>{used.add(it.id);steps.push(mk('photo',it,'Mon usine'));});
+  }
   const revs=[];const max=kind==='express'?10:kind==='chapter'?4:Math.round(8*f);
   for(const c of cands){if(revs.length>=max)break;if(used.has(c.it.id))continue;used.add(c.it.id);revs.push(mk(c.sk,c.it,'Révisions'));}
   news.forEach(it=>revs.push(mk(it.chunks.length>=3?'prod':'reco',it,'Révisions')));
@@ -976,6 +988,7 @@ function answer(i){
   else if(st.kind==='pair'){ok=i===st.target;st.res={ok,pick:i};}
   else{ok=!!st.q.opts[i].ok;st.res={ok,pick:i};}
   s.n++;if(ok)s.ok++;
+  if(st.kind==='photo')say(st.it.h);
   if(s.kind==='test'){save();}
   else if(st.kind==='char'){gradeChar(st.ch.c,ok);S.hist.push(ok?1:0);if(ok)addXP(10);if(!ok&&!st.re){s.steps.push({kind:'char',ch:st.ch,q:charQ(st.ch),sec:'On le revoit',re:true});}save();}
   else if(s.kind==='diag'){
@@ -984,7 +997,7 @@ function answer(i){
     save();
   }else{
     if(st.kind==='pair'){S.profile.tons=S.profile.tons*.9+(ok?1:0)*.1;S.hist.push(ok?1:0);if(ok)addXP(10);save();}
-    else recordAnswer(st.it,st.kind,ok);
+    else recordAnswer(st.it,st.kind==='photo'?'reco':st.kind,ok);
     if(!ok&&!st.re&&s.kind!=='mini'){const c=st.kind==='pair'?{kind:'pair',pr:st.pr,target:st.target,sec:'On le revoit'}:mk(st.kind,st.it,'On le revoit');c.re=true;s.steps.push(c);}
   }
   render();
@@ -1055,7 +1068,7 @@ function convPick(cs,i){
 function render(){
   if(ui.sess)return renderSession();
   if(!S.onboarded)return renderOnboard();
-  const T={home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
+  const T={photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
   app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
   if(ui.tab==='progres'){document.querySelectorAll('canvas[data-voice]').forEach(cv=>{const [id,w]=cv.dataset.voice.split('|');const v=S.voice[id];if(v&&v[w])drawCurve(cv,BY[id],v[w]);});}
 }
@@ -1086,6 +1099,22 @@ function renderOnboard(){
     </div>
    </div></main>`;
 }
+/* ---------- photos de l'usine : une photo par mot, gardée sur le téléphone (IndexedDB) ---------- */
+let PH={};const PHDB='bubugao.photos';
+function phDB(){return new Promise((ok,ko)=>{try{const r=indexedDB.open(PHDB,1);r.onupgradeneeded=()=>r.result.createObjectStore('p');r.onsuccess=()=>ok(r.result);r.onerror=()=>ko(r.error);}catch(e){ko(e);}});}
+async function phTx(mode,fn){const db=await phDB();return new Promise((ok,ko)=>{const tx=db.transaction('p',mode),st=tx.objectStore('p');const r=fn(st);tx.oncomplete=()=>ok(r&&r.result);tx.onerror=()=>ko(tx.error);});}
+async function loadPhotos(){try{const db=await phDB();await new Promise(ok=>{const tx=db.transaction('p','readonly'),c=tx.objectStore('p').openCursor();
+  c.onsuccess=()=>{const cur=c.result;if(cur){if(BY[cur.key])PH[cur.key]=cur.value;cur.continue();}else ok();};c.onerror=()=>ok();});}catch(e){}}
+async function putPhoto(id,url){PH[id]=url;try{await phTx('readwrite',st=>st.put(url,id));return true;}catch(e){return false;}}
+async function delPhoto(id){delete PH[id];try{await phTx('readwrite',st=>st.delete(id));}catch(e){}}
+function shrinkPhoto(file){return new Promise((ok,ko)=>{const u=URL.createObjectURL(file),img=new Image();
+  img.onload=()=>{const M=480,k=Math.min(1,M/Math.max(img.naturalWidth,img.naturalHeight)),c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.72));};
+  img.onerror=()=>{URL.revokeObjectURL(u);ko();};img.src=u;});}
+const phImg=(it,cls)=>PH[it.id]?`<img class="${cls||'ph'}" src="${PH[it.id]}" alt="Ta photo : ${esc(it.fr)}">`:'';
+const photoWords=()=>ITEMS.filter(it=>PH[it.id]&&isIntro(it));
+function photoQ(it){const far=x=>x.id!==it.id&&x.fr!==it.fr&&!x.han.some(c=>it.han.includes(c));const pool=shuffle(ITEMS.filter(x=>isIntro(x)&&far(x)&&x.han.length<=it.han.length+2));
+  const src=pool.length>=3?pool:shuffle(ITEMS.filter(far));return{opts:shuffle([it,...src.slice(0,3)]).map(x=>({it:x,ok:x.id===it.id}))};}
 /* ---------- l'escalier : un mot appris = une marche, un chapitre = un palier ---------- */
 const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':'Dire ton nom, d’où tu viens, et saluer','hsk1-02':'Compter et dire les nombres',
   'hsk1-03':'Parler de ta famille et de tes proches','hsk1-04':'Dire l’heure et la date à ton chef','hsk1-05':'Commander à manger et à boire',
@@ -1166,6 +1195,11 @@ function renderHome(){
   ${testDue()?`<section class="card row" style="flex-wrap:nowrap;border:2px solid var(--gold)"><div class="grow"><b>Ton test HSK blanc du mois est prêt</b><br><span class="small muted">20 questions, 6 minutes. Pour voir ton niveau monter.</span></div><button class="btn gold sm" data-act="test">Commencer</button></section>`:''}
   ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
      return old?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>3 mois déjà !</b><br><span class="small muted">Réenregistre « ${esc(BY[old].h)} » et compare avec ta voix du début.</span></div><button class="btn sm" data-act="lab" data-id="${old}">${ICON.mic}</button></section>`:'';})()}
+  ${ITEMS.some(isIntro)?(()=>{const pw=photoWords();return `<section class="card stack" aria-label="Mon usine en photos">
+    <div class="row between" style="flex-wrap:nowrap"><div class="stack sm"><span class="label">Mon usine en photos</span><b>${pw.length?pw.length+' mot'+(pw.length>1?'s':'')+' avec ta photo':'Prends ton atelier en photo'}</b></div>
+    ${pw.length?`<div class="row" style="gap:4px;flex-wrap:nowrap">${pw.slice(-3).map(it=>phImg(it,'ph-sm')).join('')}</div>`:''}</div>
+    <p class="small muted">${pw.length?'Tes photos reviennent dans tes révisions. Continue : la colle, une semelle, ta machine…':'La colle, une semelle, ta machine… Associe chaque photo à son mot chinois : tes révisions utiliseront tes photos. Elles restent sur ton téléphone.'}</p>
+    <div class="row"><label class="btn primary sm">${ICON.cam} Prendre une photo<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>${pw.length?`<button class="btn sm" data-act="tab" data-k="photos">Voir mes photos</button>`:''}</div></section>`;})():''}
   <section class="card stack" aria-label="Parcours HSK">
     <div class="row between"><div class="stack sm"><span class="label">Ton escalier · 步步高</span><h2>Tu as monté <span style="font-variant-numeric:tabular-nums">${ITEMS.filter(x=>x.branch==='hsk'&&isIntro(x)).length}</span> marches</h2></div><span class="badge ok">${hs.solid} ancrés</span></div>
     ${stairHTML(popSince)}
@@ -1194,6 +1228,25 @@ function renderHome(){
 }
 
 /* ---------- parler ---------- */
+function renderPhotoPick(){
+  const f=(ui.phFilter||'').trim().toLowerCase(),pool=ITEMS.filter(isIntro).filter(it=>!f||it.fr.toLowerCase().includes(f)||pyStr(it).toLowerCase().includes(f)||it.h.includes(f)||it.p.includes(f))
+    .sort((a,b)=>(a.han.length>3)-(b.han.length>3)||(b.branch==='travail')-(a.branch==='travail')||a.han.length-b.han.length);
+  return `<div class="stack sm"><span class="label">Mon usine en photos</span><h1>Quel mot va avec ta photo ?</h1></div>
+  <img class="ph" src="${ui.phNew}" alt="Ta nouvelle photo">
+  <input id="phf" type="search" placeholder="Cherche : colle, semelle, 胶水…" value="${esc(ui.phFilter||'')}" style="width:100%;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 14px;font:inherit">
+  <div class="card flat wordlist">${pool.slice(0,40).map(it=>`<button class="word" style="background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;text-align:left;width:100%;color:inherit" data-act="phset" data-id="${it.id}">${phImg(it,'ph-sm')}<span class="zh">${hzHTML(it)}</span><span class="grow small"><b>${pyHTML(it)}</b><br><span class="muted">${esc(it.fr)}</span></span></button>`).join('')||'<p class="small muted">Aucun mot trouvé. Essaie un autre mot.</p>'}</div>
+  <p class="tiny muted">Seuls les mots que tu as déjà appris sont proposés.</p>
+  <button class="btn ghost block" data-act="phcancel">Annuler</button>`;
+}
+function renderPhotos(){
+  const pw=photoWords();
+  return `<div class="stack sm"><span class="label">Mon usine en photos</span><h1>${pw.length} mot${pw.length>1?'s':''} en images</h1></div>
+  <p class="small muted">Touche une photo pour l’entendre. Elles restent sur ton téléphone et sont dans ta sauvegarde.</p>
+  <label class="btn primary block">${ICON.cam} Prendre une autre photo<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>
+  <div class="ph-grid">${pw.map(it=>`<div class="ph-card" data-act="say" data-t="${esc(it.h)}" role="button" tabindex="0">${phImg(it)}<span class="zh">${esc(it.h)}</span><span class="small"><b>${esc(pyStr(it))}</b> · ${esc(it.fr)}</span>
+    <button class="btn sm ghost" data-act="phdel" data-id="${it.id}" style="align-self:flex-start">Retirer</button></div>`).join('')}</div>
+  <button class="btn block" data-act="home">Retour à l’accueil</button>`;
+}
 function renderParler(){
   const cur=currentStage();const pool=ITEMS.filter(x=>isIntro(x)||S.demo);
   return `<div class="stack sm"><span class="label">Parler</span><h1>Conversations</h1><p class="muted small">Des situations réelles, du plus simple au plus ambitieux. Le chef ne te corrige jamais brutalement : il te propose la bonne phrase.</p></div>
@@ -1313,7 +1366,7 @@ function renderSession(){
   const s=ui.sess;
   if(s.end)return app.innerHTML=s.kind==='diag'?diagEnd():s.kind==='test'?testEnd():sessionEnd();
   const st=s.steps[s.i];const total=s.steps.length;
-  const body={learn:vLearn,reco:vChoice,oreille:vChoice,ton:vTone,prod:vProd,pair:vPair,shadow:vShadow,conv:vConv,mission:vMission,grammar:vGrammar,charlearn:vCharLearn,char:vChar}[st.kind](st);
+  const body={learn:vLearn,reco:vChoice,oreille:vChoice,ton:vTone,prod:vProd,pair:vPair,photo:vPhoto,shadow:vShadow,conv:vConv,mission:vMission,grammar:vGrammar,charlearn:vCharLearn,char:vChar}[st.kind](st);
   app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter la séance">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div><span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span></div>
    <main class="lesson"><span class="sec-tag">${esc(st.sec)}</span>${body}</main>`;
   if(st.kind==='shadow'){const cv=document.getElementById('cv');if(cv)drawCurve(cv,st.it,st.rec&&st.rec.state==='done'?st.rec.res:null);}
@@ -1326,19 +1379,23 @@ function feedback(st,okText){
   if(!st.res)return'';const ok=st.res.ok,it=st.it;
   const praise=rnd(['Bien joué !','Exact !','Bravo !','对了！ Duì le !','Parfait !']);
   return `<div class="feedback ${ok?'ok':'bad'}" role="status"><span class="verdict">${ok?praise:(st.res.dunno?'Pas grave, voici la réponse':'Pas tout à fait')}</span>
-   ${it?`<div class="row" style="flex-wrap:nowrap"><div class="grow"><span class="zh" style="font-size:24px">${hzHTML(it)}</span> <b>${pyHTML(it)}</b><br><span>${esc(it.fr)}</span></div><button class="btn sm" data-act="say" data-t="${esc(it.h)}" aria-label="Réécouter">${ICON.play}</button></div>`:(okText||'')}
+   ${it?`<div class="row" style="flex-wrap:nowrap">${st.kind!=='photo'?phImg(it,'ph-sm'):''}<div class="grow"><span class="zh" style="font-size:24px">${hzHTML(it)}</span> <b>${pyHTML(it)}</b><br><span>${esc(it.fr)}</span></div><button class="btn sm" data-act="say" data-t="${esc(it.h)}" aria-label="Réécouter">${ICON.play}</button></div>`:(okText||'')}
    ${!ok&&!['diag','mini','test'].includes(ui.sess.kind)&&!st.re?'<span class="small">On le revoit dans un instant.</span>':''}
    <button class="btn ${ok?'primary':''} block" data-act="next">Continuer</button></div>`;
 }
 const dunno=st=>(ui.sess.kind==='diag'||ui.sess.kind==='test')&&!st.res?`<button class="btn ghost block" data-act="ans" data-i="-1">Je ne sais pas</button>`:'';
 function optCls(st,i,ok){if(!st.res)return'';if(ok)return'ok';if(st.res.pick===i)return'bad';return'dim';}
 function packTitle(it){const p=PACKS.find(x=>x.id===it.pk);return it.branch==='travail'&&it.pk==='base'?STAGES[it.st].fr:(p?p.title:'');}
-function vLearn(st){const it=st.it;return `<div class="card learn-card"><span class="label">Nouveau · ${esc(packTitle(it))}${HSKSET.has(it.h)?' · HSK 1':''}</span>
+function vLearn(st){const it=st.it;return `<div class="card learn-card"><span class="label">Nouveau · ${esc(packTitle(it))}${HSKSET.has(it.h)?' · HSK 1':''}</span>${phImg(it)}
   <div class="big-zh ${it.han.length>4?'sm':it.han.length>2?'mid':''}">${hzHTML(it)}</div><div class="py">${pyHTML(it)}</div><p style="font-size:18px;font-weight:700">${esc(it.fr)}</p>
   <div class="listen">${playBtns(it.h)}</div>
   <div class="tonekey" aria-label="Couleurs des tons"><span class="t1">1 haut plat</span><span class="t2">2 monte</span><span class="t3">3 bas</span><span class="t4">4 tombe</span></div></div>
   ${it.m?`<p class="small muted">Dans la vraie vie : ${esc(it.m)}</p>`:''}
   <button class="btn primary block" data-act="next">J’ai écouté, continuer</button>`;}
+function vPhoto(st){const it=st.it;
+  return `<p class="q-title">Ta photo : qu’est-ce que c’est en chinois ?</p>${phImg(it)}
+  <div class="opts">${st.q.opts.map((o,i)=>`<button class="opt ${optCls(st,i,o.ok)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh" style="font-size:22px">${esc(o.it.h)}</span><span class="small muted">${esc(pyStr(o.it))}</span></button>`).join('')}</div>
+  ${feedback(st)}`;}
 function vChoice(st){
   const it=st.it,aud=st.kind==='oreille';
   if(st.nopy&&!aud)return `<p class="q-title">Lis sans pinyin : que veut dire ceci ?</p>
@@ -1467,6 +1524,10 @@ let toastT=null;
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2800);}
 const ACT={
  tab:d=>{ui.tab=d.k;render();window.scrollTo(0,0);},
+ phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
+   toast(ok?'Photo ajoutée : '+it.h+' · '+it.fr:'Photo gardée pour cette fois, mais le téléphone n’a pas pu l’enregistrer.');try{say(it.h);}catch(e){}},
+ phcancel:()=>{ui.phNew=null;ui.phFilter='';ui.tab='home';render();},
+ phdel:async d=>{await delPhoto(d.id);render();toast('Photo retirée.');},
  say:d=>say(d.t,d.r?parseFloat(d.r):undefined),
  goal:d=>{S.goal=+d.i;save();render();},
  diag:()=>{S.name=(document.getElementById('nm')||{}).value?.trim()||S.name;save();startDiag();},
@@ -1516,6 +1577,8 @@ const ACT={
 app.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset,b);});
 app.addEventListener('toggle',e=>{if(e.target.id==='settings')ui.settingsOpen=e.target.open;},true);
 app.addEventListener('change',e=>{
+  if(e.target.id==='photofile'&&e.target.files&&e.target.files[0]){const f=e.target.files[0];e.target.value='';
+    shrinkPhoto(f).then(u=>{ui.phNew=u;ui.phFilter='';ui.tab='photopick';render();window.scrollTo(0,0);}).catch(()=>toast('Impossible de lire cette photo. Réessaie.'));}
   if(e.target.id==='restorefile'&&e.target.files&&e.target.files[0]){readBackup(e.target.files[0]);e.target.value='';}
   if(e.target.id==='audfile'&&e.target.files&&e.target.files[0])analyzeBlob(ui.sess.steps[ui.sess.i],e.target.files[0]);
   if(e.target.id==='nm2'){S.name=e.target.value.trim();save();}
@@ -1523,6 +1586,7 @@ app.addEventListener('change',e=>{
 app.addEventListener('input',e=>{
   if(e.target.id==='wf'){ui.wordFilter=e.target.value;const pos=e.target.selectionStart;render();const n=document.getElementById('wf');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(_){}}}
   if(e.target.id==='nm'){S.name=e.target.value.trim();}
+  if(e.target.id==='phf'){ui.phFilter=e.target.value;const pos=e.target.selectionStart;render();const n=document.getElementById('phf');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(_){}}}
 });
 window.addEventListener('resize',()=>{if(ui.sess&&!ui.sess.end){const st=ui.sess.steps[ui.sess.i];if(st&&st.kind==='shadow')drawCurve(document.getElementById('cv'),st.it,st.rec&&st.rec.state==='done'?st.rec.res:null);}});
 let deferredInstall=null;
@@ -1533,6 +1597,7 @@ window.addEventListener('online',()=>checkUpdates(false));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false&&Date.now()-(PS._checked||0)>6*3600e3)checkUpdates(false);});
 refreshJokers();
 render();
+loadPhotos().then(()=>{if(Object.keys(PH).length&&!ui.sess)render();});
 if(navigator.onLine!==false)checkUpdates(false);else loadAudioIndex();
 askPersist().then(()=>{if(!ui.sess&&ui.tab==='progres')render();});
 window.addEventListener('appinstalled',()=>askPersist());
