@@ -29,6 +29,12 @@
    "v": 2,
    "file": "quotidien-01-marche.json",
    "title": "Vie quotidienne · Au marché"
+  },
+  {
+   "id": "hsk1-04",
+   "v": 1,
+   "file": "hsk1-04-temps.json",
+   "title": "HSK 1 · 4 — L’heure et la date"
   }
  ]
 }
