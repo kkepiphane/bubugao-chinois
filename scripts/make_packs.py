@@ -941,6 +941,320 @@ h205_s_cuole | 错了 | cuo le | 4 0 | | C’est faux
   'end': node('谢谢你的帮助！', 'Xièxie nǐ de bāngzhù!', 'Merci pour ton aide !', end=True)})],
  bonus=[{'h': '不懂就问', 'p': 'bù dǒng jiù wèn', 'fr': 'Si tu ne comprends pas, demande', 'note': 'Une phrase que les chefs chinois aiment bien : poser des questions, c’est bien travailler.'}]))
 
+# ---------------- HSK 2 · 6 ----------------
+PACKS.append(dict(id='hsk2-06', file='hsk2-06-loisirs.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 6 — Sport et loisirs',
+ desc='Dire ce que tu aimes faire, proposer une sortie, parler de tes rêves de voyage. 14 mots HSK 2 et 13 phrases pour t’en servir.',
+ grammar={'title': '吧 : proposer ou demander l’accord',
+  'explain': '吧 (ba) à la fin d’une phrase la rend plus douce : c’est une proposition, pas un ordre. 我们走吧 = « allons-y ! », 一起去吧 = « on y va ensemble ? ». Pour accepter, réponds 好啊 (hǎo a) ou 好吧 (hǎo ba).',
+  'examples': [ex('我们一起去吧！', 'Wǒmen yìqǐ qù ba!', 'Allons-y ensemble !'), ex('星期六去玩吧。', 'Xīngqīliù qù wán ba.', 'Samedi, allons nous amuser.'), ex('你是多哥人吧？', 'Nǐ shì Duōgē rén ba?', 'Tu es Togolaise, je crois ?'), ex('好吧，我也去。', 'Hǎo ba, wǒ yě qù.', 'Bon, d’accord, j’y vais aussi.')],
+  'tip': '一起 (ensemble) se place avant le verbe : 我们一起吃饭 = mangeons ensemble.'},
+ items=items('''
+h206_yundong | 运动 | yun-dong | 4 4 | | Faire du sport, sport
+h206_paobu | 跑步 | pao-bu | 3 4 | | Courir, faire un footing
+h206_youyong | 游泳 | you-yong | 2 3 | | Nager
+h206_lanqiu | 打篮球 | da lan-qiu | 3 2 2 | | Jouer au basket
+h206_zuqiu | 踢足球 | ti zu-qiu | 1 2 2 | | Jouer au foot
+h206_changge | 唱歌 | chang-ge | 4 1 | | Chanter
+h206_tiaowu | 跳舞 | tiao-wu | 4 3 | | Danser
+h206_lvyou | 旅游 | lv-you | 3 2 | | Voyager (pour le plaisir)
+h206_wan | 玩 | wan | 2 | | S’amuser, jouer
+h206_yiqi | 一起 | yi-qi | 4 3 | | Ensemble
+h206_ba | 吧 | ba | 0 | | (proposition : « …, d’accord ? »)
+h206_xiwang | 希望 | xi-wang | 1 4 | | Espérer
+h206_zui | 最 | zui | 4 | | Le plus
+h206_feichang | 非常 | fei-chang | 1 2 | | Très, extrêmement
+h206_s_yiqiqu | 我们一起去吧 | wo-men yi-qi qu ba | 3 0 4 3 4 0 | | Allons-y ensemble ! | Le samedi, propose à une collègue : 我们一起去吧！
+h206_s_shenmeyundong | 你喜欢什么运动 | ni xi-huan shen-me yun-dong | 3 3 0 2 0 4 4 | 2 3 0 2 0 4 4 | Quel sport tu aimes ?
+h206_s_paobu | 我喜欢跑步 | wo xi-huan pao-bu | 3 3 0 3 4 | 2 3 0 3 4 | J’aime courir
+h206_s_huiyouyong | 你会游泳吗 | ni hui you-yong ma | 3 4 2 3 0 | | Tu sais nager ?
+h206_s_buhuiyouyong | 我不会游泳 | wo bu hui you-yong | 3 2 4 2 3 | | Je ne sais pas nager
+h206_s_tizuqiu | 我们去踢足球吧 | wo-men qu ti zu-qiu ba | 3 0 4 1 2 2 0 | | On va jouer au foot ?
+h206_s_zuixihuan | 我最喜欢唱歌 | wo zui xi-huan chang-ge | 3 4 3 0 4 1 | | Ce que j’aime le plus, c’est chanter
+h206_s_quwan | 星期六去玩吧 | xing-qi-liu qu wan ba | 1 1 4 4 2 0 | | Samedi, allons nous amuser
+h206_s_feichanghao | 非常好 | fei-chang hao | 1 2 3 | | Très bien !
+h206_s_lvyou | 我希望去中国旅游 | wo xi-wang qu Zhong-guo lv-you | 3 1 4 4 1 2 3 2 | | J’espère voyager en Chine
+h206_s_yiqichifan | 一起吃饭吧 | yi-qi chi fan ba | 4 3 1 4 0 | | Mangeons ensemble
+h206_s_lanqiulei | 打篮球很累 | da lan-qiu hen lei | 3 2 2 3 4 | | Le basket, c’est fatigant
+h206_s_haoa | 好啊 | hao a | 3 0 | | Avec plaisir, d’accord !
+'''),
+ pairs=[pair(('歌', 'ge', 1, 'chanson'), ('个', 'ge', 4, 'classificateur (一个)')), pair(('玩', 'wan', 2, 's’amuser'), ('晚', 'wan', 3, 'soir, tard'))],
+ chars=chars('''
+运 | yùn | transporter, bouger | 辶 | marche
+动 | dòng | bouger | 力 | force
+跑 | pǎo | courir | 足 | pied
+游 | yóu | nager, voyager | 氵 | eau
+球 | qiú | ballon | 王 | jade
+唱 | chàng | chanter | 口 | bouche
+起 | qǐ | se lever | 走 | marcher
+最 | zuì | le plus | 曰 | dire
+'''),
+ convs=[conv('hsk2-loisirs', 'Que fais-tu dimanche ?', '小陈', 'Collègue', 'Vendredi soir, à la sortie de l’usine. Une collègue chinoise te parle du week-end.', {
+  'a': node('星期天你做什么？', 'Xīngqītiān nǐ zuò shénme?', 'Qu’est-ce que tu fais dimanche ?', [
+     o('我想去跑步。你呢？', 'Wǒ xiǎng qù pǎobù. Nǐ ne?', 'J’ai envie d’aller courir. Et toi ?', True, 'b'),
+     o('我是跑步。', 'Wǒ shì pǎobù.', '(phrase mal construite)', fix='Pas de 是 devant une action : « 我想去跑步 ».')]),
+  'b': node('我喜欢游泳。我们一起去游泳吧！', 'Wǒ xǐhuan yóuyǒng. Wǒmen yìqǐ qù yóuyǒng ba!', 'Moi, j’aime nager. Allons nager ensemble !', [
+     o('我不会游泳……我们去唱歌吧！', 'Wǒ bú huì yóuyǒng… Wǒmen qù chànggē ba!', 'Je ne sais pas nager… Allons chanter !', True, 'c'),
+     o('好啊，一起去吧！', 'Hǎo a, yìqǐ qù ba!', 'Avec plaisir, allons-y ensemble !', True, 'c'),
+     o('一起我们去吧。', 'Yìqǐ wǒmen qù ba.', '(phrase mal construite)', fix='一起 se place juste avant le verbe : « 我们一起去吧 ».')]),
+  'c': node('好啊！我最喜欢唱歌。几点去？', 'Hǎo a! Wǒ zuì xǐhuan chànggē. Jǐ diǎn qù?', 'Super ! Chanter, c’est ce que je préfère. On y va à quelle heure ?', [
+     o('下午三点吧。', 'Xiàwǔ sān diǎn ba.', 'Trois heures de l’après-midi, d’accord ?', True, 'end'),
+     o('我最喜欢下午。', 'Wǒ zuì xǐhuan xiàwǔ.', 'Je préfère l’après-midi.', fix='Elle demande l’heure : réponds avec l’heure, « 下午三点吧 ».')]),
+  'end': node('好，星期天见！', 'Hǎo, xīngqītiān jiàn!', 'D’accord, à dimanche !', end=True)})],
+ bonus=[{'h': '生命在于运动', 'p': 'shēngmìng zàiyú yùndòng', 'fr': 'La vie, c’est le mouvement', 'note': 'Dicton chinois très connu pour encourager à faire du sport.'}]))
+
+# ---------------- HSK 2 · 7 ----------------
+PACKS.append(dict(id='hsk2-07', file='hsk2-07-temps-qui-passe.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 7 — Le temps qu’il fait, le temps qui passe',
+ desc='Parler du beau temps et de la neige, dire « déjà une fois », « la première fois », « chaque jour ». 14 mots HSK 2 et 14 phrases pour t’en servir.',
+ grammar={'title': '过 : « déjà… une fois » (l’expérience)',
+  'explain': 'Pour dire qu’on a déjà vécu quelque chose, mets 过 (guo) juste après le verbe : 我去过中国 = je suis déjà allée en Chine. Pour dire « jamais », mets 没 (méi) devant le verbe, et garde 过 : 我没去过 = je n’y suis jamais allée.',
+  'examples': [ex('我去过北京。', 'Wǒ qù guo Běijīng.', 'Je suis déjà allée à Pékin.'), ex('你吃过饺子吗？', 'Nǐ chī guo jiǎozi ma?', 'Tu as déjà mangé des raviolis chinois ?'), ex('我没见过雪。', 'Wǒ méi jiàn guo xuě.', 'Je n’ai jamais vu la neige.'), ex('这是我第一次来。', 'Zhè shì wǒ dì-yī cì lái.', 'C’est la première fois que je viens.')],
+  'tip': 'Avec 过, on dit toujours 没, jamais 不 : 我没去过 (et pas 我不去过).'},
+ items=items('''
+h207_qing | 晴 | qing | 2 | | Ensoleillé, beau temps
+h207_yin | 阴 | yin | 1 | | Couvert, nuageux
+h207_xue | 雪 | xue | 3 | | Neige
+h207_qunian | 去年 | qu-nian | 4 2 | | L’année dernière
+h207_mei | 每 | mei | 3 | | Chaque
+h207_ci | 次 | ci | 4 | | Fois
+h207_diyi | 第一 | di-yi | 4 1 | | Premier, premièrement
+h207_guo | 过 | guo | 0 | | (déjà fait, une fois : 去过)
+h207_ling | 零 | ling | 2 | | Zéro
+h207_zhen | 真 | zhen | 1 | | Vraiment
+h207_chang | 长 | chang | 2 | | Long
+h207_gao | 高 | gao | 1 | | Grand, haut
+h207_kuai | 快 | kuai | 4 | | Rapide, vite
+h207_man | 慢 | man | 4 | | Lent, lentement
+h207_s_qingtian | 今天是晴天 | jin-tian shi qing-tian | 1 1 4 2 1 | | Aujourd’hui, il fait beau
+h207_s_yintian | 明天是阴天 | ming-tian shi yin-tian | 2 1 4 1 1 | | Demain, le temps sera couvert
+h207_s_jianguoxue | 你见过雪吗 | ni jian guo xue ma | 3 4 0 3 0 | | Tu as déjà vu la neige ?
+h207_s_meijianguo | 我没见过雪 | wo mei jian guo xue | 3 2 4 0 3 | | Je n’ai jamais vu la neige
+h207_s_quguo | 你去过中国吗 | ni qu guo Zhong-guo ma | 3 4 0 1 2 0 | | Tu es déjà allée en Chine ?
+h207_s_meitian | 我每天六点起床 | wo mei-tian liu dian qi-chuang | 3 3 1 4 3 3 2 | 2 3 1 4 2 3 2 | Je me lève à six heures tous les jours
+h207_s_sanci | 一个星期去三次 | yi ge xing-qi qu san ci | 2 0 1 1 4 1 4 | | Trois fois par semaine
+h207_s_diyici | 第一次 | di-yi ci | 4 1 4 | | La première fois
+h207_s_diyicilai | 这是我第一次来 | zhe shi wo di-yi ci lai | 4 4 3 4 1 4 2 | | C’est la première fois que je viens
+h207_s_qunian | 我去年开始工作 | wo qu-nian kai-shi gong-zuo | 3 4 2 1 3 1 4 | | J’ai commencé à travailler l’année dernière
+h207_s_yibailingwu | 一百零五 | yi-bai ling wu | 4 3 2 3 | | Cent cinq (105)
+h207_s_nizhenhao | 你真好 | ni zhen hao | 3 1 3 | | Tu es vraiment gentille ! | Quand une collègue t’aide, dis-lui : 你真好！
+h207_s_taimanle | 太慢了 | tai man le | 4 4 0 | | C’est trop lent
+h207_s_tahengao | 他很高 | ta hen gao | 1 3 1 | | Il est grand
+h207_s_taichang | 时间太长了 | shi-jian tai chang le | 2 1 4 2 0 | | C’est trop long
+'''),
+ pairs=[pair(('晴', 'qing', 2, 'beau temps'), ('请', 'qing', 3, 's’il te plaît')), pair(('雪', 'xue', 3, 'neige'), ('学', 'xue', 2, 'étudier'))],
+ chars=chars('''
+晴 | qíng | beau temps | 日 | soleil
+阴 | yīn | couvert, ombre | 阝 | colline
+雪 | xuě | neige | 雨 | pluie
+零 | líng | zéro | 雨 | pluie
+每 | měi | chaque | 母 | mère
+次 | cì | fois | 欠 | bâiller
+第 | dì | (rang : 第一) | 竹 | bambou
+慢 | màn | lent | 忄 | cœur
+'''),
+ convs=[conv('hsk2-neige', 'La neige de Pékin', '组长', 'Chef d’équipe', 'Il fait très chaud à l’atelier. Ton chef d’équipe parle du temps qu’il fait chez lui, en Chine.', {
+  'a': node('今天是晴天，真热！你去过中国吗？', 'Jīntiān shì qíngtiān, zhēn rè! Nǐ qù guo Zhōngguó ma?', 'Il fait beau aujourd’hui, vraiment chaud ! Tu es déjà allée en Chine ?', [
+     o('没去过。中国冷吗？', 'Méi qù guo. Zhōngguó lěng ma?', 'Jamais. Il fait froid en Chine ?', True, 'b'),
+     o('我不去过。', 'Wǒ bú qù guo.', '(phrase mal construite)', fix='Avec 过, on dit 没 et pas 不 : « 我没去过 ».')]),
+  'b': node('北京十二月很冷，会下雪。你见过雪吗？', 'Běijīng shí’èr yuè hěn lěng, huì xià xuě. Nǐ jiàn guo xuě ma?', 'À Pékin, en décembre, il fait très froid, il neige. Tu as déjà vu la neige ?', [
+     o('没见过，我很想看！', 'Méi jiàn guo, wǒ hěn xiǎng kàn!', 'Jamais, j’ai très envie de la voir !', True, 'c'),
+     o('我没见雪过。', 'Wǒ méi jiàn xuě guo.', '(phrase mal construite)', fix='过 se colle juste après le verbe : « 我没见过雪 ».')]),
+  'c': node('你可以来北京看雪！', 'Nǐ kěyǐ lái Běijīng kàn xuě!', 'Tu pourras venir voir la neige à Pékin !', [
+     o('真的吗？太好了！', 'Zhēn de ma? Tài hǎo le!', 'Vraiment ? Super !', True, 'end'),
+     o('真好吃！', 'Zhēn hǎochī!', 'C’est vraiment bon (à manger) !', fix='好吃 = bon à manger. Ici, dis plutôt « 真的吗？太好了！ ».')]),
+  'end': node('真的！', 'Zhēn de!', 'Vraiment !', end=True)})],
+ bonus=[{'h': '瑞雪兆丰年', 'p': 'ruìxuě zhào fēngnián', 'fr': 'Une bonne neige annonce une bonne récolte', 'note': 'Proverbe des paysans chinois : un hiver neigeux prépare une bonne année.'}]))
+
+# ---------------- HSK 2 · 8 ----------------
+PACKS.append(dict(id='hsk2-08', file='hsk2-08-a-table.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 8 — À table : encore, aussi, permis',
+ desc='Dire que c’est bon, commander des nouilles ou un café, demander « encore » et « est-ce que je peux ? ». 12 mots HSK 2 et 16 phrases pour t’en servir.',
+ grammar={'title': '还 et 再 : deux façons de dire « encore »',
+  'explain': '还 (hái) = « encore, en plus » ou « toujours pas » : 我还要一个 = j’en veux encore un, 我还没吃饭 = je n’ai pas encore mangé. 再 (zài) = « de nouveau, plus tard » pour une action qui va se répéter : 明天再来 = reviens demain.',
+  'examples': [ex('我还要一杯牛奶。', 'Wǒ hái yào yì bēi niúnǎi.', 'Je veux encore un verre de lait.'), ex('你还要什么？', 'Nǐ hái yào shénme?', 'Tu veux autre chose ?'), ex('请再说一遍。', 'Qǐng zài shuō yí biàn.', 'Redis-le, s’il te plaît.'), ex('先洗手，再吃饭。', 'Xiān xǐ shǒu, zài chī fàn.', 'D’abord on se lave les mains, ensuite on mange.')],
+  'tip': '再 parle toujours de ce qui va arriver. Pour le passé, on ne l’utilise pas.'},
+ items=items('''
+h208_haochi | 好吃 | hao-chi | 3 1 | | Bon (à manger)
+h208_miantiao | 面条 | mian-tiao | 4 2 | | Nouilles
+h208_yangrou | 羊肉 | yang-rou | 2 4 | | Viande de mouton
+h208_niunai | 牛奶 | niu-nai | 2 3 | | Lait
+h208_kafei | 咖啡 | ka-fei | 1 1 | | Café
+h208_xigua | 西瓜 | xi-gua | 1 1 | | Pastèque
+h208_fuwuyuan | 服务员 | fu-wu-yuan | 2 4 2 | | Serveur, serveuse
+h208_xi | 洗 | xi | 3 | | Laver
+h208_yao | 要 | yao | 4 | | Vouloir ; il faut
+h208_zai | 再 | zai | 4 | | De nouveau, encore (plus tard)
+h208_hai | 还 | hai | 2 | | Encore, en plus ; toujours
+h208_keyi | 可以 | ke-yi | 3 3 | 2 3 | Pouvoir (avoir le droit)
+h208_s_haochi | 这个菜很好吃 | zhe-ge cai hen hao-chi | 4 0 4 3 3 1 | 4 0 4 2 3 1 | Ce plat est très bon | À la cantine, fais plaisir à la cuisinière : 这个菜很好吃！
+h208_s_miantiao | 一碗面条 | yi wan mian-tiao | 4 3 4 2 | | Un bol de nouilles
+h208_s_yangrou | 我不吃羊肉 | wo bu chi yang-rou | 3 4 1 2 4 | | Je ne mange pas de mouton
+h208_s_niunai | 一杯牛奶 | yi bei niu-nai | 4 1 2 3 | | Un verre de lait
+h208_s_kafei | 你喝咖啡吗 | ni he ka-fei ma | 3 1 1 1 0 | | Tu bois du café ?
+h208_s_xigua | 西瓜很甜 | xi-gua hen tian | 1 1 3 2 | | La pastèque est très sucrée
+h208_s_fuwuyuan | 服务员，有咖啡吗 | fu-wu-yuan you ka-fei ma | 2 4 2 3 1 1 0 | | S’il vous plaît, vous avez du café ?
+h208_s_xishou | 洗手 | xi shou | 3 3 | 2 3 | Se laver les mains
+h208_s_xianxishou | 先洗手再吃饭 | xian xi shou zai chi fan | 1 3 3 4 1 4 | 1 2 3 4 1 4 | D’abord se laver les mains, ensuite manger
+h208_s_haiyao | 我还要一个 | wo hai yao yi ge | 3 2 4 2 0 | | J’en veux encore un
+h208_s_haiyaoshenme | 你还要什么 | ni hai yao shen-me | 3 2 4 2 0 | | Tu veux autre chose ?
+h208_s_keyizuo | 可以坐这儿吗 | ke-yi zuo zhe-r ma | 3 3 4 4 0 0 | 2 3 4 4 0 0 | Je peux m’asseoir ici ? | À la cantine, avant de t’asseoir à côté d’un collègue chinois, demande : 可以坐这儿吗？
+h208_s_bukeyi | 不可以 | bu ke-yi | 4 3 3 | 4 2 3 | Non, ce n’est pas permis
+h208_s_zailai | 明天再来 | ming-tian zai lai | 2 1 4 2 | | Reviens demain
+h208_s_yaoheshenme | 你要喝什么 | ni yao he shen-me | 3 4 1 2 0 | | Qu’est-ce que tu veux boire ?
+h208_s_haimeichi | 我还没吃饭 | wo hai mei chi fan | 3 2 2 1 4 | | Je n’ai pas encore mangé
+'''),
+ pairs=[pair(('洗', 'xi', 3, 'laver'), ('西', 'xi', 1, 'ouest')), pair(('羊', 'yang', 2, 'mouton'), ('样', 'yang', 4, 'manière (怎么样)'))],
+ chars=chars('''
+面 | miàn | nouilles, visage | 面 | visage
+条 | tiáo | bande (pour les choses longues) | 木 | bois
+羊 | yáng | mouton | 羊 | mouton
+奶 | nǎi | lait | 女 | femme
+瓜 | guā | melon | 瓜 | melon
+洗 | xǐ | laver | 氵 | eau
+还 | hái | encore | 辶 | marche
+'''),
+ convs=[conv('hsk2-nouilles', 'Au restaurant de nouilles', '服务员', 'Serveur', 'Tu vas manger des nouilles avec une collègue après le travail.', {
+  'a': node('你好！请问吃什么？', 'Nǐ hǎo! Qǐngwèn chī shénme?', 'Bonjour ! Qu’est-ce que vous mangez ?', [
+     o('一碗面条，不要羊肉。', 'Yì wǎn miàntiáo, bú yào yángròu.', 'Un bol de nouilles, sans mouton.', True, 'b'),
+     o('我要服务员。', 'Wǒ yào fúwùyuán.', 'Je veux le serveur.', fix='Le serveur, c’est lui ! Dis ce que tu veux manger : « 一碗面条 ».')]),
+  'b': node('好的。还要什么？', 'Hǎo de. Hái yào shénme?', 'Très bien. Autre chose ?', [
+     o('还要一杯牛奶。', 'Hái yào yì bēi niúnǎi.', 'Un verre de lait aussi.', True, 'c'),
+     o('不要了，谢谢。', 'Bú yào le, xièxie.', 'Ce sera tout, merci.', True, 'c'),
+     o('一杯牛奶很好吃。', 'Yì bēi niúnǎi hěn hǎochī.', 'Un verre de lait très bon à manger.', fix='好吃 se dit pour ce qu’on mange. Pour commander, dis « 还要一杯牛奶 ».')]),
+  'c': node('面条好吃吗？', 'Miàntiáo hǎochī ma?', 'Les nouilles sont bonnes ?', [
+     o('非常好吃！我明天再来。', 'Fēicháng hǎochī! Wǒ míngtiān zài lái.', 'Délicieuses ! Je reviendrai demain.', True, 'end'),
+     o('非常好吃！我昨天再来。', 'Fēicháng hǎochī! Wǒ zuótiān zài lái.', '(erreur de temps)', fix='再 parle du futur : « 我明天再来 » (demain), pas 昨天 (hier).')]),
+  'end': node('欢迎再来！', 'Huānyíng zài lái!', 'Au plaisir de vous revoir !', end=True)})],
+ bonus=[{'h': '民以食为天', 'p': 'mín yǐ shí wéi tiān', 'fr': 'Pour le peuple, manger passe avant tout', 'note': 'Proverbe ancien : en Chine, le repas est sacré. C’est pour ça qu’on se salue avec 你吃饭了吗？'}]))
+
+# ---------------- HSK 2 · 9 ----------------
+PACKS.append(dict(id='hsk2-09', file='hsk2-09-inviter.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 9 — Entrer, sortir, offrir',
+ desc='Accueillir quelqu’un, offrir un cadeau, dire « ne fais pas ça », entrer et sortir. 15 mots HSK 2 et 13 phrases pour t’en servir.',
+ grammar={'title': '别 : « ne… pas ! » (interdire gentiment)',
+  'explain': 'Pour dire à quelqu’un de ne pas faire quelque chose, mets 别 (bié) devant le verbe : 别走 = ne pars pas. On ajoute souvent 了 à la fin pour adoucir : 别送了 = ne te dérange pas pour me raccompagner.',
+  'examples': [ex('别笑！', 'Bié xiào!', 'Ne ris pas !'), ex('别担心。', 'Bié dānxīn.', 'Ne t’inquiète pas.'), ex('别送了，谢谢！', 'Bié sòng le, xièxie!', 'Ne me raccompagne pas, merci !'), ex('别在这儿吃饭。', 'Bié zài zhèr chī fàn.', 'Ne mange pas ici.')],
+  'tip': '别 s’utilise pour parler à quelqu’un. Pour décrire (« il ne mange pas »), on garde 不.'},
+ items=items('''
+h209_shouji | 手机 | shou-ji | 3 1 | | Téléphone portable
+h209_shoubiao | 手表 | shou-biao | 3 3 | 2 3 | Montre
+h209_baozhi | 报纸 | bao-zhi | 4 3 | | Journal
+h209_qianbi | 铅笔 | qian-bi | 1 3 | | Crayon
+h209_song | 送 | song | 4 | | Offrir ; raccompagner
+h209_ta | 它 | ta | 1 | | Il, elle (objet, animal)
+h209_xiao | 笑 | xiao | 4 | | Rire, sourire
+h209_huanying | 欢迎 | huan-ying | 1 2 | | Bienvenue, accueillir
+h209_jin | 进 | jin | 4 | | Entrer
+h209_chu | 出 | chu | 1 | | Sortir
+h209_wai | 外 | wai | 4 | | Dehors, extérieur
+h209_wang | 往 | wang | 3 | | Vers, en direction de
+h209_rang | 让 | rang | 4 | | Laisser, faire faire
+h209_bie | 别 | bie | 2 | | Ne… pas ! (défense)
+h209_chuan | 船 | chuan | 2 | | Bateau
+h209_s_huanying | 欢迎欢迎 | huan-ying huan-ying | 1 2 1 2 | | Bienvenue !
+h209_s_qingjin | 请进 | qing jin | 3 4 | | Entre, je t’en prie | Quand quelqu’un frappe au bureau, dis : 请进！
+h209_s_chuqu | 我出去一下 | wo chu-qu yi-xia | 3 1 0 2 4 | | Je sors un instant
+h209_s_waimian | 在外面 | zai wai-mian | 4 4 0 | | Dehors
+h209_s_wangyou | 往右走 | wang you zou | 3 4 3 | | Va vers la droite
+h209_s_songni | 这是送你的 | zhe shi song ni de | 4 4 4 3 0 | | C’est pour toi (un cadeau)
+h209_s_songnihuijia | 我送你回家 | wo song ni hui jia | 3 4 3 2 1 | | Je te raccompagne chez toi
+h209_s_biexiao | 别笑 | bie xiao | 2 4 | | Ne ris pas !
+h209_s_biedanxin | 别担心 | bie dan-xin | 2 1 1 | | Ne t’inquiète pas | Quand une collègue a fait une erreur, rassure-la : 别担心！
+h209_s_biezou | 别走 | bie zou | 2 3 | | Ne pars pas !
+h209_s_rangwokan | 让我看看 | rang wo kan-kan | 4 3 4 0 | | Laisse-moi voir
+h209_s_shoujizainar | 我的手机在哪儿 | wo de shou-ji zai na-r | 3 0 3 1 4 3 0 | | Où est mon téléphone ?
+h209_s_tazai | 它在桌子上 | ta zai zhuo-zi shang | 1 4 1 0 4 | | Il est sur la table
+'''),
+ pairs=[pair(('进', 'jin', 4, 'entrer'), ('今', 'jin', 1, 'aujourd’hui (今天)')), pair(('笑', 'xiao', 4, 'rire'), ('小', 'xiao', 3, 'petit'))],
+ chars=chars('''
+进 | jìn | entrer | 辶 | marche
+出 | chū | sortir | 凵 | creux
+外 | wài | dehors | 夕 | soir
+送 | sòng | offrir | 辶 | marche
+别 | bié | ne… pas ! | 刂 | couteau
+笑 | xiào | rire | 竹 | bambou
+船 | chuán | bateau | 舟 | barque
+纸 | zhǐ | papier | 纟 | soie
+'''),
+ convs=[conv('hsk2-invitation', 'Invitée chez une collègue', '小王', 'Collègue', 'Une collègue chinoise t’invite chez elle. Tu arrives avec un petit cadeau.', {
+  'a': node('欢迎欢迎！请进！', 'Huānyíng huānyíng! Qǐng jìn!', 'Bienvenue ! Entre, je t’en prie !', [
+     o('谢谢！这是送你的。', 'Xièxie! Zhè shì sòng nǐ de.', 'Merci ! C’est pour toi.', True, 'b'),
+     o('我出去一下。', 'Wǒ chūqu yíxià.', 'Je sors un instant.', fix='Tu viens d’arriver ! Dis merci et offre ton cadeau : « 这是送你的 ».')]),
+  'b': node('太客气了！哇，一块手表！', 'Tài kèqi le! Wā, yí kuài shǒubiǎo!', 'Il ne fallait pas ! Oh, une montre !', [
+     o('你喜欢吗？', 'Nǐ xǐhuan ma?', 'Elle te plaît ?', True, 'c'),
+     o('别笑！', 'Bié xiào!', 'Ne ris pas !', fix='别笑 = ne ris pas ! Elle est contente : demande-lui plutôt « 你喜欢吗？ ».')]),
+  'c': node('非常喜欢！很晚了，我送你回家吧。', 'Fēicháng xǐhuan! Hěn wǎn le, wǒ sòng nǐ huí jiā ba.', 'Elle me plaît beaucoup ! Il est tard, je te raccompagne.', [
+     o('别送了，谢谢！', 'Bié sòng le, xièxie!', 'Ne te dérange pas, merci !', True, 'end'),
+     o('好，谢谢你！', 'Hǎo, xièxie nǐ!', 'D’accord, merci !', True, 'end'),
+     o('不送了！', 'Bú sòng le!', '(mauvais mot)', fix='Pour dire à quelqu’un de ne pas faire quelque chose, on dit 别 : « 别送了 ».')]),
+  'end': node('好，路上小心！', 'Hǎo, lùshang xiǎoxīn!', 'D’accord, fais attention sur la route !', end=True)})],
+ bonus=[{'h': '礼轻情意重', 'p': 'lǐ qīng qíngyì zhòng', 'fr': 'Petit cadeau, grande amitié', 'note': 'Ce qui compte, ce n’est pas le prix du cadeau mais l’intention.'}]))
+
+# ---------------- HSK 2 · 10 ----------------
+PACKS.append(dict(id='hsk2-10', file='hsk2-10-examen.json', branch='hsk', level=2, publish=False,
+ title='HSK 2 · 10 — Examen, raisons et avis',
+ desc='Dire comment on fait quelque chose, demander pourquoi, dire « bien que… mais… », préparer ton examen. 14 mots HSK 2 et 15 phrases pour t’en servir.',
+ grammar={'title': 'Verbe + 得 + adjectif : dire comment on fait',
+  'explain': 'Pour dire comment quelqu’un fait une action, on met 得 (de) après le verbe, puis l’adjectif : 说得很好 = parler très bien, 跑得很快 = courir vite. Pour la négation, 不 va après 得 : 说得不好 = ne pas bien parler.',
+  'examples': [ex('你说得很好。', 'Nǐ shuō de hěn hǎo.', 'Tu parles très bien.'), ex('她跑得很快。', 'Tā pǎo de hěn kuài.', 'Elle court très vite.'), ex('我写得不好。', 'Wǒ xiě de bù hǎo.', 'Je n’écris pas bien.'), ex('你做得对。', 'Nǐ zuò de duì.', 'Tu as bien fait.')],
+  'tip': '虽然… 但是… = « bien que… mais… » : en chinois on garde les deux mots, 虽然很难，但是我喜欢.'},
+ items=items('''
+h210_kaoshi | 考试 | kao-shi | 3 4 | | Examen, passer un examen
+h210_ke | 课 | ke | 4 | | Cours, leçon
+h210_jiaoshi | 教室 | jiao-shi | 4 4 | | Salle de classe
+h210_ti | 题 | ti | 2 | | Question (d’exercice)
+h210_wenti | 问题 | wen-ti | 4 2 | | Question, problème
+h210_weishenme | 为什么 | wei-shen-me | 4 2 0 | | Pourquoi
+h210_suiran | 虽然 | sui-ran | 1 2 | | Bien que
+h210_danshi | 但是 | dan-shi | 4 4 | | Mais
+h210_keneng | 可能 | ke-neng | 3 2 | | Peut-être, possible
+h210_de | 得 | de | 0 | | (après un verbe : 说得很好)
+h210_zhe | 着 | zhe | 0 | | (état qui dure : 开着)
+h210_yixia | 一下 | yi-xia | 2 4 | | Un peu, un instant (après un verbe)
+h210_shuohua | 说话 | shuo-hua | 1 4 | | Parler
+h210_dui | 对 | dui | 4 | | Juste, correct
+h210_jiu | 就 | jiu | 4 | | Tout de suite, justement
+h210_s_shuodehao | 你说得很好 | ni shuo de hen hao | 3 1 0 3 3 | 3 1 0 2 3 | Tu parles très bien
+h210_s_paodekuai | 她跑得很快 | ta pao de hen kuai | 1 3 0 3 4 | | Elle court très vite
+h210_s_shuodebuhao | 我说得不好 | wo shuo de bu hao | 3 1 0 4 3 | | Je ne parle pas bien
+h210_s_weishenme | 你为什么不来 | ni wei-shen-me bu lai | 3 4 2 0 4 2 | | Pourquoi tu ne viens pas ?
+h210_s_kaoshi | 因为我要考试 | yin-wei wo yao kao-shi | 1 4 3 4 3 4 | | Parce que j’ai un examen
+h210_s_suiran | 虽然很累，但是我很高兴 | sui-ran hen lei dan-shi wo hen gao-xing | 1 2 3 4 4 4 3 3 1 4 | 1 2 3 4 4 4 2 3 1 4 | Je suis fatiguée, mais contente
+h210_s_keneng | 可能会下雨 | ke-neng hui xia yu | 3 2 4 4 3 | | Il va peut-être pleuvoir
+h210_s_shuodedui | 你说得对 | ni shuo de dui | 3 1 0 4 | | Tu as raison | Quand ton chef d’équipe a raison, dis-lui : 你说得对。
+h210_s_duibudui | 对不对 | dui bu dui | 4 0 4 | | C’est juste ? (n’est-ce pas ?)
+h210_s_kaizhe | 门开着 | men kai zhe | 2 1 0 | | La porte est ouverte
+h210_s_biezhanzhe | 别站着，请坐 | bie zhan zhe qing zuo | 2 4 0 3 4 | | Ne reste pas debout, assieds-toi
+h210_s_kanyixia | 你看一下 | ni kan yi-xia | 3 4 2 4 | | Regarde un peu | Montre une chaussure abîmée à ton chef d’équipe : 你看一下。
+h210_s_youwenti | 有问题吗 | you wen-ti ma | 3 4 2 0 | | Il y a un problème ? Des questions ?
+h210_s_tihennan | 这个题很难 | zhe-ge ti hen nan | 4 0 2 3 2 | | Cette question est difficile
+h210_s_zaijiaoshi | 我们在教室上课 | wo-men zai jiao-shi shang ke | 3 0 4 4 4 4 4 | | Nous avons cours dans la salle de classe
+'''),
+ pairs=[pair(('题', 'ti', 2, 'question'), ('体', 'ti', 3, 'corps (身体)')), pair(('课', 'ke', 4, 'cours'), ('可', 'ke', 3, 'pouvoir (可以)'))],
+ chars=chars('''
+考 | kǎo | passer un examen | 耂 | vieux
+试 | shì | essayer | 讠 | parole
+课 | kè | cours | 讠 | parole
+题 | tí | question | 页 | page
+为 | wèi | pour | 丶 | point
+虽 | suī | bien que | 虫 | insecte
+但 | dàn | mais | 亻 | personne
+能 | néng | pouvoir | 月 | chair
+'''),
+ convs=[conv('hsk2-examen', 'Bientôt l’examen', '小陈', 'Collègue', 'Pendant la pause, une collègue chinoise t’entend parler chinois.', {
+  'a': node('{name}，你的汉语说得很好！', '{name}, nǐ de Hànyǔ shuō de hěn hǎo!', '{name}, tu parles très bien chinois !', [
+     o('哪里哪里，我说得不好。', 'Nǎli nǎli, wǒ shuō de bù hǎo.', 'Oh non, je ne parle pas bien.', True, 'b'),
+     o('我说很好。', 'Wǒ shuō hěn hǎo.', '(phrase mal construite)', fix='Après le verbe, il faut 得 : « 我说得不好 ». Et en Chine, on répond avec modestie !')]),
+  'b': node('你为什么学汉语？', 'Nǐ wèishénme xué Hànyǔ?', 'Pourquoi tu apprends le chinois ?', [
+     o('因为我要考试。', 'Yīnwèi wǒ yào kǎoshì.', 'Parce que je vais passer un examen.', True, 'c'),
+     o('我为什么学汉语。', 'Wǒ wèishénme xué Hànyǔ.', '(tu répètes la question)', fix='Pour répondre « parce que », commence par 因为 : « 因为我要考试 ».')]),
+  'c': node('考试难吗？', 'Kǎoshì nán ma?', 'L’examen est difficile ?', [
+     o('虽然很难，但是我很喜欢。', 'Suīrán hěn nán, dànshì wǒ hěn xǐhuan.', 'C’est difficile, mais j’aime beaucoup.', True, 'end'),
+     o('虽然很难，所以我很喜欢。', 'Suīrán hěn nán, suǒyǐ wǒ hěn xǐhuan.', '(mauvais mot)', fix='Avec 虽然 (bien que), on met 但是 (mais), pas 所以 (donc) : « 虽然很难，但是我很喜欢 ».')]),
+  'end': node('你说得对！加油！', 'Nǐ shuō de duì! Jiāyóu!', 'Tu as raison ! Courage !', end=True)})],
+ bonus=[{'h': '活到老，学到老', 'p': 'huó dào lǎo, xué dào lǎo', 'fr': 'On apprend toute sa vie', 'note': 'Mot à mot « vivre jusqu’à vieux, apprendre jusqu’à vieux ».'}]))
+
 # ---------------- Branche Usine et travail ----------------
 PACKS.append(dict(id='travail-compter', file='travail-01-compter.json', branch='travail', publish=True,
  title='Usine · Compter à l’atelier',
@@ -1059,8 +1373,269 @@ q_xianjin | 现金 | xian-jin | 4 1 | | Espèces (billets, pièces)
   'end': node('可以，谢谢！', 'Kěyǐ, xièxie!', 'Oui, merci !', end=True)})],
  bonus=[{'h': '讨价还价', 'p': 'tǎojià-huánjià', 'fr': 'Marchander', 'note': 'Littéralement « demander un prix, rendre un prix ».'}]))
 
+# ---------------- Vie quotidienne · 2 : restaurant ----------------
+PACKS.append(dict(id='quotidien-02-restaurant', file='quotidien-02-restaurant.json', branch='quotidien', publish=False,
+ title='Vie quotidienne · Au restaurant et à la cantine',
+ desc='Commander un plat, dire si tu as faim, demander pas trop piquant, payer ou emporter.',
+ grammar={'title': '来 + quantité : commander',
+  'explain': 'Au restaurant, les Chinois ne disent presque jamais « je voudrais ». Ils disent 来 (lái, « venir ») + la quantité + le plat : 来一碗米饭 = un bol de riz, s’il te plaît. C’est poli et très naturel.',
+  'examples': [ex('来一碗米饭。', 'Lái yì wǎn mǐfàn.', 'Un bol de riz, s’il te plaît.'), ex('来两瓶矿泉水。', 'Lái liǎng píng kuàngquánshuǐ.', 'Deux bouteilles d’eau minérale.'), ex('再来一碗。', 'Zài lái yì wǎn.', 'Encore un bol.'), ex('来一个炒饭，不要太辣。', 'Lái yí ge chǎofàn, bú yào tài là.', 'Un riz sauté, pas trop piquant.')],
+  'tip': '碗 (bol) et 瓶 (bouteille) servent aussi à compter : 一碗汤 = un bol de soupe, 一瓶水 = une bouteille d’eau.'},
+ items=items('''
+q2_shitang | 食堂 | shi-tang | 2 2 | | Cantine | À midi, demande à une collègue : 你去食堂吗？
+q2_wan | 碗 | wan | 3 | | Bol
+q2_kuaizi | 筷子 | kuai-zi | 4 0 | | Baguettes
+q2_shaozi | 勺子 | shao-zi | 2 0 | | Cuillère
+q2_caidan | 菜单 | cai-dan | 4 1 | | Menu, la carte
+q2_diancai | 点菜 | dian cai | 3 4 | | Commander (des plats)
+q2_maidan | 买单 | mai dan | 3 1 | | Payer l’addition
+q2_dabao | 打包 | da bao | 3 1 | | Emballer pour emporter
+q2_la | 辣 | la | 4 | | Piquant, pimenté
+q2_tian | 甜 | tian | 2 | | Sucré
+q2_xian | 咸 | xian | 2 | | Salé
+q2_e | 饿 | e | 4 | | Avoir faim
+q2_ke | 渴 | ke | 3 | | Avoir soif
+q2_bao | 饱 | bao | 3 | | Rassasiée (j’ai assez mangé)
+q2_tang | 汤 | tang | 1 | | Soupe
+q2_jiaozi | 饺子 | jiao-zi | 3 0 | | Raviolis chinois
+q2_chaofan | 炒饭 | chao-fan | 3 4 | | Riz sauté
+q2_kuangquanshui | 矿泉水 | kuang-quan-shui | 4 2 3 | | Eau minérale
+q2_s_laiyiwan | 来一碗米饭 | lai yi wan mi-fan | 2 4 3 3 4 | 2 4 2 3 4 | Un bol de riz, s’il te plaît | Au restaurant chinois ou à la cantine, commande : 来一碗米饭。
+q2_s_buyaotaila | 不要太辣 | bu yao tai la | 2 4 4 4 | | Pas trop piquant
+q2_s_youbulade | 有不辣的吗 | you bu la de ma | 3 2 4 0 0 | | Il y a des plats pas piquants ?
+q2_s_zheshishenmecai | 这是什么菜 | zhe shi shen-me cai | 4 4 2 0 4 | | C’est quel plat ? | À la cantine, montre un plat que tu ne connais pas et demande : 这是什么菜？
+q2_s_eile | 我饿了 | wo e le | 3 4 0 | | J’ai faim
+q2_s_chibaole | 我吃饱了 | wo chi bao le | 3 1 3 0 | | J’ai bien mangé, je n’ai plus faim
+q2_s_buchizhurou | 我不吃猪肉 | wo bu chi zhu-rou | 3 4 1 1 4 | | Je ne mange pas de porc
+q2_s_laiyiping | 来一瓶矿泉水 | lai yi ping kuang-quan-shui | 2 4 2 4 2 3 | | Une bouteille d’eau minérale
+q2_s_zailaiyiwan | 再来一碗 | zai lai yi wan | 4 2 4 3 | | Encore un bol, s’il te plaît
+q2_s_zaizhechi | 在这儿吃还是带走 | zai zhe-r chi hai-shi dai zou | 4 4 0 1 2 0 4 3 | | Sur place ou à emporter ?
+q2_s_bangwodabao | 帮我打包 | bang wo da bao | 1 3 3 1 | 1 2 3 1 | Mets-le-moi à emporter
+q2_s_fuwuyuanmaidan | 服务员，买单 | fu-wu-yuan mai dan | 2 4 2 3 1 | | L’addition, s’il vous plaît !
+'''),
+ pairs=[pair(('汤', 'tang', 1, 'soupe'), ('糖', 'tang', 2, 'sucre')), pair(('饱', 'bao', 3, 'rassasiée'), ('包', 'bao', 1, 'sac, emballer'))],
+ chars=chars('''
+饭 | fàn | repas, riz cuit | 饣 | nourriture
+饿 | è | avoir faim | 饣 | nourriture
+饱 | bǎo | rassasiée | 饣 | nourriture
+碗 | wǎn | bol | 石 | pierre
+筷 | kuài | baguette | 竹 | bambou
+汤 | tāng | soupe | 氵 | eau
+辣 | là | piquant | 辛 | saveur forte
+甜 | tián | sucré | 舌 | langue
+'''),
+ convs=[conv('restaurant', 'Un midi au petit restaurant', '服务员', 'Serveuse', 'Pause de midi. Tu vas manger dans un petit restaurant chinois près de l’usine.', {
+  'a': node('你好！吃什么？', 'Nǐ hǎo! Chī shénme?', 'Bonjour ! Tu manges quoi ?', [
+     o('来一个炒饭。', 'Lái yí ge chǎofàn.', 'Un riz sauté, s’il te plaît.', True, 'b'),
+     o('我饿了。', 'Wǒ è le.', 'J’ai faim.', fix='Elle sait que tu as faim ! Dis ce que tu veux : « 来一个炒饭 ».')]),
+  'b': node('要辣的吗？', 'Yào là de ma?', 'Tu le veux piquant ?', [
+     o('不要太辣，谢谢。', 'Bú yào tài là, xièxie.', 'Pas trop piquant, merci.', True, 'c'),
+     o('要，我喜欢辣的。', 'Yào, wǒ xǐhuan là de.', 'Oui, j’aime le piquant.', True, 'c'),
+     o('我很辣。', 'Wǒ hěn là.', 'Je suis très piquante.', fix='我很辣 = « je suis piquante » ! Dis « 不要太辣 » (pas trop piquant) ou « 要辣的 ».')]),
+  'c': node('喝什么？', 'Hē shénme?', 'Et à boire ?', [
+     o('来一瓶矿泉水。', 'Lái yì píng kuàngquánshuǐ.', 'Une bouteille d’eau minérale.', True, 'd'),
+     o('来一碗矿泉水。', 'Lái yì wǎn kuàngquánshuǐ.', 'Un bol d’eau minérale.', fix='L’eau minérale, c’est en bouteille : « 一瓶矿泉水 ».')]),
+  'd': node('吃饱了吗？', 'Chī bǎo le ma?', 'Tu as bien mangé ?', [
+     o('吃饱了！服务员，买单。', 'Chī bǎo le! Fúwùyuán, mǎidān.', 'Oui, j’ai bien mangé ! L’addition, s’il vous plaît.', True, 'end'),
+     o('我渴了。', 'Wǒ kě le.', 'J’ai soif.', fix='渴 = avoir soif. Pour dire que tu as assez mangé : « 吃饱了 ».')]),
+  'end': node('一共二十五块。谢谢，慢走！', 'Yígòng èrshíwǔ kuài. Xièxie, màn zǒu!', 'Ça fait vingt-cinq yuans en tout. Merci, au revoir !', end=True)})],
+ bonus=[{'h': '慢走', 'p': 'màn zǒu', 'fr': 'Au revoir (à quelqu’un qui part)', 'note': 'Mot à mot « marche lentement » : le patron le dit aux clients qui s’en vont.'}]))
+
+# ---------------- Vie quotidienne · 3 : transport ----------------
+PACKS.append(dict(id='quotidien-03-transport', file='quotidien-03-transport.json', branch='quotidien', publish=False,
+ title='Vie quotidienne · Moto-taxi, bus et taxi',
+ desc='Dire où tu vas, demander le prix, guider le chauffeur et demander l’arrêt.',
+ grammar={'title': '在 + lieu + verbe : dire où ça se passe',
+  'explain': 'En chinois, le lieu vient AVANT l’action : 在 (zài) + lieu + verbe. Pour dire « arrête-toi ici », on dit 在这儿停 (mot à mot « ici arrête-toi »). En français c’est l’inverse, alors entraîne-toi !',
+  'examples': [ex('请在这儿停。', 'Qǐng zài zhèr tíng.', 'Arrête-toi ici, s’il te plaît.'), ex('在路口左拐。', 'Zài lùkǒu zuǒ guǎi.', 'Au carrefour, tourne à gauche.'), ex('我在车站下车。', 'Wǒ zài chēzhàn xià chē.', 'Je descends à la gare.'), ex('我在路口等你。', 'Wǒ zài lùkǒu děng nǐ.', 'Je t’attends au carrefour.')],
+  'tip': 'Pour appeler un chauffeur poliment, dis 师傅 (shīfu) : c’est le mot normal pour tous les chauffeurs et les ouvriers qualifiés.'},
+ items=items('''
+q3_motuoche | 摩托车 | mo-tuo-che | 2 1 1 | | Moto
+q3_modi | 摩的 | mo-di | 2 1 | | Moto-taxi (zémidjan)
+q3_siji | 司机 | si-ji | 1 1 | | Chauffeur
+q3_shifu | 师傅 | shi-fu | 1 0 | | Chef ! (pour appeler un chauffeur) | En moto-taxi ou en taxi avec un chauffeur chinois, appelle-le : 师傅！
+q3_toukui | 头盔 | tou-kui | 2 1 | | Casque
+q3_gongjiaoche | 公交车 | gong-jiao-che | 1 1 1 | | Bus (en ville)
+q3_chezhan | 车站 | che-zhan | 1 4 | | Gare routière, station
+q3_zhan | 站 | zhan | 4 | | Arrêt (de bus)
+q3_shangche | 上车 | shang che | 4 1 | | Monter (dans un véhicule)
+q3_xiache | 下车 | xia che | 4 1 | | Descendre (d’un véhicule)
+q3_ting | 停 | ting | 2 | | S’arrêter
+q3_lukou | 路口 | lu-kou | 4 3 | | Carrefour
+q3_hongludeng | 红绿灯 | hong-lv-deng | 2 4 1 | | Feu (de circulation)
+q3_guai | 拐 | guai | 3 | | Tourner
+q3_yizhizou | 一直走 | yi-zhi zou | 4 2 3 | | Tout droit
+q3_duche | 堵车 | du che | 3 1 | | Embouteillage
+q3_dizhi | 地址 | di-zhi | 4 3 | | Adresse
+q3_s_quxiechang | 我去鞋厂 | wo qu xie-chang | 3 4 2 3 | | Je vais à l’usine de chaussures
+q3_s_daoshichang | 到市场多少钱 | dao shi-chang duo-shao qian | 4 4 3 1 0 2 | | C’est combien jusqu’au marché ? | Avant de monter, demande le prix au chauffeur : 到市场多少钱？
+q3_s_zaizheerting | 请在这儿停 | qing zai zhe-r ting | 3 4 4 0 2 | | Arrête-toi ici, s’il te plaît
+q3_s_zuoguai | 在路口左拐 | zai lu-kou zuo guai | 4 4 3 3 3 | 4 4 3 2 3 | Au carrefour, tourne à gauche
+q3_s_youguai | 右拐 | you guai | 4 3 | | Tourne à droite
+q3_s_yaoxiache | 我要下车 | wo yao xia che | 3 4 4 1 | | Je veux descendre
+q3_s_daolema | 到了吗 | dao le ma | 4 0 0 | | On est arrivés ?
+q3_s_duchele | 堵车了 | du che le | 3 1 0 | | Ça bouchonne
+q3_s_xiayizhan | 下一站是哪儿 | xia yi zhan shi na-r | 4 2 4 4 3 0 | | Le prochain arrêt, c’est où ?
+q3_s_zheluche | 这路车去市场吗 | zhe lu che qu shi-chang ma | 4 4 1 4 4 3 0 | | Ce bus va au marché ?
+q3_s_dengni | 我在路口等你 | wo zai lu-kou deng ni | 3 4 4 3 3 3 | 3 4 4 3 2 3 | Je t’attends au carrefour
+'''),
+ pairs=[pair(('停', 'ting', 2, 's’arrêter'), ('听', 'ting', 1, 'écouter')), pair(('拐', 'guai', 3, 'tourner'), ('怪', 'guai', 4, 'bizarre'))],
+ chars=chars('''
+站 | zhàn | arrêt, se tenir debout | 立 | debout
+停 | tíng | s’arrêter | 亻 | personne
+拐 | guǎi | tourner | 扌 | main
+堵 | dǔ | boucher | 土 | terre
+灯 | dēng | lampe, feu | 火 | feu
+机 | jī | machine | 木 | bois
+摩 | mó | frotter (dans « moto ») | 手 | main
+'''),
+ convs=[conv('transport', 'En taxi dans une ville chinoise', '司机', 'Chauffeur de taxi', 'Tu es en voyage en Chine. Tu montes dans un taxi pour aller à la gare.', {
+  'a': node('你好，去哪儿？', 'Nǐ hǎo, qù nǎr?', 'Bonjour, on va où ?', [
+     o('师傅，去火车站。', 'Shīfu, qù huǒchēzhàn.', 'Chef, à la gare, s’il vous plaît.', True, 'b'),
+     o('我在这儿。', 'Wǒ zài zhèr.', 'Je suis ici.', fix='Il demande où tu vas : réponds « 去… » + le lieu, par exemple « 去火车站 ».')]),
+  'b': node('前面堵车，我们右拐，好吗？', 'Qiánmiàn dǔchē, wǒmen yòu guǎi, hǎo ma?', 'Ça bouchonne devant, on tourne à droite, d’accord ?', [
+     o('好，没问题。', 'Hǎo, méi wèntí.', 'D’accord, pas de problème.', True, 'c'),
+     o('我要下车。', 'Wǒ yào xià chē.', 'Je veux descendre.', fix='Pas besoin de descendre ! Il te propose un autre chemin : dis « 好，没问题 ».')]),
+  'c': node('到了。在这儿停吗？', 'Dào le. Zài zhèr tíng ma?', 'On est arrivés. Je m’arrête ici ?', [
+     o('对，请在这儿停。多少钱？', 'Duì, qǐng zài zhèr tíng. Duōshao qián?', 'Oui, arrêtez-vous ici. C’est combien ?', True, 'end'),
+     o('请这儿在停。', 'Qǐng zhèr zài tíng.', '(phrase mal construite)', fix='在 se met juste avant le lieu, puis vient le verbe : « 请在这儿停 ».')]),
+  'end': node('三十块。谢谢！', 'Sānshí kuài. Xièxie!', 'Trente yuans. Merci !', end=True)})],
+ bonus=[{'h': '一路平安', 'p': 'yílù píng’ān', 'fr': 'Bon voyage !', 'note': 'Mot à mot « toute la route en paix » : à dire à quelqu’un qui part loin.'}]))
+
+# ---------------- Vie quotidienne · 4 : santé ----------------
+PACKS.append(dict(id='quotidien-04-sante', file='quotidien-04-sante.json', branch='quotidien', publish=False,
+ title='Vie quotidienne · Pharmacie et médecin',
+ desc='Dire où tu as mal, expliquer que tu as de la fièvre ou que tu t’es blessée, comprendre comment prendre un médicament.',
+ grammar={'title': '… 疼 : dire où tu as mal',
+  'explain': 'Pour dire « j’ai mal à… », on dit la partie du corps puis 疼 (téng, « avoir mal ») : 我头疼 = j’ai mal à la tête (mot à mot « moi tête mal »). Pas besoin de verbe « avoir ».',
+  'examples': [ex('我头疼。', 'Wǒ tóu téng.', 'J’ai mal à la tête.'), ex('我肚子疼。', 'Wǒ dùzi téng.', 'J’ai mal au ventre.'), ex('我的脚很疼。', 'Wǒ de jiǎo hěn téng.', 'J’ai très mal au pied.'), ex('你哪儿疼？', 'Nǐ nǎr téng?', 'Où as-tu mal ?')],
+  'tip': 'Pour dire « je ne me sens pas bien » sans savoir où, dis simplement 我不舒服 (wǒ bù shūfu).'},
+ items=items('''
+q4_teng | 疼 | teng | 2 | | Avoir mal, douleur
+q4_tou | 头 | tou | 2 | | Tête
+q4_duzi | 肚子 | du-zi | 4 0 | | Ventre
+q4_yao | 腰 | yao | 1 | | Bas du dos, reins
+q4_shou | 手 | shou | 3 | | Main
+q4_jiao | 脚 | jiao | 3 | | Pied
+q4_ya | 牙 | ya | 2 | | Dent
+q4_fashao | 发烧 | fa-shao | 1 1 | | Avoir de la fièvre
+q4_ganmao | 感冒 | gan-mao | 3 4 | | Rhume, grippe
+q4_kesou | 咳嗽 | ke-sou | 2 0 | | Tousser
+q4_nveji | 疟疾 | nve-ji | 4 0 | | Paludisme
+q4_yaodian | 药店 | yao-dian | 4 4 | | Pharmacie
+q4_kanbing | 看病 | kan bing | 4 4 | | Aller voir le médecin
+q4_shoushang | 受伤 | shou-shang | 4 1 | | Se blesser
+q4_liuxue | 流血 | liu xue | 2 3 | | Saigner
+q4_shufu | 舒服 | shu-fu | 1 0 | | Se sentir bien, à l’aise
+q4_s_bushufu | 我不舒服 | wo bu shu-fu | 3 4 1 0 | | Je ne me sens pas bien | Si tu es malade à l’atelier, dis à ton chef d’équipe : 我不舒服。
+q4_s_touteng | 我头疼 | wo tou teng | 3 2 2 | | J’ai mal à la tête
+q4_s_duziteng | 我肚子疼 | wo du-zi teng | 3 4 0 2 | | J’ai mal au ventre
+q4_s_yaoteng | 我腰疼 | wo yao teng | 3 1 2 | | J’ai mal au dos
+q4_s_narteng | 哪儿疼 | na-r teng | 3 0 2 | | Où as-tu mal ?
+q4_s_fashaole | 我发烧了 | wo fa-shao le | 3 1 1 0 | | J’ai de la fièvre
+q4_s_shoushangle | 我的手受伤了 | wo de shou shou-shang le | 3 0 3 4 1 0 | | Je me suis blessée à la main | Si tu te blesses à une machine, préviens tout de suite ton chef : 我的手受伤了！
+q4_s_ganmaoyao | 有感冒药吗 | you gan-mao yao ma | 3 3 4 4 0 | 2 3 4 4 0 | Vous avez un médicament contre le rhume ?
+q4_s_jici | 一天吃几次 | yi tian chi ji ci | 4 1 1 3 4 | | Combien de fois par jour ?
+q4_s_sanci | 一天三次 | yi tian san ci | 4 1 1 4 | | Trois fois par jour
+q4_s_qukanbing | 我要去看病 | wo yao qu kan bing | 3 4 4 4 4 | | Je dois aller voir le médecin
+q4_s_haoduole | 好多了 | hao duo le | 3 1 0 | | Ça va beaucoup mieux
+q4_s_duoheshui | 多喝水 | duo he shui | 1 1 3 | | Bois beaucoup d’eau
+'''),
+ pairs=[pair(('腰', 'yao', 1, 'bas du dos'), ('药', 'yao', 4, 'médicament')), pair(('头', 'tou', 2, 'tête'), ('豆', 'dou', 4, 'haricot (土豆)'))],
+ chars=chars('''
+疼 | téng | avoir mal | 疒 | maladie
+病 | bìng | maladie | 疒 | maladie
+头 | tóu | tête | 大 | grand
+肚 | dù | ventre | 月 | chair
+腰 | yāo | bas du dos | 月 | chair
+脚 | jiǎo | pied | 月 | chair
+烧 | shāo | brûler, fièvre | 火 | feu
+店 | diàn | magasin | 广 | abri
+'''),
+ convs=[conv('pharmacie', 'À la pharmacie', '店员', 'Pharmacienne', 'Tu ne te sens pas bien. Tu vas à la pharmacie chinoise près de l’usine.', {
+  'a': node('你好，你哪儿不舒服？', 'Nǐ hǎo, nǐ nǎr bù shūfu?', 'Bonjour, qu’est-ce qui ne va pas ?', [
+     o('我头疼，也发烧了。', 'Wǒ tóu téng, yě fāshāo le.', 'J’ai mal à la tête, et j’ai de la fièvre.', True, 'b'),
+     o('我很舒服。', 'Wǒ hěn shūfu.', 'Je me sens très bien.', fix='舒服 = se sentir bien ! Dis « 我不舒服 », puis où tu as mal : « 我头疼 ».')]),
+  'b': node('你咳嗽吗？', 'Nǐ késou ma?', 'Tu tousses ?', [
+     o('有一点儿咳嗽。', 'Yǒu yìdiǎnr késou.', 'Je tousse un peu.', True, 'c'),
+     o('不咳嗽。', 'Bù késou.', 'Je ne tousse pas.', True, 'c'),
+     o('我是咳嗽。', 'Wǒ shì késou.', '(phrase mal construite)', fix='Pas besoin de 是 ici : dis « 有一点儿咳嗽 » (un peu) ou « 不咳嗽 ».')]),
+  'c': node('你感冒了。这个药一天三次，一次两片。', 'Nǐ gǎnmào le. Zhège yào yì tiān sān cì, yí cì liǎng piàn.', 'Tu as un rhume. Ce médicament : trois fois par jour, deux comprimés à chaque fois.', [
+     o('好的，饭前吃还是饭后吃？', 'Hǎo de, fàn qián chī háishi fàn hòu chī?', 'D’accord. Avant ou après le repas ?', True, 'd'),
+     o('一天两次，对吗？', 'Yì tiān liǎng cì, duì ma?', 'Deux fois par jour, c’est ça ?', fix='Non : 一天三次 = trois fois par jour. 两片 = deux comprimés.')]),
+  'd': node('饭后吃。多喝水，多休息。', 'Fàn hòu chī. Duō hē shuǐ, duō xiūxi.', 'Après le repas. Bois beaucoup d’eau et repose-toi bien.', [
+     o('谢谢！多少钱？', 'Xièxie! Duōshao qián?', 'Merci ! C’est combien ?', True, 'end')]),
+  'end': node('十五块。早日康复！', 'Shíwǔ kuài. Zǎorì kāngfù!', 'Quinze yuans. Bon rétablissement !', end=True)})],
+ bonus=[{'h': '早日康复', 'p': 'zǎorì kāngfù', 'fr': 'Bon rétablissement !', 'note': 'À dire à une collègue malade : elle sera touchée que tu le dises en chinois.'}]))
+
+# ---------------- Vie quotidienne · 5 : téléphone et WeChat ----------------
+PACKS.append(dict(id='quotidien-05-wechat', file='quotidien-05-wechat.json', branch='quotidien', publish=False,
+ title='Vie quotidienne · Téléphone et WeChat',
+ desc='Échanger ton numéro, ajouter quelqu’un sur WeChat, envoyer un message ou un vocal, payer avec le QR code.',
+ grammar={'title': '给 + personne + verbe : « à quelqu’un »',
+  'explain': 'Pour dire « appeler quelqu’un » ou « envoyer un message à quelqu’un », on met 给 (gěi) + la personne AVANT le verbe : 给我打电话 = appelle-moi (mot à mot « à moi téléphone »).',
+  'examples': [ex('给我打电话。', 'Gěi wǒ dǎ diànhuà.', 'Appelle-moi.'), ex('我给你发消息。', 'Wǒ gěi nǐ fā xiāoxi.', 'Je t’envoie un message.'), ex('你给组长打电话吧。', 'Nǐ gěi zǔzhǎng dǎ diànhuà ba.', 'Appelle le chef d’équipe.'), ex('她给我发了一个红包。', 'Tā gěi wǒ fā le yí ge hóngbāo.', 'Elle m’a envoyé une enveloppe rouge.')],
+  'tip': 'Tu entendras aussi 我打电话给你 : c’est juste aussi, mais 我给你打电话 est la forme la plus courante.'},
+ items=items('''
+q5_weixin | 微信 | Wei-xin | 1 4 | | WeChat
+q5_haoma | 号码 | hao-ma | 4 3 | | Numéro
+q5_fa | 发 | fa | 1 | | Envoyer
+q5_xiaoxi | 消息 | xiao-xi | 1 0 | | Message
+q5_yuyin | 语音 | yu-yin | 3 1 | | Message vocal
+q5_shipin | 视频 | shi-pin | 4 2 | | Vidéo, appel vidéo
+q5_jia | 加 | jia | 1 | | Ajouter (en contact)
+q5_sao | 扫 | sao | 3 | | Scanner
+q5_erweima | 二维码 | er-wei-ma | 4 2 3 | | QR code
+q5_chongdian | 充电 | chong dian | 1 4 | | Recharger (la batterie)
+q5_guanji | 关机 | guan ji | 1 1 | | Éteindre (le téléphone)
+q5_xinhao | 信号 | xin-hao | 4 4 | | Réseau (le signal)
+q5_liuliang | 流量 | liu-liang | 2 4 | | Données mobiles (internet)
+q5_mima | 密码 | mi-ma | 4 3 | | Mot de passe, code
+q5_zhuanzhang | 转账 | zhuan zhang | 3 4 | | Envoyer de l’argent (virement)
+q5_hongbao | 红包 | hong-bao | 2 1 | | Enveloppe rouge (argent offert)
+q5_s_jiaweixin | 加个微信吧 | jia ge Wei-xin ba | 1 0 1 4 0 | | On s’ajoute sur WeChat ? | Propose à une collègue chinoise : 加个微信吧！
+q5_s_saoni | 我扫你 | wo sao ni | 3 3 3 | 2 2 3 | Je scanne ton code
+q5_s_haomaduoshao | 你的电话号码是多少 | ni de dian-hua hao-ma shi duo-shao | 3 0 4 4 4 3 4 1 0 | | C’est quoi ton numéro ?
+q5_s_geiwoda | 给我打电话 | gei wo da dian-hua | 3 3 3 4 4 | 2 2 3 4 4 | Appelle-moi
+q5_s_faxiaoxi | 给我发消息 | gei wo fa xiao-xi | 3 3 1 1 0 | 2 3 1 1 0 | Envoie-moi un message
+q5_s_meidianle | 我的手机没电了 | wo de shou-ji mei dian le | 3 0 3 1 2 4 0 | | Mon téléphone n’a plus de batterie
+q5_s_tingbuqing | 听不清楚 | ting bu qing-chu | 1 0 1 0 | | Je n’entends pas bien
+q5_s_meixinhao | 这儿没有信号 | zhe-r mei-you xin-hao | 4 0 2 3 4 4 | | Il n’y a pas de réseau ici
+q5_s_yihuirzaida | 一会儿再打 | yi-hui-r zai da | 2 4 0 4 3 | | Je rappelle tout à l’heure
+q5_s_shoudaole | 收到了 | shou dao le | 1 4 0 | | Bien reçu | Quand ton chef t’envoie une consigne sur WeChat, réponds : 收到了！
+q5_s_fageyuyin | 发个语音 | fa ge yu-yin | 1 0 3 1 | | Envoie un vocal
+q5_s_saomafukuan | 扫二维码付款 | sao er-wei-ma fu kuan | 3 4 2 3 4 3 | | Payer en scannant le QR code
+'''),
+ pairs=[pair(('号', 'hao', 4, 'numéro'), ('好', 'hao', 3, 'bien')), pair(('发', 'fa', 1, 'envoyer'), ('法', 'fa', 3, 'France (法国)'))],
+ chars=chars('''
+微 | wēi | petit, micro | 彳 | pas
+信 | xìn | lettre, message | 亻 | personne
+号 | hào | numéro | 口 | bouche
+码 | mǎ | code | 石 | pierre
+扫 | sǎo | balayer, scanner | 扌 | main
+发 | fā | envoyer | 又 | main
+包 | bāo | sac, emballer | 勹 | envelopper
+'''),
+ convs=[conv('wechat', 'On s’ajoute sur WeChat ?', '小陈', 'Collègue', 'Une collègue chinoise sympathique veut garder le contact avec toi.', {
+  'a': node('{name}，我们加个微信吧！', '{name}, wǒmen jiā ge Wēixìn ba!', '{name}, on s’ajoute sur WeChat ?', [
+     o('好啊，我扫你。', 'Hǎo a, wǒ sǎo nǐ.', 'Avec plaisir, je scanne ton code.', True, 'b'),
+     o('我没有钱。', 'Wǒ méiyǒu qián.', 'Je n’ai pas d’argent.', fix='Elle ne parle pas d’argent : 加微信 = s’ajouter sur WeChat. Dis « 好啊，我扫你 ».')]),
+  'b': node('这是我的二维码。', 'Zhè shì wǒ de èrwéimǎ.', 'Voilà mon QR code.', [
+     o('好了，我加你了。', 'Hǎo le, wǒ jiā nǐ le.', 'C’est bon, je t’ai ajoutée.', True, 'c'),
+     o('二维码多少钱？', 'Èrwéimǎ duōshao qián?', 'Il coûte combien, le QR code ?', fix='Le QR code est gratuit ! Scanne-le, puis dis « 我加你了 ».')]),
+  'c': node('收到了！晚上我给你发消息。', 'Shōudào le! Wǎnshang wǒ gěi nǐ fā xiāoxi.', 'Bien reçu ! Ce soir, je t’envoie un message.', [
+     o('好的，也可以给我打电话。', 'Hǎo de, yě kěyǐ gěi wǒ dǎ diànhuà.', 'D’accord, tu peux aussi m’appeler.', True, 'end'),
+     o('好的，我发消息你。', 'Hǎo de, wǒ fā xiāoxi nǐ.', '(phrase mal construite)', fix='给 + la personne se met AVANT le verbe : « 我给你发消息 ».')]),
+  'end': node('好，晚上见！', 'Hǎo, wǎnshang jiàn!', 'D’accord, à ce soir !', end=True)})],
+ bonus=[{'h': '点赞', 'p': 'diǎn zàn', 'fr': 'Mettre un « j’aime »', 'note': 'Sur WeChat, quand une collègue publie une photo, tu peux 点赞 (cliquer sur le pouce).'}]))
+
 # ---------------- écriture ----------------
 HSK1 = '''爱 八 爸爸 杯子 北京 本 不 不客气 菜 茶 吃 出租车 打电话 大 的 点 电脑 电视 电影 东西 都 读 对不起 多 多少 儿子 二 饭店 飞机 分钟 高兴 个 工作 狗 汉语 好 号 喝 和 很 后面 回 会 几 家 叫 今天 九 开 看 看见 块 来 老师 了 冷 里 六 吗 妈妈 买 猫 没关系 没有 米饭 名字 明天 哪 哪儿 那 呢 能 你 年 女儿 朋友 漂亮 苹果 七 前面 钱 请 去 热 人 认识 三 商店 上 上午 少 谁 什么 十 时候 是 书 水 水果 睡觉 说 四 岁 他 她 太 天气 听 同学 喂 我 我们 五 喜欢 下 下午 下雨 先生 现在 想 小 小姐 些 写 谢谢 星期 学生 学习 学校 一 一点儿 衣服 医生 医院 椅子 有 月 在 再见 怎么 怎么样 这 中国 中午 住 桌子 字 昨天 坐 做'''.split()
+
+# Mots nouveaux du HSK 2 (ancien format, 150 mots ; 虽然…但是 et 因为…所以 comptés en deux).
+HSK2 = '''吧 白 百 帮助 报纸 比 别 宾馆 长 唱歌 出 穿 船 次 从 错 打篮球 大家 到 得 等 弟弟 第一 懂 对 房间 非常 服务员 高 告诉 哥哥 给 公共汽车 公斤 公司 贵 过 还 孩子 好吃 黑 红 欢迎 回答 机场 鸡蛋 件 教室 姐姐 介绍 进 近 就 觉得 咖啡 开始 考试 可能 可以 课 快 快乐 累 离 两 零 路 旅游 卖 慢 忙 每 妹妹 门 面条 男 您 牛奶 女 旁边 跑步 便宜 票 妻子 起床 千 铅笔 晴 去年 让 日 上班 身体 生病 生日 时间 事情 手表 手机 说话 送 虽然 但是 它 踢足球 题 跳舞 外 完 玩 晚上 往 为什么 问 问题 西瓜 希望 洗 小时 笑 新 姓 休息 雪 颜色 眼睛 羊肉 药 要 也 一下 一起 已经 意思 因为 所以 阴 游泳 右边 鱼 远 运动 再 早上 丈夫 找 着 真 正在 知道 准备 走 最 左边 号 元'''.split()
+# Déjà enseignés ailleurs : dans le contenu de base de index.html, ou dans un mot plus long (男人, 女人, 生日).
+HSK2_AILLEURS = ('公司', '机场', '休息', '上班', '男', '女', '日')
 
 if __name__ == '__main__':
     # Version dépôt : régénère les chapitres sans jamais toucher à packs/packs.json.
@@ -1078,3 +1653,4 @@ if __name__ == '__main__':
         json.dump(data, open(os.path.join(dest, p['file']), 'w'), ensure_ascii=False, indent=1)
         print(('publié   ' if dest == OUT_PUB else 'en file  ') + p['file'])
     print('Mots HSK 1 non couverts :', [w for w in HSK1 if w not in covered and w not in ('谢谢', '对不起')])
+    print('Mots HSK 2 non couverts :', [w for w in HSK2 if w not in covered and w not in HSK2_AILLEURS])

@@ -1,0 +1,567 @@
+{
+ "branch": "quotidien",
+ "title": "Vie quotidienne · Téléphone et WeChat",
+ "desc": "Échanger ton numéro, ajouter quelqu’un sur WeChat, envoyer un message ou un vocal, payer avec le QR code.",
+ "grammar": {
+  "title": "给 + personne + verbe : « à quelqu’un »",
+  "explain": "Pour dire « appeler quelqu’un » ou « envoyer un message à quelqu’un », on met 给 (gěi) + la personne AVANT le verbe : 给我打电话 = appelle-moi (mot à mot « à moi téléphone »).",
+  "examples": [
+   {
+    "h": "给我打电话。",
+    "p": "Gěi wǒ dǎ diànhuà.",
+    "fr": "Appelle-moi."
+   },
+   {
+    "h": "我给你发消息。",
+    "p": "Wǒ gěi nǐ fā xiāoxi.",
+    "fr": "Je t’envoie un message."
+   },
+   {
+    "h": "你给组长打电话吧。",
+    "p": "Nǐ gěi zǔzhǎng dǎ diànhuà ba.",
+    "fr": "Appelle le chef d’équipe."
+   },
+   {
+    "h": "她给我发了一个红包。",
+    "p": "Tā gěi wǒ fā le yí ge hóngbāo.",
+    "fr": "Elle m’a envoyé une enveloppe rouge."
+   }
+  ],
+  "tip": "Tu entendras aussi 我打电话给你 : c’est juste aussi, mais 我给你打电话 est la forme la plus courante."
+ },
+ "items": [
+  {
+   "id": "q5_weixin",
+   "h": "微信",
+   "p": "Wei-xin",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "WeChat",
+   "st": 0
+  },
+  {
+   "id": "q5_haoma",
+   "h": "号码",
+   "p": "hao-ma",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Numéro",
+   "st": 0
+  },
+  {
+   "id": "q5_fa",
+   "h": "发",
+   "p": "fa",
+   "t": [
+    1
+   ],
+   "fr": "Envoyer",
+   "st": 0
+  },
+  {
+   "id": "q5_xiaoxi",
+   "h": "消息",
+   "p": "xiao-xi",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Message",
+   "st": 0
+  },
+  {
+   "id": "q5_yuyin",
+   "h": "语音",
+   "p": "yu-yin",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Message vocal",
+   "st": 0
+  },
+  {
+   "id": "q5_shipin",
+   "h": "视频",
+   "p": "shi-pin",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Vidéo, appel vidéo",
+   "st": 0
+  },
+  {
+   "id": "q5_jia",
+   "h": "加",
+   "p": "jia",
+   "t": [
+    1
+   ],
+   "fr": "Ajouter (en contact)",
+   "st": 0
+  },
+  {
+   "id": "q5_sao",
+   "h": "扫",
+   "p": "sao",
+   "t": [
+    3
+   ],
+   "fr": "Scanner",
+   "st": 0
+  },
+  {
+   "id": "q5_erweima",
+   "h": "二维码",
+   "p": "er-wei-ma",
+   "t": [
+    4,
+    2,
+    3
+   ],
+   "fr": "QR code",
+   "st": 0
+  },
+  {
+   "id": "q5_chongdian",
+   "h": "充电",
+   "p": "chong dian",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Recharger (la batterie)",
+   "st": 0
+  },
+  {
+   "id": "q5_guanji",
+   "h": "关机",
+   "p": "guan ji",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Éteindre (le téléphone)",
+   "st": 0
+  },
+  {
+   "id": "q5_xinhao",
+   "h": "信号",
+   "p": "xin-hao",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Réseau (le signal)",
+   "st": 0
+  },
+  {
+   "id": "q5_liuliang",
+   "h": "流量",
+   "p": "liu-liang",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Données mobiles (internet)",
+   "st": 0
+  },
+  {
+   "id": "q5_mima",
+   "h": "密码",
+   "p": "mi-ma",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Mot de passe, code",
+   "st": 0
+  },
+  {
+   "id": "q5_zhuanzhang",
+   "h": "转账",
+   "p": "zhuan zhang",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Envoyer de l’argent (virement)",
+   "st": 0
+  },
+  {
+   "id": "q5_hongbao",
+   "h": "红包",
+   "p": "hong-bao",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Enveloppe rouge (argent offert)",
+   "st": 0
+  },
+  {
+   "id": "q5_s_jiaweixin",
+   "h": "加个微信吧",
+   "p": "jia ge Wei-xin ba",
+   "t": [
+    1,
+    0,
+    1,
+    4,
+    0
+   ],
+   "fr": "On s’ajoute sur WeChat ?",
+   "st": 0,
+   "m": "Propose à une collègue chinoise : 加个微信吧！"
+  },
+  {
+   "id": "q5_s_saoni",
+   "h": "我扫你",
+   "p": "wo sao ni",
+   "t": [
+    3,
+    3,
+    3
+   ],
+   "fr": "Je scanne ton code",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "q5_s_haomaduoshao",
+   "h": "你的电话号码是多少",
+   "p": "ni de dian-hua hao-ma shi duo-shao",
+   "t": [
+    3,
+    0,
+    4,
+    4,
+    4,
+    3,
+    4,
+    1,
+    0
+   ],
+   "fr": "C’est quoi ton numéro ?",
+   "st": 0
+  },
+  {
+   "id": "q5_s_geiwoda",
+   "h": "给我打电话",
+   "p": "gei wo da dian-hua",
+   "t": [
+    3,
+    3,
+    3,
+    4,
+    4
+   ],
+   "fr": "Appelle-moi",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "q5_s_faxiaoxi",
+   "h": "给我发消息",
+   "p": "gei wo fa xiao-xi",
+   "t": [
+    3,
+    3,
+    1,
+    1,
+    0
+   ],
+   "fr": "Envoie-moi un message",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    1,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "q5_s_meidianle",
+   "h": "我的手机没电了",
+   "p": "wo de shou-ji mei dian le",
+   "t": [
+    3,
+    0,
+    3,
+    1,
+    2,
+    4,
+    0
+   ],
+   "fr": "Mon téléphone n’a plus de batterie",
+   "st": 0
+  },
+  {
+   "id": "q5_s_tingbuqing",
+   "h": "听不清楚",
+   "p": "ting bu qing-chu",
+   "t": [
+    1,
+    0,
+    1,
+    0
+   ],
+   "fr": "Je n’entends pas bien",
+   "st": 0
+  },
+  {
+   "id": "q5_s_meixinhao",
+   "h": "这儿没有信号",
+   "p": "zhe-r mei-you xin-hao",
+   "t": [
+    4,
+    0,
+    2,
+    3,
+    4,
+    4
+   ],
+   "fr": "Il n’y a pas de réseau ici",
+   "st": 0
+  },
+  {
+   "id": "q5_s_yihuirzaida",
+   "h": "一会儿再打",
+   "p": "yi-hui-r zai da",
+   "t": [
+    2,
+    4,
+    0,
+    4,
+    3
+   ],
+   "fr": "Je rappelle tout à l’heure",
+   "st": 0
+  },
+  {
+   "id": "q5_s_shoudaole",
+   "h": "收到了",
+   "p": "shou dao le",
+   "t": [
+    1,
+    4,
+    0
+   ],
+   "fr": "Bien reçu",
+   "st": 0,
+   "m": "Quand ton chef t’envoie une consigne sur WeChat, réponds : 收到了！"
+  },
+  {
+   "id": "q5_s_fageyuyin",
+   "h": "发个语音",
+   "p": "fa ge yu-yin",
+   "t": [
+    1,
+    0,
+    3,
+    1
+   ],
+   "fr": "Envoie un vocal",
+   "st": 0
+  },
+  {
+   "id": "q5_s_saomafukuan",
+   "h": "扫二维码付款",
+   "p": "sao er-wei-ma fu kuan",
+   "t": [
+    3,
+    4,
+    2,
+    3,
+    4,
+    3
+   ],
+   "fr": "Payer en scannant le QR code",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "号",
+    "p": "hao",
+    "t": 4,
+    "fr": "numéro"
+   },
+   {
+    "h": "好",
+    "p": "hao",
+    "t": 3,
+    "fr": "bien"
+   }
+  ],
+  [
+   {
+    "h": "发",
+    "p": "fa",
+    "t": 1,
+    "fr": "envoyer"
+   },
+   {
+    "h": "法",
+    "p": "fa",
+    "t": 3,
+    "fr": "France (法国)"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "微",
+   "p": "wēi",
+   "m": "petit, micro",
+   "r": "彳",
+   "rm": "pas"
+  },
+  {
+   "c": "信",
+   "p": "xìn",
+   "m": "lettre, message",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "号",
+   "p": "hào",
+   "m": "numéro",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "码",
+   "p": "mǎ",
+   "m": "code",
+   "r": "石",
+   "rm": "pierre"
+  },
+  {
+   "c": "扫",
+   "p": "sǎo",
+   "m": "balayer, scanner",
+   "r": "扌",
+   "rm": "main"
+  },
+  {
+   "c": "发",
+   "p": "fā",
+   "m": "envoyer",
+   "r": "又",
+   "rm": "main"
+  },
+  {
+   "c": "包",
+   "p": "bāo",
+   "m": "sac, emballer",
+   "r": "勹",
+   "rm": "envelopper"
+  }
+ ],
+ "convs": [
+  {
+   "id": "wechat",
+   "st": 0,
+   "title": "On s’ajoute sur WeChat ?",
+   "who": "小陈",
+   "whoFr": "Collègue",
+   "intro": "Une collègue chinoise sympathique veut garder le contact avec toi.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}，我们加个微信吧！",
+     "p": "{name}, wǒmen jiā ge Wēixìn ba!",
+     "fr": "{name}, on s’ajoute sur WeChat ?",
+     "o": [
+      {
+       "h": "好啊，我扫你。",
+       "p": "Hǎo a, wǒ sǎo nǐ.",
+       "fr": "Avec plaisir, je scanne ton code.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我没有钱。",
+       "p": "Wǒ méiyǒu qián.",
+       "fr": "Je n’ai pas d’argent.",
+       "fix": "Elle ne parle pas d’argent : 加微信 = s’ajouter sur WeChat. Dis « 好啊，我扫你 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "这是我的二维码。",
+     "p": "Zhè shì wǒ de èrwéimǎ.",
+     "fr": "Voilà mon QR code.",
+     "o": [
+      {
+       "h": "好了，我加你了。",
+       "p": "Hǎo le, wǒ jiā nǐ le.",
+       "fr": "C’est bon, je t’ai ajoutée.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "二维码多少钱？",
+       "p": "Èrwéimǎ duōshao qián?",
+       "fr": "Il coûte combien, le QR code ?",
+       "fix": "Le QR code est gratuit ! Scanne-le, puis dis « 我加你了 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "收到了！晚上我给你发消息。",
+     "p": "Shōudào le! Wǎnshang wǒ gěi nǐ fā xiāoxi.",
+     "fr": "Bien reçu ! Ce soir, je t’envoie un message.",
+     "o": [
+      {
+       "h": "好的，也可以给我打电话。",
+       "p": "Hǎo de, yě kěyǐ gěi wǒ dǎ diànhuà.",
+       "fr": "D’accord, tu peux aussi m’appeler.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "好的，我发消息你。",
+       "p": "Hǎo de, wǒ fā xiāoxi nǐ.",
+       "fr": "(phrase mal construite)",
+       "fix": "给 + la personne se met AVANT le verbe : « 我给你发消息 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，晚上见！",
+     "p": "Hǎo, wǎnshang jiàn!",
+     "fr": "D’accord, à ce soir !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "点赞",
+   "p": "diǎn zàn",
+   "fr": "Mettre un « j’aime »",
+   "note": "Sur WeChat, quand une collègue publie une photo, tu peux 点赞 (cliquer sur le pouce)."
+  }
+ ]
+}

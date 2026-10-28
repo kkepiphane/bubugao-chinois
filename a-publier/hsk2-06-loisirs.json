@@ -1,0 +1,574 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 6 — Sport et loisirs",
+ "desc": "Dire ce que tu aimes faire, proposer une sortie, parler de tes rêves de voyage. 14 mots HSK 2 et 13 phrases pour t’en servir.",
+ "grammar": {
+  "title": "吧 : proposer ou demander l’accord",
+  "explain": "吧 (ba) à la fin d’une phrase la rend plus douce : c’est une proposition, pas un ordre. 我们走吧 = « allons-y ! », 一起去吧 = « on y va ensemble ? ». Pour accepter, réponds 好啊 (hǎo a) ou 好吧 (hǎo ba).",
+  "examples": [
+   {
+    "h": "我们一起去吧！",
+    "p": "Wǒmen yìqǐ qù ba!",
+    "fr": "Allons-y ensemble !"
+   },
+   {
+    "h": "星期六去玩吧。",
+    "p": "Xīngqīliù qù wán ba.",
+    "fr": "Samedi, allons nous amuser."
+   },
+   {
+    "h": "你是多哥人吧？",
+    "p": "Nǐ shì Duōgē rén ba?",
+    "fr": "Tu es Togolaise, je crois ?"
+   },
+   {
+    "h": "好吧，我也去。",
+    "p": "Hǎo ba, wǒ yě qù.",
+    "fr": "Bon, d’accord, j’y vais aussi."
+   }
+  ],
+  "tip": "一起 (ensemble) se place avant le verbe : 我们一起吃饭 = mangeons ensemble."
+ },
+ "items": [
+  {
+   "id": "h206_yundong",
+   "h": "运动",
+   "p": "yun-dong",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Faire du sport, sport",
+   "st": 0
+  },
+  {
+   "id": "h206_paobu",
+   "h": "跑步",
+   "p": "pao-bu",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Courir, faire un footing",
+   "st": 0
+  },
+  {
+   "id": "h206_youyong",
+   "h": "游泳",
+   "p": "you-yong",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Nager",
+   "st": 0
+  },
+  {
+   "id": "h206_lanqiu",
+   "h": "打篮球",
+   "p": "da lan-qiu",
+   "t": [
+    3,
+    2,
+    2
+   ],
+   "fr": "Jouer au basket",
+   "st": 0
+  },
+  {
+   "id": "h206_zuqiu",
+   "h": "踢足球",
+   "p": "ti zu-qiu",
+   "t": [
+    1,
+    2,
+    2
+   ],
+   "fr": "Jouer au foot",
+   "st": 0
+  },
+  {
+   "id": "h206_changge",
+   "h": "唱歌",
+   "p": "chang-ge",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Chanter",
+   "st": 0
+  },
+  {
+   "id": "h206_tiaowu",
+   "h": "跳舞",
+   "p": "tiao-wu",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Danser",
+   "st": 0
+  },
+  {
+   "id": "h206_lvyou",
+   "h": "旅游",
+   "p": "lv-you",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Voyager (pour le plaisir)",
+   "st": 0
+  },
+  {
+   "id": "h206_wan",
+   "h": "玩",
+   "p": "wan",
+   "t": [
+    2
+   ],
+   "fr": "S’amuser, jouer",
+   "st": 0
+  },
+  {
+   "id": "h206_yiqi",
+   "h": "一起",
+   "p": "yi-qi",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Ensemble",
+   "st": 0
+  },
+  {
+   "id": "h206_ba",
+   "h": "吧",
+   "p": "ba",
+   "t": [
+    0
+   ],
+   "fr": "(proposition : « …, d’accord ? »)",
+   "st": 0
+  },
+  {
+   "id": "h206_xiwang",
+   "h": "希望",
+   "p": "xi-wang",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Espérer",
+   "st": 0
+  },
+  {
+   "id": "h206_zui",
+   "h": "最",
+   "p": "zui",
+   "t": [
+    4
+   ],
+   "fr": "Le plus",
+   "st": 0
+  },
+  {
+   "id": "h206_feichang",
+   "h": "非常",
+   "p": "fei-chang",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Très, extrêmement",
+   "st": 0
+  },
+  {
+   "id": "h206_s_yiqiqu",
+   "h": "我们一起去吧",
+   "p": "wo-men yi-qi qu ba",
+   "t": [
+    3,
+    0,
+    4,
+    3,
+    4,
+    0
+   ],
+   "fr": "Allons-y ensemble !",
+   "st": 0,
+   "m": "Le samedi, propose à une collègue : 我们一起去吧！"
+  },
+  {
+   "id": "h206_s_shenmeyundong",
+   "h": "你喜欢什么运动",
+   "p": "ni xi-huan shen-me yun-dong",
+   "t": [
+    3,
+    3,
+    0,
+    2,
+    0,
+    4,
+    4
+   ],
+   "fr": "Quel sport tu aimes ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    2,
+    0,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "h206_s_paobu",
+   "h": "我喜欢跑步",
+   "p": "wo xi-huan pao-bu",
+   "t": [
+    3,
+    3,
+    0,
+    3,
+    4
+   ],
+   "fr": "J’aime courir",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    0,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "h206_s_huiyouyong",
+   "h": "你会游泳吗",
+   "p": "ni hui you-yong ma",
+   "t": [
+    3,
+    4,
+    2,
+    3,
+    0
+   ],
+   "fr": "Tu sais nager ?",
+   "st": 0
+  },
+  {
+   "id": "h206_s_buhuiyouyong",
+   "h": "我不会游泳",
+   "p": "wo bu hui you-yong",
+   "t": [
+    3,
+    2,
+    4,
+    2,
+    3
+   ],
+   "fr": "Je ne sais pas nager",
+   "st": 0
+  },
+  {
+   "id": "h206_s_tizuqiu",
+   "h": "我们去踢足球吧",
+   "p": "wo-men qu ti zu-qiu ba",
+   "t": [
+    3,
+    0,
+    4,
+    1,
+    2,
+    2,
+    0
+   ],
+   "fr": "On va jouer au foot ?",
+   "st": 0
+  },
+  {
+   "id": "h206_s_zuixihuan",
+   "h": "我最喜欢唱歌",
+   "p": "wo zui xi-huan chang-ge",
+   "t": [
+    3,
+    4,
+    3,
+    0,
+    4,
+    1
+   ],
+   "fr": "Ce que j’aime le plus, c’est chanter",
+   "st": 0
+  },
+  {
+   "id": "h206_s_quwan",
+   "h": "星期六去玩吧",
+   "p": "xing-qi-liu qu wan ba",
+   "t": [
+    1,
+    1,
+    4,
+    4,
+    2,
+    0
+   ],
+   "fr": "Samedi, allons nous amuser",
+   "st": 0
+  },
+  {
+   "id": "h206_s_feichanghao",
+   "h": "非常好",
+   "p": "fei-chang hao",
+   "t": [
+    1,
+    2,
+    3
+   ],
+   "fr": "Très bien !",
+   "st": 0
+  },
+  {
+   "id": "h206_s_lvyou",
+   "h": "我希望去中国旅游",
+   "p": "wo xi-wang qu Zhong-guo lv-you",
+   "t": [
+    3,
+    1,
+    4,
+    4,
+    1,
+    2,
+    3,
+    2
+   ],
+   "fr": "J’espère voyager en Chine",
+   "st": 0
+  },
+  {
+   "id": "h206_s_yiqichifan",
+   "h": "一起吃饭吧",
+   "p": "yi-qi chi fan ba",
+   "t": [
+    4,
+    3,
+    1,
+    4,
+    0
+   ],
+   "fr": "Mangeons ensemble",
+   "st": 0
+  },
+  {
+   "id": "h206_s_lanqiulei",
+   "h": "打篮球很累",
+   "p": "da lan-qiu hen lei",
+   "t": [
+    3,
+    2,
+    2,
+    3,
+    4
+   ],
+   "fr": "Le basket, c’est fatigant",
+   "st": 0
+  },
+  {
+   "id": "h206_s_haoa",
+   "h": "好啊",
+   "p": "hao a",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Avec plaisir, d’accord !",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "歌",
+    "p": "ge",
+    "t": 1,
+    "fr": "chanson"
+   },
+   {
+    "h": "个",
+    "p": "ge",
+    "t": 4,
+    "fr": "classificateur (一个)"
+   }
+  ],
+  [
+   {
+    "h": "玩",
+    "p": "wan",
+    "t": 2,
+    "fr": "s’amuser"
+   },
+   {
+    "h": "晚",
+    "p": "wan",
+    "t": 3,
+    "fr": "soir, tard"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "运",
+   "p": "yùn",
+   "m": "transporter, bouger",
+   "r": "辶",
+   "rm": "marche"
+  },
+  {
+   "c": "动",
+   "p": "dòng",
+   "m": "bouger",
+   "r": "力",
+   "rm": "force"
+  },
+  {
+   "c": "跑",
+   "p": "pǎo",
+   "m": "courir",
+   "r": "足",
+   "rm": "pied"
+  },
+  {
+   "c": "游",
+   "p": "yóu",
+   "m": "nager, voyager",
+   "r": "氵",
+   "rm": "eau"
+  },
+  {
+   "c": "球",
+   "p": "qiú",
+   "m": "ballon",
+   "r": "王",
+   "rm": "jade"
+  },
+  {
+   "c": "唱",
+   "p": "chàng",
+   "m": "chanter",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "起",
+   "p": "qǐ",
+   "m": "se lever",
+   "r": "走",
+   "rm": "marcher"
+  },
+  {
+   "c": "最",
+   "p": "zuì",
+   "m": "le plus",
+   "r": "曰",
+   "rm": "dire"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-loisirs",
+   "st": 0,
+   "title": "Que fais-tu dimanche ?",
+   "who": "小陈",
+   "whoFr": "Collègue",
+   "intro": "Vendredi soir, à la sortie de l’usine. Une collègue chinoise te parle du week-end.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "星期天你做什么？",
+     "p": "Xīngqītiān nǐ zuò shénme?",
+     "fr": "Qu’est-ce que tu fais dimanche ?",
+     "o": [
+      {
+       "h": "我想去跑步。你呢？",
+       "p": "Wǒ xiǎng qù pǎobù. Nǐ ne?",
+       "fr": "J’ai envie d’aller courir. Et toi ?",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我是跑步。",
+       "p": "Wǒ shì pǎobù.",
+       "fr": "(phrase mal construite)",
+       "fix": "Pas de 是 devant une action : « 我想去跑步 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "我喜欢游泳。我们一起去游泳吧！",
+     "p": "Wǒ xǐhuan yóuyǒng. Wǒmen yìqǐ qù yóuyǒng ba!",
+     "fr": "Moi, j’aime nager. Allons nager ensemble !",
+     "o": [
+      {
+       "h": "我不会游泳……我们去唱歌吧！",
+       "p": "Wǒ bú huì yóuyǒng… Wǒmen qù chànggē ba!",
+       "fr": "Je ne sais pas nager… Allons chanter !",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "好啊，一起去吧！",
+       "p": "Hǎo a, yìqǐ qù ba!",
+       "fr": "Avec plaisir, allons-y ensemble !",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "一起我们去吧。",
+       "p": "Yìqǐ wǒmen qù ba.",
+       "fr": "(phrase mal construite)",
+       "fix": "一起 se place juste avant le verbe : « 我们一起去吧 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "好啊！我最喜欢唱歌。几点去？",
+     "p": "Hǎo a! Wǒ zuì xǐhuan chànggē. Jǐ diǎn qù?",
+     "fr": "Super ! Chanter, c’est ce que je préfère. On y va à quelle heure ?",
+     "o": [
+      {
+       "h": "下午三点吧。",
+       "p": "Xiàwǔ sān diǎn ba.",
+       "fr": "Trois heures de l’après-midi, d’accord ?",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我最喜欢下午。",
+       "p": "Wǒ zuì xǐhuan xiàwǔ.",
+       "fr": "Je préfère l’après-midi.",
+       "fix": "Elle demande l’heure : réponds avec l’heure, « 下午三点吧 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，星期天见！",
+     "p": "Hǎo, xīngqītiān jiàn!",
+     "fr": "D’accord, à dimanche !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "生命在于运动",
+   "p": "shēngmìng zàiyú yùndòng",
+   "fr": "La vie, c’est le mouvement",
+   "note": "Dicton chinois très connu pour encourager à faire du sport."
+  }
+ ]
+}

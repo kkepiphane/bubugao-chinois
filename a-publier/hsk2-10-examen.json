@@ -1,0 +1,603 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 10 — Examen, raisons et avis",
+ "desc": "Dire comment on fait quelque chose, demander pourquoi, dire « bien que… mais… », préparer ton examen. 14 mots HSK 2 et 15 phrases pour t’en servir.",
+ "grammar": {
+  "title": "Verbe + 得 + adjectif : dire comment on fait",
+  "explain": "Pour dire comment quelqu’un fait une action, on met 得 (de) après le verbe, puis l’adjectif : 说得很好 = parler très bien, 跑得很快 = courir vite. Pour la négation, 不 va après 得 : 说得不好 = ne pas bien parler.",
+  "examples": [
+   {
+    "h": "你说得很好。",
+    "p": "Nǐ shuō de hěn hǎo.",
+    "fr": "Tu parles très bien."
+   },
+   {
+    "h": "她跑得很快。",
+    "p": "Tā pǎo de hěn kuài.",
+    "fr": "Elle court très vite."
+   },
+   {
+    "h": "我写得不好。",
+    "p": "Wǒ xiě de bù hǎo.",
+    "fr": "Je n’écris pas bien."
+   },
+   {
+    "h": "你做得对。",
+    "p": "Nǐ zuò de duì.",
+    "fr": "Tu as bien fait."
+   }
+  ],
+  "tip": "虽然… 但是… = « bien que… mais… » : en chinois on garde les deux mots, 虽然很难，但是我喜欢."
+ },
+ "items": [
+  {
+   "id": "h210_kaoshi",
+   "h": "考试",
+   "p": "kao-shi",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Examen, passer un examen",
+   "st": 0
+  },
+  {
+   "id": "h210_ke",
+   "h": "课",
+   "p": "ke",
+   "t": [
+    4
+   ],
+   "fr": "Cours, leçon",
+   "st": 0
+  },
+  {
+   "id": "h210_jiaoshi",
+   "h": "教室",
+   "p": "jiao-shi",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Salle de classe",
+   "st": 0
+  },
+  {
+   "id": "h210_ti",
+   "h": "题",
+   "p": "ti",
+   "t": [
+    2
+   ],
+   "fr": "Question (d’exercice)",
+   "st": 0
+  },
+  {
+   "id": "h210_wenti",
+   "h": "问题",
+   "p": "wen-ti",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Question, problème",
+   "st": 0
+  },
+  {
+   "id": "h210_weishenme",
+   "h": "为什么",
+   "p": "wei-shen-me",
+   "t": [
+    4,
+    2,
+    0
+   ],
+   "fr": "Pourquoi",
+   "st": 0
+  },
+  {
+   "id": "h210_suiran",
+   "h": "虽然",
+   "p": "sui-ran",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Bien que",
+   "st": 0
+  },
+  {
+   "id": "h210_danshi",
+   "h": "但是",
+   "p": "dan-shi",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Mais",
+   "st": 0
+  },
+  {
+   "id": "h210_keneng",
+   "h": "可能",
+   "p": "ke-neng",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Peut-être, possible",
+   "st": 0
+  },
+  {
+   "id": "h210_de",
+   "h": "得",
+   "p": "de",
+   "t": [
+    0
+   ],
+   "fr": "(après un verbe : 说得很好)",
+   "st": 0
+  },
+  {
+   "id": "h210_zhe",
+   "h": "着",
+   "p": "zhe",
+   "t": [
+    0
+   ],
+   "fr": "(état qui dure : 开着)",
+   "st": 0
+  },
+  {
+   "id": "h210_yixia",
+   "h": "一下",
+   "p": "yi-xia",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Un peu, un instant (après un verbe)",
+   "st": 0
+  },
+  {
+   "id": "h210_shuohua",
+   "h": "说话",
+   "p": "shuo-hua",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Parler",
+   "st": 0
+  },
+  {
+   "id": "h210_dui",
+   "h": "对",
+   "p": "dui",
+   "t": [
+    4
+   ],
+   "fr": "Juste, correct",
+   "st": 0
+  },
+  {
+   "id": "h210_jiu",
+   "h": "就",
+   "p": "jiu",
+   "t": [
+    4
+   ],
+   "fr": "Tout de suite, justement",
+   "st": 0
+  },
+  {
+   "id": "h210_s_shuodehao",
+   "h": "你说得很好",
+   "p": "ni shuo de hen hao",
+   "t": [
+    3,
+    1,
+    0,
+    3,
+    3
+   ],
+   "fr": "Tu parles très bien",
+   "st": 0,
+   "s": [
+    3,
+    1,
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h210_s_paodekuai",
+   "h": "她跑得很快",
+   "p": "ta pao de hen kuai",
+   "t": [
+    1,
+    3,
+    0,
+    3,
+    4
+   ],
+   "fr": "Elle court très vite",
+   "st": 0
+  },
+  {
+   "id": "h210_s_shuodebuhao",
+   "h": "我说得不好",
+   "p": "wo shuo de bu hao",
+   "t": [
+    3,
+    1,
+    0,
+    4,
+    3
+   ],
+   "fr": "Je ne parle pas bien",
+   "st": 0
+  },
+  {
+   "id": "h210_s_weishenme",
+   "h": "你为什么不来",
+   "p": "ni wei-shen-me bu lai",
+   "t": [
+    3,
+    4,
+    2,
+    0,
+    4,
+    2
+   ],
+   "fr": "Pourquoi tu ne viens pas ?",
+   "st": 0
+  },
+  {
+   "id": "h210_s_kaoshi",
+   "h": "因为我要考试",
+   "p": "yin-wei wo yao kao-shi",
+   "t": [
+    1,
+    4,
+    3,
+    4,
+    3,
+    4
+   ],
+   "fr": "Parce que j’ai un examen",
+   "st": 0
+  },
+  {
+   "id": "h210_s_suiran",
+   "h": "虽然很累，但是我很高兴",
+   "p": "sui-ran hen lei dan-shi wo hen gao-xing",
+   "t": [
+    1,
+    2,
+    3,
+    4,
+    4,
+    4,
+    3,
+    3,
+    1,
+    4
+   ],
+   "fr": "Je suis fatiguée, mais contente",
+   "st": 0,
+   "s": [
+    1,
+    2,
+    3,
+    4,
+    4,
+    4,
+    2,
+    3,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "h210_s_keneng",
+   "h": "可能会下雨",
+   "p": "ke-neng hui xia yu",
+   "t": [
+    3,
+    2,
+    4,
+    4,
+    3
+   ],
+   "fr": "Il va peut-être pleuvoir",
+   "st": 0
+  },
+  {
+   "id": "h210_s_shuodedui",
+   "h": "你说得对",
+   "p": "ni shuo de dui",
+   "t": [
+    3,
+    1,
+    0,
+    4
+   ],
+   "fr": "Tu as raison",
+   "st": 0,
+   "m": "Quand ton chef d’équipe a raison, dis-lui : 你说得对。"
+  },
+  {
+   "id": "h210_s_duibudui",
+   "h": "对不对",
+   "p": "dui bu dui",
+   "t": [
+    4,
+    0,
+    4
+   ],
+   "fr": "C’est juste ? (n’est-ce pas ?)",
+   "st": 0
+  },
+  {
+   "id": "h210_s_kaizhe",
+   "h": "门开着",
+   "p": "men kai zhe",
+   "t": [
+    2,
+    1,
+    0
+   ],
+   "fr": "La porte est ouverte",
+   "st": 0
+  },
+  {
+   "id": "h210_s_biezhanzhe",
+   "h": "别站着，请坐",
+   "p": "bie zhan zhe qing zuo",
+   "t": [
+    2,
+    4,
+    0,
+    3,
+    4
+   ],
+   "fr": "Ne reste pas debout, assieds-toi",
+   "st": 0
+  },
+  {
+   "id": "h210_s_kanyixia",
+   "h": "你看一下",
+   "p": "ni kan yi-xia",
+   "t": [
+    3,
+    4,
+    2,
+    4
+   ],
+   "fr": "Regarde un peu",
+   "st": 0,
+   "m": "Montre une chaussure abîmée à ton chef d’équipe : 你看一下。"
+  },
+  {
+   "id": "h210_s_youwenti",
+   "h": "有问题吗",
+   "p": "you wen-ti ma",
+   "t": [
+    3,
+    4,
+    2,
+    0
+   ],
+   "fr": "Il y a un problème ? Des questions ?",
+   "st": 0
+  },
+  {
+   "id": "h210_s_tihennan",
+   "h": "这个题很难",
+   "p": "zhe-ge ti hen nan",
+   "t": [
+    4,
+    0,
+    2,
+    3,
+    2
+   ],
+   "fr": "Cette question est difficile",
+   "st": 0
+  },
+  {
+   "id": "h210_s_zaijiaoshi",
+   "h": "我们在教室上课",
+   "p": "wo-men zai jiao-shi shang ke",
+   "t": [
+    3,
+    0,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "fr": "Nous avons cours dans la salle de classe",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "题",
+    "p": "ti",
+    "t": 2,
+    "fr": "question"
+   },
+   {
+    "h": "体",
+    "p": "ti",
+    "t": 3,
+    "fr": "corps (身体)"
+   }
+  ],
+  [
+   {
+    "h": "课",
+    "p": "ke",
+    "t": 4,
+    "fr": "cours"
+   },
+   {
+    "h": "可",
+    "p": "ke",
+    "t": 3,
+    "fr": "pouvoir (可以)"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "考",
+   "p": "kǎo",
+   "m": "passer un examen",
+   "r": "耂",
+   "rm": "vieux"
+  },
+  {
+   "c": "试",
+   "p": "shì",
+   "m": "essayer",
+   "r": "讠",
+   "rm": "parole"
+  },
+  {
+   "c": "课",
+   "p": "kè",
+   "m": "cours",
+   "r": "讠",
+   "rm": "parole"
+  },
+  {
+   "c": "题",
+   "p": "tí",
+   "m": "question",
+   "r": "页",
+   "rm": "page"
+  },
+  {
+   "c": "为",
+   "p": "wèi",
+   "m": "pour",
+   "r": "丶",
+   "rm": "point"
+  },
+  {
+   "c": "虽",
+   "p": "suī",
+   "m": "bien que",
+   "r": "虫",
+   "rm": "insecte"
+  },
+  {
+   "c": "但",
+   "p": "dàn",
+   "m": "mais",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "能",
+   "p": "néng",
+   "m": "pouvoir",
+   "r": "月",
+   "rm": "chair"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-examen",
+   "st": 0,
+   "title": "Bientôt l’examen",
+   "who": "小陈",
+   "whoFr": "Collègue",
+   "intro": "Pendant la pause, une collègue chinoise t’entend parler chinois.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}，你的汉语说得很好！",
+     "p": "{name}, nǐ de Hànyǔ shuō de hěn hǎo!",
+     "fr": "{name}, tu parles très bien chinois !",
+     "o": [
+      {
+       "h": "哪里哪里，我说得不好。",
+       "p": "Nǎli nǎli, wǒ shuō de bù hǎo.",
+       "fr": "Oh non, je ne parle pas bien.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我说很好。",
+       "p": "Wǒ shuō hěn hǎo.",
+       "fr": "(phrase mal construite)",
+       "fix": "Après le verbe, il faut 得 : « 我说得不好 ». Et en Chine, on répond avec modestie !"
+      }
+     ]
+    },
+    "b": {
+     "h": "你为什么学汉语？",
+     "p": "Nǐ wèishénme xué Hànyǔ?",
+     "fr": "Pourquoi tu apprends le chinois ?",
+     "o": [
+      {
+       "h": "因为我要考试。",
+       "p": "Yīnwèi wǒ yào kǎoshì.",
+       "fr": "Parce que je vais passer un examen.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我为什么学汉语。",
+       "p": "Wǒ wèishénme xué Hànyǔ.",
+       "fr": "(tu répètes la question)",
+       "fix": "Pour répondre « parce que », commence par 因为 : « 因为我要考试 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "考试难吗？",
+     "p": "Kǎoshì nán ma?",
+     "fr": "L’examen est difficile ?",
+     "o": [
+      {
+       "h": "虽然很难，但是我很喜欢。",
+       "p": "Suīrán hěn nán, dànshì wǒ hěn xǐhuan.",
+       "fr": "C’est difficile, mais j’aime beaucoup.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "虽然很难，所以我很喜欢。",
+       "p": "Suīrán hěn nán, suǒyǐ wǒ hěn xǐhuan.",
+       "fr": "(mauvais mot)",
+       "fix": "Avec 虽然 (bien que), on met 但是 (mais), pas 所以 (donc) : « 虽然很难，但是我很喜欢 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "你说得对！加油！",
+     "p": "Nǐ shuō de duì! Jiāyóu!",
+     "fr": "Tu as raison ! Courage !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "活到老，学到老",
+   "p": "huó dào lǎo, xué dào lǎo",
+   "fr": "On apprend toute sa vie",
+   "note": "Mot à mot « vivre jusqu’à vieux, apprendre jusqu’à vieux »."
+  }
+ ]
+}

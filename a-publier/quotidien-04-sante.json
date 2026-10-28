@@ -1,0 +1,578 @@
+{
+ "branch": "quotidien",
+ "title": "Vie quotidienne · Pharmacie et médecin",
+ "desc": "Dire où tu as mal, expliquer que tu as de la fièvre ou que tu t’es blessée, comprendre comment prendre un médicament.",
+ "grammar": {
+  "title": "… 疼 : dire où tu as mal",
+  "explain": "Pour dire « j’ai mal à… », on dit la partie du corps puis 疼 (téng, « avoir mal ») : 我头疼 = j’ai mal à la tête (mot à mot « moi tête mal »). Pas besoin de verbe « avoir ».",
+  "examples": [
+   {
+    "h": "我头疼。",
+    "p": "Wǒ tóu téng.",
+    "fr": "J’ai mal à la tête."
+   },
+   {
+    "h": "我肚子疼。",
+    "p": "Wǒ dùzi téng.",
+    "fr": "J’ai mal au ventre."
+   },
+   {
+    "h": "我的脚很疼。",
+    "p": "Wǒ de jiǎo hěn téng.",
+    "fr": "J’ai très mal au pied."
+   },
+   {
+    "h": "你哪儿疼？",
+    "p": "Nǐ nǎr téng?",
+    "fr": "Où as-tu mal ?"
+   }
+  ],
+  "tip": "Pour dire « je ne me sens pas bien » sans savoir où, dis simplement 我不舒服 (wǒ bù shūfu)."
+ },
+ "items": [
+  {
+   "id": "q4_teng",
+   "h": "疼",
+   "p": "teng",
+   "t": [
+    2
+   ],
+   "fr": "Avoir mal, douleur",
+   "st": 0
+  },
+  {
+   "id": "q4_tou",
+   "h": "头",
+   "p": "tou",
+   "t": [
+    2
+   ],
+   "fr": "Tête",
+   "st": 0
+  },
+  {
+   "id": "q4_duzi",
+   "h": "肚子",
+   "p": "du-zi",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Ventre",
+   "st": 0
+  },
+  {
+   "id": "q4_yao",
+   "h": "腰",
+   "p": "yao",
+   "t": [
+    1
+   ],
+   "fr": "Bas du dos, reins",
+   "st": 0
+  },
+  {
+   "id": "q4_shou",
+   "h": "手",
+   "p": "shou",
+   "t": [
+    3
+   ],
+   "fr": "Main",
+   "st": 0
+  },
+  {
+   "id": "q4_jiao",
+   "h": "脚",
+   "p": "jiao",
+   "t": [
+    3
+   ],
+   "fr": "Pied",
+   "st": 0
+  },
+  {
+   "id": "q4_ya",
+   "h": "牙",
+   "p": "ya",
+   "t": [
+    2
+   ],
+   "fr": "Dent",
+   "st": 0
+  },
+  {
+   "id": "q4_fashao",
+   "h": "发烧",
+   "p": "fa-shao",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Avoir de la fièvre",
+   "st": 0
+  },
+  {
+   "id": "q4_ganmao",
+   "h": "感冒",
+   "p": "gan-mao",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Rhume, grippe",
+   "st": 0
+  },
+  {
+   "id": "q4_kesou",
+   "h": "咳嗽",
+   "p": "ke-sou",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Tousser",
+   "st": 0
+  },
+  {
+   "id": "q4_nveji",
+   "h": "疟疾",
+   "p": "nve-ji",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Paludisme",
+   "st": 0
+  },
+  {
+   "id": "q4_yaodian",
+   "h": "药店",
+   "p": "yao-dian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Pharmacie",
+   "st": 0
+  },
+  {
+   "id": "q4_kanbing",
+   "h": "看病",
+   "p": "kan bing",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Aller voir le médecin",
+   "st": 0
+  },
+  {
+   "id": "q4_shoushang",
+   "h": "受伤",
+   "p": "shou-shang",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Se blesser",
+   "st": 0
+  },
+  {
+   "id": "q4_liuxue",
+   "h": "流血",
+   "p": "liu xue",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Saigner",
+   "st": 0
+  },
+  {
+   "id": "q4_shufu",
+   "h": "舒服",
+   "p": "shu-fu",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Se sentir bien, à l’aise",
+   "st": 0
+  },
+  {
+   "id": "q4_s_bushufu",
+   "h": "我不舒服",
+   "p": "wo bu shu-fu",
+   "t": [
+    3,
+    4,
+    1,
+    0
+   ],
+   "fr": "Je ne me sens pas bien",
+   "st": 0,
+   "m": "Si tu es malade à l’atelier, dis à ton chef d’équipe : 我不舒服。"
+  },
+  {
+   "id": "q4_s_touteng",
+   "h": "我头疼",
+   "p": "wo tou teng",
+   "t": [
+    3,
+    2,
+    2
+   ],
+   "fr": "J’ai mal à la tête",
+   "st": 0
+  },
+  {
+   "id": "q4_s_duziteng",
+   "h": "我肚子疼",
+   "p": "wo du-zi teng",
+   "t": [
+    3,
+    4,
+    0,
+    2
+   ],
+   "fr": "J’ai mal au ventre",
+   "st": 0
+  },
+  {
+   "id": "q4_s_yaoteng",
+   "h": "我腰疼",
+   "p": "wo yao teng",
+   "t": [
+    3,
+    1,
+    2
+   ],
+   "fr": "J’ai mal au dos",
+   "st": 0
+  },
+  {
+   "id": "q4_s_narteng",
+   "h": "哪儿疼",
+   "p": "na-r teng",
+   "t": [
+    3,
+    0,
+    2
+   ],
+   "fr": "Où as-tu mal ?",
+   "st": 0
+  },
+  {
+   "id": "q4_s_fashaole",
+   "h": "我发烧了",
+   "p": "wo fa-shao le",
+   "t": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "fr": "J’ai de la fièvre",
+   "st": 0
+  },
+  {
+   "id": "q4_s_shoushangle",
+   "h": "我的手受伤了",
+   "p": "wo de shou shou-shang le",
+   "t": [
+    3,
+    0,
+    3,
+    4,
+    1,
+    0
+   ],
+   "fr": "Je me suis blessée à la main",
+   "st": 0,
+   "m": "Si tu te blesses à une machine, préviens tout de suite ton chef : 我的手受伤了！"
+  },
+  {
+   "id": "q4_s_ganmaoyao",
+   "h": "有感冒药吗",
+   "p": "you gan-mao yao ma",
+   "t": [
+    3,
+    3,
+    4,
+    4,
+    0
+   ],
+   "fr": "Vous avez un médicament contre le rhume ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4,
+    4,
+    0
+   ]
+  },
+  {
+   "id": "q4_s_jici",
+   "h": "一天吃几次",
+   "p": "yi tian chi ji ci",
+   "t": [
+    4,
+    1,
+    1,
+    3,
+    4
+   ],
+   "fr": "Combien de fois par jour ?",
+   "st": 0
+  },
+  {
+   "id": "q4_s_sanci",
+   "h": "一天三次",
+   "p": "yi tian san ci",
+   "t": [
+    4,
+    1,
+    1,
+    4
+   ],
+   "fr": "Trois fois par jour",
+   "st": 0
+  },
+  {
+   "id": "q4_s_qukanbing",
+   "h": "我要去看病",
+   "p": "wo yao qu kan bing",
+   "t": [
+    3,
+    4,
+    4,
+    4,
+    4
+   ],
+   "fr": "Je dois aller voir le médecin",
+   "st": 0
+  },
+  {
+   "id": "q4_s_haoduole",
+   "h": "好多了",
+   "p": "hao duo le",
+   "t": [
+    3,
+    1,
+    0
+   ],
+   "fr": "Ça va beaucoup mieux",
+   "st": 0
+  },
+  {
+   "id": "q4_s_duoheshui",
+   "h": "多喝水",
+   "p": "duo he shui",
+   "t": [
+    1,
+    1,
+    3
+   ],
+   "fr": "Bois beaucoup d’eau",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "腰",
+    "p": "yao",
+    "t": 1,
+    "fr": "bas du dos"
+   },
+   {
+    "h": "药",
+    "p": "yao",
+    "t": 4,
+    "fr": "médicament"
+   }
+  ],
+  [
+   {
+    "h": "头",
+    "p": "tou",
+    "t": 2,
+    "fr": "tête"
+   },
+   {
+    "h": "豆",
+    "p": "dou",
+    "t": 4,
+    "fr": "haricot (土豆)"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "疼",
+   "p": "téng",
+   "m": "avoir mal",
+   "r": "疒",
+   "rm": "maladie"
+  },
+  {
+   "c": "病",
+   "p": "bìng",
+   "m": "maladie",
+   "r": "疒",
+   "rm": "maladie"
+  },
+  {
+   "c": "头",
+   "p": "tóu",
+   "m": "tête",
+   "r": "大",
+   "rm": "grand"
+  },
+  {
+   "c": "肚",
+   "p": "dù",
+   "m": "ventre",
+   "r": "月",
+   "rm": "chair"
+  },
+  {
+   "c": "腰",
+   "p": "yāo",
+   "m": "bas du dos",
+   "r": "月",
+   "rm": "chair"
+  },
+  {
+   "c": "脚",
+   "p": "jiǎo",
+   "m": "pied",
+   "r": "月",
+   "rm": "chair"
+  },
+  {
+   "c": "烧",
+   "p": "shāo",
+   "m": "brûler, fièvre",
+   "r": "火",
+   "rm": "feu"
+  },
+  {
+   "c": "店",
+   "p": "diàn",
+   "m": "magasin",
+   "r": "广",
+   "rm": "abri"
+  }
+ ],
+ "convs": [
+  {
+   "id": "pharmacie",
+   "st": 0,
+   "title": "À la pharmacie",
+   "who": "店员",
+   "whoFr": "Pharmacienne",
+   "intro": "Tu ne te sens pas bien. Tu vas à la pharmacie chinoise près de l’usine.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好，你哪儿不舒服？",
+     "p": "Nǐ hǎo, nǐ nǎr bù shūfu?",
+     "fr": "Bonjour, qu’est-ce qui ne va pas ?",
+     "o": [
+      {
+       "h": "我头疼，也发烧了。",
+       "p": "Wǒ tóu téng, yě fāshāo le.",
+       "fr": "J’ai mal à la tête, et j’ai de la fièvre.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我很舒服。",
+       "p": "Wǒ hěn shūfu.",
+       "fr": "Je me sens très bien.",
+       "fix": "舒服 = se sentir bien ! Dis « 我不舒服 », puis où tu as mal : « 我头疼 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "你咳嗽吗？",
+     "p": "Nǐ késou ma?",
+     "fr": "Tu tousses ?",
+     "o": [
+      {
+       "h": "有一点儿咳嗽。",
+       "p": "Yǒu yìdiǎnr késou.",
+       "fr": "Je tousse un peu.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "不咳嗽。",
+       "p": "Bù késou.",
+       "fr": "Je ne tousse pas.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我是咳嗽。",
+       "p": "Wǒ shì késou.",
+       "fr": "(phrase mal construite)",
+       "fix": "Pas besoin de 是 ici : dis « 有一点儿咳嗽 » (un peu) ou « 不咳嗽 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "你感冒了。这个药一天三次，一次两片。",
+     "p": "Nǐ gǎnmào le. Zhège yào yì tiān sān cì, yí cì liǎng piàn.",
+     "fr": "Tu as un rhume. Ce médicament : trois fois par jour, deux comprimés à chaque fois.",
+     "o": [
+      {
+       "h": "好的，饭前吃还是饭后吃？",
+       "p": "Hǎo de, fàn qián chī háishi fàn hòu chī?",
+       "fr": "D’accord. Avant ou après le repas ?",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "一天两次，对吗？",
+       "p": "Yì tiān liǎng cì, duì ma?",
+       "fr": "Deux fois par jour, c’est ça ?",
+       "fix": "Non : 一天三次 = trois fois par jour. 两片 = deux comprimés."
+      }
+     ]
+    },
+    "d": {
+     "h": "饭后吃。多喝水，多休息。",
+     "p": "Fàn hòu chī. Duō hē shuǐ, duō xiūxi.",
+     "fr": "Après le repas. Bois beaucoup d’eau et repose-toi bien.",
+     "o": [
+      {
+       "h": "谢谢！多少钱？",
+       "p": "Xièxie! Duōshao qián?",
+       "fr": "Merci ! C’est combien ?",
+       "ok": 1,
+       "n": "end"
+      }
+     ]
+    },
+    "end": {
+     "h": "十五块。早日康复！",
+     "p": "Shíwǔ kuài. Zǎorì kāngfù!",
+     "fr": "Quinze yuans. Bon rétablissement !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "早日康复",
+   "p": "zǎorì kāngfù",
+   "fr": "Bon rétablissement !",
+   "note": "À dire à une collègue malade : elle sera touchée que tu le dises en chinois."
+  }
+ ]
+}

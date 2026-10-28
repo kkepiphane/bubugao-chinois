@@ -1,0 +1,572 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 7 — Le temps qu’il fait, le temps qui passe",
+ "desc": "Parler du beau temps et de la neige, dire « déjà une fois », « la première fois », « chaque jour ». 14 mots HSK 2 et 14 phrases pour t’en servir.",
+ "grammar": {
+  "title": "过 : « déjà… une fois » (l’expérience)",
+  "explain": "Pour dire qu’on a déjà vécu quelque chose, mets 过 (guo) juste après le verbe : 我去过中国 = je suis déjà allée en Chine. Pour dire « jamais », mets 没 (méi) devant le verbe, et garde 过 : 我没去过 = je n’y suis jamais allée.",
+  "examples": [
+   {
+    "h": "我去过北京。",
+    "p": "Wǒ qù guo Běijīng.",
+    "fr": "Je suis déjà allée à Pékin."
+   },
+   {
+    "h": "你吃过饺子吗？",
+    "p": "Nǐ chī guo jiǎozi ma?",
+    "fr": "Tu as déjà mangé des raviolis chinois ?"
+   },
+   {
+    "h": "我没见过雪。",
+    "p": "Wǒ méi jiàn guo xuě.",
+    "fr": "Je n’ai jamais vu la neige."
+   },
+   {
+    "h": "这是我第一次来。",
+    "p": "Zhè shì wǒ dì-yī cì lái.",
+    "fr": "C’est la première fois que je viens."
+   }
+  ],
+  "tip": "Avec 过, on dit toujours 没, jamais 不 : 我没去过 (et pas 我不去过)."
+ },
+ "items": [
+  {
+   "id": "h207_qing",
+   "h": "晴",
+   "p": "qing",
+   "t": [
+    2
+   ],
+   "fr": "Ensoleillé, beau temps",
+   "st": 0
+  },
+  {
+   "id": "h207_yin",
+   "h": "阴",
+   "p": "yin",
+   "t": [
+    1
+   ],
+   "fr": "Couvert, nuageux",
+   "st": 0
+  },
+  {
+   "id": "h207_xue",
+   "h": "雪",
+   "p": "xue",
+   "t": [
+    3
+   ],
+   "fr": "Neige",
+   "st": 0
+  },
+  {
+   "id": "h207_qunian",
+   "h": "去年",
+   "p": "qu-nian",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "L’année dernière",
+   "st": 0
+  },
+  {
+   "id": "h207_mei",
+   "h": "每",
+   "p": "mei",
+   "t": [
+    3
+   ],
+   "fr": "Chaque",
+   "st": 0
+  },
+  {
+   "id": "h207_ci",
+   "h": "次",
+   "p": "ci",
+   "t": [
+    4
+   ],
+   "fr": "Fois",
+   "st": 0
+  },
+  {
+   "id": "h207_diyi",
+   "h": "第一",
+   "p": "di-yi",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Premier, premièrement",
+   "st": 0
+  },
+  {
+   "id": "h207_guo",
+   "h": "过",
+   "p": "guo",
+   "t": [
+    0
+   ],
+   "fr": "(déjà fait, une fois : 去过)",
+   "st": 0
+  },
+  {
+   "id": "h207_ling",
+   "h": "零",
+   "p": "ling",
+   "t": [
+    2
+   ],
+   "fr": "Zéro",
+   "st": 0
+  },
+  {
+   "id": "h207_zhen",
+   "h": "真",
+   "p": "zhen",
+   "t": [
+    1
+   ],
+   "fr": "Vraiment",
+   "st": 0
+  },
+  {
+   "id": "h207_chang",
+   "h": "长",
+   "p": "chang",
+   "t": [
+    2
+   ],
+   "fr": "Long",
+   "st": 0
+  },
+  {
+   "id": "h207_gao",
+   "h": "高",
+   "p": "gao",
+   "t": [
+    1
+   ],
+   "fr": "Grand, haut",
+   "st": 0
+  },
+  {
+   "id": "h207_kuai",
+   "h": "快",
+   "p": "kuai",
+   "t": [
+    4
+   ],
+   "fr": "Rapide, vite",
+   "st": 0
+  },
+  {
+   "id": "h207_man",
+   "h": "慢",
+   "p": "man",
+   "t": [
+    4
+   ],
+   "fr": "Lent, lentement",
+   "st": 0
+  },
+  {
+   "id": "h207_s_qingtian",
+   "h": "今天是晴天",
+   "p": "jin-tian shi qing-tian",
+   "t": [
+    1,
+    1,
+    4,
+    2,
+    1
+   ],
+   "fr": "Aujourd’hui, il fait beau",
+   "st": 0
+  },
+  {
+   "id": "h207_s_yintian",
+   "h": "明天是阴天",
+   "p": "ming-tian shi yin-tian",
+   "t": [
+    2,
+    1,
+    4,
+    1,
+    1
+   ],
+   "fr": "Demain, le temps sera couvert",
+   "st": 0
+  },
+  {
+   "id": "h207_s_jianguoxue",
+   "h": "你见过雪吗",
+   "p": "ni jian guo xue ma",
+   "t": [
+    3,
+    4,
+    0,
+    3,
+    0
+   ],
+   "fr": "Tu as déjà vu la neige ?",
+   "st": 0
+  },
+  {
+   "id": "h207_s_meijianguo",
+   "h": "我没见过雪",
+   "p": "wo mei jian guo xue",
+   "t": [
+    3,
+    2,
+    4,
+    0,
+    3
+   ],
+   "fr": "Je n’ai jamais vu la neige",
+   "st": 0
+  },
+  {
+   "id": "h207_s_quguo",
+   "h": "你去过中国吗",
+   "p": "ni qu guo Zhong-guo ma",
+   "t": [
+    3,
+    4,
+    0,
+    1,
+    2,
+    0
+   ],
+   "fr": "Tu es déjà allée en Chine ?",
+   "st": 0
+  },
+  {
+   "id": "h207_s_meitian",
+   "h": "我每天六点起床",
+   "p": "wo mei-tian liu dian qi-chuang",
+   "t": [
+    3,
+    3,
+    1,
+    4,
+    3,
+    3,
+    2
+   ],
+   "fr": "Je me lève à six heures tous les jours",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    1,
+    4,
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "h207_s_sanci",
+   "h": "一个星期去三次",
+   "p": "yi ge xing-qi qu san ci",
+   "t": [
+    2,
+    0,
+    1,
+    1,
+    4,
+    1,
+    4
+   ],
+   "fr": "Trois fois par semaine",
+   "st": 0
+  },
+  {
+   "id": "h207_s_diyici",
+   "h": "第一次",
+   "p": "di-yi ci",
+   "t": [
+    4,
+    1,
+    4
+   ],
+   "fr": "La première fois",
+   "st": 0
+  },
+  {
+   "id": "h207_s_diyicilai",
+   "h": "这是我第一次来",
+   "p": "zhe shi wo di-yi ci lai",
+   "t": [
+    4,
+    4,
+    3,
+    4,
+    1,
+    4,
+    2
+   ],
+   "fr": "C’est la première fois que je viens",
+   "st": 0
+  },
+  {
+   "id": "h207_s_qunian",
+   "h": "我去年开始工作",
+   "p": "wo qu-nian kai-shi gong-zuo",
+   "t": [
+    3,
+    4,
+    2,
+    1,
+    3,
+    1,
+    4
+   ],
+   "fr": "J’ai commencé à travailler l’année dernière",
+   "st": 0
+  },
+  {
+   "id": "h207_s_yibailingwu",
+   "h": "一百零五",
+   "p": "yi-bai ling wu",
+   "t": [
+    4,
+    3,
+    2,
+    3
+   ],
+   "fr": "Cent cinq (105)",
+   "st": 0
+  },
+  {
+   "id": "h207_s_nizhenhao",
+   "h": "你真好",
+   "p": "ni zhen hao",
+   "t": [
+    3,
+    1,
+    3
+   ],
+   "fr": "Tu es vraiment gentille !",
+   "st": 0,
+   "m": "Quand une collègue t’aide, dis-lui : 你真好！"
+  },
+  {
+   "id": "h207_s_taimanle",
+   "h": "太慢了",
+   "p": "tai man le",
+   "t": [
+    4,
+    4,
+    0
+   ],
+   "fr": "C’est trop lent",
+   "st": 0
+  },
+  {
+   "id": "h207_s_tahengao",
+   "h": "他很高",
+   "p": "ta hen gao",
+   "t": [
+    1,
+    3,
+    1
+   ],
+   "fr": "Il est grand",
+   "st": 0
+  },
+  {
+   "id": "h207_s_taichang",
+   "h": "时间太长了",
+   "p": "shi-jian tai chang le",
+   "t": [
+    2,
+    1,
+    4,
+    2,
+    0
+   ],
+   "fr": "C’est trop long",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "晴",
+    "p": "qing",
+    "t": 2,
+    "fr": "beau temps"
+   },
+   {
+    "h": "请",
+    "p": "qing",
+    "t": 3,
+    "fr": "s’il te plaît"
+   }
+  ],
+  [
+   {
+    "h": "雪",
+    "p": "xue",
+    "t": 3,
+    "fr": "neige"
+   },
+   {
+    "h": "学",
+    "p": "xue",
+    "t": 2,
+    "fr": "étudier"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "晴",
+   "p": "qíng",
+   "m": "beau temps",
+   "r": "日",
+   "rm": "soleil"
+  },
+  {
+   "c": "阴",
+   "p": "yīn",
+   "m": "couvert, ombre",
+   "r": "阝",
+   "rm": "colline"
+  },
+  {
+   "c": "雪",
+   "p": "xuě",
+   "m": "neige",
+   "r": "雨",
+   "rm": "pluie"
+  },
+  {
+   "c": "零",
+   "p": "líng",
+   "m": "zéro",
+   "r": "雨",
+   "rm": "pluie"
+  },
+  {
+   "c": "每",
+   "p": "měi",
+   "m": "chaque",
+   "r": "母",
+   "rm": "mère"
+  },
+  {
+   "c": "次",
+   "p": "cì",
+   "m": "fois",
+   "r": "欠",
+   "rm": "bâiller"
+  },
+  {
+   "c": "第",
+   "p": "dì",
+   "m": "(rang : 第一)",
+   "r": "竹",
+   "rm": "bambou"
+  },
+  {
+   "c": "慢",
+   "p": "màn",
+   "m": "lent",
+   "r": "忄",
+   "rm": "cœur"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-neige",
+   "st": 0,
+   "title": "La neige de Pékin",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Il fait très chaud à l’atelier. Ton chef d’équipe parle du temps qu’il fait chez lui, en Chine.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "今天是晴天，真热！你去过中国吗？",
+     "p": "Jīntiān shì qíngtiān, zhēn rè! Nǐ qù guo Zhōngguó ma?",
+     "fr": "Il fait beau aujourd’hui, vraiment chaud ! Tu es déjà allée en Chine ?",
+     "o": [
+      {
+       "h": "没去过。中国冷吗？",
+       "p": "Méi qù guo. Zhōngguó lěng ma?",
+       "fr": "Jamais. Il fait froid en Chine ?",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我不去过。",
+       "p": "Wǒ bú qù guo.",
+       "fr": "(phrase mal construite)",
+       "fix": "Avec 过, on dit 没 et pas 不 : « 我没去过 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "北京十二月很冷，会下雪。你见过雪吗？",
+     "p": "Běijīng shí’èr yuè hěn lěng, huì xià xuě. Nǐ jiàn guo xuě ma?",
+     "fr": "À Pékin, en décembre, il fait très froid, il neige. Tu as déjà vu la neige ?",
+     "o": [
+      {
+       "h": "没见过，我很想看！",
+       "p": "Méi jiàn guo, wǒ hěn xiǎng kàn!",
+       "fr": "Jamais, j’ai très envie de la voir !",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我没见雪过。",
+       "p": "Wǒ méi jiàn xuě guo.",
+       "fr": "(phrase mal construite)",
+       "fix": "过 se colle juste après le verbe : « 我没见过雪 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "你可以来北京看雪！",
+     "p": "Nǐ kěyǐ lái Běijīng kàn xuě!",
+     "fr": "Tu pourras venir voir la neige à Pékin !",
+     "o": [
+      {
+       "h": "真的吗？太好了！",
+       "p": "Zhēn de ma? Tài hǎo le!",
+       "fr": "Vraiment ? Super !",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "真好吃！",
+       "p": "Zhēn hǎochī!",
+       "fr": "C’est vraiment bon (à manger) !",
+       "fix": "好吃 = bon à manger. Ici, dis plutôt « 真的吗？太好了！ »."
+      }
+     ]
+    },
+    "end": {
+     "h": "真的！",
+     "p": "Zhēn de!",
+     "fr": "Vraiment !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "瑞雪兆丰年",
+   "p": "ruìxuě zhào fēngnián",
+   "fr": "Une bonne neige annonce une bonne récolte",
+   "note": "Proverbe des paysans chinois : un hiver neigeux prépare une bonne année."
+  }
+ ]
+}

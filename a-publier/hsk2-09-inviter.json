@@ -1,0 +1,545 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 9 — Entrer, sortir, offrir",
+ "desc": "Accueillir quelqu’un, offrir un cadeau, dire « ne fais pas ça », entrer et sortir. 15 mots HSK 2 et 13 phrases pour t’en servir.",
+ "grammar": {
+  "title": "别 : « ne… pas ! » (interdire gentiment)",
+  "explain": "Pour dire à quelqu’un de ne pas faire quelque chose, mets 别 (bié) devant le verbe : 别走 = ne pars pas. On ajoute souvent 了 à la fin pour adoucir : 别送了 = ne te dérange pas pour me raccompagner.",
+  "examples": [
+   {
+    "h": "别笑！",
+    "p": "Bié xiào!",
+    "fr": "Ne ris pas !"
+   },
+   {
+    "h": "别担心。",
+    "p": "Bié dānxīn.",
+    "fr": "Ne t’inquiète pas."
+   },
+   {
+    "h": "别送了，谢谢！",
+    "p": "Bié sòng le, xièxie!",
+    "fr": "Ne me raccompagne pas, merci !"
+   },
+   {
+    "h": "别在这儿吃饭。",
+    "p": "Bié zài zhèr chī fàn.",
+    "fr": "Ne mange pas ici."
+   }
+  ],
+  "tip": "别 s’utilise pour parler à quelqu’un. Pour décrire (« il ne mange pas »), on garde 不."
+ },
+ "items": [
+  {
+   "id": "h209_shouji",
+   "h": "手机",
+   "p": "shou-ji",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Téléphone portable",
+   "st": 0
+  },
+  {
+   "id": "h209_shoubiao",
+   "h": "手表",
+   "p": "shou-biao",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Montre",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h209_baozhi",
+   "h": "报纸",
+   "p": "bao-zhi",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Journal",
+   "st": 0
+  },
+  {
+   "id": "h209_qianbi",
+   "h": "铅笔",
+   "p": "qian-bi",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Crayon",
+   "st": 0
+  },
+  {
+   "id": "h209_song",
+   "h": "送",
+   "p": "song",
+   "t": [
+    4
+   ],
+   "fr": "Offrir ; raccompagner",
+   "st": 0
+  },
+  {
+   "id": "h209_ta",
+   "h": "它",
+   "p": "ta",
+   "t": [
+    1
+   ],
+   "fr": "Il, elle (objet, animal)",
+   "st": 0
+  },
+  {
+   "id": "h209_xiao",
+   "h": "笑",
+   "p": "xiao",
+   "t": [
+    4
+   ],
+   "fr": "Rire, sourire",
+   "st": 0
+  },
+  {
+   "id": "h209_huanying",
+   "h": "欢迎",
+   "p": "huan-ying",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Bienvenue, accueillir",
+   "st": 0
+  },
+  {
+   "id": "h209_jin",
+   "h": "进",
+   "p": "jin",
+   "t": [
+    4
+   ],
+   "fr": "Entrer",
+   "st": 0
+  },
+  {
+   "id": "h209_chu",
+   "h": "出",
+   "p": "chu",
+   "t": [
+    1
+   ],
+   "fr": "Sortir",
+   "st": 0
+  },
+  {
+   "id": "h209_wai",
+   "h": "外",
+   "p": "wai",
+   "t": [
+    4
+   ],
+   "fr": "Dehors, extérieur",
+   "st": 0
+  },
+  {
+   "id": "h209_wang",
+   "h": "往",
+   "p": "wang",
+   "t": [
+    3
+   ],
+   "fr": "Vers, en direction de",
+   "st": 0
+  },
+  {
+   "id": "h209_rang",
+   "h": "让",
+   "p": "rang",
+   "t": [
+    4
+   ],
+   "fr": "Laisser, faire faire",
+   "st": 0
+  },
+  {
+   "id": "h209_bie",
+   "h": "别",
+   "p": "bie",
+   "t": [
+    2
+   ],
+   "fr": "Ne… pas ! (défense)",
+   "st": 0
+  },
+  {
+   "id": "h209_chuan",
+   "h": "船",
+   "p": "chuan",
+   "t": [
+    2
+   ],
+   "fr": "Bateau",
+   "st": 0
+  },
+  {
+   "id": "h209_s_huanying",
+   "h": "欢迎欢迎",
+   "p": "huan-ying huan-ying",
+   "t": [
+    1,
+    2,
+    1,
+    2
+   ],
+   "fr": "Bienvenue !",
+   "st": 0
+  },
+  {
+   "id": "h209_s_qingjin",
+   "h": "请进",
+   "p": "qing jin",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Entre, je t’en prie",
+   "st": 0,
+   "m": "Quand quelqu’un frappe au bureau, dis : 请进！"
+  },
+  {
+   "id": "h209_s_chuqu",
+   "h": "我出去一下",
+   "p": "wo chu-qu yi-xia",
+   "t": [
+    3,
+    1,
+    0,
+    2,
+    4
+   ],
+   "fr": "Je sors un instant",
+   "st": 0
+  },
+  {
+   "id": "h209_s_waimian",
+   "h": "在外面",
+   "p": "zai wai-mian",
+   "t": [
+    4,
+    4,
+    0
+   ],
+   "fr": "Dehors",
+   "st": 0
+  },
+  {
+   "id": "h209_s_wangyou",
+   "h": "往右走",
+   "p": "wang you zou",
+   "t": [
+    3,
+    4,
+    3
+   ],
+   "fr": "Va vers la droite",
+   "st": 0
+  },
+  {
+   "id": "h209_s_songni",
+   "h": "这是送你的",
+   "p": "zhe shi song ni de",
+   "t": [
+    4,
+    4,
+    4,
+    3,
+    0
+   ],
+   "fr": "C’est pour toi (un cadeau)",
+   "st": 0
+  },
+  {
+   "id": "h209_s_songnihuijia",
+   "h": "我送你回家",
+   "p": "wo song ni hui jia",
+   "t": [
+    3,
+    4,
+    3,
+    2,
+    1
+   ],
+   "fr": "Je te raccompagne chez toi",
+   "st": 0
+  },
+  {
+   "id": "h209_s_biexiao",
+   "h": "别笑",
+   "p": "bie xiao",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Ne ris pas !",
+   "st": 0
+  },
+  {
+   "id": "h209_s_biedanxin",
+   "h": "别担心",
+   "p": "bie dan-xin",
+   "t": [
+    2,
+    1,
+    1
+   ],
+   "fr": "Ne t’inquiète pas",
+   "st": 0,
+   "m": "Quand une collègue a fait une erreur, rassure-la : 别担心！"
+  },
+  {
+   "id": "h209_s_biezou",
+   "h": "别走",
+   "p": "bie zou",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Ne pars pas !",
+   "st": 0
+  },
+  {
+   "id": "h209_s_rangwokan",
+   "h": "让我看看",
+   "p": "rang wo kan-kan",
+   "t": [
+    4,
+    3,
+    4,
+    0
+   ],
+   "fr": "Laisse-moi voir",
+   "st": 0
+  },
+  {
+   "id": "h209_s_shoujizainar",
+   "h": "我的手机在哪儿",
+   "p": "wo de shou-ji zai na-r",
+   "t": [
+    3,
+    0,
+    3,
+    1,
+    4,
+    3,
+    0
+   ],
+   "fr": "Où est mon téléphone ?",
+   "st": 0
+  },
+  {
+   "id": "h209_s_tazai",
+   "h": "它在桌子上",
+   "p": "ta zai zhuo-zi shang",
+   "t": [
+    1,
+    4,
+    1,
+    0,
+    4
+   ],
+   "fr": "Il est sur la table",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "进",
+    "p": "jin",
+    "t": 4,
+    "fr": "entrer"
+   },
+   {
+    "h": "今",
+    "p": "jin",
+    "t": 1,
+    "fr": "aujourd’hui (今天)"
+   }
+  ],
+  [
+   {
+    "h": "笑",
+    "p": "xiao",
+    "t": 4,
+    "fr": "rire"
+   },
+   {
+    "h": "小",
+    "p": "xiao",
+    "t": 3,
+    "fr": "petit"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "进",
+   "p": "jìn",
+   "m": "entrer",
+   "r": "辶",
+   "rm": "marche"
+  },
+  {
+   "c": "出",
+   "p": "chū",
+   "m": "sortir",
+   "r": "凵",
+   "rm": "creux"
+  },
+  {
+   "c": "外",
+   "p": "wài",
+   "m": "dehors",
+   "r": "夕",
+   "rm": "soir"
+  },
+  {
+   "c": "送",
+   "p": "sòng",
+   "m": "offrir",
+   "r": "辶",
+   "rm": "marche"
+  },
+  {
+   "c": "别",
+   "p": "bié",
+   "m": "ne… pas !",
+   "r": "刂",
+   "rm": "couteau"
+  },
+  {
+   "c": "笑",
+   "p": "xiào",
+   "m": "rire",
+   "r": "竹",
+   "rm": "bambou"
+  },
+  {
+   "c": "船",
+   "p": "chuán",
+   "m": "bateau",
+   "r": "舟",
+   "rm": "barque"
+  },
+  {
+   "c": "纸",
+   "p": "zhǐ",
+   "m": "papier",
+   "r": "纟",
+   "rm": "soie"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-invitation",
+   "st": 0,
+   "title": "Invitée chez une collègue",
+   "who": "小王",
+   "whoFr": "Collègue",
+   "intro": "Une collègue chinoise t’invite chez elle. Tu arrives avec un petit cadeau.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "欢迎欢迎！请进！",
+     "p": "Huānyíng huānyíng! Qǐng jìn!",
+     "fr": "Bienvenue ! Entre, je t’en prie !",
+     "o": [
+      {
+       "h": "谢谢！这是送你的。",
+       "p": "Xièxie! Zhè shì sòng nǐ de.",
+       "fr": "Merci ! C’est pour toi.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我出去一下。",
+       "p": "Wǒ chūqu yíxià.",
+       "fr": "Je sors un instant.",
+       "fix": "Tu viens d’arriver ! Dis merci et offre ton cadeau : « 这是送你的 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "太客气了！哇，一块手表！",
+     "p": "Tài kèqi le! Wā, yí kuài shǒubiǎo!",
+     "fr": "Il ne fallait pas ! Oh, une montre !",
+     "o": [
+      {
+       "h": "你喜欢吗？",
+       "p": "Nǐ xǐhuan ma?",
+       "fr": "Elle te plaît ?",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "别笑！",
+       "p": "Bié xiào!",
+       "fr": "Ne ris pas !",
+       "fix": "别笑 = ne ris pas ! Elle est contente : demande-lui plutôt « 你喜欢吗？ »."
+      }
+     ]
+    },
+    "c": {
+     "h": "非常喜欢！很晚了，我送你回家吧。",
+     "p": "Fēicháng xǐhuan! Hěn wǎn le, wǒ sòng nǐ huí jiā ba.",
+     "fr": "Elle me plaît beaucoup ! Il est tard, je te raccompagne.",
+     "o": [
+      {
+       "h": "别送了，谢谢！",
+       "p": "Bié sòng le, xièxie!",
+       "fr": "Ne te dérange pas, merci !",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "好，谢谢你！",
+       "p": "Hǎo, xièxie nǐ!",
+       "fr": "D’accord, merci !",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "不送了！",
+       "p": "Bú sòng le!",
+       "fr": "(mauvais mot)",
+       "fix": "Pour dire à quelqu’un de ne pas faire quelque chose, on dit 别 : « 别送了 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，路上小心！",
+     "p": "Hǎo, lùshang xiǎoxīn!",
+     "fr": "D’accord, fais attention sur la route !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "礼轻情意重",
+   "p": "lǐ qīng qíngyì zhòng",
+   "fr": "Petit cadeau, grande amitié",
+   "note": "Ce qui compte, ce n’est pas le prix du cadeau mais l’intention."
+  }
+ ]
+}

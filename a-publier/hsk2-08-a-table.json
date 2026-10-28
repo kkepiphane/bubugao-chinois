@@ -1,0 +1,598 @@
+{
+ "branch": "hsk",
+ "level": 2,
+ "title": "HSK 2 · 8 — À table : encore, aussi, permis",
+ "desc": "Dire que c’est bon, commander des nouilles ou un café, demander « encore » et « est-ce que je peux ? ». 12 mots HSK 2 et 16 phrases pour t’en servir.",
+ "grammar": {
+  "title": "还 et 再 : deux façons de dire « encore »",
+  "explain": "还 (hái) = « encore, en plus » ou « toujours pas » : 我还要一个 = j’en veux encore un, 我还没吃饭 = je n’ai pas encore mangé. 再 (zài) = « de nouveau, plus tard » pour une action qui va se répéter : 明天再来 = reviens demain.",
+  "examples": [
+   {
+    "h": "我还要一杯牛奶。",
+    "p": "Wǒ hái yào yì bēi niúnǎi.",
+    "fr": "Je veux encore un verre de lait."
+   },
+   {
+    "h": "你还要什么？",
+    "p": "Nǐ hái yào shénme?",
+    "fr": "Tu veux autre chose ?"
+   },
+   {
+    "h": "请再说一遍。",
+    "p": "Qǐng zài shuō yí biàn.",
+    "fr": "Redis-le, s’il te plaît."
+   },
+   {
+    "h": "先洗手，再吃饭。",
+    "p": "Xiān xǐ shǒu, zài chī fàn.",
+    "fr": "D’abord on se lave les mains, ensuite on mange."
+   }
+  ],
+  "tip": "再 parle toujours de ce qui va arriver. Pour le passé, on ne l’utilise pas."
+ },
+ "items": [
+  {
+   "id": "h208_haochi",
+   "h": "好吃",
+   "p": "hao-chi",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Bon (à manger)",
+   "st": 0
+  },
+  {
+   "id": "h208_miantiao",
+   "h": "面条",
+   "p": "mian-tiao",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Nouilles",
+   "st": 0
+  },
+  {
+   "id": "h208_yangrou",
+   "h": "羊肉",
+   "p": "yang-rou",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Viande de mouton",
+   "st": 0
+  },
+  {
+   "id": "h208_niunai",
+   "h": "牛奶",
+   "p": "niu-nai",
+   "t": [
+    2,
+    3
+   ],
+   "fr": "Lait",
+   "st": 0
+  },
+  {
+   "id": "h208_kafei",
+   "h": "咖啡",
+   "p": "ka-fei",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Café",
+   "st": 0
+  },
+  {
+   "id": "h208_xigua",
+   "h": "西瓜",
+   "p": "xi-gua",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Pastèque",
+   "st": 0
+  },
+  {
+   "id": "h208_fuwuyuan",
+   "h": "服务员",
+   "p": "fu-wu-yuan",
+   "t": [
+    2,
+    4,
+    2
+   ],
+   "fr": "Serveur, serveuse",
+   "st": 0
+  },
+  {
+   "id": "h208_xi",
+   "h": "洗",
+   "p": "xi",
+   "t": [
+    3
+   ],
+   "fr": "Laver",
+   "st": 0
+  },
+  {
+   "id": "h208_yao",
+   "h": "要",
+   "p": "yao",
+   "t": [
+    4
+   ],
+   "fr": "Vouloir ; il faut",
+   "st": 0
+  },
+  {
+   "id": "h208_zai",
+   "h": "再",
+   "p": "zai",
+   "t": [
+    4
+   ],
+   "fr": "De nouveau, encore (plus tard)",
+   "st": 0
+  },
+  {
+   "id": "h208_hai",
+   "h": "还",
+   "p": "hai",
+   "t": [
+    2
+   ],
+   "fr": "Encore, en plus ; toujours",
+   "st": 0
+  },
+  {
+   "id": "h208_keyi",
+   "h": "可以",
+   "p": "ke-yi",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Pouvoir (avoir le droit)",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h208_s_haochi",
+   "h": "这个菜很好吃",
+   "p": "zhe-ge cai hen hao-chi",
+   "t": [
+    4,
+    0,
+    4,
+    3,
+    3,
+    1
+   ],
+   "fr": "Ce plat est très bon",
+   "st": 0,
+   "s": [
+    4,
+    0,
+    4,
+    2,
+    3,
+    1
+   ],
+   "m": "À la cantine, fais plaisir à la cuisinière : 这个菜很好吃！"
+  },
+  {
+   "id": "h208_s_miantiao",
+   "h": "一碗面条",
+   "p": "yi wan mian-tiao",
+   "t": [
+    4,
+    3,
+    4,
+    2
+   ],
+   "fr": "Un bol de nouilles",
+   "st": 0
+  },
+  {
+   "id": "h208_s_yangrou",
+   "h": "我不吃羊肉",
+   "p": "wo bu chi yang-rou",
+   "t": [
+    3,
+    4,
+    1,
+    2,
+    4
+   ],
+   "fr": "Je ne mange pas de mouton",
+   "st": 0
+  },
+  {
+   "id": "h208_s_niunai",
+   "h": "一杯牛奶",
+   "p": "yi bei niu-nai",
+   "t": [
+    4,
+    1,
+    2,
+    3
+   ],
+   "fr": "Un verre de lait",
+   "st": 0
+  },
+  {
+   "id": "h208_s_kafei",
+   "h": "你喝咖啡吗",
+   "p": "ni he ka-fei ma",
+   "t": [
+    3,
+    1,
+    1,
+    1,
+    0
+   ],
+   "fr": "Tu bois du café ?",
+   "st": 0
+  },
+  {
+   "id": "h208_s_xigua",
+   "h": "西瓜很甜",
+   "p": "xi-gua hen tian",
+   "t": [
+    1,
+    1,
+    3,
+    2
+   ],
+   "fr": "La pastèque est très sucrée",
+   "st": 0
+  },
+  {
+   "id": "h208_s_fuwuyuan",
+   "h": "服务员，有咖啡吗",
+   "p": "fu-wu-yuan you ka-fei ma",
+   "t": [
+    2,
+    4,
+    2,
+    3,
+    1,
+    1,
+    0
+   ],
+   "fr": "S’il vous plaît, vous avez du café ?",
+   "st": 0
+  },
+  {
+   "id": "h208_s_xishou",
+   "h": "洗手",
+   "p": "xi shou",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Se laver les mains",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h208_s_xianxishou",
+   "h": "先洗手再吃饭",
+   "p": "xian xi shou zai chi fan",
+   "t": [
+    1,
+    3,
+    3,
+    4,
+    1,
+    4
+   ],
+   "fr": "D’abord se laver les mains, ensuite manger",
+   "st": 0,
+   "s": [
+    1,
+    2,
+    3,
+    4,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "h208_s_haiyao",
+   "h": "我还要一个",
+   "p": "wo hai yao yi ge",
+   "t": [
+    3,
+    2,
+    4,
+    2,
+    0
+   ],
+   "fr": "J’en veux encore un",
+   "st": 0
+  },
+  {
+   "id": "h208_s_haiyaoshenme",
+   "h": "你还要什么",
+   "p": "ni hai yao shen-me",
+   "t": [
+    3,
+    2,
+    4,
+    2,
+    0
+   ],
+   "fr": "Tu veux autre chose ?",
+   "st": 0
+  },
+  {
+   "id": "h208_s_keyizuo",
+   "h": "可以坐这儿吗",
+   "p": "ke-yi zuo zhe-r ma",
+   "t": [
+    3,
+    3,
+    4,
+    4,
+    0,
+    0
+   ],
+   "fr": "Je peux m’asseoir ici ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4,
+    4,
+    0,
+    0
+   ],
+   "m": "À la cantine, avant de t’asseoir à côté d’un collègue chinois, demande : 可以坐这儿吗？"
+  },
+  {
+   "id": "h208_s_bukeyi",
+   "h": "不可以",
+   "p": "bu ke-yi",
+   "t": [
+    4,
+    3,
+    3
+   ],
+   "fr": "Non, ce n’est pas permis",
+   "st": 0,
+   "s": [
+    4,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "h208_s_zailai",
+   "h": "明天再来",
+   "p": "ming-tian zai lai",
+   "t": [
+    2,
+    1,
+    4,
+    2
+   ],
+   "fr": "Reviens demain",
+   "st": 0
+  },
+  {
+   "id": "h208_s_yaoheshenme",
+   "h": "你要喝什么",
+   "p": "ni yao he shen-me",
+   "t": [
+    3,
+    4,
+    1,
+    2,
+    0
+   ],
+   "fr": "Qu’est-ce que tu veux boire ?",
+   "st": 0
+  },
+  {
+   "id": "h208_s_haimeichi",
+   "h": "我还没吃饭",
+   "p": "wo hai mei chi fan",
+   "t": [
+    3,
+    2,
+    2,
+    1,
+    4
+   ],
+   "fr": "Je n’ai pas encore mangé",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "洗",
+    "p": "xi",
+    "t": 3,
+    "fr": "laver"
+   },
+   {
+    "h": "西",
+    "p": "xi",
+    "t": 1,
+    "fr": "ouest"
+   }
+  ],
+  [
+   {
+    "h": "羊",
+    "p": "yang",
+    "t": 2,
+    "fr": "mouton"
+   },
+   {
+    "h": "样",
+    "p": "yang",
+    "t": 4,
+    "fr": "manière (怎么样)"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "面",
+   "p": "miàn",
+   "m": "nouilles, visage",
+   "r": "面",
+   "rm": "visage"
+  },
+  {
+   "c": "条",
+   "p": "tiáo",
+   "m": "bande (pour les choses longues)",
+   "r": "木",
+   "rm": "bois"
+  },
+  {
+   "c": "羊",
+   "p": "yáng",
+   "m": "mouton",
+   "r": "羊",
+   "rm": "mouton"
+  },
+  {
+   "c": "奶",
+   "p": "nǎi",
+   "m": "lait",
+   "r": "女",
+   "rm": "femme"
+  },
+  {
+   "c": "瓜",
+   "p": "guā",
+   "m": "melon",
+   "r": "瓜",
+   "rm": "melon"
+  },
+  {
+   "c": "洗",
+   "p": "xǐ",
+   "m": "laver",
+   "r": "氵",
+   "rm": "eau"
+  },
+  {
+   "c": "还",
+   "p": "hái",
+   "m": "encore",
+   "r": "辶",
+   "rm": "marche"
+  }
+ ],
+ "convs": [
+  {
+   "id": "hsk2-nouilles",
+   "st": 0,
+   "title": "Au restaurant de nouilles",
+   "who": "服务员",
+   "whoFr": "Serveur",
+   "intro": "Tu vas manger des nouilles avec une collègue après le travail.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好！请问吃什么？",
+     "p": "Nǐ hǎo! Qǐngwèn chī shénme?",
+     "fr": "Bonjour ! Qu’est-ce que vous mangez ?",
+     "o": [
+      {
+       "h": "一碗面条，不要羊肉。",
+       "p": "Yì wǎn miàntiáo, bú yào yángròu.",
+       "fr": "Un bol de nouilles, sans mouton.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我要服务员。",
+       "p": "Wǒ yào fúwùyuán.",
+       "fr": "Je veux le serveur.",
+       "fix": "Le serveur, c’est lui ! Dis ce que tu veux manger : « 一碗面条 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "好的。还要什么？",
+     "p": "Hǎo de. Hái yào shénme?",
+     "fr": "Très bien. Autre chose ?",
+     "o": [
+      {
+       "h": "还要一杯牛奶。",
+       "p": "Hái yào yì bēi niúnǎi.",
+       "fr": "Un verre de lait aussi.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "不要了，谢谢。",
+       "p": "Bú yào le, xièxie.",
+       "fr": "Ce sera tout, merci.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "一杯牛奶很好吃。",
+       "p": "Yì bēi niúnǎi hěn hǎochī.",
+       "fr": "Un verre de lait très bon à manger.",
+       "fix": "好吃 se dit pour ce qu’on mange. Pour commander, dis « 还要一杯牛奶 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "面条好吃吗？",
+     "p": "Miàntiáo hǎochī ma?",
+     "fr": "Les nouilles sont bonnes ?",
+     "o": [
+      {
+       "h": "非常好吃！我明天再来。",
+       "p": "Fēicháng hǎochī! Wǒ míngtiān zài lái.",
+       "fr": "Délicieuses ! Je reviendrai demain.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "非常好吃！我昨天再来。",
+       "p": "Fēicháng hǎochī! Wǒ zuótiān zài lái.",
+       "fr": "(erreur de temps)",
+       "fix": "再 parle du futur : « 我明天再来 » (demain), pas 昨天 (hier)."
+      }
+     ]
+    },
+    "end": {
+     "h": "欢迎再来！",
+     "p": "Huānyíng zài lái!",
+     "fr": "Au plaisir de vous revoir !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "民以食为天",
+   "p": "mín yǐ shí wéi tiān",
+   "fr": "Pour le peuple, manger passe avant tout",
+   "note": "Proverbe ancien : en Chine, le repas est sacré. C’est pour ça qu’on se salue avec 你吃饭了吗？"
+  }
+ ]
+}
