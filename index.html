@@ -1091,7 +1091,7 @@ function convPick(cs,i){
 function render(){
   if(ui.sess)return renderSession();
   if(!S.onboarded)return renderOnboard();
-  const T={photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
+  const T={heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
   app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
   if(ui.tab==='progres'){document.querySelectorAll('canvas[data-voice]').forEach(cv=>{const [id,w]=cv.dataset.voice.split('|');const v=S.voice[id];if(v&&v[w])drawCurve(cv,BY[id],v[w]);});}
 }
@@ -1138,6 +1138,41 @@ const phImg=(it,cls)=>PH[it.id]?`<img class="${cls||'ph'}" src="${PH[it.id]}" al
 const photoWords=()=>ITEMS.filter(it=>PH[it.id]&&isIntro(it));
 function photoQ(it){const far=x=>x.id!==it.id&&x.fr!==it.fr&&!x.han.some(c=>it.han.includes(c));const pool=shuffle(ITEMS.filter(x=>isIntro(x)&&far(x)&&x.han.length<=it.han.length+2));
   const src=pool.length>=3?pool:shuffle(ITEMS.filter(far));return{opts:shuffle([it,...src.slice(0,3)]).map(x=>({it:x,ok:x.id===it.id}))};}
+/* ---------- « J'ai entendu une phrase » : phrases réelles de l'usine, gardées sur le téléphone puis partagées ---------- */
+let HEARD=[];const HDB='bubugao.phrases';
+function hDB(){return new Promise((ok,ko)=>{try{const r=indexedDB.open(HDB,1);r.onupgradeneeded=()=>r.result.createObjectStore('f',{autoIncrement:true});r.onsuccess=()=>ok(r.result);r.onerror=()=>ko(r.error);}catch(e){ko(e);}});}
+async function hTx(mode,fn){const db=await hDB();return new Promise((ok,ko)=>{const tx=db.transaction('f',mode),r=fn(tx.objectStore('f'));tx.oncomplete=()=>ok(r&&r.result);tx.onerror=()=>ko(tx.error);});}
+async function loadHeard(){try{const db=await hDB();HEARD=await new Promise(ok=>{const out=[],c=db.transaction('f','readonly').objectStore('f').openCursor();
+  c.onsuccess=()=>{const cur=c.result;if(cur){out.push({k:cur.key,...cur.value});cur.continue();}else ok(out);};c.onerror=()=>ok(out);});}catch(e){HEARD=[];}}
+async function addHeard(h){try{const k=await hTx('readwrite',st=>st.add(h));HEARD.push({k,...h});return true;}catch(e){return false;}}
+async function updHeard(h){try{const {k,...v}=h;await hTx('readwrite',st=>st.put(v,k));}catch(e){}}
+async function delHeard(k){HEARD=HEARD.filter(h=>h.k!==k);try{await hTx('readwrite',st=>st.delete(k));}catch(e){}}
+const HR={mr:null,stream:null,timer:null,t0:0};
+async function heardRecStart(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){ui.heard.file=true;render();return;}
+  try{HR.stream=await navigator.mediaDevices.getUserMedia({audio:true});}catch(e){ui.heard.file=true;toast('Micro refusé. Utilise l’enregistreur du téléphone.');render();return;}
+  const chunks=[];try{HR.mr=new MediaRecorder(HR.stream);}catch(e){ui.heard.file=true;render();return;}
+  HR.mr.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+  HR.mr.onstop=()=>{try{HR.stream.getTracks().forEach(t=>t.stop());}catch(e){}clearTimeout(HR.timer);if(!ui.heard)return;
+    setHeardAudio(new Blob(chunks,{type:HR.mr.mimeType||'audio/webm'}));ui.heard.rec=false;render();};
+  HR.mr.start();HR.t0=Date.now();ui.heard.rec=true;HR.timer=setTimeout(heardRecStop,30000);render();
+}
+function heardRecStop(){clearTimeout(HR.timer);if(HR.mr&&HR.mr.state==='recording')HR.mr.stop();}
+function setHeardAudio(blob){const h=ui.heard;if(h.url)URL.revokeObjectURL(h.url);h.blob=blob;h.url=URL.createObjectURL(blob);}
+const audioExt=type=>/mp4|m4a|aac/.test(type)?'m4a':/ogg/.test(type)?'ogg':/mpeg|mp3/.test(type)?'mp3':/wav/.test(type)?'wav':/amr/.test(type)?'amr':/3gp/.test(type)?'3gp':'webm';
+async function shareHeard(){
+  const list=HEARD.filter(h=>!h.sent);if(!list.length)return;
+  const files=list.map((h,i)=>h.blob?new File([h.blob],`phrase-${i+1}-${h.d}.${audioExt(h.blob.type||'')}`,{type:h.blob.type||'audio/webm'}):null).filter(Boolean);
+  const text='Phrases entendues à l’usine ('+(S.name||'Bùbùgāo')+')\n\n'+list.map((h,i)=>`${i+1}. ${h.d}${h.who?' · '+h.who:''}${h.blob?' · audio : phrase-'+(i+1):''}\n${h.note||'(pas de note)'}`).join('\n\n');
+  let sent=false;
+  try{if(files.length&&navigator.canShare&&navigator.canShare({files})){await navigator.share({files,text,title:'Phrases entendues'});sent=true;}
+    else if(navigator.share){await navigator.share({text,title:'Phrases entendues'});sent=true;
+      files.forEach(f=>{const u=URL.createObjectURL(f),a=document.createElement('a');a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);});
+      if(files.length)toast('Le texte est parti. Les sons sont dans Téléchargements : envoie-les aussi.');}
+    else{ui.heardText=text;render();return;}
+  }catch(e){if(e&&e.name==='AbortError')return;toast('Envoi impossible pour l’instant. Réessaie plus tard.');return;}
+  if(sent){for(const h of list){h.sent=today();await updHeard(h);}if(!files.length||navigator.canShare&&navigator.canShare({files}))toast('Merci ! Tes phrases vont devenir des leçons.');render();}
+}
 /* ---------- l'escalier : un mot appris = une marche, un chapitre = un palier ---------- */
 const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':'Dire ton nom, d’où tu viens, et saluer','hsk1-02':'Compter et dire les nombres',
   'hsk1-03':'Parler de ta famille et de tes proches','hsk1-04':'Dire l’heure et la date à ton chef','hsk1-05':'Commander à manger et à boire',
@@ -1277,9 +1312,33 @@ function renderPhotos(){
     <button class="btn sm ghost" data-act="phdel" data-id="${it.id}" style="align-self:flex-start">Retirer</button></div>`).join('')}</div>
   <button class="btn block" data-act="home">Retour à l’accueil</button>`;
 }
+function renderHeard(){
+  const h=ui.heard||(ui.heard={note:'',who:''}),wait=HEARD.filter(x=>!x.sent),done=HEARD.filter(x=>x.sent);
+  const row=x=>`<div class="word" style="align-items:flex-start"><div class="grow stack sm"><span class="tiny muted">${esc(x.d.split('-').reverse().join('/'))}${x.who?' · '+esc(x.who):''}${x.sent?' · envoyée':''}</span><span class="small">${esc(x.note||'(pas de note)')}</span>${x.blob?`<audio controls preload="none" src="${x.url||(x.url=URL.createObjectURL(x.blob))}" style="width:100%;height:36px"></audio>`:''}</div>
+    <button class="btn sm ghost" data-act="hdel" data-k="${x.k}" aria-label="Supprimer cette phrase">${ICON.x}</button></div>`;
+  return `<div class="stack sm"><span class="label">Parler</span><h1>J’ai entendu une phrase</h1>
+   <p class="muted small">Ton chef ou un collègue a dit une phrase que tu ne connais pas ? Enregistre-la, ou répète-la toi-même juste après. Puis écris ce que tu as compris. Elle pourra devenir une leçon dans tes prochains chapitres.</p></div>
+  <section class="card stack">
+   ${h.file?`<label class="btn primary block">${ICON.mic} Ouvrir l’enregistreur du téléphone<input id="heardfile" type="file" accept="audio/*" capture hidden></label>`
+     :h.rec?`<button class="btn primary block" data-act="hstop">${ICON.stop} Arrêter l’enregistrement</button><p class="tiny muted">30 secondes au maximum.</p>`
+     :`<button class="btn ${h.blob?'':'primary'} block" data-act="hrec">${ICON.mic} ${h.blob?'Recommencer l’enregistrement':'Enregistrer la phrase'}</button>`}
+   ${h.url?`<audio controls src="${h.url}" style="width:100%"></audio>`:''}
+   <label class="label" for="hn">Ce que tu as compris, ou à quel moment on la dit</label>
+   <textarea id="hn" rows="3" placeholder="Le chef dit ça quand la colle est mal mise…" style="width:100%;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 12px;font:inherit">${esc(h.note||'')}</textarea>
+   <div class="row"><span class="small muted">Qui l’a dit ?</span>${['Le chef','Un collègue','Autre'].map(w=>`<button class="chip ${h.who===w?'on':''}" data-act="hwho" data-v="${w}">${w}</button>`).join('')}</div>
+   <p id="herr" class="small" style="color:var(--bad)" hidden>Enregistre la phrase ou écris au moins une note.</p>
+   <button class="btn primary block" data-act="hsave" ${h.rec?'disabled':''}>Garder cette phrase</button>
+  </section>
+  ${wait.length?`<section class="card stack"><div class="row between"><h3>À envoyer</h3><span class="badge">${wait.length}</span></div><div class="wordlist">${wait.map(row).join('')}</div>
+    <button class="btn primary block" data-act="hshare">Envoyer mes ${wait.length} phrase${wait.length>1?'s':''}</button><p class="tiny muted">Choisis WhatsApp ou e-mail, et envoie-les à la personne qui prépare tes chapitres.</p>
+    ${ui.heardText?`<textarea readonly rows="6" style="width:100%">${esc(ui.heardText)}</textarea><p class="tiny muted">Copie ce texte et envoie-le.</p>`:''}</section>`:''}
+  ${done.length?`<details class="card flat"><summary>Déjà envoyées (${done.length})</summary><div class="wordlist">${done.slice(-20).reverse().map(row).join('')}</div></details>`:''}
+  <button class="btn block" data-act="tab" data-k="parler">Retour</button>`;
+}
 function renderParler(){
   const cur=currentStage();const pool=ITEMS.filter(x=>isIntro(x)||S.demo);
   return `<div class="stack sm"><span class="label">Parler</span><h1>Conversations</h1><p class="muted small">Des situations réelles, du plus simple au plus ambitieux. Le chef ne te corrige jamais brutalement : il te propose la bonne phrase.</p></div>
+  <section class="card row" style="flex-wrap:nowrap;border:2px solid var(--accent)"><div class="grow"><b>J’ai entendu une phrase</b><br><span class="small muted">${HEARD.filter(x=>!x.sent).length?HEARD.filter(x=>!x.sent).length+' à envoyer. ':''}Une phrase de l’usine que tu ne connais pas ? Garde-la, elle deviendra une leçon.</span></div><button class="btn primary sm" data-act="tab" data-k="heard" aria-label="J’ai entendu une phrase">${ICON.mic}</button></section>
   <div class="stack">${CONVS.map(c=>{const ok=unlocked(c.st);const n=S.convDone[c.id]||0;return `<button class="list-btn ${ok?'':'locked'}" data-act="${ok?'conv':'locked'}" data-id="${c.id}">
      <span class="zh">${c.who}</span><span class="grow"><b>${esc(c.title)}</b><br><span class="small muted">${STAGES[c.st].fr} · ${esc(c.whoFr)}</span></span>
      ${ok?(n?`<span class="badge ok">${n}×</span>`:'<span class="badge">Nouveau</span>'):`<span class="badge">${ICON.lock}</span>`}</button>`;}).join('')}</div>
@@ -1557,7 +1616,15 @@ function diagEnd(){
 let toastT=null;
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2800);}
 const ACT={
- tab:d=>{ui.tab=d.k;render();window.scrollTo(0,0);},
+ tab:d=>{if(ui.tab==='heard'&&d.k!=='heard'){heardRecStop();ui.heard=null;ui.heardText=null;}ui.tab=d.k;render();window.scrollTo(0,0);},
+ hrec:()=>heardRecStart(),
+ hstop:()=>heardRecStop(),
+ hwho:d=>{ui.heard.who=ui.heard.who===d.v?'':d.v;render();},
+ hsave:async()=>{const h=ui.heard;if(!h||(!h.blob&&!(h.note||'').trim())){const e=document.getElementById('herr');if(e)e.hidden=false;return;}
+   const ok=await addHeard({d:today(),blob:h.blob||null,note:(h.note||'').trim(),who:h.who||'',sent:false});
+   if(h.url)URL.revokeObjectURL(h.url);ui.heard={note:'',who:''};if(ok){addXP(15);save();buzz(18);toast('Phrase gardée ! +15 XP');}else toast('Le téléphone n’a pas pu garder cette phrase.');render();},
+ hdel:async d=>{await delHeard(+d.k);render();},
+ hshare:()=>shareHeard(),
  vibre:()=>{S.vibre=S.vibre===false;save();buzz(40);render();},
  phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
    toast(ok?'Photo ajoutée : '+it.h+' · '+it.fr:'Photo gardée pour cette fois, mais le téléphone n’a pas pu l’enregistrer.');try{say(it.h);}catch(e){}},
@@ -1612,6 +1679,7 @@ const ACT={
 app.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset,b);});
 app.addEventListener('toggle',e=>{if(e.target.id==='settings')ui.settingsOpen=e.target.open;},true);
 app.addEventListener('change',e=>{
+  if(e.target.id==='heardfile'&&e.target.files&&e.target.files[0]&&ui.heard){setHeardAudio(e.target.files[0]);e.target.value='';render();}
   if(e.target.id==='photofile'&&e.target.files&&e.target.files[0]){const f=e.target.files[0];e.target.value='';
     shrinkPhoto(f).then(u=>{ui.phNew=u;ui.phFilter='';ui.tab='photopick';render();window.scrollTo(0,0);}).catch(()=>toast('Impossible de lire cette photo. Réessaie.'));}
   if(e.target.id==='restorefile'&&e.target.files&&e.target.files[0]){readBackup(e.target.files[0]);e.target.value='';}
@@ -1621,6 +1689,7 @@ app.addEventListener('change',e=>{
 app.addEventListener('input',e=>{
   if(e.target.id==='wf'){ui.wordFilter=e.target.value;const pos=e.target.selectionStart;render();const n=document.getElementById('wf');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(_){}}}
   if(e.target.id==='nm'){S.name=e.target.value.trim();}
+  if(e.target.id==='hn'&&ui.heard){ui.heard.note=e.target.value;const er=document.getElementById('herr');if(er)er.hidden=true;}
   if(e.target.id==='phf'){ui.phFilter=e.target.value;const pos=e.target.selectionStart;render();const n=document.getElementById('phf');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(_){}}}
 });
 window.addEventListener('resize',()=>{if(ui.sess&&!ui.sess.end){const st=ui.sess.steps[ui.sess.i];if(st&&st.kind==='shadow')drawCurve(document.getElementById('cv'),st.it,st.rec&&st.rec.state==='done'?st.rec.res:null);}});
@@ -1633,6 +1702,7 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 refreshJokers();
 render();
 loadPhotos().then(()=>{if(Object.keys(PH).length&&!ui.sess)render();});
+loadHeard().then(()=>{if(HEARD.length&&!ui.sess&&ui.tab==='parler')render();});
 if(navigator.onLine!==false)checkUpdates(false);else loadAudioIndex();
 askPersist().then(()=>{if(!ui.sess&&ui.tab==='progres')render();});
 window.addEventListener('appinstalled',()=>askPersist());

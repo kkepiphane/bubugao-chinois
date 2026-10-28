@@ -101,11 +101,22 @@ Le script `scripts/make_packs.py` contient tout le contenu en clair : il régén
 
 Remplacer `index.html`, et changer `VERSION` dans `sw.js` (ex. `bubugao-app-v6`).
 
-## 9. Continuer avec Claude
+## 9. Les phrases qu'elle entend à l'usine
+
+Dans l'onglet **Parler**, le bouton **J'ai entendu une phrase** lui permet d'enregistrer une phrase (ou de la répéter
+juste après), d'écrire ce qu'elle a compris et qui l'a dit. Les phrases restent sur son téléphone jusqu'à ce qu'elle
+touche **Envoyer** : elle choisit WhatsApp ou e-mail, et tu reçois les sons + un texte récapitulatif.
+
+Claude ne sait pas écouter les sons de façon fiable : fais d'abord écrire chaque phrase en caractères chinois par un
+collègue chinois (ou demande à Claude d'installer un outil de reconnaissance vocale, puis vérifie avec un collègue).
+Ensuite, donne à Claude les phrases écrites + ses notes : « Voici ses phrases de l'usine, fais-en un chapitre ».
+Il vérifiera le pinyin et les tons, et mettra le chapitre dans la file du robot.
+
+## 10. Continuer avec Claude
 
 Ouvre le dépôt dans Claude Code (ou donne-lui l'accès au dépôt). `CLAUDE.md` et les skills de `.claude/skills/`
 lui expliquent tout. Exemples de demandes :
 - « Écris les 4 prochains chapitres de la branche Vie quotidienne et mets-les dans la file du robot. »
 - « Prépare le parcours HSK 2. »
 - « La voix ne lit pas la phrase X : corrige. »
-- « Ajoute un bouton pour qu'elle m'envoie les phrases qu'elle entend à l'usine. »
+- « Voici les phrases qu'elle a entendues à l'usine (sons + notes) : fais-en un chapitre Usine. »
