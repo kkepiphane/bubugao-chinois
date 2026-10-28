@@ -60,6 +60,51 @@
    "id": "hsk2-05",
    "file": "hsk2-05-comprendre.json",
    "title": "HSK 2 · 5 — Comprendre et s’entraider"
+  },
+  {
+   "id": "quotidien-02-restaurant",
+   "file": "quotidien-02-restaurant.json",
+   "title": "Vie quotidienne · Au restaurant et à la cantine"
+  },
+  {
+   "id": "hsk2-06",
+   "file": "hsk2-06-loisirs.json",
+   "title": "HSK 2 · 6 — Sport et loisirs"
+  },
+  {
+   "id": "quotidien-03-transport",
+   "file": "quotidien-03-transport.json",
+   "title": "Vie quotidienne · Moto-taxi, bus et taxi"
+  },
+  {
+   "id": "hsk2-07",
+   "file": "hsk2-07-temps-qui-passe.json",
+   "title": "HSK 2 · 7 — Le temps qu’il fait, le temps qui passe"
+  },
+  {
+   "id": "quotidien-04-sante",
+   "file": "quotidien-04-sante.json",
+   "title": "Vie quotidienne · Pharmacie et médecin"
+  },
+  {
+   "id": "hsk2-08",
+   "file": "hsk2-08-a-table.json",
+   "title": "HSK 2 · 8 — À table : encore, aussi, permis"
+  },
+  {
+   "id": "quotidien-05-wechat",
+   "file": "quotidien-05-wechat.json",
+   "title": "Vie quotidienne · Téléphone et WeChat"
+  },
+  {
+   "id": "hsk2-09",
+   "file": "hsk2-09-inviter.json",
+   "title": "HSK 2 · 9 — Entrer, sortir, offrir"
+  },
+  {
+   "id": "hsk2-10",
+   "file": "hsk2-10-examen.json",
+   "title": "HSK 2 · 10 — Examen, raisons et avis"
   }
  ]
 }

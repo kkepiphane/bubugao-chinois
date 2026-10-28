@@ -1,0 +1,609 @@
+{
+ "branch": "quotidien",
+ "title": "Vie quotidienne · Au restaurant et à la cantine",
+ "desc": "Commander un plat, dire si tu as faim, demander pas trop piquant, payer ou emporter.",
+ "grammar": {
+  "title": "来 + quantité : commander",
+  "explain": "Au restaurant, les Chinois ne disent presque jamais « je voudrais ». Ils disent 来 (lái, « venir ») + la quantité + le plat : 来一碗米饭 = un bol de riz, s’il te plaît. C’est poli et très naturel.",
+  "examples": [
+   {
+    "h": "来一碗米饭。",
+    "p": "Lái yì wǎn mǐfàn.",
+    "fr": "Un bol de riz, s’il te plaît."
+   },
+   {
+    "h": "来两瓶矿泉水。",
+    "p": "Lái liǎng píng kuàngquánshuǐ.",
+    "fr": "Deux bouteilles d’eau minérale."
+   },
+   {
+    "h": "再来一碗。",
+    "p": "Zài lái yì wǎn.",
+    "fr": "Encore un bol."
+   },
+   {
+    "h": "来一个炒饭，不要太辣。",
+    "p": "Lái yí ge chǎofàn, bú yào tài là.",
+    "fr": "Un riz sauté, pas trop piquant."
+   }
+  ],
+  "tip": "碗 (bol) et 瓶 (bouteille) servent aussi à compter : 一碗汤 = un bol de soupe, 一瓶水 = une bouteille d’eau."
+ },
+ "items": [
+  {
+   "id": "q2_shitang",
+   "h": "食堂",
+   "p": "shi-tang",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Cantine",
+   "st": 0,
+   "m": "À midi, demande à une collègue : 你去食堂吗？"
+  },
+  {
+   "id": "q2_wan",
+   "h": "碗",
+   "p": "wan",
+   "t": [
+    3
+   ],
+   "fr": "Bol",
+   "st": 0
+  },
+  {
+   "id": "q2_kuaizi",
+   "h": "筷子",
+   "p": "kuai-zi",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Baguettes",
+   "st": 0
+  },
+  {
+   "id": "q2_shaozi",
+   "h": "勺子",
+   "p": "shao-zi",
+   "t": [
+    2,
+    0
+   ],
+   "fr": "Cuillère",
+   "st": 0
+  },
+  {
+   "id": "q2_caidan",
+   "h": "菜单",
+   "p": "cai-dan",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Menu, la carte",
+   "st": 0
+  },
+  {
+   "id": "q2_diancai",
+   "h": "点菜",
+   "p": "dian cai",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Commander (des plats)",
+   "st": 0
+  },
+  {
+   "id": "q2_maidan",
+   "h": "买单",
+   "p": "mai dan",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Payer l’addition",
+   "st": 0
+  },
+  {
+   "id": "q2_dabao",
+   "h": "打包",
+   "p": "da bao",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Emballer pour emporter",
+   "st": 0
+  },
+  {
+   "id": "q2_la",
+   "h": "辣",
+   "p": "la",
+   "t": [
+    4
+   ],
+   "fr": "Piquant, pimenté",
+   "st": 0
+  },
+  {
+   "id": "q2_tian",
+   "h": "甜",
+   "p": "tian",
+   "t": [
+    2
+   ],
+   "fr": "Sucré",
+   "st": 0
+  },
+  {
+   "id": "q2_xian",
+   "h": "咸",
+   "p": "xian",
+   "t": [
+    2
+   ],
+   "fr": "Salé",
+   "st": 0
+  },
+  {
+   "id": "q2_e",
+   "h": "饿",
+   "p": "e",
+   "t": [
+    4
+   ],
+   "fr": "Avoir faim",
+   "st": 0
+  },
+  {
+   "id": "q2_ke",
+   "h": "渴",
+   "p": "ke",
+   "t": [
+    3
+   ],
+   "fr": "Avoir soif",
+   "st": 0
+  },
+  {
+   "id": "q2_bao",
+   "h": "饱",
+   "p": "bao",
+   "t": [
+    3
+   ],
+   "fr": "Rassasiée (j’ai assez mangé)",
+   "st": 0
+  },
+  {
+   "id": "q2_tang",
+   "h": "汤",
+   "p": "tang",
+   "t": [
+    1
+   ],
+   "fr": "Soupe",
+   "st": 0
+  },
+  {
+   "id": "q2_jiaozi",
+   "h": "饺子",
+   "p": "jiao-zi",
+   "t": [
+    3,
+    0
+   ],
+   "fr": "Raviolis chinois",
+   "st": 0
+  },
+  {
+   "id": "q2_chaofan",
+   "h": "炒饭",
+   "p": "chao-fan",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Riz sauté",
+   "st": 0
+  },
+  {
+   "id": "q2_kuangquanshui",
+   "h": "矿泉水",
+   "p": "kuang-quan-shui",
+   "t": [
+    4,
+    2,
+    3
+   ],
+   "fr": "Eau minérale",
+   "st": 0
+  },
+  {
+   "id": "q2_s_laiyiwan",
+   "h": "来一碗米饭",
+   "p": "lai yi wan mi-fan",
+   "t": [
+    2,
+    4,
+    3,
+    3,
+    4
+   ],
+   "fr": "Un bol de riz, s’il te plaît",
+   "st": 0,
+   "s": [
+    2,
+    4,
+    2,
+    3,
+    4
+   ],
+   "m": "Au restaurant chinois ou à la cantine, commande : 来一碗米饭。"
+  },
+  {
+   "id": "q2_s_buyaotaila",
+   "h": "不要太辣",
+   "p": "bu yao tai la",
+   "t": [
+    2,
+    4,
+    4,
+    4
+   ],
+   "fr": "Pas trop piquant",
+   "st": 0
+  },
+  {
+   "id": "q2_s_youbulade",
+   "h": "有不辣的吗",
+   "p": "you bu la de ma",
+   "t": [
+    3,
+    2,
+    4,
+    0,
+    0
+   ],
+   "fr": "Il y a des plats pas piquants ?",
+   "st": 0
+  },
+  {
+   "id": "q2_s_zheshishenmecai",
+   "h": "这是什么菜",
+   "p": "zhe shi shen-me cai",
+   "t": [
+    4,
+    4,
+    2,
+    0,
+    4
+   ],
+   "fr": "C’est quel plat ?",
+   "st": 0,
+   "m": "À la cantine, montre un plat que tu ne connais pas et demande : 这是什么菜？"
+  },
+  {
+   "id": "q2_s_eile",
+   "h": "我饿了",
+   "p": "wo e le",
+   "t": [
+    3,
+    4,
+    0
+   ],
+   "fr": "J’ai faim",
+   "st": 0
+  },
+  {
+   "id": "q2_s_chibaole",
+   "h": "我吃饱了",
+   "p": "wo chi bao le",
+   "t": [
+    3,
+    1,
+    3,
+    0
+   ],
+   "fr": "J’ai bien mangé, je n’ai plus faim",
+   "st": 0
+  },
+  {
+   "id": "q2_s_buchizhurou",
+   "h": "我不吃猪肉",
+   "p": "wo bu chi zhu-rou",
+   "t": [
+    3,
+    4,
+    1,
+    1,
+    4
+   ],
+   "fr": "Je ne mange pas de porc",
+   "st": 0
+  },
+  {
+   "id": "q2_s_laiyiping",
+   "h": "来一瓶矿泉水",
+   "p": "lai yi ping kuang-quan-shui",
+   "t": [
+    2,
+    4,
+    2,
+    4,
+    2,
+    3
+   ],
+   "fr": "Une bouteille d’eau minérale",
+   "st": 0
+  },
+  {
+   "id": "q2_s_zailaiyiwan",
+   "h": "再来一碗",
+   "p": "zai lai yi wan",
+   "t": [
+    4,
+    2,
+    4,
+    3
+   ],
+   "fr": "Encore un bol, s’il te plaît",
+   "st": 0
+  },
+  {
+   "id": "q2_s_zaizhechi",
+   "h": "在这儿吃还是带走",
+   "p": "zai zhe-r chi hai-shi dai zou",
+   "t": [
+    4,
+    4,
+    0,
+    1,
+    2,
+    0,
+    4,
+    3
+   ],
+   "fr": "Sur place ou à emporter ?",
+   "st": 0
+  },
+  {
+   "id": "q2_s_bangwodabao",
+   "h": "帮我打包",
+   "p": "bang wo da bao",
+   "t": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "fr": "Mets-le-moi à emporter",
+   "st": 0,
+   "s": [
+    1,
+    2,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "q2_s_fuwuyuanmaidan",
+   "h": "服务员，买单",
+   "p": "fu-wu-yuan mai dan",
+   "t": [
+    2,
+    4,
+    2,
+    3,
+    1
+   ],
+   "fr": "L’addition, s’il vous plaît !",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "汤",
+    "p": "tang",
+    "t": 1,
+    "fr": "soupe"
+   },
+   {
+    "h": "糖",
+    "p": "tang",
+    "t": 2,
+    "fr": "sucre"
+   }
+  ],
+  [
+   {
+    "h": "饱",
+    "p": "bao",
+    "t": 3,
+    "fr": "rassasiée"
+   },
+   {
+    "h": "包",
+    "p": "bao",
+    "t": 1,
+    "fr": "sac, emballer"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "饭",
+   "p": "fàn",
+   "m": "repas, riz cuit",
+   "r": "饣",
+   "rm": "nourriture"
+  },
+  {
+   "c": "饿",
+   "p": "è",
+   "m": "avoir faim",
+   "r": "饣",
+   "rm": "nourriture"
+  },
+  {
+   "c": "饱",
+   "p": "bǎo",
+   "m": "rassasiée",
+   "r": "饣",
+   "rm": "nourriture"
+  },
+  {
+   "c": "碗",
+   "p": "wǎn",
+   "m": "bol",
+   "r": "石",
+   "rm": "pierre"
+  },
+  {
+   "c": "筷",
+   "p": "kuài",
+   "m": "baguette",
+   "r": "竹",
+   "rm": "bambou"
+  },
+  {
+   "c": "汤",
+   "p": "tāng",
+   "m": "soupe",
+   "r": "氵",
+   "rm": "eau"
+  },
+  {
+   "c": "辣",
+   "p": "là",
+   "m": "piquant",
+   "r": "辛",
+   "rm": "saveur forte"
+  },
+  {
+   "c": "甜",
+   "p": "tián",
+   "m": "sucré",
+   "r": "舌",
+   "rm": "langue"
+  }
+ ],
+ "convs": [
+  {
+   "id": "restaurant",
+   "st": 0,
+   "title": "Un midi au petit restaurant",
+   "who": "服务员",
+   "whoFr": "Serveuse",
+   "intro": "Pause de midi. Tu vas manger dans un petit restaurant chinois près de l’usine.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好！吃什么？",
+     "p": "Nǐ hǎo! Chī shénme?",
+     "fr": "Bonjour ! Tu manges quoi ?",
+     "o": [
+      {
+       "h": "来一个炒饭。",
+       "p": "Lái yí ge chǎofàn.",
+       "fr": "Un riz sauté, s’il te plaît.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我饿了。",
+       "p": "Wǒ è le.",
+       "fr": "J’ai faim.",
+       "fix": "Elle sait que tu as faim ! Dis ce que tu veux : « 来一个炒饭 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "要辣的吗？",
+     "p": "Yào là de ma?",
+     "fr": "Tu le veux piquant ?",
+     "o": [
+      {
+       "h": "不要太辣，谢谢。",
+       "p": "Bú yào tài là, xièxie.",
+       "fr": "Pas trop piquant, merci.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "要，我喜欢辣的。",
+       "p": "Yào, wǒ xǐhuan là de.",
+       "fr": "Oui, j’aime le piquant.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我很辣。",
+       "p": "Wǒ hěn là.",
+       "fr": "Je suis très piquante.",
+       "fix": "我很辣 = « je suis piquante » ! Dis « 不要太辣 » (pas trop piquant) ou « 要辣的 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "喝什么？",
+     "p": "Hē shénme?",
+     "fr": "Et à boire ?",
+     "o": [
+      {
+       "h": "来一瓶矿泉水。",
+       "p": "Lái yì píng kuàngquánshuǐ.",
+       "fr": "Une bouteille d’eau minérale.",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "来一碗矿泉水。",
+       "p": "Lái yì wǎn kuàngquánshuǐ.",
+       "fr": "Un bol d’eau minérale.",
+       "fix": "L’eau minérale, c’est en bouteille : « 一瓶矿泉水 »."
+      }
+     ]
+    },
+    "d": {
+     "h": "吃饱了吗？",
+     "p": "Chī bǎo le ma?",
+     "fr": "Tu as bien mangé ?",
+     "o": [
+      {
+       "h": "吃饱了！服务员，买单。",
+       "p": "Chī bǎo le! Fúwùyuán, mǎidān.",
+       "fr": "Oui, j’ai bien mangé ! L’addition, s’il vous plaît.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我渴了。",
+       "p": "Wǒ kě le.",
+       "fr": "J’ai soif.",
+       "fix": "渴 = avoir soif. Pour dire que tu as assez mangé : « 吃饱了 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "一共二十五块。谢谢，慢走！",
+     "p": "Yígòng èrshíwǔ kuài. Xièxie, màn zǒu!",
+     "fr": "Ça fait vingt-cinq yuans en tout. Merci, au revoir !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "慢走",
+   "p": "màn zǒu",
+   "fr": "Au revoir (à quelqu’un qui part)",
+   "note": "Mot à mot « marche lentement » : le patron le dit aux clients qui s’en vont."
+  }
+ ]
+}

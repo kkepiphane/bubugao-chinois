@@ -1,0 +1,557 @@
+{
+ "branch": "quotidien",
+ "title": "Vie quotidienne · Moto-taxi, bus et taxi",
+ "desc": "Dire où tu vas, demander le prix, guider le chauffeur et demander l’arrêt.",
+ "grammar": {
+  "title": "在 + lieu + verbe : dire où ça se passe",
+  "explain": "En chinois, le lieu vient AVANT l’action : 在 (zài) + lieu + verbe. Pour dire « arrête-toi ici », on dit 在这儿停 (mot à mot « ici arrête-toi »). En français c’est l’inverse, alors entraîne-toi !",
+  "examples": [
+   {
+    "h": "请在这儿停。",
+    "p": "Qǐng zài zhèr tíng.",
+    "fr": "Arrête-toi ici, s’il te plaît."
+   },
+   {
+    "h": "在路口左拐。",
+    "p": "Zài lùkǒu zuǒ guǎi.",
+    "fr": "Au carrefour, tourne à gauche."
+   },
+   {
+    "h": "我在车站下车。",
+    "p": "Wǒ zài chēzhàn xià chē.",
+    "fr": "Je descends à la gare."
+   },
+   {
+    "h": "我在路口等你。",
+    "p": "Wǒ zài lùkǒu děng nǐ.",
+    "fr": "Je t’attends au carrefour."
+   }
+  ],
+  "tip": "Pour appeler un chauffeur poliment, dis 师傅 (shīfu) : c’est le mot normal pour tous les chauffeurs et les ouvriers qualifiés."
+ },
+ "items": [
+  {
+   "id": "q3_motuoche",
+   "h": "摩托车",
+   "p": "mo-tuo-che",
+   "t": [
+    2,
+    1,
+    1
+   ],
+   "fr": "Moto",
+   "st": 0
+  },
+  {
+   "id": "q3_modi",
+   "h": "摩的",
+   "p": "mo-di",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Moto-taxi (zémidjan)",
+   "st": 0
+  },
+  {
+   "id": "q3_siji",
+   "h": "司机",
+   "p": "si-ji",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Chauffeur",
+   "st": 0
+  },
+  {
+   "id": "q3_shifu",
+   "h": "师傅",
+   "p": "shi-fu",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Chef ! (pour appeler un chauffeur)",
+   "st": 0,
+   "m": "En moto-taxi ou en taxi avec un chauffeur chinois, appelle-le : 师傅！"
+  },
+  {
+   "id": "q3_toukui",
+   "h": "头盔",
+   "p": "tou-kui",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Casque",
+   "st": 0
+  },
+  {
+   "id": "q3_gongjiaoche",
+   "h": "公交车",
+   "p": "gong-jiao-che",
+   "t": [
+    1,
+    1,
+    1
+   ],
+   "fr": "Bus (en ville)",
+   "st": 0
+  },
+  {
+   "id": "q3_chezhan",
+   "h": "车站",
+   "p": "che-zhan",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Gare routière, station",
+   "st": 0
+  },
+  {
+   "id": "q3_zhan",
+   "h": "站",
+   "p": "zhan",
+   "t": [
+    4
+   ],
+   "fr": "Arrêt (de bus)",
+   "st": 0
+  },
+  {
+   "id": "q3_shangche",
+   "h": "上车",
+   "p": "shang che",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Monter (dans un véhicule)",
+   "st": 0
+  },
+  {
+   "id": "q3_xiache",
+   "h": "下车",
+   "p": "xia che",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Descendre (d’un véhicule)",
+   "st": 0
+  },
+  {
+   "id": "q3_ting",
+   "h": "停",
+   "p": "ting",
+   "t": [
+    2
+   ],
+   "fr": "S’arrêter",
+   "st": 0
+  },
+  {
+   "id": "q3_lukou",
+   "h": "路口",
+   "p": "lu-kou",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Carrefour",
+   "st": 0
+  },
+  {
+   "id": "q3_hongludeng",
+   "h": "红绿灯",
+   "p": "hong-lv-deng",
+   "t": [
+    2,
+    4,
+    1
+   ],
+   "fr": "Feu (de circulation)",
+   "st": 0
+  },
+  {
+   "id": "q3_guai",
+   "h": "拐",
+   "p": "guai",
+   "t": [
+    3
+   ],
+   "fr": "Tourner",
+   "st": 0
+  },
+  {
+   "id": "q3_yizhizou",
+   "h": "一直走",
+   "p": "yi-zhi zou",
+   "t": [
+    4,
+    2,
+    3
+   ],
+   "fr": "Tout droit",
+   "st": 0
+  },
+  {
+   "id": "q3_duche",
+   "h": "堵车",
+   "p": "du che",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Embouteillage",
+   "st": 0
+  },
+  {
+   "id": "q3_dizhi",
+   "h": "地址",
+   "p": "di-zhi",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Adresse",
+   "st": 0
+  },
+  {
+   "id": "q3_s_quxiechang",
+   "h": "我去鞋厂",
+   "p": "wo qu xie-chang",
+   "t": [
+    3,
+    4,
+    2,
+    3
+   ],
+   "fr": "Je vais à l’usine de chaussures",
+   "st": 0
+  },
+  {
+   "id": "q3_s_daoshichang",
+   "h": "到市场多少钱",
+   "p": "dao shi-chang duo-shao qian",
+   "t": [
+    4,
+    4,
+    3,
+    1,
+    0,
+    2
+   ],
+   "fr": "C’est combien jusqu’au marché ?",
+   "st": 0,
+   "m": "Avant de monter, demande le prix au chauffeur : 到市场多少钱？"
+  },
+  {
+   "id": "q3_s_zaizheerting",
+   "h": "请在这儿停",
+   "p": "qing zai zhe-r ting",
+   "t": [
+    3,
+    4,
+    4,
+    0,
+    2
+   ],
+   "fr": "Arrête-toi ici, s’il te plaît",
+   "st": 0
+  },
+  {
+   "id": "q3_s_zuoguai",
+   "h": "在路口左拐",
+   "p": "zai lu-kou zuo guai",
+   "t": [
+    4,
+    4,
+    3,
+    3,
+    3
+   ],
+   "fr": "Au carrefour, tourne à gauche",
+   "st": 0,
+   "s": [
+    4,
+    4,
+    3,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "q3_s_youguai",
+   "h": "右拐",
+   "p": "you guai",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Tourne à droite",
+   "st": 0
+  },
+  {
+   "id": "q3_s_yaoxiache",
+   "h": "我要下车",
+   "p": "wo yao xia che",
+   "t": [
+    3,
+    4,
+    4,
+    1
+   ],
+   "fr": "Je veux descendre",
+   "st": 0
+  },
+  {
+   "id": "q3_s_daolema",
+   "h": "到了吗",
+   "p": "dao le ma",
+   "t": [
+    4,
+    0,
+    0
+   ],
+   "fr": "On est arrivés ?",
+   "st": 0
+  },
+  {
+   "id": "q3_s_duchele",
+   "h": "堵车了",
+   "p": "du che le",
+   "t": [
+    3,
+    1,
+    0
+   ],
+   "fr": "Ça bouchonne",
+   "st": 0
+  },
+  {
+   "id": "q3_s_xiayizhan",
+   "h": "下一站是哪儿",
+   "p": "xia yi zhan shi na-r",
+   "t": [
+    4,
+    2,
+    4,
+    4,
+    3,
+    0
+   ],
+   "fr": "Le prochain arrêt, c’est où ?",
+   "st": 0
+  },
+  {
+   "id": "q3_s_zheluche",
+   "h": "这路车去市场吗",
+   "p": "zhe lu che qu shi-chang ma",
+   "t": [
+    4,
+    4,
+    1,
+    4,
+    4,
+    3,
+    0
+   ],
+   "fr": "Ce bus va au marché ?",
+   "st": 0
+  },
+  {
+   "id": "q3_s_dengni",
+   "h": "我在路口等你",
+   "p": "wo zai lu-kou deng ni",
+   "t": [
+    3,
+    4,
+    4,
+    3,
+    3,
+    3
+   ],
+   "fr": "Je t’attends au carrefour",
+   "st": 0,
+   "s": [
+    3,
+    4,
+    4,
+    3,
+    2,
+    3
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "停",
+    "p": "ting",
+    "t": 2,
+    "fr": "s’arrêter"
+   },
+   {
+    "h": "听",
+    "p": "ting",
+    "t": 1,
+    "fr": "écouter"
+   }
+  ],
+  [
+   {
+    "h": "拐",
+    "p": "guai",
+    "t": 3,
+    "fr": "tourner"
+   },
+   {
+    "h": "怪",
+    "p": "guai",
+    "t": 4,
+    "fr": "bizarre"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "站",
+   "p": "zhàn",
+   "m": "arrêt, se tenir debout",
+   "r": "立",
+   "rm": "debout"
+  },
+  {
+   "c": "停",
+   "p": "tíng",
+   "m": "s’arrêter",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "拐",
+   "p": "guǎi",
+   "m": "tourner",
+   "r": "扌",
+   "rm": "main"
+  },
+  {
+   "c": "堵",
+   "p": "dǔ",
+   "m": "boucher",
+   "r": "土",
+   "rm": "terre"
+  },
+  {
+   "c": "灯",
+   "p": "dēng",
+   "m": "lampe, feu",
+   "r": "火",
+   "rm": "feu"
+  },
+  {
+   "c": "机",
+   "p": "jī",
+   "m": "machine",
+   "r": "木",
+   "rm": "bois"
+  },
+  {
+   "c": "摩",
+   "p": "mó",
+   "m": "frotter (dans « moto »)",
+   "r": "手",
+   "rm": "main"
+  }
+ ],
+ "convs": [
+  {
+   "id": "transport",
+   "st": 0,
+   "title": "En taxi dans une ville chinoise",
+   "who": "司机",
+   "whoFr": "Chauffeur de taxi",
+   "intro": "Tu es en voyage en Chine. Tu montes dans un taxi pour aller à la gare.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "你好，去哪儿？",
+     "p": "Nǐ hǎo, qù nǎr?",
+     "fr": "Bonjour, on va où ?",
+     "o": [
+      {
+       "h": "师傅，去火车站。",
+       "p": "Shīfu, qù huǒchēzhàn.",
+       "fr": "Chef, à la gare, s’il vous plaît.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我在这儿。",
+       "p": "Wǒ zài zhèr.",
+       "fr": "Je suis ici.",
+       "fix": "Il demande où tu vas : réponds « 去… » + le lieu, par exemple « 去火车站 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "前面堵车，我们右拐，好吗？",
+     "p": "Qiánmiàn dǔchē, wǒmen yòu guǎi, hǎo ma?",
+     "fr": "Ça bouchonne devant, on tourne à droite, d’accord ?",
+     "o": [
+      {
+       "h": "好，没问题。",
+       "p": "Hǎo, méi wèntí.",
+       "fr": "D’accord, pas de problème.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我要下车。",
+       "p": "Wǒ yào xià chē.",
+       "fr": "Je veux descendre.",
+       "fix": "Pas besoin de descendre ! Il te propose un autre chemin : dis « 好，没问题 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "到了。在这儿停吗？",
+     "p": "Dào le. Zài zhèr tíng ma?",
+     "fr": "On est arrivés. Je m’arrête ici ?",
+     "o": [
+      {
+       "h": "对，请在这儿停。多少钱？",
+       "p": "Duì, qǐng zài zhèr tíng. Duōshao qián?",
+       "fr": "Oui, arrêtez-vous ici. C’est combien ?",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "请这儿在停。",
+       "p": "Qǐng zhèr zài tíng.",
+       "fr": "(phrase mal construite)",
+       "fix": "在 se met juste avant le lieu, puis vient le verbe : « 请在这儿停 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "三十块。谢谢！",
+     "p": "Sānshí kuài. Xièxie!",
+     "fr": "Trente yuans. Merci !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "一路平安",
+   "p": "yílù píng’ān",
+   "fr": "Bon voyage !",
+   "note": "Mot à mot « toute la route en paix » : à dire à quelqu’un qui part loin."
+  }
+ ]
+}

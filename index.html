@@ -1144,7 +1144,11 @@ const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':
   'hsk1-06':'Acheter et demander le prix','hsk1-07':'Dire où se trouve quelque chose','hsk1-08':'Te déplacer et téléphoner',
   'hsk1-09':'Raconter ce que tu fais','hsk1-10':'Parler de la météo et rester polie','hsk2-01':'Présenter tes frères, tes sœurs et tes amis',
   'hsk2-02':'Raconter ta journée et dire si tu es malade','hsk2-03':'Comparer les prix et les couleurs','hsk2-04':'Demander et expliquer le chemin',
-  'hsk2-05':'Dire que tu ne comprends pas et demander de l’aide','travail-compter':'Compter les paires à l’atelier','quotidien-marche':'Faire tes courses au marché'};
+  'hsk2-05':'Dire que tu ne comprends pas et demander de l’aide',
+  'hsk2-06':'Parler de sport et proposer une sortie','hsk2-07':'Parler du temps et dire ce que tu as déjà fait','hsk2-08':'Dire que c’est bon et en redemander',
+  'hsk2-09':'Accueillir, offrir un cadeau et dire « ne fais pas ça »','hsk2-10':'Dire pourquoi et donner ton avis','travail-compter':'Compter les paires à l’atelier','quotidien-marche':'Faire tes courses au marché',
+  'quotidien-02-restaurant':'Commander au restaurant et à la cantine','quotidien-03-transport':'Prendre un moto-taxi, un bus ou un taxi',
+  'quotidien-04-sante':'Dire où tu as mal à la pharmacie','quotidien-05-wechat':'Échanger ton numéro et écrire sur WeChat'};
 const shortTitle=p=>(p.title||p.id).split(/ — | · (?=[^·]*$)/).pop();
 const canDo=p=>CANDO[p.id]||shortTitle(p);
 const proverbesGagnes=()=>Math.min(PROVERBES.length,donePacks().length);
