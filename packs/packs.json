@@ -35,6 +35,12 @@
    "v": 1,
    "file": "hsk1-04-temps.json",
    "title": "HSK 1 · 4 — L’heure et la date"
+  },
+  {
+   "id": "hsk1-05",
+   "v": 1,
+   "file": "hsk1-05-manger.json",
+   "title": "HSK 1 · 5 — Manger et boire"
   }
  ]
 }
