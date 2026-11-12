@@ -1,0 +1,603 @@
+{
+ "branch": "travail",
+ "title": "Métier · Coupures et pannes",
+ "desc": "Coupure de courant, machine en panne, groupe électrogène : sécuriser, prévenir, redémarrer et rattraper la production.",
+ "module": {
+  "icon": "pannes",
+  "stage": 0,
+  "fiche": {
+   "title": "Coupure ou machine en panne",
+   "steps": [
+    "Arrête la machine (bouton d’arrêt) et retire tes mains.",
+    "Préviens le chef d’équipe : 「机器坏了」 ou 「停电了」.",
+    "Ne répare jamais toi-même : va chercher le technicien. 「我去叫师傅」",
+    "Si ça fume ou sent le brûlé : éloigne-toi et préviens tout de suite. 「冒烟了！」",
+    "Quand le courant revient, on rallume une machine à la fois, après vérification. 「先检查一下」",
+    "Note combien de paires manquent pour rattraper le retard calmement."
+   ]
+  }
+ },
+ "grammar": {
+  "title": "先… 再… : « d’abord…, ensuite… »",
+  "explain": "Pour donner l’ordre des gestes, mets 先 (xiān) devant la première action et 再 (zài) devant la suivante. Très utile en cas de panne, où l’ordre compte : d’abord sécuriser, ensuite réparer.",
+  "examples": [
+   {
+    "h": "先关机器，再叫师傅。",
+    "p": "Xiān guān jīqì, zài jiào shīfu.",
+    "fr": "D’abord éteins la machine, ensuite appelle le technicien."
+   },
+   {
+    "h": "先断电，再修。",
+    "p": "Xiān duàn diàn, zài xiū.",
+    "fr": "D’abord on coupe le courant, ensuite on répare."
+   },
+   {
+    "h": "先检查一下，再开机。",
+    "p": "Xiān jiǎnchá yíxià, zài kāi jī.",
+    "fr": "D’abord on vérifie, ensuite on rallume."
+   },
+   {
+    "h": "我先去看看。",
+    "p": "Wǒ xiān qù kànkan.",
+    "fr": "Je vais d’abord voir."
+   }
+  ],
+  "tip": "Tu entendras aussi 然后 (ránhòu, « puis ») : 先关机器，然后叫师傅."
+ },
+ "items": [
+  {
+   "id": "m2_guzhang",
+   "h": "故障",
+   "p": "gu-zhang",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Panne",
+   "st": 0
+  },
+  {
+   "id": "m2_fadianji",
+   "h": "发电机",
+   "p": "fa-dian-ji",
+   "t": [
+    1,
+    4,
+    1
+   ],
+   "fr": "Groupe électrogène",
+   "st": 0
+  },
+  {
+   "id": "m2_chaiyou",
+   "h": "柴油",
+   "p": "chai-you",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Gazole",
+   "st": 0
+  },
+  {
+   "id": "m2_kaiguan",
+   "h": "开关",
+   "p": "kai-guan",
+   "t": [
+    1,
+    1
+   ],
+   "fr": "Interrupteur, bouton marche/arrêt",
+   "st": 0
+  },
+  {
+   "id": "m2_duandian",
+   "h": "断电",
+   "p": "duan dian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Couper le courant",
+   "st": 0
+  },
+  {
+   "id": "m2_xiu",
+   "h": "修",
+   "p": "xiu",
+   "t": [
+    1
+   ],
+   "fr": "Réparer",
+   "st": 0
+  },
+  {
+   "id": "m2_weixiugong",
+   "h": "维修工",
+   "p": "wei-xiu gong",
+   "t": [
+    2,
+    1,
+    1
+   ],
+   "fr": "Technicien de maintenance",
+   "st": 0
+  },
+  {
+   "id": "m2_huanlingjian",
+   "h": "换零件",
+   "p": "huan ling-jian",
+   "t": [
+    4,
+    2,
+    4
+   ],
+   "fr": "Changer la pièce",
+   "st": 0
+  },
+  {
+   "id": "m2_jindu",
+   "h": "进度",
+   "p": "jin-du",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Avancement (du travail)",
+   "st": 0
+  },
+  {
+   "id": "m2_s_laidian",
+   "h": "来电了",
+   "p": "lai dian le",
+   "t": [
+    2,
+    4,
+    0
+   ],
+   "fr": "Le courant est revenu",
+   "st": 0
+  },
+  {
+   "id": "m2_s_xiuhao",
+   "h": "修好了",
+   "p": "xiu hao le",
+   "t": [
+    1,
+    3,
+    0
+   ],
+   "fr": "C’est réparé",
+   "st": 0
+  },
+  {
+   "id": "m2_s_maoyan",
+   "h": "冒烟了",
+   "p": "mao yan le",
+   "t": [
+    4,
+    1,
+    0
+   ],
+   "fr": "Ça fume !",
+   "st": 0
+  },
+  {
+   "id": "m2_s_qiazhu",
+   "h": "卡住了",
+   "p": "qia zhu le",
+   "t": [
+    3,
+    4,
+    0
+   ],
+   "fr": "C’est coincé",
+   "st": 0
+  },
+  {
+   "id": "m2_s_louyou",
+   "h": "漏油了",
+   "p": "lou you le",
+   "t": [
+    4,
+    2,
+    0
+   ],
+   "fr": "Il y a une fuite d’huile",
+   "st": 0
+  },
+  {
+   "id": "m2_s_shengyin",
+   "h": "声音不对",
+   "p": "sheng-yin bu dui",
+   "t": [
+    1,
+    1,
+    2,
+    4
+   ],
+   "fr": "Le bruit n’est pas normal",
+   "st": 0,
+   "m": "Si ta machine fait un bruit bizarre, préviens ton chef d’équipe : 声音不对。"
+  },
+  {
+   "id": "m2_s_xianguan",
+   "h": "先关机器",
+   "p": "xian guan ji-qi",
+   "t": [
+    1,
+    1,
+    1,
+    4
+   ],
+   "fr": "D’abord, éteins la machine",
+   "st": 0
+  },
+  {
+   "id": "m2_s_xianduan",
+   "h": "先断电",
+   "p": "xian duan dian",
+   "t": [
+    1,
+    4,
+    4
+   ],
+   "fr": "D’abord, coupe le courant",
+   "st": 0
+  },
+  {
+   "id": "m2_s_jiaoshifu",
+   "h": "我去叫师傅",
+   "p": "wo qu jiao shi-fu",
+   "t": [
+    3,
+    4,
+    4,
+    1,
+    0
+   ],
+   "fr": "Je vais chercher le technicien",
+   "st": 0
+  },
+  {
+   "id": "m2_s_shenmeshihou",
+   "h": "什么时候来电",
+   "p": "shen-me shi-hou lai dian",
+   "t": [
+    2,
+    0,
+    2,
+    0,
+    2,
+    4
+   ],
+   "fr": "Le courant revient quand ?",
+   "st": 0
+  },
+  {
+   "id": "m2_s_fadianji",
+   "h": "发电机开了吗",
+   "p": "fa-dian-ji kai le ma",
+   "t": [
+    1,
+    4,
+    1,
+    1,
+    0,
+    0
+   ],
+   "fr": "Le groupe électrogène est allumé ?",
+   "st": 0
+  },
+  {
+   "id": "m2_s_meiyou",
+   "h": "没有油了",
+   "p": "mei-you you le",
+   "t": [
+    2,
+    3,
+    2,
+    0
+   ],
+   "fr": "Il n’y a plus de carburant",
+   "st": 0
+  },
+  {
+   "id": "m2_s_chongxin",
+   "h": "重新开机",
+   "p": "chong-xin kai ji",
+   "t": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "fr": "Redémarrer (la machine)",
+   "st": 0
+  },
+  {
+   "id": "m2_s_jiancha",
+   "h": "先检查一下",
+   "p": "xian jian-cha yi-xia",
+   "t": [
+    1,
+    3,
+    2,
+    2,
+    4
+   ],
+   "fr": "Vérifie d’abord",
+   "st": 0,
+   "m": "Avant de rallumer ta machine après une panne, dis : 先检查一下。"
+  },
+  {
+   "id": "m2_s_youhuai",
+   "h": "机器又坏了",
+   "p": "ji-qi you huai le",
+   "t": [
+    1,
+    4,
+    4,
+    4,
+    0
+   ],
+   "fr": "La machine est encore en panne",
+   "st": 0
+  },
+  {
+   "id": "m2_s_deng",
+   "h": "灯不亮",
+   "p": "deng bu liang",
+   "t": [
+    1,
+    2,
+    4
+   ],
+   "fr": "La lumière ne s’allume pas",
+   "st": 0
+  },
+  {
+   "id": "m2_s_gangong",
+   "h": "今天要赶工",
+   "p": "jin-tian yao gan gong",
+   "t": [
+    1,
+    1,
+    4,
+    3,
+    1
+   ],
+   "fr": "Aujourd’hui, il faut rattraper le retard",
+   "st": 0
+  },
+  {
+   "id": "m2_s_danwu",
+   "h": "耽误了两个小时",
+   "p": "dan-wu le liang ge xiao-shi",
+   "t": [
+    1,
+    0,
+    0,
+    3,
+    0,
+    3,
+    2
+   ],
+   "fr": "On a perdu deux heures",
+   "st": 0
+  },
+  {
+   "id": "m2_s_anquanma",
+   "h": "安全吗",
+   "p": "an-quan ma",
+   "t": [
+    1,
+    2,
+    0
+   ],
+   "fr": "C’est sans danger ?",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "点",
+    "p": "dian",
+    "t": 3,
+    "fr": "heure, point"
+   },
+   {
+    "h": "电",
+    "p": "dian",
+    "t": 4,
+    "fr": "électricité"
+   }
+  ],
+  [
+   {
+    "h": "油",
+    "p": "you",
+    "t": 2,
+    "fr": "huile, carburant"
+   },
+   {
+    "h": "有",
+    "p": "you",
+    "t": 3,
+    "fr": "avoir"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "修",
+   "p": "xiū",
+   "m": "réparer",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "坏",
+   "p": "huài",
+   "m": "cassé",
+   "r": "土",
+   "rm": "terre"
+  },
+  {
+   "c": "灯",
+   "p": "dēng",
+   "m": "lampe",
+   "r": "火",
+   "rm": "feu"
+  },
+  {
+   "c": "油",
+   "p": "yóu",
+   "m": "huile",
+   "r": "氵",
+   "rm": "eau"
+  },
+  {
+   "c": "断",
+   "p": "duàn",
+   "m": "couper",
+   "r": "斤",
+   "rm": "hache"
+  },
+  {
+   "c": "换",
+   "p": "huàn",
+   "m": "changer",
+   "r": "扌",
+   "rm": "main"
+  }
+ ],
+ "convs": [
+  {
+   "id": "metier-pannes-coupure",
+   "st": 0,
+   "title": "Coupure en plein travail",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Milieu de l’après-midi : d’un coup, plus de lumière, les machines s’arrêtent.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "停电了！大家别动。",
+     "p": "Tíngdiàn le! Dàjiā bié dòng.",
+     "fr": "Coupure de courant ! Ne bougez pas.",
+     "o": [
+      {
+       "h": "机器要先关吗？",
+       "p": "Jīqì yào xiān guān ma?",
+       "fr": "Il faut d’abord éteindre les machines ?",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "好，我下班了。",
+       "p": "Hǎo, wǒ xiàbān le.",
+       "fr": "D’accord, je rentre chez moi.",
+       "fix": "La journée n’est pas finie ! Demande plutôt s’il faut éteindre les machines : « 机器要先关吗？ »"
+      }
+     ]
+    },
+    "b": {
+     "h": "对，先关机器，再断电。",
+     "p": "Duì, xiān guān jīqì, zài duàn diàn.",
+     "fr": "Oui : d’abord on éteint les machines, ensuite on coupe le courant.",
+     "o": [
+      {
+       "h": "好，我先关机器。",
+       "p": "Hǎo, wǒ xiān guān jīqì.",
+       "fr": "D’accord, j’éteins d’abord ma machine.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我先开机器。",
+       "p": "Wǒ xiān kāi jīqì.",
+       "fr": "J’allume d’abord ma machine.",
+       "fix": "Non : 先关 (d’abord éteindre). Une machine restée allumée peut redémarrer d’un coup quand le courant revient."
+      }
+     ]
+    },
+    "c": {
+     "h": "发电机开了吗？",
+     "p": "Fādiànjī kāi le ma?",
+     "fr": "Le groupe électrogène est allumé ?",
+     "o": [
+      {
+       "h": "没有，没有油了。",
+       "p": "Méiyǒu, méiyǒu yóu le.",
+       "fr": "Non, il n’y a plus de carburant.",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "开了，很好吃。",
+       "p": "Kāi le, hěn hǎochī.",
+       "fr": "Il est allumé, c’est délicieux.",
+       "fix": "好吃 = bon à manger ! Ici : « 没有，没有油了 » (il n’y a plus de carburant)."
+      }
+     ]
+    },
+    "d": {
+     "h": "我去买柴油。你去叫维修工。",
+     "p": "Wǒ qù mǎi cháiyóu. Nǐ qù jiào wéixiūgōng.",
+     "fr": "Je vais acheter du gazole. Toi, va chercher le technicien.",
+     "o": [
+      {
+       "h": "好，我去叫师傅。",
+       "p": "Hǎo, wǒ qù jiào shīfu.",
+       "fr": "D’accord, je vais chercher le technicien.",
+       "ok": 1,
+       "n": "e"
+      },
+      {
+       "h": "我不知道。",
+       "p": "Wǒ bù zhīdào.",
+       "fr": "Je ne sais pas.",
+       "fix": "Il te donne une mission : réponds « 好，我去叫师傅 »."
+      }
+     ]
+    },
+    "e": {
+     "h": "来电了！我们耽误了两个小时，今天要赶工。",
+     "p": "Lái diàn le! Wǒmen dānwu le liǎng ge xiǎoshí, jīntiān yào gǎn gōng.",
+     "fr": "Le courant est revenu ! On a perdu deux heures, il faut rattraper aujourd’hui.",
+     "o": [
+      {
+       "h": "没问题。我们先检查一下机器。",
+       "p": "Méi wèntí. Wǒmen xiān jiǎnchá yíxià jīqì.",
+       "fr": "Pas de problème. Vérifions d’abord les machines.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我现在下班。",
+       "p": "Wǒ xiànzài xiàbān.",
+       "fr": "Je pars maintenant.",
+       "fix": "Il faut rattraper le retard. Montre que tu es prête : « 没问题 », et propose de vérifier d’abord les machines."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，安全第一！",
+     "p": "Hǎo, ānquán dì yī!",
+     "fr": "Bien, la sécurité d’abord !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "马上就好",
+   "p": "mǎshàng jiù hǎo",
+   "fr": "Ce sera prêt dans un instant",
+   "note": "Ce que dit souvent le technicien… même quand ça prend une heure !"
+  }
+ ]
+}

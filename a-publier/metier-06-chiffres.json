@@ -1,0 +1,610 @@
+{
+ "branch": "travail",
+ "title": "Métier · Les chiffres du travail",
+ "desc": "Heures, primes, fiche de paie, stock, factures : les grands nombres avec 万 et les pourcentages.",
+ "module": {
+  "icon": "chiffres",
+  "stage": 1,
+  "fiche": {
+   "title": "Vérifier ta fiche de paie",
+   "steps": [
+    "Chaque jour, note tes heures et tes heures sup dans un carnet.",
+    "Le jour de paie, compare avec ta fiche (工资单) : heures, 加班费, 奖金.",
+    "Si un chiffre ne correspond pas, reste calme : 「对不上，我算一下」.",
+    "Pour une retenue, demande poliment pourquoi : 「为什么扣钱？」",
+    "Garde tes fiches de paie dans un endroit sûr."
+   ]
+  }
+ },
+ "grammar": {
+  "title": "万 et 百分之 : grands nombres et pourcentages",
+  "explain": "En chinois, on compte les grands nombres par paquets de 10 000 : 一万 (yíwàn). Donc 50 000 = 五万 (5 × 10 000), et 100 000 = 十万. Pour les pourcentages, on dit d’abord « cent parts », puis le nombre : 百分之十 = 10 %.",
+  "examples": [
+   {
+    "h": "一万双",
+    "p": "yíwàn shuāng",
+    "fr": "10 000 paires"
+   },
+   {
+    "h": "两万五千",
+    "p": "liǎngwàn wǔqiān",
+    "fr": "25 000"
+   },
+   {
+    "h": "一百万",
+    "p": "yìbǎi wàn",
+    "fr": "1 000 000 (un million)"
+   },
+   {
+    "h": "百分之二十",
+    "p": "bǎi fēn zhī èrshí",
+    "fr": "20 %"
+   }
+  ],
+  "tip": "Pour lire un grand nombre, sépare-le par 4 chiffres depuis la droite : 2|3000 = 两万三千."
+ },
+ "items": [
+  {
+   "id": "m6_wan",
+   "h": "万",
+   "p": "wan",
+   "t": [
+    4
+   ],
+   "fr": "Dix mille (10 000)",
+   "st": 1
+  },
+  {
+   "id": "m6_yiwan",
+   "h": "一万",
+   "p": "yi-wan",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Dix mille (10 000)",
+   "st": 1
+  },
+  {
+   "id": "m6_shiwan",
+   "h": "十万",
+   "p": "shi-wan",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Cent mille (100 000)",
+   "st": 1
+  },
+  {
+   "id": "m6_liangwanwu",
+   "h": "两万五",
+   "p": "liang-wan-wu",
+   "t": [
+    3,
+    4,
+    3
+   ],
+   "fr": "Vingt-cinq mille (25 000)",
+   "st": 1
+  },
+  {
+   "id": "m6_yiban",
+   "h": "一半",
+   "p": "yi-ban",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "La moitié",
+   "st": 1
+  },
+  {
+   "id": "m6_baifenzhishi",
+   "h": "百分之十",
+   "p": "bai-fen-zhi shi",
+   "t": [
+    3,
+    1,
+    1,
+    2
+   ],
+   "fr": "Dix pour cent (10 %)",
+   "st": 1
+  },
+  {
+   "id": "m6_baifenzhiwushi",
+   "h": "百分之五十",
+   "p": "bai-fen-zhi wu-shi",
+   "t": [
+    3,
+    1,
+    1,
+    3,
+    2
+   ],
+   "fr": "Cinquante pour cent (50 %)",
+   "st": 1
+  },
+  {
+   "id": "m6_yidianwu",
+   "h": "一点五",
+   "p": "yi dian wu",
+   "t": [
+    1,
+    3,
+    3
+   ],
+   "fr": "Un virgule cinq (1,5)",
+   "st": 1,
+   "s": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "m6_jiangjin",
+   "h": "奖金",
+   "p": "jiang-jin",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Prime",
+   "st": 1
+  },
+  {
+   "id": "m6_gongzidan",
+   "h": "工资单",
+   "p": "gong-zi dan",
+   "t": [
+    1,
+    1,
+    1
+   ],
+   "fr": "Fiche de paie",
+   "st": 1
+  },
+  {
+   "id": "m6_dixin",
+   "h": "底薪",
+   "p": "di-xin",
+   "t": [
+    3,
+    1
+   ],
+   "fr": "Salaire de base",
+   "st": 1
+  },
+  {
+   "id": "m6_jiabanfei",
+   "h": "加班费",
+   "p": "jia-ban fei",
+   "t": [
+    1,
+    1,
+    4
+   ],
+   "fr": "Paiement des heures sup",
+   "st": 1
+  },
+  {
+   "id": "m6_kouqian",
+   "h": "扣钱",
+   "p": "kou qian",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Faire une retenue (sur le salaire)",
+   "st": 1
+  },
+  {
+   "id": "m6_kucun",
+   "h": "库存",
+   "p": "ku-cun",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Stock",
+   "st": 1
+  },
+  {
+   "id": "m6_fapiao",
+   "h": "发票",
+   "p": "fa-piao",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Facture",
+   "st": 1
+  },
+  {
+   "id": "m6_gongshi",
+   "h": "工时",
+   "p": "gong-shi",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Heures de travail",
+   "st": 1
+  },
+  {
+   "id": "m6_jianshao",
+   "h": "减少",
+   "p": "jian-shao",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Diminuer",
+   "st": 1,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "m6_s_zengjia",
+   "h": "增加了百分之十",
+   "p": "zeng-jia le bai-fen-zhi shi",
+   "t": [
+    1,
+    1,
+    0,
+    3,
+    1,
+    1,
+    2
+   ],
+   "fr": "Ça a augmenté de 10 %",
+   "st": 1
+  },
+  {
+   "id": "m6_s_ershi",
+   "h": "这个月加班二十个小时",
+   "p": "zhe-ge yue jia ban er-shi ge xiao-shi",
+   "t": [
+    4,
+    0,
+    4,
+    1,
+    1,
+    4,
+    2,
+    0,
+    3,
+    2
+   ],
+   "fr": "Ce mois-ci, vingt heures sup",
+   "st": 1,
+   "m": "À la fin du mois, compte tes heures sup et dis-le en chinois : 这个月加班…个小时。"
+  },
+  {
+   "id": "m6_s_jiangjin",
+   "h": "奖金有多少",
+   "p": "jiang-jin you duo-shao",
+   "t": [
+    3,
+    1,
+    3,
+    1,
+    0
+   ],
+   "fr": "La prime, c’est combien ?",
+   "st": 1
+  },
+  {
+   "id": "m6_s_kouqian",
+   "h": "为什么扣钱",
+   "p": "wei-shen-me kou qian",
+   "t": [
+    4,
+    2,
+    0,
+    4,
+    2
+   ],
+   "fr": "Pourquoi cette retenue ?",
+   "st": 1
+  },
+  {
+   "id": "m6_s_gongzi",
+   "h": "工资什么时候发",
+   "p": "gong-zi shen-me shi-hou fa",
+   "t": [
+    1,
+    1,
+    2,
+    0,
+    2,
+    0,
+    1
+   ],
+   "fr": "Le salaire est versé quand ?",
+   "st": 1
+  },
+  {
+   "id": "m6_s_kucun",
+   "h": "库存还有多少",
+   "p": "ku-cun hai you duo-shao",
+   "t": [
+    4,
+    2,
+    2,
+    3,
+    1,
+    0
+   ],
+   "fr": "Il reste combien en stock ?",
+   "st": 1,
+   "m": "Au magasin, demande combien de colle il reste : 库存还有多少？"
+  },
+  {
+   "id": "m6_s_yigong",
+   "h": "一共两万三千双",
+   "p": "yi-gong liang-wan san-qian shuang",
+   "t": [
+    2,
+    4,
+    3,
+    4,
+    1,
+    1,
+    1
+   ],
+   "fr": "Au total, 23 000 paires",
+   "st": 1
+  },
+  {
+   "id": "m6_s_kaifapiao",
+   "h": "请开发票",
+   "p": "qing kai fa-piao",
+   "t": [
+    3,
+    1,
+    1,
+    4
+   ],
+   "fr": "Faites une facture, s’il vous plaît",
+   "st": 1
+  },
+  {
+   "id": "m6_s_fapiaohao",
+   "h": "发票号码",
+   "p": "fa-piao hao-ma",
+   "t": [
+    1,
+    4,
+    4,
+    3
+   ],
+   "fr": "Numéro de facture",
+   "st": 1
+  },
+  {
+   "id": "m6_s_suanyixia",
+   "h": "我算一下",
+   "p": "wo suan yi-xia",
+   "t": [
+    3,
+    4,
+    2,
+    4
+   ],
+   "fr": "Je fais le calcul",
+   "st": 1
+  },
+  {
+   "id": "m6_s_duibushang",
+   "h": "对不上",
+   "p": "dui bu shang",
+   "t": [
+    4,
+    0,
+    4
+   ],
+   "fr": "Ça ne correspond pas (les comptes)",
+   "st": 1
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "晚",
+    "p": "wan",
+    "t": 3,
+    "fr": "soir"
+   },
+   {
+    "h": "万",
+    "p": "wan",
+    "t": 4,
+    "fr": "dix mille"
+   }
+  ],
+  [
+   {
+    "h": "千",
+    "p": "qian",
+    "t": 1,
+    "fr": "mille"
+   },
+   {
+    "h": "钱",
+    "p": "qian",
+    "t": 2,
+    "fr": "argent"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "万",
+   "p": "wàn",
+   "m": "dix mille",
+   "r": "一",
+   "rm": "un"
+  },
+  {
+   "c": "奖",
+   "p": "jiǎng",
+   "m": "récompense",
+   "r": "大",
+   "rm": "grand"
+  },
+  {
+   "c": "资",
+   "p": "zī",
+   "m": "ressources",
+   "r": "贝",
+   "rm": "coquillage (argent)"
+  },
+  {
+   "c": "扣",
+   "p": "kòu",
+   "m": "retenir",
+   "r": "扌",
+   "rm": "main"
+  },
+  {
+   "c": "库",
+   "p": "kù",
+   "m": "entrepôt",
+   "r": "广",
+   "rm": "abri"
+  },
+  {
+   "c": "票",
+   "p": "piào",
+   "m": "ticket, billet",
+   "r": "示",
+   "rm": "autel"
+  },
+  {
+   "c": "费",
+   "p": "fèi",
+   "m": "frais",
+   "r": "贝",
+   "rm": "coquillage (argent)"
+  },
+  {
+   "c": "算",
+   "p": "suàn",
+   "m": "calculer",
+   "r": "竹",
+   "rm": "bambou"
+  }
+ ],
+ "convs": [
+  {
+   "id": "metier-chiffres-paie",
+   "st": 1,
+   "title": "Le jour de paie",
+   "who": "会计",
+   "whoFr": "Comptable",
+   "intro": "C’est le jour de paie. Tu vérifies ta fiche avec la comptable.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}，这是你的工资单。",
+     "p": "{name}, zhè shì nǐ de gōngzīdān.",
+     "fr": "{name}, voici ta fiche de paie.",
+     "o": [
+      {
+       "h": "谢谢。我这个月加班二十个小时。",
+       "p": "Xièxie. Wǒ zhège yuè jiābān èrshí ge xiǎoshí.",
+       "fr": "Merci. Ce mois-ci, j’ai fait vingt heures sup.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我不要。",
+       "p": "Wǒ bú yào.",
+       "fr": "Je n’en veux pas.",
+       "fix": "Prends-la et vérifie tes heures : « 我这个月加班二十个小时 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "对，加班费在这儿。",
+     "p": "Duì, jiābānfèi zài zhèr.",
+     "fr": "Oui, le paiement des heures sup est ici.",
+     "o": [
+      {
+       "h": "奖金有多少？",
+       "p": "Jiǎngjīn yǒu duōshao?",
+       "fr": "La prime, c’est combien ?",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "请开发票。",
+       "p": "Qǐng kāi fāpiào.",
+       "fr": "Faites une facture, s’il vous plaît.",
+       "fix": "Pas de facture pour un salaire ! Pour la prime, demande : « 奖金有多少？ »"
+      }
+     ]
+    },
+    "c": {
+     "h": "奖金是一万。",
+     "p": "Jiǎngjīn shì yíwàn.",
+     "fr": "La prime est de dix mille.",
+     "o": [
+      {
+       "h": "好的。这儿为什么扣钱？",
+       "p": "Hǎo de. Zhèr wèishénme kòu qián?",
+       "fr": "D’accord. Pourquoi il y a une retenue ici ?",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "一万是一千吗？",
+       "p": "Yíwàn shì yìqiān ma?",
+       "fr": "Dix mille, c’est mille ?",
+       "fix": "一万 = 10 000 (dix mille). 一千 = 1 000."
+      }
+     ]
+    },
+    "d": {
+     "h": "你请了一天假。",
+     "p": "Nǐ qǐng le yì tiān jià.",
+     "fr": "Tu as pris un jour de congé.",
+     "o": [
+      {
+       "h": "明白了。我算一下……对，没问题。",
+       "p": "Míngbai le. Wǒ suàn yíxià… duì, méi wèntí.",
+       "fr": "Je comprends. Je fais le calcul… oui, c’est bon.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我没请假！你错了！",
+       "p": "Wǒ méi qǐngjià! Nǐ cuò le!",
+       "fr": "Je n’ai pas pris de congé ! Tu te trompes !",
+       "fix": "Avant d’accuser, vérifie calmement : « 我算一下 ». Si ça ne correspond pas, dis poliment « 对不上 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，有问题再来找我。",
+     "p": "Hǎo, yǒu wèntí zài lái zhǎo wǒ.",
+     "fr": "Bien, si tu as un souci, reviens me voir.",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "一分钱一分货",
+   "p": "yì fēn qián yì fēn huò",
+   "fr": "On en a pour son argent",
+   "note": "Mot à mot « un centime, une part de marchandise » : la qualité a un prix."
+  }
+ ]
+}

@@ -1,0 +1,614 @@
+{
+ "branch": "travail",
+ "title": "Métier · Diriger une équipe",
+ "desc": "Donner une consigne, faire le planning, gérer une absence, féliciter, recadrer sans vexer, organiser les heures sup.",
+ "module": {
+  "icon": "equipe",
+  "stage": 1,
+  "fiche": {
+   "title": "Bien diriger ton équipe",
+   "steps": [
+    "Le matin, donne les consignes clairement : qui fait quoi, et l’objectif du jour. 「今天的任务是这些」",
+    "Vérifie qu’on t’a comprise et dis que tu es là : 「有问题就问我」.",
+    "Félicite devant tout le monde : 「做得很好！」",
+    "Recadre en privé, calmement, sans humilier : 「下次注意就好」.",
+    "Pour les heures sup, préviens tôt et demande qui peut : 「谁能加班？」",
+    "Note les absences et préviens ton chef tout de suite."
+   ]
+  }
+ },
+ "grammar": {
+  "title": "让 + personne + verbe : faire faire",
+  "explain": "Pour dire « je fais faire quelque chose à quelqu’un » ou « on m’a dit de… », mets 让 (ràng) + la personne + l’action. Très utile quand tu organises le travail.",
+  "examples": [
+   {
+    "h": "让他明天上夜班。",
+    "p": "Ràng tā míngtiān shàng yèbān.",
+    "fr": "Mets-le de nuit demain."
+   },
+   {
+    "h": "我让小刘负责这条线。",
+    "p": "Wǒ ràng Xiǎo Liú fùzé zhè tiáo xiàn.",
+    "fr": "Je confie cette ligne à Xiao Liu."
+   },
+   {
+    "h": "经理让我们加班。",
+    "p": "Jīnglǐ ràng wǒmen jiābān.",
+    "fr": "Le directeur nous demande de faire des heures sup."
+   },
+   {
+    "h": "让我想一想。",
+    "p": "Ràng wǒ xiǎng yi xiǎng.",
+    "fr": "Laisse-moi réfléchir."
+   }
+  ],
+  "tip": "让 sert aussi à dire « laisse-moi » : 让我来 (laisse-moi faire)."
+ },
+ "items": [
+  {
+   "id": "m5_renwu",
+   "h": "任务",
+   "p": "ren-wu",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Tâche, mission",
+   "st": 1
+  },
+  {
+   "id": "m5_anpai",
+   "h": "安排",
+   "p": "an-pai",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Organiser, organisation",
+   "st": 1
+  },
+  {
+   "id": "m5_paiban",
+   "h": "排班",
+   "p": "pai ban",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Planning des équipes",
+   "st": 1
+  },
+  {
+   "id": "m5_baiban",
+   "h": "白班",
+   "p": "bai ban",
+   "t": [
+    2,
+    1
+   ],
+   "fr": "Équipe de jour",
+   "st": 1
+  },
+  {
+   "id": "m5_yeban",
+   "h": "夜班",
+   "p": "ye ban",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Équipe de nuit",
+   "st": 1
+  },
+  {
+   "id": "m5_chidao",
+   "h": "迟到",
+   "p": "chi dao",
+   "t": [
+    2,
+    4
+   ],
+   "fr": "Être en retard",
+   "st": 1
+  },
+  {
+   "id": "m5_biaoyang",
+   "h": "表扬",
+   "p": "biao-yang",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Féliciter",
+   "st": 1
+  },
+  {
+   "id": "m5_mubiao",
+   "h": "目标",
+   "p": "mu-biao",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Objectif",
+   "st": 1
+  },
+  {
+   "id": "m5_wancheng",
+   "h": "完成",
+   "p": "wan-cheng",
+   "t": [
+    2,
+    2
+   ],
+   "fr": "Terminer, atteindre",
+   "st": 1
+  },
+  {
+   "id": "m5_peihe",
+   "h": "配合",
+   "p": "pei-he",
+   "t": [
+    4,
+    2
+   ],
+   "fr": "Coopérer, travailler ensemble",
+   "st": 1
+  },
+  {
+   "id": "m5_kaihui",
+   "h": "开会",
+   "p": "kai hui",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Faire une réunion",
+   "st": 1
+  },
+  {
+   "id": "m5_s_renwu",
+   "h": "今天的任务是这些",
+   "p": "jin-tian de ren-wu shi zhe-xie",
+   "t": [
+    1,
+    1,
+    0,
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "fr": "Voici les tâches du jour",
+   "st": 1
+  },
+  {
+   "id": "m5_s_fuze",
+   "h": "你负责这条线",
+   "p": "ni fu-ze zhe tiao xian",
+   "t": [
+    3,
+    4,
+    2,
+    4,
+    2,
+    4
+   ],
+   "fr": "Tu t’occupes de cette ligne",
+   "st": 1
+  },
+  {
+   "id": "m5_s_xianzuo",
+   "h": "先做这个",
+   "p": "xian zuo zhe-ge",
+   "t": [
+    1,
+    4,
+    4,
+    0
+   ],
+   "fr": "Fais celui-ci d’abord",
+   "st": 1
+  },
+  {
+   "id": "m5_s_yeban",
+   "h": "让他明天上夜班",
+   "p": "rang ta ming-tian shang ye ban",
+   "t": [
+    4,
+    1,
+    2,
+    1,
+    4,
+    4,
+    1
+   ],
+   "fr": "Mets-le de nuit demain",
+   "st": 1
+  },
+  {
+   "id": "m5_s_sheimeilai",
+   "h": "谁没来",
+   "p": "shei mei lai",
+   "t": [
+    2,
+    2,
+    2
+   ],
+   "fr": "Qui est absent ?",
+   "st": 1
+  },
+  {
+   "id": "m5_s_qingjia",
+   "h": "他今天请假了",
+   "p": "ta jin-tian qing jia le",
+   "t": [
+    1,
+    1,
+    1,
+    3,
+    4,
+    0
+   ],
+   "fr": "Il est en congé aujourd’hui",
+   "st": 1
+  },
+  {
+   "id": "m5_s_henhao",
+   "h": "做得很好",
+   "p": "zuo de hen hao",
+   "t": [
+    4,
+    0,
+    3,
+    3
+   ],
+   "fr": "C’est très bien fait",
+   "st": 1,
+   "s": [
+    4,
+    0,
+    2,
+    3
+   ],
+   "m": "Quand un collègue fait du bon travail, dis-le-lui : 做得很好！"
+  },
+  {
+   "id": "m5_s_xinku",
+   "h": "你们辛苦了",
+   "p": "ni-men xin-ku le",
+   "t": [
+    3,
+    0,
+    1,
+    3,
+    0
+   ],
+   "fr": "Merci pour votre travail",
+   "st": 1
+  },
+  {
+   "id": "m5_s_gaiyixia",
+   "h": "这儿要改一下",
+   "p": "zhe-r yao gai yi-xia",
+   "t": [
+    4,
+    0,
+    4,
+    3,
+    2,
+    4
+   ],
+   "fr": "Ici, il faut corriger un peu",
+   "st": 1
+  },
+  {
+   "id": "m5_s_zhuyi",
+   "h": "下次注意就好",
+   "p": "xia ci zhu-yi jiu hao",
+   "t": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "fr": "Fais attention la prochaine fois, c’est tout",
+   "st": 1
+  },
+  {
+   "id": "m5_s_biechidao",
+   "h": "别再迟到了",
+   "p": "bie zai chi dao le",
+   "t": [
+    2,
+    4,
+    2,
+    4,
+    0
+   ],
+   "fr": "Ne sois plus en retard",
+   "st": 1
+  },
+  {
+   "id": "m5_s_jiaban",
+   "h": "今晚要加班",
+   "p": "jin-wan yao jia ban",
+   "t": [
+    1,
+    3,
+    4,
+    1,
+    1
+   ],
+   "fr": "Ce soir, on fait des heures sup",
+   "st": 1
+  },
+  {
+   "id": "m5_s_liangxiaoshi",
+   "h": "加班两个小时",
+   "p": "jia ban liang ge xiao-shi",
+   "t": [
+    1,
+    1,
+    3,
+    0,
+    3,
+    2
+   ],
+   "fr": "Deux heures supplémentaires",
+   "st": 1
+  },
+  {
+   "id": "m5_s_sheineng",
+   "h": "谁能加班",
+   "p": "shei neng jia ban",
+   "t": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "fr": "Qui peut faire des heures sup ?",
+   "st": 1
+  },
+  {
+   "id": "m5_s_mubiao",
+   "h": "我们一起完成目标",
+   "p": "wo-men yi-qi wan-cheng mu-biao",
+   "t": [
+    3,
+    0,
+    4,
+    3,
+    2,
+    2,
+    4,
+    1
+   ],
+   "fr": "Atteignons l’objectif ensemble",
+   "st": 1
+  },
+  {
+   "id": "m5_s_wenwo",
+   "h": "有问题就问我",
+   "p": "you wen-ti jiu wen wo",
+   "t": [
+    3,
+    4,
+    2,
+    4,
+    4,
+    3
+   ],
+   "fr": "Si tu as un problème, demande-moi",
+   "st": 1
+  },
+  {
+   "id": "m5_s_peihe",
+   "h": "谢谢大家的配合",
+   "p": "xie-xie da-jia de pei-he",
+   "t": [
+    4,
+    0,
+    4,
+    1,
+    0,
+    4,
+    2
+   ],
+   "fr": "Merci à tous pour votre coopération",
+   "st": 1
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "班",
+    "p": "ban",
+    "t": 1,
+    "fr": "équipe (de travail)"
+   },
+   {
+    "h": "半",
+    "p": "ban",
+    "t": 4,
+    "fr": "moitié"
+   }
+  ],
+  [
+   {
+    "h": "也",
+    "p": "ye",
+    "t": 3,
+    "fr": "aussi"
+   },
+   {
+    "h": "夜",
+    "p": "ye",
+    "t": 4,
+    "fr": "nuit"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "班",
+   "p": "bān",
+   "m": "équipe, poste",
+   "r": "王",
+   "rm": "roi (jade)"
+  },
+  {
+   "c": "任",
+   "p": "rèn",
+   "m": "charge",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "务",
+   "p": "wù",
+   "m": "tâche",
+   "r": "力",
+   "rm": "force"
+  },
+  {
+   "c": "排",
+   "p": "pái",
+   "m": "ranger",
+   "r": "扌",
+   "rm": "main"
+  },
+  {
+   "c": "夜",
+   "p": "yè",
+   "m": "nuit",
+   "r": "夕",
+   "rm": "soir"
+  },
+  {
+   "c": "迟",
+   "p": "chí",
+   "m": "en retard",
+   "r": "辶",
+   "rm": "marcher"
+  },
+  {
+   "c": "标",
+   "p": "biāo",
+   "m": "marque, but",
+   "r": "木",
+   "rm": "arbre"
+  }
+ ],
+ "convs": [
+  {
+   "id": "metier-equipe-matin",
+   "st": 1,
+   "title": "Le briefing du matin",
+   "who": "小刘",
+   "whoFr": "Ouvrier de ton équipe",
+   "intro": "Tu es maintenant cheffe d’équipe. 7 h : Xiao Liu arrive en retard pendant que tu donnes les consignes.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}姐，对不起，我迟到了。",
+     "p": "{name} jiě, duìbuqǐ, wǒ chídào le.",
+     "fr": "{name}, pardon, je suis en retard.",
+     "o": [
+      {
+       "h": "没事，下次注意就好。今天你负责这条线。",
+       "p": "Méi shì, xià cì zhùyì jiù hǎo. Jīntiān nǐ fùzé zhè tiáo xiàn.",
+       "fr": "Ce n’est rien, fais attention la prochaine fois. Aujourd’hui, tu t’occupes de cette ligne.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "你又迟到了！你太差了！",
+       "p": "Nǐ yòu chídào le! Nǐ tài chà le!",
+       "fr": "Encore en retard ! Tu es vraiment nul !",
+       "fix": "Le gronder devant tout le monde lui fait perdre la face. Reste ferme mais calme : « 下次注意就好 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "好的。今天要做多少双？",
+     "p": "Hǎo de. Jīntiān yào zuò duōshao shuāng?",
+     "fr": "D’accord. On doit faire combien de paires aujourd’hui ?",
+     "o": [
+      {
+       "h": "今天的目标是五百双。",
+       "p": "Jīntiān de mùbiāo shì wǔbǎi shuāng.",
+       "fr": "L’objectif du jour, c’est cinq cents paires.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "五百块。",
+       "p": "Wǔbǎi kuài.",
+       "fr": "Cinq cents francs.",
+       "fix": "块 = de l’argent. Pour des chaussures, on compte en paires : « 五百双 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "小王今天没来。",
+     "p": "Xiǎo Wáng jīntiān méi lái.",
+     "fr": "Xiao Wang n’est pas venu aujourd’hui.",
+     "o": [
+      {
+       "h": "他今天请假了。我们一起完成目标。",
+       "p": "Tā jīntiān qǐngjià le. Wǒmen yìqǐ wánchéng mùbiāo.",
+       "fr": "Il est en congé aujourd’hui. On atteint l’objectif ensemble.",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "那我们不做了。",
+       "p": "Nà wǒmen bú zuò le.",
+       "fr": "Alors on arrête.",
+       "fix": "Une absence, ça s’organise ! Rassure l’équipe : « 我们一起完成目标 »."
+      }
+     ]
+    },
+    "d": {
+     "h": "做完了！五百双。",
+     "p": "Zuò wán le! Wǔbǎi shuāng.",
+     "fr": "Fini ! Cinq cents paires.",
+     "o": [
+      {
+       "h": "做得很好！你们辛苦了。",
+       "p": "Zuò de hěn hǎo! Nǐmen xīnkǔ le.",
+       "fr": "Très bien fait ! Merci pour votre travail.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "才五百双？",
+       "p": "Cái wǔbǎi shuāng?",
+       "fr": "Seulement cinq cents ?",
+       "fix": "Ils ont atteint l’objectif : félicite-les ! « 做得很好！ » Une équipe remerciée travaille mieux."
+      }
+     ]
+    },
+    "end": {
+     "h": "谢谢{name}姐！明天见！",
+     "p": "Xièxie {name} jiě! Míngtiān jiàn!",
+     "fr": "Merci, {name} ! À demain !",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "众人拾柴火焰高",
+   "p": "zhòng rén shí chái huǒyàn gāo",
+   "fr": "L’union fait la force",
+   "note": "Mot à mot « quand tout le monde ramasse du bois, la flamme monte haut »."
+  }
+ ]
+}

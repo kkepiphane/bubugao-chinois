@@ -1629,6 +1629,450 @@ q5_s_saomafukuan | 扫二维码付款 | sao er-wei-ma fu kuan | 3 4 2 3 4 3 | | 
   'end': node('好，晚上见！', 'Hǎo, wǎnshang jiàn!', 'D’accord, à ce soir !', end=True)})],
  bonus=[{'h': '点赞', 'p': 'diǎn zàn', 'fr': 'Mettre un « j’aime »', 'note': 'Sur WeChat, quand une collègue publie une photo, tu peux 点赞 (cliquer sur le pouce).'}]))
 
+# ---------------- Modules Métier (onglet Métier, branche travail) ----------------
+# Champ en plus : module = icône, étape carrière qui débloque le module (0 Usine, 1 Promotion), fiche réflexe.
+# Les phrases du bouton SOS (有人受伤了, 快叫救护车, 着火了, 别碰机器, 停电了, 救命) sont dans metier-securite ;
+# 小心 (contenu de base) et 我不舒服 (quotidien-04) existent déjà ailleurs.
+
+PACKS.append(dict(id='metier-securite', file='metier-01-securite.json', branch='travail', publish=False,
+ title='Métier · Sécurité et accidents',
+ desc='Réagir vite quand quelqu’un se blesse, se protéger de la colle et des solvants, sortir en cas de feu, raconter un accident au chef.',
+ module={'icon': 'securite', 'stage': 0, 'fiche': {'title': 'Si quelqu’un se blesse', 'steps': [
+  'Garde ton calme. Appuie sur l’arrêt d’urgence si tu sais où il est, mais ne touche pas aux pièces de la machine.',
+  'Crie pour prévenir tout le monde : 「有人受伤了！」',
+  'Appelle le chef d’équipe. Si c’est grave : 「快叫救护车！」',
+  'Colle ou solvant sur la peau ou dans les yeux : rince longtemps à l’eau froide (au moins 15 minutes) : 「快用冷水冲」.',
+  'Feu : crie 「着火了！」, sors par la sortie de secours et ne reviens jamais chercher tes affaires.',
+  'Ensuite, raconte au chef ce que tu as vu : qui, où, quand. 「我看见了」']}},
+ grammar={'title': '了 à la fin : « ça y est, c’est arrivé »',
+  'explain': 'Un 了 (le) en fin de phrase annonce un changement : quelque chose vient d’arriver. C’est le 了 des alertes : 着火了 (le feu a pris), 停电了 (le courant est coupé), 有人受伤了 (quelqu’un s’est blessé). Pas besoin de verbe compliqué : la situation + 了.',
+  'examples': [ex('着火了！', 'Zháohuǒ le!', 'Au feu ! (le feu a pris)'), ex('停电了。', 'Tíngdiàn le.', 'Il y a une coupure de courant.'), ex('她的手流血了。', 'Tā de shǒu liú xuè le.', 'Sa main saigne.'), ex('出事故了！', 'Chū shìgù le!', 'Il y a eu un accident !')],
+  'tip': 'Pour interdire, mets 别 (bié) devant le verbe : 别碰机器！ (Ne touche pas la machine !). Et 小心！ veut dire « Attention ! ».'},
+ items=items('''
+m1_anquan | 安全 | an-quan | 1 2 | | Sécurité, sans danger
+m1_weixian | 危险 | wei-xian | 1 3 | | Danger, dangereux
+m1_shigu | 事故 | shi-gu | 4 4 | | Accident
+m1_shangkou | 伤口 | shang-kou | 1 3 | | Plaie, blessure
+m1_tangshang | 烫伤 | tang shang | 4 1 | | Brûlure (chaleur, colle chaude)
+m1_youdu | 有毒 | you du | 3 2 | | Toxique
+m1_shoutao | 手套 | shou-tao | 3 4 | | Gants | Avant de prendre la colle ou le solvant, vérifie tes gants et dis : 手套。
+m1_kouzhao | 口罩 | kou-zhao | 3 4 | | Masque
+m1_anquanxie | 安全鞋 | an-quan xie | 1 2 2 | | Chaussures de sécurité
+m1_humujing | 护目镜 | hu-mu-jing | 4 4 4 | | Lunettes de protection
+m1_miehuoqi | 灭火器 | mie-huo-qi | 4 3 4 | | Extincteur | Repère l’extincteur le plus proche de ton poste. Montre-le à une collègue : 灭火器在这儿。
+m1_anquanchukou | 安全出口 | an-quan chu-kou | 1 2 1 3 | | Sortie de secours | Repère la sortie de secours de ton atelier et dis-le à voix haute : 安全出口。
+m1_jijiuxiang | 急救箱 | ji-jiu xiang | 2 4 1 | | Trousse de premiers secours | Demande à ton chef d’équipe où est la trousse : 急救箱在哪儿？
+m1_s_youren | 有人受伤了 | you ren shou shang le | 3 2 4 1 0 | | Quelqu’un est blessé !
+m1_s_jiuhuche | 快叫救护车 | kuai jiao jiu-hu-che | 4 4 4 4 1 | | Vite, appelle une ambulance !
+m1_s_zhaohuo | 着火了 | zhao huo le | 2 3 0 | | Au feu !
+m1_s_biepeng | 别碰机器 | bie peng ji-qi | 2 4 1 4 | | Ne touche pas la machine !
+m1_s_tingdian | 停电了 | ting dian le | 2 4 0 | | Il y a une coupure de courant
+m1_s_jiuming | 救命 | jiu ming | 4 4 | | Au secours !
+m1_s_chushigu | 出事故了 | chu shi-gu le | 1 4 4 0 | | Il y a eu un accident
+m1_s_liuxue | 她的手流血了 | ta de shou liu xue le | 1 0 3 2 4 0 | | Sa main saigne
+m1_s_kuaichong | 快用冷水冲 | kuai yong leng shui chong | 4 4 3 3 1 | 4 4 2 3 1 | Vite, rince à l’eau froide
+m1_s_daihao | 戴好手套 | dai hao shou-tao | 4 3 3 4 | 4 2 3 4 | Mets bien tes gants
+m1_s_tongfeng | 开窗通风 | kai chuang tong feng | 1 1 1 1 | | Ouvre la fenêtre pour aérer | Quand l’odeur de colle est forte, propose : 开窗通风吧。
+m1_s_weixian | 这儿很危险 | zhe-r hen wei-xian | 4 0 3 1 3 | | C’est dangereux ici
+m1_s_chuqu | 大家快出去 | da-jia kuai chu-qu | 4 1 4 1 0 | | Tout le monde dehors, vite !
+m1_s_kanjian | 我看见了 | wo kan-jian le | 3 4 4 0 | | Je l’ai vu (j’étais là)
+m1_s_jiqi | 在三号机器 | zai san hao ji-qi | 4 1 4 1 4 | | À la machine numéro 3
+''', st=0),
+ pairs=[pair(('伤', 'shang', 1, 'blessure'), ('上', 'shang', 4, 'monter, sur')), pair(('火', 'huo', 3, 'feu'), ('货', 'huo', 4, 'marchandise'))],
+ chars=chars('''
+安 | ān | paix, sûr | 宀 | toit
+险 | xiǎn | danger | 阝 | colline
+伤 | shāng | blessure | 亻 | personne
+火 | huǒ | feu | 火 | feu
+救 | jiù | secourir | 攵 | frapper
+护 | hù | protéger | 扌 | main
+套 | tào | enveloppe, gant | 大 | grand
+'''),
+ convs=[conv('metier-securite-blessure', 'Une collègue se blesse', '组长', 'Chef d’équipe', 'Ta collègue Xiao Li vient de se blesser la main sur une machine. Tu cours prévenir le chef d’équipe.', {
+  'a': node('{name}，怎么了？', '{name}, zěnme le?', '{name}, qu’est-ce qui se passe ?', [
+     o('有人受伤了！', 'Yǒu rén shòu shāng le!', 'Quelqu’un est blessé !', True, 'b'),
+     o('我不舒服。', 'Wǒ bù shūfu.', 'Je ne me sens pas bien.', fix='C’est ta collègue qui est blessée : crie « 有人受伤了！ ».')]),
+  'b': node('谁受伤了？在哪儿？', 'Shéi shòu shāng le? Zài nǎr?', 'Qui est blessé ? Où ?', [
+     o('小李，在三号机器。', 'Xiǎo Lǐ, zài sān hào jīqì.', 'Xiao Li, à la machine numéro 3.', True, 'c'),
+     o('我看见了。', 'Wǒ kànjiàn le.', 'Je l’ai vu.', fix='Il demande qui et où : « 小李，在三号机器 ».')]),
+  'c': node('她的手怎么样？', 'Tā de shǒu zěnmeyàng?', 'Comment va sa main ?', [
+     o('她的手流血了，快叫救护车！', 'Tā de shǒu liú xuè le, kuài jiào jiùhùchē!', 'Sa main saigne, vite, appelle une ambulance !', True, 'd'),
+     o('她的手很漂亮。', 'Tā de shǒu hěn piàoliang.', 'Sa main est très jolie.', fix='Ce n’est pas le moment ! Dis « 她的手流血了 » (sa main saigne).')]),
+  'd': node('好，我马上打电话。机器关了吗？', 'Hǎo, wǒ mǎshàng dǎ diànhuà. Jīqì guān le ma?', 'D’accord, j’appelle tout de suite. La machine est arrêtée ?', [
+     o('关了，没有人碰。', 'Guān le, méiyǒu rén pèng.', 'Elle est arrêtée, personne n’y touche.', True, 'end'),
+     o('没关，我们还要做鞋。', 'Méi guān, wǒmen hái yào zuò xié.', 'Non, on doit encore faire des chaussures.', fix='La sécurité d’abord : on arrête la machine (arrêt d’urgence) et personne n’y touche. Puis réponds « 关了 ».')]),
+  'end': node('谢谢你，{name}。你做得很好。', 'Xièxie nǐ, {name}. Nǐ zuò de hěn hǎo.', 'Merci, {name}. Tu as très bien réagi.', end=True)}),
+  conv('metier-securite-feu', 'Ça sent la fumée !', '组长', 'Chef d’équipe', 'Tu sens une odeur de fumée près du stock de colle.', {
+  'a': node('什么味道？', 'Shénme wèidao?', 'C’est quoi, cette odeur ?', [
+     o('着火了！大家快出去！', 'Zháohuǒ le! Dàjiā kuài chūqu!', 'Au feu ! Tout le monde dehors, vite !', True, 'b'),
+     o('我饿了。', 'Wǒ è le.', 'J’ai faim.', fix='Ça sent la fumée : crie « 着火了！ » pour prévenir tout le monde.')]),
+  'b': node('灭火器在哪儿？', 'Mièhuǒqì zài nǎr?', 'Où est l’extincteur ?', [
+     o('在安全出口旁边。', 'Zài ānquán chūkǒu pángbiān.', 'À côté de la sortie de secours.', True, 'c'),
+     o('在我家。', 'Zài wǒ jiā.', 'Chez moi.', fix='Repère toujours l’extincteur de ton atelier. Ici : « 在安全出口旁边 ».')]),
+  'c': node('火太大了！大家快出去！', 'Huǒ tài dà le! Dàjiā kuài chūqu!', 'Le feu est trop fort ! Tout le monde dehors !', [
+     o('好，我们从安全出口出去。', 'Hǎo, wǒmen cóng ānquán chūkǒu chūqu.', 'D’accord, on sort par la sortie de secours.', True, 'end'),
+     o('等一下，我回去拿手机。', 'Děng yíxià, wǒ huíqu ná shǒujī.', 'Attends, je retourne chercher mon téléphone.', fix='Ne retourne jamais chercher tes affaires ! Sors tout de suite par la sortie de secours.')]),
+  'end': node('好，大家都安全了。', 'Hǎo, dàjiā dōu ānquán le.', 'Bien, tout le monde est en sécurité.', end=True)}, st=0)],
+ bonus=[{'h': '安全第一', 'p': 'ānquán dì yī', 'fr': 'La sécurité d’abord', 'note': 'Phrase écrite sur les murs de beaucoup d’usines chinoises.'}]))
+
+PACKS.append(dict(id='metier-pannes', file='metier-02-pannes.json', branch='travail', publish=False,
+ title='Métier · Coupures et pannes',
+ desc='Coupure de courant, machine en panne, groupe électrogène : sécuriser, prévenir, redémarrer et rattraper la production.',
+ module={'icon': 'pannes', 'stage': 0, 'fiche': {'title': 'Coupure ou machine en panne', 'steps': [
+  'Arrête la machine (bouton d’arrêt) et retire tes mains.',
+  'Préviens le chef d’équipe : 「机器坏了」 ou 「停电了」.',
+  'Ne répare jamais toi-même : va chercher le technicien. 「我去叫师傅」',
+  'Si ça fume ou sent le brûlé : éloigne-toi et préviens tout de suite. 「冒烟了！」',
+  'Quand le courant revient, on rallume une machine à la fois, après vérification. 「先检查一下」',
+  'Note combien de paires manquent pour rattraper le retard calmement.']}},
+ grammar={'title': '先… 再… : « d’abord…, ensuite… »',
+  'explain': 'Pour donner l’ordre des gestes, mets 先 (xiān) devant la première action et 再 (zài) devant la suivante. Très utile en cas de panne, où l’ordre compte : d’abord sécuriser, ensuite réparer.',
+  'examples': [ex('先关机器，再叫师傅。', 'Xiān guān jīqì, zài jiào shīfu.', 'D’abord éteins la machine, ensuite appelle le technicien.'), ex('先断电，再修。', 'Xiān duàn diàn, zài xiū.', 'D’abord on coupe le courant, ensuite on répare.'), ex('先检查一下，再开机。', 'Xiān jiǎnchá yíxià, zài kāi jī.', 'D’abord on vérifie, ensuite on rallume.'), ex('我先去看看。', 'Wǒ xiān qù kànkan.', 'Je vais d’abord voir.')],
+  'tip': 'Tu entendras aussi 然后 (ránhòu, « puis ») : 先关机器，然后叫师傅.'},
+ items=items('''
+m2_guzhang | 故障 | gu-zhang | 4 4 | | Panne
+m2_fadianji | 发电机 | fa-dian-ji | 1 4 1 | | Groupe électrogène
+m2_chaiyou | 柴油 | chai-you | 2 2 | | Gazole
+m2_kaiguan | 开关 | kai-guan | 1 1 | | Interrupteur, bouton marche/arrêt
+m2_duandian | 断电 | duan dian | 4 4 | | Couper le courant
+m2_xiu | 修 | xiu | 1 | | Réparer
+m2_weixiugong | 维修工 | wei-xiu gong | 2 1 1 | | Technicien de maintenance
+m2_huanlingjian | 换零件 | huan ling-jian | 4 2 4 | | Changer la pièce
+m2_jindu | 进度 | jin-du | 4 4 | | Avancement (du travail)
+m2_s_laidian | 来电了 | lai dian le | 2 4 0 | | Le courant est revenu
+m2_s_xiuhao | 修好了 | xiu hao le | 1 3 0 | | C’est réparé
+m2_s_maoyan | 冒烟了 | mao yan le | 4 1 0 | | Ça fume !
+m2_s_qiazhu | 卡住了 | qia zhu le | 3 4 0 | | C’est coincé
+m2_s_louyou | 漏油了 | lou you le | 4 2 0 | | Il y a une fuite d’huile
+m2_s_shengyin | 声音不对 | sheng-yin bu dui | 1 1 2 4 | | Le bruit n’est pas normal | Si ta machine fait un bruit bizarre, préviens ton chef d’équipe : 声音不对。
+m2_s_xianguan | 先关机器 | xian guan ji-qi | 1 1 1 4 | | D’abord, éteins la machine
+m2_s_xianduan | 先断电 | xian duan dian | 1 4 4 | | D’abord, coupe le courant
+m2_s_jiaoshifu | 我去叫师傅 | wo qu jiao shi-fu | 3 4 4 1 0 | | Je vais chercher le technicien
+m2_s_shenmeshihou | 什么时候来电 | shen-me shi-hou lai dian | 2 0 2 0 2 4 | | Le courant revient quand ?
+m2_s_fadianji | 发电机开了吗 | fa-dian-ji kai le ma | 1 4 1 1 0 0 | | Le groupe électrogène est allumé ?
+m2_s_meiyou | 没有油了 | mei-you you le | 2 3 2 0 | | Il n’y a plus de carburant
+m2_s_chongxin | 重新开机 | chong-xin kai ji | 2 1 1 1 | | Redémarrer (la machine)
+m2_s_jiancha | 先检查一下 | xian jian-cha yi-xia | 1 3 2 2 4 | | Vérifie d’abord | Avant de rallumer ta machine après une panne, dis : 先检查一下。
+m2_s_youhuai | 机器又坏了 | ji-qi you huai le | 1 4 4 4 0 | | La machine est encore en panne
+m2_s_deng | 灯不亮 | deng bu liang | 1 2 4 | | La lumière ne s’allume pas
+m2_s_gangong | 今天要赶工 | jin-tian yao gan gong | 1 1 4 3 1 | | Aujourd’hui, il faut rattraper le retard
+m2_s_danwu | 耽误了两个小时 | dan-wu le liang ge xiao-shi | 1 0 0 3 0 3 2 | | On a perdu deux heures
+m2_s_anquanma | 安全吗 | an-quan ma | 1 2 0 | | C’est sans danger ?
+''', st=0),
+ pairs=[pair(('点', 'dian', 3, 'heure, point'), ('电', 'dian', 4, 'électricité')), pair(('油', 'you', 2, 'huile, carburant'), ('有', 'you', 3, 'avoir'))],
+ chars=chars('''
+修 | xiū | réparer | 亻 | personne
+坏 | huài | cassé | 土 | terre
+灯 | dēng | lampe | 火 | feu
+油 | yóu | huile | 氵 | eau
+断 | duàn | couper | 斤 | hache
+换 | huàn | changer | 扌 | main
+'''),
+ convs=[conv('metier-pannes-coupure', 'Coupure en plein travail', '组长', 'Chef d’équipe', 'Milieu de l’après-midi : d’un coup, plus de lumière, les machines s’arrêtent.', {
+  'a': node('停电了！大家别动。', 'Tíngdiàn le! Dàjiā bié dòng.', 'Coupure de courant ! Ne bougez pas.', [
+     o('机器要先关吗？', 'Jīqì yào xiān guān ma?', 'Il faut d’abord éteindre les machines ?', True, 'b'),
+     o('好，我下班了。', 'Hǎo, wǒ xiàbān le.', 'D’accord, je rentre chez moi.', fix='La journée n’est pas finie ! Demande plutôt s’il faut éteindre les machines : « 机器要先关吗？ »')]),
+  'b': node('对，先关机器，再断电。', 'Duì, xiān guān jīqì, zài duàn diàn.', 'Oui : d’abord on éteint les machines, ensuite on coupe le courant.', [
+     o('好，我先关机器。', 'Hǎo, wǒ xiān guān jīqì.', 'D’accord, j’éteins d’abord ma machine.', True, 'c'),
+     o('我先开机器。', 'Wǒ xiān kāi jīqì.', 'J’allume d’abord ma machine.', fix='Non : 先关 (d’abord éteindre). Une machine restée allumée peut redémarrer d’un coup quand le courant revient.')]),
+  'c': node('发电机开了吗？', 'Fādiànjī kāi le ma?', 'Le groupe électrogène est allumé ?', [
+     o('没有，没有油了。', 'Méiyǒu, méiyǒu yóu le.', 'Non, il n’y a plus de carburant.', True, 'd'),
+     o('开了，很好吃。', 'Kāi le, hěn hǎochī.', 'Il est allumé, c’est délicieux.', fix='好吃 = bon à manger ! Ici : « 没有，没有油了 » (il n’y a plus de carburant).')]),
+  'd': node('我去买柴油。你去叫维修工。', 'Wǒ qù mǎi cháiyóu. Nǐ qù jiào wéixiūgōng.', 'Je vais acheter du gazole. Toi, va chercher le technicien.', [
+     o('好，我去叫师傅。', 'Hǎo, wǒ qù jiào shīfu.', 'D’accord, je vais chercher le technicien.', True, 'e'),
+     o('我不知道。', 'Wǒ bù zhīdào.', 'Je ne sais pas.', fix='Il te donne une mission : réponds « 好，我去叫师傅 ».')]),
+  'e': node('来电了！我们耽误了两个小时，今天要赶工。', 'Lái diàn le! Wǒmen dānwu le liǎng ge xiǎoshí, jīntiān yào gǎn gōng.', 'Le courant est revenu ! On a perdu deux heures, il faut rattraper aujourd’hui.', [
+     o('没问题。我们先检查一下机器。', 'Méi wèntí. Wǒmen xiān jiǎnchá yíxià jīqì.', 'Pas de problème. Vérifions d’abord les machines.', True, 'end'),
+     o('我现在下班。', 'Wǒ xiànzài xiàbān.', 'Je pars maintenant.', fix='Il faut rattraper le retard. Montre que tu es prête : « 没问题 », et propose de vérifier d’abord les machines.')]),
+  'end': node('好，安全第一！', 'Hǎo, ānquán dì yī!', 'Bien, la sécurité d’abord !', end=True)}, st=0)],
+ bonus=[{'h': '马上就好', 'p': 'mǎshàng jiù hǎo', 'fr': 'Ce sera prêt dans un instant', 'note': 'Ce que dit souvent le technicien… même quand ça prend une heure !'}]))
+
+PACKS.append(dict(id='metier-conflits', file='metier-03-conflits.json', branch='travail', publish=False,
+ title='Métier · Calmer un conflit',
+ desc='Calmer une dispute, régler un malentendu avec le chef, t’excuser, proposer une solution, demander l’aide d’une tierce personne.',
+ module={'icon': 'conflits', 'stage': 0, 'fiche': {'title': 'Quand ça chauffe', 'steps': [
+  'Respire. Parle doucement : crier fait monter la colère des deux côtés.',
+  'Commence par calmer : 「别生气，有话好好说」.',
+  'Si tu t’es trompée, dis-le simplement : 「对不起，我错了」.',
+  'Si c’est un malentendu, explique sans accuser : 「这是误会，你听我解释」.',
+  'Propose une solution : 「我有一个办法」.',
+  'Si ça ne s’arrange pas, demande l’aide du chef ou d’un interprète : 「我们去找经理吧」.']}},
+ grammar={'title': 'Verbe + 一下 : adoucir',
+  'explain': 'Après un verbe, 一下 (yíxià) veut dire « un peu, un moment ». Ça rend la phrase plus douce, moins un ordre. Parfait pour calmer quelqu’un ou proposer de discuter.',
+  'examples': [ex('冷静一下。', 'Lěngjìng yíxià.', 'Calme-toi un peu.'), ex('我们商量一下。', 'Wǒmen shāngliang yíxià.', 'Discutons-en un peu.'), ex('我解释一下。', 'Wǒ jiěshì yíxià.', 'Je t’explique (rapidement).'), ex('你等一下。', 'Nǐ děng yíxià.', 'Attends un instant.')],
+  'tip': 'Sans 一下, 冷静！ sonne comme un ordre sec. Avec 一下, c’est une demande gentille.'},
+ items=items('''
+m3_chaojia | 吵架 | chao jia | 3 4 | | Se disputer
+m3_shengqi | 生气 | sheng qi | 1 4 | | Être en colère, se fâcher
+m3_wuhui | 误会 | wu-hui | 4 4 | | Malentendu
+m3_daoqian | 道歉 | dao qian | 4 4 | | S’excuser
+m3_lengjing | 冷静 | leng-jing | 3 4 | | Calme
+m3_jieshi | 解释 | jie-shi | 3 4 | | Expliquer
+m3_banfa | 办法 | ban-fa | 4 3 | | Solution, moyen
+m3_shangliang | 商量 | shang-liang | 1 0 | | Discuter ensemble, se concerter
+m3_jingli | 经理 | jing-li | 1 3 | | Directeur, manager
+m3_s_biechao | 别吵了 | bie chao le | 2 3 0 | | Arrêtez de vous disputer
+m3_s_lengjing | 冷静一下 | leng-jing yi-xia | 3 4 2 4 | | Calme-toi un peu
+m3_s_bieshengqi | 别生气 | bie sheng qi | 2 1 4 | | Ne te fâche pas
+m3_s_haohaoshuo | 有话好好说 | you hua hao-hao shuo | 3 4 3 3 1 | 3 4 2 3 1 | Parlons calmement | Si deux collègues se disputent près de toi, essaie : 别生气，有话好好说。
+m3_s_wodecuo | 是我的错 | shi wo de cuo | 4 3 0 4 | | C’est ma faute
+m3_s_wocuole | 我错了 | wo cuo le | 3 4 0 | | J’ai eu tort
+m3_s_shiwuhui | 这是误会 | zhe shi wu-hui | 4 4 4 4 | | C’est un malentendu
+m3_s_niwuhui | 你误会了 | ni wu-hui le | 3 4 4 0 | | Tu as mal compris
+m3_s_yisi | 我不是这个意思 | wo bu shi zhe-ge yi-si | 3 2 4 4 0 4 0 | | Ce n’est pas ce que je voulais dire
+m3_s_tingcuo | 我听错了 | wo ting cuo le | 3 1 4 0 | | J’ai mal entendu
+m3_s_tingwo | 你听我解释 | ni ting wo jie-shi | 3 1 3 3 4 | 3 1 2 3 4 | Écoute-moi, je t’explique
+m3_s_shangliang | 我们商量一下 | wo-men shang-liang yi-xia | 3 0 1 0 2 4 | | Discutons-en
+m3_s_nibanfa | 你有什么办法 | ni you shen-me ban-fa | 3 3 2 0 4 3 | 2 3 2 0 4 3 | Tu as une solution ?
+m3_s_wobanfa | 我有一个办法 | wo you yi ge ban-fa | 3 3 2 0 4 3 | 2 3 2 0 4 3 | J’ai une solution | Pendant un problème à l’atelier, propose une idée à ton chef d’équipe : 我有一个办法。
+m3_s_zhaojingli | 我们去找经理吧 | wo-men qu zhao jing-li ba | 3 0 4 3 1 3 0 | | Allons voir le directeur
+m3_s_bangwomen | 请你帮我们 | qing ni bang wo-men | 3 3 1 3 0 | 2 3 1 3 0 | Aide-nous, s’il te plaît
+m3_s_fanyi | 我需要翻译 | wo xu-yao fan-yi | 3 1 4 1 4 | | J’ai besoin d’un interprète
+m3_s_xiaci | 下次我会注意 | xia ci wo hui zhu-yi | 4 4 3 4 4 4 | | Je ferai attention la prochaine fois
+m3_s_lijie | 谢谢你的理解 | xie-xie ni de li-jie | 4 0 3 0 3 3 | 4 0 3 0 2 3 | Merci de ta compréhension
+''', st=0),
+ pairs=[pair(('钱', 'qian', 2, 'argent'), ('歉', 'qian', 4, 'excuse')), pair(('起', 'qi', 3, 'se lever'), ('气', 'qi', 4, 'colère, air'))],
+ chars=chars('''
+吵 | chǎo | bruyant, se disputer | 口 | bouche
+气 | qì | air, colère | 气 | souffle
+误 | wù | erreur | 讠 | parole
+歉 | qiàn | excuse | 欠 | bâiller
+解 | jiě | défaire, expliquer | 角 | corne
+办 | bàn | faire, régler | 力 | force
+静 | jìng | calme | 青 | bleu-vert
+'''),
+ convs=[conv('metier-conflits-chef', 'La couleur n’est pas bonne', '组长', 'Chef d’équipe', 'Ton chef d’équipe arrive, fâché, avec une paire de chaussures à la main.', {
+  'a': node('这些鞋的颜色不对！你怎么做的？', 'Zhèxiē xié de yánsè bú duì! Nǐ zěnme zuò de?', 'La couleur de ces chaussures n’est pas bonne ! Tu as fait comment ?', [
+     o('对不起，这是误会。你听我解释。', 'Duìbuqǐ, zhè shì wùhuì. Nǐ tīng wǒ jiěshì.', 'Pardon, c’est un malentendu. Laisse-moi t’expliquer.', True, 'b'),
+     o('不是我的错！', 'Bú shì wǒ de cuò!', 'Ce n’est pas ma faute !', fix='Te défendre en criant énerve le chef. Commence calmement : « 对不起，这是误会。你听我解释 ».')]),
+  'b': node('好，你说。', 'Hǎo, nǐ shuō.', 'D’accord, vas-y.', [
+     o('早上我听错了，以为是白色。', 'Zǎoshang wǒ tīng cuò le, yǐwéi shì báisè.', 'Ce matin j’ai mal entendu, j’ai cru que c’était blanc.', True, 'c'),
+     o('你说得不清楚！', 'Nǐ shuō de bù qīngchu!', 'Tu ne parles pas clairement !', fix='Accuser le chef lui fait perdre la face (面子). Dis plutôt « 我听错了 » : tu restes polie, et lui aussi.')]),
+  'c': node('那现在怎么办？', 'Nà xiànzài zěnme bàn?', 'Alors, on fait comment maintenant ?', [
+     o('我有一个办法：今天加班，重新做。', 'Wǒ yǒu yí ge bànfǎ: jīntiān jiābān, chóngxīn zuò.', 'J’ai une solution : je fais des heures sup aujourd’hui et je refais.', True, 'd'),
+     o('我不知道。', 'Wǒ bù zhīdào.', 'Je ne sais pas.', fix='Montre que tu veux régler le problème : « 我有一个办法… » et propose quelque chose.')]),
+  'd': node('好吧。下次要注意。', 'Hǎo ba. Xià cì yào zhùyì.', 'Bon. La prochaine fois, fais attention.', [
+     o('好的，下次我会注意。谢谢你的理解。', 'Hǎo de, xià cì wǒ huì zhùyì. Xièxie nǐ de lǐjiě.', 'D’accord, je ferai attention. Merci de ta compréhension.', True, 'end'),
+     o('没有下次。', 'Méiyǒu xià cì.', 'Il n’y aura pas de prochaine fois.', fix='Ça sonne insolent. Termine en douceur : « 下次我会注意。谢谢你的理解 ».')]),
+  'end': node('没关系，加油！', 'Méi guānxi, jiāyóu!', 'Ce n’est pas grave, courage !', end=True)}),
+  conv('metier-conflits-place', 'C’est ma place !', '同事', 'Collègue', 'Une collègue arrive en colère : elle dit que tu as pris son poste.', {
+  'a': node('这是我的位置！你走开！', 'Zhè shì wǒ de wèizhi! Nǐ zǒu kāi!', 'C’est ma place ! Va-t’en !', [
+     o('别生气，有话好好说。', 'Bié shēngqì, yǒu huà hǎohǎo shuō.', 'Ne te fâche pas, parlons calmement.', True, 'b'),
+     o('你走开！', 'Nǐ zǒu kāi!', 'Va-t’en, toi !', fix='Répondre pareil, ça empire. Calme d’abord : « 别生气，有话好好说 ».')]),
+  'b': node('组长让我在这儿工作。', 'Zǔzhǎng ràng wǒ zài zhèr gōngzuò.', 'Le chef d’équipe m’a dit de travailler ici.', [
+     o('可能是误会。我们去找组长吧。', 'Kěnéng shì wùhuì. Wǒmen qù zhǎo zǔzhǎng ba.', 'C’est peut-être un malentendu. Allons voir le chef d’équipe.', True, 'end'),
+     o('我不管。', 'Wǒ bù guǎn.', 'Je m’en fiche.', fix='Proposer l’aide du chef règle le problème sans dispute : « 我们去找组长吧 ».')]),
+  'end': node('好吧，我们去问问。', 'Hǎo ba, wǒmen qù wènwen.', 'D’accord, allons demander.', end=True)}, st=0)],
+ bonus=[{'h': '和气生财', 'p': 'héqi shēng cái', 'fr': 'La bonne entente fait prospérer', 'note': 'Proverbe de commerçants : ne pas se fâcher, c’est bon pour les affaires.'}]))
+
+PACKS.append(dict(id='metier-chef', file='metier-04-chef-chinois.json', branch='travail', publish=False,
+ title='Métier · Comprendre son chef chinois',
+ desc='La « face » (面子), dire non poliment, entendre les critiques indirectes, remercier, demander un congé.',
+ module={'icon': 'chef', 'stage': 0, 'fiche': {'title': 'Avec ton chef chinois', 'steps': [
+  'La « face » (面子) compte beaucoup : ne contredis jamais ton chef devant les autres. Si tu n’es pas d’accord, va le voir seul à seul.',
+  'Un « non » direct est impoli. Dis plutôt 「恐怕不行」 ou 「我尽量」.',
+  'Les critiques sont souvent douces : 「还可以」 ou 「有点问题」 veut dire qu’il faut corriger. Demande quoi, sans te vexer.',
+  '「再看看」 ou 「我考虑一下」 veut souvent dire non : n’insiste pas trop.',
+  'Pour un congé, demande à l’avance avec une raison courte : 「我想请一天假，家里有事」.',
+  'Dis 您 (vous) à ton chef et remercie souvent : 「谢谢您的指导」.']}},
+ grammar={'title': '有点 + adjectif : adoucir une critique',
+  'explain': '有点 (yǒudiǎn, « un peu ») devant un adjectif rend une remarque négative plus douce. Les chefs chinois l’utilisent beaucoup : 有点慢 veut souvent dire « c’est trop lent ». Toi aussi, utilise-le pour dire non sans vexer.',
+  'examples': [ex('这个可能有点难。', 'Zhège kěnéng yǒudiǎn nán.', 'Ça risque d’être un peu difficile. (= plutôt non)'), ex('你做得有点慢。', 'Nǐ zuò de yǒudiǎn màn.', 'Tu travailles un peu lentement.'), ex('颜色有点深。', 'Yánsè yǒudiǎn shēn.', 'La couleur est un peu foncée.'), ex('今天我有点累。', 'Jīntiān wǒ yǒudiǎn lèi.', 'Aujourd’hui je suis un peu fatiguée.')],
+  'tip': '有点 sert pour ce qui ne va pas. Pour un compliment, dis 很 : 很好 (très bien), pas 有点好.'},
+ items=items('''
+m4_mianzi | 面子 | mian-zi | 4 0 | | La face (l’honneur, la réputation)
+m4_geimianzi | 给面子 | gei mian-zi | 3 4 0 | | Ménager la face de quelqu’un
+m4_diulian | 丢脸 | diu lian | 1 3 | | Perdre la face, avoir honte
+m4_keqi | 客气 | ke-qi | 4 0 | | Poli, faire des manières
+m4_lingdao | 领导 | ling-dao | 3 3 | 2 3 | Chef, supérieur
+m4_qingjia | 请假 | qing jia | 3 4 | | Demander un congé
+m4_bingjia | 病假 | bing jia | 4 4 | | Congé maladie
+m4_pizhun | 批准 | pi-zhun | 1 3 | | Accorder, autoriser
+m4_yijian | 意见 | yi-jian | 4 4 | | Avis, remarque
+m4_s_kaolv | 我考虑一下 | wo kao-lv yi-xia | 3 3 4 2 4 | 2 3 4 2 4 | Je vais y réfléchir
+m4_s_jinliang | 我尽量 | wo jin-liang | 3 3 4 | 2 3 4 | Je ferai de mon mieux
+m4_s_kongpa | 恐怕不行 | kong-pa bu xing | 3 4 4 2 | | J’ai bien peur que non
+m4_s_younan | 这个可能有点难 | zhe-ge ke-neng you-dian nan | 4 0 3 2 3 3 2 | 4 0 3 2 2 3 2 | Ça risque d’être un peu difficile
+m4_s_haikeyi | 还可以 | hai ke-yi | 2 3 3 | 2 2 3 | Ça peut aller (= pas terrible)
+m4_s_zaikankan | 再看看 | zai kan-kan | 4 4 0 | | On verra (= souvent non)
+m4_s_youdianwenti | 有点问题 | you-dian wen-ti | 3 3 4 2 | 2 3 4 2 | Il y a un petit souci
+m4_s_gaigai | 你再改改 | ni zai gai-gai | 3 4 3 0 | | Retouche encore un peu
+m4_s_shuodedui | 您说得对 | nin shuo de dui | 2 1 0 4 | | Vous avez raison
+m4_s_mingbai | 我明白您的意思 | wo ming-bai nin de yi-si | 3 2 0 2 0 4 0 | | Je comprends ce que vous voulez dire
+m4_s_xielingdao | 谢谢领导 | xie-xie ling-dao | 4 0 3 3 | 4 0 2 3 | Merci, chef
+m4_s_zhidao | 谢谢您的指导 | xie-xie nin de zhi-dao | 4 0 2 0 3 3 | 4 0 2 0 2 3 | Merci pour vos conseils | Après une explication de ton chef, remercie-le : 谢谢您的指导。
+m4_s_taikeqi | 您太客气了 | nin tai ke-qi le | 2 4 4 0 0 | | Vous êtes trop aimable
+m4_s_xianmang | 您先忙 | nin xian mang | 2 1 2 | | Je vous laisse travailler | Quand tu quittes le bureau de ton chef, dis : 您先忙。
+m4_s_yitianjia | 我想请一天假 | wo xiang qing yi tian jia | 3 3 3 4 1 4 | 2 2 3 4 1 4 | Je voudrais un jour de congé
+m4_s_jialiyoushi | 家里有事 | jia-li you shi | 1 0 3 4 | | J’ai une affaire de famille
+m4_s_huilai | 我明天回来上班 | wo ming-tian hui-lai shang ban | 3 2 1 2 0 4 1 | | Je reviens travailler demain
+''', st=0),
+ pairs=[pair(('棉', 'mian', 2, 'coton'), ('面', 'mian', 4, 'face, visage')), pair(('家', 'jia', 1, 'maison, famille'), ('假', 'jia', 4, 'congé'))],
+ chars=chars('''
+面 | miàn | visage, face | 面 | visage
+脸 | liǎn | visage | 月 | chair
+客 | kè | invité | 宀 | toit
+领 | lǐng | diriger | 页 | tête
+导 | dǎo | guider | 寸 | pouce
+假 | jià | congé | 亻 | personne
+谢 | xiè | remercier | 讠 | parole
+'''),
+ convs=[conv('metier-chef-conge', 'Demander un jour de congé', '经理', 'Directeur', 'Ton frère se marie vendredi au village. Tu vas voir le directeur pour demander un jour de congé.', {
+  'a': node('{name}，有什么事？', '{name}, yǒu shénme shì?', '{name}, qu’est-ce qu’il y a ?', [
+     o('经理，不好意思，我想请一天假。', 'Jīnglǐ, bù hǎoyìsi, wǒ xiǎng qǐng yì tiān jià.', 'Monsieur le directeur, excusez-moi, je voudrais un jour de congé.', True, 'b'),
+     o('我明天不来。', 'Wǒ míngtiān bù lái.', 'Demain, je ne viens pas.', fix='Trop direct : on ne prévient pas, on demande. Dis « 不好意思，我想请一天假 ».')]),
+  'b': node('为什么？这个星期很忙。', 'Wèishénme? Zhège xīngqī hěn máng.', 'Pourquoi ? Cette semaine, on a beaucoup de travail.', [
+     o('家里有事。今天我会多做一点。', 'Jiāli yǒu shì. Jīntiān wǒ huì duō zuò yìdiǎn.', 'Une affaire de famille. Aujourd’hui, j’en ferai un peu plus.', True, 'c'),
+     o('这不是你的事。', 'Zhè bú shì nǐ de shì.', 'Ça ne te regarde pas.', fix='Ça le vexe et il perd la face. Donne une raison courte et polie : « 家里有事 ».')]),
+  'c': node('好吧，我批准。那星期六你能来加班吗？', 'Hǎo ba, wǒ pīzhǔn. Nà xīngqīliù nǐ néng lái jiābān ma?', 'Bon, j’accepte. Et samedi, tu peux venir faire des heures sup ?', [
+     o('星期六恐怕不行，不好意思。下次我一定来。', 'Xīngqīliù kǒngpà bù xíng, bù hǎoyìsi. Xià cì wǒ yídìng lái.', 'Samedi, j’ai bien peur que non, désolée. La prochaine fois, je viendrai sans faute.', True, 'd'),
+     o('不要！', 'Bú yào!', 'Non !', fix='Un « non » sec fait perdre la face au chef. Dis « 恐怕不行 », excuse-toi et propose une autre fois.')]),
+  'd': node('没关系。路上小心。', 'Méi guānxi. Lùshang xiǎoxīn.', 'Pas de souci. Fais attention sur la route.', [
+     o('谢谢经理！您先忙。', 'Xièxie jīnglǐ! Nín xiān máng.', 'Merci, monsieur le directeur ! Je vous laisse travailler.', True, 'end'),
+     o('我知道。', 'Wǒ zhīdào.', 'Je sais.', fix='Un peu sec. Remercie : « 谢谢经理！ » Ça entretient une bonne relation.')]),
+  'end': node('不客气。好好休息。', 'Bú kèqi. Hǎohǎo xiūxi.', 'De rien. Repose-toi bien.', end=True)}, st=0)],
+ bonus=[{'h': '入乡随俗', 'p': 'rù xiāng suí sú', 'fr': 'À Rome, fais comme les Romains', 'note': 'Mot à mot « entrer au village, suivre ses coutumes ». Tes chefs le vivent au Togo… et toi avec eux !'}]))
+
+PACKS.append(dict(id='metier-equipe', file='metier-05-equipe.json', branch='travail', publish=False,
+ title='Métier · Diriger une équipe',
+ desc='Donner une consigne, faire le planning, gérer une absence, féliciter, recadrer sans vexer, organiser les heures sup.',
+ module={'icon': 'equipe', 'stage': 1, 'fiche': {'title': 'Bien diriger ton équipe', 'steps': [
+  'Le matin, donne les consignes clairement : qui fait quoi, et l’objectif du jour. 「今天的任务是这些」',
+  'Vérifie qu’on t’a comprise et dis que tu es là : 「有问题就问我」.',
+  'Félicite devant tout le monde : 「做得很好！」',
+  'Recadre en privé, calmement, sans humilier : 「下次注意就好」.',
+  'Pour les heures sup, préviens tôt et demande qui peut : 「谁能加班？」',
+  'Note les absences et préviens ton chef tout de suite.']}},
+ grammar={'title': '让 + personne + verbe : faire faire',
+  'explain': 'Pour dire « je fais faire quelque chose à quelqu’un » ou « on m’a dit de… », mets 让 (ràng) + la personne + l’action. Très utile quand tu organises le travail.',
+  'examples': [ex('让他明天上夜班。', 'Ràng tā míngtiān shàng yèbān.', 'Mets-le de nuit demain.'), ex('我让小刘负责这条线。', 'Wǒ ràng Xiǎo Liú fùzé zhè tiáo xiàn.', 'Je confie cette ligne à Xiao Liu.'), ex('经理让我们加班。', 'Jīnglǐ ràng wǒmen jiābān.', 'Le directeur nous demande de faire des heures sup.'), ex('让我想一想。', 'Ràng wǒ xiǎng yi xiǎng.', 'Laisse-moi réfléchir.')],
+  'tip': '让 sert aussi à dire « laisse-moi » : 让我来 (laisse-moi faire).'},
+ items=items('''
+m5_renwu | 任务 | ren-wu | 4 4 | | Tâche, mission
+m5_anpai | 安排 | an-pai | 1 2 | | Organiser, organisation
+m5_paiban | 排班 | pai ban | 2 1 | | Planning des équipes
+m5_baiban | 白班 | bai ban | 2 1 | | Équipe de jour
+m5_yeban | 夜班 | ye ban | 4 1 | | Équipe de nuit
+m5_chidao | 迟到 | chi dao | 2 4 | | Être en retard
+m5_biaoyang | 表扬 | biao-yang | 3 2 | | Féliciter
+m5_mubiao | 目标 | mu-biao | 4 1 | | Objectif
+m5_wancheng | 完成 | wan-cheng | 2 2 | | Terminer, atteindre
+m5_peihe | 配合 | pei-he | 4 2 | | Coopérer, travailler ensemble
+m5_kaihui | 开会 | kai hui | 1 4 | | Faire une réunion
+m5_s_renwu | 今天的任务是这些 | jin-tian de ren-wu shi zhe-xie | 1 1 0 4 4 4 4 1 | | Voici les tâches du jour
+m5_s_fuze | 你负责这条线 | ni fu-ze zhe tiao xian | 3 4 2 4 2 4 | | Tu t’occupes de cette ligne
+m5_s_xianzuo | 先做这个 | xian zuo zhe-ge | 1 4 4 0 | | Fais celui-ci d’abord
+m5_s_yeban | 让他明天上夜班 | rang ta ming-tian shang ye ban | 4 1 2 1 4 4 1 | | Mets-le de nuit demain
+m5_s_sheimeilai | 谁没来 | shei mei lai | 2 2 2 | | Qui est absent ?
+m5_s_qingjia | 他今天请假了 | ta jin-tian qing jia le | 1 1 1 3 4 0 | | Il est en congé aujourd’hui
+m5_s_henhao | 做得很好 | zuo de hen hao | 4 0 3 3 | 4 0 2 3 | C’est très bien fait | Quand un collègue fait du bon travail, dis-le-lui : 做得很好！
+m5_s_xinku | 你们辛苦了 | ni-men xin-ku le | 3 0 1 3 0 | | Merci pour votre travail
+m5_s_gaiyixia | 这儿要改一下 | zhe-r yao gai yi-xia | 4 0 4 3 2 4 | | Ici, il faut corriger un peu
+m5_s_zhuyi | 下次注意就好 | xia ci zhu-yi jiu hao | 4 4 4 4 4 3 | | Fais attention la prochaine fois, c’est tout
+m5_s_biechidao | 别再迟到了 | bie zai chi dao le | 2 4 2 4 0 | | Ne sois plus en retard
+m5_s_jiaban | 今晚要加班 | jin-wan yao jia ban | 1 3 4 1 1 | | Ce soir, on fait des heures sup
+m5_s_liangxiaoshi | 加班两个小时 | jia ban liang ge xiao-shi | 1 1 3 0 3 2 | | Deux heures supplémentaires
+m5_s_sheineng | 谁能加班 | shei neng jia ban | 2 2 1 1 | | Qui peut faire des heures sup ?
+m5_s_mubiao | 我们一起完成目标 | wo-men yi-qi wan-cheng mu-biao | 3 0 4 3 2 2 4 1 | | Atteignons l’objectif ensemble
+m5_s_wenwo | 有问题就问我 | you wen-ti jiu wen wo | 3 4 2 4 4 3 | | Si tu as un problème, demande-moi
+m5_s_peihe | 谢谢大家的配合 | xie-xie da-jia de pei-he | 4 0 4 1 0 4 2 | | Merci à tous pour votre coopération
+''', st=1),
+ pairs=[pair(('班', 'ban', 1, 'équipe (de travail)'), ('半', 'ban', 4, 'moitié')), pair(('也', 'ye', 3, 'aussi'), ('夜', 'ye', 4, 'nuit'))],
+ chars=chars('''
+班 | bān | équipe, poste | 王 | roi (jade)
+任 | rèn | charge | 亻 | personne
+务 | wù | tâche | 力 | force
+排 | pái | ranger | 扌 | main
+夜 | yè | nuit | 夕 | soir
+迟 | chí | en retard | 辶 | marcher
+标 | biāo | marque, but | 木 | arbre
+'''),
+ convs=[conv('metier-equipe-matin', 'Le briefing du matin', '小刘', 'Ouvrier de ton équipe', 'Tu es maintenant cheffe d’équipe. 7 h : Xiao Liu arrive en retard pendant que tu donnes les consignes.', {
+  'a': node('{name}姐，对不起，我迟到了。', '{name} jiě, duìbuqǐ, wǒ chídào le.', '{name}, pardon, je suis en retard.', [
+     o('没事，下次注意就好。今天你负责这条线。', 'Méi shì, xià cì zhùyì jiù hǎo. Jīntiān nǐ fùzé zhè tiáo xiàn.', 'Ce n’est rien, fais attention la prochaine fois. Aujourd’hui, tu t’occupes de cette ligne.', True, 'b'),
+     o('你又迟到了！你太差了！', 'Nǐ yòu chídào le! Nǐ tài chà le!', 'Encore en retard ! Tu es vraiment nul !', fix='Le gronder devant tout le monde lui fait perdre la face. Reste ferme mais calme : « 下次注意就好 ».')]),
+  'b': node('好的。今天要做多少双？', 'Hǎo de. Jīntiān yào zuò duōshao shuāng?', 'D’accord. On doit faire combien de paires aujourd’hui ?', [
+     o('今天的目标是五百双。', 'Jīntiān de mùbiāo shì wǔbǎi shuāng.', 'L’objectif du jour, c’est cinq cents paires.', True, 'c'),
+     o('五百块。', 'Wǔbǎi kuài.', 'Cinq cents francs.', fix='块 = de l’argent. Pour des chaussures, on compte en paires : « 五百双 ».')]),
+  'c': node('小王今天没来。', 'Xiǎo Wáng jīntiān méi lái.', 'Xiao Wang n’est pas venu aujourd’hui.', [
+     o('他今天请假了。我们一起完成目标。', 'Tā jīntiān qǐngjià le. Wǒmen yìqǐ wánchéng mùbiāo.', 'Il est en congé aujourd’hui. On atteint l’objectif ensemble.', True, 'd'),
+     o('那我们不做了。', 'Nà wǒmen bú zuò le.', 'Alors on arrête.', fix='Une absence, ça s’organise ! Rassure l’équipe : « 我们一起完成目标 ».')]),
+  'd': node('做完了！五百双。', 'Zuò wán le! Wǔbǎi shuāng.', 'Fini ! Cinq cents paires.', [
+     o('做得很好！你们辛苦了。', 'Zuò de hěn hǎo! Nǐmen xīnkǔ le.', 'Très bien fait ! Merci pour votre travail.', True, 'end'),
+     o('才五百双？', 'Cái wǔbǎi shuāng?', 'Seulement cinq cents ?', fix='Ils ont atteint l’objectif : félicite-les ! « 做得很好！ » Une équipe remerciée travaille mieux.')]),
+  'end': node('谢谢{name}姐！明天见！', 'Xièxie {name} jiě! Míngtiān jiàn!', 'Merci, {name} ! À demain !', end=True)}, st=1)],
+ bonus=[{'h': '众人拾柴火焰高', 'p': 'zhòng rén shí chái huǒyàn gāo', 'fr': 'L’union fait la force', 'note': 'Mot à mot « quand tout le monde ramasse du bois, la flamme monte haut ».'}]))
+
+PACKS.append(dict(id='metier-chiffres', file='metier-06-chiffres.json', branch='travail', publish=False,
+ title='Métier · Les chiffres du travail',
+ desc='Heures, primes, fiche de paie, stock, factures : les grands nombres avec 万 et les pourcentages.',
+ module={'icon': 'chiffres', 'stage': 1, 'fiche': {'title': 'Vérifier ta fiche de paie', 'steps': [
+  'Chaque jour, note tes heures et tes heures sup dans un carnet.',
+  'Le jour de paie, compare avec ta fiche (工资单) : heures, 加班费, 奖金.',
+  'Si un chiffre ne correspond pas, reste calme : 「对不上，我算一下」.',
+  'Pour une retenue, demande poliment pourquoi : 「为什么扣钱？」',
+  'Garde tes fiches de paie dans un endroit sûr.']}},
+ grammar={'title': '万 et 百分之 : grands nombres et pourcentages',
+  'explain': 'En chinois, on compte les grands nombres par paquets de 10 000 : 一万 (yíwàn). Donc 50 000 = 五万 (5 × 10 000), et 100 000 = 十万. Pour les pourcentages, on dit d’abord « cent parts », puis le nombre : 百分之十 = 10 %.',
+  'examples': [ex('一万双', 'yíwàn shuāng', '10 000 paires'), ex('两万五千', 'liǎngwàn wǔqiān', '25 000'), ex('一百万', 'yìbǎi wàn', '1 000 000 (un million)'), ex('百分之二十', 'bǎi fēn zhī èrshí', '20 %')],
+  'tip': 'Pour lire un grand nombre, sépare-le par 4 chiffres depuis la droite : 2|3000 = 两万三千.'},
+ items=items('''
+m6_wan | 万 | wan | 4 | | Dix mille (10 000)
+m6_yiwan | 一万 | yi-wan | 2 4 | | Dix mille (10 000)
+m6_shiwan | 十万 | shi-wan | 2 4 | | Cent mille (100 000)
+m6_liangwanwu | 两万五 | liang-wan-wu | 3 4 3 | | Vingt-cinq mille (25 000)
+m6_yiban | 一半 | yi-ban | 2 4 | | La moitié
+m6_baifenzhishi | 百分之十 | bai-fen-zhi shi | 3 1 1 2 | | Dix pour cent (10 %)
+m6_baifenzhiwushi | 百分之五十 | bai-fen-zhi wu-shi | 3 1 1 3 2 | | Cinquante pour cent (50 %)
+m6_yidianwu | 一点五 | yi dian wu | 1 3 3 | 1 2 3 | Un virgule cinq (1,5)
+m6_jiangjin | 奖金 | jiang-jin | 3 1 | | Prime
+m6_gongzidan | 工资单 | gong-zi dan | 1 1 1 | | Fiche de paie
+m6_dixin | 底薪 | di-xin | 3 1 | | Salaire de base
+m6_jiabanfei | 加班费 | jia-ban fei | 1 1 4 | | Paiement des heures sup
+m6_kouqian | 扣钱 | kou qian | 4 2 | | Faire une retenue (sur le salaire)
+m6_kucun | 库存 | ku-cun | 4 2 | | Stock
+m6_fapiao | 发票 | fa-piao | 1 4 | | Facture
+m6_gongshi | 工时 | gong-shi | 1 2 | | Heures de travail
+m6_jianshao | 减少 | jian-shao | 3 3 | 2 3 | Diminuer
+m6_s_zengjia | 增加了百分之十 | zeng-jia le bai-fen-zhi shi | 1 1 0 3 1 1 2 | | Ça a augmenté de 10 %
+m6_s_ershi | 这个月加班二十个小时 | zhe-ge yue jia ban er-shi ge xiao-shi | 4 0 4 1 1 4 2 0 3 2 | | Ce mois-ci, vingt heures sup | À la fin du mois, compte tes heures sup et dis-le en chinois : 这个月加班…个小时。
+m6_s_jiangjin | 奖金有多少 | jiang-jin you duo-shao | 3 1 3 1 0 | | La prime, c’est combien ?
+m6_s_kouqian | 为什么扣钱 | wei-shen-me kou qian | 4 2 0 4 2 | | Pourquoi cette retenue ?
+m6_s_gongzi | 工资什么时候发 | gong-zi shen-me shi-hou fa | 1 1 2 0 2 0 1 | | Le salaire est versé quand ?
+m6_s_kucun | 库存还有多少 | ku-cun hai you duo-shao | 4 2 2 3 1 0 | | Il reste combien en stock ? | Au magasin, demande combien de colle il reste : 库存还有多少？
+m6_s_yigong | 一共两万三千双 | yi-gong liang-wan san-qian shuang | 2 4 3 4 1 1 1 | | Au total, 23 000 paires
+m6_s_kaifapiao | 请开发票 | qing kai fa-piao | 3 1 1 4 | | Faites une facture, s’il vous plaît
+m6_s_fapiaohao | 发票号码 | fa-piao hao-ma | 1 4 4 3 | | Numéro de facture
+m6_s_suanyixia | 我算一下 | wo suan yi-xia | 3 4 2 4 | | Je fais le calcul
+m6_s_duibushang | 对不上 | dui bu shang | 4 0 4 | | Ça ne correspond pas (les comptes)
+''', st=1),
+ pairs=[pair(('晚', 'wan', 3, 'soir'), ('万', 'wan', 4, 'dix mille')), pair(('千', 'qian', 1, 'mille'), ('钱', 'qian', 2, 'argent'))],
+ chars=chars('''
+万 | wàn | dix mille | 一 | un
+奖 | jiǎng | récompense | 大 | grand
+资 | zī | ressources | 贝 | coquillage (argent)
+扣 | kòu | retenir | 扌 | main
+库 | kù | entrepôt | 广 | abri
+票 | piào | ticket, billet | 示 | autel
+费 | fèi | frais | 贝 | coquillage (argent)
+算 | suàn | calculer | 竹 | bambou
+'''),
+ convs=[conv('metier-chiffres-paie', 'Le jour de paie', '会计', 'Comptable', 'C’est le jour de paie. Tu vérifies ta fiche avec la comptable.', {
+  'a': node('{name}，这是你的工资单。', '{name}, zhè shì nǐ de gōngzīdān.', '{name}, voici ta fiche de paie.', [
+     o('谢谢。我这个月加班二十个小时。', 'Xièxie. Wǒ zhège yuè jiābān èrshí ge xiǎoshí.', 'Merci. Ce mois-ci, j’ai fait vingt heures sup.', True, 'b'),
+     o('我不要。', 'Wǒ bú yào.', 'Je n’en veux pas.', fix='Prends-la et vérifie tes heures : « 我这个月加班二十个小时 ».')]),
+  'b': node('对，加班费在这儿。', 'Duì, jiābānfèi zài zhèr.', 'Oui, le paiement des heures sup est ici.', [
+     o('奖金有多少？', 'Jiǎngjīn yǒu duōshao?', 'La prime, c’est combien ?', True, 'c'),
+     o('请开发票。', 'Qǐng kāi fāpiào.', 'Faites une facture, s’il vous plaît.', fix='Pas de facture pour un salaire ! Pour la prime, demande : « 奖金有多少？ »')]),
+  'c': node('奖金是一万。', 'Jiǎngjīn shì yíwàn.', 'La prime est de dix mille.', [
+     o('好的。这儿为什么扣钱？', 'Hǎo de. Zhèr wèishénme kòu qián?', 'D’accord. Pourquoi il y a une retenue ici ?', True, 'd'),
+     o('一万是一千吗？', 'Yíwàn shì yìqiān ma?', 'Dix mille, c’est mille ?', fix='一万 = 10 000 (dix mille). 一千 = 1 000.')]),
+  'd': node('你请了一天假。', 'Nǐ qǐng le yì tiān jià.', 'Tu as pris un jour de congé.', [
+     o('明白了。我算一下……对，没问题。', 'Míngbai le. Wǒ suàn yíxià… duì, méi wèntí.', 'Je comprends. Je fais le calcul… oui, c’est bon.', True, 'end'),
+     o('我没请假！你错了！', 'Wǒ méi qǐngjià! Nǐ cuò le!', 'Je n’ai pas pris de congé ! Tu te trompes !', fix='Avant d’accuser, vérifie calmement : « 我算一下 ». Si ça ne correspond pas, dis poliment « 对不上 ».')]),
+  'end': node('好，有问题再来找我。', 'Hǎo, yǒu wèntí zài lái zhǎo wǒ.', 'Bien, si tu as un souci, reviens me voir.', end=True)}, st=1)],
+ bonus=[{'h': '一分钱一分货', 'p': 'yì fēn qián yì fēn huò', 'fr': 'On en a pour son argent', 'note': 'Mot à mot « un centime, une part de marchandise » : la qualité a un prix.'}]))
+
 # ---------------- écriture ----------------
 HSK1 = '''爱 八 爸爸 杯子 北京 本 不 不客气 菜 茶 吃 出租车 打电话 大 的 点 电脑 电视 电影 东西 都 读 对不起 多 多少 儿子 二 饭店 飞机 分钟 高兴 个 工作 狗 汉语 好 号 喝 和 很 后面 回 会 几 家 叫 今天 九 开 看 看见 块 来 老师 了 冷 里 六 吗 妈妈 买 猫 没关系 没有 米饭 名字 明天 哪 哪儿 那 呢 能 你 年 女儿 朋友 漂亮 苹果 七 前面 钱 请 去 热 人 认识 三 商店 上 上午 少 谁 什么 十 时候 是 书 水 水果 睡觉 说 四 岁 他 她 太 天气 听 同学 喂 我 我们 五 喜欢 下 下午 下雨 先生 现在 想 小 小姐 些 写 谢谢 星期 学生 学习 学校 一 一点儿 衣服 医生 医院 椅子 有 月 在 再见 怎么 怎么样 这 中国 中午 住 桌子 字 昨天 坐 做'''.split()
 
