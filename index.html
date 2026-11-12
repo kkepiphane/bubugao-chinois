@@ -495,7 +495,8 @@ const PROVERBES=[
 ];
 /* Examens blancs au format officiel du HSK (questions originales, pas des sujets officiels).
    pics : mot → [image, pinyin, sens]. L = écoute, R = lecture ; parties 1 à 4. */
-const EXAMENS={1:{titre:'HSK 1',pass:120,lire:17,
+const EXAMENS={1:{titre:'HSK 1',pass:120,ecoute:15,lire:17,
+ plan:[['L1','tfword',null,5],['L2','sentpic','L2',5],['L3','dlgpic','L3',5],['L4','listenq','L4',5],['R1','tfword',null,5],['R2','textpic','R2',5],['R3','qa','R3',5],['R4','blank','R4',5]],
  pics:{'苹果':['🍎','píngguǒ','pomme'],'猫':['🐱','māo','chat'],'狗':['🐶','gǒu','chien'],'茶':['🍵','chá','thé'],'米饭':['🍚','mǐfàn','riz'],
   '水':['💧','shuǐ','eau'],'书':['📖','shū','livre'],'电脑':['💻','diànnǎo','ordinateur'],'电视':['📺','diànshì','télévision'],'电影':['🎬','diànyǐng','film'],
   '飞机':['✈️','fēijī','avion'],'出租车':['🚕','chūzūchē','taxi'],'医院':['🏥','yīyuàn','hôpital'],'衣服':['👕','yīfu','vêtement'],'下雨':['🌧️','xià yǔ','il pleut'],
@@ -575,6 +576,118 @@ const EXAMENS={1:{titre:'HSK 1',pass:120,lire:17,
   {h:'你家有（ ）个人？',p:'Nǐ jiā yǒu ( ) ge rén?',a:'几',ap:'jǐ',fr:'Vous êtes combien dans ta famille ?'},
   {h:'我（ ）一个儿子，一个女儿。',p:'Wǒ ( ) yí ge érzi, yí ge nǚ’ér.',a:'有',ap:'yǒu',fr:'J’ai un fils et une fille.'},
   {h:'桌子（ ）有一本书。',p:'Zhuōzi ( ) yǒu yì běn shū.',a:'上',ap:'shang',fr:'Il y a un livre sur la table.'}]
+},
+ 2:{titre:'HSK 2',pass:120,ecoute:25,lire:22,
+ plan:[['L1','tfsent','L1',10],['L2','dlgpic','L2',10],['L3','listenq','L3',10],['L4','listenq','L4',5],['R1','textpic','R1',5],['R2','blank','R2',5],['R3','judge','R3',5],['R4','qa','R4',10]],
+ pics:{'手表':['⌚','shǒubiǎo','montre'],'手机':['📱','shǒujī','téléphone portable'],'报纸':['📰','bàozhǐ','journal'],'咖啡':['☕','kāfēi','café'],'牛奶':['🥛','niúnǎi','lait'],
+  '鸡蛋':['🥚','jīdàn','œuf'],'鱼':['🐟','yú','poisson'],'西瓜':['🍉','xīguā','pastèque'],'面条':['🍜','miàntiáo','nouilles'],'跑步':['🏃','pǎobù','courir'],
+  '游泳':['🏊','yóuyǒng','nager'],'踢足球':['⚽','tī zúqiú','jouer au foot'],'打篮球':['🏀','dǎ lánqiú','jouer au basket'],'唱歌':['🎤','chàng gē','chanter'],'跳舞':['💃','tiàowǔ','danser'],
+  '生日':['🎂','shēngrì','anniversaire'],'药':['💊','yào','médicament'],'机场':['🛫','jīchǎng','aéroport'],'火车站':['🚉','huǒchēzhàn','gare'],'公共汽车':['🚌','gōnggòng qìchē','bus'],
+  '宾馆':['🏨','bīnguǎn','hôtel'],'下雪':['🌨️','xià xuě','il neige'],'门':['🚪','mén','porte'],'考试':['📝','kǎoshì','examen'],'眼睛':['👀','yǎnjing','yeux'],
+  '猫':['🐱','māo','chat'],'飞机':['✈️','fēijī','avion']},
+ L1:[
+  {h:'我每天早上跑步。',p:'Wǒ měi tiān zǎoshang pǎobù.',fr:'Je cours tous les matins.',a:'跑步'},
+  {h:'他喜欢踢足球。',p:'Tā xǐhuan tī zúqiú.',fr:'Il aime jouer au football.',a:'踢足球'},
+  {h:'妈妈给我买了一个新手机。',p:'Māma gěi wǒ mǎi le yí ge xīn shǒujī.',fr:'Maman m’a acheté un nouveau téléphone.',a:'手机'},
+  {h:'今天是我的生日。',p:'Jīntiān shì wǒ de shēngrì.',fr:'Aujourd’hui, c’est mon anniversaire.',a:'生日'},
+  {h:'我早上喝了一杯牛奶。',p:'Wǒ zǎoshang hē le yì bēi niúnǎi.',fr:'Ce matin, j’ai bu un verre de lait.',a:'牛奶'},
+  {h:'外面下雪了，很冷。',p:'Wàimiàn xià xuě le, hěn lěng.',fr:'Il neige dehors, il fait très froid.',a:'下雪'},
+  {h:'他在看报纸。',p:'Tā zài kàn bàozhǐ.',fr:'Il lit le journal.',a:'报纸'},
+  {h:'我们坐公共汽车去吧。',p:'Wǒmen zuò gōnggòng qìchē qù ba.',fr:'Allons-y en bus.',a:'公共汽车'},
+  {h:'姐姐唱歌唱得很好。',p:'Jiějie chàng gē chàng de hěn hǎo.',fr:'Ma grande sœur chante très bien.',a:'唱歌'},
+  {h:'这个西瓜很便宜。',p:'Zhège xīguā hěn piányi.',fr:'Cette pastèque n’est pas chère.',a:'西瓜'},
+  {h:'你生病了，要吃药。',p:'Nǐ shēngbìng le, yào chī yào.',fr:'Tu es malade, il faut prendre des médicaments.',a:'药'},
+  {h:'他每个星期都去游泳。',p:'Tā měi ge xīngqī dōu qù yóuyǒng.',fr:'Il va nager chaque semaine.',a:'游泳'},
+  {h:'我在机场等你。',p:'Wǒ zài jīchǎng děng nǐ.',fr:'Je t’attends à l’aéroport.',a:'机场'},
+  {h:'这块手表是我丈夫送给我的。',p:'Zhè kuài shǒubiǎo shì wǒ zhàngfu sòng gěi wǒ de.',fr:'Cette montre, c’est mon mari qui me l’a offerte.',a:'手表'}],
+ L2:[
+  {l:[['你晚上想吃什么？','Nǐ wǎnshang xiǎng chī shénme?'],['我想吃面条。','Wǒ xiǎng chī miàntiáo.']],fr:'— Tu veux manger quoi ce soir ? — Des nouilles.',a:'面条'},
+  {l:[['你的眼睛怎么了？','Nǐ de yǎnjing zěnme le?'],['昨天晚上看电视看得太晚了。','Zuótiān wǎnshang kàn diànshì kàn de tài wǎn le.']],fr:'— Qu’est-ce qu’ils ont, tes yeux ? — Hier soir, j’ai regardé la télé trop tard.',a:'眼睛'},
+  {l:[['你会打篮球吗？','Nǐ huì dǎ lánqiú ma?'],['会，我每天下午都打。','Huì, wǒ měi tiān xiàwǔ dōu dǎ.']],fr:'— Tu sais jouer au basket ? — Oui, j’y joue tous les après-midis.',a:'打篮球'},
+  {l:[['你在哪儿等我？','Nǐ zài nǎr děng wǒ?'],['我在火车站等你。','Wǒ zài huǒchēzhàn děng nǐ.']],fr:'— Tu m’attends où ? — À la gare.',a:'火车站'},
+  {l:[['你要喝咖啡吗？','Nǐ yào hē kāfēi ma?'],['不要，谢谢，我晚上不喝咖啡。','Bú yào, xièxie, wǒ wǎnshang bù hē kāfēi.']],fr:'— Tu veux un café ? — Non merci, je ne bois pas de café le soir.',a:'咖啡'},
+  {l:[['这些鸡蛋多少钱？','Zhèxiē jīdàn duōshao qián?'],['十块钱。','Shí kuài qián.']],fr:'— Combien coûtent ces œufs ? — Dix yuans.',a:'鸡蛋'},
+  {l:[['你怎么去机场？','Nǐ zěnme qù jīchǎng?'],['我朋友开车送我。','Wǒ péngyou kāi chē sòng wǒ.']],fr:'— Comment vas-tu à l’aéroport ? — Un ami m’y conduit.',a:'机场'},
+  {l:[['你住在哪个宾馆？','Nǐ zhù zài nǎge bīnguǎn?'],['就在学校旁边。','Jiù zài xuéxiào pángbiān.']],fr:'— Tu loges dans quel hôtel ? — Juste à côté de l’école.',a:'宾馆'},
+  {l:[['明天考试，你准备好了吗？','Míngtiān kǎoshì, nǐ zhǔnbèi hǎo le ma?'],['还没有，我今天晚上再看看书。','Hái méiyǒu, wǒ jīntiān wǎnshang zài kànkan shū.']],fr:'— L’examen est demain, tu es prête ? — Pas encore, je relis ce soir.',a:'考试'},
+  {l:[['请进！门开着。','Qǐng jìn! Mén kāi zhe.'],['谢谢，你在忙吗？','Xièxie, nǐ zài máng ma?']],fr:'— Entre ! La porte est ouverte. — Merci, tu es occupé ?',a:'门'},
+  {l:[['你喜欢什么运动？','Nǐ xǐhuan shénme yùndòng?'],['我喜欢游泳。','Wǒ xǐhuan yóuyǒng.']],fr:'— Quel sport aimes-tu ? — J’aime nager.',a:'游泳'},
+  {l:[['你妹妹在做什么？','Nǐ mèimei zài zuò shénme?'],['她在跳舞呢。','Tā zài tiàowǔ ne.']],fr:'— Que fait ta petite sœur ? — Elle danse.',a:'跳舞'},
+  {l:[['生日快乐！这是送给你的。','Shēngrì kuàilè! Zhè shì sòng gěi nǐ de.'],['谢谢！','Xièxie!']],fr:'— Joyeux anniversaire ! C’est pour toi. — Merci !',a:'生日'},
+  {l:[['你家的猫叫什么名字？','Nǐ jiā de māo jiào shénme míngzi?'],['它叫白白。','Tā jiào Báibái.']],fr:'— Comment s’appelle ton chat ? — Il s’appelle Baibai.',a:'猫'}],
+ L3:[
+  {l:[['你怎么还在这儿？','Nǐ zěnme hái zài zhèr?'],['我在等我丈夫。','Wǒ zài děng wǒ zhàngfu.']],q:'女的在等谁？',qp:'Nǚ de zài děng shéi?',o:[['丈夫','zhàngfu'],['哥哥','gēge'],['同学','tóngxué']],fr:'Elle attend son mari.'},
+  {l:[['这件衣服多少钱？','Zhè jiàn yīfu duōshao qián?'],['三百块，不贵。','Sānbǎi kuài, bú guì.']],q:'衣服多少钱？',qp:'Yīfu duōshao qián?',o:[['三百块','sānbǎi kuài'],['三十块','sānshí kuài'],['一百块','yìbǎi kuài']],fr:'Le vêtement coûte 300 yuans.'},
+  {l:[['你昨天为什么没来上班？','Nǐ zuótiān wèishénme méi lái shàngbān?'],['我生病了，在医院。','Wǒ shēngbìng le, zài yīyuàn.']],q:'他昨天怎么了？',qp:'Tā zuótiān zěnme le?',o:[['生病了','shēngbìng le'],['去旅游了','qù lǚyóu le'],['太忙了','tài máng le']],fr:'Il était malade, à l’hôpital.'},
+  {l:[['从这儿到火车站远吗？','Cóng zhèr dào huǒchēzhàn yuǎn ma?'],['不远，走路十分钟就到了。','Bù yuǎn, zǒu lù shí fēnzhōng jiù dào le.']],q:'走路要多长时间？',qp:'Zǒu lù yào duō cháng shíjiān?',o:[['十分钟','shí fēnzhōng'],['十个小时','shí ge xiǎoshí'],['四分钟','sì fēnzhōng']],fr:'Dix minutes à pied.'},
+  {l:[['你哥哥比你高吗？','Nǐ gēge bǐ nǐ gāo ma?'],['对，他比我高一点儿。','Duì, tā bǐ wǒ gāo yìdiǎnr.']],q:'谁高？',qp:'Shéi gāo?',o:[['哥哥','gēge'],['妹妹','mèimei'],['姐姐','jiějie']],fr:'Le grand frère est un peu plus grand.'},
+  {l:[['你几点起床？','Nǐ jǐ diǎn qǐchuáng?'],['我每天六点起床。','Wǒ měi tiān liù diǎn qǐchuáng.']],q:'他几点起床？',qp:'Tā jǐ diǎn qǐchuáng?',o:[['六点','liù diǎn'],['七点','qī diǎn'],['八点','bā diǎn']],fr:'Il se lève à six heures.'},
+  {l:[['我们下午去看电影，好吗？','Wǒmen xiàwǔ qù kàn diànyǐng, hǎo ma?'],['不行，我下午要上课。','Bù xíng, wǒ xiàwǔ yào shàngkè.']],q:'女的下午做什么？',qp:'Nǚ de xiàwǔ zuò shénme?',o:[['上课','shàngkè'],['看电影','kàn diànyǐng'],['睡觉','shuìjiào']],fr:'Elle a cours l’après-midi.'},
+  {l:[['服务员，我要一杯咖啡。','Fúwùyuán, wǒ yào yì bēi kāfēi.'],['好的，请等一下。','Hǎo de, qǐng děng yíxià.']],q:'他们可能在哪儿？',qp:'Tāmen kěnéng zài nǎr?',o:[['饭店','fàndiàn'],['医院','yīyuàn'],['学校','xuéxiào']],fr:'Ils sont sans doute au restaurant.'},
+  {l:[['你的汉语说得真好！','Nǐ de Hànyǔ shuō de zhēn hǎo!'],['谢谢，我已经学了两年了。','Xièxie, wǒ yǐjīng xué le liǎng nián le.']],q:'她学汉语多长时间了？',qp:'Tā xué Hànyǔ duō cháng shíjiān le?',o:[['两年','liǎng nián'],['两个月','liǎng ge yuè'],['两天','liǎng tiān']],fr:'Elle apprend le chinois depuis deux ans.'},
+  {l:[['今天天气怎么样？','Jīntiān tiānqì zěnmeyàng?'],['是晴天，不冷也不热。','Shì qíngtiān, bù lěng yě bú rè.']],q:'今天天气怎么样？',qp:'Jīntiān tiānqì zěnmeyàng?',o:[['晴天','qíngtiān'],['下雨','xià yǔ'],['下雪','xià xuě']],fr:'Il fait beau, ni froid ni chaud.'},
+  {l:[['你找什么？','Nǐ zhǎo shénme?'],['我的手机，你看见了吗？','Wǒ de shǒujī, nǐ kànjiàn le ma?']],q:'男的在找什么？',qp:'Nán de zài zhǎo shénme?',o:[['手机','shǒujī'],['手表','shǒubiǎo'],['报纸','bàozhǐ']],fr:'Il cherche son téléphone.'},
+  {l:[['你妻子是做什么工作的？','Nǐ qīzi shì zuò shénme gōngzuò de?'],['她是医生。','Tā shì yīshēng.']],q:'他的妻子是做什么的？',qp:'Tā de qīzi shì zuò shénme de?',o:[['医生','yīshēng'],['老师','lǎoshī'],['服务员','fúwùyuán']],fr:'Sa femme est médecin.'},
+  {l:[['这个房间怎么样？','Zhège fángjiān zěnmeyàng?'],['很好，就是有点儿小。','Hěn hǎo, jiùshì yǒudiǎnr xiǎo.']],q:'房间怎么样？',qp:'Fángjiān zěnmeyàng?',o:[['有点儿小','yǒudiǎnr xiǎo'],['太贵了','tài guì le'],['很大','hěn dà']],fr:'La chambre est bien, mais un peu petite.'},
+  {l:[['你什么时候去北京？','Nǐ shénme shíhou qù Běijīng?'],['下个星期三。','Xià ge xīngqīsān.']],q:'他什么时候去北京？',qp:'Tā shénme shíhou qù Běijīng?',o:[['下个星期三','xià ge xīngqīsān'],['这个星期三','zhège xīngqīsān'],['下个月','xià ge yuè']],fr:'Il part pour Pékin mercredi prochain.'}],
+ L4:[
+  {l:[['你好，我想买一张去上海的票。','Nǐ hǎo, wǒ xiǎng mǎi yì zhāng qù Shànghǎi de piào.'],['今天的还是明天的？','Jīntiān de háishi míngtiān de?'],['明天上午的。','Míngtiān shàngwǔ de.'],['好的，八百块。','Hǎo de, bābǎi kuài.']],q:'男的要去哪儿？',qp:'Nán de yào qù nǎr?',o:[['上海','Shànghǎi'],['北京','Běijīng'],['机场','jīchǎng']],fr:'Il achète un billet pour Shanghai, pour demain matin.'},
+  {l:[['你今天怎么这么累？','Nǐ jīntiān zěnme zhème lèi?'],['昨天晚上我工作到十二点。','Zuótiān wǎnshang wǒ gōngzuò dào shí’èr diǎn.'],['那你今天早点儿休息吧。','Nà nǐ jīntiān zǎo diǎnr xiūxi ba.'],['好，吃完饭我就睡觉。','Hǎo, chī wán fàn wǒ jiù shuìjiào.']],q:'男的为什么累？',qp:'Nán de wèishénme lèi?',o:[['工作到很晚','gōngzuò dào hěn wǎn'],['跑步跑得太多','pǎobù pǎo de tài duō'],['生病了','shēngbìng le']],fr:'Il a travaillé jusqu’à minuit.'},
+  {l:[['你看见我的手表了吗？','Nǐ kànjiàn wǒ de shǒubiǎo le ma?'],['是不是在桌子上？','Shì bu shì zài zhuōzi shang?'],['没有，我找过了。','Méiyǒu, wǒ zhǎo guo le.'],['你看看椅子下面。','Nǐ kànkan yǐzi xiàmiàn.']],q:'男的在找什么？',qp:'Nán de zài zhǎo shénme?',o:[['手表','shǒubiǎo'],['手机','shǒujī'],['桌子','zhuōzi']],fr:'Il cherche sa montre.'},
+  {l:[['明天是星期六，你想做什么？','Míngtiān shì xīngqīliù, nǐ xiǎng zuò shénme?'],['我想去游泳。','Wǒ xiǎng qù yóuyǒng.'],['我们一起去吧。','Wǒmen yìqǐ qù ba.'],['好啊，上午十点在学校门口见。','Hǎo a, shàngwǔ shí diǎn zài xuéxiào ménkǒu jiàn.']],q:'他们几点见？',qp:'Tāmen jǐ diǎn jiàn?',o:[['上午十点','shàngwǔ shí diǎn'],['下午十点','xiàwǔ shí diǎn'],['上午六点','shàngwǔ liù diǎn']],fr:'Rendez-vous à 10 h du matin devant l’école.'},
+  {l:[['这个西瓜多少钱？','Zhège xīguā duōshao qián?'],['十五块。','Shíwǔ kuài.'],['太贵了，便宜一点儿吧。','Tài guì le, piányi yìdiǎnr ba.'],['好，十二块给你。','Hǎo, shí’èr kuài gěi nǐ.']],q:'男的觉得西瓜怎么样？',qp:'Nán de juéde xīguā zěnmeyàng?',o:[['太贵了','tài guì le'],['很便宜','hěn piányi'],['不好吃','bù hǎochī']],fr:'Il trouve la pastèque trop chère.'},
+  {l:[['你认识那个穿红衣服的人吗？','Nǐ rènshi nàge chuān hóng yīfu de rén ma?'],['认识，她是我们公司的。','Rènshi, tā shì wǒmen gōngsī de.'],['她叫什么名字？','Tā jiào shénme míngzi?'],['她叫张红，是我的朋友。','Tā jiào Zhāng Hóng, shì wǒ de péngyou.']],q:'穿红衣服的人叫什么？',qp:'Chuān hóng yīfu de rén jiào shénme?',o:[['张红','Zhāng Hóng'],['王红','Wáng Hóng'],['李月','Lǐ Yuè']],fr:'La personne en rouge s’appelle Zhang Hong.'},
+  {l:[['喂，你到哪儿了？','Wéi, nǐ dào nǎr le?'],['我在公共汽车上，路上车很多。','Wǒ zài gōnggòng qìchē shang, lù shang chē hěn duō.'],['没关系，我等你。','Méi guānxi, wǒ děng nǐ.'],['还要二十分钟。','Hái yào èrshí fēnzhōng.']],q:'女的现在在哪儿？',qp:'Nǚ de xiànzài zài nǎr?',o:[['公共汽车上','gōnggòng qìchē shang'],['火车站','huǒchēzhàn'],['家里','jiā li']],fr:'Elle est dans le bus, il y a des embouteillages.'}],
+ R1:[
+  {h:'我女儿很喜欢唱歌。',p:'Wǒ nǚ’ér hěn xǐhuan chàng gē.',fr:'Ma fille aime beaucoup chanter.',a:'唱歌'},
+  {h:'这是我的新手表。',p:'Zhè shì wǒ de xīn shǒubiǎo.',fr:'C’est ma nouvelle montre.',a:'手表'},
+  {h:'早上喝一杯牛奶吧。',p:'Zǎoshang hē yì bēi niúnǎi ba.',fr:'Le matin, bois un verre de lait.',a:'牛奶'},
+  {h:'今天的报纸你看了吗？',p:'Jīntiān de bàozhǐ nǐ kàn le ma?',fr:'Tu as lu le journal d’aujourd’hui ?',a:'报纸'},
+  {h:'我们坐公共汽车去吧。',p:'Wǒmen zuò gōnggòng qìchē qù ba.',fr:'Allons-y en bus.',a:'公共汽车'},
+  {h:'我喜欢吃鱼。',p:'Wǒ xǐhuan chī yú.',fr:'J’aime manger du poisson.',a:'鱼'},
+  {h:'他每天晚上去跑步。',p:'Tā měi tiān wǎnshang qù pǎobù.',fr:'Il va courir tous les soirs.',a:'跑步'},
+  {h:'明天下午我有考试。',p:'Míngtiān xiàwǔ wǒ yǒu kǎoshì.',fr:'Demain après-midi, j’ai un examen.',a:'考试'},
+  {h:'这个宾馆的房间很大。',p:'Zhège bīnguǎn de fángjiān hěn dà.',fr:'Les chambres de cet hôtel sont grandes.',a:'宾馆'},
+  {h:'哥哥打篮球打得很好。',p:'Gēge dǎ lánqiú dǎ de hěn hǎo.',fr:'Mon grand frère joue très bien au basket.',a:'打篮球'},
+  {h:'你生病了，吃点儿药吧。',p:'Nǐ shēngbìng le, chī diǎnr yào ba.',fr:'Tu es malade, prends un médicament.',a:'药'},
+  {h:'外面在下雪。',p:'Wàimiàn zài xià xuě.',fr:'Il neige dehors.',a:'下雪'}],
+ R2:[
+  {h:'我（ ）你介绍一下，这是我妹妹。',p:'Wǒ ( ) nǐ jièshào yíxià, zhè shì wǒ mèimei.',a:'给',ap:'gěi',fr:'Je te présente : c’est ma petite sœur.',x:['等']},
+  {h:'外面下雨了，你（ ）走吧。',p:'Wàimiàn xià yǔ le, nǐ ( ) zǒu ba.',a:'别',ap:'bié',fr:'Il pleut dehors, ne pars pas.'},
+  {h:'这个问题我不（ ），你能再说一次吗？',p:'Zhège wèntí wǒ bù ( ), nǐ néng zài shuō yí cì ma?',a:'懂',ap:'dǒng',fr:'Je ne comprends pas cette question, tu peux la redire ?',x:['等']},
+  {h:'我（ ）吃完饭了。',p:'Wǒ ( ) chī wán fàn le.',a:'已经',ap:'yǐjīng',fr:'J’ai déjà fini de manger.'},
+  {h:'今天（ ）昨天冷。',p:'Jīntiān ( ) zuótiān lěng.',a:'比',ap:'bǐ',fr:'Aujourd’hui, il fait plus froid qu’hier.'},
+  {h:'学校（ ）我家很近。',p:'Xuéxiào ( ) wǒ jiā hěn jìn.',a:'离',ap:'lí',fr:'L’école est tout près de chez moi.'},
+  {h:'你昨天（ ）没来上班？',p:'Nǐ zuótiān ( ) méi lái shàngbān?',a:'为什么',ap:'wèishénme',fr:'Pourquoi n’es-tu pas venu travailler hier ?'},
+  {h:'这件衣服很漂亮，（ ）太贵了。',p:'Zhè jiàn yīfu hěn piàoliang, ( ) tài guì le.',a:'但是',ap:'dànshì',fr:'Ce vêtement est très joli, mais trop cher.'},
+  {h:'我每天（ ）公共汽车上班。',p:'Wǒ měi tiān ( ) gōnggòng qìchē shàngbān.',a:'坐',ap:'zuò',fr:'Je vais au travail en bus tous les jours.',x:['等']},
+  {h:'你在这儿（ ）我一下。',p:'Nǐ zài zhèr ( ) wǒ yíxià.',a:'等',ap:'děng',fr:'Attends-moi ici un moment.'}],
+ R3:[
+  {h:'我叫王明，我在北京学习汉语，已经学了一年了。',p:'Wǒ jiào Wáng Míng, wǒ zài Běijīng xuéxí Hànyǔ, yǐjīng xué le yì nián le.',j:'王明是老师。',jp:'Wáng Míng shì lǎoshī.',ok:false,fr:'Wang Ming étudie le chinois : il n’est pas professeur.'},
+  {h:'今天是我妈妈的生日，我给她买了一块手表。',p:'Jīntiān shì wǒ māma de shēngrì, wǒ gěi tā mǎi le yí kuài shǒubiǎo.',j:'他送妈妈一块手表。',jp:'Tā sòng māma yí kuài shǒubiǎo.',ok:true,fr:'Il offre une montre à sa mère pour son anniversaire.'},
+  {h:'我家离公司很远，每天要坐一个小时的公共汽车。',p:'Wǒ jiā lí gōngsī hěn yuǎn, měi tiān yào zuò yí ge xiǎoshí de gōnggòng qìchē.',j:'他家离公司很近。',jp:'Tā jiā lí gōngsī hěn jìn.',ok:false,fr:'Sa maison est loin de l’entreprise : une heure de bus.'},
+  {h:'现在是晚上十点，我还在公司工作。',p:'Xiànzài shì wǎnshang shí diǎn, wǒ hái zài gōngsī gōngzuò.',j:'他现在还在工作。',jp:'Tā xiànzài hái zài gōngzuò.',ok:true,fr:'Il est 22 h et il travaille encore.'},
+  {h:'哥哥比我大三岁，他今年二十五岁。',p:'Gēge bǐ wǒ dà sān suì, tā jīnnián èrshíwǔ suì.',j:'我今年二十二岁。',jp:'Wǒ jīnnián èrshí’èr suì.',ok:true,fr:'Le frère a 25 ans et trois ans de plus : j’ai donc 22 ans.'},
+  {h:'这家饭店的菜很好吃，但是有点儿贵。',p:'Zhè jiā fàndiàn de cài hěn hǎochī, dànshì yǒudiǎnr guì.',j:'这家饭店的菜很便宜。',jp:'Zhè jiā fàndiàn de cài hěn piányi.',ok:false,fr:'Les plats sont bons mais un peu chers.'},
+  {h:'昨天下雪了，我们没有去跑步。',p:'Zuótiān xià xuě le, wǒmen méiyǒu qù pǎobù.',j:'昨天他们去跑步了。',jp:'Zuótiān tāmen qù pǎobù le.',ok:false,fr:'Il a neigé : ils ne sont pas allés courir.'},
+  {h:'我每天早上七点起床，七点半吃饭。',p:'Wǒ měi tiān zǎoshang qī diǎn qǐchuáng, qī diǎn bàn chī fàn.',j:'他七点起床。',jp:'Tā qī diǎn qǐchuáng.',ok:true,fr:'Il se lève à 7 h et mange à 7 h 30.'},
+  {h:'你的手机在桌子上，我看见了。',p:'Nǐ de shǒujī zài zhuōzi shang, wǒ kànjiàn le.',j:'手机在椅子下面。',jp:'Shǒujī zài yǐzi xiàmiàn.',ok:false,fr:'Le téléphone est sur la table, pas sous la chaise.'},
+  {h:'我妹妹很喜欢唱歌，也喜欢跳舞。',p:'Wǒ mèimei hěn xǐhuan chàng gē, yě xǐhuan tiàowǔ.',j:'妹妹喜欢跳舞。',jp:'Mèimei xǐhuan tiàowǔ.',ok:true,fr:'La petite sœur aime chanter et danser.'}],
+ R4:[
+  {q:'你怎么了？',qp:'Nǐ zěnme le?',a:'我有点儿不舒服。',ap:'Wǒ yǒudiǎnr bù shūfu.',fr:'— Qu’est-ce qui t’arrive ? — Je ne me sens pas très bien.'},
+  {q:'你去过中国吗？',qp:'Nǐ qù guo Zhōngguó ma?',a:'去过，去年去的。',ap:'Qù guo, qùnián qù de.',fr:'— Tu es déjà allé en Chine ? — Oui, l’an dernier.'},
+  {q:'我们几点走？',qp:'Wǒmen jǐ diǎn zǒu?',a:'九点半吧。',ap:'Jiǔ diǎn bàn ba.',fr:'— On part à quelle heure ? — Neuf heures et demie.'},
+  {q:'你喜欢什么颜色？',qp:'Nǐ xǐhuan shénme yánsè?',a:'我喜欢红色。',ap:'Wǒ xǐhuan hóngsè.',fr:'— Quelle couleur aimes-tu ? — Le rouge.'},
+  {q:'这是谁的书？',qp:'Zhè shì shéi de shū?',a:'是我姐姐的。',ap:'Shì wǒ jiějie de.',fr:'— À qui est ce livre ? — À ma grande sœur.'},
+  {q:'你觉得这件衣服怎么样？',qp:'Nǐ juéde zhè jiàn yīfu zěnmeyàng?',a:'很好看，就是有点儿长。',ap:'Hěn hǎokàn, jiùshì yǒudiǎnr cháng.',fr:'— Comment tu trouves ce vêtement ? — Joli, mais un peu long.'},
+  {q:'火车站怎么走？',qp:'Huǒchēzhàn zěnme zǒu?',a:'往前走，就在右边。',ap:'Wǎng qián zǒu, jiù zài yòubian.',fr:'— Pour aller à la gare ? — Tout droit, c’est à droite.'},
+  {q:'你吃饭了吗？',qp:'Nǐ chī fàn le ma?',a:'还没有，我们一起去吃吧。',ap:'Hái méiyǒu, wǒmen yìqǐ qù chī ba.',fr:'— Tu as mangé ? — Pas encore, allons manger ensemble.'},
+  {q:'你的孩子多大了？',qp:'Nǐ de háizi duō dà le?',a:'六岁了，明年上学。',ap:'Liù suì le, míngnián shàngxué.',fr:'— Quel âge a ton enfant ? — Six ans, il entre à l’école l’an prochain.'},
+  {q:'你为什么学习汉语？',qp:'Nǐ wèishénme xuéxí Hànyǔ?',a:'因为我在中国公司工作。',ap:'Yīnwèi wǒ zài Zhōngguó gōngsī gōngzuò.',fr:'— Pourquoi apprends-tu le chinois ? — Parce que je travaille dans une entreprise chinoise.'},
+  {q:'苹果多少钱？',qp:'Píngguǒ duōshao qián?',a:'五块钱一个。',ap:'Wǔ kuài qián yí ge.',fr:'— Combien coûtent les pommes ? — Cinq yuans pièce.'},
+  {q:'你看见我的手机了吗？',qp:'Nǐ kànjiàn wǒ de shǒujī le ma?',a:'在桌子上呢。',ap:'Zài zhuōzi shang ne.',fr:'— Tu as vu mon téléphone ? — Il est sur la table.'},
+  {q:'明天会下雨吗？',qp:'Míngtiān huì xià yǔ ma?',a:'不会，明天是晴天。',ap:'Bú huì, míngtiān shì qíngtiān.',fr:'— Il va pleuvoir demain ? — Non, il fera beau.'},
+  {q:'谢谢你帮助我！',qp:'Xièxie nǐ bāngzhù wǒ!',a:'不客气。',ap:'Bú kèqi.',fr:'— Merci de m’avoir aidé ! — De rien.'}]
 }};
 /* END_DATA */
 
@@ -1312,31 +1425,41 @@ async function shareHeard(){
   if(sent){for(const h of list){h.sent=today();await updHeard(h);}if(!files.length||navigator.canShare&&navigator.canShare({files}))toast('Merci ! Tes phrases vont devenir des leçons.');render();}
 }
 /* ---------- examens blancs HSK (format officiel, questions originales) ---------- */
-const EXPART={L1:'Écoute. L’image correspond-elle à ce que tu entends ?',L2:'Écoute la phrase. Choisis la bonne image.',L3:'Écoute le dialogue. Choisis l’image qui va avec.',L4:'Écoute, puis choisis la bonne réponse à la question.',
-  R1:'L’image et le mot vont-ils ensemble ?',R2:'Quelle image va avec la phrase ?',R3:'Choisis la bonne réponse à la question.',R4:'Choisis le mot qui manque.'};
+const EXTYPE={tfword:{L:'Écoute. L’image correspond-elle au mot ?',R:'L’image et le mot vont-ils ensemble ?'},tfsent:'Écoute la phrase. L’image correspond-elle ?',
+  sentpic:'Écoute la phrase. Choisis la bonne image.',dlgpic:'Écoute le dialogue. Choisis l’image qui va avec.',listenq:'Écoute, puis choisis la bonne réponse à la question.',
+  textpic:'Quelle image va avec la phrase ?',qa:'Choisis la bonne réponse.',blank:'Choisis le mot qui manque.',judge:'Lis le texte. La phrase avec ★ est-elle vraie ?'};
 const LET='ABCDEF';
 function examPick(arr,n,ok){const out=[];for(const x of shuffle(arr.slice())){if(out.length>=n)break;if(!ok||ok(x,out))out.push(x);}return out;}
+const exLines=x=>x.l?x.l.map(y=>y[0]):[x.h];
 function buildExam(lvl){
-  const B=EXAMENS[lvl],P=B.pics,W=Object.keys(P),qs=[];
-  const picOpt=w=>({pic:P[w][0],w}),why=(h,p,fr)=>({h,p,fr});
-  const tf=sec=>examPick(W,5).forEach(w=>{const ok=Math.random()<.5,sh=ok?w:rnd(W.filter(x=>x!==w));
-    qs.push({sec,part:sec+'1',kind:'tf',pic:P[sh][0],word:sec==='R'?{h:w,p:P[w][1]}:null,audio:sec==='L'?[w]:null,ans:ok?0:1,
-      why:why(w,P[w][1],P[w][2]+(ok?' : l’image correspond.':' : l’image montrait « '+P[sh][2]+' ».'))});});
-  /* parties « à associer » : 5 questions qui partagent les mêmes 6 réponses A–F */
-  const match=(sec,part,items,txt)=>{
-    const ch=examPick(items,5,(x,out)=>!out.some(o=>o.a===x.a||txt(o).includes(x.a)||txt(x).includes(o.a)));
-    const extra=rnd(W.filter(w=>!ch.some(x=>x.a===w||txt(x).includes(w))));const opts=shuffle([...ch.map(x=>x.a),extra]).map(picOpt);
-    ch.forEach(x=>qs.push({sec,part,kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),...x.q,why:x.why}));};
-  tf('L');
-  examPick(B.L2,5).forEach(x=>{const opts=shuffle([x.a,...x.d]).map(picOpt);qs.push({sec:'L',part:'L2',kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),audio:[x.h],why:why(x.h,x.p,x.fr)});});
-  match('L','L3',B.L3.map(x=>({a:x.a,l:x.l,q:{audio:x.l.map(y=>y[0])},why:why(x.l.map(y=>y[0]).join(' '),x.l.map(y=>y[1]).join(' '),x.fr)})),x=>x.l.map(y=>y[0]).join(''));
-  examPick(B.L4,5).forEach(x=>{const opts=shuffle(x.o.map((o,i)=>({h:o[0],p:o[1],ok:i===0})));qs.push({sec:'L',part:'L4',kind:'pick',opts,ans:opts.findIndex(o=>o.ok),audio:[x.h,x.q],why:why(x.h+' '+x.q,x.p+' '+x.qp,x.fr)});});
-  tf('R');
-  match('R','R2',B.R2.map(x=>({a:x.a,h:x.h,q:{text:{h:x.h,p:x.p}},why:why(x.h,x.p,x.fr)})),x=>x.h);
-  const r3=examPick(B.R3,5),r3x=rnd(B.R3.filter(x=>!r3.includes(x))),r3o=shuffle([...r3,r3x]).map(x=>({h:x.a,p:x.ap,id:x.q}));
-  r3.forEach(x=>qs.push({sec:'R',part:'R3',kind:'pick',opts:r3o,ans:r3o.findIndex(o=>o.id===x.q),text:{h:x.q,p:x.qp},why:why(x.q+' '+x.a,x.qp+' '+x.ap,x.fr)}));
-  const r4=examPick(B.R4,5,(x,out)=>!out.some(o=>o.a===x.a)),r4x=rnd(B.R4.filter(x=>!r4.some(o=>o.a===x.a))),r4o=shuffle([...r4,r4x]).map(x=>({h:x.a,p:x.ap}));
-  r4.forEach(x=>qs.push({sec:'R',part:'R4',kind:'pick',opts:r4o,ans:r4o.findIndex(o=>o.h===x.a),text:{h:x.h,p:x.p},why:why(x.h.replace('（ ）','（'+x.a+'）'),x.p.replace('( )','('+x.ap+')'),x.fr)}));
+  const B=EXAMENS[lvl],P=B.pics,W=Object.keys(P),qs=[],why=(h,p,fr)=>({h,p,fr}),picOpt=w=>({pic:P[w][0],w});
+  const add=(part,type,o)=>qs.push({sec:part[0],part,type,...o});
+  /* 5 questions qui partagent 6 réponses A–F (5 bonnes + 1 de trop), par groupes de 5 */
+  const groups=(items,n,ok)=>{const all=examPick(items,n,ok),g=[];for(let i=0;i<all.length;i+=5)g.push(all.slice(i,i+5));return g;};
+  const B_={
+   tfword:(part,_,n)=>examPick(W,n).forEach(w=>{const ok=Math.random()<.5,sh=ok?w:rnd(W.filter(x=>x!==w));
+     add(part,'tfword',{kind:'tf',pic:P[sh][0],word:part[0]==='R'?{h:w,p:P[w][1]}:null,audio:part[0]==='L'?[w]:null,ans:ok?0:1,why:why(w,P[w][1],P[w][2]+(ok?' : l’image correspond.':' : l’image montrait « '+P[sh][2]+' ».'))});}),
+   tfsent:(part,it,n)=>examPick(it,n).forEach(x=>{const ok=Math.random()<.5,sh=ok?x.a:rnd(W.filter(w=>w!==x.a&&!x.h.includes(w)));
+     add(part,'tfsent',{kind:'tf',pic:P[sh][0],audio:[x.h],ans:ok?0:1,why:why(x.h,x.p,x.fr+(ok?'':' (l’image montrait « '+P[sh][2]+' ».)'))});}),
+   sentpic:(part,it,n)=>examPick(it,n).forEach(x=>{const opts=shuffle([x.a,...x.d]).map(picOpt);add(part,'sentpic',{kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),audio:[x.h],why:why(x.h,x.p,x.fr)});}),
+   dlgpic:(part,it,n)=>{const txt=x=>exLines(x).join('');groups(it,n,(x,out)=>!out.some(o=>o.a===x.a||txt(o).includes(x.a)||txt(x).includes(o.a))).forEach(g=>{
+     const extra=rnd(W.filter(w=>!g.some(x=>x.a===w||txt(x).includes(w)))),opts=shuffle([...g.map(x=>x.a),extra]).map(picOpt);
+     g.forEach(x=>add(part,'dlgpic',{kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),audio:exLines(x),why:why(exLines(x).join(' '),x.l.map(y=>y[1]).join(' '),x.fr)}));});},
+   listenq:(part,it,n)=>examPick(it,n).forEach(x=>{const opts=shuffle(x.o.map((o,i)=>({h:o[0],p:o[1],ok:i===0})));
+     add(part,'listenq',{kind:'pick',opts,ans:opts.findIndex(o=>o.ok),audio:[...exLines(x),x.q],why:why(exLines(x).join(' ')+' '+x.q,(x.l?x.l.map(y=>y[1]).join(' '):x.p)+' '+x.qp,x.fr)});}),
+   textpic:(part,it,n)=>groups(it,n,(x,out)=>!out.some(o=>o.a===x.a||o.h.includes(x.a)||x.h.includes(o.a))).forEach(g=>{
+     const extra=rnd(W.filter(w=>!g.some(x=>x.a===w||x.h.includes(w)))),opts=shuffle([...g.map(x=>x.a),extra]).map(picOpt);
+     g.forEach(x=>add(part,'textpic',{kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),text:{h:x.h,p:x.p},why:why(x.h,x.p,x.fr)}));}),
+   qa:(part,it,n)=>{const used=new Set();groups(it,n).forEach(g=>{g.forEach(x=>used.add(x));const ex=rnd(it.filter(x=>!used.has(x)))||null;if(ex)used.add(ex);
+     const opts=shuffle([...g,...(ex?[ex]:[])]).map(x=>({h:x.a,p:x.ap,id:x.q}));
+     g.forEach(x=>add(part,'qa',{kind:'pick',opts,ans:opts.findIndex(o=>o.id===x.q),text:{h:x.q,p:x.qp},why:why(x.q+' '+x.a,x.qp+' '+x.ap,x.fr)}));});},
+   blank:(part,it,n)=>{const clash=(x,o)=>o.a===x.a||(x.x||[]).includes(o.a)||(o.x||[]).includes(x.a);
+     const g=examPick(it,n,(x,out)=>!out.some(o=>clash(x,o))),ex=rnd(it.filter(x=>!g.some(o=>o===x||clash(x,o))));
+     const opts=shuffle([...g,...(ex?[ex]:[])]).map(x=>({h:x.a,p:x.ap}));
+     g.forEach(x=>add(part,'blank',{kind:'pick',opts,ans:opts.findIndex(o=>o.h===x.a),text:{h:x.h,p:x.p},why:why(x.h.replace('（ ）','（'+x.a+'）'),x.p.replace('( )','('+x.ap+')'),x.fr)}));},
+   judge:(part,it,n)=>examPick(it,n).forEach(x=>add(part,'judge',{kind:'tf',text:{h:x.h,p:x.p},star:{h:x.j,p:x.jp},ans:x.ok?0:1,why:why(x.h+' ★ '+x.j,x.p+' ★ '+x.jp,(x.ok?'Vrai. ':'Faux. ')+x.fr)}))
+  };
+  B.plan.forEach(([part,type,key,n])=>B_[type](part,key?B[key]:null,n));
   return qs;
 }
 function examUnlocked(lvl){return lvl===1||S.demo||(S.exams||[]).some(e=>e.lvl===lvl-1&&e.total>=EXAMENS[lvl-1].pass);}
@@ -1368,14 +1491,14 @@ function renderExam(){
     ${E.stage==='q'?`<span class="tiny muted">${E.qs[E.i].sec==='L'?'Écoute':'Lecture'} · question ${E.i+1} sur ${E.qs.length}</span>`:''}</div>${E.stage==='q'&&E.rEnd?`<span class="badge" id="exT">${B.lire}:00</span>`:''}<button class="sos-mini" data-act="sos" aria-label="SOS urgence">SOS</button></div>`;
   if(E.stage==='intro')return `<main class="screen" style="padding-bottom:40px">${top}
     <div class="stack sm"><span class="label">Comme le vrai examen</span><h1>${B.titre} · ${E.qs.length} questions</h1></div>
-    <section class="card stack sm"><p><b>1. Écoute</b> · ${nL} questions, environ 15 minutes. Chaque enregistrement passe <b>deux fois</b>, sans pouvoir le réécouter.</p>
+    <section class="card stack sm"><p><b>1. Écoute</b> · ${nL} questions, environ ${B.ecoute} minutes. Chaque enregistrement passe <b>deux fois</b>, sans pouvoir le réécouter.</p>
      <p><b>2. Lecture</b> · ${nR} questions, <b>${B.lire} minutes</b> chrono.</p>
      <p><b>Note</b> · sur 200 (100 par partie). Il faut <b>${B.pass}</b> pour réussir.</p></section>
     <p class="small muted">Mets le son, installe-toi au calme. Pas de correction pendant l’examen : tout est expliqué à la fin. Ces questions sont écrites pour Bùbùgāo, au même format que le vrai HSK.</p>
     <button class="btn primary block" data-act="exgo">Commencer l’écoute</button></main>`;
   if(E.stage==='mid')return `<main class="screen" style="padding-bottom:40px">${top}<div class="stack sm"><span class="label">Partie 1 terminée</span><h1>Maintenant, la lecture</h1></div>
     <p>${nR} questions · <b>${B.lire} minutes</b>. Le chrono démarre quand tu appuies.</p><button class="btn primary block" data-act="exread">Commencer la lecture</button></main>`;
-  if(E.stage==='end'){const ok=E.total>=B.pass,parts=['L1','L2','L3','L4','R1','R2','R3','R4'],wrong=E.qs.filter(q=>q.pick!==q.ans);
+  if(E.stage==='end'){const ok=E.total>=B.pass,parts=B.plan.map(x=>x[0]),wrong=E.qs.filter(q=>q.pick!==q.ans);
     return `<main class="screen" style="padding-bottom:40px"><div class="end-hero"><span class="zh">${ok?'通过了！':'加油！'}</span><h1>${ok?'Examen réussi':'Pas encore, mais tu avances'}</h1><p class="muted">${ok?'Tu as le niveau '+B.titre+'.':'Il fallait '+B.pass+' points. Refais-le dans quelques jours.'}</p></div>
      <section class="card stack sm" style="text-align:center"><span class="ex-score" style="color:${ok?'var(--good)':'var(--gold)'}">${E.total}<small style="font-size:22px"> / 200</small></span>
       <div class="row" style="justify-content:center"><span class="badge">Écoute ${E.l} / 100</span><span class="badge">Lecture ${E.r} / 100</span></div></section>
@@ -1384,9 +1507,10 @@ function renderExam(){
      ${wrong.length?`<section class="card stack sm"><h3>À revoir (${wrong.length})</h3>${wrong.map(q=>`<div class="word" style="align-items:flex-start"><div class="grow stack sm"><span class="tiny muted">${q.sec==='L'?'Écoute':'Lecture'} ${q.part[1]}</span><span class="zh" style="font-size:19px">${esc(q.why.h)}</span><span class="small"><b>${esc(q.why.p)}</b></span><span class="small muted">${esc(q.why.fr)}</span></div>${q.audio?`<button class="btn sm" data-act="say" data-t="${esc(q.audio[0])}" aria-label="Écouter">${ICON.play}</button>`:''}</div>`).join('')}</section>`:'<p>Aucune erreur. Impressionnant !</p>'}
      <button class="btn primary block" data-act="exdone">Terminer</button></main>`;}
   const q=E.qs[E.i],L=q.sec==='L',opt=(o,i)=>`<button class="ex-opt ${o.pic?'':'text'} ${q.pick===i?'sel':''}" data-act="expick" data-i="${i}" aria-pressed="${q.pick===i}">${q.kind==='pick'&&q.opts.length>3?`<span class="lt">${LET[i]}</span>`:''}${o.pic?`<span class="em">${o.pic}</span>`:`<span class="zh">${esc(o.h)}</span><span class="small muted">${esc(o.p||'')}</span>`}</button>`;
-  return `<main class="lesson">${top}<span class="sec-tag">${L?'Écoute':'Lecture'} · partie ${q.part[1]}</span><p class="q-title">${EXPART[q.part]}</p>
+  return `<main class="lesson">${top}<span class="sec-tag">${L?'Écoute':'Lecture'} · partie ${q.part[1]}</span><p class="q-title">${typeof EXTYPE[q.type]==='string'?EXTYPE[q.type]:EXTYPE[q.type][q.sec]}</p>
    ${L?`<div class="ex-aud" role="status">${ICON.play}<span id="exAud">${q.heard?'Écoute terminée. Choisis ta réponse.':'Écoute…'}</span></div>`:''}
-   ${q.kind==='tf'?`<div class="ex-pic" aria-label="Image">${q.pic}</div>${q.word?`<div style="text-align:center"><span class="zh" style="font-size:30px">${esc(q.word.h)}</span><br><b>${esc(q.word.p)}</b></div>`:''}
+   ${q.kind==='tf'?`${q.star?`<div class="card stack sm"><span class="zh" style="font-size:21px">${esc(q.text.h)}</span><span class="small"><b>${esc(q.text.p)}</b></span>
+       <span class="zh" style="font-size:21px;margin-top:8px">★ ${esc(q.star.h)}</span><span class="small"><b>${esc(q.star.p)}</b></span></div>`:`<div class="ex-pic" aria-label="Image">${q.pic}</div>`}${q.word?`<div style="text-align:center"><span class="zh" style="font-size:30px">${esc(q.word.h)}</span><br><b>${esc(q.word.p)}</b></div>`:''}
      <div class="ex-opts" style="grid-template-columns:1fr 1fr">${['✓ Oui','✗ Non'].map((x,i)=>`<button class="ex-opt ${q.pick===i?'sel':''}" data-act="expick" data-i="${i}" aria-pressed="${q.pick===i}"><b style="font-size:20px">${x}</b></button>`).join('')}</div>`
    :`${q.text?`<div class="card" style="text-align:center"><span class="zh" style="font-size:24px">${esc(q.text.h)}</span><br><span class="small"><b>${esc(q.text.p)}</b></span></div>`:''}
      <div class="ex-opts ${q.opts[0].pic?'pics':''}">${q.opts.map(opt).join('')}</div>`}
@@ -1665,7 +1789,7 @@ function renderCarriere(){
     :`<section class="card stack sm"><h3>Modules métier</h3><p class="small muted">Sécurité, pannes de courant, conflits, comprendre ton chef… Les premiers modules arrivent bientôt.</p></section>`}
   <section class="card stack sm" style="border:2px solid var(--gold)" aria-label="Examens blancs"><span class="label" style="color:var(--gold)">Examen blanc · format officiel</span>
    ${Object.keys(EXAMENS).map(l=>{l=+l;const B=EXAMENS[l],ex=(S.exams||[]).filter(e=>e.lvl===l),best=ex.length?Math.max(...ex.map(e=>e.total)):null,ok=examUnlocked(l);
-     return `<div class="row" style="flex-wrap:nowrap"><div class="grow"><b>${B.titre}</b> · 40 questions · ≈ ${15+B.lire} min<br><span class="small muted">${best==null?'Pas encore passé.':'Meilleure note : '+best+' / 200'+(best>=B.pass?' · réussi':'')}</span></div>
+     return `<div class="row" style="flex-wrap:nowrap"><div class="grow"><b>${B.titre}</b> · ${B.plan.reduce((a,x)=>a+x[3],0)} questions · ≈ ${B.ecoute+B.lire} min<br><span class="small muted">${best==null?'Pas encore passé.':'Meilleure note : '+best+' / 200'+(best>=B.pass?' · réussi':'')}</span></div>
      ${ok?`<button class="btn gold sm" data-act="exam" data-lvl="${l}">Passer</button>`:ICON.lock}</div>`;}).join('')}
    <p class="tiny muted">Même format que le vrai HSK, avec des questions écrites pour Bùbùgāo. Le vrai examen se passe à l’Institut Confucius de Lomé.</p></section>
   <section class="card stack sm"><span class="label">Test du mois</span>
