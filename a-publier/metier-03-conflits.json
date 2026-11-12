@@ -1,0 +1,704 @@
+{
+ "branch": "travail",
+ "title": "Métier · Calmer un conflit",
+ "desc": "Calmer une dispute, régler un malentendu avec le chef, t’excuser, proposer une solution, demander l’aide d’une tierce personne.",
+ "module": {
+  "icon": "conflits",
+  "stage": 0,
+  "fiche": {
+   "title": "Quand ça chauffe",
+   "steps": [
+    "Respire. Parle doucement : crier fait monter la colère des deux côtés.",
+    "Commence par calmer : 「别生气，有话好好说」.",
+    "Si tu t’es trompée, dis-le simplement : 「对不起，我错了」.",
+    "Si c’est un malentendu, explique sans accuser : 「这是误会，你听我解释」.",
+    "Propose une solution : 「我有一个办法」.",
+    "Si ça ne s’arrange pas, demande l’aide du chef ou d’un interprète : 「我们去找经理吧」."
+   ]
+  }
+ },
+ "grammar": {
+  "title": "Verbe + 一下 : adoucir",
+  "explain": "Après un verbe, 一下 (yíxià) veut dire « un peu, un moment ». Ça rend la phrase plus douce, moins un ordre. Parfait pour calmer quelqu’un ou proposer de discuter.",
+  "examples": [
+   {
+    "h": "冷静一下。",
+    "p": "Lěngjìng yíxià.",
+    "fr": "Calme-toi un peu."
+   },
+   {
+    "h": "我们商量一下。",
+    "p": "Wǒmen shāngliang yíxià.",
+    "fr": "Discutons-en un peu."
+   },
+   {
+    "h": "我解释一下。",
+    "p": "Wǒ jiěshì yíxià.",
+    "fr": "Je t’explique (rapidement)."
+   },
+   {
+    "h": "你等一下。",
+    "p": "Nǐ děng yíxià.",
+    "fr": "Attends un instant."
+   }
+  ],
+  "tip": "Sans 一下, 冷静！ sonne comme un ordre sec. Avec 一下, c’est une demande gentille."
+ },
+ "items": [
+  {
+   "id": "m3_chaojia",
+   "h": "吵架",
+   "p": "chao jia",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Se disputer",
+   "st": 0
+  },
+  {
+   "id": "m3_shengqi",
+   "h": "生气",
+   "p": "sheng qi",
+   "t": [
+    1,
+    4
+   ],
+   "fr": "Être en colère, se fâcher",
+   "st": 0
+  },
+  {
+   "id": "m3_wuhui",
+   "h": "误会",
+   "p": "wu-hui",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Malentendu",
+   "st": 0
+  },
+  {
+   "id": "m3_daoqian",
+   "h": "道歉",
+   "p": "dao qian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "S’excuser",
+   "st": 0
+  },
+  {
+   "id": "m3_lengjing",
+   "h": "冷静",
+   "p": "leng-jing",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Calme",
+   "st": 0
+  },
+  {
+   "id": "m3_jieshi",
+   "h": "解释",
+   "p": "jie-shi",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Expliquer",
+   "st": 0
+  },
+  {
+   "id": "m3_banfa",
+   "h": "办法",
+   "p": "ban-fa",
+   "t": [
+    4,
+    3
+   ],
+   "fr": "Solution, moyen",
+   "st": 0
+  },
+  {
+   "id": "m3_shangliang",
+   "h": "商量",
+   "p": "shang-liang",
+   "t": [
+    1,
+    0
+   ],
+   "fr": "Discuter ensemble, se concerter",
+   "st": 0
+  },
+  {
+   "id": "m3_jingli",
+   "h": "经理",
+   "p": "jing-li",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Directeur, manager",
+   "st": 0
+  },
+  {
+   "id": "m3_s_biechao",
+   "h": "别吵了",
+   "p": "bie chao le",
+   "t": [
+    2,
+    3,
+    0
+   ],
+   "fr": "Arrêtez de vous disputer",
+   "st": 0
+  },
+  {
+   "id": "m3_s_lengjing",
+   "h": "冷静一下",
+   "p": "leng-jing yi-xia",
+   "t": [
+    3,
+    4,
+    2,
+    4
+   ],
+   "fr": "Calme-toi un peu",
+   "st": 0
+  },
+  {
+   "id": "m3_s_bieshengqi",
+   "h": "别生气",
+   "p": "bie sheng qi",
+   "t": [
+    2,
+    1,
+    4
+   ],
+   "fr": "Ne te fâche pas",
+   "st": 0
+  },
+  {
+   "id": "m3_s_haohaoshuo",
+   "h": "有话好好说",
+   "p": "you hua hao-hao shuo",
+   "t": [
+    3,
+    4,
+    3,
+    3,
+    1
+   ],
+   "fr": "Parlons calmement",
+   "st": 0,
+   "s": [
+    3,
+    4,
+    2,
+    3,
+    1
+   ],
+   "m": "Si deux collègues se disputent près de toi, essaie : 别生气，有话好好说。"
+  },
+  {
+   "id": "m3_s_wodecuo",
+   "h": "是我的错",
+   "p": "shi wo de cuo",
+   "t": [
+    4,
+    3,
+    0,
+    4
+   ],
+   "fr": "C’est ma faute",
+   "st": 0
+  },
+  {
+   "id": "m3_s_wocuole",
+   "h": "我错了",
+   "p": "wo cuo le",
+   "t": [
+    3,
+    4,
+    0
+   ],
+   "fr": "J’ai eu tort",
+   "st": 0
+  },
+  {
+   "id": "m3_s_shiwuhui",
+   "h": "这是误会",
+   "p": "zhe shi wu-hui",
+   "t": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "fr": "C’est un malentendu",
+   "st": 0
+  },
+  {
+   "id": "m3_s_niwuhui",
+   "h": "你误会了",
+   "p": "ni wu-hui le",
+   "t": [
+    3,
+    4,
+    4,
+    0
+   ],
+   "fr": "Tu as mal compris",
+   "st": 0
+  },
+  {
+   "id": "m3_s_yisi",
+   "h": "我不是这个意思",
+   "p": "wo bu shi zhe-ge yi-si",
+   "t": [
+    3,
+    2,
+    4,
+    4,
+    0,
+    4,
+    0
+   ],
+   "fr": "Ce n’est pas ce que je voulais dire",
+   "st": 0
+  },
+  {
+   "id": "m3_s_tingcuo",
+   "h": "我听错了",
+   "p": "wo ting cuo le",
+   "t": [
+    3,
+    1,
+    4,
+    0
+   ],
+   "fr": "J’ai mal entendu",
+   "st": 0
+  },
+  {
+   "id": "m3_s_tingwo",
+   "h": "你听我解释",
+   "p": "ni ting wo jie-shi",
+   "t": [
+    3,
+    1,
+    3,
+    3,
+    4
+   ],
+   "fr": "Écoute-moi, je t’explique",
+   "st": 0,
+   "s": [
+    3,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "m3_s_shangliang",
+   "h": "我们商量一下",
+   "p": "wo-men shang-liang yi-xia",
+   "t": [
+    3,
+    0,
+    1,
+    0,
+    2,
+    4
+   ],
+   "fr": "Discutons-en",
+   "st": 0
+  },
+  {
+   "id": "m3_s_nibanfa",
+   "h": "你有什么办法",
+   "p": "ni you shen-me ban-fa",
+   "t": [
+    3,
+    3,
+    2,
+    0,
+    4,
+    3
+   ],
+   "fr": "Tu as une solution ?",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    0,
+    4,
+    3
+   ]
+  },
+  {
+   "id": "m3_s_wobanfa",
+   "h": "我有一个办法",
+   "p": "wo you yi ge ban-fa",
+   "t": [
+    3,
+    3,
+    2,
+    0,
+    4,
+    3
+   ],
+   "fr": "J’ai une solution",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    2,
+    0,
+    4,
+    3
+   ],
+   "m": "Pendant un problème à l’atelier, propose une idée à ton chef d’équipe : 我有一个办法。"
+  },
+  {
+   "id": "m3_s_zhaojingli",
+   "h": "我们去找经理吧",
+   "p": "wo-men qu zhao jing-li ba",
+   "t": [
+    3,
+    0,
+    4,
+    3,
+    1,
+    3,
+    0
+   ],
+   "fr": "Allons voir le directeur",
+   "st": 0
+  },
+  {
+   "id": "m3_s_bangwomen",
+   "h": "请你帮我们",
+   "p": "qing ni bang wo-men",
+   "t": [
+    3,
+    3,
+    1,
+    3,
+    0
+   ],
+   "fr": "Aide-nous, s’il te plaît",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    1,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "m3_s_fanyi",
+   "h": "我需要翻译",
+   "p": "wo xu-yao fan-yi",
+   "t": [
+    3,
+    1,
+    4,
+    1,
+    4
+   ],
+   "fr": "J’ai besoin d’un interprète",
+   "st": 0
+  },
+  {
+   "id": "m3_s_xiaci",
+   "h": "下次我会注意",
+   "p": "xia ci wo hui zhu-yi",
+   "t": [
+    4,
+    4,
+    3,
+    4,
+    4,
+    4
+   ],
+   "fr": "Je ferai attention la prochaine fois",
+   "st": 0
+  },
+  {
+   "id": "m3_s_lijie",
+   "h": "谢谢你的理解",
+   "p": "xie-xie ni de li-jie",
+   "t": [
+    4,
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "fr": "Merci de ta compréhension",
+   "st": 0,
+   "s": [
+    4,
+    0,
+    3,
+    0,
+    2,
+    3
+   ]
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "钱",
+    "p": "qian",
+    "t": 2,
+    "fr": "argent"
+   },
+   {
+    "h": "歉",
+    "p": "qian",
+    "t": 4,
+    "fr": "excuse"
+   }
+  ],
+  [
+   {
+    "h": "起",
+    "p": "qi",
+    "t": 3,
+    "fr": "se lever"
+   },
+   {
+    "h": "气",
+    "p": "qi",
+    "t": 4,
+    "fr": "colère, air"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "吵",
+   "p": "chǎo",
+   "m": "bruyant, se disputer",
+   "r": "口",
+   "rm": "bouche"
+  },
+  {
+   "c": "气",
+   "p": "qì",
+   "m": "air, colère",
+   "r": "气",
+   "rm": "souffle"
+  },
+  {
+   "c": "误",
+   "p": "wù",
+   "m": "erreur",
+   "r": "讠",
+   "rm": "parole"
+  },
+  {
+   "c": "歉",
+   "p": "qiàn",
+   "m": "excuse",
+   "r": "欠",
+   "rm": "bâiller"
+  },
+  {
+   "c": "解",
+   "p": "jiě",
+   "m": "défaire, expliquer",
+   "r": "角",
+   "rm": "corne"
+  },
+  {
+   "c": "办",
+   "p": "bàn",
+   "m": "faire, régler",
+   "r": "力",
+   "rm": "force"
+  },
+  {
+   "c": "静",
+   "p": "jìng",
+   "m": "calme",
+   "r": "青",
+   "rm": "bleu-vert"
+  }
+ ],
+ "convs": [
+  {
+   "id": "metier-conflits-chef",
+   "st": 0,
+   "title": "La couleur n’est pas bonne",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Ton chef d’équipe arrive, fâché, avec une paire de chaussures à la main.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "这些鞋的颜色不对！你怎么做的？",
+     "p": "Zhèxiē xié de yánsè bú duì! Nǐ zěnme zuò de?",
+     "fr": "La couleur de ces chaussures n’est pas bonne ! Tu as fait comment ?",
+     "o": [
+      {
+       "h": "对不起，这是误会。你听我解释。",
+       "p": "Duìbuqǐ, zhè shì wùhuì. Nǐ tīng wǒ jiěshì.",
+       "fr": "Pardon, c’est un malentendu. Laisse-moi t’expliquer.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "不是我的错！",
+       "p": "Bú shì wǒ de cuò!",
+       "fr": "Ce n’est pas ma faute !",
+       "fix": "Te défendre en criant énerve le chef. Commence calmement : « 对不起，这是误会。你听我解释 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "好，你说。",
+     "p": "Hǎo, nǐ shuō.",
+     "fr": "D’accord, vas-y.",
+     "o": [
+      {
+       "h": "早上我听错了，以为是白色。",
+       "p": "Zǎoshang wǒ tīng cuò le, yǐwéi shì báisè.",
+       "fr": "Ce matin j’ai mal entendu, j’ai cru que c’était blanc.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "你说得不清楚！",
+       "p": "Nǐ shuō de bù qīngchu!",
+       "fr": "Tu ne parles pas clairement !",
+       "fix": "Accuser le chef lui fait perdre la face (面子). Dis plutôt « 我听错了 » : tu restes polie, et lui aussi."
+      }
+     ]
+    },
+    "c": {
+     "h": "那现在怎么办？",
+     "p": "Nà xiànzài zěnme bàn?",
+     "fr": "Alors, on fait comment maintenant ?",
+     "o": [
+      {
+       "h": "我有一个办法：今天加班，重新做。",
+       "p": "Wǒ yǒu yí ge bànfǎ: jīntiān jiābān, chóngxīn zuò.",
+       "fr": "J’ai une solution : je fais des heures sup aujourd’hui et je refais.",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "我不知道。",
+       "p": "Wǒ bù zhīdào.",
+       "fr": "Je ne sais pas.",
+       "fix": "Montre que tu veux régler le problème : « 我有一个办法… » et propose quelque chose."
+      }
+     ]
+    },
+    "d": {
+     "h": "好吧。下次要注意。",
+     "p": "Hǎo ba. Xià cì yào zhùyì.",
+     "fr": "Bon. La prochaine fois, fais attention.",
+     "o": [
+      {
+       "h": "好的，下次我会注意。谢谢你的理解。",
+       "p": "Hǎo de, xià cì wǒ huì zhùyì. Xièxie nǐ de lǐjiě.",
+       "fr": "D’accord, je ferai attention. Merci de ta compréhension.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "没有下次。",
+       "p": "Méiyǒu xià cì.",
+       "fr": "Il n’y aura pas de prochaine fois.",
+       "fix": "Ça sonne insolent. Termine en douceur : « 下次我会注意。谢谢你的理解 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "没关系，加油！",
+     "p": "Méi guānxi, jiāyóu!",
+     "fr": "Ce n’est pas grave, courage !",
+     "end": 1
+    }
+   }
+  },
+  {
+   "id": "metier-conflits-place",
+   "st": 0,
+   "title": "C’est ma place !",
+   "who": "同事",
+   "whoFr": "Collègue",
+   "intro": "Une collègue arrive en colère : elle dit que tu as pris son poste.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "这是我的位置！你走开！",
+     "p": "Zhè shì wǒ de wèizhi! Nǐ zǒu kāi!",
+     "fr": "C’est ma place ! Va-t’en !",
+     "o": [
+      {
+       "h": "别生气，有话好好说。",
+       "p": "Bié shēngqì, yǒu huà hǎohǎo shuō.",
+       "fr": "Ne te fâche pas, parlons calmement.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "你走开！",
+       "p": "Nǐ zǒu kāi!",
+       "fr": "Va-t’en, toi !",
+       "fix": "Répondre pareil, ça empire. Calme d’abord : « 别生气，有话好好说 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "组长让我在这儿工作。",
+     "p": "Zǔzhǎng ràng wǒ zài zhèr gōngzuò.",
+     "fr": "Le chef d’équipe m’a dit de travailler ici.",
+     "o": [
+      {
+       "h": "可能是误会。我们去找组长吧。",
+       "p": "Kěnéng shì wùhuì. Wǒmen qù zhǎo zǔzhǎng ba.",
+       "fr": "C’est peut-être un malentendu. Allons voir le chef d’équipe.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我不管。",
+       "p": "Wǒ bù guǎn.",
+       "fr": "Je m’en fiche.",
+       "fix": "Proposer l’aide du chef règle le problème sans dispute : « 我们去找组长吧 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "好吧，我们去问问。",
+     "p": "Hǎo ba, wǒmen qù wènwen.",
+     "fr": "D’accord, allons demander.",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "和气生财",
+   "p": "héqi shēng cái",
+   "fr": "La bonne entente fait prospérer",
+   "note": "Proverbe de commerçants : ne pas se fâcher, c’est bon pour les affaires."
+  }
+ ]
+}

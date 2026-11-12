@@ -1,0 +1,629 @@
+{
+ "branch": "travail",
+ "title": "Métier · Comprendre son chef chinois",
+ "desc": "La « face » (面子), dire non poliment, entendre les critiques indirectes, remercier, demander un congé.",
+ "module": {
+  "icon": "chef",
+  "stage": 0,
+  "fiche": {
+   "title": "Avec ton chef chinois",
+   "steps": [
+    "La « face » (面子) compte beaucoup : ne contredis jamais ton chef devant les autres. Si tu n’es pas d’accord, va le voir seul à seul.",
+    "Un « non » direct est impoli. Dis plutôt 「恐怕不行」 ou 「我尽量」.",
+    "Les critiques sont souvent douces : 「还可以」 ou 「有点问题」 veut dire qu’il faut corriger. Demande quoi, sans te vexer.",
+    "「再看看」 ou 「我考虑一下」 veut souvent dire non : n’insiste pas trop.",
+    "Pour un congé, demande à l’avance avec une raison courte : 「我想请一天假，家里有事」.",
+    "Dis 您 (vous) à ton chef et remercie souvent : 「谢谢您的指导」."
+   ]
+  }
+ },
+ "grammar": {
+  "title": "有点 + adjectif : adoucir une critique",
+  "explain": "有点 (yǒudiǎn, « un peu ») devant un adjectif rend une remarque négative plus douce. Les chefs chinois l’utilisent beaucoup : 有点慢 veut souvent dire « c’est trop lent ». Toi aussi, utilise-le pour dire non sans vexer.",
+  "examples": [
+   {
+    "h": "这个可能有点难。",
+    "p": "Zhège kěnéng yǒudiǎn nán.",
+    "fr": "Ça risque d’être un peu difficile. (= plutôt non)"
+   },
+   {
+    "h": "你做得有点慢。",
+    "p": "Nǐ zuò de yǒudiǎn màn.",
+    "fr": "Tu travailles un peu lentement."
+   },
+   {
+    "h": "颜色有点深。",
+    "p": "Yánsè yǒudiǎn shēn.",
+    "fr": "La couleur est un peu foncée."
+   },
+   {
+    "h": "今天我有点累。",
+    "p": "Jīntiān wǒ yǒudiǎn lèi.",
+    "fr": "Aujourd’hui je suis un peu fatiguée."
+   }
+  ],
+  "tip": "有点 sert pour ce qui ne va pas. Pour un compliment, dis 很 : 很好 (très bien), pas 有点好."
+ },
+ "items": [
+  {
+   "id": "m4_mianzi",
+   "h": "面子",
+   "p": "mian-zi",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "La face (l’honneur, la réputation)",
+   "st": 0
+  },
+  {
+   "id": "m4_geimianzi",
+   "h": "给面子",
+   "p": "gei mian-zi",
+   "t": [
+    3,
+    4,
+    0
+   ],
+   "fr": "Ménager la face de quelqu’un",
+   "st": 0
+  },
+  {
+   "id": "m4_diulian",
+   "h": "丢脸",
+   "p": "diu lian",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Perdre la face, avoir honte",
+   "st": 0
+  },
+  {
+   "id": "m4_keqi",
+   "h": "客气",
+   "p": "ke-qi",
+   "t": [
+    4,
+    0
+   ],
+   "fr": "Poli, faire des manières",
+   "st": 0
+  },
+  {
+   "id": "m4_lingdao",
+   "h": "领导",
+   "p": "ling-dao",
+   "t": [
+    3,
+    3
+   ],
+   "fr": "Chef, supérieur",
+   "st": 0,
+   "s": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "m4_qingjia",
+   "h": "请假",
+   "p": "qing jia",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Demander un congé",
+   "st": 0
+  },
+  {
+   "id": "m4_bingjia",
+   "h": "病假",
+   "p": "bing jia",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Congé maladie",
+   "st": 0
+  },
+  {
+   "id": "m4_pizhun",
+   "h": "批准",
+   "p": "pi-zhun",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Accorder, autoriser",
+   "st": 0
+  },
+  {
+   "id": "m4_yijian",
+   "h": "意见",
+   "p": "yi-jian",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Avis, remarque",
+   "st": 0
+  },
+  {
+   "id": "m4_s_kaolv",
+   "h": "我考虑一下",
+   "p": "wo kao-lv yi-xia",
+   "t": [
+    3,
+    3,
+    4,
+    2,
+    4
+   ],
+   "fr": "Je vais y réfléchir",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "m4_s_jinliang",
+   "h": "我尽量",
+   "p": "wo jin-liang",
+   "t": [
+    3,
+    3,
+    4
+   ],
+   "fr": "Je ferai de mon mieux",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "m4_s_kongpa",
+   "h": "恐怕不行",
+   "p": "kong-pa bu xing",
+   "t": [
+    3,
+    4,
+    4,
+    2
+   ],
+   "fr": "J’ai bien peur que non",
+   "st": 0
+  },
+  {
+   "id": "m4_s_younan",
+   "h": "这个可能有点难",
+   "p": "zhe-ge ke-neng you-dian nan",
+   "t": [
+    4,
+    0,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "fr": "Ça risque d’être un peu difficile",
+   "st": 0,
+   "s": [
+    4,
+    0,
+    3,
+    2,
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "m4_s_haikeyi",
+   "h": "还可以",
+   "p": "hai ke-yi",
+   "t": [
+    2,
+    3,
+    3
+   ],
+   "fr": "Ça peut aller (= pas terrible)",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "m4_s_zaikankan",
+   "h": "再看看",
+   "p": "zai kan-kan",
+   "t": [
+    4,
+    4,
+    0
+   ],
+   "fr": "On verra (= souvent non)",
+   "st": 0
+  },
+  {
+   "id": "m4_s_youdianwenti",
+   "h": "有点问题",
+   "p": "you-dian wen-ti",
+   "t": [
+    3,
+    3,
+    4,
+    2
+   ],
+   "fr": "Il y a un petit souci",
+   "st": 0,
+   "s": [
+    2,
+    3,
+    4,
+    2
+   ]
+  },
+  {
+   "id": "m4_s_gaigai",
+   "h": "你再改改",
+   "p": "ni zai gai-gai",
+   "t": [
+    3,
+    4,
+    3,
+    0
+   ],
+   "fr": "Retouche encore un peu",
+   "st": 0
+  },
+  {
+   "id": "m4_s_shuodedui",
+   "h": "您说得对",
+   "p": "nin shuo de dui",
+   "t": [
+    2,
+    1,
+    0,
+    4
+   ],
+   "fr": "Vous avez raison",
+   "st": 0
+  },
+  {
+   "id": "m4_s_mingbai",
+   "h": "我明白您的意思",
+   "p": "wo ming-bai nin de yi-si",
+   "t": [
+    3,
+    2,
+    0,
+    2,
+    0,
+    4,
+    0
+   ],
+   "fr": "Je comprends ce que vous voulez dire",
+   "st": 0
+  },
+  {
+   "id": "m4_s_xielingdao",
+   "h": "谢谢领导",
+   "p": "xie-xie ling-dao",
+   "t": [
+    4,
+    0,
+    3,
+    3
+   ],
+   "fr": "Merci, chef",
+   "st": 0,
+   "s": [
+    4,
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "m4_s_zhidao",
+   "h": "谢谢您的指导",
+   "p": "xie-xie nin de zhi-dao",
+   "t": [
+    4,
+    0,
+    2,
+    0,
+    3,
+    3
+   ],
+   "fr": "Merci pour vos conseils",
+   "st": 0,
+   "s": [
+    4,
+    0,
+    2,
+    0,
+    2,
+    3
+   ],
+   "m": "Après une explication de ton chef, remercie-le : 谢谢您的指导。"
+  },
+  {
+   "id": "m4_s_taikeqi",
+   "h": "您太客气了",
+   "p": "nin tai ke-qi le",
+   "t": [
+    2,
+    4,
+    4,
+    0,
+    0
+   ],
+   "fr": "Vous êtes trop aimable",
+   "st": 0
+  },
+  {
+   "id": "m4_s_xianmang",
+   "h": "您先忙",
+   "p": "nin xian mang",
+   "t": [
+    2,
+    1,
+    2
+   ],
+   "fr": "Je vous laisse travailler",
+   "st": 0,
+   "m": "Quand tu quittes le bureau de ton chef, dis : 您先忙。"
+  },
+  {
+   "id": "m4_s_yitianjia",
+   "h": "我想请一天假",
+   "p": "wo xiang qing yi tian jia",
+   "t": [
+    3,
+    3,
+    3,
+    4,
+    1,
+    4
+   ],
+   "fr": "Je voudrais un jour de congé",
+   "st": 0,
+   "s": [
+    2,
+    2,
+    3,
+    4,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "m4_s_jialiyoushi",
+   "h": "家里有事",
+   "p": "jia-li you shi",
+   "t": [
+    1,
+    0,
+    3,
+    4
+   ],
+   "fr": "J’ai une affaire de famille",
+   "st": 0
+  },
+  {
+   "id": "m4_s_huilai",
+   "h": "我明天回来上班",
+   "p": "wo ming-tian hui-lai shang ban",
+   "t": [
+    3,
+    2,
+    1,
+    2,
+    0,
+    4,
+    1
+   ],
+   "fr": "Je reviens travailler demain",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "棉",
+    "p": "mian",
+    "t": 2,
+    "fr": "coton"
+   },
+   {
+    "h": "面",
+    "p": "mian",
+    "t": 4,
+    "fr": "face, visage"
+   }
+  ],
+  [
+   {
+    "h": "家",
+    "p": "jia",
+    "t": 1,
+    "fr": "maison, famille"
+   },
+   {
+    "h": "假",
+    "p": "jia",
+    "t": 4,
+    "fr": "congé"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "面",
+   "p": "miàn",
+   "m": "visage, face",
+   "r": "面",
+   "rm": "visage"
+  },
+  {
+   "c": "脸",
+   "p": "liǎn",
+   "m": "visage",
+   "r": "月",
+   "rm": "chair"
+  },
+  {
+   "c": "客",
+   "p": "kè",
+   "m": "invité",
+   "r": "宀",
+   "rm": "toit"
+  },
+  {
+   "c": "领",
+   "p": "lǐng",
+   "m": "diriger",
+   "r": "页",
+   "rm": "tête"
+  },
+  {
+   "c": "导",
+   "p": "dǎo",
+   "m": "guider",
+   "r": "寸",
+   "rm": "pouce"
+  },
+  {
+   "c": "假",
+   "p": "jià",
+   "m": "congé",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "谢",
+   "p": "xiè",
+   "m": "remercier",
+   "r": "讠",
+   "rm": "parole"
+  }
+ ],
+ "convs": [
+  {
+   "id": "metier-chef-conge",
+   "st": 0,
+   "title": "Demander un jour de congé",
+   "who": "经理",
+   "whoFr": "Directeur",
+   "intro": "Ton frère se marie vendredi au village. Tu vas voir le directeur pour demander un jour de congé.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}，有什么事？",
+     "p": "{name}, yǒu shénme shì?",
+     "fr": "{name}, qu’est-ce qu’il y a ?",
+     "o": [
+      {
+       "h": "经理，不好意思，我想请一天假。",
+       "p": "Jīnglǐ, bù hǎoyìsi, wǒ xiǎng qǐng yì tiān jià.",
+       "fr": "Monsieur le directeur, excusez-moi, je voudrais un jour de congé.",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我明天不来。",
+       "p": "Wǒ míngtiān bù lái.",
+       "fr": "Demain, je ne viens pas.",
+       "fix": "Trop direct : on ne prévient pas, on demande. Dis « 不好意思，我想请一天假 »."
+      }
+     ]
+    },
+    "b": {
+     "h": "为什么？这个星期很忙。",
+     "p": "Wèishénme? Zhège xīngqī hěn máng.",
+     "fr": "Pourquoi ? Cette semaine, on a beaucoup de travail.",
+     "o": [
+      {
+       "h": "家里有事。今天我会多做一点。",
+       "p": "Jiāli yǒu shì. Jīntiān wǒ huì duō zuò yìdiǎn.",
+       "fr": "Une affaire de famille. Aujourd’hui, j’en ferai un peu plus.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "这不是你的事。",
+       "p": "Zhè bú shì nǐ de shì.",
+       "fr": "Ça ne te regarde pas.",
+       "fix": "Ça le vexe et il perd la face. Donne une raison courte et polie : « 家里有事 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "好吧，我批准。那星期六你能来加班吗？",
+     "p": "Hǎo ba, wǒ pīzhǔn. Nà xīngqīliù nǐ néng lái jiābān ma?",
+     "fr": "Bon, j’accepte. Et samedi, tu peux venir faire des heures sup ?",
+     "o": [
+      {
+       "h": "星期六恐怕不行，不好意思。下次我一定来。",
+       "p": "Xīngqīliù kǒngpà bù xíng, bù hǎoyìsi. Xià cì wǒ yídìng lái.",
+       "fr": "Samedi, j’ai bien peur que non, désolée. La prochaine fois, je viendrai sans faute.",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "不要！",
+       "p": "Bú yào!",
+       "fr": "Non !",
+       "fix": "Un « non » sec fait perdre la face au chef. Dis « 恐怕不行 », excuse-toi et propose une autre fois."
+      }
+     ]
+    },
+    "d": {
+     "h": "没关系。路上小心。",
+     "p": "Méi guānxi. Lùshang xiǎoxīn.",
+     "fr": "Pas de souci. Fais attention sur la route.",
+     "o": [
+      {
+       "h": "谢谢经理！您先忙。",
+       "p": "Xièxie jīnglǐ! Nín xiān máng.",
+       "fr": "Merci, monsieur le directeur ! Je vous laisse travailler.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "我知道。",
+       "p": "Wǒ zhīdào.",
+       "fr": "Je sais.",
+       "fix": "Un peu sec. Remercie : « 谢谢经理！ » Ça entretient une bonne relation."
+      }
+     ]
+    },
+    "end": {
+     "h": "不客气。好好休息。",
+     "p": "Bú kèqi. Hǎohǎo xiūxi.",
+     "fr": "De rien. Repose-toi bien.",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "入乡随俗",
+   "p": "rù xiāng suí sú",
+   "fr": "À Rome, fais comme les Romains",
+   "note": "Mot à mot « entrer au village, suivre ses coutumes ». Tes chefs le vivent au Togo… et toi avec eux !"
+  }
+ ]
+}

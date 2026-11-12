@@ -1,0 +1,680 @@
+{
+ "branch": "travail",
+ "title": "Métier · Sécurité et accidents",
+ "desc": "Réagir vite quand quelqu’un se blesse, se protéger de la colle et des solvants, sortir en cas de feu, raconter un accident au chef.",
+ "module": {
+  "icon": "securite",
+  "stage": 0,
+  "fiche": {
+   "title": "Si quelqu’un se blesse",
+   "steps": [
+    "Garde ton calme. Ne touche pas la machine : appuie sur l’arrêt d’urgence si tu sais où il est.",
+    "Crie pour prévenir tout le monde : 「有人受伤了！」",
+    "Appelle le chef d’équipe. Si c’est grave : 「快叫救护车！」",
+    "Colle ou solvant sur la peau ou dans les yeux : rince longtemps à l’eau froide (au moins 15 minutes) : 「快用冷水冲」.",
+    "Feu : crie 「着火了！」, sors par la sortie de secours et ne reviens jamais chercher tes affaires.",
+    "Ensuite, raconte au chef ce que tu as vu : qui, où, quand. 「我看见了」"
+   ]
+  }
+ },
+ "grammar": {
+  "title": "了 à la fin : « ça y est, c’est arrivé »",
+  "explain": "Un 了 (le) en fin de phrase annonce un changement : quelque chose vient d’arriver. C’est le 了 des alertes : 着火了 (le feu a pris), 停电了 (le courant est coupé), 有人受伤了 (quelqu’un s’est blessé). Pas besoin de verbe compliqué : la situation + 了.",
+  "examples": [
+   {
+    "h": "着火了！",
+    "p": "Zháohuǒ le!",
+    "fr": "Au feu ! (le feu a pris)"
+   },
+   {
+    "h": "停电了。",
+    "p": "Tíngdiàn le.",
+    "fr": "Il y a une coupure de courant."
+   },
+   {
+    "h": "她的手流血了。",
+    "p": "Tā de shǒu liú xuè le.",
+    "fr": "Sa main saigne."
+   },
+   {
+    "h": "出事故了！",
+    "p": "Chū shìgù le!",
+    "fr": "Il y a eu un accident !"
+   }
+  ],
+  "tip": "Pour interdire, mets 别 (bié) devant le verbe : 别碰机器！ (Ne touche pas la machine !). Et 小心！ veut dire « Attention ! »."
+ },
+ "items": [
+  {
+   "id": "m1_anquan",
+   "h": "安全",
+   "p": "an-quan",
+   "t": [
+    1,
+    2
+   ],
+   "fr": "Sécurité, sans danger",
+   "st": 0
+  },
+  {
+   "id": "m1_weixian",
+   "h": "危险",
+   "p": "wei-xian",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Danger, dangereux",
+   "st": 0
+  },
+  {
+   "id": "m1_shigu",
+   "h": "事故",
+   "p": "shi-gu",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Accident",
+   "st": 0
+  },
+  {
+   "id": "m1_shangkou",
+   "h": "伤口",
+   "p": "shang-kou",
+   "t": [
+    1,
+    3
+   ],
+   "fr": "Plaie, blessure",
+   "st": 0
+  },
+  {
+   "id": "m1_tangshang",
+   "h": "烫伤",
+   "p": "tang shang",
+   "t": [
+    4,
+    1
+   ],
+   "fr": "Brûlure (chaleur, colle chaude)",
+   "st": 0
+  },
+  {
+   "id": "m1_youdu",
+   "h": "有毒",
+   "p": "you du",
+   "t": [
+    3,
+    2
+   ],
+   "fr": "Toxique",
+   "st": 0
+  },
+  {
+   "id": "m1_shoutao",
+   "h": "手套",
+   "p": "shou-tao",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Gants",
+   "st": 0,
+   "m": "Avant de prendre la colle ou le solvant, vérifie tes gants et dis : 手套。"
+  },
+  {
+   "id": "m1_kouzhao",
+   "h": "口罩",
+   "p": "kou-zhao",
+   "t": [
+    3,
+    4
+   ],
+   "fr": "Masque",
+   "st": 0
+  },
+  {
+   "id": "m1_anquanxie",
+   "h": "安全鞋",
+   "p": "an-quan xie",
+   "t": [
+    1,
+    2,
+    2
+   ],
+   "fr": "Chaussures de sécurité",
+   "st": 0
+  },
+  {
+   "id": "m1_humujing",
+   "h": "护目镜",
+   "p": "hu-mu-jing",
+   "t": [
+    4,
+    4,
+    4
+   ],
+   "fr": "Lunettes de protection",
+   "st": 0
+  },
+  {
+   "id": "m1_miehuoqi",
+   "h": "灭火器",
+   "p": "mie-huo-qi",
+   "t": [
+    4,
+    3,
+    4
+   ],
+   "fr": "Extincteur",
+   "st": 0,
+   "m": "Repère l’extincteur le plus proche de ton poste. Montre-le à une collègue : 灭火器在这儿。"
+  },
+  {
+   "id": "m1_anquanchukou",
+   "h": "安全出口",
+   "p": "an-quan chu-kou",
+   "t": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "fr": "Sortie de secours",
+   "st": 0,
+   "m": "Repère la sortie de secours de ton atelier et dis-le à voix haute : 安全出口。"
+  },
+  {
+   "id": "m1_jijiuxiang",
+   "h": "急救箱",
+   "p": "ji-jiu xiang",
+   "t": [
+    2,
+    4,
+    1
+   ],
+   "fr": "Trousse de premiers secours",
+   "st": 0,
+   "m": "Demande à ton chef d’équipe où est la trousse : 急救箱在哪儿？"
+  },
+  {
+   "id": "m1_s_youren",
+   "h": "有人受伤了",
+   "p": "you ren shou shang le",
+   "t": [
+    3,
+    2,
+    4,
+    1,
+    0
+   ],
+   "fr": "Quelqu’un est blessé !",
+   "st": 0
+  },
+  {
+   "id": "m1_s_jiuhuche",
+   "h": "快叫救护车",
+   "p": "kuai jiao jiu-hu-che",
+   "t": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "fr": "Vite, appelle une ambulance !",
+   "st": 0
+  },
+  {
+   "id": "m1_s_zhaohuo",
+   "h": "着火了",
+   "p": "zhao huo le",
+   "t": [
+    2,
+    3,
+    0
+   ],
+   "fr": "Au feu !",
+   "st": 0
+  },
+  {
+   "id": "m1_s_biepeng",
+   "h": "别碰机器",
+   "p": "bie peng ji-qi",
+   "t": [
+    2,
+    4,
+    1,
+    4
+   ],
+   "fr": "Ne touche pas la machine !",
+   "st": 0
+  },
+  {
+   "id": "m1_s_tingdian",
+   "h": "停电了",
+   "p": "ting dian le",
+   "t": [
+    2,
+    4,
+    0
+   ],
+   "fr": "Il y a une coupure de courant",
+   "st": 0
+  },
+  {
+   "id": "m1_s_jiuming",
+   "h": "救命",
+   "p": "jiu ming",
+   "t": [
+    4,
+    4
+   ],
+   "fr": "Au secours !",
+   "st": 0
+  },
+  {
+   "id": "m1_s_chushigu",
+   "h": "出事故了",
+   "p": "chu shi-gu le",
+   "t": [
+    1,
+    4,
+    4,
+    0
+   ],
+   "fr": "Il y a eu un accident",
+   "st": 0
+  },
+  {
+   "id": "m1_s_liuxue",
+   "h": "她的手流血了",
+   "p": "ta de shou liu xue le",
+   "t": [
+    1,
+    0,
+    3,
+    2,
+    4,
+    0
+   ],
+   "fr": "Sa main saigne",
+   "st": 0
+  },
+  {
+   "id": "m1_s_kuaichong",
+   "h": "快用冷水冲",
+   "p": "kuai yong leng shui chong",
+   "t": [
+    4,
+    4,
+    3,
+    3,
+    1
+   ],
+   "fr": "Vite, rince à l’eau froide",
+   "st": 0,
+   "s": [
+    4,
+    4,
+    2,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "m1_s_daihao",
+   "h": "戴好手套",
+   "p": "dai hao shou-tao",
+   "t": [
+    4,
+    3,
+    3,
+    4
+   ],
+   "fr": "Mets bien tes gants",
+   "st": 0,
+   "s": [
+    4,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "m1_s_tongfeng",
+   "h": "开窗通风",
+   "p": "kai chuang tong feng",
+   "t": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "fr": "Ouvre la fenêtre pour aérer",
+   "st": 0,
+   "m": "Quand l’odeur de colle est forte, propose : 开窗通风吧。"
+  },
+  {
+   "id": "m1_s_weixian",
+   "h": "这儿很危险",
+   "p": "zhe-r hen wei-xian",
+   "t": [
+    4,
+    0,
+    3,
+    1,
+    3
+   ],
+   "fr": "C’est dangereux ici",
+   "st": 0
+  },
+  {
+   "id": "m1_s_chuqu",
+   "h": "大家快出去",
+   "p": "da-jia kuai chu-qu",
+   "t": [
+    4,
+    1,
+    4,
+    1,
+    0
+   ],
+   "fr": "Tout le monde dehors, vite !",
+   "st": 0
+  },
+  {
+   "id": "m1_s_kanjian",
+   "h": "我看见了",
+   "p": "wo kan-jian le",
+   "t": [
+    3,
+    4,
+    4,
+    0
+   ],
+   "fr": "Je l’ai vu (j’étais là)",
+   "st": 0
+  },
+  {
+   "id": "m1_s_jiqi",
+   "h": "在三号机器",
+   "p": "zai san hao ji-qi",
+   "t": [
+    4,
+    1,
+    4,
+    1,
+    4
+   ],
+   "fr": "À la machine numéro 3",
+   "st": 0
+  }
+ ],
+ "pairs": [
+  [
+   {
+    "h": "伤",
+    "p": "shang",
+    "t": 1,
+    "fr": "blessure"
+   },
+   {
+    "h": "上",
+    "p": "shang",
+    "t": 4,
+    "fr": "monter, sur"
+   }
+  ],
+  [
+   {
+    "h": "火",
+    "p": "huo",
+    "t": 3,
+    "fr": "feu"
+   },
+   {
+    "h": "货",
+    "p": "huo",
+    "t": 4,
+    "fr": "marchandise"
+   }
+  ]
+ ],
+ "chars": [
+  {
+   "c": "安",
+   "p": "ān",
+   "m": "paix, sûr",
+   "r": "宀",
+   "rm": "toit"
+  },
+  {
+   "c": "险",
+   "p": "xiǎn",
+   "m": "danger",
+   "r": "阝",
+   "rm": "colline"
+  },
+  {
+   "c": "伤",
+   "p": "shāng",
+   "m": "blessure",
+   "r": "亻",
+   "rm": "personne"
+  },
+  {
+   "c": "火",
+   "p": "huǒ",
+   "m": "feu",
+   "r": "火",
+   "rm": "feu"
+  },
+  {
+   "c": "救",
+   "p": "jiù",
+   "m": "secourir",
+   "r": "攵",
+   "rm": "frapper"
+  },
+  {
+   "c": "护",
+   "p": "hù",
+   "m": "protéger",
+   "r": "扌",
+   "rm": "main"
+  },
+  {
+   "c": "套",
+   "p": "tào",
+   "m": "enveloppe, gant",
+   "r": "大",
+   "rm": "grand"
+  }
+ ],
+ "convs": [
+  {
+   "id": "metier-securite-blessure",
+   "st": 0,
+   "title": "Une collègue se blesse",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Ta collègue Xiao Li vient de se blesser la main sur une machine. Tu cours prévenir le chef d’équipe.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "{name}，怎么了？",
+     "p": "{name}, zěnme le?",
+     "fr": "{name}, qu’est-ce qui se passe ?",
+     "o": [
+      {
+       "h": "有人受伤了！",
+       "p": "Yǒu rén shòu shāng le!",
+       "fr": "Quelqu’un est blessé !",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我不舒服。",
+       "p": "Wǒ bù shūfu.",
+       "fr": "Je ne me sens pas bien.",
+       "fix": "C’est ta collègue qui est blessée : crie « 有人受伤了！ »."
+      }
+     ]
+    },
+    "b": {
+     "h": "谁受伤了？在哪儿？",
+     "p": "Shéi shòu shāng le? Zài nǎr?",
+     "fr": "Qui est blessé ? Où ?",
+     "o": [
+      {
+       "h": "小李，在三号机器。",
+       "p": "Xiǎo Lǐ, zài sān hào jīqì.",
+       "fr": "Xiao Li, à la machine numéro 3.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "我看见了。",
+       "p": "Wǒ kànjiàn le.",
+       "fr": "Je l’ai vu.",
+       "fix": "Il demande qui et où : « 小李，在三号机器 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "她的手怎么样？",
+     "p": "Tā de shǒu zěnmeyàng?",
+     "fr": "Comment va sa main ?",
+     "o": [
+      {
+       "h": "她的手流血了，快叫救护车！",
+       "p": "Tā de shǒu liú xuè le, kuài jiào jiùhùchē!",
+       "fr": "Sa main saigne, vite, appelle une ambulance !",
+       "ok": 1,
+       "n": "d"
+      },
+      {
+       "h": "她的手很漂亮。",
+       "p": "Tā de shǒu hěn piàoliang.",
+       "fr": "Sa main est très jolie.",
+       "fix": "Ce n’est pas le moment ! Dis « 她的手流血了 » (sa main saigne)."
+      }
+     ]
+    },
+    "d": {
+     "h": "好，我马上打电话。机器关了吗？",
+     "p": "Hǎo, wǒ mǎshàng dǎ diànhuà. Jīqì guān le ma?",
+     "fr": "D’accord, j’appelle tout de suite. La machine est arrêtée ?",
+     "o": [
+      {
+       "h": "关了，没有人碰。",
+       "p": "Guān le, méiyǒu rén pèng.",
+       "fr": "Elle est arrêtée, personne n’y touche.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "没关，我们还要做鞋。",
+       "p": "Méi guān, wǒmen hái yào zuò xié.",
+       "fr": "Non, on doit encore faire des chaussures.",
+       "fix": "La sécurité d’abord : on arrête la machine (arrêt d’urgence) et personne n’y touche. Puis réponds « 关了 »."
+      }
+     ]
+    },
+    "end": {
+     "h": "谢谢你，{name}。你做得很好。",
+     "p": "Xièxie nǐ, {name}. Nǐ zuò de hěn hǎo.",
+     "fr": "Merci, {name}. Tu as très bien réagi.",
+     "end": 1
+    }
+   }
+  },
+  {
+   "id": "metier-securite-feu",
+   "st": 0,
+   "title": "Ça sent la fumée !",
+   "who": "组长",
+   "whoFr": "Chef d’équipe",
+   "intro": "Tu sens une odeur de fumée près du stock de colle.",
+   "start": "a",
+   "nodes": {
+    "a": {
+     "h": "什么味道？",
+     "p": "Shénme wèidao?",
+     "fr": "C’est quoi, cette odeur ?",
+     "o": [
+      {
+       "h": "着火了！大家快出去！",
+       "p": "Zháohuǒ le! Dàjiā kuài chūqu!",
+       "fr": "Au feu ! Tout le monde dehors, vite !",
+       "ok": 1,
+       "n": "b"
+      },
+      {
+       "h": "我饿了。",
+       "p": "Wǒ è le.",
+       "fr": "J’ai faim.",
+       "fix": "Ça sent la fumée : crie « 着火了！ » pour prévenir tout le monde."
+      }
+     ]
+    },
+    "b": {
+     "h": "灭火器在哪儿？",
+     "p": "Mièhuǒqì zài nǎr?",
+     "fr": "Où est l’extincteur ?",
+     "o": [
+      {
+       "h": "在安全出口旁边。",
+       "p": "Zài ānquán chūkǒu pángbiān.",
+       "fr": "À côté de la sortie de secours.",
+       "ok": 1,
+       "n": "c"
+      },
+      {
+       "h": "在我家。",
+       "p": "Zài wǒ jiā.",
+       "fr": "Chez moi.",
+       "fix": "Repère toujours l’extincteur de ton atelier. Ici : « 在安全出口旁边 »."
+      }
+     ]
+    },
+    "c": {
+     "h": "火太大了！大家快出去！",
+     "p": "Huǒ tài dà le! Dàjiā kuài chūqu!",
+     "fr": "Le feu est trop fort ! Tout le monde dehors !",
+     "o": [
+      {
+       "h": "好，我们从安全出口出去。",
+       "p": "Hǎo, wǒmen cóng ānquán chūkǒu chūqu.",
+       "fr": "D’accord, on sort par la sortie de secours.",
+       "ok": 1,
+       "n": "end"
+      },
+      {
+       "h": "等一下，我回去拿手机。",
+       "p": "Děng yíxià, wǒ huíqu ná shǒujī.",
+       "fr": "Attends, je retourne chercher mon téléphone.",
+       "fix": "Ne retourne jamais chercher tes affaires ! Sors tout de suite par la sortie de secours."
+      }
+     ]
+    },
+    "end": {
+     "h": "好，大家都安全了。",
+     "p": "Hǎo, dàjiā dōu ānquán le.",
+     "fr": "Bien, tout le monde est en sécurité.",
+     "end": 1
+    }
+   }
+  }
+ ],
+ "bonus": [
+  {
+   "h": "安全第一",
+   "p": "ānquán dì yī",
+   "fr": "La sécurité d’abord",
+   "note": "Phrase écrite sur les murs de beaucoup d’usines chinoises."
+  }
+ ]
+}

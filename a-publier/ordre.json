@@ -12,6 +12,11 @@
    "title": "HSK 1 · 5 — Manger et boire"
   },
   {
+   "id": "metier-securite",
+   "file": "metier-01-securite.json",
+   "title": "Métier · Sécurité et accidents"
+  },
+  {
    "id": "hsk1-06",
    "file": "hsk1-06-acheter.json",
    "title": "HSK 1 · 6 — Acheter"
@@ -20,6 +25,11 @@
    "id": "hsk1-07",
    "file": "hsk1-07-lieux.json",
    "title": "HSK 1 · 7 — Où ? Les lieux"
+  },
+  {
+   "id": "metier-pannes",
+   "file": "metier-02-pannes.json",
+   "title": "Métier · Coupures et pannes"
   },
   {
    "id": "hsk1-08",
@@ -32,6 +42,11 @@
    "title": "HSK 1 · 9 — Ce qu’on fait"
   },
   {
+   "id": "metier-conflits",
+   "file": "metier-03-conflits.json",
+   "title": "Métier · Calmer un conflit"
+  },
+  {
    "id": "hsk1-10",
    "file": "hsk1-10-meteo-politesse.json",
    "title": "HSK 1 · 10 — Météo, humeur et politesse"
@@ -40,6 +55,11 @@
    "id": "hsk2-01",
    "file": "hsk2-01-famille.json",
    "title": "HSK 2 · 1 — Frères, sœurs et présentations"
+  },
+  {
+   "id": "metier-chef",
+   "file": "metier-04-chef-chinois.json",
+   "title": "Métier · Comprendre son chef chinois"
   },
   {
    "id": "hsk2-02",
@@ -52,6 +72,11 @@
    "title": "HSK 2 · 3 — Prix, couleurs et comparaisons"
   },
   {
+   "id": "metier-equipe",
+   "file": "metier-05-equipe.json",
+   "title": "Métier · Diriger une équipe"
+  },
+  {
    "id": "hsk2-04",
    "file": "hsk2-04-chemin.json",
    "title": "HSK 2 · 4 — Trouver son chemin"
@@ -60,6 +85,11 @@
    "id": "hsk2-05",
    "file": "hsk2-05-comprendre.json",
    "title": "HSK 2 · 5 — Comprendre et s’entraider"
+  },
+  {
+   "id": "metier-chiffres",
+   "file": "metier-06-chiffres.json",
+   "title": "Métier · Les chiffres du travail"
   },
   {
    "id": "quotidien-02-restaurant",
