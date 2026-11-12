@@ -97,6 +97,10 @@ async def main():
         if mods:
             await pg.click(f'[data-act=module][data-id="{mods[0]}"]')
             check(await pg.evaluate('!!document.querySelector(".fiche")'), 'module : fiche réflexe affichée')
+        r = await pg.evaluate("""() => { startExam(1); const E = ui.exam; const n = E.qs.length;
+            const ok = E.qs.every(q => q.kind === 'tf' || (q.ans >= 0 && q.ans < q.opts.length));
+            E.qs.forEach(q => q.pick = q.ans); examFinish(); const t = E.total; ui.exam = null; return [n, ok, t]; }""")
+        check(r == [40, True, 200], f'examen blanc HSK 1 : {r[0]} questions, réponses valides, note parfaite {r[2]}/200')
         await pg.evaluate("ui.tab='progres'; render()")
         check(await pg.evaluate('!!document.querySelector(".can")'), 'Progrès : « Ce que je sais dire » affiché')
         check(not errs, f'aucune erreur JavaScript {errs[:3]}')
