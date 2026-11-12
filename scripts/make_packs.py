@@ -1638,7 +1638,7 @@ PACKS.append(dict(id='metier-securite', file='metier-01-securite.json', branch='
  title='Métier · Sécurité et accidents',
  desc='Réagir vite quand quelqu’un se blesse, se protéger de la colle et des solvants, sortir en cas de feu, raconter un accident au chef.',
  module={'icon': 'securite', 'stage': 0, 'fiche': {'title': 'Si quelqu’un se blesse', 'steps': [
-  'Garde ton calme. Ne touche pas la machine : appuie sur l’arrêt d’urgence si tu sais où il est.',
+  'Garde ton calme. Appuie sur l’arrêt d’urgence si tu sais où il est, mais ne touche pas aux pièces de la machine.',
   'Crie pour prévenir tout le monde : 「有人受伤了！」',
   'Appelle le chef d’équipe. Si c’est grave : 「快叫救护车！」',
   'Colle ou solvant sur la peau ou dans les yeux : rince longtemps à l’eau froide (au moins 15 minutes) : 「快用冷水冲」.',
