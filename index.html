@@ -55,7 +55,7 @@ button{font:inherit;color:inherit}
 .stack{display:flex;flex-direction:column;gap:12px} .stack.lg{gap:20px} .stack.sm{gap:6px}
 .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap} .row.between{justify-content:space-between}
 .grow{flex:1;min-width:0}
-.screen{flex:1;padding-block:20px 110px;display:flex;flex-direction:column;gap:18px}
+.screen{flex:1;padding-block:20px 150px;display:flex;flex-direction:column;gap:18px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
 .card.flat{box-shadow:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;color:var(--ink)}
@@ -100,6 +100,33 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .ph-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .ph-card{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;text-align:left;cursor:pointer;font:inherit;color:inherit}
 .ph-card .zh{font-size:20px}
+.plan{display:flex;flex-direction:column;gap:12px}
+.plan-row{display:flex;align-items:center;gap:12px}
+.plan-row .ck{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;border:2px solid var(--line);font-size:13px;font-weight:800}
+.plan-row .ck.go{border-color:var(--accent)} .plan-row .ck.gold{border-color:var(--gold)}
+.plan-row .ck.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.plan-row.done .grow b{color:var(--muted);text-decoration:line-through}
+.plan hr{border:0;border-top:1px solid var(--line);margin:0}
+.shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.shortcut{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:76px;padding:10px 6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center}
+.shortcut .icon{width:22px;height:22px}
+.shortcut .zh{font-size:18px;line-height:1.1}
+.sos-fab{position:fixed;right:max(16px,calc(50% - 244px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:21;background:#B42323;color:#fff;border:0;border-radius:999px;padding:12px 16px;font-weight:800;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer}
+.sos-mini{background:#B42323;color:#fff;border:0;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px;cursor:pointer;flex:none}
+.sos-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sos-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:12px;border-radius:14px;border:2px solid var(--bad);background:var(--bad-soft);color:var(--ink);font:inherit;cursor:pointer;min-height:96px}
+.sos-btn .zh{font-size:24px;font-weight:700;color:var(--bad);line-height:1.2}
+.sos-btn .py{font-size:12px;color:var(--muted)} .sos-btn b{font-size:14px}
+.sos-show{background:var(--surface);border:3px solid var(--bad);border-radius:18px;padding:18px;text-align:center}
+.sos-show .zh{font-size:clamp(44px,15vw,72px);font-weight:800;color:var(--bad);line-height:1.15;display:block}
+.mod{display:flex;align-items:center;gap:12px;width:100%;padding:12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font:inherit;color:inherit;text-align:left;cursor:pointer}
+.mod .mic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font:700 22px var(--f-zh);flex:none}
+.mod.lock{opacity:.6}
+.mic.securite{background:var(--bad-soft);color:var(--bad)} .mic.pannes{background:var(--gold-soft);color:var(--gold)}
+.mic.conflits{background:var(--accent-soft);color:var(--accent)} .mic.chef{background:var(--surface-2);color:var(--t1)}
+.mic.equipe{background:var(--good-soft);color:var(--good)} .mic.chiffres{background:var(--surface-2);color:var(--t3)}
+.fiche{border-left:4px solid var(--bad);border-radius:0;padding-left:12px}
+.fiche ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
 .stair{width:100%;display:block}
 .stair .st{fill:none;stroke:var(--line);stroke-width:1}
 .stair .st.on{fill:var(--accent);stroke:none}
@@ -426,6 +453,18 @@ const CONVS=[
   {h:'我没有钱。',p:'Wǒ méiyǒu qián.',fr:'Je n’ai pas d’argent.',fix:'护照 = passeport. Tends-le en disant « 给您 » (voici).'}]},
  end:{h:'好了，祝您一路平安！',p:'Hǎo le, zhù nín yílù píng’ān!',fr:'Voilà, bon voyage !',end:1}}}
 ];
+/* Bouton SOS : phrases d'urgence (toujours disponibles, même sans réseau). */
+const SOS=[
+ {h:'有人受伤了！',p:'yǒu rén shòushāng le',fr:'Quelqu’un est blessé !'},
+ {h:'快叫救护车！',p:'kuài jiào jiùhùchē',fr:'Appelle vite une ambulance !'},
+ {h:'着火了！',p:'zháohuǒ le',fr:'Au feu !'},
+ {h:'别碰机器！',p:'bié pèng jīqì',fr:'Ne touche pas la machine !'},
+ {h:'停电了',p:'tíngdiàn le',fr:'Le courant est coupé'},
+ {h:'我不舒服',p:'wǒ bù shūfu',fr:'Je ne me sens pas bien'},
+ {h:'小心！',p:'xiǎoxīn',fr:'Attention !'},
+ {h:'救命！',p:'jiùmìng',fr:'Au secours !'}
+];
+const SOS_FICHE={title:'Si quelqu’un se blesse',steps:['Garde ton calme. Arrête la machine si tu sais le faire, sans toucher aux pièces.','Crie pour prévenir : 「有人受伤了！」','Appelle le chef d’équipe. Si c’est grave : 「快叫救护车！」','Colle ou solvant sur la peau ou dans les yeux : rince à l’eau froide au moins 15 minutes.','Feu : crie 「着火了！」 et sors par la sortie de secours, sans revenir chercher tes affaires.','Ensuite, raconte au chef ce que tu as vu : qui, où, quand.']};
 /* Un proverbe par palier (chapitre terminé), dans cet ordre. */
 const PROVERBES=[
  {h:'千里之行，始于足下',p:'qiān lǐ zhī xíng, shǐ yú zú xià',lit:'Un voyage de mille li commence sous tes pieds.',fr:'Les grands voyages commencent par un petit pas.',note:'Chaque mot appris est une marche. Tu viens d’en monter tout un étage.'},
@@ -494,7 +533,7 @@ const pairKey=p=>p[0].h+p[0].t+p[1].h+p[1].t;
 function installPack(pk){
   let meta=PACKS.find(p=>p.id===pk.id);
   if(!meta){meta={id:pk.id};PACKS.push(meta);}
-  Object.assign(meta,{title:pk.title||pk.id,desc:pk.desc||'',grammar:pk.grammar||null,date:pk.date||'',v:pk.v||1,order:pk.order||PACKS.length,branch:pk.branch||'travail',level:pk.level||0,chars:[]});
+  Object.assign(meta,{title:pk.title||pk.id,desc:pk.desc||'',grammar:pk.grammar||null,date:pk.date||'',v:pk.v||1,order:pk.order||PACKS.length,branch:pk.branch||'travail',level:pk.level||0,module:pk.module&&typeof pk.module==='object'?pk.module:null,chars:[]});
   (pk.chars||[]).forEach(ch=>{if(ch&&ch.c&&ch.p&&ch.m){meta.chars.push(ch.c);if(!CHARS[ch.c])CHARS[ch.c]={...ch,pk:pk.id};}});
   const base=(pk.order||PACKS.length)*1000;
   (pk.items||[]).forEach((it,i)=>{if(!validItem(it))return;it.pk=pk.id;it.branch=meta.branch;it.ord=base+i;if(typeof it.st!=='number')it.st=0;prep(it);const ex=ITEMS.findIndex(x=>x.id===it.id);if(ex>=0)ITEMS[ex]=it;else ITEMS.push(it);});
@@ -549,7 +588,7 @@ const KEY='bubugao.v1';
 function fresh(){return {v:1,name:'',goal:0,onboarded:false,created:Date.now(),
   profile:{ecoute:.5,tons:.5,vocab:.5,parole:.5},items:{},hist:[],xp:0,
   streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},
-  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true};}
+  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true,sosTel:''};}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 let S=load()||fresh();
@@ -563,8 +602,9 @@ const SK=['reco','oreille','ton','prod'];
 const SKNAME={reco:'Reconnaître',oreille:'Comprendre',ton:'Ton',prod:'Produire'};
 const PMAP={reco:'vocab',oreille:'ecoute',ton:'tons',prod:'vocab',shadow:'parole'};
 const isIntro=it=>!!(S.items[it.id]&&S.items[it.id].intro);
+function packLocked(id){const p=PACKS.find(x=>x.id===id);return !!(p&&p.module&&(p.module.stage||0)>currentStage()&&!S.demo);}
 function nextNew(n){
-  const pool=ITEMS.filter(x=>!isIntro(x));
+  const pool=ITEMS.filter(x=>!isIntro(x)&&!packLocked(x.pk));
   if(S.focusPack&&!pool.some(x=>x.pk===S.focusPack))S.focusPack=null;
   const byOrd=(a,b)=>(a.st-b.st)||(a.ord-b.ord);
   const focus=pool.filter(x=>x.pk===S.focusPack).sort(byOrd);
@@ -1089,14 +1129,15 @@ function convPick(cs,i){
    RENDU
    ============================================================ */
 function render(){
+  if(ui.sos)return app.innerHTML=renderSOS();
   if(ui.sess)return renderSession();
   if(!S.onboarded)return renderOnboard();
-  const T={heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
-  app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
+  const T={module:renderModule,heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
+  app.innerHTML=`<main class="screen">${T()}</main><button class="sos-fab" data-act="sos" aria-label="SOS urgence">SOS 急救</button>${tabbar()}`;
   if(ui.tab==='progres'){document.querySelectorAll('canvas[data-voice]').forEach(cv=>{const [id,w]=cv.dataset.voice.split('|');const v=S.voice[id];if(v&&v[w])drawCurve(cv,BY[id],v[w]);});}
 }
 function tabbar(){
-  const t=[['home','今天','Aujourd’hui'],['parler','说','Parler'],['progres','进步','Progrès'],['carriere','未来','Carrière']];
+  const t=[['home','今天','Aujourd’hui'],['parler','说','Parler'],['progres','进步','Progrès'],['carriere','工作','Métier']];
   return `<nav class="tabbar" aria-label="Navigation"><div class="tabbar-in">${t.map(([k,z,f])=>`<button class="tab ${ui.tab===k?'on':''}" data-act="tab" data-k="${k}" ${ui.tab===k?'aria-current="page"':''}><span class="zh">${z}</span>${f}</button>`).join('')}</div></nav>`;
 }
 const playBtns=(text,sm)=>`<button class="btn ${sm?'sm':''}" data-act="say" data-t="${esc(text)}">${ICON.play} Écouter</button><button class="btn ${sm?'sm':''}" data-act="say" data-t="${esc(text)}" data-r=".55">${ICON.slow} Lent</button>`;
@@ -1182,6 +1223,8 @@ const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':
   'hsk2-05':'Dire que tu ne comprends pas et demander de l’aide',
   'hsk2-06':'Parler de sport et proposer une sortie','hsk2-07':'Parler du temps et dire ce que tu as déjà fait','hsk2-08':'Dire que c’est bon et en redemander',
   'hsk2-09':'Accueillir, offrir un cadeau et dire « ne fais pas ça »','hsk2-10':'Dire pourquoi et donner ton avis','travail-compter':'Compter les paires à l’atelier','quotidien-marche':'Faire tes courses au marché',
+  'metier-securite':'Donner l’alerte et réagir en cas d’accident','metier-pannes':'Gérer une coupure de courant ou une panne','metier-conflits':'Calmer une dispute et trouver une solution',
+  'metier-chef':'Parler avec ton chef sans malentendu','metier-equipe':'Donner des consignes à une équipe','metier-chiffres':'Parler des heures, des primes et du stock',
   'quotidien-02-restaurant':'Commander au restaurant et à la cantine','quotidien-03-transport':'Prendre un moto-taxi, un bus ou un taxi',
   'quotidien-04-sante':'Dire où tu as mal à la pharmacie','quotidien-05-wechat':'Échanger ton numéro et écrire sur WeChat'};
 const shortTitle=p=>(p.title||p.id).split(/ — | · (?=[^·]*$)/).pop();
@@ -1244,27 +1287,20 @@ function renderHome(){
      <div class="row"><span class="badge">${n} mots et phrases</span>${c?`<span class="badge">${c} conversation${c>1?'s':''}</span>`:''}${np.grammar?'<span class="badge">1 règle de grammaire</span>':''}</div>
      <div class="row"><button class="btn primary sm" data-act="chapter" data-id="${np.id}">Commencer ce chapitre</button><button class="btn sm ghost" data-act="seen" data-id="${np.id}">Plus tard</button></div></section>`;})()}
   ${deferredInstall?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Bùbùgāo</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`:''}
-  ${done?`<button class="cta done" data-act="express"><span class="label">Séance du jour faite ${ICON.check}</span><h2>Révision express</h2><div class="bits"><span class="bit">${due} à revoir</span><span class="bit">≈ 4 min</span></div></button>
-     ${nPlus?`<button class="cta" data-act="plus"><span class="label" style="color:inherit;opacity:.85">Tu as encore soif ? · ≈ 10 min</span><h2>Séance bonus</h2><div class="bits"><span class="bit">${nPlus} nouveaux</span><span class="bit">tons</span><span class="bit">caractères</span><span class="bit">1 conversation</span></div></button>`
-       :`<section class="card small muted">Tu as appris tous les mots disponibles. Bravo ! Un nouveau chapitre arrive bientôt. En attendant, la révision express garde tout bien en tête.</section>`}`
-        :`<button class="cta" data-act="daily"><span class="label" style="color:inherit;opacity:.85">Séance du jour · ≈ ${dur} min</span><h2>${ITEMS.some(isIntro)?'Continuer à monter':'Première séance'}</h2>
-           <div class="bits">${nNew?`<span class="bit">${nNew} nouveaux</span>`:''}<span class="bit">${Math.min(due,Math.round(8*D.f))} révisions</span><span class="bit">tons</span><span class="bit">${D.conv} conversation${D.conv>1?'s':''}</span></div></button>
-     <div class="row" role="group" aria-label="Durée de la séance" style="flex-wrap:nowrap;gap:6px"><span class="small muted">Durée</span>${Object.keys(DUREES).map(m=>`<button class="btn sm ${+m===dur?'primary':'ghost'}" style="padding-left:10px;padding-right:10px" data-act="duree" data-v="${m}" aria-pressed="${+m===dur}">${m} min</button>`).join('')}</div>`}
-  ${mis?`<section class="mission" aria-label="Mission terrain">
-     <span class="label" style="color:var(--gold)">Mission terrain${yesterday?' d’hier':' du jour'} · niveau ${mis.level||1}/3</span>
-     <p><b>${esc(mis.text||misIt.m||'')}</b></p>
-     <div class="row"><span class="zh" style="font-size:26px">${hzHTML(misIt)}</span><button class="btn sm" data-act="say" data-t="${esc(misIt.h)}">${ICON.play}</button></div>
-     <div class="row"><button class="btn gold sm" data-act="mission" data-v="yes">Je l’ai fait ! +30</button><button class="btn sm" data-act="mission" data-v="later">Pas encore eu l’occasion</button></div>
-   </section>`:''}
-  ${backupDue()?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Sauvegarde ta progression</b><br><span class="small muted">${S.lastBackup?'Dernière sauvegarde le '+S.lastBackup+'.':'Jamais sauvegardée.'} Si tu changes de téléphone, tu ne perdras rien.</span></div><button class="btn sm" data-act="backup">Sauvegarder</button></section>`:''}
-  ${testDue()?`<section class="card row" style="flex-wrap:nowrap;border:2px solid var(--gold)"><div class="grow"><b>Ton test HSK blanc du mois est prêt</b><br><span class="small muted">20 questions, 6 minutes. Pour voir ton niveau monter.</span></div><button class="btn gold sm" data-act="test">Commencer</button></section>`:''}
-  ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
-     return old?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>3 mois déjà !</b><br><span class="small muted">Réenregistre « ${esc(BY[old].h)} » et compare avec ta voix du début.</span></div><button class="btn sm" data-act="lab" data-id="${old}">${ICON.mic}</button></section>`:'';})()}
-  ${ITEMS.some(isIntro)?(()=>{const pw=photoWords();return `<section class="card stack" aria-label="Mon usine en photos">
-    <div class="row between" style="flex-wrap:nowrap"><div class="stack sm"><span class="label">Mon usine en photos</span><b>${pw.length?pw.length+' mot'+(pw.length>1?'s':'')+' avec ta photo':'Prends ton atelier en photo'}</b></div>
-    ${pw.length?`<div class="row" style="gap:4px;flex-wrap:nowrap">${pw.slice(-3).map(it=>phImg(it,'ph-sm')).join('')}</div>`:''}</div>
-    <p class="small muted">${pw.length?'Tes photos reviennent dans tes révisions. Continue : la colle, une semelle, ta machine…':'La colle, une semelle, ta machine… Associe chaque photo à son mot chinois : tes révisions utiliseront tes photos. Elles restent sur ton téléphone.'}</p>
-    <div class="row"><label class="btn primary sm">${ICON.cam} Prendre une photo<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>${pw.length?`<button class="btn sm" data-act="tab" data-k="photos">Voir mes photos</button>`:''}</div></section>`;})():''}
+  <section class="card plan" aria-label="Ton plan du jour"><span class="label">Ton plan du jour</span>
+   ${done?`<div class="plan-row done"><span class="ck ok">✓</span><div class="grow"><b>Séance du jour</b></div></div>
+     <div class="row" style="padding-left:36px"><button class="btn sm" data-act="express">Révision express · ${due} à revoir</button>${nPlus?`<button class="btn primary sm" data-act="plus">Séance bonus · ${nPlus} nouveaux</button>`:''}</div>
+     ${nPlus?'':`<p class="small muted" style="padding-left:36px">Tu as appris tous les mots disponibles. Un nouveau chapitre arrive bientôt !</p>`}`
+    :`<div class="plan-row"><span class="ck go"></span><div class="grow"><b>${ITEMS.some(isIntro)?'Séance du jour':'Ta première séance'}</b><br><span class="small muted">≈ ${dur} min · ${nNew?nNew+' nouveaux mots · ':''}${Math.min(due,Math.round(8*D.f))} révisions · ${D.conv} conversation${D.conv>1?'s':''}</span></div><button class="btn primary sm" data-act="daily">Commencer</button></div>
+     <div class="row" role="group" aria-label="Durée de la séance" style="flex-wrap:nowrap;gap:6px;padding-left:36px">${Object.keys(DUREES).map(m=>`<button class="btn sm ${+m===dur?'primary':'ghost'}" style="padding-left:9px;padding-right:9px" data-act="duree" data-v="${m}" aria-pressed="${+m===dur}">${m} min</button>`).join('')}</div>`}
+   <hr>
+   ${mis?`<div class="plan-row"><span class="ck gold"></span><div class="grow"><b>Mission à l’usine${yesterday?' (d’hier)':''}</b><br><span class="small">${esc(mis.text||misIt.m||'')}</span></div></div>
+     <div class="row" style="padding-left:36px"><span class="zh" style="font-size:24px">${hzHTML(misIt)}</span><button class="btn sm" data-act="say" data-t="${esc(misIt.h)}" aria-label="Écouter">${ICON.play}</button></div>
+     <div class="row" style="padding-left:36px"><button class="btn gold sm" data-act="mission" data-v="yes">Je l’ai fait ! +30</button><button class="btn sm ghost" data-act="mission" data-v="later">Pas encore</button></div>`
+    :S.mission&&S.mission.status==='done'&&S.mission.day===today()?`<div class="plan-row done"><span class="ck ok">✓</span><div class="grow"><b>Mission à l’usine</b></div></div>`
+    :`<div class="plan-row"><span class="ck"></span><div class="grow"><b>Mission à l’usine</b><br><span class="small muted">Elle t’attend à la fin de ta séance.</span></div></div>`}
+   ${testDue()?`<hr><div class="plan-row"><span class="ck gold"></span><div class="grow"><b>Test HSK blanc du mois</b><br><span class="small muted">20 questions, 6 minutes</span></div><button class="btn gold sm" data-act="test">Passer</button></div>`:''}
+  </section>
   <section class="card stack" aria-label="Parcours HSK">
     <div class="row between"><div class="stack sm"><span class="label">Ton escalier · 步步高</span><h2>Tu as monté <span style="font-variant-numeric:tabular-nums">${ITEMS.filter(x=>x.branch==='hsk'&&isIntro(x)).length}</span> marches</h2></div><span class="badge ok">${hs.solid} ancrés</span></div>
     ${stairHTML(popSince)}
@@ -1274,22 +1310,14 @@ function renderHome(){
     <div class="row"><span class="small muted">Ma branche :</span>${Object.entries(BRANCHES).map(([k,b])=>`<button class="chip ${S.branch===k?'on':''}" data-act="branch" data-k="${k}">${b.fr}</button>`).join('')}</div>
     <p class="tiny muted">Chaque séance mélange le parcours HSK (6 mots sur 10) et ta branche (4 sur 10).</p>
   </section>
-  <section class="card stage-hero" aria-label="Ton étape">
-    <div class="stage-top"><div class="stack sm"><span class="label">Carrière · étape ${cur+1} · ${stg.hsk}</span><h2>${stg.fr} <span class="zh muted" style="font-weight:500">${stg.zh}</span></h2><p class="small muted">${stg.goal}</p></div>
-    <div class="stage-pct">${pct(prog)}<small>%</small></div></div>
-    <div class="road">${STAGES.map((s,i)=>`<div class="road-step ${i===cur?'cur':''}"><div class="road-bar"><i style="width:${pct(stageProg(i)/.6)}%"></i></div><span class="nm">${s.fr}</span></div>`).join('')}</div>
-    <p class="tiny muted">L’étape suivante se débloque à 60 %.</p>
-  </section>
-  <div class="stats3">
-   <div class="stat"><b>${intro}</b><span>mots et phrases vus</span></div>
-   <div class="stat"><b>${sol}</b><span>bien ancrés</span></div>
-   <div class="stat"><b>${pct(und/usine.length)}%</b><span>des phrases d’atelier comprises à l’oral</span></div>
-  </div>
-  <section class="card stack" aria-label="Phrase du jour">
-   <span class="label">Phrase du jour</span>
-   <div class="stack sm"><span class="zh" style="font-size:28px">${hzHTML(pd)}</span><span class="py" style="font-size:16px">${pyHTML(pd)}</span><span class="muted">${esc(pd.fr)}</span></div>
-   <div class="row">${playBtns(pd.h,true)}<button class="btn sm" data-act="lab" data-id="${pd.id}">${ICON.mic} M’entraîner</button></div>
-  </section>`;
+  ${ITEMS.some(isIntro)?(()=>{const pw=photoWords();return `<div class="shortcuts" aria-label="Raccourcis">
+    ${pw.length?`<button class="shortcut" data-act="tab" data-k="photos">${phImg(pw[pw.length-1],'ph-sm')}Mes photos (${pw.length})</button>`:`<label class="shortcut">${ICON.cam}Photo de l’usine<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>`}
+    <button class="shortcut" data-act="tab" data-k="heard">${ICON.mic}J’ai entendu une phrase</button>
+    <button class="shortcut" data-act="lab" data-id="${pd.id}"><span class="zh">${esc(pd.h.length>5?pd.h.slice(0,5)+'…':pd.h)}</span>Phrase du jour</button></div>`;})():''}
+  ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
+     return old?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>3 mois déjà !</b><br><span class="small muted">Réenregistre « ${esc(BY[old].h)} » et compare avec ta voix du début.</span></div><button class="btn sm" data-act="lab" data-id="${old}">${ICON.mic}</button></section>`:'';})()}
+  ${backupDue()?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Sauvegarde ta progression</b><br><span class="small muted">${S.lastBackup?'Dernière sauvegarde le '+S.lastBackup+'.':'Jamais sauvegardée.'} Si tu changes de téléphone, tu ne perdras rien.</span></div><button class="btn sm" data-act="backup">Sauvegarder</button></section>`:''}
+`;
 }
 
 /* ---------- parler ---------- */
@@ -1334,6 +1362,41 @@ function renderHeard(){
     ${ui.heardText?`<textarea readonly rows="6" style="width:100%">${esc(ui.heardText)}</textarea><p class="tiny muted">Copie ce texte et envoie-le.</p>`:''}</section>`:''}
   ${done.length?`<details class="card flat"><summary>Déjà envoyées (${done.length})</summary><div class="wordlist">${done.slice(-20).reverse().map(row).join('')}</div></details>`:''}
   <button class="btn block" data-act="tab" data-k="parler">Retour</button>`;
+}
+function renderSOS(){
+  const big=ui.sosBig;
+  return `<main class="screen" style="padding-bottom:40px"><div class="row between" style="flex-wrap:nowrap"><div class="stack sm"><span class="label" style="color:var(--bad)">SOS 急救 · marche sans réseau</span><h1>Touche une phrase, le téléphone la dit</h1></div>
+   <button class="xbtn" data-act="sosclose" aria-label="Fermer le SOS">${ICON.x}</button></div>
+  ${big?`<div class="sos-show" role="status"><span class="zh">${esc(big.h)}</span><b>${esc(big.p)}</b><br><span class="muted">${esc(big.fr)}</span><div class="row" style="justify-content:center;margin-top:10px"><button class="btn sm" data-act="sossay" data-i="${SOS.indexOf(big)}">${ICON.play} Encore</button><button class="btn sm ghost" data-act="sosbig">Fermer</button></div></div>`
+    :`<p class="small muted">Montre aussi l’écran : la phrase s’affiche en très grand.</p>`}
+  <div class="sos-grid">${SOS.map((x,i)=>`<button class="sos-btn" data-act="sossay" data-i="${i}"><span class="zh">${esc(x.h)}</span><span class="py">${esc(x.p)}</span><b>${esc(x.fr)}</b></button>`).join('')}</div>
+  <section class="card stack sm"><span class="label">Numéro d’urgence</span>
+   ${S.sosTel?`<a class="btn primary block" href="tel:${esc(S.sosTel.replace(/[^0-9+]/g,''))}" style="background:var(--bad);border-color:var(--bad);text-decoration:none">Appeler ${esc(S.sosTel)}</a>`:''}
+   <label class="small muted" for="sostel">${S.sosTel?'Changer le numéro':'Écris le numéro à appeler en cas d’urgence (infirmerie, chef, pompiers). Demande-le à ton chef.'}</label>
+   <input id="sostel" type="tel" inputmode="tel" value="${esc(S.sosTel||'')}" placeholder="Ex. le numéro de l’infirmerie" style="width:100%;min-height:46px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 12px;font:inherit"></section>
+  ${ficheHTML(sosFiche())}
+  ${(()=>{const m=PACKS.find(p=>p.module&&p.module.icon==='securite');return m?`<button class="btn block" data-act="module" data-id="${m.id}">Apprendre le module Sécurité</button>`:'';})()}
+  <button class="btn ghost block" data-act="sosclose">Fermer</button></main>`;
+}
+function sosFiche(){const m=PACKS.find(p=>p.module&&p.module.icon==='securite'&&p.module.fiche&&Array.isArray(p.module.fiche.steps));return m?m.module.fiche:SOS_FICHE;}
+function ficheHTML(f){return f&&Array.isArray(f.steps)?`<section class="card stack sm fiche"><span class="label" style="color:var(--bad)">Fiche réflexe</span><h3>${esc(f.title||'')}</h3><ol class="small">${f.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol></section>`:'';}
+const MODZH={securite:'安',pannes:'电',conflits:'和',chef:'面',equipe:'队',chiffres:'数'};
+function modules(){return PACKS.filter(p=>p.module).sort((a,b)=>(a.order||0)-(b.order||0));}
+function modHTML(p){const its=packItems(p),n=its.filter(isIntro).length,lock=packLocked(p.id),ic=p.module.icon||'';
+  return `<button class="mod ${lock?'lock':''}" data-act="module" data-id="${p.id}"><span class="mic ${esc(ic)}">${MODZH[ic]||'工'}</span><span class="grow stack sm"><b>${esc(shortTitle(p))}</b>
+   ${lock?`<span class="tiny muted">Se débloque à l’étape ${STAGES[p.module.stage].fr}</span>`:`<span class="bar"><i style="width:${pct(its.length?n/its.length:0)}%"></i></span>`}</span>
+   ${lock?ICON.lock:`<span class="small muted" style="font-variant-numeric:tabular-nums">${n}/${its.length}</span>`}</button>`;}
+function renderModule(){
+  const p=PACKS.find(x=>x.id===ui.modId);if(!p||!p.module){ui.tab='carriere';return renderCarriere();}
+  const its=packItems(p),n=its.filter(isIntro).length,lock=packLocked(p.id),cv=CONVS.filter(c=>c.pk===p.id);
+  return `<div class="row" style="flex-wrap:nowrap;gap:12px"><span class="mod" style="width:auto;border:0;padding:0;background:none"><span class="mic ${esc(p.module.icon||'')}">${MODZH[p.module.icon]||'工'}</span></span><div class="stack sm"><span class="label">Module métier</span><h1>${esc(shortTitle(p))}</h1></div></div>
+  <p class="muted">${esc(p.desc||'')}</p>
+  ${lock?`<div class="notice">Ce module se débloque à l’étape <b>${STAGES[p.module.stage].fr}</b>. Continue tes séances : tu y arrives !</div>`
+    :`<section class="card stack sm"><div class="row between"><b>${n} sur ${its.length} mots et phrases</b><span class="small muted">${pct(its.length?n/its.length:0)} %</span></div><div class="bar"><i style="width:${pct(its.length?n/its.length:0)}%"></i></div>
+      <button class="btn primary block" data-act="chapter" data-id="${p.id}">${n?'Continuer ce module':'Commencer ce module'}</button></section>
+     ${cv.length?`<h2>Mises en situation</h2><div class="stack">${cv.map(c=>{const ok=unlocked(c.st);const k=S.convDone[c.id]||0;return `<button class="list-btn ${ok?'':'locked'}" data-act="${ok?'conv':'locked'}" data-id="${c.id}"><span class="zh">${c.who||''}</span><span class="grow"><b>${esc(c.title||'')}</b><br><span class="small muted">${esc(c.whoFr||'')}</span></span>${k?`<span class="badge ok">${k}×</span>`:'<span class="badge">À jouer</span>'}</button>`;}).join('')}</div>`:''}`}
+  ${ficheHTML(p.module.fiche)}
+  <button class="btn block" data-act="tab" data-k="carriere">Retour</button>`;
 }
 function renderParler(){
   const cur=currentStage();const pool=ITEMS.filter(x=>isIntro(x)||S.demo);
@@ -1417,7 +1480,15 @@ function renderCarriere(){
    {st:2,t:'Simulation d’entretien',d:'Les 4 questions qu’on pose presque toujours.',a:'conv',id:'entretien',lbl:'Lancer'},
    {st:3,t:'Voyager et s’installer',d:'Gare, billet, passeport, logement.',a:'conv',id:'gare',lbl:'Lancer'}
   ];
-  return `<div class="stack sm"><span class="label">Carrière</span><h1>Où le chinois peut te mener</h1><p class="muted small">Chaque étape débloque des outils concrets. Le certificat qui compte pour les employeurs est le HSK.</p></div>
+  return `<div class="stack sm"><span class="label">Métier · 工作</span><h1>Monte en responsabilité</h1><p class="muted small">Chaque étape débloque des outils concrets. Le certificat qui compte pour les employeurs est le HSK.</p></div>
+  <section class="card stack sm" aria-label="Ton étape"><div class="row between"><span class="label">Étape ${cur+1} · ${STAGES[cur].fr}</span><span class="small muted">${cur<3?'Étape suivante à 60 %':''}</span></div>
+   <div class="bar"><i style="width:${pct(Math.min(1,stageProg(cur)/.6))}%"></i></div><p class="small muted">${STAGES[cur].goal}</p></section>
+  ${modules().length?`<h2>Modules métier</h2><p class="small muted" style="margin-top:-10px">Des phrases pour les vraies situations de l’usine, avec une fiche réflexe.</p><div class="stack">${modules().map(modHTML).join('')}</div>`
+    :`<section class="card stack sm"><h3>Modules métier</h3><p class="small muted">Sécurité, pannes de courant, conflits, comprendre ton chef… Les premiers modules arrivent bientôt.</p></section>`}
+  <section class="card stack sm" style="border:2px solid var(--gold)"><span class="label" style="color:var(--gold)">Test HSK blanc</span>
+   ${(()=>{const last=S.tests[S.tests.length-1];return `<p class="small">${last?`Dernier test le ${last.d.split('-').reverse().join('/')} : <b>${last.acc} %</b> de bonnes réponses.`:'20 questions sur les mots HSK que tu as déjà vus.'}</p>
+   ${testDue()||!last?`<button class="btn gold sm" style="align-self:flex-start" data-act="test">Passer le test</button>`:`<p class="tiny muted">Le prochain sera prêt ${Math.max(1,28-daysBetween(last.d,today()))} jour(s) après ton dernier test.</p>`}`;})()}</section>
+  <h2>Ton parcours</h2>
   <div class="ladder">${STAGES.map((s,i)=>`<div class="rung ${i<=cur?'on':''} ${unlocked(i)?'':'lock'}"><span class="num">${i+1}</span><div class="grow stack sm"><b>${s.fr} <span class="zh muted">${s.zh}</span></b><span class="small muted">${s.goal} · ${s.hsk}</span></div>${unlocked(i)?'':ICON.lock}</div>`).join('')}</div>
   <h2>Outils</h2>
   <div class="stack">${tools.map(t=>{const ok=unlocked(t.st);return `<div class="card flat stack sm ${ok?'':'locked'}" style="${ok?'':'opacity:.6'}"><div class="row between"><b>${t.t}</b><span class="badge">${STAGES[t.st].fr}</span></div><p class="small muted">${t.d}</p>
@@ -1460,7 +1531,7 @@ function renderSession(){
   if(s.end)return app.innerHTML=s.kind==='diag'?diagEnd():s.kind==='test'?testEnd():sessionEnd();
   const st=s.steps[s.i];const total=s.steps.length;
   const body={learn:vLearn,reco:vChoice,oreille:vChoice,ton:vTone,prod:vProd,pair:vPair,photo:vPhoto,shadow:vShadow,conv:vConv,mission:vMission,grammar:vGrammar,charlearn:vCharLearn,char:vChar}[st.kind](st);
-  app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter la séance">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div><span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span></div>
+  app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter la séance">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div><span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span><button class="sos-mini" data-act="sos" aria-label="SOS urgence">SOS</button></div>
    <main class="lesson"><span class="sec-tag">${esc(st.sec)}</span>${body}</main>`;
   if(st.kind==='shadow'){const cv=document.getElementById('cv');if(cv)drawCurve(cv,st.it,st.rec&&st.rec.state==='done'?st.rec.res:null);}
   if(!st.played){st.played=true;
@@ -1616,6 +1687,11 @@ function diagEnd(){
 let toastT=null;
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2800);}
 const ACT={
+ sos:()=>{try{speechSynthesis.cancel();}catch(e){}ui.sos=true;ui.sosBig=null;render();window.scrollTo(0,0);},
+ sosclose:()=>{ui.sos=false;ui.sosBig=null;render();},
+ sossay:d=>{const x=SOS[+d.i];if(!x)return;ui.sosBig=x;render();window.scrollTo(0,0);say(x.h,.85);buzz(30);},
+ sosbig:()=>{ui.sosBig=null;render();},
+ module:d=>{ui.sos=false;ui.modId=d.id;ui.tab='module';render();window.scrollTo(0,0);},
  tab:d=>{if(ui.tab==='heard'&&d.k!=='heard'){heardRecStop();ui.heard=null;ui.heardText=null;}ui.tab=d.k;render();window.scrollTo(0,0);},
  hrec:()=>heardRecStart(),
  hstop:()=>heardRecStop(),
@@ -1679,6 +1755,7 @@ const ACT={
 app.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset,b);});
 app.addEventListener('toggle',e=>{if(e.target.id==='settings')ui.settingsOpen=e.target.open;},true);
 app.addEventListener('change',e=>{
+  if(e.target.id==='sostel'){S.sosTel=e.target.value.trim().slice(0,30);save();render();}
   if(e.target.id==='heardfile'&&e.target.files&&e.target.files[0]&&ui.heard){setHeardAudio(e.target.files[0]);e.target.value='';render();}
   if(e.target.id==='photofile'&&e.target.files&&e.target.files[0]){const f=e.target.files[0];e.target.value='';
     shrinkPhoto(f).then(u=>{ui.phNew=u;ui.phFilter='';ui.tab='photopick';render();window.scrollTo(0,0);}).catch(()=>toast('Impossible de lire cette photo. Réessaie.'));}
