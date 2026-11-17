@@ -5,6 +5,9 @@ Sources (à modifier) :
      caractère | pinyin | sens | clé | sens de la clé | composition | histoire | mots (h:fr;h:fr) | phrase (h:fr)
   source/ordre.json    ordre d'apprentissage (liste de caractères)
   source/lectures.txt  titre | phrase:traduction||phrase:traduction…
+  source/hsk1.txt      les 150 mots du HSK 1 (marque les caractères du HSK 1)
+  source/rangs.txt     les niveaux (titres des examens impériaux, pinyin vérifié à la main)
+  source/hsk_qr.txt    questions:traduction|réponse:traduction pour l'examen blanc
 
 Le pinyin des mots et des phrases est calculé (outils/pinyin_fr.py) ; corrections au cas par cas dans
 outils/pinyin_corrections.json ({"phrase exacte": "Pinyin."}). Les traits d'un nouveau caractère sont
@@ -99,13 +102,42 @@ def main():
         lect.append({'t': title, 'need': ''.join(need), 'rank': max(order.index(ch) for ch in need) + 1,
                      's': [{'h': h, 'p': py(h), 'fr': fr} for h, fr in sents]})
     lect.sort(key=lambda x: x['rank'])
-    json.dump({'v': 1, 'chars': chars, 'cles': cles, 'lectures': lect},
+
+    def lines(name):
+        for raw in open(os.path.join(ROOT, 'source', name), encoding='utf-8'):
+            raw = raw.strip()
+            if raw and not raw.startswith('#'):
+                yield raw
+    hsk1 = {ch for line in lines('hsk1.txt') for w in line.split() for ch in w}
+    for d in chars:
+        if d['c'] in hsk1:
+            d['h'] = 1
+    rangs = []
+    for line in lines('rangs.txt'):
+        h, p, fr, phrase, xp = line.split('|')
+        if len(p.split()) != 1 or not all(HAN.match(ch) for ch in h):
+            errors.append(f'rang {h} : pinyin ou caractères invalides')
+        rangs.append({'h': h, 'p': p, 'fr': fr, 'd': phrase, 'xp': int(xp)})
+    qr = []
+    for line in lines('hsk_qr.txt'):
+        (q, qf), (r, rf) = [part.split(':', 1) for part in line.split('|')]
+        miss = [ch for ch in q + r if HAN.match(ch) and ch not in S]
+        if miss:
+            errors.append(f'question « {q} » : caractères absents de Zìzì : ' + ''.join(miss))
+        qr.append({'q': {'h': q, 'p': py(q), 'fr': qf}, 'r': {'h': r, 'p': py(r), 'fr': rf}})
+    if errors:
+        print('\n'.join('ERREUR ' + e for e in errors)); sys.exit(1)
+
+    json.dump({'v': 1, 'chars': chars, 'cles': cles, 'lectures': lect, 'rangs': rangs, 'qr': qr},
               open(os.path.join(ROOT, 'data.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     json.dump(traits, open(tp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-    print(f'{len(chars)} caractères · {len(cles)} clés · {len(lect)} lectures')
+    print(f'{len(chars)} caractères ({sum(1 for d in chars if d.get("h"))} du HSK 1) · {len(cles)} clés · '
+          f'{len(lect)} lectures · {len(rangs)} niveaux · {len(qr)} questions-réponses')
     if '--relire' in sys.argv:
         for d in chars:
             print(d['c'], '|', ' ; '.join(w['h'] + ' ' + w['p'] for w in d['w']), '|', d['ex']['h'], d['ex']['p'])
+        for x in qr:
+            print(x['q']['h'], x['q']['p'], '|', x['r']['h'], x['r']['p'])
 
 
 if __name__ == '__main__':

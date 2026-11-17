@@ -19,6 +19,8 @@ def collect():
         t.add(c['ex']['h'])
     for l in d['lectures']:
         for s in l['s']: t.add(s['h'])
+    for r in d.get('rangs', []): t.add(r['h'])
+    for x in d.get('qr', []): t.add(x['q']['h']); t.add(x['r']['h'])
     return sorted(x for x in t if HAN.search(x))
 
 def key(text): return hashlib.sha1(text.encode('utf-8')).hexdigest()[:12]
