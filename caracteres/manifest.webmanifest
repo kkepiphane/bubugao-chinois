@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "Zìzì 字字 · caractères chinois",
+  "short_name": "Zìzì",
+  "description": "Apprendre les caractères chinois : sens, clés, ordre des traits, écriture au doigt.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1F3F6",
+  "theme_color": "#2B4C9B",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

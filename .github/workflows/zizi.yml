@@ -1,0 +1,58 @@
+name: Zìzì — données et audio
+
+# Quand on modifie les fiches de caractères (caracteres/source/), reconstruit data.json / traits.json
+# et génère l'audio manquant, puis enregistre le résultat.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'caracteres/source/**'
+      - 'caracteres/outils/pinyin_fr.py'
+      - 'caracteres/outils/pinyin_corrections.json'
+      - 'caracteres/outils/construire.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zizi
+  cancel-in-progress: false
+
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: caracteres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Modèle de voix (gardé en cache)
+        uses: actions/cache@v4
+        with:
+          path: ~/bubugao-tts
+          key: tts-matcha-zh-baker-v1
+      - name: Construire les données
+        run: |
+          pip install -q pypinyin sherpa-onnx soundfile
+          python3 outils/construire.py
+      - name: Générer l'audio manquant
+        run: |
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          export BUBUGAO_TTS_DIR="$HOME/bubugao-tts"
+          python3 outils/generer_audio_zizi.py
+      - name: Enregistrer
+        run: |
+          if [ -n "$(git status --porcelain .)" ]; then
+            git config user.name "Robot Bùbùgāo"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            python3 -c "import re;p='sw.js';s=open(p).read();open(p,'w').write(re.sub(r'zizi-app-v(\d+)',lambda m:'zizi-app-v'+str(int(m.group(1))+1),s))"
+            git add .
+            git commit -m "Zìzì : données et audio reconstruits"
+            git push
+          else
+            echo "Rien à changer."
+          fi

@@ -35,7 +35,17 @@ Mainteneur : Epiphane (développeur, Lomé). En ligne : https://kkepiphane.githu
 | `scripts/test_appli.py` | Test de bout en bout dans Chromium (séances, audio, analyse, test HSK, hors-ligne). |
 | `.github/workflows/chapitre-du-lundi.yml` | Lundi, mercredi, vendredi 7 h : ouvre une PR « 📚 À valider » avec le chapitre suivant (une seule à la fois). |
 | `.github/workflows/audio.yml` | À chaque push touchant `packs/`, `a-publier/` ou `audio/base-contenu.json` : génère l'audio manquant. |
+| `caracteres/` | **Zìzì 字字**, l'appli sœur pour lire et écrire les caractères (voir `caracteres/LISEZMOI.md`). |
+| `.github/workflows/zizi.yml` | À chaque push touchant `caracteres/source/` : reconstruit les données de Zìzì et son audio. |
 | `LISEZMOI.md` | Guide pas à pas pour Epiphane (non technique). |
+
+## Zìzì (caracteres/)
+
+Appli séparée sous la même adresse : `caracteres/index.html` + `data.json` (généré) + `traits.json` (ordre des traits,
+Hanzi Writer) + `audio/`. Clé de stockage `zizi.v1` (règle absolue n° 1 valable aussi). Contenu source dans
+`caracteres/source/`, outils dans `caracteres/outils/` (logo : `outils/icone.py`). Les deux service workers ne suppriment
+**que leurs propres caches** (préfixes `bubugao-` et `zizi-`) : ne jamais casser cette règle. Après une modification de
+`caracteres/index.html`, incrémenter `zizi-app-vN` dans `caracteres/sw.js`. Skill : `.claude/skills/nouveaux-caracteres/`.
 
 ## Fonctionnement de l'appli (résumé)
 
@@ -54,7 +64,8 @@ Mainteneur : Epiphane (développeur, Lomé). En ligne : https://kkepiphane.githu
 
 ```bash
 python3 scripts/test_appli.py          # test complet (pip install playwright && playwright install chromium)
-node scripts/banc_tons.js              # justesse de l'analyseur de tons (ffmpeg requis)
+node scripts/banc_tons.js              # justesse de l'analyseur de tons
+cd caracteres && python3 outils/test_zizi.py   # test complet de Zìzì (ffmpeg requis)
 python3 scripts/generer_audio.py       # audio manquant (pip install sherpa-onnx soundfile ; ffmpeg)
 node scripts/exporter_base.js          # après modification du contenu de base dans index.html
 cd scripts && python3 make_packs.py    # régénère les chapitres depuis la source lisible
@@ -65,6 +76,7 @@ cd scripts && python3 make_packs.py    # régénère les chapitres depuis la sou
 - `.claude/skills/nouveau-chapitre/` : écrire un chapitre (HSK ou thématique), le vérifier, l'audio, la file du robot.
 - `.claude/skills/modifier-appli/` : changer `index.html` sans casser la progression ni le hors-ligne.
 - `.claude/skills/voix-et-tons/` : audio, voix de secours, analyseur de tons et son banc d'essai.
+- `.claude/skills/nouveaux-caracteres/` : ajouter ou corriger des caractères, histoires, phrases et lectures de Zìzì.
 
 ## Feuille de route (idées validées en discussion)
 

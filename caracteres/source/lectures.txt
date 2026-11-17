@@ -1,0 +1,14 @@
+# titre | phrase chinoise ; traduction || phrase ; traduction ...
+Tu es chinoise ?|你好！:Bonjour !||你是中国人吗？:Tu es chinoise ?||不是，我不是中国人。:Non, je ne suis pas chinoise.||你叫什么名字？:Comment tu t’appelles ?||认识你很高兴！:Enchantée de te connaître !
+Qui est-ce ?|他是谁？:Qui est-ce ?||他是我儿子。:C’est mon fils.||他几岁？:Quel âge a-t-il ?||他十岁。:Il a dix ans.||她是谁？:Et elle, qui est-ce ?||她是我女儿，她八岁。:C’est ma fille, elle a huit ans.
+Beaucoup de monde|你们有几个人？:Vous êtes combien ?||我们有三十个人。:Nous sommes trente.||人很多！:Il y a beaucoup de monde !||他们也在吗？:Ils sont là aussi ?||他们都在。:Ils sont tous là.
+Je m’appelle Marie|你好！:Bonjour !||我叫玛丽。:Je m’appelle Marie.||我是多哥人。:Je suis Togolaise.||认识你很高兴！:Enchantée de te connaître !
+Ma famille|我家有五个人。:Nous sommes cinq dans ma famille.||爸爸，妈妈，姐姐，我和我的儿子。:Papa, maman, ma grande sœur, moi et mon fils.||我的儿子三岁。:Mon fils a trois ans.||我爱我的家。:J’aime ma famille.
+À l’usine|我在工厂工作。:Je travaille à l’usine.||我七点上班，六点下班。:Je commence à 7 h et je finis à 6 h.||我在三号线做鞋。:Je fabrique des chaussures sur la ligne 3.||我们组有十个人。:Notre équipe a dix personnes.
+La machine en panne|今天机器坏了。:Aujourd’hui la machine est tombée en panne.||组长说：没关系，我们休息一下吧。:Le chef d’équipe a dit : « Ce n’est pas grave, faisons une pause. »||十分钟后，机器好了。:Dix minutes après, la machine marchait.||我们都很高兴。:Nous étions tous contents.
+Au magasin|下班后我去商店。:Après le travail, je vais au magasin.||我想买一些水果和一双鞋。:Je veux acheter quelques fruits et une paire de chaussures.||苹果很好吃。:Les pommes sont délicieuses.||那双鞋太小了！:Cette paire-là est trop petite !
+Quel temps !|今天天气很热。:Aujourd’hui il fait très chaud.||中午我想喝水，不想吃饭。:À midi j’ai envie de boire, pas de manger.||明天会下雨吗？:Est-ce qu’il va pleuvoir demain ?||你说呢？:Qu’en dis-tu ?
+J’apprends le chinois|我在学汉语。:J’apprends le chinois.||汉语很好听，汉字很漂亮。:Le chinois est agréable à écouter, les caractères sont très beaux.||我每天学习五个字。:J’apprends cinq caractères chaque jour.||现在我会写我的名字！:Maintenant je sais écrire mon nom !
+Une collègue|我有一个中国同事。:J’ai une collègue chinoise.||她也在三号线工作。:Elle travaille aussi sur la ligne 3.||她说汉语，我也说一点儿汉语。:Elle parle chinois, et moi aussi je parle un peu chinois.||我们是好朋友。:Nous sommes de bonnes amies.
+Le jour de paie|今天老板给我们工资。:Aujourd’hui le patron nous donne notre salaire.||我给妈妈买了衣服。:J’ai acheté des vêtements pour maman.||妈妈说：太漂亮了！谢谢你！:Maman a dit : « Trop beau ! Merci ! »||我很开心。:Je suis très heureuse.
+Le week-end|星期六我不上班。:Le samedi je ne travaille pas.||我和朋友去看电影。:Je vais voir un film avec une amie.||下午我们一起吃饭。:L’après-midi nous mangeons ensemble.||星期天我在家休息。:Le dimanche je me repose à la maison.

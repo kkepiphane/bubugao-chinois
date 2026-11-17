@@ -6,6 +6,8 @@ réussir un entretien, passer le HSK, voyager.
 
 👉 **Appli : https://kkepiphane.github.io/bubugao-chinois/** (ouvrir dans Chrome sur Android, puis « Installer »)
 
+👉 **Caractères : https://kkepiphane.github.io/bubugao-chinois/caracteres/** (Zìzì 字字, installable aussi, voir [caracteres/LISEZMOI.md](caracteres/LISEZMOI.md))
+
 ## Ce que fait l'appli
 
 - **Séance du jour (≈ 12 min)** qui s'adapte : nouveaux mots, révisions espacées, duel de tons, prononciation avec

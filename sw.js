@@ -1,6 +1,7 @@
 /* Bùbùgāo — fonctionne hors-ligne, se met à jour dès qu'il y a du réseau.
-   Changer VERSION à chaque nouvelle version de index.html. */
-const VERSION = 'bubugao-app-v14';
+   Changer VERSION à chaque nouvelle version de index.html.
+   Ne supprime que ses propres caches (préfixe « bubugao- ») : Zìzì (caracteres/) partage la même adresse. */
+const VERSION = 'bubugao-app-v16';
 const FONTS = 'bubugao-fonts';
 const AUDIO = 'bubugao-audio';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'packs/packs.json', 'audio/index.json'];
@@ -10,7 +11,7 @@ self.addEventListener('install', e => {
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys()
-    .then(keys => Promise.all(keys.filter(k => ![VERSION, FONTS, AUDIO].includes(k)).map(k => caches.delete(k))))
+    .then(keys => Promise.all(keys.filter(k => k.startsWith('bubugao-') && ![VERSION, FONTS, AUDIO].includes(k)).map(k => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', e => {
