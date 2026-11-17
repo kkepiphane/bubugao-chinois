@@ -1,0 +1,53 @@
+# caractère | pinyin | sens | clé | sens de la clé | composition | histoire | mots (h:fr;h:fr) | phrase exemple (h:fr)
+你|nǐ|tu, toi|亻|personne|亻 personne + 尔 (se prononce ěr)|La personne (亻) à qui je parle, c’est toi.|你好:bonjour;你们:vous|你好，你叫什么名字？:Bonjour, comment tu t’appelles ?
+女|nǚ|femme|女|femme|pictogramme d’une femme agenouillée, les bras croisés|Regarde : une femme assise, les jambes croisées.|女儿:fille (enfant);女人:femme|她是我的女儿。:C’est ma fille.
+了|le|action terminée (particule)|乛|crochet|un trait qui se termine par un crochet|Un fil qu’on a fini de coudre : le crochet final dit « c’est fait ».|好了:c’est bon, c’est prêt;做完了:j’ai fini|我吃了。:J’ai mangé.
+一|yī|un (1)|一|un|un seul trait horizontal|Un doigt posé à plat : un.|一个:un, une;一起:ensemble|我有一个朋友。:J’ai un ami.
+子|zi|enfant ; suffixe des noms (se lit zǐ seul)|子|enfant|pictogramme d’un bébé emmailloté, les bras ouverts|Un bébé dans ses langes : la tête en haut, les bras écartés.|儿子:fils;桌子:table|这是我的儿子。:C’est mon fils.
+好|hǎo|bien, bon|女|femme|女 femme + 子 enfant|Une femme avec son enfant : c’est bien, c’est bon.|你好:bonjour;好的:d’accord|今天天气很好。:Il fait beau aujourd’hui.
+谢|xiè|remercier|讠|parole|讠 parole + 射 (se prononce shè)|On remercie avec des paroles (讠).|谢谢:merci;感谢:remercier|谢谢你的帮助！:Merci pour ton aide !
+我|wǒ|je, moi|戈|hallebarde|une main 扌 qui tient une hallebarde 戈|Moi, je tiens mon arme pour me défendre.|我们:nous;我的:mon, ma|我是多哥人。:Je suis Togolaise.
+是|shì|être, c’est|日|soleil|日 soleil + 正 juste, droit (déformé)|Sous le soleil (日), tout est clair et juste : c’est vrai, c’est ça.|是的:oui, c’est ça;不是:ce n’est pas|他是我的老师。:C’est mon professeur.
+不|bù|ne… pas, non|一|un|un trait au-dessus d’une petite plante qui ne peut pas pousser|Un couvercle (一) empêche la pousse de sortir : non !|不是:ce n’est pas;不要:je n’en veux pas|我不喝茶。:Je ne bois pas de thé.
+他|tā|il, lui|亻|personne|亻 personne + 也 (aussi)|Une autre personne (亻), lui aussi.|他们:ils, eux;他的:son, sa (à lui)|他是我的同事。:C’est mon collègue.
+她|tā|elle|女|femme|女 femme + 也 (aussi)|Comme 他, mais avec la clé de la femme : elle.|她们:elles;她的:son, sa (à elle)|她很漂亮。:Elle est très belle.
+们|men|marque du pluriel des personnes|亻|personne|亻 personne + 门 porte (se prononce mén)|Les personnes (亻) qui passent la porte (门) : un groupe.|我们:nous;你们:vous|我们是朋友。:Nous sommes amis.
+叫|jiào|s’appeler ; appeler, crier|口|bouche|口 bouche + 丩 (son jiū)|On ouvre la bouche (口) pour appeler quelqu’un.|叫什么:s’appeler comment;叫车:appeler un taxi|我叫玛丽。:Je m’appelle Marie.
+名|míng|nom|口|bouche|夕 soir + 口 bouche|Le soir (夕), dans le noir, on dit son nom avec la bouche (口) pour se faire reconnaître.|名字:nom, prénom;有名:célèbre|你的名字很好听。:Ton prénom est joli.
+字|zì|caractère, écriture|宀|toit|宀 toit + 子 enfant|Sous le toit (宀) de la maison, l’enfant (子) apprend à écrire.|名字:nom;汉字:caractère chinois|这个字怎么读？:Comment se lit ce caractère ?
+人|rén|personne, être humain|人|personne|pictogramme d’une personne qui marche, vue de profil|Deux jambes qui marchent : une personne.|中国人:Chinois;多哥人:Togolais|这里有很多人。:Il y a beaucoup de monde ici.
+中|zhōng|milieu, centre ; Chine|丨|trait vertical|une flèche qui traverse le centre d’une cible|Une flèche plantée en plein milieu de la cible.|中国:Chine;中午:midi|我在学中文。:J’apprends le chinois.
+国|guó|pays|囗|enclos|囗 frontière + 玉 jade|Le trésor (玉) protégé par une frontière (囗) : un pays.|中国:Chine;国家:pays, État|你是哪国人？:Tu es de quel pays ?
+认|rèn|reconnaître|讠|parole|讠 parole + 人 personne|Je reconnais une personne (人) à sa façon de parler (讠).|认识:connaître;认真:sérieux|我认识他。:Je le connais.
+识|shí|connaître, savoir|讠|parole|讠 parole + 只 (se prononce zhī)|Ce qu’on sait, on peut le dire avec des paroles (讠).|认识:connaître;知识:connaissances|认识你很高兴。:Enchantée de te connaître.
+高|gāo|haut, grand (taille)|亠|couvercle|pictogramme d’une tour à étages|Une haute tour : un toit, des fenêtres (口), des étages.|高兴:content;很高:très grand|他很高。:Il est très grand.
+八|bā|huit (8)|八|huit|deux traits qui s’écartent|Deux traits qui se séparent : 8, le chiffre porte-bonheur en Chine.|八点:huit heures;八十:quatre-vingts|我八点上班。:Je commence le travail à 8 heures.
+兴|xìng|joie, envie|八|huit|trois points au-dessus de deux mains qui lèvent quelque chose|Des mains levées (八) qui s’agitent de joie.|高兴:content;兴趣:intérêt|我很高兴。:Je suis très contente.
+十|shí|dix (10)|十|dix|une croix : un trait horizontal et un vertical|Une croix, comme les dix doigts des deux mains croisées.|十点:dix heures;十一:onze|我们有十个人。:Nous sommes dix.
+什|shén|quoi (dans 什么)|亻|personne|亻 personne + 十 dix|Une personne (亻) face à dix choses demande : quoi ?|什么:quoi;为什么:pourquoi|你想吃什么？:Qu’est-ce que tu veux manger ?
+么|me|particule (dans 什么, 怎么)|丿|trait penché|un petit triangle tracé en trois traits|Un petit nœud qu’on ajoute à la fin des mots-questions.|什么:quoi;怎么:comment|这是什么？:Qu’est-ce que c’est ?
+谁|shéi|qui|讠|parole|讠 parole + 隹 oiseau (se prononce zhuī)|Une parole (讠) entendue derrière la porte : qui est là ?|是谁:qui est-ce;谁的:à qui|他是谁？:C’est qui ?
+二|èr|deux (2)|二|deux|deux traits horizontaux|Deux doigts posés à plat : deux.|二十:vingt;十二:douze|我在二号线工作。:Je travaille sur la ligne 2.
+三|sān|trois (3)|一|un|trois traits horizontaux|Trois doigts posés à plat : trois.|三个:trois;三月:mars|我有三个朋友。:J’ai trois amis.
+儿|ér|enfant ; suffixe -r|儿|enfant|deux jambes d’un petit enfant|Les deux petites jambes d’un enfant qui marche.|儿子:fils;女儿:fille|我的儿子三岁。:Mon fils a trois ans.
+四|sì|quatre (4)|囗|enclos|囗 cadre + 儿 jambes|Une fenêtre avec quatre côtés.|四个:quatre;四月:avril|我们四个人一起吃饭。:Nous mangeons ensemble à quatre.
+五|wǔ|cinq (5)|二|deux|un sablier entre deux traits|Entre le ciel et la terre (二), les cinq éléments se croisent.|五点:cinq heures;五十:cinquante|一共五块钱。:Ça fait cinq yuans au total.
+六|liù|six (6)|八|huit|un toit (亠) au-dessus de 八|Un petit toit au-dessus de deux jambes : six.|六点:six heures;六月:juin|我六点下班。:Je finis le travail à 6 heures.
+七|qī|sept (7)|一|un|un trait coupé par un crochet|Un 一 coupé en deux par un coup de couteau.|七个:sept;七月:juillet|七月很热。:En juillet il fait chaud.
+九|jiǔ|neuf (9)|丿|trait penché|un bras qui se replie avec un crochet|Un bras plié au maximum : neuf, le plus grand chiffre seul.|九点:neuf heures;九十:quatre-vingt-dix|我九点睡觉。:Je dors à 9 heures.
+几|jǐ|combien (petit nombre) ; quelques|几|table|pictogramme d’une petite table basse|Sur la petite table, il y a quelques objets : combien ?|几个:combien;几点:quelle heure|你有几个孩子？:Tu as combien d’enfants ?
+多|duō|beaucoup, nombreux|夕|soir|夕 soir + 夕 soir|Soir après soir après soir : il y en a beaucoup !|多少:combien;很多:beaucoup|这里人很多。:Il y a beaucoup de monde ici.
+小|xiǎo|petit|小|petit|un trait au milieu, deux petits points de chaque côté|Une grande chose coupée en deux petits morceaux : petit.|小心:attention;小时:heure (durée)|这双鞋太小了。:Cette paire est trop petite.
+少|shǎo|peu|小|petit|小 petit + 丿 un trait qui enlève|On enlève (丿) encore à ce qui est déjà petit : peu.|多少:combien;很少:très peu|今天人很少。:Il y a très peu de monde aujourd’hui.
+个|gè|classificateur courant (un, une)|人|personne|人 toit pointu + 丨 un bâton|Un bâton debout sous un abri : un objet qu’on compte.|一个:un, une;这个:ceci|我要这个。:Je prends celui-ci.
+岁|suì|an (âge)|山|montagne|山 montagne + 夕 soir|Les années passent comme les soirs (夕) derrière la montagne (山).|几岁:quel âge;二十岁:vingt ans|我二十三岁。:J’ai vingt-trois ans.
+年|nián|année|干|tige|une personne qui porte une récolte sur le dos|Chaque année, on porte la récolte sur son dos.|今年:cette année;新年:Nouvel An|我在这里工作两年了。:Ça fait deux ans que je travaille ici.
+爸|bà|papa|父|père|父 père + 巴 (se prononce bā)|Le père (父), qu’on appelle « ba » : papa.|爸爸:papa;爸妈:les parents|我爸爸是司机。:Mon papa est chauffeur.
+妈|mā|maman|女|femme|女 femme + 马 cheval (se prononce mǎ)|La femme (女) dont le nom sonne « ma » : maman.|妈妈:maman;爸妈:les parents|我妈妈在家。:Ma maman est à la maison.
+月|yuè|lune ; mois|月|lune|pictogramme d’un croissant de lune|Un croissant de lune : une lune, un mois.|一月:janvier;月亮:la lune|十月很热。:En octobre il fait chaud.
+朋|péng|ami|月|lune|月 + 月 : deux lunes côte à côte|Deux lunes côte à côte : deux amis qui marchent ensemble.|朋友:ami;男朋友:petit ami|她是我的好朋友。:C’est ma meilleure amie.
+友|yǒu|ami|又|main|𠂇 main + 又 main|Deux mains qui se serrent : des amis.|朋友:ami;友好:amical|我们是老朋友。:Nous sommes de vieux amis.
+同|tóng|même, ensemble|冂|cadre|冂 cadre + 一 + 口 bouche|Sous le même toit, une seule bouche : on parle ensemble.|同事:collègue;同学:camarade|她是我的同事。:C’est ma collègue.
+学|xué|étudier, apprendre|子|enfant|⺍ + 冖 toit + 子 enfant|Un enfant (子) sous un toit (冖) qui apprend.|学习:étudier;学生:élève|我在学中文。:J’apprends le chinois.
+老|lǎo|vieux ; préfixe de respect|老|vieux|un vieil homme courbé avec sa canne|Un vieil homme courbé sur sa canne.|老师:professeur;老板:patron|老板今天不在。:Le patron n’est pas là aujourd’hui.
+师|shī|maître, professeur|巾|tissu|刂 + 帀 (tour complet)|Le maître qui fait le tour de toute la connaissance.|老师:professeur;医师:médecin|我的老师是中国人。:Mon professeur est chinois.

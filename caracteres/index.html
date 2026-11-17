@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zìzì 字字</title>
+<meta name="description" content="Apprendre les caractères chinois : sens, clés, ordre des traits, écriture au doigt, phrases et lectures.">
+<meta name="theme-color" content="#2B4C9B">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Noto+Sans+SC:wght@500;700&display=swap">
+<style>
+/* Mise en page : appli d'une colonne pour téléphone, barre d'onglets en bas ; leçons en plein écran.
+   Univers : encre bleue sur papier d'écolier, grille d'écriture 米字格 aux traits rouges, quatre couleurs de tons. */
+:root{
+  --bg:#F1F3F6; --surface:#FFFFFF; --surface-2:#E6EAF0; --ink:#161C2A; --muted:#566074; --line:#D3D9E3;
+  --accent:#2B4C9B; --accent-ink:#FFFFFF; --accent-soft:#DCE4F6;
+  --grid:#E5A39A; --grid-soft:#F3D4CF;
+  --gold:#B47A0A; --gold-soft:#F4E4C1;
+  --t1:#2563C9; --t2:#13824A; --t3:#9C6208; --t4:#BF2D2B; --t0:#86919A;
+  --good:#13824A; --good-soft:#DDF1E5; --bad:#BF2D2B; --bad-soft:#F8DEDC;
+  --m0:#E6EAF0; --m1:#C9D5EF; --m2:#8FA6DD; --m3:#2B4C9B;
+  --shadow:0 1px 2px rgba(22,28,42,.06),0 6px 18px rgba(22,28,42,.06);
+  --f-display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --f-body:'Nunito Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-zh:'Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E131C; --surface:#171E2B; --surface-2:#212A3A; --ink:#E6EBF4; --muted:#9AA6BA; --line:#2C3649;
+  --accent:#8FA9EE; --accent-ink:#0B1530; --accent-soft:#1F2B48;
+  --grid:#7A3E38; --grid-soft:#3A2522;
+  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
+  --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
+  --m0:#212A3A; --m1:#2A3A5E; --m2:#4A63A8; --m3:#8FA9EE;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E131C; --surface:#171E2B; --surface-2:#212A3A; --ink:#E6EBF4; --muted:#9AA6BA; --line:#2C3649;
+  --accent:#8FA9EE; --accent-ink:#0B1530; --accent-soft:#1F2B48;
+  --grid:#7A3E38; --grid-soft:#3A2522;
+  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
+  --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
+  --m0:#212A3A; --m1:#2A3A5E; --m2:#4A63A8; --m3:#8FA9EE;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--f-body);-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+#app{max-width:520px;margin:0 auto;min-height:100%;padding-inline:16px;display:flex;flex-direction:column}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:28px;font-weight:800} h2{font-size:21px;font-weight:800} h3{font-size:17px;font-weight:600}
+p{margin:0}
+button{font:inherit;color:inherit}
+.zh{font-family:var(--f-zh);font-weight:500}
+.t1{color:var(--t1)} .t2{color:var(--t2)} .t3{color:var(--t3)} .t4{color:var(--t4)} .t0{color:var(--t0)}
+.muted{color:var(--muted)} .small{font-size:14px} .tiny{font-size:12.5px}
+.label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:12px} .stack.sm{gap:6px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap} .row.between{justify-content:space-between}
+.grow{flex:1;min-width:0}
+.screen{flex:1;padding-block:20px 110px;display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.card.flat{box-shadow:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);font-weight:800;font-size:15px;cursor:pointer;color:var(--ink);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.block{width:100%} .btn.sm{min-height:38px;padding:0 12px;font-size:14px;border-radius:10px}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn:focus-visible,.opt:focus-visible,.tab:focus-visible,.chip:focus-visible,.cell:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.icon{width:20px;height:20px;flex:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--surface-2);font-weight:700;font-size:14px;border:1.5px solid transparent;cursor:pointer}
+.chip.on{background:var(--accent-soft);border-color:var(--accent)}
+input[type=text]{width:100%;min-height:46px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 16px var(--f-body);padding:0 14px}
+input:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.bar{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+.notice{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:14px}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:800;font-size:13.5px;cursor:pointer}
+
+/* barre d'onglets */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar-in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0 9px;border:0;background:none;cursor:pointer;color:var(--muted);font-size:12px;font-weight:800}
+.tab .zh{font-size:17px;line-height:1}
+.tab.on{color:var(--accent)}
+
+/* accueil */
+.hello{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.flame{display:inline-flex;align-items:center;gap:4px;font:800 18px var(--f-display);color:var(--gold)}
+.cta{display:flex;flex-direction:column;gap:12px;background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:18px;border:0;text-align:left;cursor:pointer;width:100%;box-shadow:var(--shadow)}
+.cta h2{color:inherit}
+.cta .bits{display:flex;gap:8px;flex-wrap:wrap}
+.cta .bit{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:800}
+.cta.done{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.cta.done .bit{background:var(--surface-2)}
+.big-num{font:800 44px/1 var(--f-display);font-variant-numeric:tabular-nums;color:var(--accent)}
+.big-num small{font-size:18px;color:var(--muted)}
+.strip{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.strip .zh{font-size:26px;min-width:44px;height:44px;display:grid;place-items:center;border-radius:10px;background:var(--surface-2)}
+
+/* grille d'écriture 米字格 */
+.mizige{position:relative;margin:0 auto;border:2px solid var(--grid);border-radius:6px;background:var(--surface)}
+.mizige svg.grid{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.mizige .hw{position:relative}
+.mizige .zh-fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:150px;font-family:var(--f-zh)}
+
+/* fiche */
+.fiche{display:flex;flex-direction:column;gap:16px}
+.fiche-head{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.py{font-size:24px;font-weight:800}
+.sens{font:800 22px/1.2 var(--f-display)}
+.keybox{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:var(--surface-2)}
+.keybox .k{font:700 34px/1 var(--f-zh);color:var(--bad);min-width:40px;text-align:center}
+.story{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 12px 12px 0;padding:12px 14px;font-size:16px}
+.wordrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.wordrow:last-child{border-bottom:0}
+.wordrow .zh{font-size:22px}
+.hl{color:var(--accent);font-weight:700}
+.sent{font-family:var(--f-zh);font-size:22px;line-height:1.5}
+.sent .hl{border-bottom:3px solid var(--accent)}
+.playmini{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;flex:none}
+
+/* séance */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);padding-block:12px 8px;display:flex;align-items:center;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:10px;border:0;background:var(--surface-2);display:grid;place-items:center;cursor:pointer;flex:none}
+.prog{flex:1;height:10px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.lesson{flex:1;display:flex;flex-direction:column;gap:18px;padding-block:8px 24px}
+.sec-tag{display:inline-flex;align-self:flex-start;padding:4px 10px;border-radius:999px;background:var(--accent-soft);font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.q-title{font:800 20px/1.25 var(--f-display)}
+.qchar{font:700 110px/1.1 var(--f-zh);text-align:center}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;text-align:center;min-height:56px;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--surface);cursor:pointer;font-weight:700;font-size:16px}
+.opt.left{align-items:flex-start;text-align:left}
+.opt .zh{font-size:40px;line-height:1.1}
+.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.dim{opacity:.5}
+.opt[disabled]{cursor:default}
+.playbig{width:88px;height:88px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);margin:0 auto}
+.playbig .icon{width:36px;height:36px}
+.feedback{position:sticky;bottom:0;margin-inline:-16px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--line);background:var(--surface)}
+.feedback.ok{background:var(--good-soft);border-color:var(--good)}
+.feedback.bad{background:var(--bad-soft);border-color:var(--bad)}
+.verdict{font:800 19px var(--f-display)}
+.feedback.ok .verdict{color:var(--good)} .feedback.bad .verdict{color:var(--bad)}
+.write-status{text-align:center;font-weight:700;min-height:24px}
+
+/* mur */
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:6px}
+.cell{aspect-ratio:1;max-width:100%;border:0;border-radius:10px;font:600 24px/1 var(--f-zh);display:grid;place-items:center;cursor:pointer;background:var(--m0);color:var(--muted)}
+.cell.m1{background:var(--m1);color:var(--ink)} .cell.m2{background:var(--m2);color:#fff} .cell.m3{background:var(--m3);color:var(--accent-ink)}
+.cell.next{outline:2px dashed var(--accent);outline-offset:-2px;color:var(--ink)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-2px;margin-right:4px}
+
+/* clés */
+.keys{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.keycard{display:flex;gap:10px;align-items:center;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;text-align:left}
+.keycard .k{font:700 30px/1 var(--f-zh);color:var(--bad);min-width:36px;text-align:center}
+
+/* lectures */
+.lect{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;width:100%;text-align:left}
+.lect.locked{opacity:.6;cursor:default}
+.reader-s{display:flex;flex-direction:column;gap:6px;padding:14px 0;border-bottom:1px solid var(--line)}
+.reader-s .line{font:500 26px/1.6 var(--f-zh);display:flex;flex-wrap:wrap}
+.reader-s .ch{cursor:pointer;border-radius:4px;padding:0 1px}
+.reader-s .ch.new{border-bottom:2px dashed var(--gold)}
+.reader-s .ch:active{background:var(--accent-soft)}
+
+/* feuille (fiche en surimpression) */
+.sheet-bg{position:fixed;inset:0;background:rgba(10,14,24,.45);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom,0px))}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.end-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding-top:24px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.stat b{font:800 24px var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted);line-height:1.3}
+.loading{flex:1;display:grid;place-items:center;font:700 64px var(--f-zh);color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.prog i{transition:none}}
+</style>
+</head>
+<body>
+<div id="app"><div class="loading" aria-label="Chargement">字</div></div>
+<div id="sheet" class="sheet-bg" hidden></div>
+<div id="toast" class="toast" hidden></div>
+<script src="hanzi-writer.min.js"></script>
+<script>
+/* ============================================================
+   OUTILS
+   ============================================================ */
+const app=document.getElementById('app'),sheetEl=document.getElementById('sheet');
+const DAY=86400000,pad=n=>String(n).padStart(2,'0');
+const dkey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const today=()=>dkey(new Date());
+const daysBetween=(a,b)=>Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/DAY);
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct=x=>Math.round(Math.max(0,Math.min(1,x))*100);
+const avg=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
+const HAN=/[㐀-鿿]/;
+const ICON={
+ play:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>',
+ x:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ flame:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c1 3.5 5 5.6 5 10.5A5 5 0 0 1 7 13c0-2 1-3.4 2-4.3.2 1.6 1 2.6 2 3C11 8.5 10.5 5 12 2z"/></svg>',
+ brush:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-8.5 8.5a3 3 0 0 1-2 .9L5 20l.6-4.5a3 3 0 0 1 .9-2z"/><path d="M12.5 5.5l6 6"/></svg>',
+ lock:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+ check:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+ gear:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>'
+};
+let toastT=null;
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2800);}
+
+/* pinyin : couleur par ton, syllabe par syllabe */
+const TONES=['āēīōūǖ','áéíóúǘ','ǎěǐǒǔǚ','àèìòùǜ'];
+function toneOf(s){for(const ch of s)for(let t=0;t<4;t++)if(TONES[t].includes(ch))return t+1;return 0;}
+function splitSyl(word){return word.match(/[^aeiouüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ’]*[aeiouüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]+(?:ng|n(?![aeiouüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ])|r(?![aeiouüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]))?/gi)||[word];}
+function pyHTML(p){return esc(p).split(/(\s+)/).map(w=>/\s/.test(w)||!w?w:splitSyl(w).map(s=>`<span class="t${toneOf(s)}">${s}</span>`).join('')).join('');}
+
+/* ============================================================
+   DONNÉES ET ÉTAT
+   ============================================================ */
+let DATA=null,TRAITS=null;const BYC={};
+const KEY='zizi.v1';
+function fresh(){return{v:1,name:'',perDay:5,chars:{},hist:[],xp:0,streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},lastSessionDay:null,sessions:0,read:{},lastBackup:null,milestones:{}};}
+function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let S=load()||fresh();
+const ui={tab:'home',sess:null,wallQ:'',openKey:null,reader:null,showPy:{},showFr:{}};
+
+/* ---------- révisions espacées : 3 compétences par caractère ---------- */
+const SK=['sens','son','ecrit'];
+const isIntro=c=>!!(S.chars[c]&&S.chars[c].intro);
+function rec(c){return S.chars[c]||(S.chars[c]={intro:0,sk:{}});}
+function skState(c,k){const r=rec(c);return r.sk[k]||(r.sk[k]={S:0,last:0,lap:0});}
+function peek(c,k){const r=S.chars[c];return r&&r.sk[k]?r.sk[k].S:0;}
+function retention(st,now){if(!st.S)return 0;const dt=Math.max(0,(now-st.last)/DAY);return Math.pow(1+dt/(9*st.S),-1);}
+function grade(c,k,ok){
+  const st=skState(c,k),now=Date.now(),R=retention(st,now);
+  if(!ok){st.S=Math.max(.3,st.S*.4);st.lap++;}
+  else st.S=Math.max(1,(st.S||0)*(1+1.4*Math.max(.25,1-R)));
+  st.last=now;
+}
+function mastery(c){if(!isIntro(c))return 0;return avg(SK.map(k=>Math.min(1,peek(c,k)/14)));}
+function level(c){if(!isIntro(c))return 0;const m=mastery(c);return m>=.5?3:m>=.15?2:1;}
+const knownCount=()=>DATA.chars.filter(x=>isIntro(x.c)).length;
+function dueList(now){const out=[];DATA.chars.forEach(x=>{if(!isIntro(x.c))return;SK.forEach(k=>{const R=retention(skState(x.c,k),now);if(R<.9)out.push({c:x.c,k,R});});});return out.sort((a,b)=>a.R-b.R);}
+function addXP(n){S.xp+=n;const k=today();S.days[k]=(S.days[k]||0)+n;if(ui.sess)ui.sess.xp+=n;}
+
+/* ---------- série de jours + jokers ---------- */
+function refreshJokers(){const m=today().slice(0,7);if(S.jokerMonth!==m){S.jokerMonth=m;S.jokers=2;}}
+function streakAlive(){if(!S.lastDay)return 0;return daysBetween(S.lastDay,today())<=1+S.jokers?S.streak:0;}
+function markActive(){refreshJokers();const t=today();if(S.lastDay===t)return'';let msg='';
+  if(!S.lastDay)S.streak=1;else{const gap=daysBetween(S.lastDay,t);if(gap===1)S.streak++;else if(gap-1<=S.jokers){S.jokers-=gap-1;S.streak++;msg='Un joker a protégé ta série.';}else S.streak=1;}
+  S.lastDay=t;S.best=Math.max(S.best,S.streak);save();return msg;}
+
+/* ============================================================
+   VOIX : fichiers audio d'abord, voix du téléphone en secours
+   ============================================================ */
+let AUDIO={},curAudio=null,zhVoice=null;
+try{AUDIO=JSON.parse(localStorage.getItem('zizi.audio'))||{};}catch(_){}
+function loadVoices(){try{const vs=speechSynthesis.getVoices();zhVoice=vs.find(v=>/zh[-_]CN/i.test(v.lang))||vs.find(v=>/^(zh|cmn)/i.test(v.lang))||null;}catch(e){}}
+if('speechSynthesis' in window){loadVoices();try{speechSynthesis.addEventListener('voiceschanged',loadVoices);}catch(e){}}
+async function loadAudioIndex(){try{const r=await fetch('audio/index.json',{cache:'no-cache'});if(r.ok){AUDIO=await r.json();try{localStorage.setItem('zizi.audio',JSON.stringify(AUDIO));}catch(_){}prefetchAudio();}}catch(e){}}
+let prefetching=false;
+async function prefetchAudio(){
+  if(prefetching||!('caches' in window)||navigator.onLine===false)return;
+  if(navigator.connection&&navigator.connection.saveData)return;
+  prefetching=true;
+  try{const c=await caches.open('zizi-audio');for(const f of [...new Set(Object.values(AUDIO))]){const url=new URL('audio/'+f,location.href).href;if(await c.match(url))continue;try{const r=await fetch(url);if(r.ok)await c.put(url,r);}catch(e){break;}}}catch(e){}
+  prefetching=false;
+}
+function say(text,slow){
+  const t=String(text).trim();try{if(curAudio){curAudio.pause();curAudio=null;}}catch(_){}
+  const f=AUDIO[t];
+  if(f){try{try{speechSynthesis.cancel();}catch(_){}const a=new Audio('audio/'+f);a.preservesPitch=true;a.playbackRate=slow?.7:1;curAudio=a;const p=a.play();if(p&&p.catch)p.catch(()=>tts(t,slow));return;}catch(e){}}
+  tts(t,slow);
+}
+function tts(text,slow){
+  if(!('speechSynthesis' in window))return;
+  try{const go=()=>{const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';if(zhVoice)u.voice=zhVoice;u.rate=slow?.55:.85;window.__u=u;speechSynthesis.speak(u);};
+    if(speechSynthesis.speaking||speechSynthesis.pending){speechSynthesis.cancel();setTimeout(go,150);}else go();}catch(e){}
+}
+
+/* ============================================================
+   ORDRE DES TRAITS ET ÉCRITURE (Hanzi Writer)
+   ============================================================ */
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function gridSVG(){return `<svg class="grid" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><g stroke="var(--grid)" stroke-width=".6" stroke-dasharray="2 2" fill="none"><path d="M50 0V100M0 50H100M0 0L100 100M100 0L0 100"/></g></svg>`;}
+function boxHTML(id,size){return `<div class="mizige" style="width:${size}px;height:${size}px">${gridSVG()}<div class="hw" id="${id}"></div></div>`;}
+function writerSize(){return Math.min(280,Math.max(200,window.innerWidth-80));}
+let writers={};
+function makeWriter(id,c,opts){
+  const el=document.getElementById(id);if(!el||!window.HanziWriter||!TRAITS||!TRAITS[c]){if(el)el.innerHTML=`<div class="zh-fallback">${esc(c)}</div>`;return null;}
+  const size=el.parentElement.clientWidth||writerSize();
+  const w=HanziWriter.create(el,c,Object.assign({width:size-4,height:size-4,padding:14,showOutline:true,
+    strokeColor:css('--ink'),radicalColor:css('--bad'),outlineColor:css('--surface-2'),highlightColor:css('--accent'),drawingColor:css('--accent'),
+    drawingWidth:24,strokeAnimationSpeed:1.1,delayBetweenStrokes:260,
+    charDataLoader:(ch,done)=>done(TRAITS[ch])},opts||{}));
+  writers[id]=w;return w;
+}
+
+/* ============================================================
+   EXERCICES
+   ============================================================ */
+const known=()=>DATA.chars.filter(x=>isIntro(x.c));
+function distract(c,n,pool){
+  const x=BYC[c];const base=(pool||known()).filter(y=>y.c!==c);
+  const same=shuffle(base.filter(y=>y.k===x.k));const near=shuffle(base.filter(y=>Math.abs(y.n_strokes-x.n_strokes)<=2&&y.k!==x.k));
+  const rest=shuffle(DATA.chars.filter(y=>y.c!==c));
+  const out=[];for(const y of [...same,...near,...rest]){if(out.length>=n)break;if(!out.includes(y))out.push(y);}return out;
+}
+function qSens(c){const x=BYC[c];const ds=distract(c,6).filter(y=>y.m!==x.m).slice(0,3);return{kind:'sens',c,opts:shuffle([x,...ds]).map(y=>({t:y.m,ok:y.c===c}))};}
+function toneVariants(p){const out=new Set();const base=p.normalize('NFD').replace(/[̀-̄̌]/g,'').normalize('NFC');
+  const v=base.match(/[aeiouü]/g);if(!v)return[];const vowel=base.includes('a')?'a':base.includes('e')?'e':base.includes('ou')?'o':v[v.length-1];
+  for(let t=0;t<4;t++){const mk=TONES[t]['aeiouü'.indexOf(vowel)];out.add(base.replace(vowel,mk));}out.delete(p);return[...out];}
+function qSon(c){const x=BYC[c];const tv=shuffle(toneVariants(x.p)).slice(0,2);const others=distract(c,4).map(y=>y.p).filter(p=>p!==x.p&&!tv.includes(p));
+  const opts=[x.p,...tv,...others].slice(0,4);return{kind:'son',c,opts:shuffle(opts).map(p=>({t:p,ok:p===x.p}))};}
+function qEcoute(c){return{kind:'ecoute',c,opts:shuffle([BYC[c],...distract(c,3)]).map(y=>({c:y.c,ok:y.c===c}))};}
+function qTrou(c){const x=BYC[c];return{kind:'trou',c,opts:shuffle([x,...distract(c,3)]).map(y=>({c:y.c,ok:y.c===c}))};}
+function startSession(kind){
+  const now=Date.now(),steps=[];
+  const news=kind==='daily'?DATA.chars.filter(x=>!isIntro(x.c)).slice(0,S.perDay):[];
+  news.forEach(x=>{steps.push({kind:'fiche',c:x.c,sec:'Nouveau caractère'});steps.push({kind:'trace',c:x.c,sec:'Je trace'});});
+  const quiz=[];
+  news.forEach(x=>{quiz.push(qSens(x.c));quiz.push(Math.random()<.5?qSon(x.c):qEcoute(x.c));});
+  const due=dueList(now),used=new Set(news.map(x=>x.c));let nWrite=0;
+  for(const d of due){if(quiz.length>=news.length*2+(kind==='daily'?10:14))break;if(used.has(d.c))continue;
+    if(d.k==='ecrit'){if(nWrite>=(kind==='daily'?3:5)||retention(skState(d.c,'ecrit'),now)===0&&!peek(d.c,'sens'))continue;quiz.push({kind:'ecrire',c:d.c});nWrite++;}
+    else if(d.k==='sens')quiz.push(Math.random()<.5?qSens(d.c):qTrou(d.c));
+    else quiz.push(Math.random()<.5?qSon(d.c):qEcoute(d.c));
+    used.add(d.c);}
+  // les nouveaux : une phrase à trous à la fin pour les voir en contexte
+  news.forEach(x=>quiz.push(qTrou(x.c)));
+  shuffle(quiz.slice(0,quiz.length-news.length)).concat(quiz.slice(quiz.length-news.length)).forEach(q=>steps.push({...q,sec:q.kind==='ecrire'?'J’écris de mémoire':q.kind==='trou'?'Dans une phrase':'Je révise'}));
+  if(!steps.length){toast('Rien à réviser pour l’instant. Reviens plus tard !');return;}
+  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,news:news.map(x=>x.c),end:false,known0:knownCount(),known0Set:new Set(known().map(x=>x.c))};
+  render();
+}
+function answer(i){
+  const s=ui.sess,st=s.steps[s.i];if(st.res)return;
+  const ok=!!st.opts[i].ok;st.res={ok,pick:i};s.n++;if(ok)s.ok++;
+  const k=st.kind==='sens'||st.kind==='trou'?'sens':'son';grade(st.c,k,ok);S.hist.push(ok?1:0);if(ok)addXP(10);
+  if(!ok&&!st.re){const q=st.kind==='sens'?qSens(st.c):st.kind==='son'?qSon(st.c):st.kind==='ecoute'?qEcoute(st.c):qTrou(st.c);s.steps.push({...q,sec:'On le revoit',re:true});}
+  save();render();
+  if(st.kind==='son'||st.kind==='sens')say(BYC[st.c].a);
+}
+function next(){
+  const s=ui.sess,st=s.steps[s.i];
+  if(st&&st.kind==='fiche'){const r=rec(st.c);if(!r.intro){r.intro=Date.now();SK.forEach(k=>skState(st.c,k));save();}}
+  writers={};try{speechSynthesis.cancel();}catch(_){}
+  s.i++;if(s.i>=s.steps.length)finish();else render();window.scrollTo(0,0);
+}
+function finish(){
+  const s=ui.sess;const msg=markActive();S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();addXP(s.kind==='daily'?40:20);
+  const kn=knownCount();s.known1=kn;s.joker=msg;
+  s.unlocked=DATA.lectures.filter(l=>lectRatio(l,s.known0Set)<.85&&lectRatio(l)>=.85).map(l=>l.t);
+  for(const m of [10,25,50,100,150,200,DATA.chars.length])if(kn>=m&&!S.milestones[m]){S.milestones[m]=today();s.milestone=m;}
+  save();s.end=true;render();
+}
+
+/* ============================================================
+   LECTURES
+   ============================================================ */
+function lectRatio(l,set){const need=[...l.need];if(!need.length)return 1;return need.filter(c=>set?set.has(c):isIntro(c)).length/need.length;}
+
+/* ============================================================
+   RENDU
+   ============================================================ */
+function render(){
+  if(!DATA){return;}
+  if(ui.sess)return renderSession();
+  const T={home:renderHome,mur:renderMur,cles:renderCles,lire:renderLire}[ui.tab]||renderHome;
+  app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
+}
+function tabbar(){
+  const t=[['home','今天','Aujourd’hui'],['mur','字','Mon mur'],['cles','部首','Les clés'],['lire','读','Lire']];
+  return `<nav class="tabbar" aria-label="Navigation"><div class="tabbar-in">${t.map(([k,z,f])=>`<button class="tab ${ui.tab===k?'on':''}" data-act="tab" data-k="${k}" ${ui.tab===k?'aria-current="page"':''}><span class="zh">${z}</span>${f}</button>`).join('')}</div></nav>`;
+}
+function charSpan(c,hl){return HAN.test(c)?`<span class="${c===hl?'hl':''}">${esc(c)}</span>`:esc(c);}
+function hlSent(h,c){return [...h].map(ch=>charSpan(ch,c)).join('');}
+
+function renderHome(){
+  refreshJokers();
+  const kn=knownCount(),N=DATA.chars.length,due=dueList(Date.now()).length,done=S.lastSessionDay===today();
+  const nextL=DATA.lectures.find(l=>lectRatio(l)<.85);const newL=DATA.lectures.filter(l=>lectRatio(l)>=.85&&!S.read[l.t]);
+  const recent=DATA.chars.filter(x=>isIntro(x.c)).sort((a,b)=>S.chars[b.c].intro-S.chars[a.c].intro).slice(0,12);
+  const left=N-kn,nNew=Math.min(S.perDay,left);
+  let bubu=null;try{const b=JSON.parse(localStorage.getItem('bubugao.v1'));if(b&&b.items)bubu=Object.keys(b.items).length;}catch(_){}
+  return `
+  <div class="hello"><div class="stack sm"><span class="zh muted">字字珠玑 · zìzì zhūjī</span><h1>${S.name?esc(S.name)+', un':'Un'} caractère après l’autre</h1></div>
+   <div class="stack sm" style="align-items:flex-end"><span class="flame" title="Jours de suite">${ICON.flame}${streakAlive()}</span><button class="playmini" data-act="settings" aria-label="Réglages">${ICON.gear}</button></div></div>
+  ${done?`<button class="cta done" data-act="review"><span class="label">Séance du jour faite ${ICON.check}</span><h2>Révision libre</h2><div class="bits"><span class="bit">${due} à revoir</span><span class="bit">écrire de mémoire</span></div></button>`
+   :`<button class="cta" data-act="daily"><span class="label" style="color:inherit;opacity:.85">Séance du jour · ≈ 10 min</span><h2>${kn?'Continuer mon mur':'Mes premiers caractères'}</h2>
+     <div class="bits">${nNew?`<span class="bit">${nNew} nouveaux</span>`:''}<span class="bit">${Math.min(due,10)} révisions</span><span class="bit">tracé au doigt</span></div></button>`}
+  ${deferredInstall?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Zìzì</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`:''}
+  ${newL.length?`<button class="lect" data-act="read" data-t="${esc(newL[0].t)}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Nouvelle lecture débloquée</b><br><span class="small muted">${esc(newL[0].t)} : tu peux la lire presque seule !</span></span></button>`:''}
+  <section class="card stack">
+    <div class="row between"><div class="stack sm"><span class="label">Caractères appris</span><div class="big-num">${kn}<small> / ${N}</small></div></div>
+    <div class="small muted" style="text-align:right;max-width:55%">${kn<N?`Tout le HSK 1, plus les caractères de l’usine.`:'Tu as tout appris. Bravo !'}</div></div>
+    <div class="bar"><i style="width:${pct(kn/N)}%"></i></div>
+    ${nextL?`<p class="small">Prochaine lecture : <b>${esc(nextL.t)}</b>, il te manque ${[...nextL.need].filter(c=>!isIntro(c)).length} caractère${[...nextL.need].filter(c=>!isIntro(c)).length>1?'s':''}.</p>`:''}
+  </section>
+  ${recent.length?`<section class="stack sm"><span class="label">Derniers appris</span><div class="strip">${recent.map(x=>`<button class="zh cell m${level(x.c)}" style="min-width:48px" data-act="fiche" data-c="${x.c}">${x.c}</button>`).join('')}</div></section>`:''}
+  ${bubu!=null?`<a class="lect" href="../" style="text-decoration:none;color:inherit"><span class="zh" style="font-size:28px;color:var(--good)">步</span><span class="grow"><b>Bùbùgāo</b><br><span class="small muted">Ton appli de vocabulaire et de conversation.</span></span></a>`:''}`;
+}
+function renderMur(){
+  const q=ui.wallQ.trim().toLowerCase(),nextC=DATA.chars.find(x=>!isIntro(x.c));
+  const list=DATA.chars.filter(x=>!q||x.c===q||x.m.toLowerCase().includes(q)||x.p.normalize('NFD').replace(/[̀-ͯ]/g,'').includes(q.normalize('NFD').replace(/[̀-ͯ]/g,''))||x.p.includes(q));
+  const counts=[0,1,2,3].map(l=>DATA.chars.filter(x=>level(x.c)===l).length);
+  return `<div class="stack sm"><span class="label">Mon mur</span><h1>${knownCount()} caractères sur ${DATA.chars.length}</h1><p class="small muted">Chaque case se colore à mesure que le caractère s’ancre. Touche une case pour ouvrir sa fiche.</p></div>
+  <input id="wq" type="text" placeholder="Chercher : sens, pinyin ou caractère" value="${esc(ui.wallQ)}" aria-label="Chercher un caractère">
+  <div class="legend"><span><i style="background:var(--m0)"></i>à venir ${counts[0]}</span><span><i style="background:var(--m1)"></i>découvert ${counts[1]}</span><span><i style="background:var(--m2)"></i>en cours ${counts[2]}</span><span><i style="background:var(--m3)"></i>ancré ${counts[3]}</span></div>
+  <div class="wall">${list.map(x=>`<button class="cell m${level(x.c)} ${nextC&&x.c===nextC.c?'next':''}" data-act="fiche" data-c="${x.c}" aria-label="${esc(x.c+' '+x.p+' : '+x.m)}">${x.c}</button>`).join('')||'<p class="small muted">Aucun caractère trouvé.</p>'}</div>`;
+}
+function renderCles(){
+  const ks=DATA.cles.filter(k=>k.c.length>=2);
+  const open=ui.openKey&&DATA.cles.find(k=>k.k===ui.openKey);
+  return `<div class="stack sm"><span class="label">Les clés · 部首 bùshǒu</span><h1>Les briques des caractères</h1><p class="small muted">La plupart des caractères ont une clé qui donne un indice sur le sens : 氵 l’eau, 口 la bouche, 亻 la personne… Reconnaître la clé, c’est déjà deviner la moitié du caractère.</p></div>
+  ${open?`<section class="card stack"><div class="row between"><div class="row"><span class="zh" style="font-size:44px;color:var(--bad)">${esc(open.k)}</span><div><b>${esc(open.m)}</b><br><span class="small muted">${open.c.length} caractères avec cette clé</span></div></div><button class="playmini" data-act="closekey" aria-label="Fermer">${ICON.x}</button></div>
+    <div class="wall">${open.c.map(c=>`<button class="cell m${level(c)}" data-act="fiche" data-c="${c}" aria-label="${esc(c+' : '+BYC[c].m)}">${c}</button>`).join('')}</div>
+    <div class="stack sm">${open.c.map(c=>`<p class="small"><span class="zh" style="font-size:18px">${c}</span> <span class="${'t'+BYC[c].t}">${esc(BYC[c].p)}</span> · ${esc(BYC[c].m)}</p>`).join('')}</div></section>`:''}
+  <div class="keys">${ks.map(k=>{const kn=k.c.filter(isIntro).length;return `<button class="keycard" data-act="key" data-k="${esc(k.k)}"><span class="k">${esc(k.k)}</span><span class="grow"><b class="small">${esc(k.m)}</b><br><span class="tiny muted">${kn}/${k.c.length} appris · ${k.c.slice(0,5).join(' ')}</span></span></button>`;}).join('')}</div>`;
+}
+function renderLire(){
+  if(ui.reader)return readerHTML();
+  return `<div class="stack sm"><span class="label">Lire · 读 dú</span><h1>Mes petites lectures</h1><p class="small muted">Une lecture s’ouvre quand tu connais presque tous ses caractères. Les autres sont soulignés en pointillés : touche-les pour voir leur fiche.</p></div>
+  <div class="stack">${DATA.lectures.map(l=>{const r=lectRatio(l),open=r>=.85,miss=[...l.need].filter(c=>!isIntro(c));
+    return `<button class="lect ${open?'':'locked'}" data-act="${open?'read':'locked'}" data-t="${esc(l.t)}"><span class="zh" style="font-size:28px">${open?'读':''}</span>${open?'':`<span style="color:var(--muted)">${ICON.lock}</span>`}<span class="grow"><b>${esc(l.t)}</b><br><span class="small muted">${open?(S.read[l.t]?'Lu ✓ · ':'')+l.s.length+' phrases':`Il te manque ${miss.length} caractère${miss.length>1?'s':''} : ${miss.slice(0,6).join(' ')}`}</span></span><span class="small muted" style="font-variant-numeric:tabular-nums">${pct(r)} %</span></button>`;}).join('')}</div>`;
+}
+function readerHTML(){
+  const l=DATA.lectures.find(x=>x.t===ui.reader);
+  return `<div class="row between"><button class="btn sm" data-act="closereader">← Lectures</button><button class="btn sm" data-act="readall">${ICON.play} Tout écouter</button></div>
+  <h1>${esc(l.t)}</h1><p class="small muted">Lis d’abord sans aide. Touche un caractère pour sa fiche ; « pinyin » ou « français » si tu bloques.</p>
+  <section class="card" style="padding-block:4px">${l.s.map((s,i)=>`<div class="reader-s"><div class="line">${[...s.h].map(ch=>HAN.test(ch)?`<span class="ch ${BYC[ch]&&isIntro(ch)?'':'new'}" data-act="fiche" data-c="${ch}">${ch}</span>`:`<span>${esc(ch)}</span>`).join('')}</div>
+    ${ui.showPy[i]?`<div class="small"><b>${pyHTML(s.p)}</b></div>`:''}${ui.showFr[i]?`<div class="small muted">${esc(s.fr)}</div>`:''}
+    <div class="row"><button class="playmini" data-act="say" data-t="${esc(s.h)}" aria-label="Écouter">${ICON.play}</button><button class="linkbtn" data-act="tpy" data-i="${i}">${ui.showPy[i]?'cacher le pinyin':'pinyin'}</button><button class="linkbtn" data-act="tfr" data-i="${i}">${ui.showFr[i]?'cacher le français':'français'}</button></div></div>`).join('')}</section>
+  ${S.read[l.t]?`<div class="notice">Déjà lue ✓ Relis-la à voix haute, sans pinyin : c’est le meilleur entraînement.</div>`:`<button class="btn primary block" data-act="readdone">J’ai lu ce texte</button>`}`;
+}
+
+/* ---------- fiche d'un caractère ---------- */
+function ficheHTML(c,id){
+  const x=BYC[c];
+  return `<div class="fiche">
+   <div class="fiche-head">${boxHTML(id,writerSize())}
+    <div class="row" style="justify-content:center"><button class="btn sm" data-act="anim" data-id="${id}">${ICON.brush} Ordre des traits</button><button class="btn sm" data-act="say" data-t="${esc(x.a)}">${ICON.play} Écouter</button></div>
+    <div class="py ${'t'+x.t}">${esc(x.p)}</div><div class="sens">${esc(x.m)}</div><span class="tiny muted">${x.n_strokes} traits · n° ${x.n} sur ${DATA.chars.length}</span></div>
+   <div class="keybox"><span class="k">${esc(x.k)}</span><div class="grow"><b>Clé : ${esc(x.km)}</b><br><span class="small">${esc(x.comp)}</span></div></div>
+   <div class="story"><span class="label" style="color:var(--gold)">Pour s’en souvenir</span><p>${esc(x.st)}</p></div>
+   <section class="stack sm"><span class="label">Dans les mots</span><div>${x.w.map(w=>`<div class="wordrow"><button class="playmini" data-act="say" data-t="${esc(w.h)}" aria-label="Écouter">${ICON.play}</button><span class="zh">${hlSent(w.h,c)}</span><span class="grow small"><b>${pyHTML(w.p)}</b> · <span class="muted">${esc(w.fr)}</span></span></div>`).join('')}</div></section>
+   <section class="card flat stack sm"><span class="label">Exemple</span><div class="sent">${hlSent(x.ex.h,c)}</div><div class="small"><b>${pyHTML(x.ex.p)}</b></div><div class="small muted">${esc(x.ex.fr)}</div>
+    <button class="btn sm" style="align-self:flex-start" data-act="say" data-t="${esc(x.ex.h)}">${ICON.play} Écouter la phrase</button></section>
+  </div>`;
+}
+function openFiche(c){
+  if(!BYC[c]){toast('Ce caractère n’est pas encore dans Zìzì.');return;}
+  sheetEl.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Fiche ${esc(c)}"><div class="row between" style="margin-bottom:8px"><span class="label">${isIntro(c)?'Fiche':'Aperçu · pas encore appris'}</span><button class="xbtn" data-act="closesheet" aria-label="Fermer">${ICON.x}</button></div>${ficheHTML(c,'hw-sheet')}
+   ${isIntro(c)?`<button class="btn block" style="margin-top:14px" data-act="practice" data-c="${c}">${ICON.brush} M’entraîner à l’écrire</button>`:''}</div>`;
+  sheetEl.hidden=false;const w=makeWriter('hw-sheet',c,{showCharacter:true});if(w)setTimeout(()=>w.animateCharacter(),300);
+  say(BYC[c].a);
+}
+function closeSheet(){sheetEl.hidden=true;sheetEl.innerHTML='';delete writers['hw-sheet'];}
+
+/* ---------- séance ---------- */
+function renderSession(){
+  const s=ui.sess;if(s.end)return app.innerHTML=endHTML();
+  const st=s.steps[s.i],x=BYC[st.c],total=s.steps.length;
+  let body='';
+  if(st.kind==='fiche')body=ficheHTML(st.c,'hw-main')+`<button class="btn primary block" data-act="next">Je l’ai vu, je le trace</button>`;
+  else if(st.kind==='trace'||st.kind==='ecrire'){
+    const mem=st.kind==='ecrire';
+    body=`<p class="q-title">${mem?'Écris de mémoire':'Trace le caractère, trait par trait'}</p>
+     <div class="stack sm" style="align-items:center;text-align:center"><div class="py ${'t'+x.t}">${esc(x.p)}</div><div class="sens">${esc(x.m)}</div>${mem?`<button class="btn sm" data-act="say" data-t="${esc(x.a)}">${ICON.play} Écouter</button>`:''}</div>
+     ${boxHTML('hw-main',writerSize())}
+     <p class="write-status" id="wstat">${st.res?'' :mem?'Sans modèle. Après 2 erreurs, le bon trait clignote.':'Suis le modèle gris. Commence par le trait qui clignote si tu hésites.'}</p>
+     ${st.res?`<div class="feedback ${st.res.ok?'ok':'bad'}"><span class="verdict">${st.res.ok?(st.res.m?'Écrit, avec '+st.res.m+' petite'+(st.res.m>1?'s':'')+' erreur'+(st.res.m>1?'s':''):'Parfait, sans erreur !'):'Pas encore ça, on le revoit'}</span><div class="row"><span class="zh" style="font-size:30px">${x.c}</span><span class="small">${esc(x.st)}</span></div><button class="btn ${st.res.ok?'primary':''} block" data-act="next">Continuer</button></div>`
+     :`<div class="row" style="justify-content:center"><button class="btn sm" data-act="hint">Montrer le trait suivant</button>${mem?'':`<button class="btn sm ghost" data-act="next">Passer</button>`}</div>`}`;
+  }
+  else body=quizHTML(st);
+  app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div><span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span></div>
+   <main class="lesson"><span class="sec-tag">${esc(st.sec)}</span>${body}</main>`;
+  // monter l'écriture
+  if(st.kind==='fiche'){const w=makeWriter('hw-main',st.c,{showCharacter:true});if(w&&!st.played)setTimeout(()=>w.animateCharacter(),350);}
+  if((st.kind==='trace'||st.kind==='ecrire')&&st.res)makeWriter('hw-main',st.c,{showCharacter:true,showOutline:false,strokeColor:st.res.ok?css('--good'):css('--bad')});
+  if((st.kind==='trace'||st.kind==='ecrire')&&!st.res){
+    const mem=st.kind==='ecrire';
+    const w=makeWriter('hw-main',st.c,{showCharacter:false,showOutline:!mem,showHintAfterMisses:mem?2:1,highlightOnComplete:true});
+    if(w)w.quiz({onMistake:()=>{const e=document.getElementById('wstat');if(e)e.textContent='Pas tout à fait : regarde le sens et l’ordre du trait.';},
+      onCorrectStroke:(d)=>{const e=document.getElementById('wstat');if(e)e.textContent=`Trait ${d.strokeNum+1} sur ${x.n_strokes} ✓`;},
+      onComplete:(sum)=>{const m=sum.totalMistakes;const ok=mem?m<=3:true;st.res={ok,m};s.n++;if(ok)s.ok++;
+        grade(st.c,'ecrit',mem?ok:m<=2);if(ok)addXP(mem?15:5);
+        if(mem&&!ok&&!st.re)s.steps.push({kind:'ecrire',c:st.c,sec:'On le revoit',re:true});save();setTimeout(render,700);}});
+    else{st.res={ok:true,m:0};}
+  }
+  if(!st.played){st.played=true;if(st.kind==='fiche')say(x.a);if(st.kind==='ecoute')say(x.a);}
+}
+function quizHTML(st){
+  const x=BYC[st.c];let head='',opts='';
+  const cls=(i,o)=>!st.res?'':o.ok?'ok':st.res.pick===i?'bad':'dim';
+  if(st.kind==='sens'){head=`<p class="q-title">Que veut dire ce caractère ?</p><div class="qchar">${x.c}</div>`;opts=`<div class="opts">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>`;}
+  if(st.kind==='son'){head=`<p class="q-title">Comment se lit ce caractère ?</p><div class="qchar">${x.c}</div>`;opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="py">${pyHTML(o.t)}</span></button>`).join('')}</div>`;}
+  if(st.kind==='ecoute'){head=`<p class="q-title">Quel caractère entends-tu ?</p><button class="playbig" data-act="say" data-t="${esc(x.a)}" aria-label="Écouter">${ICON.play}</button>`;opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh">${o.c}</span></button>`).join('')}</div>`;}
+  if(st.kind==='trou'){const gap=[...x.ex.h].map(ch=>ch===x.c?`<span class="hl">${st.res?ch:'＿'}</span>`:esc(ch)).join('');
+    head=`<p class="q-title">Quel caractère manque ?</p><div class="card flat stack sm"><div class="sent">${gap}</div><div class="small muted">${esc(x.ex.fr)}</div></div>`;
+    opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh">${o.c}</span></button>`).join('')}</div>`;}
+  let fb='';
+  if(st.res){fb=`<div class="feedback ${st.res.ok?'ok':'bad'}" role="status"><span class="verdict">${st.res.ok?rnd(['Bien vu !','Exact !','对了！ Duì le !','Bravo !']):'Pas tout à fait'}</span>
+    <div class="row" style="flex-wrap:nowrap"><span class="zh" style="font-size:40px">${x.c}</span><div class="grow small"><b class="${'t'+x.t}" style="font-size:18px">${esc(x.p)}</b> · ${esc(x.m)}<br><span class="muted">${esc(x.st)}</span></div><button class="playmini" data-act="say" data-t="${esc(st.kind==='trou'?x.ex.h:x.a)}" aria-label="Écouter">${ICON.play}</button></div>
+    ${st.kind==='trou'?`<div class="small"><b>${pyHTML(x.ex.p)}</b></div>`:''}
+    ${!st.res.ok&&!st.re?'<span class="small">On le revoit dans un instant.</span>':''}<button class="btn ${st.res.ok?'primary':''} block" data-act="next">Continuer</button></div>`;}
+  return head+opts+fb;
+}
+function endHTML(){
+  const s=ui.sess,acc=s.n?Math.round(s.ok/s.n*100):100;
+  return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh" style="font-size:48px;color:var(--accent)">${s.news.length?s.news.join(''):'好'}</span><h1>${s.news.length?s.news.length+' nouveau'+(s.news.length>1?'x':'')+' sur ton mur !':'Révision terminée'}</h1><p class="muted">${s.known1} caractères appris sur ${DATA.chars.length}.</p></div>
+   <div class="kpis"><div class="stat"><b>+${s.xp}</b><span>points</span></div><div class="stat"><b>${acc}%</b><span>de réussite</span></div><div class="stat"><b>${streakAlive()}</b><span>jour${streakAlive()>1?'s':''} de suite</span></div></div>
+   ${s.joker?`<div class="notice">${esc(s.joker)}</div>`:''}
+   ${s.milestone?`<div class="card stack sm" style="border:2px solid var(--gold)"><b>${s.milestone} caractères !</b><p class="small">${s.milestone>=DATA.chars.length?'Tu as appris tous les caractères du HSK 1 et de l’usine. Tu peux lire tes collègues !':'Un nouveau palier. Chaque caractère t’ouvre des dizaines de mots.'}</p></div>`:''}
+   ${s.unlocked&&s.unlocked.length?`<button class="lect" data-act="read" data-t="${esc(s.unlocked[0])}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Lecture débloquée : ${esc(s.unlocked[0])}</b><br><span class="small muted">Tu peux maintenant la lire presque seule.</span></span></button>`:''}
+   <button class="btn primary block" data-act="home">Retour</button></main>`;
+}
+
+/* ---------- réglages et sauvegarde ---------- */
+function settingsHTML(){
+  return `<div class="sheet" role="dialog" aria-modal="true" aria-label="Réglages"><div class="row between"><h2>Réglages</h2><button class="xbtn" data-act="closesheet" aria-label="Fermer">${ICON.x}</button></div>
+   <div class="stack" style="margin-top:14px">
+    <label class="label" for="nm">Prénom</label><input id="nm" type="text" value="${esc(S.name)}" autocomplete="given-name">
+    <span class="label">Nouveaux caractères par jour</span><div class="row">${[3,5,8].map(n=>`<button class="chip ${S.perDay===n?'on':''}" data-act="perday" data-n="${n}">${n}</button>`).join('')}</div>
+    <p class="small muted">5 par jour : tout le mur en environ 6 semaines. Les révisions s’ajoutent toutes seules.</p>
+    <span class="label">Sauvegarde</span>
+    <div class="row"><button class="btn sm primary" data-act="backup">Sauvegarder ma progression</button><label class="btn sm">Restaurer<input id="restorefile" type="file" accept="application/json,.json" hidden></label></div>
+    ${ui.pendingRestore?`<div class="notice">Restaurer la sauvegarde du <b>${esc((ui.pendingRestore.date||'').slice(0,10))}</b> ? Elle remplace la progression de ce téléphone.<div class="row" style="margin-top:8px"><button class="btn sm primary" data-act="restore2">Oui, restaurer</button><button class="btn sm" data-act="restore0">Annuler</button></div></div>`:''}
+    <p class="tiny muted">${S.lastBackup?'Dernière sauvegarde : '+S.lastBackup+'.':'Aucune sauvegarde pour l’instant.'} Garde le fichier dans WhatsApp ou Google Drive.</p>
+    ${ui.confirmReset?`<div class="notice">Tout effacer sur ce téléphone ?<div class="row" style="margin-top:8px"><button class="btn sm" data-act="reset2" style="color:var(--bad)">Oui, tout effacer</button><button class="btn sm" data-act="reset0">Annuler</button></div></div>`:`<button class="btn sm ghost" style="align-self:flex-start" data-act="reset1">Effacer ma progression</button>`}
+    <p class="tiny muted">Ordre des traits : Hanzi Writer (MIT) et Make Me a Hanzi (données Arphic). Voix : sherpa-onnx, modèle open source.</p>
+   </div></div>`;
+}
+function openSettings(){sheetEl.innerHTML=settingsHTML();sheetEl.hidden=false;}
+async function doBackup(){
+  const prev=S.lastBackup;S.lastBackup=today();const txt=JSON.stringify({app:'zizi',format:1,date:new Date().toISOString(),state:S});S.lastBackup=prev;
+  const name='zizi-'+(S.name||'progression').replace(/[^\p{L}\p{N}_-]+/gu,'-')+'-'+today()+'.json';
+  try{const file=new File([txt],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Sauvegarde Zìzì'});S.lastBackup=today();save();toast('Sauvegarde envoyée.');openSettings();return;}}catch(e){if(e&&e.name==='AbortError')return;}
+  try{const url=URL.createObjectURL(new Blob([txt],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);S.lastBackup=today();save();toast('Fichier enregistré : '+name);openSettings();}catch(e){toast('Sauvegarde impossible ici.');}
+}
+
+/* ============================================================
+   ÉVÉNEMENTS
+   ============================================================ */
+const ACT={
+ install:async()=>{if(!deferredInstall)return;try{deferredInstall.prompt();await deferredInstall.userChoice;}catch(e){}deferredInstall=null;render();},
+ tab:d=>{ui.tab=d.k;ui.reader=null;render();window.scrollTo(0,0);},
+ say:d=>say(d.t),
+ daily:()=>startSession('daily'),
+ review:()=>startSession('review'),
+ home:()=>{ui.sess=null;ui.tab='home';render();window.scrollTo(0,0);},
+ quit:()=>{try{speechSynthesis.cancel();}catch(_){}ui.sess=null;render();},
+ next:()=>next(),
+ ans:d=>answer(+d.i),
+ anim:d=>{const w=writers[d.id];if(w)w.animateCharacter();},
+ hint:()=>{const w=writers['hw-main'];if(w){try{w.highlightStroke(w._quiz?w._quiz._currentStrokeIndex:0);}catch(e){}}const st=ui.sess.steps[ui.sess.i];if(st.kind==='ecrire')st.hinted=true;},
+ fiche:d=>openFiche(d.c),
+ closesheet:()=>{closeSheet();if(ui.tab==='home'||ui.tab==='mur')render();},
+ practice:d=>{closeSheet();ui.sess={kind:'practice',steps:[{kind:'ecrire',c:d.c,sec:'Entraînement'}],i:0,xp:0,ok:0,n:0,news:[],end:false,known0:knownCount(),known0Set:new Set(known().map(x=>x.c))};render();},
+ key:d=>{ui.openKey=d.k;render();window.scrollTo(0,0);},
+ closekey:()=>{ui.openKey=null;render();},
+ read:d=>{ui.sess=null;ui.tab='lire';ui.reader=d.t;ui.showPy={};ui.showFr={};render();window.scrollTo(0,0);},
+ locked:()=>toast('Apprends encore quelques caractères pour ouvrir cette lecture.'),
+ closereader:()=>{ui.reader=null;render();},
+ tpy:d=>{ui.showPy[d.i]=!ui.showPy[d.i];render();},
+ tfr:d=>{ui.showFr[d.i]=!ui.showFr[d.i];render();},
+ readall:()=>{const l=DATA.lectures.find(x=>x.t===ui.reader);let i=0;const play=()=>{if(i>=l.s.length)return;say(l.s[i].h);const a=curAudio;i++;if(a)a.onended=()=>setTimeout(play,350);};play();},
+ readdone:()=>{S.read[ui.reader]=today();addXP(30);markActive();save();toast('Bravo ! Tu as lu un vrai texte en chinois.');render();},
+ settings:()=>openSettings(),
+ perday:d=>{S.perDay=+d.n;save();openSettings();},
+ backup:()=>doBackup(),
+ restore2:()=>{const o=ui.pendingRestore;S=Object.assign(fresh(),o.state);save();ui.pendingRestore=null;closeSheet();toast('Progression restaurée.');render();},
+ restore0:()=>{ui.pendingRestore=null;openSettings();},
+ reset1:()=>{ui.confirmReset=true;openSettings();},
+ reset0:()=>{ui.confirmReset=false;openSettings();},
+ reset2:()=>{S=fresh();ui.confirmReset=false;save();closeSheet();render();}
+};
+document.addEventListener('click',e=>{
+  if(e.target===sheetEl){closeSheet();return;}
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset,b);
+});
+document.addEventListener('input',e=>{
+  if(e.target.id==='wq'){ui.wallQ=e.target.value;const pos=e.target.selectionStart;render();const n=document.getElementById('wq');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(_){}}}
+  if(e.target.id==='nm'){S.name=e.target.value.trim();save();}
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='restorefile'&&e.target.files&&e.target.files[0]){const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||o.app!=='zizi'||!o.state||o.state.v!==1)throw 0;ui.pendingRestore=o;openSettings();}catch(_){toast('Ce fichier n’est pas une sauvegarde Zìzì.');}};r.readAsText(e.target.files[0]);e.target.value='';}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sheetEl.hidden)closeSheet();});
+
+/* ============================================================
+   DÉMARRAGE
+   ============================================================ */
+let deferredInstall=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(!ui.sess&&ui.tab==='home')render();});
+window.addEventListener('appinstalled',()=>{deferredInstall=null;toast('Zìzì est installée !');});
+async function boot(){
+  try{
+    const [d,t]=await Promise.all([fetch('data.json').then(r=>r.json()),fetch('traits.json').then(r=>r.json())]);
+    DATA=d;TRAITS=t;DATA.chars.forEach(x=>BYC[x.c]=x);
+  }catch(e){app.innerHTML='<main class="screen"><h1>Connexion nécessaire</h1><p>Ouvre Zìzì une première fois avec du réseau : ensuite il marche hors-ligne.</p></main>';return;}
+  refreshJokers();render();
+  if(navigator.onLine!==false)loadAudioIndex();
+  if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&window.top===window)navigator.serviceWorker.register('sw.js').catch(()=>{});
+  try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(_){}
+}
+boot();
+</script>
+</body>
+</html>
