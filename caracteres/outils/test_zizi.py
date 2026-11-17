@@ -1,5 +1,5 @@
 """Test de bout en bout de Zìzì dans Chromium : séance complète avec tracé au doigt simulé,
-onglets, lecture, hors-ligne. Usage, depuis caracteres/ :  python3 outils/test_zizi.py"""
+onglets, quêtes, niveaux, les 3 défis, examen blanc HSK, lecture, hors-ligne. Usage, depuis caracteres/ :  python3 outils/test_zizi.py"""
 import asyncio, functools, http.server, json, os, socketserver, sys, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8798
@@ -48,8 +48,12 @@ async def main():
             await pg.locator('[data-act=ans]').first.click(); await pg.click('[data-act=next]')
         check(kinds[-1] == 'END', f'séance terminée ({len(kinds) - 1} étapes : {sorted(set(kinds[:-1]))})')
         check(traces and all('"ok":true' in t for t in traces), f'tracé au doigt reconnu ({len(traces)} caractères)')
+        check(await pg.evaluate('S.q && S.q.done.seance === 1 && S.xp > 0'), 'quête « séance » validée et points gagnés')
         await pg.click('[data-act=home]')
-        for t in ['mur', 'cles', 'lire', 'home']: await pg.click(f'[data-act=tab][data-k={t}]')
+        for t in ['mur', 'lire', 'hsk', 'prog', 'home']: await pg.click(f'[data-act=tab][data-k={t}]')
+        await pg.click('[data-act=tab][data-k=mur]'); await pg.click('[data-act=mur][data-m=cles]'); await pg.click('[data-act=key] >> nth=0')
+        check(await pg.locator('.keycard').count() > 10, 'clés affichées dans Mon mur')
+        await pg.click('[data-act=mur][data-m=chars]')
         await pg.click('[data-act=tab][data-k=mur]'); await pg.click('.cell >> nth=0'); await pg.wait_for_timeout(500)
         check(await pg.evaluate('!document.getElementById("sheet").hidden'), 'fiche ouverte depuis le mur')
         await pg.click('[data-act=closesheet] >> nth=0')
@@ -58,6 +62,44 @@ async def main():
         await pg.evaluate("DATA.chars.slice(0,40).forEach(x=>{const r=rec(x.c);r.intro=Date.now();SK.forEach(k=>{const s=skState(x.c,k);s.S=3;s.last=Date.now();});});save();ui.tab='lire';render()")
         await pg.click('[data-act=read] >> nth=0'); await pg.click('[data-act=readdone]')
         check(await pg.evaluate('Object.keys(S.read).length') == 1, 'lecture ouverte et marquée lue')
+        # les trois défis
+        await pg.click('[data-act=tab][data-k=home]')
+        for gid in ['mystere', 'cles', 'eclair']:
+            await pg.evaluate(f"startGame('{gid}')")
+            for _ in range(200):
+                g = await pg.evaluate('ui.game ? {end: ui.game.end, found: ui.game.found, rend: ui.game.roundEnd} : null')
+                if not g or g['end']: break
+                if gid == 'mystere':
+                    if g['found']: await pg.click('[data-act=mysnext]')
+                    else: await pg.click(f"[data-act=mys][data-c='{await pg.evaluate('ui.game.c')}']")
+                elif gid == 'cles':
+                    if g['rend']: await pg.click('[data-act=huntnext]'); continue
+                    for c in await pg.evaluate('ui.game.targets.filter(c => !ui.game.hit.includes(c))'):
+                        await pg.click(f"[data-act=hunt][data-c='{c}']")
+                else:
+                    await pg.locator('[data-act=flash]:not([disabled])').first.click(timeout=3000)
+                    await pg.wait_for_timeout(950)
+                    if await pg.evaluate('ui.game.okN + (ui.game.combo === 0 ? 1 : 0)') >= 6: await pg.evaluate('ui.game.left = 1'); await pg.wait_for_timeout(1300)
+            ok = await pg.evaluate(f"!!(ui.game && ui.game.end && S.games['{gid}'].plays === 1)")
+            check(ok, f'défi {gid} joué jusqu’au bout (score ' + str(await pg.evaluate('ui.game ? ui.game.score : -1')) + ')')
+            await pg.click('[data-act=ghome]')
+        # examen blanc HSK
+        await pg.click('[data-act=tab][data-k=hsk]'); await pg.click('[data-act=exam]'); await pg.click('[data-act=expy][data-v="1"]'); await pg.click('[data-act=exgo]')
+        parts = await pg.evaluate('[...new Set(ui.exam.qs.map(q => q.part))].length')
+        for _ in range(20):
+            await pg.locator('[data-act=exans]').first.click(); await pg.wait_for_timeout(320)
+        check(parts == 4 and await pg.evaluate("ui.exam.stage === 'res' && S.exams.length === 1"), f'examen blanc HSK : 20 questions, 4 parties, note {await pg.evaluate("ui.exam.score")}/100')
+        await pg.click('[data-act=exhome]'); await pg.click('[data-act=extrain][data-p="3"]')
+        for _ in range(5):
+            await pg.locator('[data-act=exans]').first.click(); await pg.click('[data-act=exnext]')
+        check(await pg.evaluate("ui.exam.stage === 'res'"), 'entraînement HSK partie 4 terminé')
+        await pg.click('[data-act=exhome]')
+        # niveau supérieur et progrès
+        await pg.evaluate('ui.levelUp = null; S.xp = DATA.rangs[1].xp - 5; addXP(10); ui.tab = "prog"; render()')
+        await pg.wait_for_timeout(300)
+        check(await pg.evaluate('!document.getElementById("sheet").hidden && document.getElementById("sheet").textContent.includes(DATA.rangs[1].fr)'), 'nouveau titre annoncé')
+        await pg.click('[data-act=closesheet] >> nth=0')
+        check(await pg.locator('.badge.on').count() >= 3 and await pg.locator('.cal i').count() == 84, 'progrès : médailles et calendrier')
         await pg.wait_for_timeout(1500); await ctx.set_offline(True); await pg.reload(); await pg.wait_for_timeout(1000)
         check(await pg.evaluate('!!(typeof DATA !== "undefined" && DATA && DATA.chars.length)'), 'réouverture hors-ligne')
         check(not errs, f'aucune erreur JavaScript {errs[:3]}')

@@ -83,7 +83,7 @@ input:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
 
 /* barre d'onglets */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabbar-in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.tabbar-in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
 .tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0 9px;border:0;background:none;cursor:pointer;color:var(--muted);font-size:12px;font-weight:800}
 .tab .zh{font-size:17px;line-height:1}
 .tab.on{color:var(--accent)}
@@ -176,14 +176,108 @@ input:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
 /* feuille (fiche en surimpression) */
 .sheet-bg{position:fixed;inset:0;background:rgba(10,14,24,.45);z-index:40;display:flex;align-items:flex-end;justify-content:center}
 .sheet{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom,0px))}
-.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:60;max-width:calc(100% - 32px);text-align:center}
 .end-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding-top:24px}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px}
 .stat b{font:800 24px var(--f-display);font-variant-numeric:tabular-nums}
 .stat span{font-size:12.5px;color:var(--muted);line-height:1.3}
 .loading{flex:1;display:grid;place-items:center;font:700 64px var(--f-zh);color:var(--accent)}
-@media (prefers-reduced-motion:reduce){.prog i{transition:none}}
+/* ---------- Zìzì 2 : niveaux, défis, quêtes, HSK, progrès ---------- */
+:root{--seal:#C8332B;--seal-ink:#FFF4EC;--night:#141B2B;--night-2:#222C42;--night-ink:#F3EEDF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--seal:#E0574D;--night:#0A0F18;--night-2:#18202F}}
+:root[data-theme="dark"]{--seal:#E0574D;--night:#0A0F18;--night-2:#18202F}
+/* sceau 印章 : le titre du niveau, en colonne comme un vrai tampon */
+.seal{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;flex:none;width:46px;height:56px;border-radius:6px;background:var(--seal);color:var(--seal-ink);
+  font:700 19px/1.05 var(--f-zh);box-shadow:inset 0 0 0 2.5px var(--seal),inset 0 0 0 4px var(--seal-ink);transform:rotate(-4deg)}
+.seal.big{width:92px;height:112px;font-size:38px;border-radius:10px;box-shadow:inset 0 0 0 4px var(--seal),inset 0 0 0 7px var(--seal-ink)}
+.seal.off{background:var(--surface-2);color:var(--muted);box-shadow:inset 0 0 0 2.5px var(--surface-2),inset 0 0 0 4px var(--line);transform:none}
+.rankline{display:flex;align-items:center;gap:12px}
+.xpbar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.xpbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--seal))}
+/* carte séance : papier d'écolier quadrillé */
+.cta{position:relative;overflow:hidden;background:var(--accent) radial-gradient(circle at 100% 0,rgba(255,255,255,.16),transparent 55%)}
+.cta::after{content:'';position:absolute;right:-18px;bottom:-18px;width:120px;height:120px;border:2px dashed rgba(255,255,255,.22);border-radius:8px;
+  background:linear-gradient(45deg,transparent 49.5%,rgba(255,255,255,.18) 49.5% 50.5%,transparent 50.5%),linear-gradient(-45deg,transparent 49.5%,rgba(255,255,255,.18) 49.5% 50.5%,transparent 50.5%);pointer-events:none}
+.cta.done::after{display:none}
+.durs{display:flex;gap:6px}
+.dur{border:0;border-radius:999px;padding:6px 12px;font:800 13.5px var(--f-body);cursor:pointer;background:rgba(255,255,255,.16);color:inherit}
+.dur.on{background:#fff;color:#22408A}
+.cta .go{background:#fff;border-color:#fff;color:#22408A}
+.cta.done .dur{background:var(--surface-2)} .cta.done .dur.on{background:var(--accent);color:var(--accent-ink)}
+/* défi du jour : carte encre de nuit */
+.defi{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;background:var(--night);border:1px solid rgba(237,180,60,.28);color:var(--night-ink);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.defi .zhbig{position:absolute;right:10px;top:-8px;font:700 92px/1 var(--f-zh);color:rgba(243,238,223,.07);pointer-events:none}
+.defi .label{color:#EDB43C}
+.defi .muted{color:rgba(243,238,223,.72)}
+.defi .btn{border-color:#EDB43C;background:#EDB43C;color:#1B1405}
+.defi .btn.ghost{background:transparent;color:var(--night-ink);border-color:rgba(243,238,223,.25)}
+.minis{display:flex;gap:8px;flex-wrap:wrap}
+.mini{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;background:var(--night-2);color:var(--night-ink);border:0;font:700 13px var(--f-body);cursor:pointer}
+.mini .zh{font-size:15px;color:#EDB43C}
+/* quêtes du jour */
+.quest{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.quest:last-child{border-bottom:0}
+.quest .qi{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:700 17px var(--f-zh);background:var(--surface-2);color:var(--muted);flex:none}
+.quest.ok .qi{background:var(--seal);color:var(--seal-ink)}
+.quest .bar{height:6px;margin-top:4px}
+.quest.ok .bar i{background:var(--good)}
+/* combo et points */
+.combo{font:800 13px var(--f-body);color:var(--seal);background:var(--bad-soft);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.combo .zh{font-weight:700}
+/* segment (Caractères / Clés) */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface-2);border-radius:12px;padding:4px;gap:4px}
+.seg button{border:0;border-radius:9px;padding:9px 0;background:transparent;font:800 14px var(--f-body);cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+/* jeux */
+.gtop{display:flex;align-items:center;gap:12px}
+.timer{font:800 20px var(--f-display);font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+.timer.low{color:var(--bad)}
+.score{font:800 15px var(--f-body);font-variant-numeric:tabular-nums;color:var(--gold)}
+svg.mys{position:relative;display:block;margin:2px}
+svg.mys .inkin{animation:inkin .45s ease-out}
+.huntgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.hunt{aspect-ratio:1;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:500 34px/1 var(--f-zh);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.hunt.ok{border-color:var(--good);background:var(--good-soft);color:var(--good)}
+.hunt.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .3s}
+.hunt.miss{border-color:var(--gold);border-style:dashed}
+.flash{animation:flash .35s}
+/* examen */
+.part{font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+.exq{font:500 30px/1.5 var(--f-zh);text-align:center}
+.exq .py{display:block;font:700 15px var(--f-body);color:var(--muted)}
+.gauge{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center}
+.result-part{display:grid;grid-template-columns:120px 1fr 44px;gap:10px;align-items:center;font-size:14px}
+/* progrès */
+.ladder{display:flex;flex-direction:column}
+.rung{display:flex;align-items:center;gap:12px;padding:8px 0}
+.rung .seal{width:38px;height:46px;font-size:16px}
+.rung.cur{background:var(--gold-soft);margin-inline:-16px;padding-inline:16px;border-radius:12px}
+.cal{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:3px}
+.cal i{aspect-ratio:1;border-radius:3px;background:var(--surface-2);position:relative}
+.cal i.l1{background:var(--m1)} .cal i.l2{background:var(--m2)} .cal i.l3{background:var(--m3)}
+.cal i.stamp::after{content:'';position:absolute;inset:28%;border-radius:50%;background:var(--seal)}
+.cal i.fut{background:transparent}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.badge{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:11.5px;line-height:1.25;color:var(--muted)}
+.badge .bz{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:700 22px var(--f-zh);background:var(--surface-2);color:var(--line);border:2px dashed var(--line)}
+.badge.on{color:var(--ink)} .badge.on .bz{background:var(--gold-soft);color:var(--gold);border:2px solid var(--gold)}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px}
+.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px;height:100%;font-size:11px;color:var(--muted)}
+.bars i{display:block;width:100%;border-radius:6px 6px 2px 2px;background:var(--accent);min-height:3px}
+.bars i.pass{background:var(--good)}
+/* fin de séance et nouveau titre */
+.stampin{animation:stampin .55s cubic-bezier(.2,1.6,.4,1) both}
+.pop{animation:pop .4s ease-out both}
+.newtitle{display:flex;align-items:center;gap:16px;padding:16px;border-radius:16px;background:var(--gold-soft);border:2px solid var(--gold)}
+.welcome{display:flex;flex-direction:column;gap:10px;border-radius:16px;padding:16px;background:var(--accent-soft);border:1px solid var(--accent)}
+.welcome ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14.5px}
+@keyframes inkin{from{opacity:0;filter:blur(3px)}to{opacity:1;filter:none}}
+@keyframes stampin{0%{transform:scale(2.4) rotate(-14deg);opacity:0}100%{transform:scale(1) rotate(-4deg);opacity:1}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes flash{0%{background:var(--bad-soft)}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.prog i{transition:none}.stampin,.pop,svg.mys .inkin,.hunt.bad,.flash{animation:none}}
 </style>
 </head>
 <body>
@@ -229,11 +323,12 @@ function pyHTML(p){return esc(p).split(/(\s+)/).map(w=>/\s/.test(w)||!w?w:splitS
    ============================================================ */
 let DATA=null,TRAITS=null;const BYC={};
 const KEY='zizi.v1';
-function fresh(){return{v:1,name:'',perDay:5,chars:{},hist:[],xp:0,streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},lastSessionDay:null,sessions:0,read:{},lastBackup:null,milestones:{}};}
+function fresh(){return{v:1,name:'',perDay:5,dur:10,chars:{},hist:[],xp:0,streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},lastSessionDay:null,sessions:0,read:{},lastBackup:null,milestones:{},
+  games:{},q:null,qDays:0,stamps:{},exams:[],stats:{},mins:0,badges:{}};}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 let S=load()||fresh();
-const ui={tab:'home',sess:null,wallQ:'',openKey:null,reader:null,showPy:{},showFr:{}};
+const ui={tab:'home',sess:null,game:null,exam:null,wallQ:'',murMode:'chars',openKey:null,reader:null,showPy:{},showFr:{},levelUp:null};
 
 /* ---------- révisions espacées : 3 compétences par caractère ---------- */
 const SK=['sens','son','ecrit'];
@@ -252,7 +347,10 @@ function mastery(c){if(!isIntro(c))return 0;return avg(SK.map(k=>Math.min(1,peek
 function level(c){if(!isIntro(c))return 0;const m=mastery(c);return m>=.5?3:m>=.15?2:1;}
 const knownCount=()=>DATA.chars.filter(x=>isIntro(x.c)).length;
 function dueList(now){const out=[];DATA.chars.forEach(x=>{if(!isIntro(x.c))return;SK.forEach(k=>{const R=retention(skState(x.c,k),now);if(R<.9)out.push({c:x.c,k,R});});});return out.sort((a,b)=>a.R-b.R);}
-function addXP(n){S.xp+=n;const k=today();S.days[k]=(S.days[k]||0)+n;if(ui.sess)ui.sess.xp+=n;}
+function addXP(n){const r0=rankOf(S.xp);S.xp+=n;const k=today();S.days[k]=(S.days[k]||0)+n;if(ui.sess)ui.sess.xp+=n;if(ui.game)ui.game.xp+=n;if(ui.exam)ui.exam.xp=(ui.exam.xp||0)+n;
+  const r1=rankOf(S.xp);if(r1>r0){ui.levelUp=r1;buzz([60,40,160]);}}
+const stats=()=>S.stats||(S.stats={});
+function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(_){}}
 
 /* ---------- série de jours + jokers ---------- */
 function refreshJokers(){const m=today().slice(0,7);if(S.jokerMonth!==m){S.jokerMonth=m;S.jokers=2;}}
@@ -308,6 +406,59 @@ function makeWriter(id,c,opts){
 }
 
 /* ============================================================
+   NIVEAUX : les titres des examens impériaux (data.json › rangs)
+   ============================================================ */
+function rankOf(xp){let r=0;(DATA&&DATA.rangs||[]).forEach((x,i)=>{if(xp>=x.xp)r=i;});return r;}
+function rankInfo(){const R=DATA.rangs,r=rankOf(S.xp),cur=R[r],nx=R[r+1];
+  return{r,cur,nx,left:nx?nx.xp-S.xp:0,p:nx?(S.xp-cur.xp)/(nx.xp-cur.xp):1};}
+function sealHTML(h,cls){return `<span class="seal ${cls||''}" aria-hidden="true">${[...h].map(c=>`<span>${c}</span>`).join('')}</span>`;}
+function rankBlock(){const k=rankInfo();
+  return `<div class="rankline">${sealHTML(k.cur.h)}<div class="grow stack sm" style="gap:4px"><div class="row between" style="gap:6px"><b>Niveau ${k.r+1} · ${esc(k.cur.fr)}</b><span class="tiny muted" style="font-variant-numeric:tabular-nums">${S.xp} pts</span></div>
+   <div class="xpbar"><i style="width:${pct(k.p)}%"></i></div><span class="tiny muted">${k.nx?`Encore ${k.left} points pour devenir <b class="zh">${k.nx.h}</b> · ${esc(k.nx.fr.toLowerCase())}`:'Tu as le plus haut titre. Bravo !'}</span></div></div>`;}
+function newTitleHTML(){if(ui.levelUp==null)return'';const R=DATA.rangs[ui.levelUp];ui.levelUp=null;
+  return `<div class="newtitle">${sealHTML(R.h,'big stampin')}<div class="stack sm"><span class="label" style="color:var(--gold)">Nouveau titre !</span><h2>${esc(R.fr)}</h2><p class="small"><span class="zh">${R.h}</span> · ${pyHTML(R.p)}</p><p class="small muted">${esc(R.d)}</p>
+   <button class="btn sm" style="align-self:flex-start" data-act="say" data-t="${R.h}">${ICON.play} Écouter</button></div></div>`;}
+function showLevelUp(){
+  sheetEl.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Nouveau titre"><div class="row between"><span class="label">Tu montes de niveau</span><button class="xbtn" data-act="closesheet" aria-label="Fermer">${ICON.x}</button></div>
+   <div class="stack" style="margin-top:12px">${newTitleHTML()}<p class="small muted">Dans la Chine ancienne, on passait des examens pour devenir lettré. Chaque niveau de Zìzì porte un de ces titres, jusqu’à <span class="zh">状元</span> : la première de tout l’empire.</p>
+   <button class="btn primary block" data-act="closesheet">Continuer</button></div></div>`;sheetEl.hidden=false;
+}
+
+/* ============================================================
+   QUÊTES DU JOUR (3 par jour, tirées au sort selon la date)
+   ============================================================ */
+const dayNum=()=>Math.round(new Date(today()+'T12:00:00').getTime()/DAY);
+function seeded(n){let x=(n%2147483646)+1;return()=>(x=x*16807%2147483647)/2147483647;}
+const QUESTS={
+ seance:{t:'Termine ta séance du jour',n:1,i:'今'},
+ ok15:{t:'Donne 15 bonnes réponses',n:15,i:'对'},
+ combo8:{t:'Enchaîne 8 bonnes réponses',n:8,i:'连',max:true},
+ trace3:{t:'Trace 3 caractères sans erreur',n:3,i:'笔'},
+ mem2:{t:'Écris 2 caractères de mémoire',n:2,i:'写',need:()=>knownCount()>=6},
+ defi:{t:'Joue le défi du jour',n:1,i:'谜',need:()=>gamesOpen()},
+ lire:{t:'Lis ou relis une lecture',n:1,i:'读',need:()=>DATA.lectures.some(l=>lectRatio(l)>=.85)},
+ fiche3:{t:'Ouvre 3 fiches de ton mur',n:3,i:'字',need:()=>knownCount()>=3},
+ hsk5:{t:'Réponds à 5 questions HSK',n:5,i:'考',need:()=>knownCount()>=20}
+};
+function questsToday(){
+  const t=today();
+  if(!S.q||S.q.d!==t){const r=seeded(dayNum()*7+3),pool=Object.keys(QUESTS).filter(k=>k!=='seance'&&(!QUESTS[k].need||QUESTS[k].need())),pick=[];
+    while(pick.length<2&&pool.length)pick.push(pool.splice(Math.floor(r()*pool.length),1)[0]);
+    S.q={d:t,ids:['seance',...pick],c:{},done:{}};save();}
+  return S.q;
+}
+function qBump(k,v){
+  const q=questsToday();if(!q.ids.includes(k)||q.done[k])return;const Q=QUESTS[k];
+  q.c[k]=Q.max?Math.max(q.c[k]||0,v||0):(q.c[k]||0)+(v||1);
+  if(q.c[k]>=Q.n){q.done[k]=1;addXP(20);toast('Quête réussie : '+Q.t.toLowerCase()+' · +20');
+    if(q.ids.every(id=>q.done[id])){addXP(50);S.stamps[q.d]=1;S.qDays=(S.qDays||0)+1;buzz([40,60,140]);setTimeout(()=>toast('Les 3 quêtes du jour ! +50 et un sceau sur ton calendrier.'),2900);}}
+  save();
+}
+function questsHTML(){const q=questsToday();
+  return q.ids.map(k=>{const Q=QUESTS[k],c=Math.min(Q.n,q.c[k]||0),ok=!!q.done[k];
+    return `<div class="quest ${ok?'ok':''}"><span class="qi">${ok?'✓':Q.i}</span><div class="grow"><div class="row between" style="gap:6px"><span class="small"><b>${esc(Q.t)}</b></span><span class="tiny muted">${ok?'+20':c+'/'+Q.n}</span></div><div class="bar"><i style="width:${pct(c/Q.n)}%"></i></div></div></div>`;}).join('');}
+
+/* ============================================================
    EXERCICES
    ============================================================ */
 const known=()=>DATA.chars.filter(x=>isIntro(x.c));
@@ -325,32 +476,57 @@ function qSon(c){const x=BYC[c];const tv=shuffle(toneVariants(x.p)).slice(0,2);c
   const opts=[x.p,...tv,...others].slice(0,4);return{kind:'son',c,opts:shuffle(opts).map(p=>({t:p,ok:p===x.p}))};}
 function qEcoute(c){return{kind:'ecoute',c,opts:shuffle([BYC[c],...distract(c,3)]).map(y=>({c:y.c,ok:y.c===c}))};}
 function qTrou(c){const x=BYC[c];return{kind:'trou',c,opts:shuffle([x,...distract(c,3)]).map(y=>({c:y.c,ok:y.c===c}))};}
+/* un mot entier : le sens en français, trouver le mot en caractères */
+function qMot(c){const x=BYC[c],w=rnd(x.w),len=[...w.h].length;
+  const pool=shuffle(DATA.chars.flatMap(y=>y.w).filter(v=>v.h!==w.h&&v.fr!==w.fr&&[...v.h].length===len&&[...v.h].some(ch=>isIntro(ch))));
+  const ds=[];for(const v of pool){if(ds.length>=3)break;if(!ds.some(d=>d.h===v.h))ds.push(v);}
+  if(ds.length<3)return qSens(c);
+  return{kind:'mot',c,w,opts:shuffle([w,...ds]).map(v=>({h:v.h,p:v.p,ok:v.h===w.h}))};}
+function quickQ(c,k){if(k==='sens')return rnd([qSens,qSens,qTrou,qMot])(c);return Math.random()<.5?qSon(c):qEcoute(c);}
+function recentAcc(){const h=S.hist.slice(-40);return h.length<8?.85:avg(h);}
+
+/* ---------- séance du jour : pensée en minutes, le contenu s'adapte ---------- */
+const DUR={5:{nw:2,rv:7,mem:1},10:{nw:4,rv:12,mem:2},15:{nw:6,rv:18,mem:3}};
+function planSession(kind){
+  const d=DUR[S.dur]||DUR[10],due=dueList(Date.now()).length,acc=recentAcc(),left=DATA.chars.length-knownCount();
+  let nw=0;
+  if(kind==='daily'){nw=d.nw;if(acc<.75)nw--;if(due>25)nw=Math.ceil(nw/2);if(acc>.9&&due<8)nw++;nw=Math.max(1,Math.min(nw,left));}
+  const mem=knownCount()>=4?d.mem:0;
+  return{nw,rv:Math.min(due,kind==='daily'?d.rv:d.rv+6),mem,due,acc};
+}
 function startSession(kind){
-  const now=Date.now(),steps=[];
-  const news=kind==='daily'?DATA.chars.filter(x=>!isIntro(x.c)).slice(0,S.perDay):[];
-  news.forEach(x=>{steps.push({kind:'fiche',c:x.c,sec:'Nouveau caractère'});steps.push({kind:'trace',c:x.c,sec:'Je trace'});});
-  const quiz=[];
-  news.forEach(x=>{quiz.push(qSens(x.c));quiz.push(Math.random()<.5?qSon(x.c):qEcoute(x.c));});
-  const due=dueList(now),used=new Set(news.map(x=>x.c));let nWrite=0;
-  for(const d of due){if(quiz.length>=news.length*2+(kind==='daily'?10:14))break;if(used.has(d.c))continue;
-    if(d.k==='ecrit'){if(nWrite>=(kind==='daily'?3:5)||retention(skState(d.c,'ecrit'),now)===0&&!peek(d.c,'sens'))continue;quiz.push({kind:'ecrire',c:d.c});nWrite++;}
-    else if(d.k==='sens')quiz.push(Math.random()<.5?qSens(d.c):qTrou(d.c));
-    else quiz.push(Math.random()<.5?qSon(d.c):qEcoute(d.c));
-    used.add(d.c);}
-  // les nouveaux : une phrase à trous à la fin pour les voir en contexte
-  news.forEach(x=>quiz.push(qTrou(x.c)));
-  shuffle(quiz.slice(0,quiz.length-news.length)).concat(quiz.slice(quiz.length-news.length)).forEach(q=>steps.push({...q,sec:q.kind==='ecrire'?'J’écris de mémoire':q.kind==='trou'?'Dans une phrase':'Je révise'}));
+  const now=Date.now(),P=planSession(kind),steps=[];
+  const news=DATA.chars.filter(x=>!isIntro(x.c)).slice(0,P.nw).map(x=>x.c);
+  const due=dueList(now).filter(d=>!news.includes(d.c)),used=new Set();
+  const take=(n,f)=>{const out=[];for(const d of due){if(out.length>=n)break;if(used.has(d.c)||(f&&!f(d)))continue;used.add(d.c);out.push(d);}return out;};
+  // 1. échauffement : 3 révisions rapides
+  take(news.length?3:Math.min(4,P.rv),d=>d.k!=='ecrit').forEach(d=>steps.push({...quickQ(d.c,d.k),sec:'Échauffement'}));
+  // 2. les nouveaux : fiche, tracé, puis on vérifie tout de suite
+  news.forEach(c=>{steps.push({kind:'fiche',c,sec:'Nouveau caractère'});steps.push({kind:'trace',c,sec:'Je trace'});});
+  shuffle(news.flatMap(c=>[qSens(c),Math.random()<.5?qSon(c):qEcoute(c)])).forEach(q=>steps.push({...q,sec:'Je vérifie'}));
+  // 3. pratique : le reste des révisions, mélangé
+  const rest=take(Math.max(0,P.rv-3),d=>d.k!=='ecrit');
+  shuffle(rest.map(d=>quickQ(d.c,d.k))).forEach(q=>steps.push({...q,sec:'Pratique'}));
+  // 4. final : écrire de mémoire (les plus fragiles), puis les nouveaux dans une phrase
+  const mem=take(P.mem,d=>d.k==='ecrit');
+  if(mem.length<P.mem){const old=known().filter(x=>!news.includes(x.c)&&!used.has(x.c)&&!(S.chars[x.c].intro>now-DAY/2)).sort((a,b)=>peek(a.c,'ecrit')-peek(b.c,'ecrit'));
+    old.slice(0,P.mem-mem.length).forEach(x=>{used.add(x.c);mem.push({c:x.c});});}
+  mem.forEach(d=>steps.push({kind:'ecrire',c:d.c,sec:'Écris de mémoire'}));
+  news.forEach(c=>steps.push({...qTrou(c),sec:'Dans une phrase'}));
   if(!steps.length){toast('Rien à réviser pour l’instant. Reviens plus tard !');return;}
-  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,news:news.map(x=>x.c),end:false,known0:knownCount(),known0Set:new Set(known().map(x=>x.c))};
+  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,combo:0,news,end:false,t0:now,known0:knownCount(),known0Set:new Set(known().map(x=>x.c)),badges0:earnedBadges()};
   render();
 }
 function answer(i){
   const s=ui.sess,st=s.steps[s.i];if(st.res)return;
-  const ok=!!st.opts[i].ok;st.res={ok,pick:i};s.n++;if(ok)s.ok++;
-  const k=st.kind==='sens'||st.kind==='trou'?'sens':'son';grade(st.c,k,ok);S.hist.push(ok?1:0);if(ok)addXP(10);
-  if(!ok&&!st.re){const q=st.kind==='sens'?qSens(st.c):st.kind==='son'?qSon(st.c):st.kind==='ecoute'?qEcoute(st.c):qTrou(st.c);s.steps.push({...q,sec:'On le revoit',re:true});}
+  const ok=!!st.opts[i].ok;st.res={ok,pick:i};s.n++;
+  const k=st.kind==='sens'||st.kind==='trou'||st.kind==='mot'?'sens':'son';grade(st.c,k,ok);S.hist.push(ok?1:0);
+  if(ok){s.ok++;s.combo++;addXP(10+(s.combo>=3?Math.min(10,2*(s.combo-2)):0));qBump('ok15');qBump('combo8',s.combo);stats().bestCombo=Math.max(stats().bestCombo||0,s.combo);}
+  else{s.combo=0;buzz(60);}
+  if(!ok&&!st.re){const q=st.kind==='sens'?qSens(st.c):st.kind==='son'?qSon(st.c):st.kind==='ecoute'?qEcoute(st.c):st.kind==='mot'?qMot(st.c):qTrou(st.c);s.steps.push({...q,sec:'On le revoit',re:true});}
   save();render();
   if(st.kind==='son'||st.kind==='sens')say(BYC[st.c].a);
+  if(st.kind==='mot')say(st.w.h);
 }
 function next(){
   const s=ui.sess,st=s.steps[s.i];
@@ -359,12 +535,138 @@ function next(){
   s.i++;if(s.i>=s.steps.length)finish();else render();window.scrollTo(0,0);
 }
 function finish(){
-  const s=ui.sess;const msg=markActive();S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();addXP(s.kind==='daily'?40:20);
+  const s=ui.sess;const msg=markActive();S.sessions++;
+  if(s.kind==='daily'){S.lastSessionDay=today();qBump('seance');}
+  addXP(s.kind==='daily'?40:20);S.mins=(S.mins||0)+Math.min(45,Math.max(1,Math.round((Date.now()-s.t0)/60000)));
   const kn=knownCount();s.known1=kn;s.joker=msg;
   s.unlocked=DATA.lectures.filter(l=>lectRatio(l,s.known0Set)<.85&&lectRatio(l)>=.85).map(l=>l.t);
   for(const m of [10,25,50,100,150,200,DATA.chars.length])if(kn>=m&&!S.milestones[m]){S.milestones[m]=today();s.milestone=m;}
-  save();s.end=true;render();
+  s.newBadges=newBadges(s.badges0);save();s.end=true;render();
 }
+
+/* ============================================================
+   DÉFIS : un jeu différent chaque jour, rejouable pour s'entraîner
+   ============================================================ */
+const GAMES=[
+ {id:'mystere',zh:'字谜',py:'zìmí',t:'Le caractère mystère',d:'Il apparaît trait par trait. Trouve-le avec le moins de traits possible.'},
+ {id:'cles',zh:'部首',py:'bùshǒu',t:'La chasse aux clés',d:'Une clé, douze caractères : touche vite tous ceux qui ont cette clé.'},
+ {id:'eclair',zh:'快',py:'kuài',t:'L’éclair',d:'60 secondes pour reconnaître un maximum de caractères. Les séries rapportent plus.'}];
+const gamesOpen=()=>knownCount()>=5;
+const gameOfDay=()=>GAMES[dayNum()%GAMES.length];
+const gRec=id=>S.games[id]||(S.games[id]={best:0,plays:0,day:null});
+function stopTimer(){if(ui.game&&ui.game.timer){clearInterval(ui.game.timer);ui.game.timer=null;}if(ui.exam&&ui.exam.timer){clearInterval(ui.exam.timer);ui.exam.timer=null;}}
+function startGame(id){
+  if(!gamesOpen()){toast('Apprends 5 caractères pour débloquer les défis.');return;}
+  stopTimer();const daily=id===gameOfDay().id&&gRec(id).day!==today();
+  ui.game={id,daily,score:0,xp:0,round:0,end:false,t0:Date.now(),badges0:earnedBadges()};
+  ({mystere:mysRound,cles:huntRound,eclair:flashStart})[id]();render();window.scrollTo(0,0);
+}
+function gameEnd(){
+  const g=ui.game;stopTimer();g.end=true;const r=gRec(g.id);g.best0=r.best;r.best=Math.max(r.best,g.score);r.plays++;
+  if(g.daily){r.day=today();addXP(Math.max(10,Math.round(g.score/2)));qBump('defi');markActive();}else addXP(Math.max(5,Math.round(g.score/5)));
+  S.mins=(S.mins||0)+Math.max(1,Math.round((Date.now()-g.t0)/60000));
+  g.newBadges=newBadges(g.badges0);save();buzz([30,40,90]);render();
+}
+/* 字谜 le caractère mystère : 3 manches */
+function mysPool(){const k=known().filter(x=>x.n_strokes>=4);return k.length>=4?k:known();}
+function mysRound(){const g=ui.game,used=g.used||(g.used=[]);
+  const pool=mysPool().filter(x=>!used.includes(x.c));const x=rnd(pool.length?pool:mysPool());used.push(x.c);
+  g.c=x.c;g.k=1;g.wrong=[];g.found=false;g.opts=shuffle([x,...distract(x.c,3)]).map(y=>y.c);}
+function mysMore(){const g=ui.game;if(g.found||g.k>=BYC[g.c].n_strokes)return;g.k++;render();}
+function mysPick(c){const g=ui.game;if(g.found||g.wrong.includes(c))return;const n=BYC[g.c].n_strokes;
+  if(c===g.c){g.found=true;const pts=Math.max(10,Math.round(100*(1-(g.k-1)/n)));g.pts=pts;g.score+=pts;g.kFound=g.k;
+    stats().mysteryBest=Math.min(stats().mysteryBest||99,g.k);say(BYC[c].a);buzz(40);}
+  else{g.wrong.push(c);buzz(80);if(g.k<n)g.k++;}
+  render();}
+function strokesSVG(c,k,size){const S_=TRAITS[c].strokes,full=k>=S_.length;
+  return `<div class="mizige" style="width:${size}px;height:${size}px">${gridSVG()}<svg class="mys" viewBox="-40 -40 1104 1104" width="${size-8}" height="${size-8}" aria-label="${k} trait${k>1?'s':''} sur ${full?S_.length:'?'}"><g transform="translate(0 900) scale(1 -1)">${S_.slice(0,k).map((d,i)=>`<path d="${d}" fill="var(--ink)" class="${i===k-1?'inkin':''}"/>`).join('')}</g></svg></div>`;}
+/* 部首 la chasse aux clés : 3 manches de 25 secondes */
+function huntRound(){const g=ui.game;stopTimer();
+  const used=g.keys||(g.keys=[]);const ks=shuffle(DATA.cles.filter(k=>k.c.length>=3&&!used.includes(k.k)));
+  const K=ks.find(k=>k.c.some(isIntro))||ks[0];used.push(K.k);
+  const targets=shuffle(K.c.slice()).slice(0,Math.min(4,K.c.length));
+  const others=shuffle(DATA.chars.filter(x=>x.k!==K.k&&!x.comp.includes(K.k)&&x.c!==K.k)).slice(0,12-targets.length).map(x=>x.c);
+  g.K=K;g.grid=shuffle([...targets,...others]);g.targets=targets;g.hit=[];g.bad=[];g.left=25;g.roundEnd=false;
+  g.timer=setInterval(()=>{g.left--;const el=document.getElementById('gtime');if(el){el.textContent=g.left+' s';el.classList.toggle('low',g.left<=5);}if(g.left<=0)huntStop();},1000);}
+function huntTap(c){const g=ui.game;if(g.roundEnd||g.hit.includes(c)||g.bad.includes(c))return;
+  if(g.targets.includes(c)){g.hit.push(c);g.score+=10+Math.max(0,g.left>>1);buzz(25);if(g.hit.length===g.targets.length){g.score+=g.left*2;huntStop();return;}}
+  else{g.bad.push(c);g.score=Math.max(0,g.score-5);buzz(80);}
+  render();}
+function huntStop(){const g=ui.game;if(!g||g.roundEnd)return;stopTimer();g.roundEnd=true;render();}
+/* 快 l'éclair : 60 secondes de questions de sens */
+function flashStart(){const g=ui.game;g.left=60;g.okN=0;g.combo=0;g.prev=null;flashQ();
+  g.timer=setInterval(()=>{g.left--;const el=document.getElementById('gtime');if(el){el.textContent=g.left+' s';el.classList.toggle('low',g.left<=10);}if(g.left<=0){stats().flashBest=Math.max(stats().flashBest||0,g.okN);gameEnd();}},1000);}
+function flashQ(){const g=ui.game;let x;do{x=rnd(known());}while(known().length>1&&x.c===g.prev);g.prev=x.c;g.q=qSens(x.c);g.pick=null;}
+function flashPick(i){const g=ui.game;if(g.pick!=null||g.end)return;g.pick=i;const ok=g.q.opts[i].ok;
+  if(ok){g.okN++;g.combo++;g.score+=10*(1+Math.floor(g.combo/3));grade(g.q.c,'sens',true);qBump('combo8',g.combo);buzz(20);}
+  else{g.combo=0;grade(g.q.c,'sens',false);buzz(80);}
+  S.hist.push(ok?1:0);render();setTimeout(()=>{if(ui.game===g&&!g.end){flashQ();render();}},ok?280:900);}
+
+/* ============================================================
+   EXAMEN BLANC HSK 1 · LECTURE (4 parties, comme le vrai examen)
+   ============================================================ */
+const PARTS=[
+ {t:'Vrai ou faux',d:'Le mot veut-il bien dire ça ?'},
+ {t:'Comprendre une phrase',d:'Lis la phrase et trouve son sens.'},
+ {t:'Question et réponse',d:'Trouve la bonne réponse à la question.'},
+ {t:'Compléter la phrase',d:'Quel mot manque ?'}];
+const isH=h=>[...h].every(ch=>!HAN.test(ch)||(BYC[ch]&&BYC[ch].h));
+function allWords(){const seen={},out=[];DATA.chars.forEach(x=>x.w.forEach(w=>{if(!seen[w.h]){seen[w.h]=1;out.push(w);}}));return out;}
+function examQ(part){
+  const W=allWords(),Wh=W.filter(w=>isH(w.h)&&[...w.h].length>=2);
+  if(part===0){const w=rnd(Wh),truth=Math.random()<.5,other=rnd(Wh.filter(v=>v.fr!==w.fr&&v.h!==w.h));
+    return{part,w,fr:truth?w.fr:other.fr,opts:[{t:'Vrai',ok:truth},{t:'Faux',ok:!truth}]};}
+  if(part===1){const pool=[...DATA.chars.filter(x=>x.h).map(x=>x.ex),...DATA.lectures.flatMap(l=>l.s)].filter(s=>isH(s.h));
+    const s=rnd(pool),ds=shuffle(pool.filter(o=>o.fr!==s.fr)).slice(0,2);
+    return{part,s,opts:shuffle([s,...ds]).map(o=>({t:o.fr,ok:o===s}))};}
+  if(part===2){const x=rnd(DATA.qr),ds=shuffle(DATA.qr.filter(o=>o!==x)).slice(0,2);
+    return{part,s:x.q,opts:shuffle([x,...ds]).map(o=>({h:o.r.h,p:o.r.p,fr:o.r.fr,ok:o===x}))};}
+  const cand=DATA.chars.filter(x=>x.h).flatMap(x=>x.w.filter(w=>[...w.h].length>=2&&x.ex.h.includes(w.h)).map(w=>({x,w})));
+  const {x,w}=rnd(cand),ds=shuffle(Wh.filter(v=>v.h!==w.h&&[...v.h].length===[...w.h].length&&!x.ex.h.includes(v.h))).slice(0,3);
+  return{part,s:x.ex,w,opts:shuffle([w,...ds]).map(v=>({h:v.h,p:v.p,ok:v.h===w.h}))};
+}
+function examOpen(){ui.exam={stage:'intro',mode:'exam',py:false};render();window.scrollTo(0,0);}
+function examBegin(mode,part){
+  stopTimer();const qs=[];
+  if(mode==='exam')for(let p=0;p<4;p++){const seen=new Set();for(let i=0,tries=0;i<5&&tries<50;tries++){const q=examQ(p),key=JSON.stringify(q.w||q.s);if(seen.has(key))continue;seen.add(key);qs.push(q);i++;}}
+  else for(let i=0;i<5;i++)qs.push(examQ(part));
+  const py=ui.exam?ui.exam.py:false;
+  ui.exam={stage:'q',mode,part,py,qs,i:0,ans:[],t0:Date.now(),left:17*60,xp:0,badges0:earnedBadges()};
+  if(mode==='exam')ui.exam.timer=setInterval(()=>{const e=ui.exam;if(!e||e.stage!=='q')return;e.left--;const el=document.getElementById('gtime');
+    if(el){el.textContent=Math.floor(e.left/60)+':'+pad(e.left%60);el.classList.toggle('low',e.left<=60);}if(e.left<=0)examFinish();},1000);
+  render();window.scrollTo(0,0);
+}
+function examAnswer(i){const e=ui.exam;if(e.ans[e.i]!=null)return;e.ans[e.i]=i;qBump('hsk5');
+  const q=e.qs[e.i],ok=!!q.opts[i].ok;S.hist.push(ok?1:0);
+  if(e.mode==='exam'){save();setTimeout(()=>{if(ui.exam===e){e.i++;if(e.i>=e.qs.length)examFinish();else render();window.scrollTo(0,0);}},220);render();}
+  else{if(ok)addXP(5);save();render();}
+}
+function examNext(){const e=ui.exam;e.i++;if(e.i>=e.qs.length)examFinish();else render();window.scrollTo(0,0);}
+function examFinish(){const e=ui.exam;stopTimer();e.stage='res';
+  const parts=[0,1,2,3].map(p=>{const ix=e.qs.map((q,i)=>i).filter(i=>e.qs[i].part===p);return{n:ix.length,ok:ix.filter(i=>e.ans[i]!=null&&e.qs[i].opts[e.ans[i]].ok).length};});
+  const ok=parts.reduce((a,p)=>a+p.ok,0);e.score=Math.round(ok/e.qs.length*100);e.parts=parts;
+  if(e.mode==='exam'){S.exams.push({d:today(),score:e.score,parts:parts.map(p=>p.ok),py:e.py});addXP(30+ok*2);markActive();}
+  S.mins=(S.mins||0)+Math.max(1,Math.round((Date.now()-e.t0)/60000));
+  e.newBadges=newBadges(e.badges0);save();render();window.scrollTo(0,0);}
+function hskStats(){const H=DATA.chars.filter(x=>x.h),k=H.filter(x=>isIntro(x.c)).length,a=H.filter(x=>level(x.c)===3).length;
+  return{n:H.length,k,a,ready:.5*k/H.length+.5*a/H.length,last:S.exams[S.exams.length-1]};}
+
+/* ============================================================
+   MÉDAILLES
+   ============================================================ */
+const BADGES=[
+ ['一','Premier caractère',()=>knownCount()>=1],['十','10 caractères',()=>knownCount()>=10],
+ ['半','La moitié du mur',()=>knownCount()>=DATA.chars.length/2],['满','Tout le mur',()=>knownCount()>=DATA.chars.length],
+ ['笔','10 tracés parfaits',()=>(stats().perfect||0)>=10],['写','20 caractères écrits de mémoire',()=>(stats().mem||0)>=20],
+ ['火','7 jours de suite',()=>S.best>=7],['月','30 jours de suite',()=>S.best>=30],
+ ['读','Première lecture',()=>Object.keys(S.read).length>=1],['书','Toutes les lectures',()=>Object.keys(S.read).length>=DATA.lectures.length],
+ ['谜','Un mystère en 2 traits',()=>(stats().mysteryBest||99)<=2],['快','Éclair : 20 bonnes réponses',()=>(stats().flashBest||0)>=20],
+ ['部','Une clé complète (5 caractères ou plus)',()=>DATA.cles.some(k=>k.c.length>=5&&k.c.every(isIntro))],['连','Série de 15 bonnes réponses',()=>(stats().bestCombo||0)>=15],
+ ['考','Examen blanc réussi',()=>S.exams.some(e=>e.score>=60)],['冠','100 sur 100 à l’examen',()=>S.exams.some(e=>e.score>=100)],
+ ['印','7 sceaux du jour',()=>(S.qDays||0)>=7]];
+function earnedBadges(){return BADGES.filter(b=>{try{return b[2]();}catch(_){return false;}}).map(b=>b[0]);}
+function newBadges(before){const now=earnedBadges(),nw=now.filter(b=>!before.includes(b));nw.forEach(b=>{if(!S.badges[b])S.badges[b]=today();});return nw;}
+function badgesHTML(list){return list&&list.length?`<div class="card stack sm" style="border:2px solid var(--gold)"><span class="label" style="color:var(--gold)">Nouvelle médaille</span>${list.map(b=>{const B=BADGES.find(x=>x[0]===b);return `<div class="row"><span class="badge on"><span class="bz pop">${b}</span></span><b>${esc(B[1])}</b></div>`;}).join('')}</div>`:'';}
 
 /* ============================================================
    LECTURES
@@ -377,11 +679,14 @@ function lectRatio(l,set){const need=[...l.need];if(!need.length)return 1;return
 function render(){
   if(!DATA){return;}
   if(ui.sess)return renderSession();
-  const T={home:renderHome,mur:renderMur,cles:renderCles,lire:renderLire}[ui.tab]||renderHome;
+  if(ui.game){app.innerHTML=renderGame();return;}
+  if(ui.exam&&ui.exam.stage!=='intro'){app.innerHTML=renderExam();return;}
+  const T={home:renderHome,mur:renderMur,lire:renderLire,hsk:renderHSK,prog:renderProg}[ui.tab]||renderHome;
   app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
+  if(ui.levelUp!=null&&sheetEl.hidden)showLevelUp();
 }
 function tabbar(){
-  const t=[['home','今天','Aujourd’hui'],['mur','字','Mon mur'],['cles','部首','Les clés'],['lire','读','Lire']];
+  const t=[['home','今天','Aujourd’hui'],['mur','字','Mon mur'],['lire','读','Lire'],['hsk','考','HSK'],['prog','我','Progrès']];
   return `<nav class="tabbar" aria-label="Navigation"><div class="tabbar-in">${t.map(([k,z,f])=>`<button class="tab ${ui.tab===k?'on':''}" data-act="tab" data-k="${k}" ${ui.tab===k?'aria-current="page"':''}><span class="zh">${z}</span>${f}</button>`).join('')}</div></nav>`;
 }
 function charSpan(c,hl){return HAN.test(c)?`<span class="${c===hl?'hl':''}">${esc(c)}</span>`:esc(c);}
@@ -389,18 +694,29 @@ function hlSent(h,c){return [...h].map(ch=>charSpan(ch,c)).join('');}
 
 function renderHome(){
   refreshJokers();
-  const kn=knownCount(),N=DATA.chars.length,due=dueList(Date.now()).length,done=S.lastSessionDay===today();
+  const kn=knownCount(),N=DATA.chars.length,done=S.lastSessionDay===today(),P=planSession(done?'review':'daily');
   const nextL=DATA.lectures.find(l=>lectRatio(l)<.85);const newL=DATA.lectures.filter(l=>lectRatio(l)>=.85&&!S.read[l.t]);
-  const recent=DATA.chars.filter(x=>isIntro(x.c)).sort((a,b)=>S.chars[b.c].intro-S.chars[a.c].intro).slice(0,12);
-  const left=N-kn,nNew=Math.min(S.perDay,left);
+  const G=gameOfDay(),gr=gRec(G.id),played=gr.day===today();
   let bubu=null;try{const b=JSON.parse(localStorage.getItem('bubugao.v1'));if(b&&b.items)bubu=Object.keys(b.items).length;}catch(_){}
+  const durs=`<div class="durs" role="group" aria-label="Durée de la séance">${[5,10,15].map(m=>`<button class="dur ${S.dur===m?'on':''}" data-act="dur" data-v="${m}" aria-pressed="${S.dur===m}">${m} min</button>`).join('')}</div>`;
   return `
   <div class="hello"><div class="stack sm"><span class="zh muted">字字珠玑 · zìzì zhūjī</span><h1>${S.name?esc(S.name)+', un':'Un'} caractère après l’autre</h1></div>
    <div class="stack sm" style="align-items:flex-end"><span class="flame" title="Jours de suite">${ICON.flame}${streakAlive()}</span><button class="playmini" data-act="settings" aria-label="Réglages">${ICON.gear}</button></div></div>
-  ${done?`<button class="cta done" data-act="review"><span class="label">Séance du jour faite ${ICON.check}</span><h2>Révision libre</h2><div class="bits"><span class="bit">${due} à revoir</span><span class="bit">écrire de mémoire</span></div></button>`
-   :`<button class="cta" data-act="daily"><span class="label" style="color:inherit;opacity:.85">Séance du jour · ≈ 10 min</span><h2>${kn?'Continuer mon mur':'Mes premiers caractères'}</h2>
-     <div class="bits">${nNew?`<span class="bit">${nNew} nouveaux</span>`:''}<span class="bit">${Math.min(due,10)} révisions</span><span class="bit">tracé au doigt</span></div></button>`}
+  <button class="card" data-act="tab" data-k="prog" style="text-align:left;cursor:pointer;width:100%">${rankBlock()}</button>
+  ${!S.sessions?`<div class="welcome"><b>Bienvenue dans Zìzì 字字 !</b><ol><li>Choisis le temps que tu as : 5, 10 ou 15 minutes.</li><li>Chaque jour, de nouveaux caractères : tu regardes, tu traces au doigt, tu révises.</li><li>Un défi et 3 quêtes chaque jour pour gagner des points et monter de niveau.</li></ol></div>`:''}
+  ${done?`<div class="cta done"><span class="label">Séance du jour faite ${ICON.check}</span><h2>On continue ?</h2><div class="bits"><span class="bit">${P.due} à revoir</span><span class="bit">écrire de mémoire</span></div>${durs}<button class="btn primary" data-act="review">Révision libre · ≈ ${S.dur} min</button></div>`
+   :`<div class="cta"><span class="label" style="color:inherit;opacity:.85">Séance du jour</span><h2>${kn?'Continuer mon mur':'Mes premiers caractères'}</h2>
+     <div class="bits"><span class="bit">${P.nw} nouveau${P.nw>1?'x':''}</span>${P.rv?`<span class="bit">${P.rv} révision${P.rv>1?'s':''}</span>`:''}${P.mem?`<span class="bit">${P.mem} de mémoire</span>`:''}<span class="bit">tracé au doigt</span></div>
+     ${durs}<button class="btn go" data-act="daily">Commencer · ≈ ${S.dur} min</button></div>`}
   ${deferredInstall?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Zìzì</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`:''}
+  <section class="defi" aria-label="Défi du jour"><span class="zhbig" aria-hidden="true">${G.zh}</span>
+   <span class="label">Défi du jour · <span class="zh">${G.zh}</span> <span style="text-transform:none">${G.py}</span></span><h2 style="color:inherit">${esc(G.t)}</h2><p class="small muted">${esc(G.d)}</p>
+   ${!gamesOpen()?`<p class="small"><b>Termine ta première séance</b> pour débloquer les défis.</p>`
+    :played?`<p class="small">Fait aujourd’hui ✓ · ton record : <b>${gr.best}</b> points. Demain, un autre défi !</p><div class="row"><button class="btn ghost sm" data-act="game" data-id="${G.id}">Rejouer pour m’entraîner</button></div>`
+    :`<div class="row"><button class="btn" data-act="game" data-id="${G.id}">Relever le défi</button>${gr.best?`<span class="small muted">Record : ${gr.best}</span>`:''}</div>`}
+   ${gamesOpen()?`<div class="minis">${GAMES.filter(g=>g.id!==G.id).map(g=>`<button class="mini" data-act="game" data-id="${g.id}"><span class="zh">${g.zh}</span>${esc(g.t)}</button>`).join('')}</div>`:''}
+  </section>
+  <section class="card stack sm" aria-label="Quêtes du jour"><div class="row between"><span class="label">Quêtes du jour</span><span class="tiny muted">les 3 = +50 et un sceau</span></div>${questsHTML()}</section>
   ${newL.length?`<button class="lect" data-act="read" data-t="${esc(newL[0].t)}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Nouvelle lecture débloquée</b><br><span class="small muted">${esc(newL[0].t)} : tu peux la lire presque seule !</span></span></button>`:''}
   <section class="card stack">
     <div class="row between"><div class="stack sm"><span class="label">Caractères appris</span><div class="big-num">${kn}<small> / ${N}</small></div></div>
@@ -408,14 +724,15 @@ function renderHome(){
     <div class="bar"><i style="width:${pct(kn/N)}%"></i></div>
     ${nextL?`<p class="small">Prochaine lecture : <b>${esc(nextL.t)}</b>, il te manque ${[...nextL.need].filter(c=>!isIntro(c)).length} caractère${[...nextL.need].filter(c=>!isIntro(c)).length>1?'s':''}.</p>`:''}
   </section>
-  ${recent.length?`<section class="stack sm"><span class="label">Derniers appris</span><div class="strip">${recent.map(x=>`<button class="zh cell m${level(x.c)}" style="min-width:48px" data-act="fiche" data-c="${x.c}">${x.c}</button>`).join('')}</div></section>`:''}
   ${bubu!=null?`<a class="lect" href="../" style="text-decoration:none;color:inherit"><span class="zh" style="font-size:28px;color:var(--good)">步</span><span class="grow"><b>Bùbùgāo</b><br><span class="small muted">Ton appli de vocabulaire et de conversation.</span></span></a>`:''}`;
 }
 function renderMur(){
+  const seg=`<div class="seg" role="tablist"><button class="${ui.murMode==='chars'?'on':''}" data-act="mur" data-m="chars" role="tab" aria-selected="${ui.murMode==='chars'}">Caractères</button><button class="${ui.murMode==='cles'?'on':''}" data-act="mur" data-m="cles" role="tab" aria-selected="${ui.murMode==='cles'}">Les clés 部首</button></div>`;
+  if(ui.murMode==='cles')return seg+renderCles();
   const q=ui.wallQ.trim().toLowerCase(),nextC=DATA.chars.find(x=>!isIntro(x.c));
   const list=DATA.chars.filter(x=>!q||x.c===q||x.m.toLowerCase().includes(q)||x.p.normalize('NFD').replace(/[̀-ͯ]/g,'').includes(q.normalize('NFD').replace(/[̀-ͯ]/g,''))||x.p.includes(q));
   const counts=[0,1,2,3].map(l=>DATA.chars.filter(x=>level(x.c)===l).length);
-  return `<div class="stack sm"><span class="label">Mon mur</span><h1>${knownCount()} caractères sur ${DATA.chars.length}</h1><p class="small muted">Chaque case se colore à mesure que le caractère s’ancre. Touche une case pour ouvrir sa fiche.</p></div>
+  return `${seg}<div class="stack sm"><span class="label">Mon mur</span><h1>${knownCount()} caractères sur ${DATA.chars.length}</h1><p class="small muted">Chaque case se colore à mesure que le caractère s’ancre. Touche une case pour ouvrir sa fiche.</p></div>
   <input id="wq" type="text" placeholder="Chercher : sens, pinyin ou caractère" value="${esc(ui.wallQ)}" aria-label="Chercher un caractère">
   <div class="legend"><span><i style="background:var(--m0)"></i>à venir ${counts[0]}</span><span><i style="background:var(--m1)"></i>découvert ${counts[1]}</span><span><i style="background:var(--m2)"></i>en cours ${counts[2]}</span><span><i style="background:var(--m3)"></i>ancré ${counts[3]}</span></div>
   <div class="wall">${list.map(x=>`<button class="cell m${level(x.c)} ${nextC&&x.c===nextC.c?'next':''}" data-act="fiche" data-c="${x.c}" aria-label="${esc(x.c+' '+x.p+' : '+x.m)}">${x.c}</button>`).join('')||'<p class="small muted">Aucun caractère trouvé.</p>'}</div>`;
@@ -423,15 +740,15 @@ function renderMur(){
 function renderCles(){
   const ks=DATA.cles.filter(k=>k.c.length>=2);
   const open=ui.openKey&&DATA.cles.find(k=>k.k===ui.openKey);
-  return `<div class="stack sm"><span class="label">Les clés · 部首 bùshǒu</span><h1>Les briques des caractères</h1><p class="small muted">La plupart des caractères ont une clé qui donne un indice sur le sens : 氵 l’eau, 口 la bouche, 亻 la personne… Reconnaître la clé, c’est déjà deviner la moitié du caractère.</p></div>
+  return `<div class="stack sm"><span class="label">Les clés · 部首 <span style="text-transform:none">bùshǒu</span></span><h1>Les briques des caractères</h1><p class="small muted">La plupart des caractères ont une clé qui donne un indice sur le sens : 氵 l’eau, 口 la bouche, 亻 la personne… Reconnaître la clé, c’est déjà deviner la moitié du caractère.</p></div>
   ${open?`<section class="card stack"><div class="row between"><div class="row"><span class="zh" style="font-size:44px;color:var(--bad)">${esc(open.k)}</span><div><b>${esc(open.m)}</b><br><span class="small muted">${open.c.length} caractères avec cette clé</span></div></div><button class="playmini" data-act="closekey" aria-label="Fermer">${ICON.x}</button></div>
     <div class="wall">${open.c.map(c=>`<button class="cell m${level(c)}" data-act="fiche" data-c="${c}" aria-label="${esc(c+' : '+BYC[c].m)}">${c}</button>`).join('')}</div>
     <div class="stack sm">${open.c.map(c=>`<p class="small"><span class="zh" style="font-size:18px">${c}</span> <span class="${'t'+BYC[c].t}">${esc(BYC[c].p)}</span> · ${esc(BYC[c].m)}</p>`).join('')}</div></section>`:''}
-  <div class="keys">${ks.map(k=>{const kn=k.c.filter(isIntro).length;return `<button class="keycard" data-act="key" data-k="${esc(k.k)}"><span class="k">${esc(k.k)}</span><span class="grow"><b class="small">${esc(k.m)}</b><br><span class="tiny muted">${kn}/${k.c.length} appris · ${k.c.slice(0,5).join(' ')}</span></span></button>`;}).join('')}</div>`;
+  <div class="keys">${ks.map(k=>{const kn=k.c.filter(isIntro).length;return `<button class="keycard" data-act="key" data-k="${esc(k.k)}"><span class="k">${esc(k.k)}</span><span class="grow"><b class="small">${esc(k.m)}</b><br><span class="tiny muted">${kn}/${k.c.length} appris · ${k.c.slice(0,5).join(' ')}</span></span>${kn===k.c.length?'<span class="tiny" style="color:var(--good)">✓</span>':''}</button>`;}).join('')}</div>`;
 }
 function renderLire(){
   if(ui.reader)return readerHTML();
-  return `<div class="stack sm"><span class="label">Lire · 读 dú</span><h1>Mes petites lectures</h1><p class="small muted">Une lecture s’ouvre quand tu connais presque tous ses caractères. Les autres sont soulignés en pointillés : touche-les pour voir leur fiche.</p></div>
+  return `<div class="stack sm"><span class="label">Lire · 读 <span style="text-transform:none">dú</span></span><h1>Mes petites lectures</h1><p class="small muted">Une lecture s’ouvre quand tu connais presque tous ses caractères. Les autres sont soulignés en pointillés : touche-les pour voir leur fiche.</p></div>
   <div class="stack">${DATA.lectures.map(l=>{const r=lectRatio(l),open=r>=.85,miss=[...l.need].filter(c=>!isIntro(c));
     return `<button class="lect ${open?'':'locked'}" data-act="${open?'read':'locked'}" data-t="${esc(l.t)}"><span class="zh" style="font-size:28px">${open?'读':''}</span>${open?'':`<span style="color:var(--muted)">${ICON.lock}</span>`}<span class="grow"><b>${esc(l.t)}</b><br><span class="small muted">${open?(S.read[l.t]?'Lu ✓ · ':'')+l.s.length+' phrases':`Il te manque ${miss.length} caractère${miss.length>1?'s':''} : ${miss.slice(0,6).join(' ')}`}</span></span><span class="small muted" style="font-variant-numeric:tabular-nums">${pct(r)} %</span></button>`;}).join('')}</div>`;
 }
@@ -442,7 +759,119 @@ function readerHTML(){
   <section class="card" style="padding-block:4px">${l.s.map((s,i)=>`<div class="reader-s"><div class="line">${[...s.h].map(ch=>HAN.test(ch)?`<span class="ch ${BYC[ch]&&isIntro(ch)?'':'new'}" data-act="fiche" data-c="${ch}">${ch}</span>`:`<span>${esc(ch)}</span>`).join('')}</div>
     ${ui.showPy[i]?`<div class="small"><b>${pyHTML(s.p)}</b></div>`:''}${ui.showFr[i]?`<div class="small muted">${esc(s.fr)}</div>`:''}
     <div class="row"><button class="playmini" data-act="say" data-t="${esc(s.h)}" aria-label="Écouter">${ICON.play}</button><button class="linkbtn" data-act="tpy" data-i="${i}">${ui.showPy[i]?'cacher le pinyin':'pinyin'}</button><button class="linkbtn" data-act="tfr" data-i="${i}">${ui.showFr[i]?'cacher le français':'français'}</button></div></div>`).join('')}</section>
-  ${S.read[l.t]?`<div class="notice">Déjà lue ✓ Relis-la à voix haute, sans pinyin : c’est le meilleur entraînement.</div>`:`<button class="btn primary block" data-act="readdone">J’ai lu ce texte</button>`}`;
+  ${S.read[l.t]?`<div class="notice">Déjà lue ✓ Relis-la à voix haute, sans pinyin : c’est le meilleur entraînement.</div>${S.reread===today()+l.t?'':`<button class="btn block" data-act="reread">Je l’ai relue à voix haute</button>`}`:`<button class="btn primary block" data-act="readdone">J’ai lu ce texte</button>`}`;
+}
+
+/* ---------- onglet HSK ---------- */
+function renderHSK(){
+  const H=hskStats(),e=ui.exam;
+  return `<div class="stack sm"><span class="label">Préparer le HSK · 考试 <span style="text-transform:none">kǎoshì</span></span><h1>Prête pour le HSK 1 ?</h1><p class="small muted">Le HSK est l’examen officiel de chinois. Le niveau 1 demande 150 mots, écrits avec ${H.n} caractères : ils sont tous dans Zìzì.</p></div>
+  <section class="card stack"><div class="row between"><span class="label">Ta préparation</span><b style="font:800 26px var(--f-display);color:var(--accent)">${pct(H.ready)} %</b></div>
+   <div class="gauge"><span class="small">Caractères vus</span><div class="bar"><i style="width:${pct(H.k/H.n)}%"></i></div><span class="small">Bien ancrés</span><div class="bar"><i style="width:${pct(H.a/H.n)}%;background:var(--good)"></i></div></div>
+   <p class="small">${H.k} sur ${H.n} vus · ${H.a} ancrés.${H.last?` Dernier examen blanc : <b>${H.last.score}/100</b>.`:''}</p>
+   <p class="small muted">${H.ready<.35?'Continue tes séances : l’examen blanc deviendra vraiment utile vers 100 caractères.':H.ready<.75?'Tu avances bien. Fais un examen blanc par semaine pour voir où tu en es.':'Tu es presque prête. Vise 80/100 deux fois de suite à l’examen blanc, puis inscris-toi !'}</p></section>
+  ${e&&e.stage==='intro'?`<section class="card stack" style="border:2px solid var(--accent)"><h2>Examen blanc · lecture</h2>
+    <p class="small">20 questions en 4 parties, 17 minutes, comme la partie lecture du vrai HSK 1. Pas de correction pendant l’examen : tu vois tout à la fin.</p>
+    <div class="stack sm"><span class="label">Pinyin</span><div class="row"><button class="chip ${e.py?'on':''}" data-act="expy" data-v="1">Avec (comme le vrai HSK 1)</button><button class="chip ${e.py?'':'on'}" data-act="expy" data-v="0">Sans (plus dur)</button></div></div>
+    <div class="row"><button class="btn primary" data-act="exgo">Commencer · 17 min</button><button class="btn ghost" data-act="excancel">Plus tard</button></div></section>`
+   :`<button class="cta" data-act="exam"><span class="label" style="color:inherit;opacity:.85">Examen blanc · lecture HSK 1</span><h2>20 questions · 17 minutes</h2><div class="bits"><span class="bit">note sur 100</span><span class="bit">réussi à 60</span>${S.exams.length?`<span class="bit">record ${Math.max(...S.exams.map(x=>x.score))}</span>`:''}</div></button>`}
+  <section class="stack sm"><span class="label">S’entraîner partie par partie · 5 questions</span>
+   <div class="stack">${PARTS.map((p,i)=>`<button class="lect" data-act="extrain" data-p="${i}"><span class="zh" style="font-size:22px;color:var(--accent);min-width:28px">${['一','二','三','四'][i]}</span><span class="grow"><b>${esc(p.t)}</b><br><span class="small muted">${esc(p.d)}</span></span></button>`).join('')}</div></section>
+  ${S.exams.length?`<section class="card stack sm"><span class="label">Tes examens blancs</span><div class="bars">${S.exams.slice(-10).map(x=>`<div><b style="font-size:11px;color:var(--ink)">${x.score}</b><i class="${x.score>=60?'pass':''}" style="height:${Math.max(3,x.score)}%"></i>${x.d.slice(8)}/${x.d.slice(5,7)}</div>`).join('')}</div><p class="tiny muted">En vert : réussi (60 ou plus).</p></section>`:''}
+  <section class="card stack sm"><span class="label">Le HSK 1, comment ça se passe ?</span>
+   <p class="small"><b>40 questions</b> : 20 d’écoute (environ 15 minutes) et 20 de lecture (17 minutes). Note sur 200 : il faut <b>120</b> pour réussir.</p>
+   <p class="small">Dans le vrai HSK 1, le pinyin est écrit au-dessus des caractères. Entraîne-toi aussi sans : le jour J, tu liras plus vite.</p>
+   <p class="small">L’écoute se travaille dans <a href="../" style="color:var(--accent);font-weight:800">Bùbùgāo</a> : son examen blanc a les deux parties.</p>
+   <p class="small">Pour t’inscrire : renseigne-toi auprès de l’Institut Confucius de l’Université de Lomé, ou sur <a href="https://www.chinesetest.cn" target="_blank" rel="noopener" style="color:var(--accent);font-weight:800">chinesetest.cn</a>.</p>
+   <p class="small muted">Après le HSK 1 vient le HSK 2 (300 mots). Un diplôme HSK sur ton CV, c’est un vrai plus pour une promotion.</p></section>`;
+}
+function examQHTML(q,py,res){
+  const pyl=(o)=>py&&o.p?`<span class="py">${pyHTML(o.p)}</span>`:'';
+  const cls=(i,o)=>res==null?'':o.ok?'ok':res===i?'bad':'dim';
+  if(q.part===0)return `<div class="card flat stack sm" style="align-items:center"><div class="exq">${esc(q.w.h)}${pyl(q.w)}</div><p class="sens" style="text-align:center">« ${esc(q.fr)} »</p></div>
+    <div class="opts two">${q.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="exans" data-i="${i}" ${res!=null?'disabled':''}>${o.t==='Vrai'?'✓ Vrai':'✗ Faux'}</button>`).join('')}</div>`;
+  if(q.part===1)return `<div class="card flat"><div class="exq">${esc(q.s.h)}${pyl(q.s)}</div></div><div class="opts">${q.opts.map((o,i)=>`<button class="opt left ${cls(i,o)}" data-act="exans" data-i="${i}" ${res!=null?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>`;
+  if(q.part===2)return `<div class="card flat"><div class="exq">${esc(q.s.h)}${pyl(q.s)}</div></div><div class="opts">${q.opts.map((o,i)=>`<button class="opt left ${cls(i,o)}" data-act="exans" data-i="${i}" ${res!=null?'disabled':''}><span class="zh" style="font-size:22px">${esc(o.h)}</span>${py?`<span class="small muted">${pyHTML(o.p)}</span>`:''}</button>`).join('')}</div>`;
+  const gap=esc(q.s.h).replace(esc(q.w.h),res!=null?`<span class="hl">${esc(q.w.h)}</span>`:'<span class="hl">＿＿</span>');
+  return `<div class="card flat stack sm"><div class="exq">${gap}</div><p class="small muted" style="text-align:center">${esc(q.s.fr)}</p></div><div class="opts two">${q.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="exans" data-i="${i}" ${res!=null?'disabled':''}><span class="zh">${esc(o.h)}</span>${py?`<span class="small muted">${pyHTML(o.p)}</span>`:''}</button>`).join('')}</div>`;
+}
+function examSolution(q){const s=q.part===0?q.w:q.part===3?q.s:q.s;
+  const right=q.opts.find(o=>o.ok);
+  return `<div class="row" style="flex-wrap:nowrap;align-items:flex-start"><button class="playmini" data-act="say" data-t="${esc(s.h)}" aria-label="Écouter">${ICON.play}</button><div class="grow small"><span class="zh" style="font-size:20px">${esc(s.h)}</span><br><b>${pyHTML(s.p)}</b> · <span class="muted">${esc(s.fr)}</span>
+   ${q.part===0?`<br>${right.t==='Vrai'?'C’était vrai.':'C’était faux : « '+esc(q.fr)+' » n’est pas le bon sens.'}`:q.part===2?`<br>Bonne réponse : <span class="zh">${esc(right.h)}</span> · ${esc(right.fr)}`:q.part===3?`<br>Le mot qui manquait : <span class="zh">${esc(q.w.h)}</span> · ${esc(q.w.fr)}`:''}</div></div>`;}
+function renderExam(){
+  const e=ui.exam;
+  if(e.stage==='res'){
+    const ok=e.score>=60,wrong=e.qs.map((q,i)=>({q,i})).filter(({q,i})=>e.ans[i]==null||!q.opts[e.ans[i]].ok);
+    return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh" style="font-size:44px;color:${ok?'var(--good)':'var(--accent)'}">${e.mode==='exam'?(ok?'通过了！':'加油！'):'练习'}</span>
+     <h1>${e.mode==='exam'?(ok?'Examen réussi !':'Pas encore, mais tu avances'):'Entraînement terminé'}</h1><div class="big-num">${e.score}<small> / 100</small></div>
+     <p class="muted small">${e.mode==='exam'?(ok?'Au vrai HSK 1, cette partie lecture serait réussie.':'Il faut 60. Refais-le dans quelques jours, après tes séances.'):esc(PARTS[e.part].t)}</p></div>
+     ${newTitleHTML()}${badgesHTML(e.newBadges)}
+     ${e.mode==='exam'?`<section class="card stack sm"><span class="label">Partie par partie</span>${e.parts.map((p,i)=>`<div class="result-part"><span>${esc(PARTS[i].t)}</span><div class="bar"><i style="width:${pct(p.ok/p.n)}%;${p.ok/p.n>=.6?'background:var(--good)':''}"></i></div><b style="text-align:right">${p.ok}/${p.n}</b></div>`).join('')}
+      ${(()=>{const w=e.parts.map((p,i)=>({i,r:p.ok/p.n})).sort((a,b)=>a.r-b.r)[0];return w.r<1?`<p class="small">À travailler : <b>${esc(PARTS[w.i].t.toLowerCase())}</b>. <button class="linkbtn" data-act="extrain" data-p="${w.i}">M’entraîner</button></p>`:'';})()}</section>`:''}
+     ${wrong.length?`<section class="card stack"><span class="label">Correction · ${wrong.length} erreur${wrong.length>1?'s':''}</span>${wrong.map(({q})=>examSolution(q)).join('<hr style="border:0;border-top:1px solid var(--line);margin:0">')}</section>`:'<div class="notice">Aucune erreur. Impressionnant !</div>'}
+     <div class="stack sm"><button class="btn primary block" data-act="exhome">Retour</button></div></main>`;}
+  const q=e.qs[e.i],res=e.ans[e.i],train=e.mode!=='exam';
+  return `<div class="topbar"><button class="xbtn" data-act="exquit" aria-label="Quitter">${ICON.x}</button><div class="prog"><i style="width:${e.i/e.qs.length*100}%"></i></div>${train?`<span class="small muted">${e.i+1}/${e.qs.length}</span>`:`<span class="timer" id="gtime">${Math.floor(e.left/60)}:${pad(e.left%60)}</span>`}</div>
+   <main class="lesson"><span class="part">Partie ${q.part+1} · ${esc(PARTS[q.part].t)}${train?'':' · question '+(e.i+1)+'/20'}</span><p class="q-title">${esc(PARTS[q.part].d)}</p>
+   ${examQHTML(q,e.py,train?res:null)}
+   ${train&&res!=null?`<div class="feedback ${q.opts[res].ok?'ok':'bad'}" role="status"><span class="verdict">${q.opts[res].ok?'Exact !':'Pas tout à fait'}</span>${examSolution(q)}<button class="btn ${q.opts[res].ok?'primary':''} block" data-act="exnext">Continuer</button></div>`:''}
+   ${!train?`<p class="tiny muted" style="text-align:center">Pas de correction pendant l’examen. Si tu ne sais pas, choisis au hasard : on ne perd pas de points.</p>`:''}</main>`;
+}
+
+/* ---------- onglet Progrès ---------- */
+function calHTML(){
+  const t=new Date(today()+'T12:00:00'),dow=(t.getDay()+6)%7,start=new Date(t.getTime()-(dow+7*11)*DAY),cells=[];
+  for(let i=0;i<84;i++){const d=new Date(start.getTime()+i*DAY),k=dkey(d),x=S.days[k]||0,fut=d>t;
+    cells.push(`<i class="${fut?'fut':x>=150?'l3':x>=60?'l2':x>0?'l1':''} ${S.stamps[k]?'stamp':''}" title="${k}${x?' · '+x+' points':''}"></i>`);}
+  return `<div class="cal" aria-label="Tes 12 dernières semaines">${cells.join('')}</div>`;
+}
+function renderProg(){
+  const k=rankInfo(),kn=knownCount(),N=DATA.chars.length,anch=DATA.chars.filter(x=>level(x.c)===3).length,h=S.hist.slice(-100),earned=earnedBadges();
+  const recent=DATA.chars.filter(x=>isIntro(x.c)&&S.chars[x.c].intro>Date.now()-14*DAY).length,perDay=recent/14;
+  const eta=perDay>0&&kn<N?new Date(Date.now()+Math.ceil((N-kn)/perDay)*DAY):null;
+  const M=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  return `<div class="stack sm"><span class="label">Mes progrès · 进步 <span style="text-transform:none">jìnbù</span></span><h1>${S.name?esc(S.name)+', regarde':'Regarde'} le chemin parcouru</h1></div>
+  <section class="card stack"><div class="rankline">${sealHTML(k.cur.h,'big')}<div class="stack sm"><span class="label">Niveau ${k.r+1} sur ${DATA.rangs.length}</span><h2>${esc(k.cur.fr)}</h2><p class="small"><span class="zh">${k.cur.h}</span> · ${pyHTML(k.cur.p)} <button class="playmini" style="display:inline-grid;width:30px;height:30px;vertical-align:middle" data-act="say" data-t="${k.cur.h}" aria-label="Écouter">${ICON.play}</button></p></div></div>
+   <div class="xpbar"><i style="width:${pct(k.p)}%"></i></div><p class="small muted">${k.nx?`${S.xp} points · encore <b>${k.left}</b> pour <span class="zh">${k.nx.h}</span>. Séances, défis, quêtes et examens rapportent des points.`:'Le plus haut titre de l’empire !'}</p>
+   <div class="ladder">${DATA.rangs.map((R,i)=>`<div class="rung ${i===k.r?'cur':''}">${sealHTML(R.h,i>k.r?'off':'')}<div class="grow"><b class="small">${i+1}. ${esc(R.fr)}</b><br><span class="tiny muted">${i>k.r?R.xp+' points':esc(R.d)}</span></div>${i<k.r?'<span style="color:var(--good)">✓</span>':''}</div>`).join('')}</div>
+   <p class="tiny muted">Ces titres sont ceux des examens impériaux de la Chine ancienne : de la candidate jusqu’à <span class="zh">状元</span>, la première de tout l’empire.</p></section>
+  <div class="kpis"><div class="stat"><b>${kn}</b><span>caractères appris</span></div><div class="stat"><b>${anch}</b><span>bien ancrés</span></div><div class="stat"><b>${h.length?pct(avg(h)):0}%</b><span>de réussite récente</span></div>
+   <div class="stat"><b>${S.best}</b><span>meilleure série de jours</span></div><div class="stat"><b>${S.mins||0}</b><span>minutes d’étude</span></div><div class="stat"><b>${stats().perfect||0}</b><span>tracés parfaits</span></div></div>
+  <section class="card stack sm"><div class="row between"><span class="label">12 dernières semaines</span><span class="tiny muted">● = 3 quêtes réussies</span></div>${calHTML()}
+   <p class="small muted">${eta?`À ton rythme (${Math.round(perDay*7)} caractères par semaine), tu finiras le mur vers ${M[eta.getMonth()]} ${eta.getFullYear()}.`:kn>=N?'Tout le mur est appris !':'Fais quelques séances : on calculera quand tu finiras le mur.'}</p></section>
+  <section class="card stack"><div class="row between"><span class="label">Médailles</span><span class="tiny muted">${earned.length}/${BADGES.length}</span></div>
+   <div class="badges">${BADGES.map(b=>`<div class="badge ${earned.includes(b[0])?'on':''}"><span class="bz">${b[0]}</span>${esc(b[1])}</div>`).join('')}</div></section>
+  <section class="card stack sm"><span class="label">Records des défis</span>${GAMES.map(g=>`<div class="row between"><span><span class="zh" style="color:var(--gold)">${g.zh}</span> ${esc(g.t)}</span><b>${gRec(g.id).best||'—'}</b></div>`).join('')}</section>
+  <button class="btn block" data-act="settings">${ICON.gear} Réglages et sauvegarde</button>`;
+}
+
+/* ---------- les défis à l'écran ---------- */
+function renderGame(){
+  const g=ui.game,G=GAMES.find(x=>x.id===g.id);
+  if(g.end){const rec=g.score>g.best0&&g.best0>0;
+    return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh" style="font-size:56px;color:var(--gold)">${G.zh}</span><h1>${rec?'Nouveau record !':g.score?'Bien joué !':'On réessaie demain ?'}</h1>
+     <div class="big-num" style="color:var(--gold)">${g.score}<small> points</small></div><p class="muted small">${g.daily?'Défi du jour réussi':'Entraînement'} · +${g.xp} pour ton niveau${g.best0&&!rec?' · record : '+g.best0:''}</p></div>
+     ${g.id==='eclair'?`<div class="kpis"><div class="stat"><b>${g.okN}</b><span>bonnes réponses</span></div><div class="stat"><b>${stats().flashBest||0}</b><span>ton record</span></div><div class="stat"><b>${streakAlive()}</b><span>jours de suite</span></div></div>`:''}
+     ${newTitleHTML()}${badgesHTML(g.newBadges)}
+     <div class="stack sm"><button class="btn primary block" data-act="ghome">Retour</button><button class="btn ghost block" data-act="game" data-id="${g.id}">Rejouer pour m’entraîner</button></div></main>`;}
+  const top=`<div class="topbar"><button class="xbtn" data-act="gquit" aria-label="Quitter">${ICON.x}</button><div class="grow"><b class="small">${esc(G.t)}</b><br><span class="score">${g.score} points</span></div>${g.id!=='mystere'?`<span class="timer ${g.left<=5?'low':''}" id="gtime">${g.left} s</span>`:`<span class="small muted">manche ${g.used.length}/3</span>`}</div>`;
+  let body='';
+  if(g.id==='mystere'){const x=BYC[g.c],n=x.n_strokes,size=Math.min(220,writerSize()-40);
+    body=`<p class="q-title">${g.found?'Trouvé !':'Quel est ce caractère ?'}</p>${strokesSVG(g.c,g.found?n:g.k,size)}
+     <p class="small muted" style="text-align:center">${g.found?`Trouvé avec ${g.kFound} trait${g.kFound>1?'s':''} sur ${n} · +${g.pts}`:`${g.k} trait${g.k>1?'s':''} sur ${n} · moins tu en vois, plus ça rapporte`}</p>
+     <div class="opts two">${g.opts.map(c=>`<button class="opt ${g.found&&c===g.c?'ok':g.wrong.includes(c)?'bad dim':''}" data-act="mys" data-c="${c}" ${g.found||g.wrong.includes(c)?'disabled':''}><span class="zh">${c}</span>${g.found||g.wrong.includes(c)?`<span class="tiny">${esc(BYC[c].m)}</span>`:''}</button>`).join('')}</div>
+     ${g.found?`<div class="feedback ok"><div class="row" style="flex-wrap:nowrap"><span class="zh" style="font-size:40px">${x.c}</span><div class="grow small"><b class="t${x.t}" style="font-size:18px">${esc(x.p)}</b> · ${esc(x.m)}<br><span class="muted">${esc(x.st)}</span></div><button class="playmini" data-act="say" data-t="${esc(x.a)}" aria-label="Écouter">${ICON.play}</button></div><button class="btn primary block" data-act="mysnext">${g.used.length>=3?'Voir mon score':'Caractère suivant'}</button></div>`
+      :`<button class="btn block" data-act="mysmore" ${g.k>=n?'disabled':''}>Un trait de plus</button>`}`;}
+  if(g.id==='cles'){const K=g.K;
+    body=`<div class="card flat row" style="flex-wrap:nowrap"><span class="zh" style="font-size:48px;color:var(--bad)">${esc(K.k)}</span><div class="grow"><b>Clé : ${esc(K.m)}</b><br><span class="small muted">${g.roundEnd?`Manche ${g.keys.length}/3 terminée`:`Touche les ${g.targets.length} caractères qui ont cette clé · encore ${g.targets.length-g.hit.length}`}</span></div></div>
+     <div class="huntgrid">${g.grid.map(c=>`<button class="hunt ${g.hit.includes(c)?'ok':g.bad.includes(c)?'bad':g.roundEnd&&g.targets.includes(c)?'miss':''}" data-act="hunt" data-c="${c}" ${g.roundEnd?'disabled':''} aria-label="${c}">${c}</button>`).join('')}</div>
+     ${g.roundEnd?`<div class="feedback ${g.hit.length===g.targets.length?'ok':'bad'}"><span class="verdict">${g.hit.length===g.targets.length?'Tous trouvés !':g.hit.length+' sur '+g.targets.length}</span><p class="small">${g.targets.map(c=>`<span class="zh" style="font-size:20px">${c}</span> ${esc(BYC[c].m)}`).join(' · ')}</p><button class="btn primary block" data-act="huntnext">${g.keys.length>=3?'Voir mon score':'Clé suivante'}</button></div>`:''}`;}
+  if(g.id==='eclair'){const q=g.q,x=BYC[q.c];
+    body=`<div class="row between"><span class="combo">${g.combo>=3?`<span class="zh">连</span> ×${1+Math.floor(g.combo/3)}`:`${g.okN} bonne${g.okN>1?'s':''} réponse${g.okN>1?'s':''}`}</span></div>
+     <div class="qchar ${g.pick!=null&&!q.opts[g.pick].ok?'flash':''}" style="border-radius:16px">${x.c}</div>
+     <div class="opts">${q.opts.map((o,i)=>`<button class="opt ${g.pick==null?'':o.ok?'ok':g.pick===i?'bad':'dim'}" data-act="flash" data-i="${i}" ${g.pick!=null?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>`;}
+  return top+`<main class="lesson">${body}</main>`;
 }
 
 /* ---------- fiche d'un caractère ---------- */
@@ -451,7 +880,7 @@ function ficheHTML(c,id){
   return `<div class="fiche">
    <div class="fiche-head">${boxHTML(id,writerSize())}
     <div class="row" style="justify-content:center"><button class="btn sm" data-act="anim" data-id="${id}">${ICON.brush} Ordre des traits</button><button class="btn sm" data-act="say" data-t="${esc(x.a)}">${ICON.play} Écouter</button></div>
-    <div class="py ${'t'+x.t}">${esc(x.p)}</div><div class="sens">${esc(x.m)}</div><span class="tiny muted">${x.n_strokes} traits · n° ${x.n} sur ${DATA.chars.length}</span></div>
+    <div class="py ${'t'+x.t}">${esc(x.p)}</div><div class="sens">${esc(x.m)}</div><span class="tiny muted">${x.n_strokes} traits · n° ${x.n} sur ${DATA.chars.length}${x.h?' · HSK 1':''}</span></div>
    <div class="keybox"><span class="k">${esc(x.k)}</span><div class="grow"><b>Clé : ${esc(x.km)}</b><br><span class="small">${esc(x.comp)}</span></div></div>
    <div class="story"><span class="label" style="color:var(--gold)">Pour s’en souvenir</span><p>${esc(x.st)}</p></div>
    <section class="stack sm"><span class="label">Dans les mots</span><div>${x.w.map(w=>`<div class="wordrow"><button class="playmini" data-act="say" data-t="${esc(w.h)}" aria-label="Écouter">${ICON.play}</button><span class="zh">${hlSent(w.h,c)}</span><span class="grow small"><b>${pyHTML(w.p)}</b> · <span class="muted">${esc(w.fr)}</span></span></div>`).join('')}</div></section>
@@ -461,6 +890,7 @@ function ficheHTML(c,id){
 }
 function openFiche(c){
   if(!BYC[c]){toast('Ce caractère n’est pas encore dans Zìzì.');return;}
+  if(!ui.sess&&isIntro(c))qBump('fiche3');
   sheetEl.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Fiche ${esc(c)}"><div class="row between" style="margin-bottom:8px"><span class="label">${isIntro(c)?'Fiche':'Aperçu · pas encore appris'}</span><button class="xbtn" data-act="closesheet" aria-label="Fermer">${ICON.x}</button></div>${ficheHTML(c,'hw-sheet')}
    ${isIntro(c)?`<button class="btn block" style="margin-top:14px" data-act="practice" data-c="${c}">${ICON.brush} M’entraîner à l’écrire</button>`:''}</div>`;
   sheetEl.hidden=false;const w=makeWriter('hw-sheet',c,{showCharacter:true});if(w)setTimeout(()=>w.animateCharacter(),300);
@@ -484,7 +914,7 @@ function renderSession(){
      :`<div class="row" style="justify-content:center"><button class="btn sm" data-act="hint">Montrer le trait suivant</button>${mem?'':`<button class="btn sm ghost" data-act="next">Passer</button>`}</div>`}`;
   }
   else body=quizHTML(st);
-  app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div><span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span></div>
+  app.innerHTML=`<div class="topbar"><button class="xbtn" data-act="quit" aria-label="Quitter">${ICON.x}</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.i}"><i style="width:${s.i/total*100}%"></i></div>${s.combo>=3?`<span class="combo pop"><span class="zh">连</span> ×${s.combo}</span>`:`<span class="small muted" style="font-variant-numeric:tabular-nums">${s.i+1}/${total}</span>`}</div>
    <main class="lesson"><span class="sec-tag">${esc(st.sec)}</span>${body}</main>`;
   // monter l'écriture
   if(st.kind==='fiche'){const w=makeWriter('hw-main',st.c,{showCharacter:true});if(w&&!st.played)setTimeout(()=>w.animateCharacter(),350);}
@@ -496,6 +926,8 @@ function renderSession(){
       onCorrectStroke:(d)=>{const e=document.getElementById('wstat');if(e)e.textContent=`Trait ${d.strokeNum+1} sur ${x.n_strokes} ✓`;},
       onComplete:(sum)=>{const m=sum.totalMistakes;const ok=mem?m<=3:true;st.res={ok,m};s.n++;if(ok)s.ok++;
         grade(st.c,'ecrit',mem?ok:m<=2);if(ok)addXP(mem?15:5);
+        if(m===0){stats().perfect=(stats().perfect||0)+1;qBump('trace3');}
+        if(mem&&ok){stats().mem=(stats().mem||0)+1;qBump('mem2');}
         if(mem&&!ok&&!st.re)s.steps.push({kind:'ecrire',c:st.c,sec:'On le revoit',re:true});save();setTimeout(render,700);}});
     else{st.res={ok:true,m:0};}
   }
@@ -507,23 +939,29 @@ function quizHTML(st){
   if(st.kind==='sens'){head=`<p class="q-title">Que veut dire ce caractère ?</p><div class="qchar">${x.c}</div>`;opts=`<div class="opts">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>`;}
   if(st.kind==='son'){head=`<p class="q-title">Comment se lit ce caractère ?</p><div class="qchar">${x.c}</div>`;opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="py">${pyHTML(o.t)}</span></button>`).join('')}</div>`;}
   if(st.kind==='ecoute'){head=`<p class="q-title">Quel caractère entends-tu ?</p><button class="playbig" data-act="say" data-t="${esc(x.a)}" aria-label="Écouter">${ICON.play}</button>`;opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh">${o.c}</span></button>`).join('')}</div>`;}
+  if(st.kind==='mot'){head=`<p class="q-title">Quel mot veut dire « ${esc(st.w.fr)} » ?</p>`;opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh" style="font-size:32px">${esc(o.h)}</span>${st.res?`<span class="tiny muted">${pyHTML(o.p)}</span>`:''}</button>`).join('')}</div>`;}
   if(st.kind==='trou'){const gap=[...x.ex.h].map(ch=>ch===x.c?`<span class="hl">${st.res?ch:'＿'}</span>`:esc(ch)).join('');
     head=`<p class="q-title">Quel caractère manque ?</p><div class="card flat stack sm"><div class="sent">${gap}</div><div class="small muted">${esc(x.ex.fr)}</div></div>`;
     opts=`<div class="opts two">${st.opts.map((o,i)=>`<button class="opt ${cls(i,o)}" data-act="ans" data-i="${i}" ${st.res?'disabled':''}><span class="zh">${o.c}</span></button>`).join('')}</div>`;}
   let fb='';
-  if(st.res){fb=`<div class="feedback ${st.res.ok?'ok':'bad'}" role="status"><span class="verdict">${st.res.ok?rnd(['Bien vu !','Exact !','对了！ Duì le !','Bravo !']):'Pas tout à fait'}</span>
-    <div class="row" style="flex-wrap:nowrap"><span class="zh" style="font-size:40px">${x.c}</span><div class="grow small"><b class="${'t'+x.t}" style="font-size:18px">${esc(x.p)}</b> · ${esc(x.m)}<br><span class="muted">${esc(x.st)}</span></div><button class="playmini" data-act="say" data-t="${esc(st.kind==='trou'?x.ex.h:x.a)}" aria-label="Écouter">${ICON.play}</button></div>
+  if(st.res){const s=ui.sess;fb=`<div class="feedback ${st.res.ok?'ok':'bad'}" role="status"><span class="verdict">${st.res.ok?(s.combo>=3?`${s.combo} de suite ! 太棒了！`:rnd(['Bien vu !','Exact !','对了！ Duì le !','Bravo !'])):'Pas tout à fait'}</span>
+    <div class="row" style="flex-wrap:nowrap"><span class="zh" style="font-size:40px">${st.kind==='mot'?esc(st.w.h):x.c}</span><div class="grow small"><b class="${'t'+x.t}" style="font-size:18px">${st.kind==='mot'?pyHTML(st.w.p):esc(x.p)}</b> · ${esc(st.kind==='mot'?st.w.fr:x.m)}<br><span class="muted">${esc(x.st)}</span></div><button class="playmini" data-act="say" data-t="${esc(st.kind==='trou'?x.ex.h:st.kind==='mot'?st.w.h:x.a)}" aria-label="Écouter">${ICON.play}</button></div>
     ${st.kind==='trou'?`<div class="small"><b>${pyHTML(x.ex.p)}</b></div>`:''}
     ${!st.res.ok&&!st.re?'<span class="small">On le revoit dans un instant.</span>':''}<button class="btn ${st.res.ok?'primary':''} block" data-act="next">Continuer</button></div>`;}
   return head+opts+fb;
 }
 function endHTML(){
-  const s=ui.sess,acc=s.n?Math.round(s.ok/s.n*100):100;
-  return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh" style="font-size:48px;color:var(--accent)">${s.news.length?s.news.join(''):'好'}</span><h1>${s.news.length?s.news.length+' nouveau'+(s.news.length>1?'x':'')+' sur ton mur !':'Révision terminée'}</h1><p class="muted">${s.known1} caractères appris sur ${DATA.chars.length}.</p></div>
+  const s=ui.sess,acc=s.n?Math.round(s.ok/s.n*100):100,q=questsToday(),G=gameOfDay();
+  return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh pop" style="font-size:48px;color:var(--accent)">${s.news.length?s.news.join(''):'好'}</span><h1>${s.news.length?s.news.length+' nouveau'+(s.news.length>1?'x':'')+' sur ton mur !':'Révision terminée'}</h1><p class="muted">${s.known1} caractères appris sur ${DATA.chars.length}.</p></div>
    <div class="kpis"><div class="stat"><b>+${s.xp}</b><span>points</span></div><div class="stat"><b>${acc}%</b><span>de réussite</span></div><div class="stat"><b>${streakAlive()}</b><span>jour${streakAlive()>1?'s':''} de suite</span></div></div>
+   ${newTitleHTML()}
+   <section class="card">${rankBlock()}</section>
    ${s.joker?`<div class="notice">${esc(s.joker)}</div>`:''}
+   ${badgesHTML(s.newBadges)}
    ${s.milestone?`<div class="card stack sm" style="border:2px solid var(--gold)"><b>${s.milestone} caractères !</b><p class="small">${s.milestone>=DATA.chars.length?'Tu as appris tous les caractères du HSK 1 et de l’usine. Tu peux lire tes collègues !':'Un nouveau palier. Chaque caractère t’ouvre des dizaines de mots.'}</p></div>`:''}
    ${s.unlocked&&s.unlocked.length?`<button class="lect" data-act="read" data-t="${esc(s.unlocked[0])}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Lecture débloquée : ${esc(s.unlocked[0])}</b><br><span class="small muted">Tu peux maintenant la lire presque seule.</span></span></button>`:''}
+   <section class="card stack sm"><span class="label">Quêtes du jour</span>${questsHTML()}</section>
+   ${gamesOpen()&&gRec(G.id).day!==today()?`<button class="lect" data-act="game" data-id="${G.id}" style="background:var(--night);color:var(--night-ink);border:0"><span class="zh" style="font-size:28px;color:#EDB43C">${G.zh}</span><span class="grow"><b>Défi du jour : ${esc(G.t)}</b><br><span class="small" style="opacity:.75">Encore une minute ? Il rapporte des points bonus.</span></span></button>`:''}
    <button class="btn primary block" data-act="home">Retour</button></main>`;
 }
 
@@ -532,8 +970,8 @@ function settingsHTML(){
   return `<div class="sheet" role="dialog" aria-modal="true" aria-label="Réglages"><div class="row between"><h2>Réglages</h2><button class="xbtn" data-act="closesheet" aria-label="Fermer">${ICON.x}</button></div>
    <div class="stack" style="margin-top:14px">
     <label class="label" for="nm">Prénom</label><input id="nm" type="text" value="${esc(S.name)}" autocomplete="given-name">
-    <span class="label">Nouveaux caractères par jour</span><div class="row">${[3,5,8].map(n=>`<button class="chip ${S.perDay===n?'on':''}" data-act="perday" data-n="${n}">${n}</button>`).join('')}</div>
-    <p class="small muted">5 par jour : tout le mur en environ 6 semaines. Les révisions s’ajoutent toutes seules.</p>
+    <span class="label">Durée de la séance du jour</span><div class="row">${[5,10,15].map(n=>`<button class="chip ${S.dur===n?'on':''}" data-act="durset" data-v="${n}">${n} min</button>`).join('')}</div>
+    <p class="small muted">Tu choisis le temps, Zìzì choisit le contenu : environ 2, 4 ou 6 nouveaux caractères, moins si tu as beaucoup de révisions ou si c’était difficile ces derniers jours, un de plus si tout va bien.</p>
     <span class="label">Sauvegarde</span>
     <div class="row"><button class="btn sm primary" data-act="backup">Sauvegarder ma progression</button><label class="btn sm">Restaurer<input id="restorefile" type="file" accept="application/json,.json" hidden></label></div>
     ${ui.pendingRestore?`<div class="notice">Restaurer la sauvegarde du <b>${esc((ui.pendingRestore.date||'').slice(0,10))}</b> ? Elle remplace la progression de ce téléphone.<div class="row" style="margin-top:8px"><button class="btn sm primary" data-act="restore2">Oui, restaurer</button><button class="btn sm" data-act="restore0">Annuler</button></div></div>`:''}
@@ -555,8 +993,11 @@ async function doBackup(){
    ============================================================ */
 const ACT={
  install:async()=>{if(!deferredInstall)return;try{deferredInstall.prompt();await deferredInstall.userChoice;}catch(e){}deferredInstall=null;render();},
- tab:d=>{ui.tab=d.k;ui.reader=null;render();window.scrollTo(0,0);},
+ tab:d=>{ui.tab=d.k;ui.reader=null;if(ui.exam&&ui.exam.stage==='intro'&&d.k!=='hsk')ui.exam=null;render();window.scrollTo(0,0);},
+ mur:d=>{ui.murMode=d.m;render();},
  say:d=>say(d.t),
+ dur:d=>{S.dur=+d.v;save();render();},
+ durset:d=>{S.dur=+d.v;save();openSettings();},
  daily:()=>startSession('daily'),
  review:()=>startSession('review'),
  home:()=>{ui.sess=null;ui.tab='home';render();window.scrollTo(0,0);},
@@ -566,8 +1007,8 @@ const ACT={
  anim:d=>{const w=writers[d.id];if(w)w.animateCharacter();},
  hint:()=>{const w=writers['hw-main'];if(w){try{w.highlightStroke(w._quiz?w._quiz._currentStrokeIndex:0);}catch(e){}}const st=ui.sess.steps[ui.sess.i];if(st.kind==='ecrire')st.hinted=true;},
  fiche:d=>openFiche(d.c),
- closesheet:()=>{closeSheet();if(ui.tab==='home'||ui.tab==='mur')render();},
- practice:d=>{closeSheet();ui.sess={kind:'practice',steps:[{kind:'ecrire',c:d.c,sec:'Entraînement'}],i:0,xp:0,ok:0,n:0,news:[],end:false,known0:knownCount(),known0Set:new Set(known().map(x=>x.c))};render();},
+ closesheet:()=>{closeSheet();if(!ui.sess&&!ui.game&&!(ui.exam&&ui.exam.stage!=='intro'))render();},
+ practice:d=>{closeSheet();ui.sess={kind:'practice',steps:[{kind:'ecrire',c:d.c,sec:'Entraînement'}],i:0,xp:0,ok:0,n:0,combo:0,news:[],end:false,t0:Date.now(),known0:knownCount(),known0Set:new Set(known().map(x=>x.c)),badges0:earnedBadges()};render();},
  key:d=>{ui.openKey=d.k;render();window.scrollTo(0,0);},
  closekey:()=>{ui.openKey=null;render();},
  read:d=>{ui.sess=null;ui.tab='lire';ui.reader=d.t;ui.showPy={};ui.showFr={};render();window.scrollTo(0,0);},
@@ -576,9 +1017,27 @@ const ACT={
  tpy:d=>{ui.showPy[d.i]=!ui.showPy[d.i];render();},
  tfr:d=>{ui.showFr[d.i]=!ui.showFr[d.i];render();},
  readall:()=>{const l=DATA.lectures.find(x=>x.t===ui.reader);let i=0;const play=()=>{if(i>=l.s.length)return;say(l.s[i].h);const a=curAudio;i++;if(a)a.onended=()=>setTimeout(play,350);};play();},
- readdone:()=>{S.read[ui.reader]=today();addXP(30);markActive();save();toast('Bravo ! Tu as lu un vrai texte en chinois.');render();},
+ readdone:()=>{S.read[ui.reader]=today();addXP(30);markActive();qBump('lire');save();toast('Bravo ! Tu as lu un vrai texte en chinois.');render();},
+ reread:()=>{S.reread=today()+ui.reader;addXP(10);markActive();qBump('lire');save();toast('Bravo ! Relire à voix haute, c’est comme ça qu’on devient fluide.');render();},
+ game:d=>{ui.sess=null;startGame(d.id);},
+ gquit:()=>{stopTimer();ui.game=null;render();},
+ ghome:()=>{ui.game=null;ui.tab='home';render();window.scrollTo(0,0);},
+ mys:d=>mysPick(d.c),
+ mysmore:()=>mysMore(),
+ mysnext:()=>{if(ui.game.used.length>=3)gameEnd();else{mysRound();render();}},
+ hunt:d=>huntTap(d.c),
+ huntnext:()=>{if(ui.game.keys.length>=3)gameEnd();else{huntRound();render();}},
+ flash:d=>flashPick(+d.i),
+ exam:()=>examOpen(),
+ expy:d=>{ui.exam.py=d.v==='1';render();},
+ exgo:()=>examBegin('exam'),
+ excancel:()=>{ui.exam=null;render();},
+ extrain:d=>{const py=ui.exam?ui.exam.py:false;ui.exam={py};examBegin('train',+d.p);},
+ exans:d=>examAnswer(+d.i),
+ exnext:()=>examNext(),
+ exquit:()=>{stopTimer();ui.exam=null;render();},
+ exhome:()=>{ui.exam=null;ui.tab='hsk';render();window.scrollTo(0,0);},
  settings:()=>openSettings(),
- perday:d=>{S.perDay=+d.n;save();openSettings();},
  backup:()=>doBackup(),
  restore2:()=>{const o=ui.pendingRestore;S=Object.assign(fresh(),o.state);save();ui.pendingRestore=null;closeSheet();toast('Progression restaurée.');render();},
  restore0:()=>{ui.pendingRestore=null;openSettings();},
@@ -587,7 +1046,7 @@ const ACT={
  reset2:()=>{S=fresh();ui.confirmReset=false;save();closeSheet();render();}
 };
 document.addEventListener('click',e=>{
-  if(e.target===sheetEl){closeSheet();return;}
+  if(e.target===sheetEl){closeSheet();if(!ui.sess&&!ui.game&&!(ui.exam&&ui.exam.stage!=='intro'))render();return;}
   const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset,b);
 });
 document.addEventListener('input',e=>{
@@ -603,13 +1062,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sheetEl.hidden)clo
    DÉMARRAGE
    ============================================================ */
 let deferredInstall=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(!ui.sess&&ui.tab==='home')render();});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(!ui.sess&&!ui.game&&ui.tab==='home')render();});
 window.addEventListener('appinstalled',()=>{deferredInstall=null;toast('Zìzì est installée !');});
 async function boot(){
   try{
     const [d,t]=await Promise.all([fetch('data.json').then(r=>r.json()),fetch('traits.json').then(r=>r.json())]);
-    DATA=d;TRAITS=t;DATA.chars.forEach(x=>BYC[x.c]=x);
+    DATA=d;TRAITS=t;DATA.chars.forEach(x=>BYC[x.c]=x);DATA.rangs=DATA.rangs||[{h:'字',p:'zì',fr:'Débutante',d:'',xp:0}];DATA.qr=DATA.qr||[];
   }catch(e){app.innerHTML='<main class="screen"><h1>Connexion nécessaire</h1><p>Ouvre Zìzì une première fois avec du réseau : ensuite il marche hors-ligne.</p></main>';return;}
+  if(![5,10,15].includes(S.dur))S.dur=10;
   refreshJokers();render();
   if(navigator.onLine!==false)loadAudioIndex();
   if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&window.top===window)navigator.serviceWorker.register('sw.js').catch(()=>{});

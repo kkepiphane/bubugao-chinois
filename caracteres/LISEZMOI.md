@@ -11,20 +11,29 @@
 - **Fiche de chaque caractère** : ordre des traits animé (la clé en rouge), pinyin coloré par ton et voix, sens en
   français, **clé** et composition, **petite histoire pour s'en souvenir**, 2–3 mots, une phrase exemple traduite.
 
-## La séance du jour (≈ 10 min)
+## La séance du jour : on choisit le temps, Zìzì choisit le contenu
 
-1. **Découvrir** 5 nouveaux caractères (réglable : 3, 5 ou 8), puis **les tracer au doigt** dans la grille 米字格,
-   trait par trait, avec correction automatique.
-2. **Réviser** : sens, lecture (pinyin et ton), écoute (quel caractère entends-tu ?), **phrase à trous**,
-   et **écrire de mémoire** pour les caractères déjà vus (révisions espacées, 3 compétences par caractère).
+- **5, 10 ou 15 minutes** (sur l'accueil). Environ 2, 4 ou 6 nouveaux caractères : un de moins si la réussite récente
+  est sous 75 %, moitié moins s'il y a plus de 25 révisions en retard, un de plus si tout va bien (plus de 90 %).
+- Quatre temps : **échauffement** (3 révisions) → **nouveaux** (fiche, tracé au doigt dans la grille 米字格, vérification)
+  → **pratique** (sens, lecture, écoute, mot entier, phrase à trous) → **écrire de mémoire** et phrases des nouveaux.
+- Les séries de bonnes réponses (连 ×3, ×4…) rapportent des points en plus.
 
-## Le reste
+## Niveaux, défis, quêtes, médailles
 
-- **Mon mur** : les 214 caractères en grille, qui se colorent à mesure qu'ils s'ancrent. Recherche par sens ou pinyin.
-- **Les clés** (部首) : 90 familles (氵 eau, 口 bouche, 亻 personne…) avec leurs caractères.
-- **Lire** : 13 petits textes de sa vie (usine, famille, magasin, paie…) qui se débloquent quand elle connaît 85 %
-  de leurs caractères. Pinyin et traduction seulement si elle les demande.
-- Série de jours avec jokers, paliers (10, 25, 50, 100… caractères), sauvegarde/restauration dans les réglages.
+- **8 niveaux** : les titres des examens impériaux, de 童生 (la candidate) à 状元 (la première de l'empire),
+  affichés comme un sceau rouge. Fichier `source/rangs.txt` (pinyin vérifié à la main, points nécessaires).
+- **Défi du jour** (un différent chaque jour, les autres rejouables) : 字谜 le caractère mystère (il apparaît trait par
+  trait), 部首 la chasse aux clés (25 s par clé), 快 l'éclair (60 s). Débloqués à 5 caractères appris.
+- **3 quêtes du jour** tirées au sort selon la date (+20 chacune, +50 et un sceau sur le calendrier pour les 3).
+- **17 médailles** dans l'onglet Progrès, avec le calendrier des 12 dernières semaines et la date prévue de fin du mur.
+
+## Préparer le HSK (onglet 考 HSK)
+
+- Les **174 caractères du HSK 1** (150 mots, `source/hsk1.txt`) sont repérés : jauge « vus / bien ancrés ».
+- **Examen blanc · lecture** : 20 questions, 4 parties comme le vrai HSK 1 (vrai/faux, phrase, question-réponse,
+  phrase à compléter), 17 minutes, note sur 100, réussi à 60, avec ou sans pinyin, correction à la fin.
+  Questions-réponses dans `source/hsk_qr.txt`. Entraînement partie par partie (5 questions, correction immédiate).
 
 ## Ajouter des caractères ou corriger une fiche
 

@@ -1,0 +1,24 @@
+# Questions et réponses pour l'examen blanc (partie « Trouve la bonne réponse »).
+# question:traduction|réponse:traduction — uniquement des caractères de Zìzì.
+他是哪国人？:Il est de quel pays ?|他是中国人。:Il est chinois.
+你家有几个人？:Vous êtes combien dans ta famille ?|我家有五个人。:Nous sommes cinq.
+你几岁了？:Tu as quel âge ?|我二十五岁。:J’ai vingt-cinq ans.
+你在哪儿工作？:Où est-ce que tu travailles ?|我在工厂工作。:Je travaille à l’usine.
+今天星期几？:On est quel jour aujourd’hui ?|今天星期三。:Aujourd’hui, c’est mercredi.
+现在几点？:Quelle heure est-il ?|现在八点十分。:Il est huit heures dix.
+你想喝什么？:Qu’est-ce que tu veux boire ?|我想喝茶。:Je veux boire du thé.
+你喜欢吃米饭吗？:Tu aimes le riz ?|喜欢，很好吃。:Oui, c’est très bon.
+他是谁？:Qui est-ce ?|他是我们的老师。:C’est notre professeur.
+明天天气怎么样？:Quel temps fera-t-il demain ?|明天很冷。:Demain, il fera très froid.
+你什么时候下班？:Quand est-ce que tu finis le travail ?|我六点下班。:Je finis à six heures.
+这个苹果多少钱？:Combien coûte cette pomme ?|五块钱。:Cinq yuans.
+你会说汉语吗？:Tu sais parler chinois ?|我会说一点儿。:J’en parle un peu.
+你去哪儿？:Où vas-tu ?|我去商店买东西。:Je vais faire des courses au magasin.
+你认识他吗？:Tu le connais ?|认识，他是我的朋友。:Oui, c’est mon ami.
+你爸爸做什么工作？:Que fait ton père comme travail ?|他是医生。:Il est médecin.
+你的同事在哪儿？:Où est ta collègue ?|她在三号线工作。:Elle travaille sur la ligne 3.
+机器怎么了？:Qu’est-ce qu’elle a, la machine ?|机器坏了。:La machine est en panne.
+你几点上班？:À quelle heure tu commences le travail ?|我七点上班。:Je commence à sept heures.
+谢谢你！:Merci !|不客气。:De rien.
+对不起！:Pardon !|没关系。:Ce n’est pas grave.
+你女儿在哪儿？:Où est ta fille ?|她在学校。:Elle est à l’école.
