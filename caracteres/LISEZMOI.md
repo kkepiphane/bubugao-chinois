@@ -28,6 +28,14 @@
 - **3 quêtes du jour** tirées au sort selon la date (+20 chacune, +50 et un sceau sur le calendrier pour les 3).
 - **17 médailles** dans l'onglet Progrès, avec le calendrier des 12 dernières semaines et la date prévue de fin du mur.
 
+## Mon rouleau 卷 (la progression sur l'accueil)
+
+- Les 214 caractères forment un rouleau de **11 pages de 20**, écrites en colonnes de droite à gauche comme un texte
+  classique. Appris = à l'encre ; le prochain = case rouge en pointillés ; à venir = en filigrane.
+- **L'encre pâlit** quand un caractère n'est plus révisé (rétention moyenne sous 70 %) : la séance le repasse à l'encre.
+- Un petit sceau 读 marque le caractère qui débloque une lecture. Page finie = sceau 完成 et +50 points.
+- Au retour de séance, les nouveaux caractères s'écrivent à l'encre sous ses yeux. On peut feuilleter les pages.
+
 ## Préparer le HSK (onglet 考 HSK)
 
 - Les **174 caractères du HSK 1** (150 mots, `source/hsk1.txt`) sont repérés : jauge « vus / bien ancrés ».
