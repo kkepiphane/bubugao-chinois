@@ -277,7 +277,33 @@ svg.mys .inkin{animation:inkin .45s ease-out}
 @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 @keyframes flash{0%{background:var(--bad-soft)}100%{background:transparent}}
-@media (prefers-reduced-motion:reduce){.prog i{transition:none}.stampin,.pop,svg.mys .inkin,.hunt.bad,.flash{animation:none}}
+/* rouleau 卷 : la progression sur l'accueil, écrite en colonnes de droite à gauche */
+.scroll{display:flex;justify-content:center;margin:6px auto 2px}
+.roller{width:13px;border-radius:7px;background:linear-gradient(90deg,#4A2F1B,#A0703F 45%,#4A2F1B);position:relative;margin:-10px 0;flex:none}
+.roller::before,.roller::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#3A2414}
+.roller::before{top:-5px}.roller::after{bottom:-5px}
+.paper{position:relative;background:#FBF6EC;padding:10px 8px;box-shadow:inset 0 6px 8px -6px rgba(0,0,0,.18),inset 0 -6px 8px -6px rgba(0,0,0,.18)}
+.cols{display:grid;grid-auto-flow:column;grid-template-rows:repeat(5,48px);grid-auto-columns:50px;direction:rtl;border-right:1px solid rgba(200,51,43,.45)}
+.sc{direction:ltr;position:relative;border:0;border-left:1px solid rgba(200,51,43,.45);background:none;padding:0;font:500 31px/1 var(--f-zh);color:#1F2A44;display:grid;place-items:center;cursor:pointer}
+.sc.ghost{color:rgba(31,42,68,.11)}
+.sc.fade{color:rgba(31,42,68,.34)}
+.sc.next{color:rgba(200,51,43,.22)}
+.sc.next::before{content:'';position:absolute;inset:6px 7px;border:2px dashed #C8332B;border-radius:6px;animation:pulse 1.6s ease-in-out infinite}
+.sc.inkin{animation:inkin .7s ease-out both}
+.sc .sl{position:absolute;right:3px;top:3px;font:700 9px/1 var(--f-zh);font-style:normal;background:#C8332B;color:#FFF4EC;padding:2px 2px 1px;border-radius:2px}
+.sc:empty{cursor:default}
+.paper .seal{position:absolute;left:-4px;bottom:6px}
+.pdots{display:flex;justify-content:center;align-items:center;gap:0}
+.pd{width:19px;height:26px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}
+.pd::after{content:'';width:9px;height:9px;border-radius:50%;border:1.5px solid var(--line);box-sizing:border-box}
+.pd.done::after{background:var(--seal);border-color:var(--seal)}
+.pd.cur::after{border-color:var(--accent);background:var(--accent-soft)}
+.pd.view::after{width:13px;height:13px;outline:2px solid var(--accent-soft)}
+.pnav{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font:800 18px var(--f-body);color:var(--ink)}
+.pnav[disabled]{opacity:.35;cursor:default}
+.pagedone{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:#FBF6EC;color:#1F2A44;border:2px solid #C8332B}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.prog i{transition:none}.stampin,.pop,svg.mys .inkin,.hunt.bad,.flash,.sc.inkin,.sc.next::before{animation:none}}
 </style>
 </head>
 <body>
@@ -403,6 +429,43 @@ function makeWriter(id,c,opts){
     drawingWidth:24,strokeAnimationSpeed:1.1,delayBetweenStrokes:260,
     charDataLoader:(ch,done)=>done(TRAITS[ch])},opts||{}));
   writers[id]=w;return w;
+}
+
+/* ============================================================
+   LE ROULEAU 卷 : 20 caractères par page, écrits en colonnes de droite à gauche.
+   Un caractère qu'on ne révise plus pâlit ; la séance le repasse à l'encre.
+   ============================================================ */
+const PAGE=20,ZHN='一二三四五六七八九十';
+const zhNum=n=>n<=10?ZHN[n-1]:n<20?'十'+ZHN[n-11]:String(n);
+const pageCount=()=>Math.ceil(DATA.chars.length/PAGE);
+const pageChars=p=>DATA.chars.slice(p*PAGE,(p+1)*PAGE);
+const pageDone=(p,set)=>pageChars(p).every(x=>set?set.has(x.c):isIntro(x.c));
+function curPage(){const i=DATA.chars.findIndex(x=>!isIntro(x.c));return i<0?pageCount()-1:Math.floor(i/PAGE);}
+function fadingC(c,now){const r=S.chars[c];if(!r||!r.intro||now-r.intro<DAY)return false;return avg(SK.map(k=>r.sk[k]?retention(r.sk[k],now):1))<.7;}
+function lectAt(){const o={};DATA.lectures.forEach(l=>{const n=[...l.need];const c=n[Math.max(0,Math.ceil(.85*n.length)-1)];if(c&&!o[c])o[c]=l.t;});return o;}
+function scrollHTML(){
+  const cp=curPage(),n=pageCount(),p=ui.page==null?cp:Math.max(0,Math.min(n-1,ui.page)),now=Date.now(),cs=pageChars(p),nextC=DATA.chars.find(x=>!isIntro(x.c));
+  const LA=lectAt(),pop=ui.popSince||0;let k=0;
+  const cells=cs.map(x=>{const on=isIntro(x.c),fade=on&&fadingC(x.c,now),nw=on&&pop&&S.chars[x.c].intro>=pop,nx=nextC&&x.c===nextC.c;
+    const what=on?(fade?'à revoir':'appris'):nx?'le prochain':'à venir';
+    return `<button class="sc ${on?(fade?'fade':'on'):nx?'next':'ghost'}${nw?' inkin':''}"${nw?` style="animation-delay:${(k++)*160}ms"`:''} data-act="fiche" data-c="${x.c}" aria-label="${esc(x.c+' : '+what)}">${x.c}${LA[x.c]?'<i class="sl" title="Débloque une lecture">读</i>':''}</button>`;});
+  while(cells.length<PAGE)cells.push('<span class="sc" aria-hidden="true"></span>');
+  const kn=cs.filter(x=>isIntro(x.c)).length,done=pageDone(p),fades=cs.filter(x=>fadingC(x.c,now)).length;
+  const nextL=DATA.lectures.find(l=>lectRatio(l)<.85),toL=nextL?(()=>{const c=[...nextL.need][Math.ceil(.85*nextL.need.length)-1];return DATA.chars.findIndex(x=>x.c===c)-DATA.chars.findIndex(x=>!isIntro(x.c))+1;})():0;
+  let msg;
+  if(p===cp&&!done)msg=`Encore <b>${cs.length-kn}</b> caractère${cs.length-kn>1?'s':''} pour finir la page ${p+1}${nextL&&toL>0?` · la lecture « ${esc(nextL.t)} » dans ${toL}`:''}.`;
+  else if(done)msg=p===n-1&&knownCount()>=DATA.chars.length?'Tout le rouleau est écrit. Tu es une vraie lettrée !':`Page ${p+1} terminée ✓`;
+  else msg=`Cette page t’attend. Finis d’abord la page ${cp+1}.`;
+  return `<section class="card stack" aria-label="Mon rouleau">
+   <div class="row between"><span class="label">Mon rouleau · 卷 <span style="text-transform:none">juàn</span></span><span class="small"><b>${knownCount()}</b><span class="muted"> / ${DATA.chars.length}</span></span></div>
+   <div class="scroll"><span class="roller" aria-hidden="true"></span><div class="paper"><div class="cols">${cells.join('')}</div>${done?sealHTML('完成','stampin'):''}</div><span class="roller" aria-hidden="true"></span></div>
+   <div class="row between" style="flex-wrap:nowrap"><button class="pnav" data-act="page" data-p="${p-1}" ${p===0?'disabled':''} aria-label="Page précédente">‹</button>
+    <div class="stack sm grow" style="align-items:center;gap:2px"><b class="small">Page ${p+1} sur ${n} · <span class="zh">第${zhNum(p+1)}页</span></b><div class="pdots">${Array.from({length:n},(_,i)=>`<button class="pd ${pageDone(i)?'done':i===cp?'cur':''} ${i===p?'view':''}" data-act="page" data-p="${i}" aria-label="Page ${i+1}${pageDone(i)?', terminée':''}"></button>`).join('')}</div></div>
+    <button class="pnav" data-act="page" data-p="${p+1}" ${p>=n-1?'disabled':''} aria-label="Page suivante">›</button></div>
+   <p class="small" style="text-align:center">${msg}</p>
+   ${fades&&p===cp||fades&&p<cp?`<p class="tiny muted" style="text-align:center">${fades} caractère${fades>1?'s':''} pâli${fades>1?'s':''} sur cette page : ta séance ${fades>1?'les':'le'} repasse à l’encre.</p>`:''}
+   <p class="tiny muted" style="text-align:center">Lis de haut en bas, en commençant par la colonne de droite. Touche un caractère pour sa fiche.</p>
+  </section>`;
 }
 
 /* ============================================================
@@ -541,6 +604,8 @@ function finish(){
   const kn=knownCount();s.known1=kn;s.joker=msg;
   s.unlocked=DATA.lectures.filter(l=>lectRatio(l,s.known0Set)<.85&&lectRatio(l)>=.85).map(l=>l.t);
   for(const m of [10,25,50,100,150,200,DATA.chars.length])if(kn>=m&&!S.milestones[m]){S.milestones[m]=today();s.milestone=m;}
+  s.pages=[...Array(pageCount()).keys()].filter(p=>!pageDone(p,s.known0Set)&&pageDone(p));s.pages.forEach(()=>addXP(50));
+  ui.popSince=s.t0;ui.page=null;
   s.newBadges=newBadges(s.badges0);save();s.end=true;render();
 }
 
@@ -695,11 +760,11 @@ function hlSent(h,c){return [...h].map(ch=>charSpan(ch,c)).join('');}
 function renderHome(){
   refreshJokers();
   const kn=knownCount(),N=DATA.chars.length,done=S.lastSessionDay===today(),P=planSession(done?'review':'daily');
-  const nextL=DATA.lectures.find(l=>lectRatio(l)<.85);const newL=DATA.lectures.filter(l=>lectRatio(l)>=.85&&!S.read[l.t]);
+  const newL=DATA.lectures.filter(l=>lectRatio(l)>=.85&&!S.read[l.t]);
   const G=gameOfDay(),gr=gRec(G.id),played=gr.day===today();
   let bubu=null;try{const b=JSON.parse(localStorage.getItem('bubugao.v1'));if(b&&b.items)bubu=Object.keys(b.items).length;}catch(_){}
   const durs=`<div class="durs" role="group" aria-label="Durée de la séance">${[5,10,15].map(m=>`<button class="dur ${S.dur===m?'on':''}" data-act="dur" data-v="${m}" aria-pressed="${S.dur===m}">${m} min</button>`).join('')}</div>`;
-  return `
+  const html=`
   <div class="hello"><div class="stack sm"><span class="zh muted">字字珠玑 · zìzì zhūjī</span><h1>${S.name?esc(S.name)+', un':'Un'} caractère après l’autre</h1></div>
    <div class="stack sm" style="align-items:flex-end"><span class="flame" title="Jours de suite">${ICON.flame}${streakAlive()}</span><button class="playmini" data-act="settings" aria-label="Réglages">${ICON.gear}</button></div></div>
   <button class="card" data-act="tab" data-k="prog" style="text-align:left;cursor:pointer;width:100%">${rankBlock()}</button>
@@ -708,6 +773,7 @@ function renderHome(){
    :`<div class="cta"><span class="label" style="color:inherit;opacity:.85">Séance du jour</span><h2>${kn?'Continuer mon mur':'Mes premiers caractères'}</h2>
      <div class="bits"><span class="bit">${P.nw} nouveau${P.nw>1?'x':''}</span>${P.rv?`<span class="bit">${P.rv} révision${P.rv>1?'s':''}</span>`:''}${P.mem?`<span class="bit">${P.mem} de mémoire</span>`:''}<span class="bit">tracé au doigt</span></div>
      ${durs}<button class="btn go" data-act="daily">Commencer · ≈ ${S.dur} min</button></div>`}
+  ${S.sessions?scrollHTML():''}
   ${deferredInstall?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Zìzì</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`:''}
   <section class="defi" aria-label="Défi du jour"><span class="zhbig" aria-hidden="true">${G.zh}</span>
    <span class="label">Défi du jour · <span class="zh">${G.zh}</span> <span style="text-transform:none">${G.py}</span></span><h2 style="color:inherit">${esc(G.t)}</h2><p class="small muted">${esc(G.d)}</p>
@@ -717,14 +783,10 @@ function renderHome(){
    ${gamesOpen()?`<div class="minis">${GAMES.filter(g=>g.id!==G.id).map(g=>`<button class="mini" data-act="game" data-id="${g.id}"><span class="zh">${g.zh}</span>${esc(g.t)}</button>`).join('')}</div>`:''}
   </section>
   <section class="card stack sm" aria-label="Quêtes du jour"><div class="row between"><span class="label">Quêtes du jour</span><span class="tiny muted">les 3 = +50 et un sceau</span></div>${questsHTML()}</section>
+  ${S.sessions?'':scrollHTML()}
   ${newL.length?`<button class="lect" data-act="read" data-t="${esc(newL[0].t)}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Nouvelle lecture débloquée</b><br><span class="small muted">${esc(newL[0].t)} : tu peux la lire presque seule !</span></span></button>`:''}
-  <section class="card stack">
-    <div class="row between"><div class="stack sm"><span class="label">Caractères appris</span><div class="big-num">${kn}<small> / ${N}</small></div></div>
-    <div class="small muted" style="text-align:right;max-width:55%">${kn<N?`Tout le HSK 1, plus les caractères de l’usine.`:'Tu as tout appris. Bravo !'}</div></div>
-    <div class="bar"><i style="width:${pct(kn/N)}%"></i></div>
-    ${nextL?`<p class="small">Prochaine lecture : <b>${esc(nextL.t)}</b>, il te manque ${[...nextL.need].filter(c=>!isIntro(c)).length} caractère${[...nextL.need].filter(c=>!isIntro(c)).length>1?'s':''}.</p>`:''}
-  </section>
   ${bubu!=null?`<a class="lect" href="../" style="text-decoration:none;color:inherit"><span class="zh" style="font-size:28px;color:var(--good)">步</span><span class="grow"><b>Bùbùgāo</b><br><span class="small muted">Ton appli de vocabulaire et de conversation.</span></span></a>`:''}`;
+  ui.popSince=0;return html;
 }
 function renderMur(){
   const seg=`<div class="seg" role="tablist"><button class="${ui.murMode==='chars'?'on':''}" data-act="mur" data-m="chars" role="tab" aria-selected="${ui.murMode==='chars'}">Caractères</button><button class="${ui.murMode==='cles'?'on':''}" data-act="mur" data-m="cles" role="tab" aria-selected="${ui.murMode==='cles'}">Les clés 部首</button></div>`;
@@ -958,6 +1020,7 @@ function endHTML(){
    <section class="card">${rankBlock()}</section>
    ${s.joker?`<div class="notice">${esc(s.joker)}</div>`:''}
    ${badgesHTML(s.newBadges)}
+   ${(s.pages||[]).map(p=>`<div class="pagedone">${sealHTML('完成','big stampin')}<div class="stack sm"><span class="label" style="color:#C8332B">Page terminée · +50</span><h2>La page ${p+1} de ton rouleau est écrite !</h2><p class="small"><span class="zh" style="font-size:20px">${pageChars(p).map(x=>x.c).join('')}</span></p></div></div>`).join('')}
    ${s.milestone?`<div class="card stack sm" style="border:2px solid var(--gold)"><b>${s.milestone} caractères !</b><p class="small">${s.milestone>=DATA.chars.length?'Tu as appris tous les caractères du HSK 1 et de l’usine. Tu peux lire tes collègues !':'Un nouveau palier. Chaque caractère t’ouvre des dizaines de mots.'}</p></div>`:''}
    ${s.unlocked&&s.unlocked.length?`<button class="lect" data-act="read" data-t="${esc(s.unlocked[0])}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Lecture débloquée : ${esc(s.unlocked[0])}</b><br><span class="small muted">Tu peux maintenant la lire presque seule.</span></span></button>`:''}
    <section class="card stack sm"><span class="label">Quêtes du jour</span>${questsHTML()}</section>
@@ -995,6 +1058,7 @@ const ACT={
  install:async()=>{if(!deferredInstall)return;try{deferredInstall.prompt();await deferredInstall.userChoice;}catch(e){}deferredInstall=null;render();},
  tab:d=>{ui.tab=d.k;ui.reader=null;if(ui.exam&&ui.exam.stage==='intro'&&d.k!=='hsk')ui.exam=null;render();window.scrollTo(0,0);},
  mur:d=>{ui.murMode=d.m;render();},
+ page:d=>{ui.page=+d.p;render();},
  say:d=>say(d.t),
  dur:d=>{S.dur=+d.v;save();render();},
  durset:d=>{S.dur=+d.v;save();openSettings();},

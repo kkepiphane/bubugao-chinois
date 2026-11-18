@@ -62,8 +62,12 @@ async def main():
         await pg.evaluate("DATA.chars.slice(0,40).forEach(x=>{const r=rec(x.c);r.intro=Date.now();SK.forEach(k=>{const s=skState(x.c,k);s.S=3;s.last=Date.now();});});save();ui.tab='lire';render()")
         await pg.click('[data-act=read] >> nth=0'); await pg.click('[data-act=readdone]')
         check(await pg.evaluate('Object.keys(S.read).length') == 1, 'lecture ouverte et marquée lue')
-        # les trois défis
+        # le rouleau sur l'accueil : 40 caractères appris = 2 pages terminées, on est à la page 3
         await pg.click('[data-act=tab][data-k=home]')
+        check(await pg.locator('.paper .sc.on').count() == 0 and await pg.locator('.pd.done').count() == 2 and await pg.locator('.sc.next').count() == 1, 'rouleau : page en cours et 2 pages terminées')
+        await pg.click('[data-act=page][data-p="0"] >> nth=0')
+        check(await pg.locator('.paper .sc.on').count() == 20 and await pg.locator('.paper .seal').count() == 1, 'rouleau : page 1 feuilletée, scellée 完成')
+        await pg.evaluate('ui.page = null; render()')
         for gid in ['mystere', 'cles', 'eclair']:
             await pg.evaluate(f"startGame('{gid}')")
             for _ in range(200):
