@@ -1446,6 +1446,10 @@ function stairHTML(popSince){
 }
 function canDoHTML(list){return list.map(p=>{const d=packDone(p),its=packItems(p),n=its.filter(isIntro).length,st=d?'ok':n?'cur':'lock';
   return `<div class="can ${st}"><span class="ic">${d?'✓':n?'…':'·'}</span><span>${esc(canDo(p))}${st==='cur'?` <span class="tiny muted">${n}/${its.length}</span>`:''}</span></div>`;}).join('');}
+/* Zìzì vit sous l'adresse de Bùbùgāo : dans l'appli installée, Android l'ouvrirait dans la fenêtre de Bùbùgāo,
+   où on ne peut pas l'installer. Sur Android, on l'ouvre donc dans Chrome. */
+function zlink(){const u=new URL('caracteres/',location.href),app=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  return app&&/Android/i.test(navigator.userAgent)?`intent://${u.host}${u.pathname}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(u.href)};end`:'caracteres/';}
 function renderHome(){
   refreshJokers();const popSince=ui.popSince||0;ui.popSince=0;
   const cur=currentStage(),prog=stageProg(cur),stg=STAGES[cur],streak=streakAlive();
@@ -1492,7 +1496,7 @@ function renderHome(){
     ${pw.length?`<button class="shortcut" data-act="tab" data-k="photos">${phImg(pw[pw.length-1],'ph-sm')}Mes photos (${pw.length})</button>`:`<label class="shortcut">${ICON.cam}Photo de l’usine<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>`}
     <button class="shortcut" data-act="tab" data-k="heard">${ICON.mic}J’ai entendu une phrase</button>
     <button class="shortcut" data-act="lab" data-id="${pd.id}"><span class="zh">${esc(pd.h.length>5?pd.h.slice(0,5)+'…':pd.h)}</span>Phrase du jour</button></div>`;})():''}
-  <a class="list-btn" href="caracteres/" style="text-decoration:none;color:inherit"><span class="zh" style="color:var(--accent)">字</span><span class="grow"><b>Zìzì · les caractères</b><br><span class="small muted">Apprendre à lire et écrire les caractères, trait par trait.</span></span></a>
+  <a class="list-btn" href="${esc(zlink())}" style="text-decoration:none;color:inherit"><span class="zh" style="color:var(--accent)">字</span><span class="grow"><b>Zìzì · les caractères</b><br><span class="small muted">Apprendre à lire et écrire les caractères, trait par trait.</span></span></a>
   ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
      return old?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>3 mois déjà !</b><br><span class="small muted">Réenregistre « ${esc(BY[old].h)} » et compare avec ta voix du début.</span></div><button class="btn sm" data-act="lab" data-id="${old}">${ICON.mic}</button></section>`:'';})()}
   ${backupDue()?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Sauvegarde ta progression</b><br><span class="small muted">${S.lastBackup?'Dernière sauvegarde le '+S.lastBackup+'.':'Jamais sauvegardée.'} Si tu changes de téléphone, tu ne perdras rien.</span></div><button class="btn sm" data-act="backup">Sauvegarder</button></section>`:''}
