@@ -4,7 +4,7 @@
   "short_name": "Zìzì",
   "description": "Apprendre les caractères chinois : sens, clés, ordre des traits, écriture au doigt.",
   "lang": "fr",
-  "start_url": "./",
+  "start_url": "./?app=zizi",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

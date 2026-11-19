@@ -774,7 +774,7 @@ function renderHome(){
      <div class="bits"><span class="bit">${P.nw} nouveau${P.nw>1?'x':''}</span>${P.rv?`<span class="bit">${P.rv} révision${P.rv>1?'s':''}</span>`:''}${P.mem?`<span class="bit">${P.mem} de mémoire</span>`:''}<span class="bit">tracé au doigt</span></div>
      ${durs}<button class="btn go" data-act="daily">Commencer · ≈ ${S.dur} min</button></div>`}
   ${S.sessions?scrollHTML():''}
-  ${deferredInstall?`<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Zìzì</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`:''}
+  ${installHTML()}
   <section class="defi" aria-label="Défi du jour"><span class="zhbig" aria-hidden="true">${G.zh}</span>
    <span class="label">Défi du jour · <span class="zh">${G.zh}</span> <span style="text-transform:none">${G.py}</span></span><h2 style="color:inherit">${esc(G.t)}</h2><p class="small muted">${esc(G.d)}</p>
    ${!gamesOpen()?`<p class="small"><b>Termine ta première séance</b> pour débloquer les défis.</p>`
@@ -1055,6 +1055,7 @@ async function doBackup(){
    ÉVÉNEMENTS
    ============================================================ */
 const ACT={
+ installok:()=>{S.installHelp='non';save();render();},
  install:async()=>{if(!deferredInstall)return;try{deferredInstall.prompt();await deferredInstall.userChoice;}catch(e){}deferredInstall=null;render();},
  tab:d=>{ui.tab=d.k;ui.reader=null;if(ui.exam&&ui.exam.stage==='intro'&&d.k!=='hsk')ui.exam=null;render();window.scrollTo(0,0);},
  mur:d=>{ui.murMode=d.m;render();},
@@ -1125,9 +1126,34 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sheetEl.hidden)clo
 /* ============================================================
    DÉMARRAGE
    ============================================================ */
-let deferredInstall=null;
+/* ---------- installation sur le téléphone ----------
+   1. Chrome propose l'installation (beforeinstallprompt) : bouton « Installer ».
+   2. Zìzì est ouverte dans la fenêtre de Bùbùgāo (appli installée, même adresse) : on ne peut pas l'installer
+      d'ici, bouton « Ouvrir dans Chrome ». L'appli Zìzì installée démarre avec ?app=zizi (manifeste).
+   3. Dans le navigateur sans proposition au bout de 4 s : on explique où est « Installer » dans le menu. */
+let deferredInstall=null,installWait=false;
+const STANDALONE=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const ANDROID=/Android/i.test(navigator.userAgent),IOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
+const flag=(k,v)=>{try{if(v)sessionStorage.setItem(k,'1');return sessionStorage.getItem(k)==='1';}catch(_){return !!v;}};
+const ZAPP=flag('zizi.app',new URLSearchParams(location.search).get('app')==='zizi');
+const IN_BUBU=STANDALONE&&!ZAPP&&flag('zizi.dansbubu',/\/bubugao-chinois\/(index\.html)?([?#].*)?$/.test(document.referrer));
+function chromeLink(){const u=new URL('./',location.href);return ANDROID?`intent://${u.host}${u.pathname}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(u.href)};end`:u.href;}
+function installHTML(){
+  if(deferredInstall)return `<section class="card row" style="flex-wrap:nowrap"><div class="grow"><b>Installe Zìzì</b><br><span class="small muted">Une icône sur ton téléphone, et l’app marche même sans connexion.</span></div><button class="btn primary sm" data-act="install">Installer</button></section>`;
+  if(S.installHelp==='non')return '';
+  const deja=`<button class="btn ghost sm" data-act="installok">Elle est déjà installée</button>`;
+  if(IN_BUBU)return `<section class="card stack sm" style="border:2px solid var(--accent)"><b>Installe Zìzì avec sa propre icône</b>
+    <p class="small">Tu es dans la fenêtre de Bùbùgāo : d’ici, le téléphone ne peut pas installer Zìzì. Ouvre-la dans Chrome, puis touche « Installer ».</p>
+    <div class="row"><a class="btn primary sm" href="${esc(chromeLink())}" target="_blank" rel="noopener">Ouvrir dans Chrome</a>${deja}</div></section>`;
+  if(STANDALONE||!installWait)return '';
+  return `<section class="card stack sm"><b>Installe Zìzì sur ton téléphone</b>
+    <p class="small">${IOS?'Touche le bouton <b>Partager</b> (le carré avec une flèche), puis <b>« Sur l’écran d’accueil »</b>.':'Touche le menu <b>⋮</b> en haut à droite de Chrome, puis <b>« Installer l’application »</b> ou <b>« Ajouter à l’écran d’accueil »</b>.'}</p>
+    <p class="tiny muted">${IOS?'Utilise Safari.':'Utilise Chrome : le navigateur de WhatsApp ou de Facebook ne sait pas installer. Si Chrome propose « Ouvrir dans Bùbùgāo », tape l’adresse toi-même dans Chrome.'}</p>
+    <div class="row">${deja}</div></section>`;
+}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(!ui.sess&&!ui.game&&ui.tab==='home')render();});
-window.addEventListener('appinstalled',()=>{deferredInstall=null;toast('Zìzì est installée !');});
+window.addEventListener('appinstalled',()=>{deferredInstall=null;S.installHelp='non';save();toast('Zìzì est installée !');render();});
+setTimeout(()=>{installWait=true;if(DATA&&!deferredInstall&&!ui.sess&&!ui.game&&ui.tab==='home')render();},4000);
 async function boot(){
   try{
     const [d,t]=await Promise.all([fetch('data.json').then(r=>r.json()),fetch('traits.json').then(r=>r.json())]);

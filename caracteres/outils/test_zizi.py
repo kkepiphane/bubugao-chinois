@@ -106,6 +106,27 @@ async def main():
         check(await pg.locator('.badge.on').count() >= 3 and await pg.locator('.cal i').count() == 84, 'progrès : médailles et calendrier')
         await pg.wait_for_timeout(1500); await ctx.set_offline(True); await pg.reload(); await pg.wait_for_timeout(1000)
         check(await pg.evaluate('!!(typeof DATA !== "undefined" && DATA && DATA.chars.length)'), 'réouverture hors-ligne')
+        # installation : aide dans le navigateur, fenêtre de Bùbùgāo, appli Zìzì installée
+        UA = 'Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36'
+        async def ouvrir(url, standalone, referer=None):
+            c = await b.new_context(viewport={'width': 390, 'height': 844}, user_agent=UA)
+            q = await c.new_page(); q.on('pageerror', lambda e: errs.append(str(e)))
+            if standalone:  # appli installée : (display-mode: standalone) vrai
+                await q.add_init_script("const mm = window.matchMedia.bind(window); window.matchMedia = m => /display-mode:\\s*standalone/.test(m) ? {matches: true, media: m, addEventListener() {}, removeEventListener() {}} : mm(m);")
+            await q.goto(url, referer=referer); await q.wait_for_timeout(4800)
+            return c, q
+        c2, q = await ouvrir(f'http://127.0.0.1:{PORT}/', False)
+        check(await q.locator('text=Installe Zìzì sur ton téléphone').count() == 1, 'navigateur : aide pour installer depuis le menu')
+        await q.click('[data-act=installok]')
+        check(await q.locator('text=Installe Zìzì sur ton téléphone').count() == 0, 'aide masquée après « déjà installée »')
+        await c2.close()
+        c2, q = await ouvrir(f'http://127.0.0.1:{PORT}/', True, referer=f'http://127.0.0.1:{PORT}/bubugao-chinois/')
+        href = await q.locator('a:has-text("Ouvrir dans Chrome")').get_attribute('href') if await q.locator('a:has-text("Ouvrir dans Chrome")').count() else ''
+        check(href.startswith('intent://') and 'package=com.android.chrome' in href, 'fenêtre de Bùbùgāo : bouton « Ouvrir dans Chrome »')
+        await c2.close()
+        c2, q = await ouvrir(f'http://127.0.0.1:{PORT}/?app=zizi', True)
+        check(await q.locator('text=Installe Zìzì').count() == 0, 'appli Zìzì installée : pas de carte d’installation')
+        await c2.close()
         check(not errs, f'aucune erreur JavaScript {errs[:3]}')
         await b.close()
     print('\n' + ('TOUT EST BON' if not fails else f'{len(fails)} problème(s)')); sys.exit(1 if fails else 0)

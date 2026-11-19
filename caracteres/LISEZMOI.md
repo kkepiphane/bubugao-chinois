@@ -63,9 +63,14 @@
 
 ## Installer sur le téléphone
 
-Ouvrir **https://kkepiphane.github.io/bubugao-chinois/caracteres/** dans Chrome sur Android, une première fois avec
-du réseau. Une carte « Installe Zìzì » apparaît sur l'accueil (sinon : menu ⋮ › « Ajouter à l'écran d'accueil »).
-Ensuite l'appli marche sans connexion. Le logo se redessine avec `python3 outils/icone.py` (Chrome requis).
+Ouvrir **https://kkepiphane.github.io/bubugao-chinois/caracteres/** dans **Chrome** sur Android (pas dans Bùbùgāo ni
+dans WhatsApp), une première fois avec du réseau. Une carte « Installe Zìzì » apparaît sur l'accueil ; si Chrome ne
+propose rien, une aide explique où est « Installer » dans le menu ⋮. Ensuite l'appli marche sans connexion.
+
+Piège : Zìzì est sous l'adresse de Bùbùgāo. Si Bùbùgāo est installée, Android ouvre Zìzì dans la fenêtre de Bùbùgāo,
+où on ne peut pas l'installer. C'est pourquoi le lien 字 de Bùbùgāo ouvre Zìzì dans Chrome, et Zìzì affiche
+« Ouvrir dans Chrome » si elle se retrouve quand même dans la fenêtre de Bùbùgāo. L'appli Zìzì installée démarre
+avec `?app=zizi` (manifeste) : c'est ainsi qu'elle se reconnaît. Le logo se redessine avec `python3 outils/icone.py` (Chrome requis).
 
 Mise en ligne : tout ce qui arrive sur `main` est publié automatiquement par GitHub Pages, comme Bùbùgāo.
 Après une modification de `index.html`, passer `zizi-app-vN` à `N+1` dans `sw.js` pour que le téléphone se mette à jour.
