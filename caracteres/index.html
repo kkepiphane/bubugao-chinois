@@ -17,7 +17,7 @@
   --bg:#F1F3F6; --surface:#FFFFFF; --surface-2:#E6EAF0; --ink:#161C2A; --muted:#566074; --line:#D3D9E3;
   --accent:#2B4C9B; --accent-ink:#FFFFFF; --accent-soft:#DCE4F6;
   --grid:#E5A39A; --grid-soft:#F3D4CF;
-  --gold:#B47A0A; --gold-soft:#F4E4C1;
+  --gold:#B47A0A; --gold-soft:#F4E4C1; --flame:#E8590C; --flame-soft:#FFE6D3; --frost:#DCEEFB; --frost-ink:#1F6FB2;
   --t1:#2563C9; --t2:#13824A; --t3:#9C6208; --t4:#BF2D2B; --t0:#86919A;
   --good:#13824A; --good-soft:#DDF1E5; --bad:#BF2D2B; --bad-soft:#F8DEDC;
   --m0:#E6EAF0; --m1:#C9D5EF; --m2:#8FA6DD; --m3:#2B4C9B;
@@ -30,7 +30,7 @@
   --bg:#0E131C; --surface:#171E2B; --surface-2:#212A3A; --ink:#E6EBF4; --muted:#9AA6BA; --line:#2C3649;
   --accent:#8FA9EE; --accent-ink:#0B1530; --accent-soft:#1F2B48;
   --grid:#7A3E38; --grid-soft:#3A2522;
-  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --gold:#EDB43C; --gold-soft:#3A2E12; --flame:#FF8A3D; --flame-soft:#3A2414; --frost:#16324A; --frost-ink:#8CC8F5;
   --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
   --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
   --m0:#212A3A; --m1:#2A3A5E; --m2:#4A63A8; --m3:#8FA9EE;
@@ -39,7 +39,7 @@
   --bg:#0E131C; --surface:#171E2B; --surface-2:#212A3A; --ink:#E6EBF4; --muted:#9AA6BA; --line:#2C3649;
   --accent:#8FA9EE; --accent-ink:#0B1530; --accent-soft:#1F2B48;
   --grid:#7A3E38; --grid-soft:#3A2522;
-  --gold:#EDB43C; --gold-soft:#3A2E12;
+  --gold:#EDB43C; --gold-soft:#3A2E12; --flame:#FF8A3D; --flame-soft:#3A2414; --frost:#16324A; --frost-ink:#8CC8F5;
   --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
   --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
   --m0:#212A3A; --m1:#2A3A5E; --m2:#4A63A8; --m3:#8FA9EE;
@@ -253,6 +253,13 @@ svg.mys .inkin{animation:inkin .45s ease-out}
 .rung{display:flex;align-items:center;gap:12px;padding:8px 0}
 .rung .seal{width:38px;height:46px;font-size:16px}
 .rung.cur{background:var(--gold-soft);margin-inline:-16px;padding-inline:16px;border-radius:12px}
+.serie{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
+.sj{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sp{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);border:2px solid transparent;font-size:17px;line-height:1}
+.sp.on{background:var(--flame-soft);color:var(--flame)} .sp.on .icon{width:20px;height:20px}
+.sp.gel{background:var(--frost);color:var(--frost-ink)}
+.sp.auj{background:transparent;border:2px dashed var(--muted)}
+.cal i.gel{background:var(--frost)}
 .cal{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:3px}
 .cal i{aspect-ratio:1;border-radius:3px;background:var(--surface-2);position:relative}
 .cal i.l1{background:var(--m1)} .cal i.l2{background:var(--m2)} .cal i.l3{background:var(--m3)}
@@ -395,12 +402,52 @@ function addXP(n){const r0=rankOf(S.xp);S.xp+=n;const k=today();S.days[k]=(S.day
 const stats=()=>S.stats||(S.stats={});
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(_){}}
 
-/* ---------- série de jours + jokers ---------- */
-function refreshJokers(){const m=today().slice(0,7);if(S.jokerMonth!==m){S.jokerMonth=m;S.jokers=2;}}
-function streakAlive(){if(!S.lastDay)return 0;return daysBetween(S.lastDay,today())<=1+S.jokers?S.streak:0;}
-function markActive(){refreshJokers();const t=today();if(S.lastDay===t)return'';let msg='';
-  if(!S.lastDay)S.streak=1;else{const gap=daysBetween(S.lastDay,t);if(gap>=8)flags().retour=1;if(gap===1)S.streak++;else if(gap-1<=S.jokers){S.jokers-=gap-1;S.streak++;msg='Un joker a protégé ta série.';}else S.streak=1;}
-  S.lastDay=t;S.best=Math.max(S.best,S.streak);weekBump('days');save();return msg;}
+/* ---------- série de jours + jours gelés ---------- */
+/* SERIE:DEBUT — série de jours et jours gelés. Fonction pure (ni réseau ni stockage), identique dans
+   Bùbùgāo et Zìzì, testée par scripts/test_serie.js. Un jour gelé ne compte pas : il empêche seulement
+   la série de casser. Gels gagnés : 1 à 7 jours, 2 à 50 jours, 1 tous les 30 jours ; plafond 0 / 1 / 3. */
+const SERIE_PALIERS=[3,7,14,30,50,100,200,365];
+function streakInfo(joursActifs,maintenant){
+  const z=n=>String(n).padStart(2,'0');
+  const auj=maintenant.getFullYear()+'-'+z(maintenant.getMonth()+1)+'-'+z(maintenant.getDate());
+  const num=s=>Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10))/864e5;   // numéro de jour UTC : pas de piège d'heure d'été
+  const date=n=>new Date(n*864e5).toISOString().slice(0,10);
+  const gagnes=r=>(r===7?1:0)+(r===50?2:0)+(r%30===0?1:0);
+  const plafond=r=>r>=50?3:r>=7?1:0;
+  const jours=[...new Set((joursActifs||[]).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&d<=auj))].sort().map(num);
+  let run=0,held=0,used=0,frozen=[],best=0,prev=null;const runs=[];
+  for(const j of jours){
+    if(prev!==null){const n=j-prev-1;
+      if(n>0){if(n<=held){held-=n;used+=n;for(let k=prev+1;k<j;k++)frozen.push(date(k));}
+        else{runs.push(run);run=0;held=0;used=0;frozen=[];}}}
+    run++;held=Math.min(held+gagnes(run),plafond(run));best=Math.max(best,run);prev=j;
+  }
+  /* série en cours : on compte les jours manqués jusqu'à HIER (aujourd'hui n'est pas fini) */
+  if(prev!==null){const n=num(auj)-prev-1;
+    if(n>0){if(n<=held){held-=n;used+=n;for(let k=prev+1;k<num(auj);k++)frozen.push(date(k));}
+      else{runs.push(run);return{current:0,best,freezesLeft:0,freezesUsed:0,frozenDays:[],runs};}}}
+  if(run)runs.push(run);
+  return{current:run,best,freezesLeft:held,freezesUsed:used,frozenDays:frozen,runs};
+}
+/* SERIE:FIN */
+const SERIE_MIN=10; // un jour actif = au moins 10 points gagnés ce jour-là dans S.days (≈ une bonne réponse, une minute d'étude)
+const jourIl=k=>{const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate()-k);};   // il y a k jours, à minuit (heure locale)
+function serie(){return streakInfo(Object.keys(S.days).filter(k=>(S.days[k]||0)>=SERIE_MIN),new Date());}
+function streakAlive(){return serie().current;}
+const badgeFois=n=>serie().runs.filter(r=>r>=n).length;   // combien de séries (passées + en cours) ont atteint ce palier
+function serieHTML(){
+  const i=serie(),t=today(),J=['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'],JL=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],cells=[];
+  for(let k=6;k>=0;k--){const d=jourIl(k),key=dkey(d),on=(S.days[key]||0)>=SERIE_MIN,gel=i.frozenDays.includes(key),auj=key===t;
+    const st=on?'on':gel?'gel':auj?'auj':'',lab=on?'jour actif':gel?'jour gelé':auj?'pas encore fait':'pas d’activité';
+    cells.push(`<div class="sj"><span class="sp ${st}" role="img" aria-label="${auj?'Aujourd’hui':JL[d.getDay()]} : ${lab}">${on?ICON.flame:gel?'❄':''}</span><span class="tiny muted">${auj?'auj.':J[d.getDay()]}</span></div>`);}
+  const nx=SERIE_PALIERS.find(p=>p>i.current),g=i.freezesLeft;
+  return `<div class="serie" aria-label="Ta semaine">${cells.join('')}</div>
+   <p class="small">${nx?`<b>${nx-i.current}</b> jour${nx-i.current>1?'s':''} avant le badge <b>${nx} jours</b>`:'Tous les badges de série sont à toi !'}</p>
+   <p class="small">❄️ ${g} gel${g>1?'s':''} disponible${g>1?'s':''}${g?'':i.current<7?' · ton premier gel arrive à 7 jours de suite':''}</p>`;
+}
+/* Ne calcule plus la série (elle vient de S.days via streakInfo) : note le jour, le retour après une pause, et dit si un gel a servi. */
+function markActive(){const t=today();if(S.lastDay===t)return'';if(S.lastDay&&daysBetween(S.lastDay,t)>=8)flags().retour=1;
+  S.lastDay=t;weekBump('days');save();return serie().frozenDays.includes(dkey(jourIl(1)))?'❄️ Un jour gelé a protégé ta série.':'';}
 
 /* ============================================================
    VOIX : fichiers audio d'abord, voix du téléphone en secours
@@ -773,7 +820,7 @@ function hskStats(){const H=DATA.chars.filter(x=>x.h),k=H.filter(x=>isIntro(x.c)
    ============================================================ */
 const MEDAL=['bronze','argent','or'],MCOL=['r','jade','gold'];
 const flags=()=>stats().flags||(stats().flags={});
-const bestStreak=()=>Math.max(S.best||0,streakAlive());
+const bestStreak=()=>serie().best;
 const pagesDone=()=>[...Array(pageCount()).keys()].filter(p=>pageDone(p)).length;
 const GSEUILS={eclair:{v:'n',s:[10,18,25],u:'bonnes réponses en 60 secondes'},sprint:{v:'t',s:[100,70,45],u:'secondes ou moins'},
   mystere:{v:'p',s:[150,220,270],u:'points en 3 manches'},cles:{v:'p',s:[200,300,380],u:'points en 3 manches'}};
@@ -782,7 +829,7 @@ function gameMedal(id,v){const G=GSEUILS[id];return G.s.filter(x=>G.v==='t'?(v>0
 const gT=id=>GAMES.find(x=>x.id===id).t;
 const SEALS=[
  ...[[3,'三','r'],[7,'七','r'],[14,'十四','r'],[30,'月','jade'],[50,'五十','jade'],[100,'百','gold'],[200,'二百','gold'],[365,'年','gold']]
-   .map(([n,ch,c])=>({id:'s'+n,fam:'Jours de suite',ch,c,nm:n<365?n+' jours de suite':'Une année entière',court:n<365?n+' jours':'1 an',desc:n+' jours de suite sans abandonner (les jokers comptent).',prog:()=>[streakAlive(),n,'jours'],test:()=>bestStreak()>=n})),
+   .map(([n,ch,c])=>({id:'s'+n,fam:'Jours de suite',ch,c,nm:n<365?n+' jours de suite':'Une année entière',court:n<365?n+' jours':'1 an',serie:n,desc:n+' jours actifs de suite (les jours gelés protègent la série sans compter).',prog:()=>[streakAlive(),n,'jours'],test:()=>badgeFois(n)>=1})),
  ...[[10,'初','r'],[50,'识','jade'],[100,'博','jade'],[150,'才','gold'],[214,'满','gold']]
    .map(([n,ch,c])=>({id:'c'+n,fam:'Caractères',ch,c,nm:n===214?'Tout le mur':n+' caractères',court:n===214?'tout':n+'',desc:n===214?'Les 214 caractères de Zìzì appris.':n+' caractères appris.',prog:()=>[knownCount(),n,'caractères'],test:()=>knownCount()>=n})),
  {id:'hsk1',fam:'Caractères',ch:'一',c:'gold',nm:'Les caractères du HSK 1',court:'HSK 1',desc:'Les 174 caractères du HSK 1 appris.',prog:()=>{const H=DATA.chars.filter(x=>x.h);return[H.filter(x=>isIntro(x.c)).length,H.length,'caractères'];},test:()=>DATA.chars.filter(x=>x.h).every(x=>isIntro(x.c))},
@@ -820,10 +867,10 @@ function nextSealHTML(){const b=nextSeal();if(!b)return'';const [,,u]=b.x.prog()
 function carnetHTML(){const fams=[...new Set(SEALS.map(x=>x.fam))],n=SEALS.filter(x=>S.seals[x.id]).length,sel=SEALBY[ui.sealOpen];
   return `<section class="card stack" aria-label="Carnet de sceaux"><div class="row between"><div class="stack sm"><span class="label">Mon carnet de sceaux · 印章</span><h2>${n} sceau${n>1?'x':''} sur ${SEALS.length}</h2></div></div>
    ${sel?`<div class="card flat row" style="flex-wrap:nowrap;gap:14px;align-items:flex-start">${sealStamp(sel)}<div class="grow stack sm"><b>${S.seals[sel.id]||!sel.rare?esc(sel.nm):'Sceau rare'}</b><span class="small">${esc(sel.desc)}</span>
-     ${S.seals[sel.id]?`<span class="tiny muted">Gagné le ${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`
+     ${S.seals[sel.id]?`<span class="tiny muted">${sel.serie&&badgeFois(sel.serie)>1?`<b>Gagné ×${badgeFois(sel.serie)}</b> · la première fois le `:'Gagné le '}${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`
       :sel.prog?(()=>{const [v,m,u]=sel.prog();return `<div class="xpbar"><i style="width:${pct(v/m)}%"></i></div><span class="tiny muted">${Math.min(v,m)} / ${m} ${u}. Tu y arriveras !</span>`;})():'<span class="tiny muted">Pas encore gagné. Tu y arriveras !</span>'}</div></div>`:'<p class="tiny muted">Touche un sceau pour voir comment l’obtenir. Les sceaux rares restent cachés jusqu’à ce que tu les gagnes.</p>'}
    ${fams.map(f=>{const L=SEALS.filter(x=>x.fam===f);return `<div class="stack sm"><div class="row between"><span class="tiny" style="font-weight:800">${esc(f)}</span><span class="tiny muted">${L.filter(x=>S.seals[x.id]).length}/${L.length}</span></div>
-     <div class="carnet">${L.map(x=>`<button class="sb ${S.seals[x.id]?'on':''} ${ui.sealOpen===x.id?'sel':''}" data-act="sealopen" data-id="${x.id}" aria-label="${esc(S.seals[x.id]||!x.rare?x.nm:'Sceau rare')}${S.seals[x.id]?' (gagné)':''}">${sealStamp(x)}<span>${esc(S.seals[x.id]||!x.rare?x.court:'rare')}</span></button>`).join('')}</div></div>`;}).join('')}</section>`;}
+     <div class="carnet">${L.map(x=>`<button class="sb ${S.seals[x.id]?'on':''} ${ui.sealOpen===x.id?'sel':''}" data-act="sealopen" data-id="${x.id}" aria-label="${esc(S.seals[x.id]||!x.rare?x.nm:'Sceau rare')}${S.seals[x.id]?' (gagné)':''}">${sealStamp(x)}<span>${esc(S.seals[x.id]||!x.rare?x.court:'rare')}${x.serie&&S.seals[x.id]&&badgeFois(x.serie)>1?' ×'+badgeFois(x.serie):''}</span></button>`).join('')}</div></div>`;}).join('')}</section>`;}
 function showSealSheet(){const id=ui.sealQ.shift(),x=SEALBY[id],left=ui.sealQ.length;
   sheetEl.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Nouveau sceau"><div class="stack" style="align-items:center;text-align:center;padding-top:6px">
    <span class="label" style="color:var(--gold)">Nouveau sceau !</span>${sealStamp(x,'xl stampin')}<h2>${esc(x.nm)}</h2><p class="small muted">${esc(x.desc)}</p>
@@ -891,7 +938,6 @@ function charSpan(c,hl){return HAN.test(c)?`<span class="${c===hl?'hl':''}">${es
 function hlSent(h,c){return [...h].map(ch=>charSpan(ch,c)).join('');}
 
 function renderHome(){
-  refreshJokers();
   const kn=knownCount(),N=DATA.chars.length,done=S.lastSessionDay===today(),P=planSession(done?'review':'daily');
   const newL=DATA.lectures.filter(l=>lectRatio(l)>=.85&&!S.read[l.t]);
   const G=gameOfDay(),gr=gRec(G.id),played=gr.day===today();
@@ -900,6 +946,7 @@ function renderHome(){
   const html=`
   <div class="hello"><div class="stack sm"><span class="zh muted">字字珠玑 · zìzì zhūjī</span><h1>${S.name?esc(S.name)+', un':'Un'} caractère après l’autre</h1></div>
    <div class="stack sm" style="align-items:flex-end"><span class="flame" title="Jours de suite">${ICON.flame}${streakAlive()}</span><button class="playmini" data-act="settings" aria-label="Réglages">${ICON.gear}</button></div></div>
+  ${S.sessions?`<section class="card stack sm" aria-label="Ta série">${serieHTML()}</section>`:''}
   <button class="card" data-act="tab" data-k="prog" style="text-align:left;cursor:pointer;width:100%">${rankBlock()}</button>
   ${!S.sessions?`<div class="welcome"><b>Bienvenue dans Zìzì 字字 !</b><ol><li>Choisis le temps que tu as : 5, 10 ou 15 minutes.</li><li>Chaque jour, de nouveaux caractères : tu regardes, tu traces au doigt, tu révises.</li><li>Un défi et 3 quêtes chaque jour pour gagner des points et monter de niveau.</li></ol></div>`:''}
   ${done?(()=>{const Q=planSession('plus'),nt=newToday();return `<div class="cta done"><span class="label">Séance du jour faite ${ICON.check}</span><h2>On continue ?</h2>
@@ -1021,9 +1068,9 @@ function renderExam(){
 
 /* ---------- onglet Progrès ---------- */
 function calHTML(){
-  const t=new Date(today()+'T12:00:00'),dow=(t.getDay()+6)%7,start=new Date(t.getTime()-(dow+7*11)*DAY),cells=[];
+  const t=new Date(today()+'T12:00:00'),dow=(t.getDay()+6)%7,start=new Date(t.getTime()-(dow+7*11)*DAY),cells=[],gel=serie().frozenDays;
   for(let i=0;i<84;i++){const d=new Date(start.getTime()+i*DAY),k=dkey(d),x=S.days[k]||0,fut=d>t;
-    cells.push(`<i class="${fut?'fut':x>=150?'l3':x>=60?'l2':x>0?'l1':''} ${S.stamps[k]?'stamp':''}" title="${k}${x?' · '+x+' points':''}"></i>`);}
+    cells.push(`<i class="${fut?'fut':x>=150?'l3':x>=60?'l2':x>0?'l1':gel.includes(k)?'gel':''} ${S.stamps[k]?'stamp':''}" title="${k}${x?' · '+x+' points':gel.includes(k)?' · jour gelé':''}"></i>`);}
   return `<div class="cal" aria-label="Tes 12 dernières semaines">${cells.join('')}</div>`;
 }
 function renderProg(){
@@ -1037,7 +1084,8 @@ function renderProg(){
    <div class="ladder">${DATA.rangs.map((R,i)=>`<div class="rung ${i===k.r?'cur':''}">${sealHTML(R.h,i>k.r?'off':'')}<div class="grow"><b class="small">${i+1}. ${esc(R.fr)}</b><br><span class="tiny muted">${i>k.r?R.xp+' points':esc(R.d)}</span></div>${i<k.r?'<span style="color:var(--good)">✓</span>':''}</div>`).join('')}</div>
    <p class="tiny muted">Ces titres sont ceux des examens impériaux de la Chine ancienne : de la candidate jusqu’à <span class="zh">状元</span>, la première de tout l’empire.</p></section>
   <div class="kpis"><div class="stat"><b>${kn}</b><span>caractères appris</span></div><div class="stat"><b>${anch}</b><span>bien ancrés</span></div><div class="stat"><b>${h.length?pct(avg(h)):0}%</b><span>de réussite récente</span></div>
-   <div class="stat"><b>${S.best}</b><span>meilleure série de jours</span></div><div class="stat"><b>${S.mins||0}</b><span>minutes d’étude</span></div><div class="stat"><b>${stats().perfect||0}</b><span>tracés parfaits</span></div></div>
+   <div class="stat"><b>${serie().best}</b><span>meilleure série de jours</span></div><div class="stat"><b>${S.mins||0}</b><span>minutes d’étude</span></div><div class="stat"><b>${stats().perfect||0}</b><span>tracés parfaits</span></div></div>
+  <section class="card stack sm"><span class="label">Ta série</span>${serieHTML()}</section>
   <section class="card stack sm"><div class="row between"><span class="label">12 dernières semaines</span><span class="tiny muted">● = 3 quêtes réussies</span></div>${calHTML()}
    <p class="small muted">${eta?`À ton rythme (${Math.round(perDay*7)} caractères par semaine), tu finiras le mur vers ${M[eta.getMonth()]} ${eta.getFullYear()}.`:kn>=N?'Tout le mur est appris !':'Fais quelques séances : on calculera quand tu finiras le mur.'}</p></section>
   ${carnetHTML()}
@@ -1315,7 +1363,7 @@ async function boot(){
   }catch(e){app.innerHTML='<main class="screen"><h1>Connexion nécessaire</h1><p>Ouvre Zìzì une première fois avec du réseau : ensuite il marche hors-ligne.</p></main>';return;}
   if(![5,10,15].includes(S.dur))S.dur=10;
   if(!S.sealsV1){S.sealsV1=1;S.seals=S.seals||{};const d=earnedBadges();d.forEach(id=>{if(!S.seals[id])S.seals[id]=today();});save();if(d.length)setTimeout(()=>toast('Ton carnet de sceaux est prêt : '+d.length+' sceau'+(d.length>1?'x':'')+' déjà à toi !'),1200);}
-  refreshJokers();render();
+  render();
   if(navigator.onLine!==false)loadAudioIndex();
   if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&window.top===window)navigator.serviceWorker.register('sw.js').catch(()=>{});
   try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(_){}

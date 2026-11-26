@@ -17,7 +17,7 @@
 :root{
   --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#E3E9E5; --ink:#17212A; --muted:#56636C; --line:#D2DAD5;
   --accent:#0B7A63; --accent-ink:#FFFFFF; --accent-soft:#D3ECE3;
-  --gold:#B97C08; --gold-soft:#F5E5C0; --me:#D85A30;
+  --gold:#B97C08; --gold-soft:#F5E5C0; --me:#D85A30; --flame:#E8590C; --flame-soft:#FFE6D3; --frost:#DCEEFB; --frost-ink:#1F6FB2;
   --t1:#2563C9; --t2:#13824A; --t3:#9C6208; --t4:#BF2D2B; --t0:#86919A;
   --good:#13824A; --good-soft:#DDF1E5; --bad:#BF2D2B; --bad-soft:#F8DEDC;
   --shadow:0 1px 2px rgba(23,33,42,.06),0 6px 18px rgba(23,33,42,.06);
@@ -28,14 +28,14 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0F1518; --surface:#182126; --surface-2:#212C32; --ink:#E7EDEA; --muted:#97A5AD; --line:#2C3940;
   --accent:#38C29D; --accent-ink:#04211A; --accent-soft:#163830;
-  --gold:#EDB43C; --gold-soft:#3A2E12; --me:#F0997B;
+  --gold:#EDB43C; --gold-soft:#3A2E12; --me:#F0997B; --flame:#FF8A3D; --flame-soft:#3A2414; --frost:#16324A; --frost-ink:#8CC8F5;
   --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
   --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0F1518; --surface:#182126; --surface-2:#212C32; --ink:#E7EDEA; --muted:#97A5AD; --line:#2C3940;
   --accent:#38C29D; --accent-ink:#04211A; --accent-soft:#163830;
-  --gold:#EDB43C; --gold-soft:#3A2E12; --me:#F0997B;
+  --gold:#EDB43C; --gold-soft:#3A2E12; --me:#F0997B; --flame:#FF8A3D; --flame-soft:#3A2414; --frost:#16324A; --frost-ink:#8CC8F5;
   --t1:#74A3F4; --t2:#4CC583; --t3:#E2A447; --t4:#F06D69; --t0:#7E8B93;
   --good:#4CC583; --good-soft:#173A28; --bad:#F06D69; --bad-soft:#42201F;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
@@ -156,6 +156,12 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .defi-q{text-align:center;padding:18px}
 .defi-q .zh{font-size:44px}
 .wk{height:8px;border-radius:9px;background:var(--surface-2);overflow:hidden}.wk i{display:block;height:100%;background:var(--gold)}
+.serie{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
+.sj{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sp{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);border:2px solid transparent;font-size:17px;line-height:1}
+.sp.on{background:var(--flame-soft);color:var(--flame)} .sp.on .icon{width:20px;height:20px}
+.sp.gel{background:var(--frost);color:var(--frost-ink)}
+.sp.auj{background:transparent;border:2px dashed var(--muted)}
 .stair{width:100%;display:block}
 .stair .st{fill:none;stroke:var(--line);stroke-width:1}
 .stair .st.on{fill:var(--accent);stroke:none}
@@ -882,19 +888,52 @@ function recordAnswer(it,sk,ok,note){
   save();
 }
 
-/* ---------- série de jours + jokers ---------- */
-function refreshJokers(){const m=today().slice(0,7);if(S.jokerMonth!==m){S.jokerMonth=m;S.jokers=2;}}
-function streakAlive(){if(!S.lastDay)return 0;const gap=daysBetween(S.lastDay,today());return gap<=1+S.jokers?S.streak:0;}
-function markActive(){
-  refreshJokers();const t=today();let msg='';
-  if(S.lastDay===t)return '';
-  if(!S.lastDay)S.streak=1;
-  else{const gap=daysBetween(S.lastDay,t);
-    if(gap===1)S.streak++;
-    else if(gap-1<=S.jokers){S.jokers-=gap-1;S.streak++;msg=(gap-1)===1?'Un joker a protégé ta série.':(gap-1)+' jokers ont protégé ta série.';}
-    else S.streak=1;}
-  S.lastDay=t;S.best=Math.max(S.best,S.streak);save();return msg;
+/* ---------- série de jours + jours gelés ---------- */
+/* SERIE:DEBUT — série de jours et jours gelés. Fonction pure (ni réseau ni stockage), identique dans
+   Bùbùgāo et Zìzì, testée par scripts/test_serie.js. Un jour gelé ne compte pas : il empêche seulement
+   la série de casser. Gels gagnés : 1 à 7 jours, 2 à 50 jours, 1 tous les 30 jours ; plafond 0 / 1 / 3. */
+const SERIE_PALIERS=[3,7,14,30,50,100,200,365];
+function streakInfo(joursActifs,maintenant){
+  const z=n=>String(n).padStart(2,'0');
+  const auj=maintenant.getFullYear()+'-'+z(maintenant.getMonth()+1)+'-'+z(maintenant.getDate());
+  const num=s=>Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10))/864e5;   // numéro de jour UTC : pas de piège d'heure d'été
+  const date=n=>new Date(n*864e5).toISOString().slice(0,10);
+  const gagnes=r=>(r===7?1:0)+(r===50?2:0)+(r%30===0?1:0);
+  const plafond=r=>r>=50?3:r>=7?1:0;
+  const jours=[...new Set((joursActifs||[]).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&d<=auj))].sort().map(num);
+  let run=0,held=0,used=0,frozen=[],best=0,prev=null;const runs=[];
+  for(const j of jours){
+    if(prev!==null){const n=j-prev-1;
+      if(n>0){if(n<=held){held-=n;used+=n;for(let k=prev+1;k<j;k++)frozen.push(date(k));}
+        else{runs.push(run);run=0;held=0;used=0;frozen=[];}}}
+    run++;held=Math.min(held+gagnes(run),plafond(run));best=Math.max(best,run);prev=j;
+  }
+  /* série en cours : on compte les jours manqués jusqu'à HIER (aujourd'hui n'est pas fini) */
+  if(prev!==null){const n=num(auj)-prev-1;
+    if(n>0){if(n<=held){held-=n;used+=n;for(let k=prev+1;k<num(auj);k++)frozen.push(date(k));}
+      else{runs.push(run);return{current:0,best,freezesLeft:0,freezesUsed:0,frozenDays:[],runs};}}}
+  if(run)runs.push(run);
+  return{current:run,best,freezesLeft:held,freezesUsed:used,frozenDays:frozen,runs};
 }
+/* SERIE:FIN */
+const SERIE_MIN=10; // un jour actif = au moins 10 points gagnés ce jour-là dans S.days (≈ une bonne réponse, une minute d'étude)
+const jourIl=k=>{const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate()-k);};   // il y a k jours, à minuit (heure locale)
+function serie(){return streakInfo(Object.keys(S.days).filter(k=>(S.days[k]||0)>=SERIE_MIN),new Date());}
+function streakAlive(){return serie().current;}
+const badgeFois=n=>serie().runs.filter(r=>r>=n).length;   // combien de séries (passées + en cours) ont atteint ce palier
+function serieHTML(){
+  const i=serie(),t=today(),J=['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'],JL=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],cells=[];
+  for(let k=6;k>=0;k--){const d=jourIl(k),key=dkey(d),on=(S.days[key]||0)>=SERIE_MIN,gel=i.frozenDays.includes(key),auj=key===t;
+    const st=on?'on':gel?'gel':auj?'auj':'',lab=on?'jour actif':gel?'jour gelé':auj?'pas encore fait':'pas d’activité';
+    cells.push(`<div class="sj"><span class="sp ${st}" role="img" aria-label="${auj?'Aujourd’hui':JL[d.getDay()]} : ${lab}">${on?ICON.flame:gel?'❄':''}</span><span class="tiny muted">${auj?'auj.':J[d.getDay()]}</span></div>`);}
+  const nx=SERIE_PALIERS.find(p=>p>i.current),g=i.freezesLeft;
+  return `<div class="serie" aria-label="Ta semaine">${cells.join('')}</div>
+   <p class="small">${nx?`<b>${nx-i.current}</b> jour${nx-i.current>1?'s':''} avant le badge <b>${nx} jours</b>`:'Tous les badges de série sont à toi !'}</p>
+   <p class="small">❄️ ${g} gel${g>1?'s':''} disponible${g>1?'s':''}${g?'':i.current<7?' · ton premier gel arrive à 7 jours de suite':''}</p>`;
+}
+/* Ne calcule plus la série (elle vient de S.days via streakInfo) : note juste le jour, et dit si un gel a servi. */
+function markActive(){const t=today();if(S.lastDay===t)return '';S.lastDay=t;save();
+  return serie().frozenDays.includes(dkey(jourIl(1)))?'❄️ Un jour gelé a protégé ta série.':'';}
 
 /* ============================================================
    VOIX (synthèse chinoise du téléphone)
@@ -1562,12 +1601,12 @@ const DEFIS={mots:{t:'Défi des mots',zh:'词',seuils:[10,18,25],need:'Apprends 
   chars:{t:'Défi des caractères',zh:'字',seuils:[10,18,25],need:'Découvre au moins 4 caractères dans tes séances.'}};
 const MEDAL=['bronze','argent','or'];
 const nbWords=()=>ITEMS.filter(isIntro).length;
-const bestStreak=()=>Math.max(S.best||0,streakAlive());
+const bestStreak=()=>serie().best;
 const modDone=k=>{const p=PACKS.find(x=>x.module&&x.module.icon===k);return !!(p&&packDone(p));};
 const examOk=(l,min)=>(S.exams||[]).some(e=>e.lvl===l&&e.total>=min);
 const SEALS=[
- ...[[7,'七','r','Une semaine'],[14,'十四','r','Deux semaines'],[30,'月','gold','Un mois entier'],[50,'五十','r','Cinquante jours'],[100,'百','gold','Cent jours'],[200,'二百','gold','Deux cents jours'],[365,'年','gold','Une année']]
-   .map(([n,ch,c,nm])=>({id:'s'+n,fam:'Séries de jours',ch,c,nm,court:n<365?n+' jours':'1 an',desc:n+' jours de suite sans abandonner.',test:()=>bestStreak()>=n})),
+ ...[[3,'三','r','Trois jours'],[7,'七','r','Une semaine'],[14,'十四','r','Deux semaines'],[30,'月','gold','Un mois entier'],[50,'五十','r','Cinquante jours'],[100,'百','gold','Cent jours'],[200,'二百','gold','Deux cents jours'],[365,'年','gold','Une année']]
+   .map(([n,ch,c,nm])=>({id:'s'+n,fam:'Séries de jours',ch,c,nm,serie:n,court:n<365?n+' jours':'1 an',desc:n+' jours actifs de suite (les jours gelés protègent la série sans compter).',test:()=>badgeFois(n)>=1})),
  ...[[100,'学','jade'],[250,'识','jade'],[500,'博','jade'],[1000,'千','gold']]
    .map(([n,ch,c])=>({id:'m'+n,fam:'Mots appris',ch,c,nm:n+' mots appris',court:n+' mots',desc:'Tu as appris '+n+' mots et phrases.',test:()=>nbWords()>=n})),
  {id:'e1',fam:'Examens',ch:'一',c:'gold',nm:'HSK 1 réussi',court:'HSK 1',desc:'Au moins 120 / 200 à l’examen blanc HSK 1.',test:()=>examOk(1,120)},
@@ -1590,9 +1629,9 @@ function checkSeals(){const nw=SEALS.filter(s=>!S.seals[s.id]&&s.test());if(!nw.
 function sealHTML(s,cls){return `<span class="seal-st ${S.seals[s.id]?s.c:'off'} ${cls||''}">${esc(s.ch)}</span>`;}
 function carnetHTML(){const fams=[...new Set(SEALS.map(s=>s.fam))],n=SEALS.filter(s=>S.seals[s.id]).length,sel=SEALBY[ui.sealOpen];
   return `<section class="card stack" aria-label="Carnet de sceaux"><div class="row between"><div class="stack sm"><span class="label">Ton carnet de sceaux · 印章</span><h3>${n} sceau${n>1?'x':''} sur ${SEALS.length}</h3></div></div>
-   ${fams.map(f=>`<div class="stack sm"><span class="tiny muted" style="font-weight:800">${esc(f)}</span><div class="seals">${SEALS.filter(s=>s.fam===f).map(s=>`<button class="seal-b ${ui.sealOpen===s.id?'sel':''}" data-act="sealopen" data-id="${s.id}" aria-label="${esc(s.nm)}${S.seals[s.id]?' (gagné)':''}">${sealHTML(s)}<span class="nm">${esc(s.court)}</span></button>`).join('')}</div></div>`).join('')}
+   ${fams.map(f=>`<div class="stack sm"><span class="tiny muted" style="font-weight:800">${esc(f)}</span><div class="seals">${SEALS.filter(s=>s.fam===f).map(s=>`<button class="seal-b ${ui.sealOpen===s.id?'sel':''}" data-act="sealopen" data-id="${s.id}" aria-label="${esc(s.nm)}${S.seals[s.id]?' (gagné)':''}">${sealHTML(s)}<span class="nm">${esc(s.court)}${s.serie&&S.seals[s.id]&&badgeFois(s.serie)>1?' ×'+badgeFois(s.serie):''}</span></button>`).join('')}</div></div>`).join('')}
    ${sel?`<div class="card flat stack sm"><b>${esc(sel.nm)}</b><span class="small">${esc(sel.desc)}</span>
-     ${S.seals[sel.id]?`<span class="tiny muted">Gagné le ${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`:'<span class="tiny muted">Pas encore gagné. Tu y arriveras !</span>'}</div>`:'<p class="tiny muted">Touche un sceau pour voir comment l’obtenir.</p>'}</section>`;}
+     ${S.seals[sel.id]?`<span class="tiny muted">${sel.serie&&badgeFois(sel.serie)>1?`<b>Gagné ×${badgeFois(sel.serie)}</b> · la première fois le `:'Gagné le '}${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`:'<span class="tiny muted">Pas encore gagné. Tu y arriveras !</span>'}</div>`:'<p class="tiny muted">Touche un sceau pour voir comment l’obtenir.</p>'}</section>`;}
 function renderSealShow(){const id=ui.sealShow[0],s=SEALBY[id],left=ui.sealShow.length-1;
   return `<main class="screen" style="padding-bottom:40px;align-items:center;text-align:center"><span class="label" style="color:var(--gold);margin-top:24px">Nouveau sceau !</span>
    <span class="seal-st ${s.c} xl stamp" style="margin:18px auto">${esc(s.ch)}</span><h1>${esc(s.nm)}</h1><p class="muted">${esc(s.desc)}</p>
@@ -1703,7 +1742,7 @@ function canDoHTML(list){return list.map(p=>{const d=packDone(p),its=packItems(p
 function zlink(){const u=new URL('caracteres/',location.href),app=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
   return app&&/Android/i.test(navigator.userAgent)?`intent://${u.host}${u.pathname}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(u.href)};end`:'caracteres/';}
 function renderHome(){
-  refreshJokers();const popSince=ui.popSince||0;ui.popSince=0;
+  const popSince=ui.popSince||0;ui.popSince=0;const si=serie();
   const cur=currentStage(),prog=stageProg(cur),stg=STAGES[cur],streak=streakAlive();
   const done=S.lastSessionDay===today();const due=dueList(Date.now(),cur).length;
   const left=ITEMS.filter(x=>!isIntro(x)).length;const nNew=nNewFor('daily'),nPlus=nNewFor('plus'),dur=duree(),D=DUREES[dur];
@@ -1714,7 +1753,8 @@ function renderHome(){
   const yesterday=mis&&mis.day!==today();
   return `
   <div class="hello"><div class="stack sm"><span class="zh">你好${S.name?'，'+esc(S.name):''}！</span><h1>${S.name?esc(S.name)+', on':'On'} monte une marche ?</h1></div>
-   <div class="streak" title="Série de jours"><span class="flame">${ICON.flame}${streak}</span><span class="jokers" aria-label="${S.jokers} jokers ce mois-ci">${[0,1].map(i=>`<i class="jk ${i<S.jokers?'on':''}"></i>`).join('')}</span><span class="tiny muted">${S.jokers} joker${S.jokers>1?'s':''}</span></div></div>
+   <div class="streak" title="Série de jours"><span class="flame">${ICON.flame}${streak}</span><span class="tiny muted" style="white-space:nowrap">❄️ ${si.freezesLeft} gel${si.freezesLeft>1?'s':''}</span></div></div>
+  ${S.sessions?`<section class="card stack sm" aria-label="Ta série">${serieHTML()}</section>`:''}
   ${noZh()?`<div class="notice"><b>Pas de voix chinoise sur ce téléphone.</b> Dans les réglages Android, ouvre « Synthèse vocale », choisis le moteur Google et installe la langue Chinois (Mandarin).</div>`:''}
   ${(()=>{const np=PACKS.filter(p=>!p.builtin&&!S.seenPacks[p.id]&&!ITEMS.some(x=>x.pk===p.id&&isIntro(x))).pop();if(!np)return'';const n=ITEMS.filter(x=>x.pk===np.id).length,c=CONVS.filter(x=>x.pk===np.id).length;
      return `<section class="card stack" style="border:2px solid var(--accent)" aria-label="Nouveau chapitre"><span class="label" style="color:var(--accent)">Nouveau chapitre</span><h2>${esc(np.title)}</h2><p class="small muted">${esc(np.desc)}</p>
@@ -1854,8 +1894,6 @@ function renderParler(){
 /* ---------- progrès ---------- */
 function renderProgres(){
   const P=S.profile,rows=[['ecoute','Écoute'],['tons','Tons'],['vocab','Vocabulaire'],['parole','Parole']];
-  const days=[];for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*DAY);days.push(d);}
-  const dn=['D','L','M','M','J','V','S'];
   const withVoice=Object.keys(S.voice).filter(id=>S.voice[id].first&&S.voice[id].last&&BY[id]);
   const vid=withVoice.sort((a,b)=>(S.voice[b].first.d<S.voice[b].last.d)-(S.voice[a].first.d<S.voice[a].last.d))[0];
   const f=ui.wordFilter.trim().toLowerCase();
@@ -1863,14 +1901,14 @@ function renderProgres(){
   const weak=rows.slice().sort((a,b)=>P[a[0]]-P[b[0]])[0];
   return `<div class="stack sm"><span class="label">Progrès</span><h1>Ta montée</h1></div>
   ${carnetHTML()}
-  <section class="card stack"><div class="row between"><h3>Ton profil</h3><span class="small muted">${S.xp} XP · record ${S.best} j</span></div>
+  <section class="card stack"><div class="row between"><h3>Ton profil</h3><span class="small muted">${S.xp} XP · record ${serie().best} j</span></div>
    <div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div>
    <p class="small muted">Les séances donnent plus de temps à ta compétence la plus faible : <b>${weak[1].toLowerCase()}</b>.</p></section>
   <section class="card stack"><h3>Ce que je sais dire</h3><div>${canDoHTML(PACKS.filter(p=>packItems(p).length).sort((a,b)=>(packDone(b)-packDone(a))||(a.order||0)-(b.order||0)))}</div></section>
   <section class="card stack"><div class="row between"><h3>Tes proverbes</h3><span class="small muted">${proverbesGagnes()} / ${PROVERBES.length}</span></div>
    ${proverbesGagnes()?PROVERBES.slice(0,proverbesGagnes()).map(pv=>proverbeHTML(pv,false)).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">'):'<p class="small muted">Termine ton premier chapitre pour gagner ton premier proverbe chinois.</p>'}
    ${proverbesGagnes()<PROVERBES.length?`<p class="tiny muted">Un nouveau proverbe à chaque palier de ton escalier.</p>`:''}</section>
-  <section class="card stack"><h3>Cette semaine</h3><div class="week">${days.map(d=>{const x=S.days[dkey(d)]||0;return `<div class="d"><span class="dot ${x?'on':''}">${x?x:''}</span>${dn[d.getDay()]}</div>`;}).join('')}</div></section>
+  <section class="card stack sm"><h3>Ta série</h3>${serieHTML()}</section>
   <section class="card stack"><h3>Les quatre étapes</h3><div class="bars">${STAGES.map((s,i)=>`<div class="bar-row"><span>${s.fr}</span><div class="bar"><i style="width:${pct(stageProg(i))}%"></i></div><b>${pct(stageProg(i))}</b></div>`).join('')}</div></section>
   <section class="card stack"><h3>Avant / après</h3>
    ${vid?`<p class="small muted">${esc(BY[vid].fr)} · la ligne pleine est ta voix, les pointillés le modèle.</p>
@@ -2244,7 +2282,6 @@ window.addEventListener('appinstalled',()=>{deferredInstall=null;toast('Bùbùg�
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&window.top===window){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 window.addEventListener('online',()=>checkUpdates(false));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false&&Date.now()-(PS._checked||0)>6*3600e3)checkUpdates(false);});
-refreshJokers();
 render();
 Promise.all([loadPhotos(),loadHeard()]).then(()=>{if(S.onboarded){checkSeals();}if(!ui.sess&&!ui.exam&&!ui.defi)render();});
 if(navigator.onLine!==false)checkUpdates(false);else loadAudioIndex();
