@@ -1065,15 +1065,22 @@ function phraseOfDay(){const pool=ITEMS.filter(x=>isIntro(x)&&x.syl.length>=3);c
 /* Durée de la séance du jour : f multiplie le contenu (≈ 20 s par exercice). */
 const DUREES={12:{f:1,conv:1},20:{f:1.7,conv:1},30:{f:2.5,conv:2},45:{f:3.6,conv:3}};
 function duree(){return DUREES[S.duree]?S.duree:30;}
-function nNewFor(kind){
+function nNewFor(kind,sansFrein){
   const intro=ITEMS.filter(isIntro),first=intro.length===0,rate=recentRate(),f=DUREES[duree()].f;
   const left=ITEMS.filter(x=>!isIntro(x)).length;
   if(kind==='express')return 0;
   if(kind==='chapter')return Math.min(left,5);
   if(kind==='plus')return Math.min(left,rate<.7?3:6);
   let n=first?5:Math.round((rate>.9?7:rate<.7?2:4)*f);
-  const backlog=dueList(Date.now(),currentStage()).length;if(backlog>30*f)n=Math.min(n,Math.ceil(2*f));
+  if(!sansFrein){const backlog=dueList(Date.now(),currentStage()).length;if(backlog>60*f)n=Math.min(n,Math.ceil(f));else if(backlog>30*f)n=Math.min(n,Math.ceil(2*f));}
   return Math.min(left,n);
+}
+/* Révisions de la séance. Quand le retard freine les nouveaux mots, leur place sert à réviser
+   (≈ 3 exercices par mot retenu, au plus le double du nombre habituel) : la séance garde sa durée. */
+function revCap(kind){
+  if(kind==='express')return 10;if(kind==='chapter')return 4;
+  const base=Math.round(8*(kind==='daily'?DUREES[duree()].f:1));
+  return kind==='daily'?base+Math.min(base,3*(nNewFor(kind,true)-nNewFor(kind))):base;
 }
 function startSession(kind){
   const now=Date.now(),cur=currentStage(),intro=ITEMS.filter(isIntro),first=intro.length===0;
@@ -1082,7 +1089,12 @@ function startSession(kind){
   const cands=dueList(now,cur);
   const steps=[],used=new Set();
   if(!first&&kind==='daily'){
-    [...intro].sort((a,b)=>meanR(b,now)-meanR(a,now)).slice(0,3).forEach(it=>{used.add(it.id);steps.push(mk('reco',it,'Échauffement'));});
+    // Échauffement : les mots à réviser les plus faciles (presque encore sus). Sinon, les mieux connus.
+    const w=[];
+    for(const c of [...cands].sort((a,b)=>retention(skState(b.it.id,b.sk),now)-retention(skState(a.it.id,a.sk),now))){
+      if(w.length>=3)break;if((c.sk==='reco'||c.sk==='oreille')&&!w.some(x=>x.it===c.it))w.push(c);}
+    if(w.length<3)[...intro].sort((a,b)=>meanR(b,now)-meanR(a,now)).forEach(it=>{if(w.length<3&&!w.some(x=>x.it===it))w.push({it,sk:'reco'});});
+    w.forEach(c=>{used.add(c.it.id);steps.push(mk(c.sk,c.it,'Échauffement'));});
   }
   const news=nextNew(nNew);
   news.forEach(it=>used.add(it.id));
@@ -1113,7 +1125,7 @@ function startSession(kind){
     const pw=shuffle(photoWords().filter(it=>!news.includes(it))).sort((a,b)=>retention(skState(a.id,'reco'),now)-retention(skState(b.id,'reco'),now)).slice(0,Math.round(2*f));
     pw.forEach(it=>{used.add(it.id);steps.push(mk('photo',it,'Mon usine'));});
   }
-  const revs=[];const max=kind==='express'?10:kind==='chapter'?4:Math.round(8*f);
+  const revs=[];const max=revCap(kind);
   for(const c of cands){if(revs.length>=max)break;if(used.has(c.it.id))continue;used.add(c.it.id);revs.push(mk(c.sk,c.it,'Révisions'));}
   news.forEach(it=>revs.push(mk(it.chunks.length>=3?'prod':'reco',it,'Révisions')));
   shuffle(revs).forEach(s=>steps.push(s));
@@ -1475,7 +1487,7 @@ function renderHome(){
    ${done?`<div class="plan-row done"><span class="ck ok">✓</span><div class="grow"><b>Séance du jour</b></div></div>
      <div class="row" style="padding-left:36px"><button class="btn sm" data-act="express">Révision express · ${due} à revoir</button>${nPlus?`<button class="btn primary sm" data-act="plus">Séance bonus · ${nPlus} nouveaux</button>`:''}</div>
      ${nPlus?'':`<p class="small muted" style="padding-left:36px">Tu as appris tous les mots disponibles. Un nouveau chapitre arrive bientôt !</p>`}`
-    :`<div class="plan-row"><span class="ck go"></span><div class="grow"><b>${ITEMS.some(isIntro)?'Séance du jour':'Ta première séance'}</b><br><span class="small muted">≈ ${dur} min · ${nNew?nNew+' nouveaux mots · ':''}${Math.min(due,Math.round(8*D.f))} révisions · ${D.conv} conversation${D.conv>1?'s':''}</span></div><button class="btn primary sm" data-act="daily">Commencer</button></div>
+    :`<div class="plan-row"><span class="ck go"></span><div class="grow"><b>${ITEMS.some(isIntro)?'Séance du jour':'Ta première séance'}</b><br><span class="small muted">≈ ${dur} min · ${nNew?nNew+' nouveaux mots · ':''}${Math.min(due,revCap('daily'))} révisions · ${D.conv} conversation${D.conv>1?'s':''}</span></div><button class="btn primary sm" data-act="daily">Commencer</button></div>
      <div class="row" role="group" aria-label="Durée de la séance" style="flex-wrap:nowrap;gap:6px;padding-left:36px">${Object.keys(DUREES).map(m=>`<button class="btn sm ${+m===dur?'primary':'ghost'}" style="padding-left:9px;padding-right:9px" data-act="duree" data-v="${m}" aria-pressed="${+m===dur}">${m} min</button>`).join('')}</div>`}
    <hr>
    ${mis?`<div class="plan-row"><span class="ck gold"></span><div class="grow"><b>Mission à l’usine${yesterday?' (d’hier)':''}</b><br><span class="small">${esc(mis.text||misIt.m||'')}</span></div></div>

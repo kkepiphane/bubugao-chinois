@@ -1,7 +1,7 @@
 /* Bùbùgāo — fonctionne hors-ligne, se met à jour dès qu'il y a du réseau.
    Changer VERSION à chaque nouvelle version de index.html.
    Ne supprime que ses propres caches (préfixe « bubugao- ») : Zìzì (caracteres/) partage la même adresse. */
-const VERSION = 'bubugao-app-v18';
+const VERSION = 'bubugao-app-v19';
 const FONTS = 'bubugao-fonts';
 const AUDIO = 'bubugao-audio';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'packs/packs.json', 'audio/index.json'];
