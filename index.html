@@ -107,8 +107,8 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .plan-row .ck.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
 .plan-row.done .grow b{color:var(--muted);text-decoration:line-through}
 .plan hr{border:0;border-top:1px solid var(--line);margin:0}
-.shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.shortcut{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:76px;padding:10px 6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center}
+.shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.shortcut{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:76px;padding:8px 4px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font:inherit;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center}
 .shortcut .icon{width:22px;height:22px}
 .shortcut .zh{font-size:18px;line-height:1.1}
 .sos-fab{position:fixed;right:max(16px,calc(50% - 244px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:21;background:#B42323;color:#fff;border:0;border-radius:999px;padding:12px 16px;font-weight:800;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer}
@@ -140,6 +140,22 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .ex-opt .zh{font-size:20px}
 .ex-aud{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--accent-soft);font-weight:700}
 .ex-score{font:800 56px var(--f-display);line-height:1}
+.seal-st{width:58px;height:58px;border-radius:10px;display:grid;place-items:center;font:700 22px var(--f-zh);color:#fff;background:#A32D2D;box-shadow:inset 0 0 0 3px #A32D2D,inset 0 0 0 5px #FCEBEB;transform:rotate(-3deg);flex:none}
+.seal-st.jade{background:#0F6E56;box-shadow:inset 0 0 0 3px #0F6E56,inset 0 0 0 5px #E1F5EE}
+.seal-st.gold{background:#B8730F;box-shadow:inset 0 0 0 3px #B8730F,inset 0 0 0 5px #FAEEDA}
+.seal-st.off{background:none;color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line);transform:none;font-size:17px}
+.seal-st.xl{width:120px;height:120px;font-size:52px;border-radius:18px;box-shadow:inset 0 0 0 6px transparent,inset 0 0 0 10px rgba(255,255,255,.85)}
+.seals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px}
+.seal-b{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.seal-b .nm{font-size:11px;color:var(--muted);text-align:center;line-height:1.2}
+.seal-b.sel .nm{color:var(--ink);font-weight:800}
+@keyframes stamp{0%{transform:scale(2.2) rotate(-12deg);opacity:0}60%{transform:scale(.92) rotate(-3deg);opacity:1}100%{transform:scale(1) rotate(-3deg)}}
+.stamp{animation:stamp .5s cubic-bezier(.2,.8,.3,1.2) both}
+@media (prefers-reduced-motion:reduce){.stamp{animation:none}}
+.defi-t{font:800 46px var(--f-display);line-height:1;color:var(--bad);font-variant-numeric:tabular-nums}
+.defi-q{text-align:center;padding:18px}
+.defi-q .zh{font-size:44px}
+.wk{height:8px;border-radius:9px;background:var(--surface-2);overflow:hidden}.wk i{display:block;height:100%;background:var(--gold)}
 .stair{width:100%;display:block}
 .stair .st{fill:none;stroke:var(--line);stroke-width:1}
 .stair .st.on{fill:var(--accent);stroke:none}
@@ -495,7 +511,8 @@ const PROVERBES=[
 ];
 /* Examens blancs au format officiel du HSK (questions originales, pas des sujets officiels).
    pics : mot → [image, pinyin, sens]. L = écoute, R = lecture ; parties 1 à 4. */
-const EXAMENS={1:{titre:'HSK 1',pass:120,lire:17,
+const EXAMENS={1:{titre:'HSK 1',pass:120,ecoute:15,lire:17,
+ plan:[['L1','tfword',null,5],['L2','sentpic','L2',5],['L3','dlgpic','L3',5],['L4','listenq','L4',5],['R1','tfword',null,5],['R2','textpic','R2',5],['R3','qa','R3',5],['R4','blank','R4',5]],
  pics:{'苹果':['🍎','píngguǒ','pomme'],'猫':['🐱','māo','chat'],'狗':['🐶','gǒu','chien'],'茶':['🍵','chá','thé'],'米饭':['🍚','mǐfàn','riz'],
   '水':['💧','shuǐ','eau'],'书':['📖','shū','livre'],'电脑':['💻','diànnǎo','ordinateur'],'电视':['📺','diànshì','télévision'],'电影':['🎬','diànyǐng','film'],
   '飞机':['✈️','fēijī','avion'],'出租车':['🚕','chūzūchē','taxi'],'医院':['🏥','yīyuàn','hôpital'],'衣服':['👕','yīfu','vêtement'],'下雨':['🌧️','xià yǔ','il pleut'],
@@ -575,6 +592,118 @@ const EXAMENS={1:{titre:'HSK 1',pass:120,lire:17,
   {h:'你家有（ ）个人？',p:'Nǐ jiā yǒu ( ) ge rén?',a:'几',ap:'jǐ',fr:'Vous êtes combien dans ta famille ?'},
   {h:'我（ ）一个儿子，一个女儿。',p:'Wǒ ( ) yí ge érzi, yí ge nǚ’ér.',a:'有',ap:'yǒu',fr:'J’ai un fils et une fille.'},
   {h:'桌子（ ）有一本书。',p:'Zhuōzi ( ) yǒu yì běn shū.',a:'上',ap:'shang',fr:'Il y a un livre sur la table.'}]
+},
+ 2:{titre:'HSK 2',pass:120,ecoute:25,lire:22,
+ plan:[['L1','tfsent','L1',10],['L2','dlgpic','L2',10],['L3','listenq','L3',10],['L4','listenq','L4',5],['R1','textpic','R1',5],['R2','blank','R2',5],['R3','judge','R3',5],['R4','qa','R4',10]],
+ pics:{'手表':['⌚','shǒubiǎo','montre'],'手机':['📱','shǒujī','téléphone portable'],'报纸':['📰','bàozhǐ','journal'],'咖啡':['☕','kāfēi','café'],'牛奶':['🥛','niúnǎi','lait'],
+  '鸡蛋':['🥚','jīdàn','œuf'],'鱼':['🐟','yú','poisson'],'西瓜':['🍉','xīguā','pastèque'],'面条':['🍜','miàntiáo','nouilles'],'跑步':['🏃','pǎobù','courir'],
+  '游泳':['🏊','yóuyǒng','nager'],'踢足球':['⚽','tī zúqiú','jouer au foot'],'打篮球':['🏀','dǎ lánqiú','jouer au basket'],'唱歌':['🎤','chàng gē','chanter'],'跳舞':['💃','tiàowǔ','danser'],
+  '生日':['🎂','shēngrì','anniversaire'],'药':['💊','yào','médicament'],'机场':['🛫','jīchǎng','aéroport'],'火车站':['🚉','huǒchēzhàn','gare'],'公共汽车':['🚌','gōnggòng qìchē','bus'],
+  '宾馆':['🏨','bīnguǎn','hôtel'],'下雪':['🌨️','xià xuě','il neige'],'门':['🚪','mén','porte'],'考试':['📝','kǎoshì','examen'],'眼睛':['👀','yǎnjing','yeux'],
+  '猫':['🐱','māo','chat'],'飞机':['✈️','fēijī','avion']},
+ L1:[
+  {h:'我每天早上跑步。',p:'Wǒ měi tiān zǎoshang pǎobù.',fr:'Je cours tous les matins.',a:'跑步'},
+  {h:'他喜欢踢足球。',p:'Tā xǐhuan tī zúqiú.',fr:'Il aime jouer au football.',a:'踢足球'},
+  {h:'妈妈给我买了一个新手机。',p:'Māma gěi wǒ mǎi le yí ge xīn shǒujī.',fr:'Maman m’a acheté un nouveau téléphone.',a:'手机'},
+  {h:'今天是我的生日。',p:'Jīntiān shì wǒ de shēngrì.',fr:'Aujourd’hui, c’est mon anniversaire.',a:'生日'},
+  {h:'我早上喝了一杯牛奶。',p:'Wǒ zǎoshang hē le yì bēi niúnǎi.',fr:'Ce matin, j’ai bu un verre de lait.',a:'牛奶'},
+  {h:'外面下雪了，很冷。',p:'Wàimiàn xià xuě le, hěn lěng.',fr:'Il neige dehors, il fait très froid.',a:'下雪'},
+  {h:'他在看报纸。',p:'Tā zài kàn bàozhǐ.',fr:'Il lit le journal.',a:'报纸'},
+  {h:'我们坐公共汽车去吧。',p:'Wǒmen zuò gōnggòng qìchē qù ba.',fr:'Allons-y en bus.',a:'公共汽车'},
+  {h:'姐姐唱歌唱得很好。',p:'Jiějie chàng gē chàng de hěn hǎo.',fr:'Ma grande sœur chante très bien.',a:'唱歌'},
+  {h:'这个西瓜很便宜。',p:'Zhège xīguā hěn piányi.',fr:'Cette pastèque n’est pas chère.',a:'西瓜'},
+  {h:'你生病了，要吃药。',p:'Nǐ shēngbìng le, yào chī yào.',fr:'Tu es malade, il faut prendre des médicaments.',a:'药'},
+  {h:'他每个星期都去游泳。',p:'Tā měi ge xīngqī dōu qù yóuyǒng.',fr:'Il va nager chaque semaine.',a:'游泳'},
+  {h:'我在机场等你。',p:'Wǒ zài jīchǎng děng nǐ.',fr:'Je t’attends à l’aéroport.',a:'机场'},
+  {h:'这块手表是我丈夫送给我的。',p:'Zhè kuài shǒubiǎo shì wǒ zhàngfu sòng gěi wǒ de.',fr:'Cette montre, c’est mon mari qui me l’a offerte.',a:'手表'}],
+ L2:[
+  {l:[['你晚上想吃什么？','Nǐ wǎnshang xiǎng chī shénme?'],['我想吃面条。','Wǒ xiǎng chī miàntiáo.']],fr:'— Tu veux manger quoi ce soir ? — Des nouilles.',a:'面条'},
+  {l:[['你的眼睛怎么了？','Nǐ de yǎnjing zěnme le?'],['昨天晚上看电视看得太晚了。','Zuótiān wǎnshang kàn diànshì kàn de tài wǎn le.']],fr:'— Qu’est-ce qu’ils ont, tes yeux ? — Hier soir, j’ai regardé la télé trop tard.',a:'眼睛'},
+  {l:[['你会打篮球吗？','Nǐ huì dǎ lánqiú ma?'],['会，我每天下午都打。','Huì, wǒ měi tiān xiàwǔ dōu dǎ.']],fr:'— Tu sais jouer au basket ? — Oui, j’y joue tous les après-midis.',a:'打篮球'},
+  {l:[['你在哪儿等我？','Nǐ zài nǎr děng wǒ?'],['我在火车站等你。','Wǒ zài huǒchēzhàn děng nǐ.']],fr:'— Tu m’attends où ? — À la gare.',a:'火车站'},
+  {l:[['你要喝咖啡吗？','Nǐ yào hē kāfēi ma?'],['不要，谢谢，我晚上不喝咖啡。','Bú yào, xièxie, wǒ wǎnshang bù hē kāfēi.']],fr:'— Tu veux un café ? — Non merci, je ne bois pas de café le soir.',a:'咖啡'},
+  {l:[['这些鸡蛋多少钱？','Zhèxiē jīdàn duōshao qián?'],['十块钱。','Shí kuài qián.']],fr:'— Combien coûtent ces œufs ? — Dix yuans.',a:'鸡蛋'},
+  {l:[['你怎么去机场？','Nǐ zěnme qù jīchǎng?'],['我朋友开车送我。','Wǒ péngyou kāi chē sòng wǒ.']],fr:'— Comment vas-tu à l’aéroport ? — Un ami m’y conduit.',a:'机场'},
+  {l:[['你住在哪个宾馆？','Nǐ zhù zài nǎge bīnguǎn?'],['就在学校旁边。','Jiù zài xuéxiào pángbiān.']],fr:'— Tu loges dans quel hôtel ? — Juste à côté de l’école.',a:'宾馆'},
+  {l:[['明天考试，你准备好了吗？','Míngtiān kǎoshì, nǐ zhǔnbèi hǎo le ma?'],['还没有，我今天晚上再看看书。','Hái méiyǒu, wǒ jīntiān wǎnshang zài kànkan shū.']],fr:'— L’examen est demain, tu es prête ? — Pas encore, je relis ce soir.',a:'考试'},
+  {l:[['请进！门开着。','Qǐng jìn! Mén kāi zhe.'],['谢谢，你在忙吗？','Xièxie, nǐ zài máng ma?']],fr:'— Entre ! La porte est ouverte. — Merci, tu es occupé ?',a:'门'},
+  {l:[['你喜欢什么运动？','Nǐ xǐhuan shénme yùndòng?'],['我喜欢游泳。','Wǒ xǐhuan yóuyǒng.']],fr:'— Quel sport aimes-tu ? — J’aime nager.',a:'游泳'},
+  {l:[['你妹妹在做什么？','Nǐ mèimei zài zuò shénme?'],['她在跳舞呢。','Tā zài tiàowǔ ne.']],fr:'— Que fait ta petite sœur ? — Elle danse.',a:'跳舞'},
+  {l:[['生日快乐！这是送给你的。','Shēngrì kuàilè! Zhè shì sòng gěi nǐ de.'],['谢谢！','Xièxie!']],fr:'— Joyeux anniversaire ! C’est pour toi. — Merci !',a:'生日'},
+  {l:[['你家的猫叫什么名字？','Nǐ jiā de māo jiào shénme míngzi?'],['它叫白白。','Tā jiào Báibái.']],fr:'— Comment s’appelle ton chat ? — Il s’appelle Baibai.',a:'猫'}],
+ L3:[
+  {l:[['你怎么还在这儿？','Nǐ zěnme hái zài zhèr?'],['我在等我丈夫。','Wǒ zài děng wǒ zhàngfu.']],q:'女的在等谁？',qp:'Nǚ de zài děng shéi?',o:[['丈夫','zhàngfu'],['哥哥','gēge'],['同学','tóngxué']],fr:'Elle attend son mari.'},
+  {l:[['这件衣服多少钱？','Zhè jiàn yīfu duōshao qián?'],['三百块，不贵。','Sānbǎi kuài, bú guì.']],q:'衣服多少钱？',qp:'Yīfu duōshao qián?',o:[['三百块','sānbǎi kuài'],['三十块','sānshí kuài'],['一百块','yìbǎi kuài']],fr:'Le vêtement coûte 300 yuans.'},
+  {l:[['你昨天为什么没来上班？','Nǐ zuótiān wèishénme méi lái shàngbān?'],['我生病了，在医院。','Wǒ shēngbìng le, zài yīyuàn.']],q:'他昨天怎么了？',qp:'Tā zuótiān zěnme le?',o:[['生病了','shēngbìng le'],['去旅游了','qù lǚyóu le'],['太忙了','tài máng le']],fr:'Il était malade, à l’hôpital.'},
+  {l:[['从这儿到火车站远吗？','Cóng zhèr dào huǒchēzhàn yuǎn ma?'],['不远，走路十分钟就到了。','Bù yuǎn, zǒu lù shí fēnzhōng jiù dào le.']],q:'走路要多长时间？',qp:'Zǒu lù yào duō cháng shíjiān?',o:[['十分钟','shí fēnzhōng'],['十个小时','shí ge xiǎoshí'],['四分钟','sì fēnzhōng']],fr:'Dix minutes à pied.'},
+  {l:[['你哥哥比你高吗？','Nǐ gēge bǐ nǐ gāo ma?'],['对，他比我高一点儿。','Duì, tā bǐ wǒ gāo yìdiǎnr.']],q:'谁高？',qp:'Shéi gāo?',o:[['哥哥','gēge'],['妹妹','mèimei'],['姐姐','jiějie']],fr:'Le grand frère est un peu plus grand.'},
+  {l:[['你几点起床？','Nǐ jǐ diǎn qǐchuáng?'],['我每天六点起床。','Wǒ měi tiān liù diǎn qǐchuáng.']],q:'他几点起床？',qp:'Tā jǐ diǎn qǐchuáng?',o:[['六点','liù diǎn'],['七点','qī diǎn'],['八点','bā diǎn']],fr:'Il se lève à six heures.'},
+  {l:[['我们下午去看电影，好吗？','Wǒmen xiàwǔ qù kàn diànyǐng, hǎo ma?'],['不行，我下午要上课。','Bù xíng, wǒ xiàwǔ yào shàngkè.']],q:'女的下午做什么？',qp:'Nǚ de xiàwǔ zuò shénme?',o:[['上课','shàngkè'],['看电影','kàn diànyǐng'],['睡觉','shuìjiào']],fr:'Elle a cours l’après-midi.'},
+  {l:[['服务员，我要一杯咖啡。','Fúwùyuán, wǒ yào yì bēi kāfēi.'],['好的，请等一下。','Hǎo de, qǐng děng yíxià.']],q:'他们可能在哪儿？',qp:'Tāmen kěnéng zài nǎr?',o:[['饭店','fàndiàn'],['医院','yīyuàn'],['学校','xuéxiào']],fr:'Ils sont sans doute au restaurant.'},
+  {l:[['你的汉语说得真好！','Nǐ de Hànyǔ shuō de zhēn hǎo!'],['谢谢，我已经学了两年了。','Xièxie, wǒ yǐjīng xué le liǎng nián le.']],q:'她学汉语多长时间了？',qp:'Tā xué Hànyǔ duō cháng shíjiān le?',o:[['两年','liǎng nián'],['两个月','liǎng ge yuè'],['两天','liǎng tiān']],fr:'Elle apprend le chinois depuis deux ans.'},
+  {l:[['今天天气怎么样？','Jīntiān tiānqì zěnmeyàng?'],['是晴天，不冷也不热。','Shì qíngtiān, bù lěng yě bú rè.']],q:'今天天气怎么样？',qp:'Jīntiān tiānqì zěnmeyàng?',o:[['晴天','qíngtiān'],['下雨','xià yǔ'],['下雪','xià xuě']],fr:'Il fait beau, ni froid ni chaud.'},
+  {l:[['你找什么？','Nǐ zhǎo shénme?'],['我的手机，你看见了吗？','Wǒ de shǒujī, nǐ kànjiàn le ma?']],q:'男的在找什么？',qp:'Nán de zài zhǎo shénme?',o:[['手机','shǒujī'],['手表','shǒubiǎo'],['报纸','bàozhǐ']],fr:'Il cherche son téléphone.'},
+  {l:[['你妻子是做什么工作的？','Nǐ qīzi shì zuò shénme gōngzuò de?'],['她是医生。','Tā shì yīshēng.']],q:'他的妻子是做什么的？',qp:'Tā de qīzi shì zuò shénme de?',o:[['医生','yīshēng'],['老师','lǎoshī'],['服务员','fúwùyuán']],fr:'Sa femme est médecin.'},
+  {l:[['这个房间怎么样？','Zhège fángjiān zěnmeyàng?'],['很好，就是有点儿小。','Hěn hǎo, jiùshì yǒudiǎnr xiǎo.']],q:'房间怎么样？',qp:'Fángjiān zěnmeyàng?',o:[['有点儿小','yǒudiǎnr xiǎo'],['太贵了','tài guì le'],['很大','hěn dà']],fr:'La chambre est bien, mais un peu petite.'},
+  {l:[['你什么时候去北京？','Nǐ shénme shíhou qù Běijīng?'],['下个星期三。','Xià ge xīngqīsān.']],q:'他什么时候去北京？',qp:'Tā shénme shíhou qù Běijīng?',o:[['下个星期三','xià ge xīngqīsān'],['这个星期三','zhège xīngqīsān'],['下个月','xià ge yuè']],fr:'Il part pour Pékin mercredi prochain.'}],
+ L4:[
+  {l:[['你好，我想买一张去上海的票。','Nǐ hǎo, wǒ xiǎng mǎi yì zhāng qù Shànghǎi de piào.'],['今天的还是明天的？','Jīntiān de háishi míngtiān de?'],['明天上午的。','Míngtiān shàngwǔ de.'],['好的，八百块。','Hǎo de, bābǎi kuài.']],q:'男的要去哪儿？',qp:'Nán de yào qù nǎr?',o:[['上海','Shànghǎi'],['北京','Běijīng'],['机场','jīchǎng']],fr:'Il achète un billet pour Shanghai, pour demain matin.'},
+  {l:[['你今天怎么这么累？','Nǐ jīntiān zěnme zhème lèi?'],['昨天晚上我工作到十二点。','Zuótiān wǎnshang wǒ gōngzuò dào shí’èr diǎn.'],['那你今天早点儿休息吧。','Nà nǐ jīntiān zǎo diǎnr xiūxi ba.'],['好，吃完饭我就睡觉。','Hǎo, chī wán fàn wǒ jiù shuìjiào.']],q:'男的为什么累？',qp:'Nán de wèishénme lèi?',o:[['工作到很晚','gōngzuò dào hěn wǎn'],['跑步跑得太多','pǎobù pǎo de tài duō'],['生病了','shēngbìng le']],fr:'Il a travaillé jusqu’à minuit.'},
+  {l:[['你看见我的手表了吗？','Nǐ kànjiàn wǒ de shǒubiǎo le ma?'],['是不是在桌子上？','Shì bu shì zài zhuōzi shang?'],['没有，我找过了。','Méiyǒu, wǒ zhǎo guo le.'],['你看看椅子下面。','Nǐ kànkan yǐzi xiàmiàn.']],q:'男的在找什么？',qp:'Nán de zài zhǎo shénme?',o:[['手表','shǒubiǎo'],['手机','shǒujī'],['桌子','zhuōzi']],fr:'Il cherche sa montre.'},
+  {l:[['明天是星期六，你想做什么？','Míngtiān shì xīngqīliù, nǐ xiǎng zuò shénme?'],['我想去游泳。','Wǒ xiǎng qù yóuyǒng.'],['我们一起去吧。','Wǒmen yìqǐ qù ba.'],['好啊，上午十点在学校门口见。','Hǎo a, shàngwǔ shí diǎn zài xuéxiào ménkǒu jiàn.']],q:'他们几点见？',qp:'Tāmen jǐ diǎn jiàn?',o:[['上午十点','shàngwǔ shí diǎn'],['下午十点','xiàwǔ shí diǎn'],['上午六点','shàngwǔ liù diǎn']],fr:'Rendez-vous à 10 h du matin devant l’école.'},
+  {l:[['这个西瓜多少钱？','Zhège xīguā duōshao qián?'],['十五块。','Shíwǔ kuài.'],['太贵了，便宜一点儿吧。','Tài guì le, piányi yìdiǎnr ba.'],['好，十二块给你。','Hǎo, shí’èr kuài gěi nǐ.']],q:'男的觉得西瓜怎么样？',qp:'Nán de juéde xīguā zěnmeyàng?',o:[['太贵了','tài guì le'],['很便宜','hěn piányi'],['不好吃','bù hǎochī']],fr:'Il trouve la pastèque trop chère.'},
+  {l:[['你认识那个穿红衣服的人吗？','Nǐ rènshi nàge chuān hóng yīfu de rén ma?'],['认识，她是我们公司的。','Rènshi, tā shì wǒmen gōngsī de.'],['她叫什么名字？','Tā jiào shénme míngzi?'],['她叫张红，是我的朋友。','Tā jiào Zhāng Hóng, shì wǒ de péngyou.']],q:'穿红衣服的人叫什么？',qp:'Chuān hóng yīfu de rén jiào shénme?',o:[['张红','Zhāng Hóng'],['王红','Wáng Hóng'],['李月','Lǐ Yuè']],fr:'La personne en rouge s’appelle Zhang Hong.'},
+  {l:[['喂，你到哪儿了？','Wéi, nǐ dào nǎr le?'],['我在公共汽车上，路上车很多。','Wǒ zài gōnggòng qìchē shang, lù shang chē hěn duō.'],['没关系，我等你。','Méi guānxi, wǒ děng nǐ.'],['还要二十分钟。','Hái yào èrshí fēnzhōng.']],q:'女的现在在哪儿？',qp:'Nǚ de xiànzài zài nǎr?',o:[['公共汽车上','gōnggòng qìchē shang'],['火车站','huǒchēzhàn'],['家里','jiā li']],fr:'Elle est dans le bus, il y a des embouteillages.'}],
+ R1:[
+  {h:'我女儿很喜欢唱歌。',p:'Wǒ nǚ’ér hěn xǐhuan chàng gē.',fr:'Ma fille aime beaucoup chanter.',a:'唱歌'},
+  {h:'这是我的新手表。',p:'Zhè shì wǒ de xīn shǒubiǎo.',fr:'C’est ma nouvelle montre.',a:'手表'},
+  {h:'早上喝一杯牛奶吧。',p:'Zǎoshang hē yì bēi niúnǎi ba.',fr:'Le matin, bois un verre de lait.',a:'牛奶'},
+  {h:'今天的报纸你看了吗？',p:'Jīntiān de bàozhǐ nǐ kàn le ma?',fr:'Tu as lu le journal d’aujourd’hui ?',a:'报纸'},
+  {h:'我们坐公共汽车去吧。',p:'Wǒmen zuò gōnggòng qìchē qù ba.',fr:'Allons-y en bus.',a:'公共汽车'},
+  {h:'我喜欢吃鱼。',p:'Wǒ xǐhuan chī yú.',fr:'J’aime manger du poisson.',a:'鱼'},
+  {h:'他每天晚上去跑步。',p:'Tā měi tiān wǎnshang qù pǎobù.',fr:'Il va courir tous les soirs.',a:'跑步'},
+  {h:'明天下午我有考试。',p:'Míngtiān xiàwǔ wǒ yǒu kǎoshì.',fr:'Demain après-midi, j’ai un examen.',a:'考试'},
+  {h:'这个宾馆的房间很大。',p:'Zhège bīnguǎn de fángjiān hěn dà.',fr:'Les chambres de cet hôtel sont grandes.',a:'宾馆'},
+  {h:'哥哥打篮球打得很好。',p:'Gēge dǎ lánqiú dǎ de hěn hǎo.',fr:'Mon grand frère joue très bien au basket.',a:'打篮球'},
+  {h:'你生病了，吃点儿药吧。',p:'Nǐ shēngbìng le, chī diǎnr yào ba.',fr:'Tu es malade, prends un médicament.',a:'药'},
+  {h:'外面在下雪。',p:'Wàimiàn zài xià xuě.',fr:'Il neige dehors.',a:'下雪'}],
+ R2:[
+  {h:'我（ ）你介绍一下，这是我妹妹。',p:'Wǒ ( ) nǐ jièshào yíxià, zhè shì wǒ mèimei.',a:'给',ap:'gěi',fr:'Je te présente : c’est ma petite sœur.',x:['等']},
+  {h:'外面下雨了，你（ ）走吧。',p:'Wàimiàn xià yǔ le, nǐ ( ) zǒu ba.',a:'别',ap:'bié',fr:'Il pleut dehors, ne pars pas.'},
+  {h:'这个问题我不（ ），你能再说一次吗？',p:'Zhège wèntí wǒ bù ( ), nǐ néng zài shuō yí cì ma?',a:'懂',ap:'dǒng',fr:'Je ne comprends pas cette question, tu peux la redire ?',x:['等']},
+  {h:'我（ ）吃完饭了。',p:'Wǒ ( ) chī wán fàn le.',a:'已经',ap:'yǐjīng',fr:'J’ai déjà fini de manger.'},
+  {h:'今天（ ）昨天冷。',p:'Jīntiān ( ) zuótiān lěng.',a:'比',ap:'bǐ',fr:'Aujourd’hui, il fait plus froid qu’hier.'},
+  {h:'学校（ ）我家很近。',p:'Xuéxiào ( ) wǒ jiā hěn jìn.',a:'离',ap:'lí',fr:'L’école est tout près de chez moi.'},
+  {h:'你昨天（ ）没来上班？',p:'Nǐ zuótiān ( ) méi lái shàngbān?',a:'为什么',ap:'wèishénme',fr:'Pourquoi n’es-tu pas venu travailler hier ?'},
+  {h:'这件衣服很漂亮，（ ）太贵了。',p:'Zhè jiàn yīfu hěn piàoliang, ( ) tài guì le.',a:'但是',ap:'dànshì',fr:'Ce vêtement est très joli, mais trop cher.'},
+  {h:'我每天（ ）公共汽车上班。',p:'Wǒ měi tiān ( ) gōnggòng qìchē shàngbān.',a:'坐',ap:'zuò',fr:'Je vais au travail en bus tous les jours.',x:['等']},
+  {h:'你在这儿（ ）我一下。',p:'Nǐ zài zhèr ( ) wǒ yíxià.',a:'等',ap:'děng',fr:'Attends-moi ici un moment.'}],
+ R3:[
+  {h:'我叫王明，我在北京学习汉语，已经学了一年了。',p:'Wǒ jiào Wáng Míng, wǒ zài Běijīng xuéxí Hànyǔ, yǐjīng xué le yì nián le.',j:'王明是老师。',jp:'Wáng Míng shì lǎoshī.',ok:false,fr:'Wang Ming étudie le chinois : il n’est pas professeur.'},
+  {h:'今天是我妈妈的生日，我给她买了一块手表。',p:'Jīntiān shì wǒ māma de shēngrì, wǒ gěi tā mǎi le yí kuài shǒubiǎo.',j:'他送妈妈一块手表。',jp:'Tā sòng māma yí kuài shǒubiǎo.',ok:true,fr:'Il offre une montre à sa mère pour son anniversaire.'},
+  {h:'我家离公司很远，每天要坐一个小时的公共汽车。',p:'Wǒ jiā lí gōngsī hěn yuǎn, měi tiān yào zuò yí ge xiǎoshí de gōnggòng qìchē.',j:'他家离公司很近。',jp:'Tā jiā lí gōngsī hěn jìn.',ok:false,fr:'Sa maison est loin de l’entreprise : une heure de bus.'},
+  {h:'现在是晚上十点，我还在公司工作。',p:'Xiànzài shì wǎnshang shí diǎn, wǒ hái zài gōngsī gōngzuò.',j:'他现在还在工作。',jp:'Tā xiànzài hái zài gōngzuò.',ok:true,fr:'Il est 22 h et il travaille encore.'},
+  {h:'哥哥比我大三岁，他今年二十五岁。',p:'Gēge bǐ wǒ dà sān suì, tā jīnnián èrshíwǔ suì.',j:'我今年二十二岁。',jp:'Wǒ jīnnián èrshí’èr suì.',ok:true,fr:'Le frère a 25 ans et trois ans de plus : j’ai donc 22 ans.'},
+  {h:'这家饭店的菜很好吃，但是有点儿贵。',p:'Zhè jiā fàndiàn de cài hěn hǎochī, dànshì yǒudiǎnr guì.',j:'这家饭店的菜很便宜。',jp:'Zhè jiā fàndiàn de cài hěn piányi.',ok:false,fr:'Les plats sont bons mais un peu chers.'},
+  {h:'昨天下雪了，我们没有去跑步。',p:'Zuótiān xià xuě le, wǒmen méiyǒu qù pǎobù.',j:'昨天他们去跑步了。',jp:'Zuótiān tāmen qù pǎobù le.',ok:false,fr:'Il a neigé : ils ne sont pas allés courir.'},
+  {h:'我每天早上七点起床，七点半吃饭。',p:'Wǒ měi tiān zǎoshang qī diǎn qǐchuáng, qī diǎn bàn chī fàn.',j:'他七点起床。',jp:'Tā qī diǎn qǐchuáng.',ok:true,fr:'Il se lève à 7 h et mange à 7 h 30.'},
+  {h:'你的手机在桌子上，我看见了。',p:'Nǐ de shǒujī zài zhuōzi shang, wǒ kànjiàn le.',j:'手机在椅子下面。',jp:'Shǒujī zài yǐzi xiàmiàn.',ok:false,fr:'Le téléphone est sur la table, pas sous la chaise.'},
+  {h:'我妹妹很喜欢唱歌，也喜欢跳舞。',p:'Wǒ mèimei hěn xǐhuan chàng gē, yě xǐhuan tiàowǔ.',j:'妹妹喜欢跳舞。',jp:'Mèimei xǐhuan tiàowǔ.',ok:true,fr:'La petite sœur aime chanter et danser.'}],
+ R4:[
+  {q:'你怎么了？',qp:'Nǐ zěnme le?',a:'我有点儿不舒服。',ap:'Wǒ yǒudiǎnr bù shūfu.',fr:'— Qu’est-ce qui t’arrive ? — Je ne me sens pas très bien.'},
+  {q:'你去过中国吗？',qp:'Nǐ qù guo Zhōngguó ma?',a:'去过，去年去的。',ap:'Qù guo, qùnián qù de.',fr:'— Tu es déjà allé en Chine ? — Oui, l’an dernier.'},
+  {q:'我们几点走？',qp:'Wǒmen jǐ diǎn zǒu?',a:'九点半吧。',ap:'Jiǔ diǎn bàn ba.',fr:'— On part à quelle heure ? — Neuf heures et demie.'},
+  {q:'你喜欢什么颜色？',qp:'Nǐ xǐhuan shénme yánsè?',a:'我喜欢红色。',ap:'Wǒ xǐhuan hóngsè.',fr:'— Quelle couleur aimes-tu ? — Le rouge.'},
+  {q:'这是谁的书？',qp:'Zhè shì shéi de shū?',a:'是我姐姐的。',ap:'Shì wǒ jiějie de.',fr:'— À qui est ce livre ? — À ma grande sœur.'},
+  {q:'你觉得这件衣服怎么样？',qp:'Nǐ juéde zhè jiàn yīfu zěnmeyàng?',a:'很好看，就是有点儿长。',ap:'Hěn hǎokàn, jiùshì yǒudiǎnr cháng.',fr:'— Comment tu trouves ce vêtement ? — Joli, mais un peu long.'},
+  {q:'火车站怎么走？',qp:'Huǒchēzhàn zěnme zǒu?',a:'往前走，就在右边。',ap:'Wǎng qián zǒu, jiù zài yòubian.',fr:'— Pour aller à la gare ? — Tout droit, c’est à droite.'},
+  {q:'你吃饭了吗？',qp:'Nǐ chī fàn le ma?',a:'还没有，我们一起去吃吧。',ap:'Hái méiyǒu, wǒmen yìqǐ qù chī ba.',fr:'— Tu as mangé ? — Pas encore, allons manger ensemble.'},
+  {q:'你的孩子多大了？',qp:'Nǐ de háizi duō dà le?',a:'六岁了，明年上学。',ap:'Liù suì le, míngnián shàngxué.',fr:'— Quel âge a ton enfant ? — Six ans, il entre à l’école l’an prochain.'},
+  {q:'你为什么学习汉语？',qp:'Nǐ wèishénme xuéxí Hànyǔ?',a:'因为我在中国公司工作。',ap:'Yīnwèi wǒ zài Zhōngguó gōngsī gōngzuò.',fr:'— Pourquoi apprends-tu le chinois ? — Parce que je travaille dans une entreprise chinoise.'},
+  {q:'苹果多少钱？',qp:'Píngguǒ duōshao qián?',a:'五块钱一个。',ap:'Wǔ kuài qián yí ge.',fr:'— Combien coûtent les pommes ? — Cinq yuans pièce.'},
+  {q:'你看见我的手机了吗？',qp:'Nǐ kànjiàn wǒ de shǒujī le ma?',a:'在桌子上呢。',ap:'Zài zhuōzi shang ne.',fr:'— Tu as vu mon téléphone ? — Il est sur la table.'},
+  {q:'明天会下雨吗？',qp:'Míngtiān huì xià yǔ ma?',a:'不会，明天是晴天。',ap:'Bú huì, míngtiān shì qíngtiān.',fr:'— Il va pleuvoir demain ? — Non, il fera beau.'},
+  {q:'谢谢你帮助我！',qp:'Xièxie nǐ bāngzhù wǒ!',a:'不客气。',ap:'Bú kèqi.',fr:'— Merci de m’avoir aidé ! — De rien.'}]
 }};
 /* END_DATA */
 
@@ -684,7 +813,7 @@ const KEY='bubugao.v1';
 function fresh(){return {v:1,name:'',goal:0,onboarded:false,created:Date.now(),
   profile:{ecoute:.5,tons:.5,vocab:.5,parole:.5},items:{},hist:[],xp:0,
   streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},
-  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true,sosTel:'',exams:[]};}
+  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true,sosTel:'',exams:[],seals:{},defis:{},week:null,weeksWon:0,flags:{}};}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 let S=load()||fresh();
@@ -1195,12 +1324,15 @@ function finish(){
   }
   if(s.kind==='mini'){const back=s.back;ui.sess=null;ui.tab=back||'home';render();return;}
   if(s.kind==='test'){const acc=s.n?s.ok/s.n:0,hs=hskStats();const est=Math.round(acc*hs.avail);S.tests.push({d:today(),acc:Math.round(acc*100),est,avail:hs.avail});markActive();addXP(40);save();s.end=true;render();return;}
-  const msg=markActive();
+  const gap0=S.lastDay?daysBetween(S.lastDay,today()):0;const msg=markActive();
+  S.flags=S.flags||{};if(gap0>=7)S.flags.retour=1;if(s.n>=10&&s.ok===s.n)S.flags.perfect=1;if(new Date().getHours()<6)S.flags.early=1;
+  if(['daily','plus','chapter'].includes(s.kind))weekBump('sess');
   S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();
   addXP(s.kind==='daily'?Math.round(50*DUREES[duree()].f):s.kind==='chapter'||s.kind==='plus'?30:20);
   s.endProg=stageProg(s.cur);s.jokerMsg=msg;ui.popSince=s.t0||0;
   s.paliers=s.done0?PACKS.filter(p=>packDone(p)&&!s.done0.includes(p.id)):[];if(s.paliers.length)buzz([60,40,120,40,200]);
   if(s.kind==='daily'&&(S.sessions===1||Math.random()<.3))s.bonus=rnd(BONUS);
+  checkSeals();
   save();s.end=true;render();
 }
 
@@ -1229,10 +1361,12 @@ function convPick(cs,i){
    ============================================================ */
 function render(){
   if(ui.sos)return app.innerHTML=renderSOS();
+  if(ui.defi)return app.innerHTML=renderDefi();
   if(ui.exam)return app.innerHTML=renderExam(),examAfter();
   if(ui.sess)return renderSession();
   if(!S.onboarded)return renderOnboard();
-  const T={module:renderModule,heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
+  if(ui.sealShow&&ui.sealShow.length)return app.innerHTML=renderSealShow();
+  const T={defis:renderDefis,module:renderModule,heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
   app.innerHTML=`<main class="screen">${T()}</main><button class="sos-fab" data-act="sos" aria-label="SOS urgence">SOS 急救</button>${tabbar()}`;
   if(ui.tab==='progres'){document.querySelectorAll('canvas[data-voice]').forEach(cv=>{const [id,w]=cv.dataset.voice.split('|');const v=S.voice[id];if(v&&v[w])drawCurve(cv,BY[id],v[w]);});}
 }
@@ -1315,31 +1449,41 @@ async function shareHeard(){
   if(sent){for(const h of list){h.sent=today();await updHeard(h);}if(!files.length||navigator.canShare&&navigator.canShare({files}))toast('Merci ! Tes phrases vont devenir des leçons.');render();}
 }
 /* ---------- examens blancs HSK (format officiel, questions originales) ---------- */
-const EXPART={L1:'Écoute. L’image correspond-elle à ce que tu entends ?',L2:'Écoute la phrase. Choisis la bonne image.',L3:'Écoute le dialogue. Choisis l’image qui va avec.',L4:'Écoute, puis choisis la bonne réponse à la question.',
-  R1:'L’image et le mot vont-ils ensemble ?',R2:'Quelle image va avec la phrase ?',R3:'Choisis la bonne réponse à la question.',R4:'Choisis le mot qui manque.'};
+const EXTYPE={tfword:{L:'Écoute. L’image correspond-elle au mot ?',R:'L’image et le mot vont-ils ensemble ?'},tfsent:'Écoute la phrase. L’image correspond-elle ?',
+  sentpic:'Écoute la phrase. Choisis la bonne image.',dlgpic:'Écoute le dialogue. Choisis l’image qui va avec.',listenq:'Écoute, puis choisis la bonne réponse à la question.',
+  textpic:'Quelle image va avec la phrase ?',qa:'Choisis la bonne réponse.',blank:'Choisis le mot qui manque.',judge:'Lis le texte. La phrase avec ★ est-elle vraie ?'};
 const LET='ABCDEF';
 function examPick(arr,n,ok){const out=[];for(const x of shuffle(arr.slice())){if(out.length>=n)break;if(!ok||ok(x,out))out.push(x);}return out;}
+const exLines=x=>x.l?x.l.map(y=>y[0]):[x.h];
 function buildExam(lvl){
-  const B=EXAMENS[lvl],P=B.pics,W=Object.keys(P),qs=[];
-  const picOpt=w=>({pic:P[w][0],w}),why=(h,p,fr)=>({h,p,fr});
-  const tf=sec=>examPick(W,5).forEach(w=>{const ok=Math.random()<.5,sh=ok?w:rnd(W.filter(x=>x!==w));
-    qs.push({sec,part:sec+'1',kind:'tf',pic:P[sh][0],word:sec==='R'?{h:w,p:P[w][1]}:null,audio:sec==='L'?[w]:null,ans:ok?0:1,
-      why:why(w,P[w][1],P[w][2]+(ok?' : l’image correspond.':' : l’image montrait « '+P[sh][2]+' ».'))});});
-  /* parties « à associer » : 5 questions qui partagent les mêmes 6 réponses A–F */
-  const match=(sec,part,items,txt)=>{
-    const ch=examPick(items,5,(x,out)=>!out.some(o=>o.a===x.a||txt(o).includes(x.a)||txt(x).includes(o.a)));
-    const extra=rnd(W.filter(w=>!ch.some(x=>x.a===w||txt(x).includes(w))));const opts=shuffle([...ch.map(x=>x.a),extra]).map(picOpt);
-    ch.forEach(x=>qs.push({sec,part,kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),...x.q,why:x.why}));};
-  tf('L');
-  examPick(B.L2,5).forEach(x=>{const opts=shuffle([x.a,...x.d]).map(picOpt);qs.push({sec:'L',part:'L2',kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),audio:[x.h],why:why(x.h,x.p,x.fr)});});
-  match('L','L3',B.L3.map(x=>({a:x.a,l:x.l,q:{audio:x.l.map(y=>y[0])},why:why(x.l.map(y=>y[0]).join(' '),x.l.map(y=>y[1]).join(' '),x.fr)})),x=>x.l.map(y=>y[0]).join(''));
-  examPick(B.L4,5).forEach(x=>{const opts=shuffle(x.o.map((o,i)=>({h:o[0],p:o[1],ok:i===0})));qs.push({sec:'L',part:'L4',kind:'pick',opts,ans:opts.findIndex(o=>o.ok),audio:[x.h,x.q],why:why(x.h+' '+x.q,x.p+' '+x.qp,x.fr)});});
-  tf('R');
-  match('R','R2',B.R2.map(x=>({a:x.a,h:x.h,q:{text:{h:x.h,p:x.p}},why:why(x.h,x.p,x.fr)})),x=>x.h);
-  const r3=examPick(B.R3,5),r3x=rnd(B.R3.filter(x=>!r3.includes(x))),r3o=shuffle([...r3,r3x]).map(x=>({h:x.a,p:x.ap,id:x.q}));
-  r3.forEach(x=>qs.push({sec:'R',part:'R3',kind:'pick',opts:r3o,ans:r3o.findIndex(o=>o.id===x.q),text:{h:x.q,p:x.qp},why:why(x.q+' '+x.a,x.qp+' '+x.ap,x.fr)}));
-  const r4=examPick(B.R4,5,(x,out)=>!out.some(o=>o.a===x.a)),r4x=rnd(B.R4.filter(x=>!r4.some(o=>o.a===x.a))),r4o=shuffle([...r4,r4x]).map(x=>({h:x.a,p:x.ap}));
-  r4.forEach(x=>qs.push({sec:'R',part:'R4',kind:'pick',opts:r4o,ans:r4o.findIndex(o=>o.h===x.a),text:{h:x.h,p:x.p},why:why(x.h.replace('（ ）','（'+x.a+'）'),x.p.replace('( )','('+x.ap+')'),x.fr)}));
+  const B=EXAMENS[lvl],P=B.pics,W=Object.keys(P),qs=[],why=(h,p,fr)=>({h,p,fr}),picOpt=w=>({pic:P[w][0],w});
+  const add=(part,type,o)=>qs.push({sec:part[0],part,type,...o});
+  /* 5 questions qui partagent 6 réponses A–F (5 bonnes + 1 de trop), par groupes de 5 */
+  const groups=(items,n,ok)=>{const all=examPick(items,n,ok),g=[];for(let i=0;i<all.length;i+=5)g.push(all.slice(i,i+5));return g;};
+  const B_={
+   tfword:(part,_,n)=>examPick(W,n).forEach(w=>{const ok=Math.random()<.5,sh=ok?w:rnd(W.filter(x=>x!==w));
+     add(part,'tfword',{kind:'tf',pic:P[sh][0],word:part[0]==='R'?{h:w,p:P[w][1]}:null,audio:part[0]==='L'?[w]:null,ans:ok?0:1,why:why(w,P[w][1],P[w][2]+(ok?' : l’image correspond.':' : l’image montrait « '+P[sh][2]+' ».'))});}),
+   tfsent:(part,it,n)=>examPick(it,n).forEach(x=>{const ok=Math.random()<.5,sh=ok?x.a:rnd(W.filter(w=>w!==x.a&&!x.h.includes(w)));
+     add(part,'tfsent',{kind:'tf',pic:P[sh][0],audio:[x.h],ans:ok?0:1,why:why(x.h,x.p,x.fr+(ok?'':' (l’image montrait « '+P[sh][2]+' ».)'))});}),
+   sentpic:(part,it,n)=>examPick(it,n).forEach(x=>{const opts=shuffle([x.a,...x.d]).map(picOpt);add(part,'sentpic',{kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),audio:[x.h],why:why(x.h,x.p,x.fr)});}),
+   dlgpic:(part,it,n)=>{const txt=x=>exLines(x).join('');groups(it,n,(x,out)=>!out.some(o=>o.a===x.a||txt(o).includes(x.a)||txt(x).includes(o.a))).forEach(g=>{
+     const extra=rnd(W.filter(w=>!g.some(x=>x.a===w||txt(x).includes(w)))),opts=shuffle([...g.map(x=>x.a),extra]).map(picOpt);
+     g.forEach(x=>add(part,'dlgpic',{kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),audio:exLines(x),why:why(exLines(x).join(' '),x.l.map(y=>y[1]).join(' '),x.fr)}));});},
+   listenq:(part,it,n)=>examPick(it,n).forEach(x=>{const opts=shuffle(x.o.map((o,i)=>({h:o[0],p:o[1],ok:i===0})));
+     add(part,'listenq',{kind:'pick',opts,ans:opts.findIndex(o=>o.ok),audio:[...exLines(x),x.q],why:why(exLines(x).join(' ')+' '+x.q,(x.l?x.l.map(y=>y[1]).join(' '):x.p)+' '+x.qp,x.fr)});}),
+   textpic:(part,it,n)=>groups(it,n,(x,out)=>!out.some(o=>o.a===x.a||o.h.includes(x.a)||x.h.includes(o.a))).forEach(g=>{
+     const extra=rnd(W.filter(w=>!g.some(x=>x.a===w||x.h.includes(w)))),opts=shuffle([...g.map(x=>x.a),extra]).map(picOpt);
+     g.forEach(x=>add(part,'textpic',{kind:'pick',opts,ans:opts.findIndex(o=>o.w===x.a),text:{h:x.h,p:x.p},why:why(x.h,x.p,x.fr)}));}),
+   qa:(part,it,n)=>{const used=new Set();groups(it,n).forEach(g=>{g.forEach(x=>used.add(x));const ex=rnd(it.filter(x=>!used.has(x)))||null;if(ex)used.add(ex);
+     const opts=shuffle([...g,...(ex?[ex]:[])]).map(x=>({h:x.a,p:x.ap,id:x.q}));
+     g.forEach(x=>add(part,'qa',{kind:'pick',opts,ans:opts.findIndex(o=>o.id===x.q),text:{h:x.q,p:x.qp},why:why(x.q+' '+x.a,x.qp+' '+x.ap,x.fr)}));});},
+   blank:(part,it,n)=>{const clash=(x,o)=>o.a===x.a||(x.x||[]).includes(o.a)||(o.x||[]).includes(x.a);
+     const g=examPick(it,n,(x,out)=>!out.some(o=>clash(x,o))),ex=rnd(it.filter(x=>!g.some(o=>o===x||clash(x,o))));
+     const opts=shuffle([...g,...(ex?[ex]:[])]).map(x=>({h:x.a,p:x.ap}));
+     g.forEach(x=>add(part,'blank',{kind:'pick',opts,ans:opts.findIndex(o=>o.h===x.a),text:{h:x.h,p:x.p},why:why(x.h.replace('（ ）','（'+x.a+'）'),x.p.replace('( )','('+x.ap+')'),x.fr)}));},
+   judge:(part,it,n)=>examPick(it,n).forEach(x=>add(part,'judge',{kind:'tf',text:{h:x.h,p:x.p},star:{h:x.j,p:x.jp},ans:x.ok?0:1,why:why(x.h+' ★ '+x.j,x.p+' ★ '+x.jp,(x.ok?'Vrai. ':'Faux. ')+x.fr)}))
+  };
+  B.plan.forEach(([part,type,key,n])=>B_[type](part,key?B[key]:null,n));
   return qs;
 }
 function examUnlocked(lvl){return lvl===1||S.demo||(S.exams||[]).some(e=>e.lvl===lvl-1&&e.total>=EXAMENS[lvl-1].pass);}
@@ -1364,7 +1508,7 @@ function examTick(){clearInterval(ui.exTimer);ui.exTimer=setInterval(()=>{const 
 function examFinish(){const E=ui.exam;clearInterval(ui.exTimer);E.tok++;try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}
   const sc=sec=>{const q=E.qs.filter(x=>x.sec===sec);return Math.round(q.filter(x=>x.pick===x.ans).length/q.length*100);};
   E.l=sc('L');E.r=sc('R');E.total=E.l+E.r;E.stage='end';(S.exams=S.exams||[]).push({lvl:E.lvl,d:today(),l:E.l,r:E.r,total:E.total});
-  addXP(60);markActive();save();buzz(E.total>=EXAMENS[E.lvl].pass?[60,40,120,40,200]:40);render();window.scrollTo(0,0);}
+  addXP(60);markActive();save();checkSeals();buzz(E.total>=EXAMENS[E.lvl].pass?[60,40,120,40,200]:40);render();window.scrollTo(0,0);}
 function examAfter(){const E=ui.exam;if(E.stage==='q'){const q=E.qs[E.i];if(q.audio&&!q.played){q.played=true;examPlay(q);}}}
 function renderExam(){
   const E=ui.exam,B=EXAMENS[E.lvl],nL=E.qs.filter(q=>q.sec==='L').length,nR=E.qs.length-nL;
@@ -1372,14 +1516,14 @@ function renderExam(){
     ${E.stage==='q'?`<span class="tiny muted">${E.qs[E.i].sec==='L'?'Écoute':'Lecture'} · question ${E.i+1} sur ${E.qs.length}</span>`:''}</div>${E.stage==='q'&&E.rEnd?`<span class="badge" id="exT">${B.lire}:00</span>`:''}<button class="sos-mini" data-act="sos" aria-label="SOS urgence">SOS</button></div>`;
   if(E.stage==='intro')return `<main class="screen" style="padding-bottom:40px">${top}
     <div class="stack sm"><span class="label">Comme le vrai examen</span><h1>${B.titre} · ${E.qs.length} questions</h1></div>
-    <section class="card stack sm"><p><b>1. Écoute</b> · ${nL} questions, environ 15 minutes. Chaque enregistrement passe <b>deux fois</b>, sans pouvoir le réécouter.</p>
+    <section class="card stack sm"><p><b>1. Écoute</b> · ${nL} questions, environ ${B.ecoute} minutes. Chaque enregistrement passe <b>deux fois</b>, sans pouvoir le réécouter.</p>
      <p><b>2. Lecture</b> · ${nR} questions, <b>${B.lire} minutes</b> chrono.</p>
      <p><b>Note</b> · sur 200 (100 par partie). Il faut <b>${B.pass}</b> pour réussir.</p></section>
     <p class="small muted">Mets le son, installe-toi au calme. Pas de correction pendant l’examen : tout est expliqué à la fin. Ces questions sont écrites pour Bùbùgāo, au même format que le vrai HSK.</p>
     <button class="btn primary block" data-act="exgo">Commencer l’écoute</button></main>`;
   if(E.stage==='mid')return `<main class="screen" style="padding-bottom:40px">${top}<div class="stack sm"><span class="label">Partie 1 terminée</span><h1>Maintenant, la lecture</h1></div>
     <p>${nR} questions · <b>${B.lire} minutes</b>. Le chrono démarre quand tu appuies.</p><button class="btn primary block" data-act="exread">Commencer la lecture</button></main>`;
-  if(E.stage==='end'){const ok=E.total>=B.pass,parts=['L1','L2','L3','L4','R1','R2','R3','R4'],wrong=E.qs.filter(q=>q.pick!==q.ans);
+  if(E.stage==='end'){const ok=E.total>=B.pass,parts=B.plan.map(x=>x[0]),wrong=E.qs.filter(q=>q.pick!==q.ans);
     return `<main class="screen" style="padding-bottom:40px"><div class="end-hero"><span class="zh">${ok?'通过了！':'加油！'}</span><h1>${ok?'Examen réussi':'Pas encore, mais tu avances'}</h1><p class="muted">${ok?'Tu as le niveau '+B.titre+'.':'Il fallait '+B.pass+' points. Refais-le dans quelques jours.'}</p></div>
      <section class="card stack sm" style="text-align:center"><span class="ex-score" style="color:${ok?'var(--good)':'var(--gold)'}">${E.total}<small style="font-size:22px"> / 200</small></span>
       <div class="row" style="justify-content:center"><span class="badge">Écoute ${E.l} / 100</span><span class="badge">Lecture ${E.r} / 100</span></div></section>
@@ -1388,14 +1532,104 @@ function renderExam(){
      ${wrong.length?`<section class="card stack sm"><h3>À revoir (${wrong.length})</h3>${wrong.map(q=>`<div class="word" style="align-items:flex-start"><div class="grow stack sm"><span class="tiny muted">${q.sec==='L'?'Écoute':'Lecture'} ${q.part[1]}</span><span class="zh" style="font-size:19px">${esc(q.why.h)}</span><span class="small"><b>${esc(q.why.p)}</b></span><span class="small muted">${esc(q.why.fr)}</span></div>${q.audio?`<button class="btn sm" data-act="say" data-t="${esc(q.audio[0])}" aria-label="Écouter">${ICON.play}</button>`:''}</div>`).join('')}</section>`:'<p>Aucune erreur. Impressionnant !</p>'}
      <button class="btn primary block" data-act="exdone">Terminer</button></main>`;}
   const q=E.qs[E.i],L=q.sec==='L',opt=(o,i)=>`<button class="ex-opt ${o.pic?'':'text'} ${q.pick===i?'sel':''}" data-act="expick" data-i="${i}" aria-pressed="${q.pick===i}">${q.kind==='pick'&&q.opts.length>3?`<span class="lt">${LET[i]}</span>`:''}${o.pic?`<span class="em">${o.pic}</span>`:`<span class="zh">${esc(o.h)}</span><span class="small muted">${esc(o.p||'')}</span>`}</button>`;
-  return `<main class="lesson">${top}<span class="sec-tag">${L?'Écoute':'Lecture'} · partie ${q.part[1]}</span><p class="q-title">${EXPART[q.part]}</p>
+  return `<main class="lesson">${top}<span class="sec-tag">${L?'Écoute':'Lecture'} · partie ${q.part[1]}</span><p class="q-title">${typeof EXTYPE[q.type]==='string'?EXTYPE[q.type]:EXTYPE[q.type][q.sec]}</p>
    ${L?`<div class="ex-aud" role="status">${ICON.play}<span id="exAud">${q.heard?'Écoute terminée. Choisis ta réponse.':'Écoute…'}</span></div>`:''}
-   ${q.kind==='tf'?`<div class="ex-pic" aria-label="Image">${q.pic}</div>${q.word?`<div style="text-align:center"><span class="zh" style="font-size:30px">${esc(q.word.h)}</span><br><b>${esc(q.word.p)}</b></div>`:''}
+   ${q.kind==='tf'?`${q.star?`<div class="card stack sm"><span class="zh" style="font-size:21px">${esc(q.text.h)}</span><span class="small"><b>${esc(q.text.p)}</b></span>
+       <span class="zh" style="font-size:21px;margin-top:8px">★ ${esc(q.star.h)}</span><span class="small"><b>${esc(q.star.p)}</b></span></div>`:`<div class="ex-pic" aria-label="Image">${q.pic}</div>`}${q.word?`<div style="text-align:center"><span class="zh" style="font-size:30px">${esc(q.word.h)}</span><br><b>${esc(q.word.p)}</b></div>`:''}
      <div class="ex-opts" style="grid-template-columns:1fr 1fr">${['✓ Oui','✗ Non'].map((x,i)=>`<button class="ex-opt ${q.pick===i?'sel':''}" data-act="expick" data-i="${i}" aria-pressed="${q.pick===i}"><b style="font-size:20px">${x}</b></button>`).join('')}</div>`
    :`${q.text?`<div class="card" style="text-align:center"><span class="zh" style="font-size:24px">${esc(q.text.h)}</span><br><span class="small"><b>${esc(q.text.p)}</b></span></div>`:''}
      <div class="ex-opts ${q.opts[0].pic?'pics':''}">${q.opts.map(opt).join('')}</div>`}
    <div class="row" style="margin-top:auto"><button class="btn primary grow" data-act="exnext">${q.pick==null?'Passer':E.i===E.qs.length-1?'Terminer':'Suivant'}</button></div></main>`;
 }
+/* ---------- sceaux 印章 (badges), défis éclair, défi de la semaine ---------- */
+const SEALCOL={r:'#A32D2D',jade:'#0F6E56',gold:'#B8730F'};
+const DEFIS={mots:{t:'Défi des mots',zh:'词',seuils:[10,18,25],need:'Apprends au moins 4 mots.'},
+  tons:{t:'Défi des tons',zh:'声',seuils:[8,14,20],need:'Apprends au moins 4 mots pour jouer avec les tons.'},
+  chars:{t:'Défi des caractères',zh:'字',seuils:[10,18,25],need:'Découvre au moins 4 caractères dans tes séances.'}};
+const MEDAL=['bronze','argent','or'];
+const nbWords=()=>ITEMS.filter(isIntro).length;
+const bestStreak=()=>Math.max(S.best||0,streakAlive());
+const modDone=k=>{const p=PACKS.find(x=>x.module&&x.module.icon===k);return !!(p&&packDone(p));};
+const examOk=(l,min)=>(S.exams||[]).some(e=>e.lvl===l&&e.total>=min);
+const SEALS=[
+ ...[[7,'七','r','Une semaine'],[14,'十四','r','Deux semaines'],[30,'月','gold','Un mois entier'],[50,'五十','r','Cinquante jours'],[100,'百','gold','Cent jours'],[200,'二百','gold','Deux cents jours'],[365,'年','gold','Une année']]
+   .map(([n,ch,c,nm])=>({id:'s'+n,fam:'Séries de jours',ch,c,nm,court:n<365?n+' jours':'1 an',desc:n+' jours de suite sans abandonner.',test:()=>bestStreak()>=n})),
+ ...[[100,'学','jade'],[250,'识','jade'],[500,'博','jade'],[1000,'千','gold']]
+   .map(([n,ch,c])=>({id:'m'+n,fam:'Mots appris',ch,c,nm:n+' mots appris',court:n+' mots',desc:'Tu as appris '+n+' mots et phrases.',test:()=>nbWords()>=n})),
+ {id:'e1',fam:'Examens',ch:'一',c:'gold',nm:'HSK 1 réussi',court:'HSK 1',desc:'Au moins 120 / 200 à l’examen blanc HSK 1.',test:()=>examOk(1,120)},
+ {id:'e2',fam:'Examens',ch:'二',c:'gold',nm:'HSK 2 réussi',court:'HSK 2',desc:'Au moins 120 / 200 à l’examen blanc HSK 2.',test:()=>examOk(2,120)},
+ {id:'e200',fam:'Examens',ch:'满',c:'gold',nm:'Note parfaite',court:'200 / 200',desc:'200 sur 200 à un examen blanc.',test:()=>(S.exams||[]).some(e=>e.total>=200)},
+ ...[[5,'说','r'],[20,'谈','r'],[50,'通','gold']].map(([n,ch,c])=>({id:'mi'+n,fam:'À l’usine',ch,c,nm:n+' missions réussies',court:n+' missions',desc:'Tu as parlé chinois pour de vrai à l’usine, '+n+' fois.',test:()=>(S.missionsDone||0)>=n})),
+ {id:'ph10',fam:'À l’usine',ch:'照',c:'jade',nm:'Photographe de l’atelier',court:'10 photos',desc:'10 mots illustrés avec tes propres photos.',test:()=>Object.keys(PH).length>=10},
+ {id:'he5',fam:'À l’usine',ch:'听',c:'jade',nm:'Oreille de l’usine',court:'5 phrases',desc:'5 phrases entendues à l’usine et gardées.',test:()=>HEARD.length>=5},
+ ...[['securite','安','Gardienne de l’atelier'],['pannes','电','Maîtresse des pannes'],['conflits','和','Artisane de paix'],['chef','面','Diplomate'],['equipe','队','Cheffe d’équipe'],['chiffres','数','Reine des chiffres']]
+   .map(([k,ch,nm])=>({id:'mod_'+k,fam:'Modules Métier',ch,c:'jade',nm,court:nm.split(' ')[0],desc:'Module Métier terminé : tous ses mots et phrases appris.',test:()=>modDone(k)})),
+ ...Object.entries(DEFIS).flatMap(([k,d])=>d.seuils.map((n,i)=>({id:'d_'+k+'_'+i,fam:'Défis éclair',ch:d.zh,c:['r','jade','gold'][i],nm:d.t+' · '+MEDAL[i],court:MEDAL[i],
+   desc:n+' bonnes réponses en 60 secondes au '+d.t.toLowerCase()+'.',test:()=>((S.defis||{})[k]||{}).best>=n}))),
+ {id:'perfect',fam:'Rares',ch:'全',c:'r',nm:'Séance parfaite',court:'100 %',desc:'Une séance d’au moins 10 questions sans aucune erreur.',test:()=>!!(S.flags||{}).perfect},
+ {id:'early',fam:'Rares',ch:'早',c:'gold',nm:'Lève-tôt',court:'avant 6 h',desc:'Une séance terminée avant 6 h du matin.',test:()=>!!(S.flags||{}).early},
+ {id:'retour',fam:'Rares',ch:'回',c:'jade',nm:'Le retour',court:'retour',desc:'Revenir après au moins une semaine de pause. Bravo d’être revenue !',test:()=>!!(S.flags||{}).retour},
+ {id:'week',fam:'Rares',ch:'周',c:'r',nm:'Défi de la semaine',court:'semaine',desc:'Un défi de la semaine relevé.',test:()=>(S.weeksWon||0)>=1}
+];
+const SEALBY=Object.fromEntries(SEALS.map(s=>[s.id,s]));
+function checkSeals(){const nw=SEALS.filter(s=>!S.seals[s.id]&&s.test());if(!nw.length)return;nw.forEach(s=>S.seals[s.id]=today());save();ui.sealShow=(ui.sealShow||[]).concat(nw.map(s=>s.id));buzz([60,40,120,40,200]);}
+function sealHTML(s,cls){return `<span class="seal-st ${S.seals[s.id]?s.c:'off'} ${cls||''}">${esc(s.ch)}</span>`;}
+function carnetHTML(){const fams=[...new Set(SEALS.map(s=>s.fam))],n=SEALS.filter(s=>S.seals[s.id]).length,sel=SEALBY[ui.sealOpen];
+  return `<section class="card stack" aria-label="Carnet de sceaux"><div class="row between"><div class="stack sm"><span class="label">Ton carnet de sceaux · 印章</span><h3>${n} sceau${n>1?'x':''} sur ${SEALS.length}</h3></div></div>
+   ${fams.map(f=>`<div class="stack sm"><span class="tiny muted" style="font-weight:800">${esc(f)}</span><div class="seals">${SEALS.filter(s=>s.fam===f).map(s=>`<button class="seal-b ${ui.sealOpen===s.id?'sel':''}" data-act="sealopen" data-id="${s.id}" aria-label="${esc(s.nm)}${S.seals[s.id]?' (gagné)':''}">${sealHTML(s)}<span class="nm">${esc(s.court)}</span></button>`).join('')}</div></div>`).join('')}
+   ${sel?`<div class="card flat stack sm"><b>${esc(sel.nm)}</b><span class="small">${esc(sel.desc)}</span>
+     ${S.seals[sel.id]?`<span class="tiny muted">Gagné le ${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`:'<span class="tiny muted">Pas encore gagné. Tu y arriveras !</span>'}</div>`:'<p class="tiny muted">Touche un sceau pour voir comment l’obtenir.</p>'}</section>`;}
+function renderSealShow(){const id=ui.sealShow[0],s=SEALBY[id],left=ui.sealShow.length-1;
+  return `<main class="screen" style="padding-bottom:40px;align-items:center;text-align:center"><span class="label" style="color:var(--gold);margin-top:24px">Nouveau sceau !</span>
+   <span class="seal-st ${s.c} xl stamp" style="margin:18px auto">${esc(s.ch)}</span><h1>${esc(s.nm)}</h1><p class="muted">${esc(s.desc)}</p>
+   <p><span class="zh" style="font-size:22px">坚持就是胜利</span><br><span class="small"><b>jiānchí jiù shì shènglì</b> · tenir bon, c’est gagner</span></p>
+   <button class="btn primary block" data-act="sealshare" data-id="${id}">Partager sur WhatsApp</button>
+   <button class="btn block" data-act="sealnext">${left?'Sceau suivant ('+left+' de plus)':'Continuer'}</button>
+   ${left>1?`<button class="btn ghost block" data-act="sealall">Voir tout mon carnet</button>`:''}</main>`;}
+/* image à partager (fabriquée sur le téléphone, rien n'est envoyé ailleurs) */
+function shareCanvas(o){const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),zh='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif',fr='"Nunito Sans",system-ui,sans-serif';
+  g.fillStyle='#FAEEDA';g.fillRect(0,0,W,H);g.fillStyle='#F3DDB4';g.fillRect(0,H-150,W,150);
+  g.textAlign='center';g.fillStyle='#854F0B';g.font='800 44px '+fr;g.fillText('BÙBÙGĀO  步步高',W/2,120);
+  g.save();g.translate(W/2,430);g.rotate(-.05);const col=SEALCOL[o.c]||SEALCOL.r,R=230;g.fillStyle=col;g.beginPath();g.roundRect?g.roundRect(-R,-R,2*R,2*R,40):g.rect(-R,-R,2*R,2*R);g.fill();
+  g.strokeStyle='rgba(255,255,255,.9)';g.lineWidth=12;g.beginPath();g.roundRect?g.roundRect(-R+26,-R+26,2*R-52,2*R-52,26):g.rect(-R+26,-R+26,2*R-52,2*R-52);g.stroke();
+  g.fillStyle='#fff';g.font='700 '+(o.ch.length>1?170:250)+'px '+zh;g.textBaseline='middle';g.fillText(o.ch,0,14);g.restore();g.textBaseline='alphabetic';
+  g.fillStyle='#412402';g.font='800 72px '+fr;g.fillText(o.title,W/2,800,W-100);g.font='500 44px '+fr;g.fillStyle='#633806';
+  const lines=[];let cur='';for(const w of String(o.sub).split(' ')){const tr=cur?cur+' '+w:w;if(g.measureText(tr).width>W-160&&cur){lines.push(cur);cur=w;}else cur=tr;}if(cur)lines.push(cur);
+  lines.slice(0,2).forEach((l,i)=>g.fillText(l,W/2,870+i*56));
+  g.font='700 86px '+zh;g.fillStyle='#633806';g.fillText('坚持就是胜利',W/2,1060);g.font='500 38px '+fr;g.fillStyle='#854F0B';g.fillText('jiānchí jiù shì shènglì · tenir bon, c’est gagner',W/2,1120,W-80);
+  g.font='600 34px '+fr;g.fillStyle='#854F0B';g.fillText('J’apprends le chinois avec Bùbùgāo',W/2,H-62);return c;}
+async function shareImage(o,text){const c=shareCanvas(o);const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('Impossible de créer l’image.');return;}
+  const file=new File([blob],'bubugao-'+Date.now()+'.png',{type:'image/png'});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}catch(e){if(e&&e.name==='AbortError')return;}
+  try{const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Image enregistrée dans Téléchargements : ajoute-la à ton statut.');}catch(e){toast('Impossible de partager pour l’instant.');}}
+const sealShareObj=s=>({ch:s.ch,c:s.c,title:s.nm,sub:(S.name?S.name+' a gagné ce sceau : ':'')+s.desc});
+/* défi de la semaine */
+const WEEKS=[{t:'sess',n:5,txt:'Fais 5 séances cette semaine'},{t:'mis',n:2,txt:'Réussis 2 missions à l’usine'},{t:'defi',n:3,txt:'Fais 3 défis éclair'},{t:'sess',n:4,txt:'Fais 4 séances cette semaine'},{t:'photo',n:2,txt:'Ajoute 2 photos de ton usine'}];
+function weekKey(){const d=new Date();d.setDate(d.getDate()-(d.getDay()+6)%7);return dkey(d);}
+function weekState(){const k=weekKey();if(!S.week||S.week.k!==k){const i=Math.floor(new Date(k).getTime()/(7*DAY))%WEEKS.length;S.week={k,i:(i+WEEKS.length)%WEEKS.length,p:0,done:false};}return S.week;}
+function weekBump(t){const w=weekState(),W=WEEKS[w.i];if(w.done||W.t!==t)return;w.p++;if(w.p>=W.n){w.done=true;S.weeksWon=(S.weeksWon||0)+1;addXP(80);toast('Défi de la semaine relevé ! +80 XP');}save();}
+/* défis éclair : 60 secondes */
+function defiPool(k){if(k==='mots')return ITEMS.filter(isIntro);if(k==='tons')return ITEMS.filter(x=>isIntro(x)&&tonable(x));return charsKnown().map(c=>CHARS[c]).filter(Boolean);}
+const three=opts=>shuffle([opts.find(o=>o.ok),...shuffle(opts.filter(o=>!o.ok)).slice(0,2)]);
+function defiQ(k){const x=rnd(defiPool(k));if(k==='mots')return{it:x,opts:three(frOptions(x))};if(k==='tons')return{it:x,opts:three(toneOptions(x))};return{ch:x,opts:three(charQ(x).opts)};}
+function startDefi(k){if(defiPool(k).length<4){toast(DEFIS[k].need);return;}ui.defi={k,stage:'ready',score:0,n:0};render();window.scrollTo(0,0);}
+function defiEnd(){const D=ui.defi;clearInterval(ui.defiT);D.stage='end';try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}
+  const rec=(S.defis[D.k]=S.defis[D.k]||{best:0,plays:0});D.prev=rec.best;rec.plays++;if(D.score>rec.best)rec.best=D.score;D.medal=DEFIS[D.k].seuils.filter(n=>D.score>=n).length;
+  addXP(D.score*2);markActive();weekBump('defi');save();checkSeals();render();window.scrollTo(0,0);}
+function renderDefi(){const D=ui.defi,d=DEFIS[D.k],rec=(S.defis[D.k]||{}).best||0;
+  const top=`<div class="ex-top"><button class="xbtn" data-act="defiquit" aria-label="Quitter le défi">${ICON.x}</button><div class="grow stack sm"><b>${d.t} · 60 s</b><span class="tiny muted">Record : ${rec}</span></div><button class="sos-mini" data-act="sos" aria-label="SOS urgence">SOS</button></div>`;
+  if(D.stage==='ready')return `<main class="screen" style="padding-bottom:40px">${top}<div class="stack sm"><span class="label">Défi éclair 闪电</span><h1>Le plus de bonnes réponses en 60 secondes</h1></div>
+    <section class="card stack sm"><p>Une erreur ne fait pas perdre de point : réponds vite !</p><p class="small"><b>Sceaux :</b> bronze à ${d.seuils[0]}, argent à ${d.seuils[1]}, or à ${d.seuils[2]} bonnes réponses.</p>${D.k==='tons'?'<p class="small muted">Mets le son : chaque mot est prononcé.</p>':''}</section>
+    <button class="btn primary block" data-act="defigo">C’est parti !</button></main>`;
+  if(D.stage==='end'){const m=D.medal,best=D.score>D.prev;return `<main class="screen" style="padding-bottom:40px">${top}<div class="end-hero"><span class="zh">${m===3?'太棒了！':m?'很好！':'加油！'}</span><h1>${D.score} bonne${D.score>1?'s':''} réponse${D.score>1?'s':''}</h1><p class="muted">${best&&D.prev?'Nouveau record ! Avant : '+D.prev+'.':best?'Ton premier record !':'Ton record : '+rec+'.'}</p></div>
+    <section class="card stack sm" style="text-align:center"><div class="row" style="justify-content:center;gap:14px">${d.seuils.map((n,i)=>`<div class="stack sm" style="align-items:center">${sealHTML(SEALBY['d_'+D.k+'_'+i])}<span class="tiny muted">${MEDAL[i]} · ${n}</span></div>`).join('')}</div>
+     <p class="small">${m===3?'Sceau d’or ! Tu es une championne.':m?'Prochain sceau à '+d.seuils[m]+' bonnes réponses.':'Le sceau de bronze est à '+d.seuils[0]+' bonnes réponses. Encore un essai ?'}</p></section>
+    <button class="btn primary block" data-act="defiagain">Rejouer</button><button class="btn block" data-act="defishare">Partager mon score</button><button class="btn ghost block" data-act="defiquit">Terminer</button></main>`;}
+  const q=D.q,left=Math.max(0,Math.ceil((D.end-Date.now())/1000));
+  return `<main class="lesson">${top}<div class="row between"><span class="defi-t" id="dfT">${left}</span><span class="badge ok" style="font-size:16px">${D.score} ✓</span></div>
+   <div class="bar"><i id="dfB" style="width:${left/60*100}%;background:var(--bad)"></i></div>
+   <div class="card defi-q">${q.ch?`<span class="zh">${esc(q.ch.c)}</span><p class="small muted">Que veut dire ce caractère ?</p>`:D.k==='tons'?`<button class="playbig" data-act="say" data-t="${esc(q.it.h)}" aria-label="Réécouter">${ICON.play}</button><p class="small muted">Quels tons entends-tu ?</p>`:`<span class="zh">${hzHTML(q.it)}</span><p class="small muted">${pyHTML(q.it)}</p>`}</div>
+   <div class="opts">${q.opts.map((o,i)=>`<button class="opt ${D.k==='tons'?'center':''}" data-act="defians" data-i="${i}">${D.k==='tons'?`<span class="py">${pyStr(q.it,o.t)}</span>`:esc(o.fr)}</button>`).join('')}</div></main>`;}
 /* ---------- l'escalier : un mot appris = une marche, un chapitre = un palier ---------- */
 const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':'Dire ton nom, d’où tu viens, et saluer','hsk1-02':'Compter et dire les nombres',
   'hsk1-03':'Parler de ta famille et de tes proches','hsk1-04':'Dire l’heure et la date à ton chef','hsk1-05':'Commander à manger et à boire',
@@ -1485,6 +1719,7 @@ function renderHome(){
      <div class="row" style="padding-left:36px"><button class="btn gold sm" data-act="mission" data-v="yes">Je l’ai fait ! +30</button><button class="btn sm ghost" data-act="mission" data-v="later">Pas encore</button></div>`
     :S.mission&&S.mission.status==='done'&&S.mission.day===today()?`<div class="plan-row done"><span class="ck ok">✓</span><div class="grow"><b>Mission à l’usine</b></div></div>`
     :`<div class="plan-row"><span class="ck"></span><div class="grow"><b>Mission à l’usine</b><br><span class="small muted">Elle t’attend à la fin de ta séance.</span></div></div>`}
+   <hr>${(()=>{const w=weekState(),W=WEEKS[w.i];return `<div class="plan-row ${w.done?'done':''}"><span class="ck ${w.done?'ok':'gold'}">${w.done?'✓':''}</span><div class="grow"><b>Défi de la semaine</b><br><span class="small ${w.done?'muted':''}">${esc(W.txt)} · ${Math.min(w.p,W.n)}/${W.n}</span><div class="wk" style="margin-top:6px"><i style="width:${pct(Math.min(1,w.p/W.n))}%"></i></div></div><span class="seal-st ${w.done?'r':'off'}" style="width:40px;height:40px;font-size:18px">周</span></div>`;})()}
    ${testDue()?`<hr><div class="plan-row"><span class="ck gold"></span><div class="grow"><b>Test HSK blanc du mois</b><br><span class="small muted">20 questions, 6 minutes</span></div><button class="btn gold sm" data-act="test">Passer</button></div>`:''}
   </section>
   <section class="card stack" aria-label="Parcours HSK">
@@ -1498,7 +1733,8 @@ function renderHome(){
   </section>
   ${ITEMS.some(isIntro)?(()=>{const pw=photoWords();return `<div class="shortcuts" aria-label="Raccourcis">
     ${pw.length?`<button class="shortcut" data-act="tab" data-k="photos">${phImg(pw[pw.length-1],'ph-sm')}Mes photos (${pw.length})</button>`:`<label class="shortcut">${ICON.cam}Photo de l’usine<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>`}
-    <button class="shortcut" data-act="tab" data-k="heard">${ICON.mic}J’ai entendu une phrase</button>
+    <button class="shortcut" data-act="tab" data-k="defis"><span class="zh" style="color:var(--bad)">闪电</span>Défi éclair 60 s</button>
+    <button class="shortcut" data-act="tab" data-k="heard">${ICON.mic}Phrase entendue</button>
     <button class="shortcut" data-act="lab" data-id="${pd.id}"><span class="zh">${esc(pd.h.length>5?pd.h.slice(0,5)+'…':pd.h)}</span>Phrase du jour</button></div>`;})():''}
   <a class="list-btn" href="${esc(zlink())}" style="text-decoration:none;color:inherit"><span class="zh" style="color:var(--accent)">字</span><span class="grow"><b>Zìzì · les caractères</b><br><span class="small muted">Apprendre à lire et écrire les caractères, trait par trait.</span></span></a>
   ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
@@ -1585,6 +1821,10 @@ function renderModule(){
   ${ficheHTML(p.module.fiche)}
   <button class="btn block" data-act="tab" data-k="carriere">Retour</button>`;
 }
+function renderDefis(){return `<div class="stack sm"><span class="label">Défi éclair 闪电</span><h1>60 secondes chrono</h1><p class="muted small">Réponds au plus de questions possible. Bats ton record et gagne des sceaux.</p></div>
+  <div class="stack">${Object.entries(DEFIS).map(([k,d])=>{const r=S.defis[k]||{},ok=defiPool(k).length>=4,m=d.seuils.filter(n=>(r.best||0)>=n).length;
+    return `<button class="mod ${ok?'':'lock'}" data-act="defi" data-k="${k}"><span class="mic" style="background:var(--bad-soft);color:var(--bad)">${d.zh}</span><span class="grow stack sm"><b>${d.t}</b><span class="tiny muted">${ok?(r.best?'Record : '+r.best+(m?' · sceau '+MEDAL[m-1]:''):'Pas encore joué'):esc(d.need)}</span></span>${ok?'<span class="badge">Jouer</span>':ICON.lock}</button>`;}).join('')}</div>
+  <button class="btn block" data-act="tab" data-k="home">Retour</button>`;}
 function renderParler(){
   const cur=currentStage();const pool=ITEMS.filter(x=>isIntro(x)||S.demo);
   return `<div class="stack sm"><span class="label">Parler</span><h1>Conversations</h1><p class="muted small">Des situations réelles, du plus simple au plus ambitieux. Le chef ne te corrige jamais brutalement : il te propose la bonne phrase.</p></div>
@@ -1608,6 +1848,7 @@ function renderProgres(){
   const words=ITEMS.filter(isIntro).filter(it=>!f||it.fr.toLowerCase().includes(f)||pyStr(it).toLowerCase().includes(f)||it.h.includes(f)||it.p.includes(f));
   const weak=rows.slice().sort((a,b)=>P[a[0]]-P[b[0]])[0];
   return `<div class="stack sm"><span class="label">Progrès</span><h1>Ta montée</h1></div>
+  ${carnetHTML()}
   <section class="card stack"><div class="row between"><h3>Ton profil</h3><span class="small muted">${S.xp} XP · record ${S.best} j</span></div>
    <div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div>
    <p class="small muted">Les séances donnent plus de temps à ta compétence la plus faible : <b>${weak[1].toLowerCase()}</b>.</p></section>
@@ -1674,7 +1915,7 @@ function renderCarriere(){
     :`<section class="card stack sm"><h3>Modules métier</h3><p class="small muted">Sécurité, pannes de courant, conflits, comprendre ton chef… Les premiers modules arrivent bientôt.</p></section>`}
   <section class="card stack sm" style="border:2px solid var(--gold)" aria-label="Examens blancs"><span class="label" style="color:var(--gold)">Examen blanc · format officiel</span>
    ${Object.keys(EXAMENS).map(l=>{l=+l;const B=EXAMENS[l],ex=(S.exams||[]).filter(e=>e.lvl===l),best=ex.length?Math.max(...ex.map(e=>e.total)):null,ok=examUnlocked(l);
-     return `<div class="row" style="flex-wrap:nowrap"><div class="grow"><b>${B.titre}</b> · 40 questions · ≈ ${15+B.lire} min<br><span class="small muted">${best==null?'Pas encore passé.':'Meilleure note : '+best+' / 200'+(best>=B.pass?' · réussi':'')}</span></div>
+     return `<div class="row" style="flex-wrap:nowrap"><div class="grow"><b>${B.titre}</b> · ${B.plan.reduce((a,x)=>a+x[3],0)} questions · ≈ ${B.ecoute+B.lire} min<br><span class="small muted">${best==null?'Pas encore passé.':'Meilleure note : '+best+' / 200'+(best>=B.pass?' · réussi':'')}</span></div>
      ${ok?`<button class="btn gold sm" data-act="exam" data-lvl="${l}">Passer</button>`:ICON.lock}</div>`;}).join('')}
    <p class="tiny muted">Même format que le vrai HSK, avec des questions écrites pour Bùbùgāo. Le vrai examen se passe à l’Institut Confucius de Lomé.</p></section>
   <section class="card stack sm"><span class="label">Test du mois</span>
@@ -1892,17 +2133,30 @@ const ACT={
    if(E.i>=E.qs.length-1)return examFinish();const nx=E.qs[E.i+1];if(q.sec==='L'&&nx.sec==='R'){E.i++;E.stage='mid';render();window.scrollTo(0,0);return;}E.i++;render();window.scrollTo(0,0);},
  exquit:()=>{const E=ui.exam;if(E.stage==='q'&&!confirm('Quitter l’examen ? Tes réponses ne seront pas gardées.'))return;E.tok++;clearInterval(ui.exTimer);try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}ui.exam=null;ui.tab='carriere';render();},
  exdone:()=>{ui.exam=null;ui.tab='carriere';render();window.scrollTo(0,0);},
+ sealopen:d=>{ui.sealOpen=ui.sealOpen===d.id?null:d.id;render();},
+ sealshare:d=>{const s=SEALBY[d.id];if(s)shareImage(sealShareObj(s),'J’ai gagné le sceau « '+s.nm+' » sur Bùbùgāo ! 坚持就是胜利');},
+ sealnext:()=>{ui.sealShow.shift();render();window.scrollTo(0,0);},
+ sealall:()=>{ui.sealShow=[];ui.tab='progres';render();setTimeout(()=>{const e=document.querySelector('[aria-label="Carnet de sceaux"]');if(e)e.scrollIntoView();},50);},
+ defi:d=>startDefi(d.k),
+ defigo:()=>{const D=ui.defi;D.stage='play';D.end=Date.now()+60000;D.q=defiQ(D.k);render();window.scrollTo(0,0);if(D.k==='tons')say(D.q.it.h);
+   clearInterval(ui.defiT);ui.defiT=setInterval(()=>{const D=ui.defi;if(!D||D.stage!=='play'){clearInterval(ui.defiT);return;}const left=Math.max(0,Math.ceil((D.end-Date.now())/1000));
+     const t=document.getElementById('dfT'),b=document.getElementById('dfB');if(t)t.textContent=left;if(b)b.style.width=(left/60*100)+'%';if(!left)defiEnd();},250);},
+ defians:d=>{const D=ui.defi;if(!D||D.stage!=='play')return;const o=D.q.opts[+d.i];D.n++;if(o&&o.ok){D.score++;buzz(15);}else buzz([30,40,30]);
+   if(Date.now()>=D.end)return defiEnd();D.q=defiQ(D.k);render();if(D.k==='tons')say(D.q.it.h);},
+ defiagain:()=>{const k=ui.defi.k;ui.defi={k,stage:'ready',score:0,n:0};render();},
+ defishare:()=>{const D=ui.defi,d=DEFIS[D.k],m=D.medal;shareImage({ch:d.zh,c:['r','r','jade','gold'][m],title:D.score+' bonnes réponses en 60 s',sub:d.t+(S.name?' · '+S.name:'')+(m?' · sceau '+MEDAL[m-1]:'')},'Défi éclair Bùbùgāo : '+D.score+' bonnes réponses en 60 secondes. Qui fait mieux ?');},
+ defiquit:()=>{clearInterval(ui.defiT);try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}ui.defi=null;render();window.scrollTo(0,0);},
  tab:d=>{if(ui.tab==='heard'&&d.k!=='heard'){heardRecStop();ui.heard=null;ui.heardText=null;}ui.tab=d.k;render();window.scrollTo(0,0);},
  hrec:()=>heardRecStart(),
  hstop:()=>heardRecStop(),
  hwho:d=>{ui.heard.who=ui.heard.who===d.v?'':d.v;render();},
  hsave:async()=>{const h=ui.heard;if(!h||(!h.blob&&!(h.note||'').trim())){const e=document.getElementById('herr');if(e)e.hidden=false;return;}
    const ok=await addHeard({d:today(),blob:h.blob||null,note:(h.note||'').trim(),who:h.who||'',sent:false});
-   if(h.url)URL.revokeObjectURL(h.url);ui.heard={note:'',who:''};if(ok){addXP(15);save();buzz(18);toast('Phrase gardée ! +15 XP');}else toast('Le téléphone n’a pas pu garder cette phrase.');render();},
+   if(h.url)URL.revokeObjectURL(h.url);ui.heard={note:'',who:''};if(ok){addXP(15);save();buzz(18);toast('Phrase gardée ! +15 XP');checkSeals();}else toast('Le téléphone n’a pas pu garder cette phrase.');render();},
  hdel:async d=>{await delHeard(+d.k);render();},
  hshare:()=>shareHeard(),
  vibre:()=>{S.vibre=S.vibre===false;save();buzz(40);render();},
- phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
+ phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);if(ok)weekBump('photo');checkSeals();ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
    toast(ok?'Photo ajoutée : '+it.h+' · '+it.fr:'Photo gardée pour cette fois, mais le téléphone n’a pas pu l’enregistrer.');try{say(it.h);}catch(e){}},
  phcancel:()=>{ui.phNew=null;ui.phFilter='';ui.tab='home';render();},
  phdel:async d=>{await delPhoto(d.id);render();toast('Photo retirée.');},
@@ -1930,7 +2184,7 @@ const ACT={
  conv:d=>{const c=CONVS.find(x=>x.id===d.id);startMini([{kind:'conv',conv:c,sec:'Conversation',cs:newConv(c)}],ui.tab);},
  locked:d=>{const c=CONVS.find(x=>x.id===d.id);toast('Se débloque à l’étape '+STAGES[c.st].fr+'.');},
  lab:d=>startMini([{kind:'shadow',it:BY[d.id],sec:'Labo des tons'}],ui.tab),
- mission:d=>{if(d.v==='yes'){S.missionsDone++;addXP(30);markActive();toast('Bravo ! Tu as parlé chinois pour de vrai. +30 XP');}else toast('Pas de souci. Une nouvelle mission t’attend à la prochaine séance.');S.mission.status=d.v==='yes'?'done':'skip';save();render();},
+ mission:d=>{if(d.v==='yes'){S.missionsDone++;addXP(30);markActive();toast('Bravo ! Tu as parlé chinois pour de vrai. +30 XP');}else toast('Pas de souci. Une nouvelle mission t’attend à la prochaine séance.');S.mission.status=d.v==='yes'?'done':'skip';if(d.v==='yes')weekBump('mis');save();checkSeals();render();},
  demo:()=>{S.demo=!S.demo;save();render();},
  backup:()=>doBackup(),
  restore2:()=>applyRestore(),
@@ -1978,8 +2232,7 @@ window.addEventListener('online',()=>checkUpdates(false));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false&&Date.now()-(PS._checked||0)>6*3600e3)checkUpdates(false);});
 refreshJokers();
 render();
-loadPhotos().then(()=>{if(Object.keys(PH).length&&!ui.sess)render();});
-loadHeard().then(()=>{if(HEARD.length&&!ui.sess&&ui.tab==='parler')render();});
+Promise.all([loadPhotos(),loadHeard()]).then(()=>{if(S.onboarded){checkSeals();}if(!ui.sess&&!ui.exam&&!ui.defi)render();});
 if(navigator.onLine!==false)checkUpdates(false);else loadAudioIndex();
 askPersist().then(()=>{if(!ui.sess&&ui.tab==='progres')render();});
 window.addEventListener('appinstalled',()=>askPersist());
