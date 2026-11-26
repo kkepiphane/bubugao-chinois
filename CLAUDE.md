@@ -22,7 +22,7 @@ Mainteneur : Epiphane (développeur, Lomé). En ligne : https://kkepiphane.githu
 | Chemin | Rôle |
 |---|---|
 | `index.html` | Toute l'appli (HTML + CSS + JS, sans dépendance). Contenu de base entre `BEGIN_DATA` et `END_DATA`. |
-| `sw.js` | Service worker : hors-ligne, mises à jour (réseau d'abord), sons en cache permanent. |
+| `sw.js` | Service worker : hors-ligne ; ouvre depuis la copie du téléphone (rapide même sur réseau faible) et télécharge la mise à jour en arrière-plan pour l'ouverture suivante ; demandes `cache: 'no-store'`/`'no-cache'` (chapitres, index audio) : réseau d'abord ; sons en cache permanent. |
 | `manifest.webmanifest`, `icon-*.png` | Installation sur l'écran d'accueil. |
 | `packs/` | Chapitres **publiés** + `packs.json` (liste lue par l'appli à chaque connexion). |
 | `a-publier/` | Chapitres **en attente** + `ordre.json` (file du robot). |

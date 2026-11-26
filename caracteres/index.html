@@ -366,13 +366,16 @@ function retention(st,now){if(!st.S)return 0;const dt=Math.max(0,(now-st.last)/D
 function grade(c,k,ok){
   const st=skState(c,k),now=Date.now(),R=retention(st,now);
   if(!ok){st.S=Math.max(.3,st.S*.4);st.lap++;}
-  else st.S=Math.max(1,(st.S||0)*(1+1.4*Math.max(.25,1-R)));
+  // réussi au bon moment (R≈0,9) : intervalle ×2,5 ; revu trop tôt : ×1,2 ; revu tard : jusqu'à ×4
+  else st.S=Math.max(1,(st.S||0)*Math.min(4,1.2+13*Math.max(0,1-R)));
   st.last=now;
 }
 function mastery(c){if(!isIntro(c))return 0;return avg(SK.map(k=>Math.min(1,peek(c,k)/14)));}
 function level(c){if(!isIntro(c))return 0;const m=mastery(c);return m>=.5?3:m>=.15?2:1;}
 const knownCount=()=>DATA.chars.filter(x=>isIntro(x.c)).length;
 function dueList(now){const out=[];DATA.chars.forEach(x=>{if(!isIntro(x.c))return;SK.forEach(k=>{const R=retention(skState(x.c,k),now);if(R<.9)out.push({c:x.c,k,R});});});return out.sort((a,b)=>a.R-b.R);}
+function dueChars(now){let n=0;DATA.chars.forEach(x=>{if(isIntro(x.c)&&(retention(skState(x.c,'sens'),now)<.9||retention(skState(x.c,'son'),now)<.9))n++;});return n;}
+function newToday(){return S.newDay&&S.newDay.d===today()?S.newDay.n:0;}
 function addXP(n){const r0=rankOf(S.xp);S.xp+=n;const k=today();S.days[k]=(S.days[k]||0)+n;if(ui.sess)ui.sess.xp+=n;if(ui.game)ui.game.xp+=n;if(ui.exam)ui.exam.xp=(ui.exam.xp||0)+n;
   const r1=rankOf(S.xp);if(r1>r0){ui.levelUp=r1;buzz([60,40,160]);}}
 const stats=()=>S.stats||(S.stats={});
@@ -398,13 +401,19 @@ async function prefetchAudio(){
   if(prefetching||!('caches' in window)||navigator.onLine===false)return;
   if(navigator.connection&&navigator.connection.saveData)return;
   prefetching=true;
-  try{const c=await caches.open('zizi-audio');for(const f of [...new Set(Object.values(AUDIO))]){const url=new URL('audio/'+f,location.href).href;if(await c.match(url))continue;try{const r=await fetch(url);if(r.ok)await c.put(url,r);}catch(e){break;}}}catch(e){}
+  const first=[];if(DATA){const k=DATA.chars.findIndex(x=>!isIntro(x.c)),upto=k<0?DATA.chars.length:k+PAGE;
+    DATA.chars.slice(0,upto).forEach(x=>{[x.a,x.ex.h,...x.w.map(w=>w.h)].forEach(t=>{if(AUDIO[t])first.push(AUDIO[t]);});});}
+  try{const c=await caches.open('zizi-audio');for(const f of [...new Set([...first,...Object.values(AUDIO)])]){const url=new URL('audio/'+f,location.href).href;if(await c.match(url))continue;try{const r=await fetch(url);if(r.ok)await c.put(url,r);}catch(e){break;}}}catch(e){}
   prefetching=false;
 }
 function say(text,slow){
   const t=String(text).trim();try{if(curAudio){curAudio.pause();curAudio=null;}}catch(_){}
   const f=AUDIO[t];
-  if(f){try{try{speechSynthesis.cancel();}catch(_){}const a=new Audio('audio/'+f);a.preservesPitch=true;a.playbackRate=slow?.7:1;curAudio=a;const p=a.play();if(p&&p.catch)p.catch(()=>tts(t,slow));return;}catch(e){}}
+  if(f){try{try{speechSynthesis.cancel();}catch(_){}const a=new Audio('audio/'+f);a.preservesPitch=true;a.playbackRate=slow?.7:1;curAudio=a;
+    let ok=false;a.addEventListener('playing',()=>{ok=true;},{once:true});
+    // réseau faible : si le son ne démarre pas en 1,5 s, la voix du téléphone prend le relais
+    setTimeout(()=>{if(!ok&&curAudio===a&&!a.error){try{a.pause();}catch(_){}tts(t,slow);}},1500);
+    const p=a.play();if(p&&p.catch)p.catch(()=>{if(curAudio===a){ok=true;tts(t,slow);}});return;}catch(e){}}
   tts(t,slow);
 }
 function tts(text,slow){
@@ -441,7 +450,7 @@ const pageCount=()=>Math.ceil(DATA.chars.length/PAGE);
 const pageChars=p=>DATA.chars.slice(p*PAGE,(p+1)*PAGE);
 const pageDone=(p,set)=>pageChars(p).every(x=>set?set.has(x.c):isIntro(x.c));
 function curPage(){const i=DATA.chars.findIndex(x=>!isIntro(x.c));return i<0?pageCount()-1:Math.floor(i/PAGE);}
-function fadingC(c,now){const r=S.chars[c];if(!r||!r.intro||now-r.intro<DAY)return false;return avg(SK.map(k=>r.sk[k]?retention(r.sk[k],now):1))<.7;}
+function fadingC(c,now){const r=S.chars[c];if(!r||!r.intro||now-r.intro<DAY)return false;return avg(['sens','son'].map(k=>r.sk[k]?retention(r.sk[k],now):1))<.7;}
 function lectAt(){const o={};DATA.lectures.forEach(l=>{const n=[...l.need];const c=n[Math.max(0,Math.ceil(.85*n.length)-1)];if(c&&!o[c])o[c]=l.t;});return o;}
 function scrollHTML(){
   const cp=curPage(),n=pageCount(),p=ui.page==null?cp:Math.max(0,Math.min(n-1,ui.page)),now=Date.now(),cs=pageChars(p),nextC=DATA.chars.find(x=>!isIntro(x.c));
@@ -550,25 +559,30 @@ function recentAcc(){const h=S.hist.slice(-40);return h.length<8?.85:avg(h);}
 
 /* ---------- séance du jour : pensée en minutes, le contenu s'adapte ---------- */
 const DUR={5:{nw:2,rv:7,mem:1},10:{nw:4,rv:12,mem:2},15:{nw:6,rv:18,mem:3}};
+/* Le retard (due) se compte en caractères à revoir (sens ou son). La séance prend plus de révisions quand il monte ;
+   les nouveaux ne baissent que si le retard dépasse 3 séances. « plus » = encore des nouveaux, autant qu'on veut. */
 function planSession(kind){
-  const d=DUR[S.dur]||DUR[10],due=dueList(Date.now()).length,acc=recentAcc(),left=DATA.chars.length-knownCount();
-  let nw=0;
-  if(kind==='daily'){nw=d.nw;if(acc<.75)nw--;if(due>25)nw=Math.ceil(nw/2);if(acc>.9&&due<8)nw++;nw=Math.max(1,Math.min(nw,left));}
-  const mem=knownCount()>=4?d.mem:0;
-  return{nw,rv:Math.min(due,kind==='daily'?d.rv:d.rv+6),mem,due,acc};
+  const d=DUR[S.dur]||DUR[10],due=dueChars(Date.now()),acc=recentAcc(),left=DATA.chars.length-knownCount(),cap=d.rv;
+  let nw=0,rv,mem=knownCount()>=4?d.mem:0;
+  if(kind==='daily'){nw=d.nw;if(acc<.75)nw--;if(due>3*cap)nw=Math.ceil(nw/2);if(acc>.9&&due<cap/2)nw++;rv=Math.min(due,cap+Math.min(cap,Math.floor(due/3)));}
+  else if(kind==='plus'){nw=d.nw;rv=Math.min(due,4);mem=0;}
+  else rv=Math.min(due,cap+6);
+  nw=Math.max(kind==='review'?0:1,Math.min(nw,left));if(!left)nw=0;
+  return{nw,rv,mem,due,acc,min:Math.max(2,Math.round(nw*1.6+rv*.25+mem*.6))};
 }
 function startSession(kind){
   const now=Date.now(),P=planSession(kind),steps=[];
   const news=DATA.chars.filter(x=>!isIntro(x.c)).slice(0,P.nw).map(x=>x.c);
+  if(kind==='plus'&&!news.length){toast('Tu as appris tous les caractères. Bravo !');return;}
   const due=dueList(now).filter(d=>!news.includes(d.c)),used=new Set();
   const take=(n,f)=>{const out=[];for(const d of due){if(out.length>=n)break;if(used.has(d.c)||(f&&!f(d)))continue;used.add(d.c);out.push(d);}return out;};
   // 1. échauffement : 3 révisions rapides
-  take(news.length?3:Math.min(4,P.rv),d=>d.k!=='ecrit').forEach(d=>steps.push({...quickQ(d.c,d.k),sec:'Échauffement'}));
+  take(news.length?Math.min(3,P.rv):Math.min(4,P.rv),d=>d.k!=='ecrit').forEach(d=>steps.push({...quickQ(d.c,d.k),sec:'Échauffement'}));
   // 2. les nouveaux : fiche, tracé, puis on vérifie tout de suite
   news.forEach(c=>{steps.push({kind:'fiche',c,sec:'Nouveau caractère'});steps.push({kind:'trace',c,sec:'Je trace'});});
   shuffle(news.flatMap(c=>[qSens(c),Math.random()<.5?qSon(c):qEcoute(c)])).forEach(q=>steps.push({...q,sec:'Je vérifie'}));
   // 3. pratique : le reste des révisions, mélangé
-  const rest=take(Math.max(0,P.rv-3),d=>d.k!=='ecrit');
+  const rest=take(Math.max(0,P.rv-used.size),d=>d.k!=='ecrit');
   shuffle(rest.map(d=>quickQ(d.c,d.k))).forEach(q=>steps.push({...q,sec:'Pratique'}));
   // 4. final : écrire de mémoire (les plus fragiles), puis les nouveaux dans une phrase
   const mem=take(P.mem,d=>d.k==='ecrit');
@@ -593,14 +607,14 @@ function answer(i){
 }
 function next(){
   const s=ui.sess,st=s.steps[s.i];
-  if(st&&st.kind==='fiche'){const r=rec(st.c);if(!r.intro){r.intro=Date.now();SK.forEach(k=>skState(st.c,k));save();}}
+  if(st&&st.kind==='fiche'){const r=rec(st.c);if(!r.intro){r.intro=Date.now();SK.forEach(k=>skState(st.c,k));S.newDay={d:today(),n:newToday()+1};save();}}
   writers={};try{speechSynthesis.cancel();}catch(_){}
   s.i++;if(s.i>=s.steps.length)finish();else render();window.scrollTo(0,0);
 }
 function finish(){
   const s=ui.sess;const msg=markActive();S.sessions++;
   if(s.kind==='daily'){S.lastSessionDay=today();qBump('seance');}
-  addXP(s.kind==='daily'?40:20);S.mins=(S.mins||0)+Math.min(45,Math.max(1,Math.round((Date.now()-s.t0)/60000)));
+  addXP(s.kind==='daily'?40:s.kind==='plus'?30:20);S.mins=(S.mins||0)+Math.min(45,Math.max(1,Math.round((Date.now()-s.t0)/60000)));
   const kn=knownCount();s.known1=kn;s.joker=msg;
   s.unlocked=DATA.lectures.filter(l=>lectRatio(l,s.known0Set)<.85&&lectRatio(l)>=.85).map(l=>l.t);
   for(const m of [10,25,50,100,150,200,DATA.chars.length])if(kn>=m&&!S.milestones[m]){S.milestones[m]=today();s.milestone=m;}
@@ -769,10 +783,14 @@ function renderHome(){
    <div class="stack sm" style="align-items:flex-end"><span class="flame" title="Jours de suite">${ICON.flame}${streakAlive()}</span><button class="playmini" data-act="settings" aria-label="Réglages">${ICON.gear}</button></div></div>
   <button class="card" data-act="tab" data-k="prog" style="text-align:left;cursor:pointer;width:100%">${rankBlock()}</button>
   ${!S.sessions?`<div class="welcome"><b>Bienvenue dans Zìzì 字字 !</b><ol><li>Choisis le temps que tu as : 5, 10 ou 15 minutes.</li><li>Chaque jour, de nouveaux caractères : tu regardes, tu traces au doigt, tu révises.</li><li>Un défi et 3 quêtes chaque jour pour gagner des points et monter de niveau.</li></ol></div>`:''}
-  ${done?`<div class="cta done"><span class="label">Séance du jour faite ${ICON.check}</span><h2>On continue ?</h2><div class="bits"><span class="bit">${P.due} à revoir</span><span class="bit">écrire de mémoire</span></div>${durs}<button class="btn primary" data-act="review">Révision libre · ≈ ${S.dur} min</button></div>`
+  ${done?(()=>{const Q=planSession('plus'),nt=newToday();return `<div class="cta done"><span class="label">Séance du jour faite ${ICON.check}</span><h2>On continue ?</h2>
+     <div class="bits"><span class="bit">${nt} nouveau${nt>1?'x':''} aujourd’hui</span><span class="bit">${P.due} à revoir</span></div>${durs}
+     ${Q.nw?`<button class="btn primary" data-act="plus">Encore ${Q.nw} nouveau${Q.nw>1?'x':''} · ≈ ${Q.min} min</button>`:''}
+     ${P.due?`<button class="btn" data-act="review">Réviser · ${P.rv} caractère${P.rv>1?'s':''} · ≈ ${P.min} min</button>`:'<p class="small muted">Rien à réviser pour l’instant : tes caractères sont bien rangés.</p>'}
+     ${nt>=20&&Q.nw?`<p class="small">Déjà ${nt} nouveaux aujourd’hui, bravo ! Tu peux continuer : demain, la séance aura simplement plus de révisions.</p>`:''}</div>`;})()
    :`<div class="cta"><span class="label" style="color:inherit;opacity:.85">Séance du jour</span><h2>${kn?'Continuer mon mur':'Mes premiers caractères'}</h2>
      <div class="bits"><span class="bit">${P.nw} nouveau${P.nw>1?'x':''}</span>${P.rv?`<span class="bit">${P.rv} révision${P.rv>1?'s':''}</span>`:''}${P.mem?`<span class="bit">${P.mem} de mémoire</span>`:''}<span class="bit">tracé au doigt</span></div>
-     ${durs}<button class="btn go" data-act="daily">Commencer · ≈ ${S.dur} min</button></div>`}
+     ${durs}<button class="btn go" data-act="daily">Commencer · ≈ ${P.min} min</button></div>`}
   ${S.sessions?scrollHTML():''}
   ${installHTML()}
   <section class="defi" aria-label="Défi du jour"><span class="zhbig" aria-hidden="true">${G.zh}</span>
@@ -1065,6 +1083,7 @@ const ACT={
  durset:d=>{S.dur=+d.v;save();openSettings();},
  daily:()=>startSession('daily'),
  review:()=>startSession('review'),
+ plus:()=>startSession('plus'),
  home:()=>{ui.sess=null;ui.tab='home';render();window.scrollTo(0,0);},
  quit:()=>{try{speechSynthesis.cancel();}catch(_){}ui.sess=null;render();},
  next:()=>next(),
