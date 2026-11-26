@@ -107,8 +107,8 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .plan-row .ck.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
 .plan-row.done .grow b{color:var(--muted);text-decoration:line-through}
 .plan hr{border:0;border-top:1px solid var(--line);margin:0}
-.shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.shortcut{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:76px;padding:10px 6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center}
+.shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.shortcut{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:76px;padding:8px 4px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font:inherit;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center}
 .shortcut .icon{width:22px;height:22px}
 .shortcut .zh{font-size:18px;line-height:1.1}
 .sos-fab{position:fixed;right:max(16px,calc(50% - 244px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:21;background:#B42323;color:#fff;border:0;border-radius:999px;padding:12px 16px;font-weight:800;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer}
@@ -140,6 +140,22 @@ input:focus,select:focus{outline:3px solid var(--accent-soft);border-color:var(-
 .ex-opt .zh{font-size:20px}
 .ex-aud{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--accent-soft);font-weight:700}
 .ex-score{font:800 56px var(--f-display);line-height:1}
+.seal-st{width:58px;height:58px;border-radius:10px;display:grid;place-items:center;font:700 22px var(--f-zh);color:#fff;background:#A32D2D;box-shadow:inset 0 0 0 3px #A32D2D,inset 0 0 0 5px #FCEBEB;transform:rotate(-3deg);flex:none}
+.seal-st.jade{background:#0F6E56;box-shadow:inset 0 0 0 3px #0F6E56,inset 0 0 0 5px #E1F5EE}
+.seal-st.gold{background:#B8730F;box-shadow:inset 0 0 0 3px #B8730F,inset 0 0 0 5px #FAEEDA}
+.seal-st.off{background:none;color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line);transform:none;font-size:17px}
+.seal-st.xl{box-shadow:inset 0 0 0 5px rgba(255,255,255,.0),inset 0 0 0 9px rgba(255,255,255,.85)}
+.seals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px}
+.seal-b{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.seal-b .nm{font-size:11px;color:var(--muted);text-align:center;line-height:1.2}
+.seal-b.sel .nm{color:var(--ink);font-weight:800}
+@keyframes stamp{0%{transform:scale(2.2) rotate(-12deg);opacity:0}60%{transform:scale(.92) rotate(-3deg);opacity:1}100%{transform:scale(1) rotate(-3deg)}}
+.stamp{animation:stamp .5s cubic-bezier(.2,.8,.3,1.2) both}
+@media (prefers-reduced-motion:reduce){.stamp{animation:none}}
+.defi-t{font:800 46px var(--f-display);line-height:1;color:var(--bad);font-variant-numeric:tabular-nums}
+.defi-q{text-align:center;padding:18px}
+.defi-q .zh{font-size:44px}
+.wk{height:8px;border-radius:9px;background:var(--surface-2);overflow:hidden}.wk i{display:block;height:100%;background:var(--gold)}
 .stair{width:100%;display:block}
 .stair .st{fill:none;stroke:var(--line);stroke-width:1}
 .stair .st.on{fill:var(--accent);stroke:none}
@@ -684,7 +700,7 @@ const KEY='bubugao.v1';
 function fresh(){return {v:1,name:'',goal:0,onboarded:false,created:Date.now(),
   profile:{ecoute:.5,tons:.5,vocab:.5,parole:.5},items:{},hist:[],xp:0,
   streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},
-  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true,sosTel:'',exams:[]};}
+  lastSessionDay:null,sessions:0,mission:null,missionsDone:0,convDone:{},voice:{},demo:false,seenPacks:{},grammarSeen:{},focusPack:null,branch:'travail',chars:{},tests:[],lastBackup:null,duree:30,vibre:true,sosTel:'',exams:[],seals:{},defis:{},week:null,weeksWon:0,flags:{}};}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 let S=load()||fresh();
@@ -1192,12 +1208,15 @@ function finish(){
   }
   if(s.kind==='mini'){const back=s.back;ui.sess=null;ui.tab=back||'home';render();return;}
   if(s.kind==='test'){const acc=s.n?s.ok/s.n:0,hs=hskStats();const est=Math.round(acc*hs.avail);S.tests.push({d:today(),acc:Math.round(acc*100),est,avail:hs.avail});markActive();addXP(40);save();s.end=true;render();return;}
-  const msg=markActive();
+  const gap0=S.lastDay?daysBetween(S.lastDay,today()):0;const msg=markActive();
+  S.flags=S.flags||{};if(gap0>=7)S.flags.retour=1;if(s.n>=10&&s.ok===s.n)S.flags.perfect=1;if(new Date().getHours()<6)S.flags.early=1;
+  if(['daily','plus','chapter'].includes(s.kind))weekBump('sess');
   S.sessions++;if(s.kind==='daily')S.lastSessionDay=today();
   addXP(s.kind==='daily'?Math.round(50*DUREES[duree()].f):s.kind==='chapter'||s.kind==='plus'?30:20);
   s.endProg=stageProg(s.cur);s.jokerMsg=msg;ui.popSince=s.t0||0;
   s.paliers=s.done0?PACKS.filter(p=>packDone(p)&&!s.done0.includes(p.id)):[];if(s.paliers.length)buzz([60,40,120,40,200]);
   if(s.kind==='daily'&&(S.sessions===1||Math.random()<.3))s.bonus=rnd(BONUS);
+  checkSeals();
   save();s.end=true;render();
 }
 
@@ -1226,10 +1245,12 @@ function convPick(cs,i){
    ============================================================ */
 function render(){
   if(ui.sos)return app.innerHTML=renderSOS();
+  if(ui.defi)return app.innerHTML=renderDefi();
   if(ui.exam)return app.innerHTML=renderExam(),examAfter();
   if(ui.sess)return renderSession();
   if(!S.onboarded)return renderOnboard();
-  const T={module:renderModule,heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
+  if(ui.sealShow&&ui.sealShow.length)return app.innerHTML=renderSealShow();
+  const T={defis:renderDefis,module:renderModule,heard:renderHeard,photopick:renderPhotoPick,photos:renderPhotos,home:renderHome,parler:renderParler,progres:renderProgres,carriere:renderCarriere}[ui.tab]||renderHome;
   app.innerHTML=`<main class="screen">${T()}</main><button class="sos-fab" data-act="sos" aria-label="SOS urgence">SOS 急救</button>${tabbar()}`;
   if(ui.tab==='progres'){document.querySelectorAll('canvas[data-voice]').forEach(cv=>{const [id,w]=cv.dataset.voice.split('|');const v=S.voice[id];if(v&&v[w])drawCurve(cv,BY[id],v[w]);});}
 }
@@ -1360,7 +1381,7 @@ function examTick(){clearInterval(ui.exTimer);ui.exTimer=setInterval(()=>{const 
 function examFinish(){const E=ui.exam;clearInterval(ui.exTimer);E.tok++;try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}
   const sc=sec=>{const q=E.qs.filter(x=>x.sec===sec);return Math.round(q.filter(x=>x.pick===x.ans).length/q.length*100);};
   E.l=sc('L');E.r=sc('R');E.total=E.l+E.r;E.stage='end';(S.exams=S.exams||[]).push({lvl:E.lvl,d:today(),l:E.l,r:E.r,total:E.total});
-  addXP(60);markActive();save();buzz(E.total>=EXAMENS[E.lvl].pass?[60,40,120,40,200]:40);render();window.scrollTo(0,0);}
+  addXP(60);markActive();save();checkSeals();buzz(E.total>=EXAMENS[E.lvl].pass?[60,40,120,40,200]:40);render();window.scrollTo(0,0);}
 function examAfter(){const E=ui.exam;if(E.stage==='q'){const q=E.qs[E.i];if(q.audio&&!q.played){q.played=true;examPlay(q);}}}
 function renderExam(){
   const E=ui.exam,B=EXAMENS[E.lvl],nL=E.qs.filter(q=>q.sec==='L').length,nR=E.qs.length-nL;
@@ -1392,6 +1413,93 @@ function renderExam(){
      <div class="ex-opts ${q.opts[0].pic?'pics':''}">${q.opts.map(opt).join('')}</div>`}
    <div class="row" style="margin-top:auto"><button class="btn primary grow" data-act="exnext">${q.pick==null?'Passer':E.i===E.qs.length-1?'Terminer':'Suivant'}</button></div></main>`;
 }
+/* ---------- sceaux 印章 (badges), défis éclair, défi de la semaine ---------- */
+const SEALCOL={r:'#A32D2D',jade:'#0F6E56',gold:'#B8730F'};
+const DEFIS={mots:{t:'Défi des mots',zh:'词',seuils:[10,18,25],need:'Apprends au moins 4 mots.'},
+  tons:{t:'Défi des tons',zh:'声',seuils:[8,14,20],need:'Apprends au moins 4 mots pour jouer avec les tons.'},
+  chars:{t:'Défi des caractères',zh:'字',seuils:[10,18,25],need:'Découvre au moins 4 caractères dans tes séances.'}};
+const MEDAL=['bronze','argent','or'];
+const nbWords=()=>ITEMS.filter(isIntro).length;
+const bestStreak=()=>Math.max(S.best||0,streakAlive());
+const modDone=k=>{const p=PACKS.find(x=>x.module&&x.module.icon===k);return !!(p&&packDone(p));};
+const examOk=(l,min)=>(S.exams||[]).some(e=>e.lvl===l&&e.total>=min);
+const SEALS=[
+ ...[[7,'七','r','Une semaine'],[14,'十四','r','Deux semaines'],[30,'月','gold','Un mois entier'],[50,'五十','r','Cinquante jours'],[100,'百','gold','Cent jours'],[200,'二百','gold','Deux cents jours'],[365,'年','gold','Une année']]
+   .map(([n,ch,c,nm])=>({id:'s'+n,fam:'Séries de jours',ch,c,nm,court:n<365?n+' jours':'1 an',desc:n+' jours de suite sans abandonner.',test:()=>bestStreak()>=n})),
+ ...[[100,'学','jade'],[250,'识','jade'],[500,'博','jade'],[1000,'千','gold']]
+   .map(([n,ch,c])=>({id:'m'+n,fam:'Mots appris',ch,c,nm:n+' mots appris',court:n+' mots',desc:'Tu as appris '+n+' mots et phrases.',test:()=>nbWords()>=n})),
+ {id:'e1',fam:'Examens',ch:'一',c:'gold',nm:'HSK 1 réussi',court:'HSK 1',desc:'Au moins 120 / 200 à l’examen blanc HSK 1.',test:()=>examOk(1,120)},
+ {id:'e2',fam:'Examens',ch:'二',c:'gold',nm:'HSK 2 réussi',court:'HSK 2',desc:'Au moins 120 / 200 à l’examen blanc HSK 2.',test:()=>examOk(2,120)},
+ {id:'e200',fam:'Examens',ch:'满',c:'gold',nm:'Note parfaite',court:'200 / 200',desc:'200 sur 200 à un examen blanc.',test:()=>(S.exams||[]).some(e=>e.total>=200)},
+ ...[[5,'说','r'],[20,'谈','r'],[50,'通','gold']].map(([n,ch,c])=>({id:'mi'+n,fam:'À l’usine',ch,c,nm:n+' missions réussies',court:n+' missions',desc:'Tu as parlé chinois pour de vrai à l’usine, '+n+' fois.',test:()=>(S.missionsDone||0)>=n})),
+ {id:'ph10',fam:'À l’usine',ch:'照',c:'jade',nm:'Photographe de l’atelier',court:'10 photos',desc:'10 mots illustrés avec tes propres photos.',test:()=>Object.keys(PH).length>=10},
+ {id:'he5',fam:'À l’usine',ch:'听',c:'jade',nm:'Oreille de l’usine',court:'5 phrases',desc:'5 phrases entendues à l’usine et gardées.',test:()=>HEARD.length>=5},
+ ...[['securite','安','Gardienne de l’atelier'],['pannes','电','Maîtresse des pannes'],['conflits','和','Artisane de paix'],['chef','面','Diplomate'],['equipe','队','Cheffe d’équipe'],['chiffres','数','Reine des chiffres']]
+   .map(([k,ch,nm])=>({id:'mod_'+k,fam:'Modules Métier',ch,c:'jade',nm,court:nm.split(' ')[0],desc:'Module Métier terminé : tous ses mots et phrases appris.',test:()=>modDone(k)})),
+ ...Object.entries(DEFIS).flatMap(([k,d])=>d.seuils.map((n,i)=>({id:'d_'+k+'_'+i,fam:'Défis éclair',ch:d.zh,c:['r','jade','gold'][i],nm:d.t+' · '+MEDAL[i],court:MEDAL[i],
+   desc:n+' bonnes réponses en 60 secondes au '+d.t.toLowerCase()+'.',test:()=>((S.defis||{})[k]||{}).best>=n}))),
+ {id:'perfect',fam:'Rares',ch:'全',c:'r',nm:'Séance parfaite',court:'100 %',desc:'Une séance d’au moins 10 questions sans aucune erreur.',test:()=>!!(S.flags||{}).perfect},
+ {id:'early',fam:'Rares',ch:'早',c:'gold',nm:'Lève-tôt',court:'avant 6 h',desc:'Une séance terminée avant 6 h du matin.',test:()=>!!(S.flags||{}).early},
+ {id:'retour',fam:'Rares',ch:'回',c:'jade',nm:'Le retour',court:'retour',desc:'Revenir après au moins une semaine de pause. Bravo d’être revenue !',test:()=>!!(S.flags||{}).retour},
+ {id:'week',fam:'Rares',ch:'周',c:'r',nm:'Défi de la semaine',court:'semaine',desc:'Un défi de la semaine relevé.',test:()=>(S.weeksWon||0)>=1}
+];
+const SEALBY=Object.fromEntries(SEALS.map(s=>[s.id,s]));
+function checkSeals(){const nw=SEALS.filter(s=>!S.seals[s.id]&&s.test());if(!nw.length)return;nw.forEach(s=>S.seals[s.id]=today());save();ui.sealShow=(ui.sealShow||[]).concat(nw.map(s=>s.id));buzz([60,40,120,40,200]);}
+function sealHTML(s,cls){return `<span class="seal-st ${S.seals[s.id]?s.c:'off'} ${cls||''}">${esc(s.ch)}</span>`;}
+function carnetHTML(){const fams=[...new Set(SEALS.map(s=>s.fam))],n=SEALS.filter(s=>S.seals[s.id]).length,sel=SEALBY[ui.sealOpen];
+  return `<section class="card stack" aria-label="Carnet de sceaux"><div class="row between"><div class="stack sm"><span class="label">Ton carnet de sceaux · 印章</span><h3>${n} sceau${n>1?'x':''} sur ${SEALS.length}</h3></div></div>
+   ${fams.map(f=>`<div class="stack sm"><span class="tiny muted" style="font-weight:800">${esc(f)}</span><div class="seals">${SEALS.filter(s=>s.fam===f).map(s=>`<button class="seal-b ${ui.sealOpen===s.id?'sel':''}" data-act="sealopen" data-id="${s.id}" aria-label="${esc(s.nm)}${S.seals[s.id]?' (gagné)':''}">${sealHTML(s)}<span class="nm">${esc(s.court)}</span></button>`).join('')}</div></div>`).join('')}
+   ${sel?`<div class="card flat stack sm"><b>${esc(sel.nm)}</b><span class="small">${esc(sel.desc)}</span>
+     ${S.seals[sel.id]?`<span class="tiny muted">Gagné le ${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`:'<span class="tiny muted">Pas encore gagné. Tu y arriveras !</span>'}</div>`:'<p class="tiny muted">Touche un sceau pour voir comment l’obtenir.</p>'}</section>`;}
+function renderSealShow(){const id=ui.sealShow[0],s=SEALBY[id],left=ui.sealShow.length-1;
+  return `<main class="screen" style="padding-bottom:40px;align-items:center;text-align:center"><span class="label" style="color:var(--gold);margin-top:24px">Nouveau sceau !</span>
+   <span class="seal-st ${s.c} xl stamp" style="margin:18px auto">${esc(s.ch)}</span><h1>${esc(s.nm)}</h1><p class="muted">${esc(s.desc)}</p>
+   <p><span class="zh" style="font-size:22px">坚持就是胜利</span><br><span class="small"><b>jiānchí jiù shì shènglì</b> · tenir bon, c’est gagner</span></p>
+   <button class="btn primary block" data-act="sealshare" data-id="${id}">Partager sur WhatsApp</button>
+   <button class="btn block" data-act="sealnext">${left?'Sceau suivant ('+left+' de plus)':'Continuer'}</button>
+   ${left>1?`<button class="btn ghost block" data-act="sealall">Voir tout mon carnet</button>`:''}</main>`;}
+/* image à partager (fabriquée sur le téléphone, rien n'est envoyé ailleurs) */
+function shareCanvas(o){const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),zh='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif',fr='"Nunito Sans",system-ui,sans-serif';
+  g.fillStyle='#FAEEDA';g.fillRect(0,0,W,H);g.fillStyle='#F3DDB4';g.fillRect(0,H-150,W,150);
+  g.textAlign='center';g.fillStyle='#854F0B';g.font='800 44px '+fr;g.fillText('BÙBÙGĀO  步步高',W/2,120);
+  g.save();g.translate(W/2,430);g.rotate(-.05);const col=SEALCOL[o.c]||SEALCOL.r,R=230;g.fillStyle=col;g.beginPath();g.roundRect?g.roundRect(-R,-R,2*R,2*R,40):g.rect(-R,-R,2*R,2*R);g.fill();
+  g.strokeStyle='rgba(255,255,255,.9)';g.lineWidth=12;g.beginPath();g.roundRect?g.roundRect(-R+26,-R+26,2*R-52,2*R-52,26):g.rect(-R+26,-R+26,2*R-52,2*R-52);g.stroke();
+  g.fillStyle='#fff';g.font='700 '+(o.ch.length>1?170:250)+'px '+zh;g.textBaseline='middle';g.fillText(o.ch,0,14);g.restore();g.textBaseline='alphabetic';
+  g.fillStyle='#412402';g.font='800 72px '+fr;g.fillText(o.title,W/2,800);g.font='500 46px '+fr;g.fillStyle='#633806';g.fillText(o.sub,W/2,875);
+  g.font='700 86px '+zh;g.fillStyle='#633806';g.fillText('坚持就是胜利',W/2,1040);g.font='500 38px '+fr;g.fillStyle='#854F0B';g.fillText('jiānchí jiù shì shènglì · tenir bon, c’est gagner',W/2,1100);
+  g.font='600 34px '+fr;g.fillStyle='#854F0B';g.fillText('J’apprends le chinois avec Bùbùgāo',W/2,H-62);return c;}
+async function shareImage(o,text){const c=shareCanvas(o);const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('Impossible de créer l’image.');return;}
+  const file=new File([blob],'bubugao-'+Date.now()+'.png',{type:'image/png'});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}catch(e){if(e&&e.name==='AbortError')return;}
+  try{const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Image enregistrée dans Téléchargements : ajoute-la à ton statut.');}catch(e){toast('Impossible de partager pour l’instant.');}}
+const sealShareObj=s=>({ch:s.ch,c:s.c,title:s.nm,sub:(S.name?S.name+' a gagné ce sceau':'Sceau gagné')+' · '+s.desc.slice(0,48)+(s.desc.length>48?'…':'')});
+/* défi de la semaine */
+const WEEKS=[{t:'sess',n:5,txt:'Fais 5 séances cette semaine'},{t:'mis',n:2,txt:'Réussis 2 missions à l’usine'},{t:'defi',n:3,txt:'Fais 3 défis éclair'},{t:'sess',n:4,txt:'Fais 4 séances cette semaine'},{t:'photo',n:2,txt:'Ajoute 2 photos de ton usine'}];
+function weekKey(){const d=new Date();d.setDate(d.getDate()-(d.getDay()+6)%7);return dkey(d);}
+function weekState(){const k=weekKey();if(!S.week||S.week.k!==k){const i=Math.floor(new Date(k).getTime()/(7*DAY))%WEEKS.length;S.week={k,i:(i+WEEKS.length)%WEEKS.length,p:0,done:false};}return S.week;}
+function weekBump(t){const w=weekState(),W=WEEKS[w.i];if(w.done||W.t!==t)return;w.p++;if(w.p>=W.n){w.done=true;S.weeksWon=(S.weeksWon||0)+1;addXP(80);toast('Défi de la semaine relevé ! +80 XP');}save();}
+/* défis éclair : 60 secondes */
+function defiPool(k){if(k==='mots')return ITEMS.filter(isIntro);if(k==='tons')return ITEMS.filter(x=>isIntro(x)&&tonable(x));return charsKnown().map(c=>CHARS[c]).filter(Boolean);}
+const three=opts=>shuffle([opts.find(o=>o.ok),...shuffle(opts.filter(o=>!o.ok)).slice(0,2)]);
+function defiQ(k){const x=rnd(defiPool(k));if(k==='mots')return{it:x,opts:three(frOptions(x))};if(k==='tons')return{it:x,opts:three(toneOptions(x))};return{ch:x,opts:three(charQ(x).opts)};}
+function startDefi(k){if(defiPool(k).length<4){toast(DEFIS[k].need);return;}ui.defi={k,stage:'ready',score:0,n:0};render();window.scrollTo(0,0);}
+function defiEnd(){const D=ui.defi;clearInterval(ui.defiT);D.stage='end';try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}
+  const rec=(S.defis[D.k]=S.defis[D.k]||{best:0,plays:0});D.prev=rec.best;rec.plays++;if(D.score>rec.best)rec.best=D.score;D.medal=DEFIS[D.k].seuils.filter(n=>D.score>=n).length;
+  addXP(D.score*2);markActive();weekBump('defi');save();checkSeals();render();window.scrollTo(0,0);}
+function renderDefi(){const D=ui.defi,d=DEFIS[D.k],rec=(S.defis[D.k]||{}).best||0;
+  const top=`<div class="ex-top"><button class="xbtn" data-act="defiquit" aria-label="Quitter le défi">${ICON.x}</button><div class="grow stack sm"><b>${d.t} · 60 s</b><span class="tiny muted">Record : ${rec}</span></div><button class="sos-mini" data-act="sos" aria-label="SOS urgence">SOS</button></div>`;
+  if(D.stage==='ready')return `<main class="screen" style="padding-bottom:40px">${top}<div class="stack sm"><span class="label">Défi éclair 闪电</span><h1>Le plus de bonnes réponses en 60 secondes</h1></div>
+    <section class="card stack sm"><p>Une erreur ne fait pas perdre de point : réponds vite !</p><p class="small"><b>Sceaux :</b> bronze à ${d.seuils[0]}, argent à ${d.seuils[1]}, or à ${d.seuils[2]} bonnes réponses.</p>${D.k==='tons'?'<p class="small muted">Mets le son : chaque mot est prononcé.</p>':''}</section>
+    <button class="btn primary block" data-act="defigo">C’est parti !</button></main>`;
+  if(D.stage==='end'){const m=D.medal,best=D.score>D.prev;return `<main class="screen" style="padding-bottom:40px">${top}<div class="end-hero"><span class="zh">${m===3?'太棒了！':m?'很好！':'加油！'}</span><h1>${D.score} bonne${D.score>1?'s':''} réponse${D.score>1?'s':''}</h1><p class="muted">${best&&D.prev?'Nouveau record ! Avant : '+D.prev+'.':best?'Ton premier record !':'Ton record : '+rec+'.'}</p></div>
+    <section class="card stack sm" style="text-align:center"><div class="row" style="justify-content:center;gap:14px">${d.seuils.map((n,i)=>`<div class="stack sm" style="align-items:center">${sealHTML(SEALBY['d_'+D.k+'_'+i])}<span class="tiny muted">${MEDAL[i]} · ${n}</span></div>`).join('')}</div>
+     <p class="small">${m===3?'Sceau d’or ! Tu es une championne.':m?'Prochain sceau à '+d.seuils[m]+' bonnes réponses.':'Le sceau de bronze est à '+d.seuils[0]+' bonnes réponses. Encore un essai ?'}</p></section>
+    <button class="btn primary block" data-act="defiagain">Rejouer</button><button class="btn block" data-act="defishare">Partager mon score</button><button class="btn ghost block" data-act="defiquit">Terminer</button></main>`;}
+  const q=D.q,left=Math.max(0,Math.ceil((D.end-Date.now())/1000));
+  return `<main class="lesson">${top}<div class="row between"><span class="defi-t" id="dfT">${left}</span><span class="badge ok" style="font-size:16px">${D.score} ✓</span></div>
+   <div class="bar"><i id="dfB" style="width:${left/60*100}%;background:var(--bad)"></i></div>
+   <div class="card defi-q">${q.ch?`<span class="zh">${esc(q.ch.c)}</span><p class="small muted">Que veut dire ce caractère ?</p>`:D.k==='tons'?`<button class="playbig" data-act="say" data-t="${esc(q.it.h)}" aria-label="Réécouter">${ICON.play}</button><p class="small muted">Quels tons entends-tu ?</p>`:`<span class="zh">${hzHTML(q.it)}</span><p class="small muted">${pyHTML(q.it)}</p>`}</div>
+   <div class="opts">${q.opts.map((o,i)=>`<button class="opt ${D.k==='tons'?'center':''}" data-act="defians" data-i="${i}">${D.k==='tons'?`<span class="py">${pyStr(q.it,o.t)}</span>`:esc(o.fr)}</button>`).join('')}</div></main>`;}
 /* ---------- l'escalier : un mot appris = une marche, un chapitre = un palier ---------- */
 const CANDO={'base':'Comprendre les consignes de base à l’atelier','hsk1-01':'Dire ton nom, d’où tu viens, et saluer','hsk1-02':'Compter et dire les nombres',
   'hsk1-03':'Parler de ta famille et de tes proches','hsk1-04':'Dire l’heure et la date à ton chef','hsk1-05':'Commander à manger et à boire',
@@ -1481,6 +1589,7 @@ function renderHome(){
      <div class="row" style="padding-left:36px"><button class="btn gold sm" data-act="mission" data-v="yes">Je l’ai fait ! +30</button><button class="btn sm ghost" data-act="mission" data-v="later">Pas encore</button></div>`
     :S.mission&&S.mission.status==='done'&&S.mission.day===today()?`<div class="plan-row done"><span class="ck ok">✓</span><div class="grow"><b>Mission à l’usine</b></div></div>`
     :`<div class="plan-row"><span class="ck"></span><div class="grow"><b>Mission à l’usine</b><br><span class="small muted">Elle t’attend à la fin de ta séance.</span></div></div>`}
+   <hr>${(()=>{const w=weekState(),W=WEEKS[w.i];return `<div class="plan-row ${w.done?'done':''}"><span class="ck ${w.done?'ok':'gold'}">${w.done?'✓':''}</span><div class="grow"><b>Défi de la semaine</b><br><span class="small ${w.done?'muted':''}">${esc(W.txt)} · ${Math.min(w.p,W.n)}/${W.n}</span><div class="wk" style="margin-top:6px"><i style="width:${pct(Math.min(1,w.p/W.n))}%"></i></div></div><span class="seal-st ${w.done?'r':'off'}" style="width:40px;height:40px;font-size:18px">周</span></div>`;})()}
    ${testDue()?`<hr><div class="plan-row"><span class="ck gold"></span><div class="grow"><b>Test HSK blanc du mois</b><br><span class="small muted">20 questions, 6 minutes</span></div><button class="btn gold sm" data-act="test">Passer</button></div>`:''}
   </section>
   <section class="card stack" aria-label="Parcours HSK">
@@ -1494,7 +1603,8 @@ function renderHome(){
   </section>
   ${ITEMS.some(isIntro)?(()=>{const pw=photoWords();return `<div class="shortcuts" aria-label="Raccourcis">
     ${pw.length?`<button class="shortcut" data-act="tab" data-k="photos">${phImg(pw[pw.length-1],'ph-sm')}Mes photos (${pw.length})</button>`:`<label class="shortcut">${ICON.cam}Photo de l’usine<input id="photofile" type="file" accept="image/*" capture="environment" hidden></label>`}
-    <button class="shortcut" data-act="tab" data-k="heard">${ICON.mic}J’ai entendu une phrase</button>
+    <button class="shortcut" data-act="tab" data-k="defis"><span class="zh" style="color:var(--bad)">闪电</span>Défi éclair 60 s</button>
+    <button class="shortcut" data-act="tab" data-k="heard">${ICON.mic}Phrase entendue</button>
     <button class="shortcut" data-act="lab" data-id="${pd.id}"><span class="zh">${esc(pd.h.length>5?pd.h.slice(0,5)+'…':pd.h)}</span>Phrase du jour</button></div>`;})():''}
   <a class="list-btn" href="${esc(zlink())}" style="text-decoration:none;color:inherit"><span class="zh" style="color:var(--accent)">字</span><span class="grow"><b>Zìzì · les caractères</b><br><span class="small muted">Apprendre à lire et écrire les caractères, trait par trait.</span></span></a>
   ${(()=>{const ids=Object.keys(S.voice).filter(id=>BY[id]&&S.voice[id].first);const old=ids.find(id=>daysBetween(S.voice[id].first.d,today())>=90&&daysBetween(S.voice[id].last.d,today())>=30);
@@ -1581,6 +1691,10 @@ function renderModule(){
   ${ficheHTML(p.module.fiche)}
   <button class="btn block" data-act="tab" data-k="carriere">Retour</button>`;
 }
+function renderDefis(){return `<div class="stack sm"><span class="label">Défi éclair 闪电</span><h1>60 secondes chrono</h1><p class="muted small">Réponds au plus de questions possible. Bats ton record et gagne des sceaux.</p></div>
+  <div class="stack">${Object.entries(DEFIS).map(([k,d])=>{const r=S.defis[k]||{},ok=defiPool(k).length>=4,m=d.seuils.filter(n=>(r.best||0)>=n).length;
+    return `<button class="mod ${ok?'':'lock'}" data-act="defi" data-k="${k}"><span class="mic" style="background:var(--bad-soft);color:var(--bad)">${d.zh}</span><span class="grow stack sm"><b>${d.t}</b><span class="tiny muted">${ok?(r.best?'Record : '+r.best+(m?' · sceau '+MEDAL[m-1]:''):'Pas encore joué'):esc(d.need)}</span></span>${ok?'<span class="badge">Jouer</span>':ICON.lock}</button>`;}).join('')}</div>
+  <button class="btn block" data-act="tab" data-k="home">Retour</button>`;}
 function renderParler(){
   const cur=currentStage();const pool=ITEMS.filter(x=>isIntro(x)||S.demo);
   return `<div class="stack sm"><span class="label">Parler</span><h1>Conversations</h1><p class="muted small">Des situations réelles, du plus simple au plus ambitieux. Le chef ne te corrige jamais brutalement : il te propose la bonne phrase.</p></div>
@@ -1604,6 +1718,7 @@ function renderProgres(){
   const words=ITEMS.filter(isIntro).filter(it=>!f||it.fr.toLowerCase().includes(f)||pyStr(it).toLowerCase().includes(f)||it.h.includes(f)||it.p.includes(f));
   const weak=rows.slice().sort((a,b)=>P[a[0]]-P[b[0]])[0];
   return `<div class="stack sm"><span class="label">Progrès</span><h1>Ta montée</h1></div>
+  ${carnetHTML()}
   <section class="card stack"><div class="row between"><h3>Ton profil</h3><span class="small muted">${S.xp} XP · record ${S.best} j</span></div>
    <div class="bars">${rows.map(([k,n])=>`<div class="bar-row"><span>${n}</span><div class="bar"><i style="width:${pct(P[k])}%"></i></div><b>${pct(P[k])}</b></div>`).join('')}</div>
    <p class="small muted">Les séances donnent plus de temps à ta compétence la plus faible : <b>${weak[1].toLowerCase()}</b>.</p></section>
@@ -1888,17 +2003,30 @@ const ACT={
    if(E.i>=E.qs.length-1)return examFinish();const nx=E.qs[E.i+1];if(q.sec==='L'&&nx.sec==='R'){E.i++;E.stage='mid';render();window.scrollTo(0,0);return;}E.i++;render();window.scrollTo(0,0);},
  exquit:()=>{const E=ui.exam;if(E.stage==='q'&&!confirm('Quitter l’examen ? Tes réponses ne seront pas gardées.'))return;E.tok++;clearInterval(ui.exTimer);try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}ui.exam=null;ui.tab='carriere';render();},
  exdone:()=>{ui.exam=null;ui.tab='carriere';render();window.scrollTo(0,0);},
+ sealopen:d=>{ui.sealOpen=ui.sealOpen===d.id?null:d.id;render();},
+ sealshare:d=>{const s=SEALBY[d.id];if(s)shareImage(sealShareObj(s),'J’ai gagné le sceau « '+s.nm+' » sur Bùbùgāo ! 坚持就是胜利');},
+ sealnext:()=>{ui.sealShow.shift();render();window.scrollTo(0,0);},
+ sealall:()=>{ui.sealShow=[];ui.tab='progres';render();setTimeout(()=>{const e=document.querySelector('[aria-label="Carnet de sceaux"]');if(e)e.scrollIntoView();},50);},
+ defi:d=>startDefi(d.k),
+ defigo:()=>{const D=ui.defi;D.stage='play';D.end=Date.now()+60000;D.q=defiQ(D.k);render();window.scrollTo(0,0);if(D.k==='tons')say(D.q.it.h);
+   clearInterval(ui.defiT);ui.defiT=setInterval(()=>{const D=ui.defi;if(!D||D.stage!=='play'){clearInterval(ui.defiT);return;}const left=Math.max(0,Math.ceil((D.end-Date.now())/1000));
+     const t=document.getElementById('dfT'),b=document.getElementById('dfB');if(t)t.textContent=left;if(b)b.style.width=(left/60*100)+'%';if(!left)defiEnd();},250);},
+ defians:d=>{const D=ui.defi;if(!D||D.stage!=='play')return;const o=D.q.opts[+d.i];D.n++;if(o&&o.ok){D.score++;buzz(15);}else buzz([30,40,30]);
+   if(Date.now()>=D.end)return defiEnd();D.q=defiQ(D.k);render();if(D.k==='tons')say(D.q.it.h);},
+ defiagain:()=>{const k=ui.defi.k;ui.defi={k,stage:'ready',score:0,n:0};render();},
+ defishare:()=>{const D=ui.defi,d=DEFIS[D.k],m=D.medal;shareImage({ch:d.zh,c:['r','r','jade','gold'][m],title:D.score+' bonnes réponses en 60 s',sub:d.t+(S.name?' · '+S.name:'')+(m?' · sceau '+MEDAL[m-1]:'')},'Défi éclair Bùbùgāo : '+D.score+' bonnes réponses en 60 secondes. Qui fait mieux ?');},
+ defiquit:()=>{clearInterval(ui.defiT);try{if(curAudio)curAudio.pause();speechSynthesis.cancel();}catch(e){}ui.defi=null;render();window.scrollTo(0,0);},
  tab:d=>{if(ui.tab==='heard'&&d.k!=='heard'){heardRecStop();ui.heard=null;ui.heardText=null;}ui.tab=d.k;render();window.scrollTo(0,0);},
  hrec:()=>heardRecStart(),
  hstop:()=>heardRecStop(),
  hwho:d=>{ui.heard.who=ui.heard.who===d.v?'':d.v;render();},
  hsave:async()=>{const h=ui.heard;if(!h||(!h.blob&&!(h.note||'').trim())){const e=document.getElementById('herr');if(e)e.hidden=false;return;}
    const ok=await addHeard({d:today(),blob:h.blob||null,note:(h.note||'').trim(),who:h.who||'',sent:false});
-   if(h.url)URL.revokeObjectURL(h.url);ui.heard={note:'',who:''};if(ok){addXP(15);save();buzz(18);toast('Phrase gardée ! +15 XP');}else toast('Le téléphone n’a pas pu garder cette phrase.');render();},
+   if(h.url)URL.revokeObjectURL(h.url);ui.heard={note:'',who:''};if(ok){addXP(15);save();buzz(18);toast('Phrase gardée ! +15 XP');checkSeals();}else toast('Le téléphone n’a pas pu garder cette phrase.');render();},
  hdel:async d=>{await delHeard(+d.k);render();},
  hshare:()=>shareHeard(),
  vibre:()=>{S.vibre=S.vibre===false;save();buzz(40);render();},
- phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
+ phset:async d=>{const it=BY[d.id];if(!it||!ui.phNew)return;const ok=await putPhoto(it.id,ui.phNew);if(ok)weekBump('photo');checkSeals();ui.phNew=null;ui.phFilter='';ui.tab='photos';render();window.scrollTo(0,0);
    toast(ok?'Photo ajoutée : '+it.h+' · '+it.fr:'Photo gardée pour cette fois, mais le téléphone n’a pas pu l’enregistrer.');try{say(it.h);}catch(e){}},
  phcancel:()=>{ui.phNew=null;ui.phFilter='';ui.tab='home';render();},
  phdel:async d=>{await delPhoto(d.id);render();toast('Photo retirée.');},
@@ -1926,7 +2054,7 @@ const ACT={
  conv:d=>{const c=CONVS.find(x=>x.id===d.id);startMini([{kind:'conv',conv:c,sec:'Conversation',cs:newConv(c)}],ui.tab);},
  locked:d=>{const c=CONVS.find(x=>x.id===d.id);toast('Se débloque à l’étape '+STAGES[c.st].fr+'.');},
  lab:d=>startMini([{kind:'shadow',it:BY[d.id],sec:'Labo des tons'}],ui.tab),
- mission:d=>{if(d.v==='yes'){S.missionsDone++;addXP(30);markActive();toast('Bravo ! Tu as parlé chinois pour de vrai. +30 XP');}else toast('Pas de souci. Une nouvelle mission t’attend à la prochaine séance.');S.mission.status=d.v==='yes'?'done':'skip';save();render();},
+ mission:d=>{if(d.v==='yes'){S.missionsDone++;addXP(30);markActive();toast('Bravo ! Tu as parlé chinois pour de vrai. +30 XP');}else toast('Pas de souci. Une nouvelle mission t’attend à la prochaine séance.');S.mission.status=d.v==='yes'?'done':'skip';if(d.v==='yes')weekBump('mis');save();checkSeals();render();},
  demo:()=>{S.demo=!S.demo;save();render();},
  backup:()=>doBackup(),
  restore2:()=>applyRestore(),
@@ -1974,8 +2102,7 @@ window.addEventListener('online',()=>checkUpdates(false));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false&&Date.now()-(PS._checked||0)>6*3600e3)checkUpdates(false);});
 refreshJokers();
 render();
-loadPhotos().then(()=>{if(Object.keys(PH).length&&!ui.sess)render();});
-loadHeard().then(()=>{if(HEARD.length&&!ui.sess&&ui.tab==='parler')render();});
+Promise.all([loadPhotos(),loadHeard()]).then(()=>{if(S.onboarded){checkSeals();}if(!ui.sess&&!ui.exam&&!ui.defi)render();});
 if(navigator.onLine!==false)checkUpdates(false);else loadAudioIndex();
 askPersist().then(()=>{if(!ui.sess&&ui.tab==='progres')render();});
 window.addEventListener('appinstalled',()=>askPersist());

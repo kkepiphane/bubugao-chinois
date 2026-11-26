@@ -67,7 +67,7 @@ async def main():
         check(await pg.evaluate('Object.keys(AUDIO).length') > 0, 'index audio chargé')
         await pg.fill('#nm', 'Test'); await pg.click('[data-act=skipdiag]')
         for day in range(3):
-            await pg.evaluate('S.lastSessionDay = null; save(); ui.sess = null; ui.tab = "home"; render()')
+            await pg.evaluate('S.lastSessionDay = null; save(); ui.sess = null; ui.sealShow = []; ui.tab = "home"; render()')
             await pg.click('[data-act=daily]')
             k = await run_session(pg)
             check(k[-1] == 'END', f'séance {day + 1} terminée ({len(k) - 1} étapes, types : {sorted(set(k[:-1]))})')
@@ -101,6 +101,13 @@ async def main():
             const ok = E.qs.every(q => q.kind === 'tf' || (q.ans >= 0 && q.ans < q.opts.length));
             E.qs.forEach(q => q.pick = q.ans); examFinish(); const t = E.total; ui.exam = null; return [n, ok, t]; }""")
         check(r == [40, True, 200], f'examen blanc HSK 1 : {r[0]} questions, réponses valides, note parfaite {r[2]}/200')
+        r = await pg.evaluate("""() => { S.best = Math.max(S.best || 0, 7); checkSeals(); const got = !!S.seals.s7 && ui.sealShow.includes('s7');
+            ui.sealShow = []; ui.tab = 'progres'; render(); return [got, document.querySelectorAll('.seal-b').length, SEALS.length]; }""")
+        check(r[0] and r[1] == r[2], f'sceaux : « 7 jours » gagné et carnet affiché ({r[1]} sceaux)')
+        r = await pg.evaluate("""async () => { startDefi('mots'); ui.defi.stage = 'play'; ui.defi.end = Date.now() + 60000; ui.defi.q = defiQ('mots');
+            for (let i = 0; i < 26; i++) { const k = ui.defi.q.opts.findIndex(o => o.ok); ACT.defians({i: k}); }
+            defiEnd(); const res = [ui.defi.score, S.defis.mots.best, !!S.seals.d_mots_2]; ui.defi = null; ui.sealShow = []; return res; }""")
+        check(r == [26, 26, True], f'défi éclair des mots : {r[0]} bonnes réponses, record {r[1]}, sceau d’or {r[2]}')
         await pg.evaluate("ui.tab='progres'; render()")
         check(await pg.evaluate('!!document.querySelector(".can")'), 'Progrès : « Ce que je sais dire » affiché')
         check(not errs, f'aucune erreur JavaScript {errs[:3]}')
