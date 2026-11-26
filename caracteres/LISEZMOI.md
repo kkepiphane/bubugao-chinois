@@ -24,14 +24,23 @@
   → **pratique** (sens, lecture, écoute, mot entier, phrase à trous) → **écrire de mémoire** et phrases des nouveaux.
 - Les séries de bonnes réponses (连 ×3, ×4…) rapportent des points en plus.
 
-## Niveaux, défis, quêtes, médailles
+## Niveaux, défis, quêtes, sceaux
 
 - **8 niveaux** : les titres des examens impériaux, de 童生 (la candidate) à 状元 (la première de l'empire),
   affichés comme un sceau rouge. Fichier `source/rangs.txt` (pinyin vérifié à la main, points nécessaires).
-- **Défi du jour** (un différent chaque jour, les autres rejouables) : 字谜 le caractère mystère (il apparaît trait par
-  trait), 部首 la chasse aux clés (25 s par clé), 快 l'éclair (60 s). Débloqués à 5 caractères appris.
-- **3 quêtes du jour** tirées au sort selon la date (+20 chacune, +50 et un sceau sur le calendrier pour les 3).
-- **17 médailles** dans l'onglet Progrès, avec le calendrier des 12 dernières semaines et la date prévue de fin du mur.
+- **Défi du jour** (un différent chaque jour parmi 4, les autres rejouables) : 字谜 le caractère mystère (il apparaît
+  trait par trait), 部首 la chasse aux clés (25 s par clé), 快 l'éclair (60 s), 冲刺 le sprint (20 caractères chronométrés,
+  +5 s par erreur). Chaque défi a ses sceaux bronze / argent / or. Débloqués à 5 caractères appris.
+- **3 quêtes du jour** tirées au sort selon la date (+20 chacune, +50 et un sceau sur le calendrier pour les 3),
+  et un **défi de la semaine** (lundi → dimanche, +80).
+- **Carnet de sceaux 印章** (onglet Progrès) : 53 sceaux en 8 familles. Jours de suite (3, 7, 14, 30, 50, 100, 200,
+  365), caractères, écriture, défis chronométrés, rouleau et lectures, examen HSK, quêtes, et 7 sceaux **rares**
+  cachés (?) jusqu'à ce qu'on les gagne (lève-tôt, nuit, week-end, retour, séance parfaite, marathon, série de 15).
+  Rouge = bronze, jade = argent, or : les mêmes couleurs que les sceaux de Bùbùgāo.
+- **Nouveau sceau** : fenêtre de fête et bouton « Partager sur WhatsApp ». L'image (1080 × 1350) est fabriquée sur
+  le téléphone, rien n'est envoyé ailleurs. « Prochain sceau » sur l'accueil avec sa barre ; « Partager ma progression »
+  dans Progrès. À la première ouverture de cette version, les sceaux déjà mérités sont donnés avec un seul message.
+- Calendrier des 12 dernières semaines et date prévue de fin du mur dans Progrès.
 
 ## Mon rouleau 卷 (la progression sur l'accueil)
 
