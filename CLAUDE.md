@@ -70,11 +70,14 @@ examen blanc HSK 1 lecture (`source/hsk1.txt`, `source/hsk_qr.txt`). Tout texte 
 - **Analyse des tons** : YIN → découpage par creux d'énergie → traits en demi-tons par rapport à la voix (`S.pitchRef`)
   → régression logistique `TONE_MODEL` (4 tons). Repère : ≈ 79 % de syllabes justes avec référence, ≈ 73 % sans.
 - **Sauvegarde** : Progrès › Sauvegarde exporte/importe un fichier JSON.
+- **Série de jours** : `streakInfo()` (bloc `SERIE:DEBUT…FIN`, identique dans `index.html` et `caracteres/index.html`) calcule tout
+  depuis `S.days` (jour actif = au moins 10 points ce jour-là). Jours gelés : 1 gel à 7 jours, 2 à 50, 1 tous les 30 ; plafond 0/1/3.
 
 ## Commandes
 
 ```bash
 python3 scripts/test_appli.py          # test complet (pip install playwright && playwright install chromium)
+node scripts/test_serie.js             # série de jours + jours gelés (même code dans Bùbùgāo et Zìzì)
 node scripts/banc_tons.js              # justesse de l'analyseur de tons
 cd caracteres && python3 outils/test_zizi.py   # test complet de Zìzì (ffmpeg requis)
 python3 scripts/generer_audio.py       # audio manquant (pip install sherpa-onnx soundfile ; ffmpeg)

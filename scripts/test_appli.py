@@ -102,9 +102,9 @@ async def main():
                 const ok = E.qs.every(q => q.kind === 'tf' || (q.ans >= 0 && q.ans < q.opts.length));
                 E.qs.forEach(q => q.pick = q.ans); examFinish(); const t = E.total; ui.exam = null; return [n, ok, t]; }""", lvl)
             check(r == [nq, True, 200], f'examen blanc HSK {lvl} : {r[0]} questions, réponses valides, note parfaite {r[2]}/200')
-        r = await pg.evaluate("""() => { S.best = Math.max(S.best || 0, 7); checkSeals(); const got = !!S.seals.s7 && ui.sealShow.includes('s7');
-            ui.sealShow = []; ui.tab = 'progres'; render(); return [got, document.querySelectorAll('.seal-b').length, SEALS.length]; }""")
-        check(r[0] and r[1] == r[2], f'sceaux : « 7 jours » gagné et carnet affiché ({r[1]} sceaux)')
+        r = await pg.evaluate("""() => { for (let k = 0; k < 7; k++) S.days[dkey(jourIl(k))] = 50; checkSeals(); const got = !!S.seals.s7 && ui.sealShow.includes('s7') && serie().current === 7;
+            ui.sealShow = []; ui.tab = 'progres'; render(); return [got && document.querySelectorAll('.sp.on').length === 7, document.querySelectorAll('.seal-b').length, SEALS.length]; }""")
+        check(r[0] and r[1] == r[2], f'série : 7 jours actifs → série 7, sceau « 7 jours » gagné, 7 flammes, carnet affiché ({r[1]} sceaux)')
         r = await pg.evaluate("""async () => { startDefi('mots'); ui.defi.stage = 'play'; ui.defi.end = Date.now() + 60000; ui.defi.q = defiQ('mots');
             for (let i = 0; i < 26; i++) { const k = ui.defi.q.opts.findIndex(o => o.ok); ACT.defians({i: k}); }
             defiEnd(); const res = [ui.defi.score, S.defis.mots.best, !!S.seals.d_mots_2]; ui.defi = null; ui.sealShow = []; return res; }""")

@@ -1,6 +1,6 @@
 /* Zìzì — hors-ligne et mises à jour (copie du téléphone d'abord, nouvelle version à l'ouverture suivante). Changer VERSION à chaque nouvelle version de index.html ou data.json.
    Ne supprime que ses propres caches (préfixe « zizi- ») : Bùbùgāo partage la même adresse. */
-const VERSION = 'zizi-app-v8';
+const VERSION = 'zizi-app-v9';
 const KEEP = [VERSION, 'zizi-fonts', 'zizi-audio'];
 const SHELL = ['./', 'index.html', 'data.json', 'traits.json', 'hanzi-writer.min.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'audio/index.json'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
