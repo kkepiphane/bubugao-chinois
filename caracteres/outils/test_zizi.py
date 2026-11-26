@@ -50,6 +50,20 @@ async def main():
         check(traces and all('"ok":true' in t for t in traces), f'tracé au doigt reconnu ({len(traces)} caractères)')
         check(await pg.evaluate('S.q && S.q.done.seance === 1 && S.xp > 0'), 'quête « séance » validée et points gagnés')
         await pg.click('[data-act=home]')
+        # après la séance du jour : on peut apprendre encore des nouveaux, autant qu'on veut
+        n0 = await pg.evaluate('newToday()')
+        for tour in range(2):
+            await pg.click('[data-act=plus]')
+            for _ in range(80):
+                st = await pg.evaluate('ui.sess ? (ui.sess.end ? "END" : ui.sess.steps[ui.sess.i].kind + ":" + ui.sess.steps[ui.sess.i].c) : "NO"')
+                if st in ('END', 'NO'): break
+                k, c = st.split(':')
+                if k == 'fiche': await pg.click('[data-act=next]'); continue
+                if k in ('trace', 'ecrire'): await pg.wait_for_timeout(300); await draw(pg, c); await pg.wait_for_timeout(1200); await pg.click('[data-act=next]'); continue
+                await pg.locator('[data-act=ans]').first.click(); await pg.click('[data-act=next]')
+            await pg.click('[data-act=home]')
+        n1 = await pg.evaluate('newToday()')
+        check(n1 >= n0 + 4, f'« Encore des nouveaux » deux fois de suite : {n0} → {n1} nouveaux aujourd’hui')
         for t in ['mur', 'lire', 'hsk', 'prog', 'home']: await pg.click(f'[data-act=tab][data-k={t}]')
         await pg.click('[data-act=tab][data-k=mur]'); await pg.click('[data-act=mur][data-m=cles]'); await pg.click('[data-act=key] >> nth=0')
         check(await pg.locator('.keycard').count() > 10, 'clés affichées dans Mon mur')

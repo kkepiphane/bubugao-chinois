@@ -14,7 +14,12 @@
 ## La séance du jour : on choisit le temps, Zìzì choisit le contenu
 
 - **5, 10 ou 15 minutes** (sur l'accueil). Environ 2, 4 ou 6 nouveaux caractères : un de moins si la réussite récente
-  est sous 75 %, moitié moins s'il y a plus de 25 révisions en retard, un de plus si tout va bien (plus de 90 %).
+  est sous 75 %, moitié moins seulement si plus de 3 séances de révisions sont en retard, un de plus si tout va bien.
+  Le retard se compte en caractères (sens ou son) ; quand il monte, la séance prend plus de révisions.
+- **Après la séance du jour** : « Encore N nouveaux » autant de fois qu'elle veut (compteur « nouveaux aujourd'hui »,
+  simple conseil à partir de 20), et « Réviser ».
+- Révision réussie au bon moment : intervalle ×2,5 (×1,2 si revu trop tôt, jusqu'à ×4 si revu tard). L'écriture a sa
+  propre file (« écris de mémoire ») et ne bloque pas les nouveaux.
 - Quatre temps : **échauffement** (3 révisions) → **nouveaux** (fiche, tracé au doigt dans la grille 米字格, vérification)
   → **pratique** (sens, lecture, écoute, mot entier, phrase à trous) → **écrire de mémoire** et phrases des nouveaux.
 - Les séries de bonnes réponses (连 ×3, ×4…) rapportent des points en plus.

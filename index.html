@@ -798,7 +798,10 @@ function say(text,rate){
     try{try{speechSynthesis.cancel();}catch(_){}
       const a=new Audio('audio/'+f);a.preservesPitch=true;
       a.playbackRate=rate&&rate<=.6?.7:rate&&rate<.9?.85:Math.min(1.1,.95+.15*Math.max(0,S.profile.ecoute-.5));
-      curAudio=a;const p=a.play();if(p&&p.catch)p.catch(()=>ttsSay(full,rate));return;}
+      curAudio=a;let ok=false;a.addEventListener('playing',()=>{ok=true;},{once:true});
+      // réseau faible : si le son ne démarre pas en 1,5 s, la voix du téléphone prend le relais
+      setTimeout(()=>{if(!ok&&curAudio===a&&!a.error){a._tts=true;ttsSay(full,rate);try{a.pause();}catch(_){}}},1500);
+      const p=a.play();if(p&&p.catch)p.catch(()=>{if(curAudio===a){ok=true;ttsSay(full,rate);}});return;}
     catch(e){}
   }
   ttsSay(full,rate);
@@ -1343,8 +1346,9 @@ function examUnlocked(lvl){return lvl===1||S.demo||(S.exams||[]).some(e=>e.lvl==
 function startExam(lvl){if(!EXAMENS[lvl])return;ui.exam={lvl,qs:buildExam(lvl),i:0,stage:'intro',tok:0};render();window.scrollTo(0,0);}
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 function sayWait(text){return new Promise(res=>{say(text);const t0=Date.now();let done=false;const fin=()=>{if(!done){done=true;res();}};setTimeout(fin,12000);
-  setTimeout(()=>{const a=curAudio;if(a&&!a.ended&&!a.error){a.addEventListener('ended',fin,{once:true});a.addEventListener('error',fin,{once:true});a.addEventListener('pause',()=>setTimeout(fin,200),{once:true});}
-    else{const poll=()=>{if(done)return;try{if(!speechSynthesis.speaking&&Date.now()-t0>600)return fin();}catch(e){return fin();}setTimeout(poll,200);};poll();}},250);});}
+  const poll=()=>{if(done)return;try{if(!speechSynthesis.speaking&&!speechSynthesis.pending&&Date.now()-t0>600)return fin();}catch(e){return fin();}setTimeout(poll,200);};
+  setTimeout(()=>{const a=curAudio;if(a&&!a.ended&&!a.error){a.addEventListener('ended',fin,{once:true});a.addEventListener('error',fin,{once:true});a.addEventListener('pause',()=>setTimeout(()=>a._tts?poll():fin(),200),{once:true});}
+    else poll();},250);});}
 async function examPlay(q){
   const E=ui.exam,tok=++E.tok,st=n=>{const el=document.getElementById('exAud');if(el)el.textContent=n;};
   for(let r=0;r<2;r++){

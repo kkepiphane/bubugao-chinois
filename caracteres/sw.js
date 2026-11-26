@@ -1,6 +1,6 @@
-/* Zìzì — hors-ligne et mises à jour. Changer VERSION à chaque nouvelle version de index.html ou data.json.
+/* Zìzì — hors-ligne et mises à jour (copie du téléphone d'abord, nouvelle version à l'ouverture suivante). Changer VERSION à chaque nouvelle version de index.html ou data.json.
    Ne supprime que ses propres caches (préfixe « zizi- ») : Bùbùgāo partage la même adresse. */
-const VERSION = 'zizi-app-v6';
+const VERSION = 'zizi-app-v7';
 const KEEP = [VERSION, 'zizi-fonts', 'zizi-audio'];
 const SHELL = ['./', 'index.html', 'data.json', 'traits.json', 'hanzi-writer.min.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'audio/index.json'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
@@ -21,6 +21,16 @@ self.addEventListener('fetch', e => {
       try { const r = await fetch(req); if (r.ok) c.put(req, r.clone()); return r; } catch (_) { return new Response('', { status: 504 }); } }));
     return;
   }
-  e.respondWith(fetch(req).then(r => { if (r.ok) { const cp = r.clone(); caches.open(VERSION).then(c => c.put(req, cp)); } return r; })
-    .catch(() => caches.match(req, { ignoreSearch: true }).then(h => h || (req.mode === 'navigate' ? caches.match('index.html') : new Response('', { status: 504 })))));
+  // App et données : la copie du téléphone d'abord (ouverture en ~1 s même avec un réseau faible),
+  // et la nouvelle version est téléchargée en arrière-plan pour la prochaine ouverture.
+  // Demandes « fraîches » (cache: 'no-cache' / 'no-store', ex. index audio) : réseau d'abord, copie en secours.
+  const fresh = req.cache === 'no-cache' || req.cache === 'no-store' || req.cache === 'reload';
+  e.respondWith(caches.open(VERSION).then(async c => {
+    // no-cache : on redemande au serveur si le fichier a changé (réponse minuscule s'il n'a pas changé)
+    const net = fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }).then(r => { if (r.ok) c.put(req, r.clone()); return r; });
+    const hit = await c.match(req, { ignoreSearch: true }) || (req.mode === 'navigate' ? await c.match('index.html') : undefined);
+    if (fresh || !hit) return net.catch(() => hit || new Response('', { status: 504 }));
+    e.waitUntil(net.catch(() => {}));
+    return hit;
+  }));
 });
