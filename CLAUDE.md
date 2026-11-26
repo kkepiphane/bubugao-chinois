@@ -61,6 +61,9 @@ examen blanc HSK 1 lecture (`source/hsk1.txt`, `source/hsk_qr.txt`). Tout texte 
   les révisions s'accumulaient et freinaient les nouveaux mots.
 - **Séance du jour** : échauffement, nouveaux mots (60 % parcours HSK, 40 % branche choisie), règle de grammaire,
   duel de tons, prononciation, caractères, révisions, conversation, mission terrain. Difficulté visée 80–85 % de réussite.
+  Frein des nouveaux mots (`nNewFor`) : retard > 30f compétences → 2f mots max, > 60f → f mots max.
+  La place des mots retenus par le frein sert à réviser (`revCap` : +3 révisions par mot retenu, au plus 2 × 8f) :
+  la séance garde sa durée. L'échauffement prend les mots à réviser les plus faciles (pas ceux déjà sus, qui ne gagnent rien).
 - **Branches** : `hsk` (parcours principal), `travail` (usine, carrière : étapes Usine → Promotion → Entretien → Ailleurs), `quotidien`.
 - **Voix** : `say(texte)` joue `audio/<fichier>.mp3` si le texte est dans `audio/index.json`, sinon la voix du téléphone (secours).
   **Tout texte chinois prononcé par l'appli doit donc avoir son MP3** (le workflow audio s'en charge).
