@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   audio:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -35,6 +35,7 @@ jobs:
 
       - name: Générer l'audio manquant
         run: |
+          sudo apt-get update -qq > /dev/null
           sudo apt-get install -y -qq ffmpeg > /dev/null
           pip install -q sherpa-onnx soundfile
           export BUBUGAO_TTS_DIR="$HOME/bubugao-tts"
