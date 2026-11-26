@@ -41,6 +41,12 @@
    "v": 1,
    "file": "hsk1-05-manger.json",
    "title": "HSK 1 · 5 — Manger et boire"
+  },
+  {
+   "id": "metier-securite",
+   "v": 1,
+   "file": "metier-01-securite.json",
+   "title": "Métier · Sécurité et accidents"
   }
  ]
 }
