@@ -53,7 +53,12 @@ examen blanc HSK 1 lecture (`source/hsk1.txt`, `source/hsk_qr.txt`). Tout texte 
 ## Fonctionnement de l'appli (résumé)
 
 - **Moteur de révision** : chaque mot a 4 compétences (`reco`, `oreille`, `ton`, `prod`) avec stabilité `S` (jours) ;
-  rétention `R=(1+dt/(9S))^-1` ; priorité = oubli·0,5 + faiblesse du profil·0,3 + utilité·0,2.
+  rétention `R=(1+dt/(9S))^-1` (R=0,9 quand dt=S) ; priorité = oubli·0,5 + faiblesse du profil·0,3 + utilité·0,2.
+  Réussite (note 1 difficile / 2 bien / 3 facile) : `S×=min(cap, a+b·max(0,1-R))` avec a,b,cap = 1,6,2.5 / 1.2,13,4 / 1.5,20,5,
+  soit ×1,6 / ×2,5 / ×3,5 à R=0,9 et presque rien si on révise trop tôt. Échec : `S×0,4` (min 0,3).
+  Caractères (`gradeChar`) : comme la note 2 (×2,5 à R=0,9, plafond ×4), comme dans Zìzì.
+  Ne pas revenir à l'ancienne formule `1+(mult-1)·max(.25,1-R)` : elle ne multipliait l'intervalle que par ≈1,1–1,5,
+  les révisions s'accumulaient et freinaient les nouveaux mots.
 - **Séance du jour** : échauffement, nouveaux mots (60 % parcours HSK, 40 % branche choisie), règle de grammaire,
   duel de tons, prononciation, caractères, révisions, conversation, mission terrain. Difficulté visée 80–85 % de réussite.
 - **Branches** : `hsk` (parcours principal), `travail` (usine, carrière : étapes Usine → Promotion → Entretien → Ailleurs), `quotidien`.
