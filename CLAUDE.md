@@ -46,7 +46,7 @@ Hanzi Writer) + `audio/`. Clé de stockage `zizi.v1` (règle absolue n° 1 valab
 `caracteres/source/`, outils dans `caracteres/outils/` (logo : `outils/icone.py`). Les deux service workers ne suppriment
 **que leurs propres caches** (préfixes `bubugao-` et `zizi-`) : ne jamais casser cette règle. Après une modification de
 `caracteres/index.html`, incrémenter `zizi-app-vN` dans `caracteres/sw.js`. Skill : `.claude/skills/nouveaux-caracteres/`.
-Zìzì a aussi : séance en minutes (5/10/15), 8 niveaux (`source/rangs.txt`), défi et quêtes du jour, médailles,
+Zìzì a aussi : séance en minutes (5/10/15), 8 niveaux (`source/rangs.txt`), défi et quêtes du jour, défi de la semaine, carnet de 53 sceaux (badges partageables, `SEALS` dans `caracteres/index.html`),
 examen blanc HSK 1 lecture (`source/hsk1.txt`, `source/hsk_qr.txt`). Tout texte chinois prononcé doit être dans `data.json`
 (le robot `zizi.yml` génère son MP3).
 

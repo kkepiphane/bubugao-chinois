@@ -21,6 +21,13 @@ async def draw(pg, c):
         for x, y in pts[1:]: await pg.mouse.move(x, y, steps=4)
         await pg.mouse.up(); await pg.wait_for_timeout(250)
 
+async def fermer_sceaux(pg):
+    n = 0
+    for _ in range(60):
+        if not await pg.locator('#sheet [data-act=sealnext]').count(): break
+        await pg.click('#sheet [data-act=sealnext]'); n += 1
+    return n
+
 async def main():
     from playwright.async_api import async_playwright
     serve(); fails = []
@@ -74,15 +81,19 @@ async def main():
         r = await pg.evaluate("""async () => { say(DATA.chars[0].a); await new Promise(r => setTimeout(r, 800)); return curAudio ? (curAudio.error ? 'erreur' : 'mp3') : 'tts'; }""")
         check(r == 'mp3', f'son : {r}')
         await pg.evaluate("DATA.chars.slice(0,40).forEach(x=>{const r=rec(x.c);r.intro=Date.now();SK.forEach(k=>{const s=skState(x.c,k);s.S=3;s.last=Date.now();});});save();ui.tab='lire';render()")
+        fetes = await fermer_sceaux(pg)
+        check(fetes >= 1 and await pg.evaluate("!!S.seals.c10 && !!S.seals.pg1"), f'nouveau sceau fêté à l’écran ({fetes}) : « Première page du rouleau » ; « 10 caractères » déjà gagné')
         await pg.click('[data-act=read] >> nth=0'); await pg.click('[data-act=readdone]')
         check(await pg.evaluate('Object.keys(S.read).length') == 1, 'lecture ouverte et marquée lue')
+        check(await fermer_sceaux(pg) == 1 and await pg.evaluate('!!S.seals.r1'), 'sceau « Première lecture » fêté')
         # le rouleau sur l'accueil : 40 caractères appris = 2 pages terminées, on est à la page 3
         await pg.click('[data-act=tab][data-k=home]')
         check(await pg.locator('.paper .sc.on').count() == 0 and await pg.locator('.pd.done').count() == 2 and await pg.locator('.sc.next').count() == 1, 'rouleau : page en cours et 2 pages terminées')
         await pg.click('[data-act=page][data-p="0"] >> nth=0')
         check(await pg.locator('.paper .sc.on').count() == 20 and await pg.locator('.paper .seal').count() == 1, 'rouleau : page 1 feuilletée, scellée 完成')
         await pg.evaluate('ui.page = null; render()')
-        for gid in ['mystere', 'cles', 'eclair']:
+        await fermer_sceaux(pg)
+        for gid in ['mystere', 'cles', 'eclair', 'sprint']:
             await pg.evaluate(f"startGame('{gid}')")
             for _ in range(200):
                 g = await pg.evaluate('ui.game ? {end: ui.game.end, found: ui.game.found, rend: ui.game.roundEnd} : null')
@@ -94,13 +105,19 @@ async def main():
                     if g['rend']: await pg.click('[data-act=huntnext]'); continue
                     for c in await pg.evaluate('ui.game.targets.filter(c => !ui.game.hit.includes(c))'):
                         await pg.click(f"[data-act=hunt][data-c='{c}']")
+                elif gid == 'sprint':
+                    i = await pg.evaluate('ui.game.pick == null ? ui.game.q.opts.findIndex(o => o.ok) : -1')
+                    if i >= 0: await pg.click(f'[data-act=sprint][data-i="{i}"]')
+                    await pg.wait_for_timeout(300)
                 else:
                     await pg.locator('[data-act=flash]:not([disabled])').first.click(timeout=3000)
                     await pg.wait_for_timeout(950)
                     if await pg.evaluate('ui.game.okN + (ui.game.combo === 0 ? 1 : 0)') >= 6: await pg.evaluate('ui.game.left = 1'); await pg.wait_for_timeout(1300)
             ok = await pg.evaluate(f"!!(ui.game && ui.game.end && S.games['{gid}'].plays === 1)")
             check(ok, f'défi {gid} joué jusqu’au bout (score ' + str(await pg.evaluate('ui.game ? ui.game.score : -1')) + ')')
-            await pg.click('[data-act=ghome]')
+            if gid == 'sprint':
+                check(await pg.evaluate("gRec('sprint').bt > 0 && document.querySelectorAll('.lesson, main .sst').length >= 3"), 'sprint : temps enregistré, sceaux du défi affichés (' + str(await pg.evaluate("gRec('sprint').bt")) + ' s)')
+            await pg.click('[data-act=ghome]'); await fermer_sceaux(pg)
         # examen blanc HSK
         await pg.click('[data-act=tab][data-k=hsk]'); await pg.click('[data-act=exam]'); await pg.click('[data-act=expy][data-v="1"]'); await pg.click('[data-act=exgo]')
         parts = await pg.evaluate('[...new Set(ui.exam.qs.map(q => q.part))].length')
@@ -111,13 +128,21 @@ async def main():
         for _ in range(5):
             await pg.locator('[data-act=exans]').first.click(); await pg.click('[data-act=exnext]')
         check(await pg.evaluate("ui.exam.stage === 'res'"), 'entraînement HSK partie 4 terminé')
-        await pg.click('[data-act=exhome]')
+        await pg.click('[data-act=exhome]'); await fermer_sceaux(pg)
         # niveau supérieur et progrès
         await pg.evaluate('ui.levelUp = null; S.xp = DATA.rangs[1].xp - 5; addXP(10); ui.tab = "prog"; render()')
         await pg.wait_for_timeout(300)
         check(await pg.evaluate('!document.getElementById("sheet").hidden && document.getElementById("sheet").textContent.includes(DATA.rangs[1].fr)'), 'nouveau titre annoncé')
         await pg.click('[data-act=closesheet] >> nth=0')
-        check(await pg.locator('.badge.on').count() >= 3 and await pg.locator('.cal i').count() == 84, 'progrès : médailles et calendrier')
+        await fermer_sceaux(pg)
+        n_on = await pg.locator('.carnet .sb.on').count()
+        check(n_on >= 5 and await pg.locator('.cal i').count() == 84, f'progrès : carnet de sceaux ({n_on} gagnés) et calendrier')
+        await pg.click('.carnet .sb.on >> nth=0')
+        check(await pg.locator('[aria-label="Carnet de sceaux"] [data-act=sealshare]').count() == 1, 'sceau ouvert : bouton « Partager l’image »')
+        taille = await pg.evaluate("shareCanvas({ch:'七',c:'r',title:'7 jours de suite',sub:'Test'}).then(c => c.toDataURL('image/png').length)")
+        check(taille > 50000, f'image à partager fabriquée ({taille // 1024} Ko)')
+        await pg.evaluate("S.weeksWon=0;S.week=null;const w=weekState();for(let i=0;i<WEEKS[w.i].n;i++)weekBump(WEEKS[w.i].t)")
+        check(await pg.evaluate('S.weeksWon === 1 && S.week.done'), 'défi de la semaine relevé (+80)')
         await pg.wait_for_timeout(1500); await ctx.set_offline(True); await pg.reload(); await pg.wait_for_timeout(1000)
         check(await pg.evaluate('!!(typeof DATA !== "undefined" && DATA && DATA.chars.length)'), 'réouverture hors-ligne')
         # installation : aide dans le navigateur, fenêtre de Bùbùgāo, appli Zìzì installée

@@ -303,6 +303,20 @@ svg.mys .inkin{animation:inkin .45s ease-out}
 .pnav[disabled]{opacity:.35;cursor:default}
 .pagedone{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:#FBF6EC;color:#1F2A44;border:2px solid #C8332B}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* sceaux 印章 du carnet : rouge = bronze, jade = argent, or (mêmes couleurs que Bùbùgāo) */
+.sst{display:inline-grid;place-items:center;flex:none;width:54px;height:54px;border-radius:9px;font:700 23px/1 var(--f-zh);letter-spacing:-.08em;color:#FFF4EC;transform:rotate(-3deg)}
+.sst.r{background:#A32D2D;box-shadow:inset 0 0 0 3px #A32D2D,inset 0 0 0 5px rgba(255,244,236,.85)}
+.sst.jade{background:#0F6E56;box-shadow:inset 0 0 0 3px #0F6E56,inset 0 0 0 5px rgba(255,244,236,.85)}
+.sst.gold{background:#B8730F;box-shadow:inset 0 0 0 3px #B8730F,inset 0 0 0 5px rgba(255,244,236,.85)}
+.sst.off{transform:none;background:transparent;color:var(--muted);border:2px dashed var(--line);opacity:.75}
+.sst.two{font-size:17px}
+.sst.xl{width:124px;height:124px;border-radius:18px;font-size:58px}.sst.xl.two{font-size:40px}
+.carnet{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px}
+.sb{display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;cursor:pointer;padding:6px 2px;border-radius:12px;font:700 11.5px/1.2 var(--f-body);color:var(--muted);text-align:center}
+.sb.on{color:var(--ink)}.sb.sel{background:var(--accent-soft)}
+.nextseal{display:flex;align-items:center;gap:14px;text-align:left;width:100%;cursor:pointer}
+.week{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:var(--surface-2)}
+
 @media (prefers-reduced-motion:reduce){.prog i{transition:none}.stampin,.pop,svg.mys .inkin,.hunt.bad,.flash,.sc.inkin,.sc.next::before{animation:none}}
 </style>
 </head>
@@ -350,7 +364,7 @@ function pyHTML(p){return esc(p).split(/(\s+)/).map(w=>/\s/.test(w)||!w?w:splitS
 let DATA=null,TRAITS=null;const BYC={};
 const KEY='zizi.v1';
 function fresh(){return{v:1,name:'',perDay:5,dur:10,chars:{},hist:[],xp:0,streak:0,best:0,lastDay:null,jokers:2,jokerMonth:today().slice(0,7),days:{},lastSessionDay:null,sessions:0,read:{},lastBackup:null,milestones:{},
-  games:{},q:null,qDays:0,stamps:{},exams:[],stats:{},mins:0,badges:{}};}
+  games:{},q:null,qDays:0,stamps:{},exams:[],stats:{},mins:0,badges:{},seals:{},week:null,weeksWon:0};}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&o.v===1)return Object.assign(fresh(),o);}}catch(e){}return null;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 let S=load()||fresh();
@@ -385,8 +399,8 @@ function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(_){}}
 function refreshJokers(){const m=today().slice(0,7);if(S.jokerMonth!==m){S.jokerMonth=m;S.jokers=2;}}
 function streakAlive(){if(!S.lastDay)return 0;return daysBetween(S.lastDay,today())<=1+S.jokers?S.streak:0;}
 function markActive(){refreshJokers();const t=today();if(S.lastDay===t)return'';let msg='';
-  if(!S.lastDay)S.streak=1;else{const gap=daysBetween(S.lastDay,t);if(gap===1)S.streak++;else if(gap-1<=S.jokers){S.jokers-=gap-1;S.streak++;msg='Un joker a protégé ta série.';}else S.streak=1;}
-  S.lastDay=t;S.best=Math.max(S.best,S.streak);save();return msg;}
+  if(!S.lastDay)S.streak=1;else{const gap=daysBetween(S.lastDay,t);if(gap>=8)flags().retour=1;if(gap===1)S.streak++;else if(gap-1<=S.jokers){S.jokers-=gap-1;S.streak++;msg='Un joker a protégé ta série.';}else S.streak=1;}
+  S.lastDay=t;S.best=Math.max(S.best,S.streak);weekBump('days');save();return msg;}
 
 /* ============================================================
    VOIX : fichiers audio d'abord, voix du téléphone en secours
@@ -591,7 +605,7 @@ function startSession(kind){
   mem.forEach(d=>steps.push({kind:'ecrire',c:d.c,sec:'Écris de mémoire'}));
   news.forEach(c=>steps.push({...qTrou(c),sec:'Dans une phrase'}));
   if(!steps.length){toast('Rien à réviser pour l’instant. Reviens plus tard !');return;}
-  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,combo:0,news,end:false,t0:now,known0:knownCount(),known0Set:new Set(known().map(x=>x.c)),badges0:earnedBadges()};
+  ui.sess={kind,steps,i:0,xp:0,ok:0,n:0,combo:0,news,end:false,t0:now,known0:knownCount(),known0Set:new Set(known().map(x=>x.c)),badges0:[]};
   render();
 }
 function answer(i){
@@ -607,7 +621,7 @@ function answer(i){
 }
 function next(){
   const s=ui.sess,st=s.steps[s.i];
-  if(st&&st.kind==='fiche'){const r=rec(st.c);if(!r.intro){r.intro=Date.now();SK.forEach(k=>skState(st.c,k));S.newDay={d:today(),n:newToday()+1};save();}}
+  if(st&&st.kind==='fiche'){const r=rec(st.c);if(!r.intro){r.intro=Date.now();SK.forEach(k=>skState(st.c,k));S.newDay={d:today(),n:newToday()+1};weekBump('new');save();}}
   writers={};try{speechSynthesis.cancel();}catch(_){}
   s.i++;if(s.i>=s.steps.length)finish();else render();window.scrollTo(0,0);
 }
@@ -620,7 +634,12 @@ function finish(){
   for(const m of [10,25,50,100,150,200,DATA.chars.length])if(kn>=m&&!S.milestones[m]){S.milestones[m]=today();s.milestone=m;}
   s.pages=[...Array(pageCount()).keys()].filter(p=>!pageDone(p,s.known0Set)&&pageDone(p));s.pages.forEach(()=>addXP(50));
   ui.popSince=s.t0;ui.page=null;
-  s.newBadges=newBadges(s.badges0);save();s.end=true;render();
+  const h=new Date().getHours(),dw=new Date().getDay(),F=flags(),T=stats();
+  if(h<6)F.early=1;if(h>=22)F.night=1;if(s.n>=10&&s.ok===s.n)F.perfect=1;
+  T.sd=T.sd&&T.sd.d===today()?{d:today(),n:T.sd.n+1}:{d:today(),n:1};if(T.sd.n>=3)F.marathon=1;
+  if(dw===6)T.sat=today();if(dw===0&&T.sat===dkey(new Date(Date.now()-DAY)))F.weekend=1;
+  weekBump('sess');
+  s.newBadges=newBadges();save();s.end=true;render();
 }
 
 /* ============================================================
@@ -629,7 +648,8 @@ function finish(){
 const GAMES=[
  {id:'mystere',zh:'字谜',py:'zìmí',t:'Le caractère mystère',d:'Il apparaît trait par trait. Trouve-le avec le moins de traits possible.'},
  {id:'cles',zh:'部首',py:'bùshǒu',t:'La chasse aux clés',d:'Une clé, douze caractères : touche vite tous ceux qui ont cette clé.'},
- {id:'eclair',zh:'快',py:'kuài',t:'L’éclair',d:'60 secondes pour reconnaître un maximum de caractères. Les séries rapportent plus.'}];
+ {id:'eclair',zh:'快',py:'kuài',t:'L’éclair',d:'60 secondes pour reconnaître un maximum de caractères. Les séries rapportent plus.'},
+ {id:'sprint',zh:'冲刺',py:'chōngcì',t:'Le sprint',d:'20 caractères, le plus vite possible. Une erreur coûte 5 secondes.'}];
 const gamesOpen=()=>knownCount()>=5;
 const gameOfDay=()=>GAMES[dayNum()%GAMES.length];
 const gRec=id=>S.games[id]||(S.games[id]={best:0,plays:0,day:null});
@@ -637,14 +657,15 @@ function stopTimer(){if(ui.game&&ui.game.timer){clearInterval(ui.game.timer);ui.
 function startGame(id){
   if(!gamesOpen()){toast('Apprends 5 caractères pour débloquer les défis.');return;}
   stopTimer();const daily=id===gameOfDay().id&&gRec(id).day!==today();
-  ui.game={id,daily,score:0,xp:0,round:0,end:false,t0:Date.now(),badges0:earnedBadges()};
-  ({mystere:mysRound,cles:huntRound,eclair:flashStart})[id]();render();window.scrollTo(0,0);
+  ui.game={id,daily,score:0,xp:0,round:0,end:false,t0:Date.now(),badges0:[]};
+  ({mystere:mysRound,cles:huntRound,eclair:flashStart,sprint:sprintStart})[id]();render();window.scrollTo(0,0);
 }
 function gameEnd(){
   const g=ui.game;stopTimer();g.end=true;const r=gRec(g.id);g.best0=r.best;r.best=Math.max(r.best,g.score);r.plays++;
   if(g.daily){r.day=today();addXP(Math.max(10,Math.round(g.score/2)));qBump('defi');markActive();}else addXP(Math.max(5,Math.round(g.score/5)));
+  weekBump('defi');g.medal=gameMedal(g.id,gameVal(g.id));
   S.mins=(S.mins||0)+Math.max(1,Math.round((Date.now()-g.t0)/60000));
-  g.newBadges=newBadges(g.badges0);save();buzz([30,40,90]);render();
+  g.newBadges=newBadges();save();buzz([30,40,90]);render();
 }
 /* 字谜 le caractère mystère : 3 manches */
 function mysPool(){const k=known().filter(x=>x.n_strokes>=4);return k.length>=4?k:known();}
@@ -672,6 +693,19 @@ function huntTap(c){const g=ui.game;if(g.roundEnd||g.hit.includes(c)||g.bad.incl
   else{g.bad.push(c);g.score=Math.max(0,g.score-5);buzz(80);}
   render();}
 function huntStop(){const g=ui.game;if(!g||g.roundEnd)return;stopTimer();g.roundEnd=true;render();}
+/* 冲刺 le sprint : 20 questions chronométrées, +5 s par erreur */
+const fmtT=x=>x.toFixed(1).replace('.',',')+' s';
+const sprintTime=g=>g.time!=null?g.time:(Date.now()-g.ts)/1000+g.pen;
+function sprintStart(){const g=ui.game;g.n=0;g.pen=0;g.okN=0;g.prev=null;g.ts=Date.now();sprintQ();
+  g.timer=setInterval(()=>{const el=document.getElementById('gtime');if(el)el.textContent=fmtT(sprintTime(g));},100);}
+function sprintQ(){const g=ui.game;let x;do{x=rnd(known());}while(known().length>1&&x.c===g.prev);g.prev=x.c;g.q=Math.random()<.7?qSens(x.c):qSon(x.c);g.pick=null;}
+function sprintPick(i){const g=ui.game;if(g.pick!=null||g.end)return;g.pick=i;const ok=g.q.opts[i].ok;
+  grade(g.q.c,g.q.kind==='son'?'son':'sens',ok);S.hist.push(ok?1:0);g.n++;
+  if(ok){g.okN++;buzz(15);}else{g.pen+=5;buzz(80);}
+  render();
+  setTimeout(()=>{if(ui.game!==g||g.end)return;
+    if(g.n>=20){g.time=Math.round(sprintTime(g)*10)/10;const r=gRec('sprint');g.bt0=r.bt||0;if(!r.bt||g.time<r.bt)r.bt=g.time;g.score=Math.max(10,Math.round(300-2*g.time));gameEnd();}
+    else{sprintQ();render();}},ok?220:800);}
 /* 快 l'éclair : 60 secondes de questions de sens */
 function flashStart(){const g=ui.game;g.left=60;g.okN=0;g.combo=0;g.prev=null;flashQ();
   g.timer=setInterval(()=>{g.left--;const el=document.getElementById('gtime');if(el){el.textContent=g.left+' s';el.classList.toggle('low',g.left<=10);}if(g.left<=0){stats().flashBest=Math.max(stats().flashBest||0,g.okN);gameEnd();}},1000);}
@@ -710,7 +744,7 @@ function examBegin(mode,part){
   if(mode==='exam')for(let p=0;p<4;p++){const seen=new Set();for(let i=0,tries=0;i<5&&tries<50;tries++){const q=examQ(p),key=JSON.stringify(q.w||q.s);if(seen.has(key))continue;seen.add(key);qs.push(q);i++;}}
   else for(let i=0;i<5;i++)qs.push(examQ(part));
   const py=ui.exam?ui.exam.py:false;
-  ui.exam={stage:'q',mode,part,py,qs,i:0,ans:[],t0:Date.now(),left:17*60,xp:0,badges0:earnedBadges()};
+  ui.exam={stage:'q',mode,part,py,qs,i:0,ans:[],t0:Date.now(),left:17*60,xp:0,badges0:[]};
   if(mode==='exam')ui.exam.timer=setInterval(()=>{const e=ui.exam;if(!e||e.stage!=='q')return;e.left--;const el=document.getElementById('gtime');
     if(el){el.textContent=Math.floor(e.left/60)+':'+pad(e.left%60);el.classList.toggle('low',e.left<=60);}if(e.left<=0)examFinish();},1000);
   render();window.scrollTo(0,0);
@@ -726,26 +760,108 @@ function examFinish(){const e=ui.exam;stopTimer();e.stage='res';
   const ok=parts.reduce((a,p)=>a+p.ok,0);e.score=Math.round(ok/e.qs.length*100);e.parts=parts;
   if(e.mode==='exam'){S.exams.push({d:today(),score:e.score,parts:parts.map(p=>p.ok),py:e.py});addXP(30+ok*2);markActive();}
   S.mins=(S.mins||0)+Math.max(1,Math.round((Date.now()-e.t0)/60000));
-  e.newBadges=newBadges(e.badges0);save();render();window.scrollTo(0,0);}
+  e.newBadges=newBadges();save();render();window.scrollTo(0,0);}
 function hskStats(){const H=DATA.chars.filter(x=>x.h),k=H.filter(x=>isIntro(x.c)).length,a=H.filter(x=>level(x.c)===3).length;
   return{n:H.length,k,a,ready:.5*k/H.length+.5*a/H.length,last:S.exams[S.exams.length-1]};}
 
 /* ============================================================
    MÉDAILLES
    ============================================================ */
-const BADGES=[
- ['一','Premier caractère',()=>knownCount()>=1],['十','10 caractères',()=>knownCount()>=10],
- ['半','La moitié du mur',()=>knownCount()>=DATA.chars.length/2],['满','Tout le mur',()=>knownCount()>=DATA.chars.length],
- ['笔','10 tracés parfaits',()=>(stats().perfect||0)>=10],['写','20 caractères écrits de mémoire',()=>(stats().mem||0)>=20],
- ['火','7 jours de suite',()=>S.best>=7],['月','30 jours de suite',()=>S.best>=30],
- ['读','Première lecture',()=>Object.keys(S.read).length>=1],['书','Toutes les lectures',()=>Object.keys(S.read).length>=DATA.lectures.length],
- ['谜','Un mystère en 2 traits',()=>(stats().mysteryBest||99)<=2],['快','Éclair : 20 bonnes réponses',()=>(stats().flashBest||0)>=20],
- ['部','Une clé complète (5 caractères ou plus)',()=>DATA.cles.some(k=>k.c.length>=5&&k.c.every(isIntro))],['连','Série de 15 bonnes réponses',()=>(stats().bestCombo||0)>=15],
- ['考','Examen blanc réussi',()=>S.exams.some(e=>e.score>=60)],['冠','100 sur 100 à l’examen',()=>S.exams.some(e=>e.score>=100)],
- ['印','7 sceaux du jour',()=>(S.qDays||0)>=7]];
-function earnedBadges(){return BADGES.filter(b=>{try{return b[2]();}catch(_){return false;}}).map(b=>b[0]);}
-function newBadges(before){const now=earnedBadges(),nw=now.filter(b=>!before.includes(b));nw.forEach(b=>{if(!S.badges[b])S.badges[b]=today();});return nw;}
-function badgesHTML(list){return list&&list.length?`<div class="card stack sm" style="border:2px solid var(--gold)"><span class="label" style="color:var(--gold)">Nouvelle médaille</span>${list.map(b=>{const B=BADGES.find(x=>x[0]===b);return `<div class="row"><span class="badge on"><span class="bz pop">${b}</span></span><b>${esc(B[1])}</b></div>`;}).join('')}</div>`:'';}
+/* ============================================================
+   SCEAUX 印章 : le carnet de badges. Rouge = bronze, jade = argent, or.
+   Les sceaux « rares » restent cachés (?) jusqu'à ce qu'on les gagne.
+   ============================================================ */
+const MEDAL=['bronze','argent','or'],MCOL=['r','jade','gold'];
+const flags=()=>stats().flags||(stats().flags={});
+const bestStreak=()=>Math.max(S.best||0,streakAlive());
+const pagesDone=()=>[...Array(pageCount()).keys()].filter(p=>pageDone(p)).length;
+const GSEUILS={eclair:{v:'n',s:[10,18,25],u:'bonnes réponses en 60 secondes'},sprint:{v:'t',s:[100,70,45],u:'secondes ou moins'},
+  mystere:{v:'p',s:[150,220,270],u:'points en 3 manches'},cles:{v:'p',s:[200,300,380],u:'points en 3 manches'}};
+function gameVal(id){const r=gRec(id);return id==='eclair'?(stats().flashBest||0):id==='sprint'?(r.bt||0):(r.best||0);}
+function gameMedal(id,v){const G=GSEUILS[id];return G.s.filter(x=>G.v==='t'?(v>0&&v<=x):v>=x).length;}
+const gT=id=>GAMES.find(x=>x.id===id).t;
+const SEALS=[
+ ...[[3,'三','r'],[7,'七','r'],[14,'十四','r'],[30,'月','jade'],[50,'五十','jade'],[100,'百','gold'],[200,'二百','gold'],[365,'年','gold']]
+   .map(([n,ch,c])=>({id:'s'+n,fam:'Jours de suite',ch,c,nm:n<365?n+' jours de suite':'Une année entière',court:n<365?n+' jours':'1 an',desc:n+' jours de suite sans abandonner (les jokers comptent).',prog:()=>[streakAlive(),n,'jours'],test:()=>bestStreak()>=n})),
+ ...[[10,'初','r'],[50,'识','jade'],[100,'博','jade'],[150,'才','gold'],[214,'满','gold']]
+   .map(([n,ch,c])=>({id:'c'+n,fam:'Caractères',ch,c,nm:n===214?'Tout le mur':n+' caractères',court:n===214?'tout':n+'',desc:n===214?'Les 214 caractères de Zìzì appris.':n+' caractères appris.',prog:()=>[knownCount(),n,'caractères'],test:()=>knownCount()>=n})),
+ {id:'hsk1',fam:'Caractères',ch:'一',c:'gold',nm:'Les caractères du HSK 1',court:'HSK 1',desc:'Les 174 caractères du HSK 1 appris.',prog:()=>{const H=DATA.chars.filter(x=>x.h);return[H.filter(x=>isIntro(x.c)).length,H.length,'caractères'];},test:()=>DATA.chars.filter(x=>x.h).every(x=>isIntro(x.c))},
+ {id:'usine',fam:'Caractères',ch:'厂',c:'jade',nm:'Reine de l’usine',court:'usine',desc:'Les 40 caractères de l’usine et du quotidien (hors HSK 1) appris.',prog:()=>{const U=DATA.chars.filter(x=>!x.h);return[U.filter(x=>isIntro(x.c)).length,U.length,'caractères'];},test:()=>DATA.chars.filter(x=>!x.h).every(x=>isIntro(x.c))},
+ {id:'cle',fam:'Caractères',ch:'钥',c:'jade',nm:'Une famille complète',court:'clé',desc:'Tous les caractères d’une clé (5 ou plus) appris.',test:()=>DATA.cles.some(k=>k.c.length>=5&&k.c.every(isIntro))},
+ ...[[10,'笔','r'],[50,'墨','jade'],[150,'法','gold']].map(([n,ch,c])=>({id:'p'+n,fam:'Écriture',ch,c,nm:n+' tracés parfaits',court:n+' parfaits',desc:n+' caractères tracés au doigt sans aucune erreur.',prog:()=>[stats().perfect||0,n,'tracés'],test:()=>(stats().perfect||0)>=n})),
+ ...[[20,'写','jade'],[100,'默','gold']].map(([n,ch,c])=>({id:'m'+n,fam:'Écriture',ch,c,nm:n+' écrits de mémoire',court:n+' de mémoire',desc:n+' caractères écrits de mémoire, sans modèle.',prog:()=>[stats().mem||0,n,'caractères'],test:()=>(stats().mem||0)>=n})),
+ {id:'main',fam:'Écriture',ch:'稳',c:'gold',nm:'Main sûre',court:'5 de suite',desc:'5 tracés parfaits de suite.',prog:()=>[stats().perfRun||0,5,'de suite'],test:()=>(stats().perfRunBest||0)>=5},
+ ...Object.entries(GSEUILS).flatMap(([id,G])=>G.s.map((n,i)=>({id:'g_'+id+'_'+i,fam:'Défis chronométrés',ch:GAMES.find(x=>x.id===id).zh.slice(0,1),c:MCOL[i],nm:gT(id)+' · '+MEDAL[i],court:{eclair:'éclair',sprint:'sprint',mystere:'mystère',cles:'clés'}[id]+' '+MEDAL[i],
+   desc:G.v==='t'?'Les 20 caractères du sprint en '+n+' secondes ou moins.':n+' '+G.u+' à « '+gT(id)+' ».',test:()=>gameMedal(id,gameVal(id))>i}))),
+ {id:'week',fam:'Défis chronométrés',ch:'星',c:'jade',nm:'Défi de la semaine',court:'semaine',desc:'Un défi de la semaine relevé.',test:()=>(S.weeksWon||0)>=1},
+ {id:'week4',fam:'Défis chronométrés',ch:'恒',c:'gold',nm:'Quatre semaines relevées',court:'4 semaines',desc:'4 défis de la semaine relevés.',prog:()=>[S.weeksWon||0,4,'semaines'],test:()=>(S.weeksWon||0)>=4},
+ ...[[1,'卷','r'],[5,'册','jade'],[11,'典','gold']].map(([n,ch,c])=>({id:'pg'+n,fam:'Rouleau et lectures',ch,c,nm:n===1?'Première page du rouleau':n===11?'Le rouleau complet':n+' pages du rouleau',court:n===11?'rouleau':n+' page'+(n>1?'s':''),desc:n===11?'Les 11 pages du rouleau écrites.':n+' page'+(n>1?'s':'')+' du rouleau terminée'+(n>1?'s':'')+'.',prog:()=>[pagesDone(),n,'pages'],test:()=>pagesDone()>=n})),
+ {id:'r1',fam:'Rouleau et lectures',ch:'读',c:'r',nm:'Première lecture',court:'lecture',desc:'Un vrai petit texte lu en chinois.',test:()=>Object.keys(S.read).length>=1},
+ {id:'rall',fam:'Rouleau et lectures',ch:'书',c:'gold',nm:'Toutes les lectures',court:'lectures',desc:'Les 13 lectures lues.',prog:()=>[Object.keys(S.read).length,DATA.lectures.length,'lectures'],test:()=>Object.keys(S.read).length>=DATA.lectures.length},
+ ...[[60,'试','r','Examen blanc réussi'],[80,'优','jade','Examen blanc : 80 sur 100'],[100,'冠','gold','Examen blanc parfait']].map(([n,ch,c,nm])=>({id:'x'+n,fam:'Examen HSK',ch,c,nm,court:n+' / 100',desc:n+' sur 100 ou plus à l’examen blanc de lecture HSK 1.',test:()=>S.exams.some(e=>e.score>=n)})),
+ ...[[7,'印','jade'],[30,'章','gold']].map(([n,ch,c])=>({id:'q'+n,fam:'Quêtes',ch,c,nm:n+' sceaux du jour',court:n+' jours',desc:'Les 3 quêtes du jour réussies '+n+' fois.',prog:()=>[S.qDays||0,n,'fois'],test:()=>(S.qDays||0)>=n})),
+ ...[['early','早','gold','Lève-tôt','Une séance terminée avant 6 h du matin.'],['night','夜','jade','Oiseau de nuit','Une séance terminée après 22 h.'],
+     ['weekend','休','r','Week-end studieux','Une séance le samedi et une le dimanche.'],['retour','回','jade','Le retour','Revenir après au moins une semaine de pause. Bravo d’être revenue !'],
+     ['perfect','全','r','Séance parfaite','Une séance d’au moins 10 questions sans aucune erreur.'],['marathon','马','gold','Marathon','3 séances le même jour.']]
+   .map(([k,ch,c,nm,desc])=>({id:k,fam:'Rares',rare:1,ch,c,nm,court:{early:'lève-tôt',night:'nuit',weekend:'week-end',retour:'retour',perfect:'parfaite',marathon:'marathon'}[k],desc,test:()=>!!flags()[k]})),
+ {id:'combo15',fam:'Rares',rare:1,ch:'连',c:'gold',nm:'Série de 15',court:'série',desc:'15 bonnes réponses de suite dans une séance.',test:()=>(stats().bestCombo||0)>=15}
+];
+const SEALBY=Object.fromEntries(SEALS.map(x=>[x.id,x]));
+function earnedBadges(){return SEALS.filter(x=>{try{return x.test();}catch(_){return false;}}).map(x=>x.id);}
+// enregistre les sceaux gagnés depuis la dernière fois et les renvoie
+function newBadges(){const nw=earnedBadges().filter(id=>!S.seals[id]);nw.forEach(id=>S.seals[id]=today());if(nw.length)save();return nw;}
+function sealStamp(x,cls){const on=!!S.seals[x.id],t=on||!x.rare?x.ch:'?';return `<span class="sst ${on?x.c:'off'} ${[...t].length>1?'two':''} ${cls||''}" aria-hidden="true">${esc(t)}</span>`;}
+function badgesHTML(list){return list&&list.length?`<div class="card stack sm" style="border:2px solid var(--gold)"><span class="label" style="color:var(--gold)">${list.length>1?list.length+' nouveaux sceaux':'Nouveau sceau'}</span>
+  ${list.map(id=>{const x=SEALBY[id];return `<div class="row" style="flex-wrap:nowrap;gap:14px">${sealStamp(x,'stampin')}<div class="grow"><b>${esc(x.nm)}</b><br><span class="small muted">${esc(x.desc)}</span></div><button class="btn sm" data-act="sealshare" data-id="${id}">Partager</button></div>`;}).join('')}</div>`:'';}
+function nextSeal(){let best=null;SEALS.forEach(x=>{if(S.seals[x.id]||!x.prog)return;const [v,n]=x.prog(),r=Math.min(.99,v/n);if(!best||r>best.r)best={x,v,n,r};});return best;}
+function nextSealHTML(){const b=nextSeal();if(!b)return'';const [,,u]=b.x.prog();
+  return `<button class="card nextseal" data-act="sealgo" data-id="${b.x.id}">${sealStamp(b.x)}<div class="grow stack sm" style="gap:4px"><span class="label">Prochain sceau</span><b>${esc(b.x.nm)}</b>
+   <div class="xpbar"><i style="width:${pct(b.r)}%"></i></div><span class="tiny muted">${b.v} / ${b.n} ${u} · encore ${b.n-b.v}</span></div></button>`;}
+function carnetHTML(){const fams=[...new Set(SEALS.map(x=>x.fam))],n=SEALS.filter(x=>S.seals[x.id]).length,sel=SEALBY[ui.sealOpen];
+  return `<section class="card stack" aria-label="Carnet de sceaux"><div class="row between"><div class="stack sm"><span class="label">Mon carnet de sceaux · 印章</span><h2>${n} sceau${n>1?'x':''} sur ${SEALS.length}</h2></div></div>
+   ${sel?`<div class="card flat row" style="flex-wrap:nowrap;gap:14px;align-items:flex-start">${sealStamp(sel)}<div class="grow stack sm"><b>${S.seals[sel.id]||!sel.rare?esc(sel.nm):'Sceau rare'}</b><span class="small">${esc(sel.desc)}</span>
+     ${S.seals[sel.id]?`<span class="tiny muted">Gagné le ${S.seals[sel.id].split('-').reverse().join('/')}</span><button class="btn primary sm" style="align-self:flex-start" data-act="sealshare" data-id="${sel.id}">Partager l’image</button>`
+      :sel.prog?(()=>{const [v,m,u]=sel.prog();return `<div class="xpbar"><i style="width:${pct(v/m)}%"></i></div><span class="tiny muted">${Math.min(v,m)} / ${m} ${u}. Tu y arriveras !</span>`;})():'<span class="tiny muted">Pas encore gagné. Tu y arriveras !</span>'}</div></div>`:'<p class="tiny muted">Touche un sceau pour voir comment l’obtenir. Les sceaux rares restent cachés jusqu’à ce que tu les gagnes.</p>'}
+   ${fams.map(f=>{const L=SEALS.filter(x=>x.fam===f);return `<div class="stack sm"><div class="row between"><span class="tiny" style="font-weight:800">${esc(f)}</span><span class="tiny muted">${L.filter(x=>S.seals[x.id]).length}/${L.length}</span></div>
+     <div class="carnet">${L.map(x=>`<button class="sb ${S.seals[x.id]?'on':''} ${ui.sealOpen===x.id?'sel':''}" data-act="sealopen" data-id="${x.id}" aria-label="${esc(S.seals[x.id]||!x.rare?x.nm:'Sceau rare')}${S.seals[x.id]?' (gagné)':''}">${sealStamp(x)}<span>${esc(S.seals[x.id]||!x.rare?x.court:'rare')}</span></button>`).join('')}</div></div>`;}).join('')}</section>`;}
+function showSealSheet(){const id=ui.sealQ.shift(),x=SEALBY[id],left=ui.sealQ.length;
+  sheetEl.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Nouveau sceau"><div class="stack" style="align-items:center;text-align:center;padding-top:6px">
+   <span class="label" style="color:var(--gold)">Nouveau sceau !</span>${sealStamp(x,'xl stampin')}<h2>${esc(x.nm)}</h2><p class="small muted">${esc(x.desc)}</p>
+   <p><span class="zh" style="font-size:22px">坚持就是胜利</span><br><span class="small"><b>jiānchí jiù shì shènglì</b> · tenir bon, c’est gagner</span></p>
+   <button class="btn primary block" data-act="sealshare" data-id="${id}">Partager sur WhatsApp</button><button class="btn block" data-act="sealnext">${left?'Sceau suivant ('+left+' de plus)':'Continuer'}</button></div></div>`;
+  sheetEl.hidden=false;buzz([60,40,120,40,200]);}
+/* image à partager (fabriquée sur le téléphone, rien n'est envoyé ailleurs) */
+async function shareCanvas(o){
+  try{await Promise.all([document.fonts.load('700 200px "Noto Sans SC"',o.ch+'坚持就是胜利字'),document.fonts.load('800 70px "Nunito Sans"')]);}catch(_){}
+  const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),zh='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif',fr='"Nunito Sans",system-ui,sans-serif';
+  g.fillStyle='#FBF6EC';g.fillRect(0,0,W,H);g.strokeStyle='rgba(200,51,43,.35)';g.lineWidth=3;for(const x of [44,62,W-62,W-44]){g.beginPath();g.moveTo(x,40);g.lineTo(x,H-170);g.stroke();}
+  g.fillStyle='#EFE3CC';g.fillRect(0,H-150,W,150);g.textAlign='center';g.fillStyle='#22408A';g.font='800 46px '+fr;g.fillText('ZÌZÌ  字字',W/2,120);
+  g.save();g.translate(W/2,430);g.rotate(-.05);const col={r:'#A32D2D',jade:'#0F6E56',gold:'#B8730F'}[o.c]||'#A32D2D',R=225;
+  const rr=(x,y,w,h,r)=>{g.beginPath();if(g.roundRect)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);};
+  g.fillStyle=col;rr(-R,-R,2*R,2*R,40);g.fill();g.strokeStyle='rgba(255,244,236,.9)';g.lineWidth=12;rr(-R+26,-R+26,2*R-52,2*R-52,26);g.stroke();
+  g.fillStyle='#FFF4EC';g.font='700 '+([...o.ch].length>1?160:240)+'px '+zh;g.textBaseline='middle';g.fillText(o.ch,0,12);g.restore();g.textBaseline='alphabetic';
+  g.fillStyle='#161C2A';g.font='800 70px '+fr;g.fillText(o.title,W/2,790,W-100);g.font='500 42px '+fr;g.fillStyle='#3A4457';
+  const lines=[];let cur='';for(const w of String(o.sub).split(' ')){const tr=cur?cur+' '+w:w;if(g.measureText(tr).width>W-160&&cur){lines.push(cur);cur=w;}else cur=tr;}if(cur)lines.push(cur);
+  lines.slice(0,3).forEach((l,i)=>g.fillText(l,W/2,860+i*54));
+  g.font='700 84px '+zh;g.fillStyle='#A32D2D';g.fillText('坚持就是胜利',W/2,1080);g.font='500 36px '+fr;g.fillStyle='#3A4457';g.fillText('jiānchí jiù shì shènglì · tenir bon, c’est gagner',W/2,1135,W-80);
+  g.font='700 34px '+fr;g.fillStyle='#22408A';g.fillText('J’apprends les caractères chinois avec Zìzì',W/2,H-82);g.font='500 28px '+fr;g.fillText('kkepiphane.github.io/bubugao-chinois/caracteres',W/2,H-38);
+  return c;}
+async function shareImage(o,text){const c=await shareCanvas(o);const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('Impossible de créer l’image.');return;}
+  const file=new File([blob],'zizi-'+Date.now()+'.png',{type:'image/png'});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});return;}}catch(e){if(e&&e.name==='AbortError')return;}
+  try{const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Image enregistrée dans Téléchargements : ajoute-la à ton statut.');}catch(e){toast('Impossible de partager pour l’instant.');}}
+const APPURL='https://kkepiphane.github.io/bubugao-chinois/caracteres/';
+const sealShare=x=>shareImage({ch:x.ch,c:x.c,title:x.nm,sub:(S.name?S.name+' a gagné ce sceau : ':'')+x.desc+' '+knownCount()+' caractères appris.'},'J’ai gagné le sceau « '+x.nm+' » dans Zìzì 字字 ! '+APPURL);
+function shareProgress(){const k=rankInfo();shareImage({ch:k.cur.h,c:'r',title:knownCount()+' caractères appris',sub:(S.name?S.name+' · ':'')+'Niveau '+(k.r+1)+', '+k.cur.fr.toLowerCase()+' · '+bestStreak()+' jours de suite au mieux · '+SEALS.filter(x=>S.seals[x.id]).length+' sceaux.'},'J’apprends les caractères chinois avec Zìzì 字字 : '+knownCount()+' déjà ! '+APPURL);}
+/* défi de la semaine (lundi → dimanche) */
+const WEEKS=[{t:'sess',n:5,txt:'Fais 5 séances cette semaine'},{t:'new',n:20,txt:'Apprends 20 nouveaux caractères'},{t:'defi',n:4,txt:'Joue 4 défis chronométrés'},
+  {t:'trace',n:15,txt:'Fais 15 tracés parfaits'},{t:'days',n:5,txt:'Étudie 5 jours différents'}];
+function weekKey(){const d=new Date();d.setDate(d.getDate()-(d.getDay()+6)%7);return dkey(d);}
+function weekState(){const k=weekKey();if(!S.week||S.week.k!==k){const i=Math.round(new Date(k+'T12:00:00').getTime()/(7*DAY))%WEEKS.length;S.week={k,i:(i+WEEKS.length)%WEEKS.length,p:0,done:false};}return S.week;}
+function weekBump(t){const w=weekState(),W=WEEKS[w.i];if(w.done||W.t!==t)return;w.p++;if(w.p>=W.n){w.done=true;S.weeksWon=(S.weeksWon||0)+1;addXP(80);setTimeout(()=>toast('Défi de la semaine relevé ! +80'),600);buzz([40,60,140]);}save();}
+function weekHTML(){const w=weekState(),W=WEEKS[w.i],left=7-((new Date().getDay()+6)%7);
+  return `<div class="week">${sealStamp(SEALBY.week)}<div class="grow stack sm" style="gap:4px"><span class="label">Défi de la semaine · +80</span><b class="small">${esc(W.txt)}</b><div class="xpbar"><i style="width:${pct(w.p/W.n)}%"></i></div>
+   <span class="tiny muted">${w.done?'Relevé ✓ Nouveau défi lundi.':Math.min(w.p,W.n)+' / '+W.n+' · encore '+left+' jour'+(left>1?'s':'')}</span></div></div>`;}
 
 /* ============================================================
    LECTURES
@@ -760,9 +876,12 @@ function render(){
   if(ui.sess)return renderSession();
   if(ui.game){app.innerHTML=renderGame();return;}
   if(ui.exam&&ui.exam.stage!=='intro'){app.innerHTML=renderExam();return;}
+  // sceaux gagnés depuis la dernière fois : enregistrés avant de dessiner, fêtés juste après
+  const nw=newBadges();if(nw.length)ui.sealQ=(ui.sealQ||[]).concat(nw);
   const T={home:renderHome,mur:renderMur,lire:renderLire,hsk:renderHSK,prog:renderProg}[ui.tab]||renderHome;
   app.innerHTML=`<main class="screen">${T()}</main>${tabbar()}`;
   if(ui.levelUp!=null&&sheetEl.hidden)showLevelUp();
+  else if(sheetEl.hidden&&ui.sealQ&&ui.sealQ.length)showSealSheet();
 }
 function tabbar(){
   const t=[['home','今天','Aujourd’hui'],['mur','字','Mon mur'],['lire','读','Lire'],['hsk','考','HSK'],['prog','我','Progrès']];
@@ -800,7 +919,8 @@ function renderHome(){
     :`<div class="row"><button class="btn" data-act="game" data-id="${G.id}">Relever le défi</button>${gr.best?`<span class="small muted">Record : ${gr.best}</span>`:''}</div>`}
    ${gamesOpen()?`<div class="minis">${GAMES.filter(g=>g.id!==G.id).map(g=>`<button class="mini" data-act="game" data-id="${g.id}"><span class="zh">${g.zh}</span>${esc(g.t)}</button>`).join('')}</div>`:''}
   </section>
-  <section class="card stack sm" aria-label="Quêtes du jour"><div class="row between"><span class="label">Quêtes du jour</span><span class="tiny muted">les 3 = +50 et un sceau</span></div>${questsHTML()}</section>
+  ${S.sessions?nextSealHTML():''}
+  <section class="card stack sm" aria-label="Quêtes du jour"><div class="row between"><span class="label">Quêtes du jour</span><span class="tiny muted">les 3 = +50 et un sceau</span></div>${questsHTML()}${weekHTML()}</section>
   ${S.sessions?'':scrollHTML()}
   ${newL.length?`<button class="lect" data-act="read" data-t="${esc(newL[0].t)}" style="border:2px solid var(--gold)"><span class="zh" style="font-size:30px;color:var(--gold)">读</span><span class="grow"><b>Nouvelle lecture débloquée</b><br><span class="small muted">${esc(newL[0].t)} : tu peux la lire presque seule !</span></span></button>`:''}
   ${bubu!=null?`<a class="lect" href="../" style="text-decoration:none;color:inherit"><span class="zh" style="font-size:28px;color:var(--good)">步</span><span class="grow"><b>Bùbùgāo</b><br><span class="small muted">Ton appli de vocabulaire et de conversation.</span></span></a>`:''}`;
@@ -920,22 +1040,24 @@ function renderProg(){
    <div class="stat"><b>${S.best}</b><span>meilleure série de jours</span></div><div class="stat"><b>${S.mins||0}</b><span>minutes d’étude</span></div><div class="stat"><b>${stats().perfect||0}</b><span>tracés parfaits</span></div></div>
   <section class="card stack sm"><div class="row between"><span class="label">12 dernières semaines</span><span class="tiny muted">● = 3 quêtes réussies</span></div>${calHTML()}
    <p class="small muted">${eta?`À ton rythme (${Math.round(perDay*7)} caractères par semaine), tu finiras le mur vers ${M[eta.getMonth()]} ${eta.getFullYear()}.`:kn>=N?'Tout le mur est appris !':'Fais quelques séances : on calculera quand tu finiras le mur.'}</p></section>
-  <section class="card stack"><div class="row between"><span class="label">Médailles</span><span class="tiny muted">${earned.length}/${BADGES.length}</span></div>
-   <div class="badges">${BADGES.map(b=>`<div class="badge ${earned.includes(b[0])?'on':''}"><span class="bz">${b[0]}</span>${esc(b[1])}</div>`).join('')}</div></section>
-  <section class="card stack sm"><span class="label">Records des défis</span>${GAMES.map(g=>`<div class="row between"><span><span class="zh" style="color:var(--gold)">${g.zh}</span> ${esc(g.t)}</span><b>${gRec(g.id).best||'—'}</b></div>`).join('')}</section>
+  ${carnetHTML()}
+  <section class="card stack sm"><span class="label">Records des défis</span>${GAMES.map(g=>{const v=gameVal(g.id),m=gameMedal(g.id,v);return `<div class="row between" style="flex-wrap:nowrap"><span><span class="zh" style="color:var(--gold)">${g.zh}</span> ${esc(g.t)}</span><span class="row" style="gap:8px;flex-wrap:nowrap"><b>${v?(g.id==='sprint'?fmtT(v):v):'—'}</b>${m?`<span class="tiny" style="font-weight:800;color:${['','#A32D2D','#0F6E56','#B8730F'][m]}">${MEDAL[m-1]}</span>`:''}</span></div>`;}).join('')}</section>
+  <button class="btn primary block" data-act="shareprog">Partager ma progression</button>
   <button class="btn block" data-act="settings">${ICON.gear} Réglages et sauvegarde</button>`;
 }
 
 /* ---------- les défis à l'écran ---------- */
 function renderGame(){
   const g=ui.game,G=GAMES.find(x=>x.id===g.id);
-  if(g.end){const rec=g.score>g.best0&&g.best0>0;
-    return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh" style="font-size:56px;color:var(--gold)">${G.zh}</span><h1>${rec?'Nouveau record !':g.score?'Bien joué !':'On réessaie demain ?'}</h1>
-     <div class="big-num" style="color:var(--gold)">${g.score}<small> points</small></div><p class="muted small">${g.daily?'Défi du jour réussi':'Entraînement'} · +${g.xp} pour ton niveau${g.best0&&!rec?' · record : '+g.best0:''}</p></div>
+  if(g.end){const rec=g.id==='sprint'?(g.bt0>0&&g.time<g.bt0):g.score>g.best0&&g.best0>0;
+    return `<main class="screen" style="padding-bottom:32px"><div class="end-hero"><span class="zh" style="font-size:56px;color:var(--gold)">${G.zh}</span><h1>${rec?'Nouveau record !':g.score?'Bien joué !':'On réessaie demain ?'}</h1>${g.id==='sprint'?`<div class="big-num" style="color:var(--gold)">${fmtT(g.time)}</div>`:''}
+     ${g.id==='sprint'?'':`<div class="big-num" style="color:var(--gold)">${g.score}<small> points</small></div>`}<p class="muted small">${g.daily?'Défi du jour réussi':'Entraînement'} · +${g.xp} pour ton niveau${g.best0&&!rec?' · record : '+g.best0:''}</p></div>
      ${g.id==='eclair'?`<div class="kpis"><div class="stat"><b>${g.okN}</b><span>bonnes réponses</span></div><div class="stat"><b>${stats().flashBest||0}</b><span>ton record</span></div><div class="stat"><b>${streakAlive()}</b><span>jours de suite</span></div></div>`:''}
+     ${g.id==='sprint'?`<div class="kpis"><div class="stat"><b>${fmtT(g.time)}</b><span>ton temps</span></div><div class="stat"><b>${fmtT(gRec('sprint').bt)}</b><span>ton record</span></div><div class="stat"><b>${g.okN}/20</b><span>justes du premier coup</span></div></div>`:''}
+     ${medalRow(g.id)}
      ${newTitleHTML()}${badgesHTML(g.newBadges)}
      <div class="stack sm"><button class="btn primary block" data-act="ghome">Retour</button><button class="btn ghost block" data-act="game" data-id="${g.id}">Rejouer pour m’entraîner</button></div></main>`;}
-  const top=`<div class="topbar"><button class="xbtn" data-act="gquit" aria-label="Quitter">${ICON.x}</button><div class="grow"><b class="small">${esc(G.t)}</b><br><span class="score">${g.score} points</span></div>${g.id!=='mystere'?`<span class="timer ${g.left<=5?'low':''}" id="gtime">${g.left} s</span>`:`<span class="small muted">manche ${g.used.length}/3</span>`}</div>`;
+  const top=`<div class="topbar"><button class="xbtn" data-act="gquit" aria-label="Quitter">${ICON.x}</button><div class="grow"><b class="small">${esc(G.t)}</b><br><span class="score">${g.score} points</span></div>${g.id==='sprint'?`<span class="timer" id="gtime">${fmtT(sprintTime(g))}</span>`:g.id!=='mystere'?`<span class="timer ${g.left<=5?'low':''}" id="gtime">${g.left} s</span>`:`<span class="small muted">manche ${g.used.length}/3</span>`}</div>`;
   let body='';
   if(g.id==='mystere'){const x=BYC[g.c],n=x.n_strokes,size=Math.min(220,writerSize()-40);
     body=`<p class="q-title">${g.found?'Trouvé !':'Quel est ce caractère ?'}</p>${strokesSVG(g.c,g.found?n:g.k,size)}
@@ -951,8 +1073,15 @@ function renderGame(){
     body=`<div class="row between"><span class="combo">${g.combo>=3?`<span class="zh">连</span> ×${1+Math.floor(g.combo/3)}`:`${g.okN} bonne${g.okN>1?'s':''} réponse${g.okN>1?'s':''}`}</span></div>
      <div class="qchar ${g.pick!=null&&!q.opts[g.pick].ok?'flash':''}" style="border-radius:16px">${x.c}</div>
      <div class="opts">${q.opts.map((o,i)=>`<button class="opt ${g.pick==null?'':o.ok?'ok':g.pick===i?'bad':'dim'}" data-act="flash" data-i="${i}" ${g.pick!=null?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>`;}
+  if(g.id==='sprint'){const q=g.q,x=BYC[q.c];
+    body=`<div class="row between"><span class="combo">${g.n}/20</span>${g.pen?`<span class="tiny" style="color:var(--bad);font-weight:800">+${g.pen} s de pénalité</span>`:''}</div><div class="bar"><i style="width:${g.n/20*100}%"></i></div>
+     <p class="q-title">${q.kind==='son'?'Comment se lit ce caractère ?':'Que veut dire ce caractère ?'}</p><div class="qchar ${g.pick!=null&&!q.opts[g.pick].ok?'flash':''}" style="border-radius:16px">${x.c}</div>
+     <div class="opts ${q.kind==='son'?'two':''}">${q.opts.map((o,i)=>`<button class="opt ${g.pick==null?'':o.ok?'ok':g.pick===i?'bad':'dim'}" data-act="sprint" data-i="${i}" ${g.pick!=null?'disabled':''}>${q.kind==='son'?`<span class="py">${pyHTML(o.t)}</span>`:esc(o.t)}</button>`).join('')}</div>`;}
   return top+`<main class="lesson">${body}</main>`;
 }
+function medalRow(id){const G=GSEUILS[id],m=gameMedal(id,gameVal(id));
+  return `<section class="card stack sm" style="text-align:center"><span class="label">Tes sceaux pour ce défi</span><div class="row" style="justify-content:center;gap:18px">${G.s.map((n,i)=>`<div class="stack sm" style="align-items:center">${sealStamp(SEALBY['g_'+id+'_'+i])}<span class="tiny muted">${MEDAL[i]} · ${G.v==='t'?n+' s':n}</span></div>`).join('')}</div>
+   <p class="small">${m===3?'Sceau d’or ! Tu es une championne.':'Prochain sceau ('+MEDAL[m]+') : '+(G.v==='t'?G.s[m]+' secondes ou moins pour les 20 caractères.':G.s[m]+' '+G.u+'.')}</p></section>`;}
 
 /* ---------- fiche d'un caractère ---------- */
 function ficheHTML(c,id){
@@ -1006,7 +1135,7 @@ function renderSession(){
       onCorrectStroke:(d)=>{const e=document.getElementById('wstat');if(e)e.textContent=`Trait ${d.strokeNum+1} sur ${x.n_strokes} ✓`;},
       onComplete:(sum)=>{const m=sum.totalMistakes;const ok=mem?m<=3:true;st.res={ok,m};s.n++;if(ok)s.ok++;
         grade(st.c,'ecrit',mem?ok:m<=2);if(ok)addXP(mem?15:5);
-        if(m===0){stats().perfect=(stats().perfect||0)+1;qBump('trace3');}
+        if(m===0){stats().perfect=(stats().perfect||0)+1;qBump('trace3');weekBump('trace');stats().perfRun=(stats().perfRun||0)+1;stats().perfRunBest=Math.max(stats().perfRunBest||0,stats().perfRun);}else stats().perfRun=0;
         if(mem&&ok){stats().mem=(stats().mem||0)+1;qBump('mem2');}
         if(mem&&!ok&&!st.re)s.steps.push({kind:'ecrire',c:st.c,sec:'On le revoit',re:true});save();setTimeout(render,700);}});
     else{st.res={ok:true,m:0};}
@@ -1092,7 +1221,7 @@ const ACT={
  hint:()=>{const w=writers['hw-main'];if(w){try{w.highlightStroke(w._quiz?w._quiz._currentStrokeIndex:0);}catch(e){}}const st=ui.sess.steps[ui.sess.i];if(st.kind==='ecrire')st.hinted=true;},
  fiche:d=>openFiche(d.c),
  closesheet:()=>{closeSheet();if(!ui.sess&&!ui.game&&!(ui.exam&&ui.exam.stage!=='intro'))render();},
- practice:d=>{closeSheet();ui.sess={kind:'practice',steps:[{kind:'ecrire',c:d.c,sec:'Entraînement'}],i:0,xp:0,ok:0,n:0,combo:0,news:[],end:false,t0:Date.now(),known0:knownCount(),known0Set:new Set(known().map(x=>x.c)),badges0:earnedBadges()};render();},
+ practice:d=>{closeSheet();ui.sess={kind:'practice',steps:[{kind:'ecrire',c:d.c,sec:'Entraînement'}],i:0,xp:0,ok:0,n:0,combo:0,news:[],end:false,t0:Date.now(),known0:knownCount(),known0Set:new Set(known().map(x=>x.c)),badges0:[]};render();},
  key:d=>{ui.openKey=d.k;render();window.scrollTo(0,0);},
  closekey:()=>{ui.openKey=null;render();},
  read:d=>{ui.sess=null;ui.tab='lire';ui.reader=d.t;ui.showPy={};ui.showFr={};render();window.scrollTo(0,0);},
@@ -1104,6 +1233,12 @@ const ACT={
  readdone:()=>{S.read[ui.reader]=today();addXP(30);markActive();qBump('lire');save();toast('Bravo ! Tu as lu un vrai texte en chinois.');render();},
  reread:()=>{S.reread=today()+ui.reader;addXP(10);markActive();qBump('lire');save();toast('Bravo ! Relire à voix haute, c’est comme ça qu’on devient fluide.');render();},
  game:d=>{ui.sess=null;startGame(d.id);},
+ sprint:d=>sprintPick(+d.i),
+ sealopen:d=>{ui.sealOpen=ui.sealOpen===d.id?null:d.id;render();},
+ sealgo:d=>{ui.tab='prog';ui.sealOpen=d.id;render();const el=document.querySelector('[aria-label="Carnet de sceaux"]');if(el)el.scrollIntoView();},
+ sealshare:d=>sealShare(SEALBY[d.id]),
+ sealnext:()=>{if(ui.sealQ&&ui.sealQ.length)showSealSheet();else{closeSheet();render();}},
+ shareprog:()=>shareProgress(),
  gquit:()=>{stopTimer();ui.game=null;render();},
  ghome:()=>{ui.game=null;ui.tab='home';render();window.scrollTo(0,0);},
  mys:d=>mysPick(d.c),
@@ -1179,6 +1314,7 @@ async function boot(){
     DATA=d;TRAITS=t;DATA.chars.forEach(x=>BYC[x.c]=x);DATA.rangs=DATA.rangs||[{h:'字',p:'zì',fr:'Débutante',d:'',xp:0}];DATA.qr=DATA.qr||[];
   }catch(e){app.innerHTML='<main class="screen"><h1>Connexion nécessaire</h1><p>Ouvre Zìzì une première fois avec du réseau : ensuite il marche hors-ligne.</p></main>';return;}
   if(![5,10,15].includes(S.dur))S.dur=10;
+  if(!S.sealsV1){S.sealsV1=1;S.seals=S.seals||{};const d=earnedBadges();d.forEach(id=>{if(!S.seals[id])S.seals[id]=today();});save();if(d.length)setTimeout(()=>toast('Ton carnet de sceaux est prêt : '+d.length+' sceau'+(d.length>1?'x':'')+' déjà à toi !'),1200);}
   refreshJokers();render();
   if(navigator.onLine!==false)loadAudioIndex();
   if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&window.top===window)navigator.serviceWorker.register('sw.js').catch(()=>{});
