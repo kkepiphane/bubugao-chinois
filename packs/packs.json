@@ -47,6 +47,12 @@
    "v": 1,
    "file": "metier-01-securite.json",
    "title": "Métier · Sécurité et accidents"
+  },
+  {
+   "id": "hsk1-06",
+   "v": 1,
+   "file": "hsk1-06-acheter.json",
+   "title": "HSK 1 · 6 — Acheter"
   }
  ]
 }
